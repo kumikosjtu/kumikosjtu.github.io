@@ -1,0 +1,231 @@
+## 假设检验的基本概念
+
+### 统计假设
+
+> 引入：有一天保健品钙含量的数据，并且按照经验知道保健品中钙含量方差在 $\sigma^2=12^2$。
+>
+> 设随机变量 $X$ 表示这一天每片保健品的钙含量，则：
+> $$
+> X\sim N(\mu,12^2)
+> $$
+> 检验：
+>
+> - $H_0:\mu=\mu_0=500$.
+> - $H_1:\mu\not=\mu_0$.
+>
+> 如果原假设正确，则：
+> $$
+> \overline{X}\sim N\left(\mu_0,\frac{\sigma^2}{n}\right)
+> $$
+> 则：
+> $$
+> U=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\sim N(0,1)
+> $$
+> 因此，$\displaystyle \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$ 取值较大是小概率事件。为什么选取 $U$ 来比较，因为 $U$ 的分布里面没有未知参数。
+
+### 假设检验的基本原理和步骤
+
+**假设检验的基本原理** 先对总体的特征作出某种假设，根据统计原理，通过抽样做出对此假设应该拒绝还是接受的推断。
+
+定义概率 $\alpha=0.05,0.01,\cdots$，称为 **检验水平（显著性水平）$\boldsymbol\alpha$**. $\alpha$ 越小，检验的标准越宽松，并且最终的结论和 $\alpha$ 也有关。
+
+因此，确定一个常数 $C$，使得：
+$$
+P\left(U>C\right)=\alpha\Rightarrow P\left(\left| \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\right|>C\right)=\alpha
+$$
+拒绝域：
+$$
+W=\left\{\left| \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\right|>1.96\right\}\\
+W=\left\{\overline{X}<\mu_0-1.96\frac{\sigma}{\sqrt{n}},\overline{X}>\mu_0+1.96\frac{\sigma}{\sqrt{n}}\right\}
+$$
+接受域：
+$$
+\left\{\left| \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\right|\le1.96\right\}\\
+\left\{\mu_0-1.96\frac{\sigma}{\sqrt{n}}\le \overline{X}\le \mu_0+1.96\frac{\sigma}{\sqrt{n}}\right\}
+$$
+**参数假设检验的步骤**
+
+- 提出原假设 $H_0$ 和备选假设 $H_1$.
+
+> 原假设和备选假设如何选取，原假设一般是认为系统工作正常，备择假设一旦成立，可能说明系统产生严重的问题。
+
+- 当 $H_0$ 为真时，选择合适的检验统计量 $U=g(\boldsymbol X)$，检验统计量服从的分布已知。
+
+- 计算很小的参数 $\alpha$（显著性水平） 对应的拒绝域 $W$，
+  $$
+  P(\boldsymbol X \in W)\le \alpha
+  $$
+  也就是构造一个小概率事件 $\boldsymbol X\in W$. 当拒绝域位于两侧，称为双侧检验，类似的，在左侧或者右侧称为左侧检验或右侧检验。
+
+- 观察统计量 $U$ 的观测值 $\hat U$是否落在拒绝域里面. 由此判断 $\boldsymbol X$ 是否落在 $W$ 中。
+
+- 给出结论，若 $\boldsymbol X\in W$，则拒绝 $H_0$，否则接受 $H_0$.
+
+### 两类错误
+
+**假设检验的原理** 小概率事件在一次实验中基本不发生。是概率意义下的一种反证法思想。可能产生两类错误：拒绝 $H_0$ | $H_0$ 为真（弃真），$\beta=P($接收 $H_0$ | $H_0$ 为假$)$（存伪）
+
+|            | 接受 $H_0$              | 接受 $H_1$                   |
+| ---------- | ----------------------- | ---------------------------- |
+| $H_0$ 为真 | 正确（$>1-\alpha$）     | 犯第一类错误（$\le \alpha$） |
+| $H_0$ 为假 | 犯第二类错误（$\beta$） | 正确（$1-\beta$）            |
+
+**假设检验的原则** 控制犯第一类错误的概率不超过 $\alpha$，再尽可能降低犯第二类错误的概率。
+
+比如分析样本服从 $X\sim N(508,12^2)$，却接收了 $H_0:\mu=500$ 的假设。接受域 $[494,504]$，则：
+$$
+\beta=P(494\le \overline{X}\le 504)=-\Phi\left(\frac{494-508}{12/\sqrt{16}}\right)+\Phi\left(\frac{504-508}{12/\sqrt{16}}\right)=0.242
+$$
+减小 $\beta$ 的方法：
+
+- 例如增大样本容量，取 $\mu=500,n=24$，则 
+  $$
+  \beta=P(494\le \overline{X}\le 504)=-\Phi\left(\frac{494-508}{12/\sqrt{24}}\right)+\Phi\left(\frac{504-508}{12/\sqrt{24}}\right)=0.095
+  $$
+  从图像上看，就是看两个正态分布 $N(\mu_0,\sigma^2/n)$ 和 $N(\mu,\sigma^2/n)$ 的重合部分。$n$ 越大，方差越小，重合越小。
+  
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_0fd5d15506f1c7a1572164a6535d6f5b.png" alt="image-20231216115743605" style="zoom: 50%;" />
+  
+- 如果减小 $\alpha$，则 $\beta$ 必然增加。如果增加 $\alpha$，则 $\beta$ 必然减小。在样本容量给定的情况下，不能让两个同时变小。
+
+> 每包化肥的质量服从 $X\sim N(\mu,4)$，假设 $H_0:\mu\ge 50$，备择假设 $H_1:\mu<50$.
+>
+> 若原假设正确，则：
+> $$
+> P\left(\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}<-z_\alpha\right)=\alpha
+> $$
+> 但是不知道 $\mu$ 的真值，只知道 $\mu\ge 50$，而：
+> $$
+> \left(\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}<-z_\alpha\right)\sub \left(\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}<-z_\alpha\right)
+> $$
+> 所以：
+> $$
+> P\left(\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}<-z_\alpha\right)\le \alpha
+> $$
+> 因此是一个小概率事件。所以取拒绝域：
+> $$
+> \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}} <-z_\alpha
+> $$
+> 实际使用时取等号。犯第一类错误的概率不超过 $\alpha$.
+
+**$\boldsymbol p$ 值检验法**
+
+首先计算出统计量的观测值 $u_0$，再计算事件 $|U|>|u_0|$ 的概率，和概率 $p$ 比较。概率 $p$ 称为检验 $p$ 值。$p$ 值越小，代表观测值和假设越不一致，显著性水平越高。
+
+**$\boldsymbol p$ 值检验法一般方法**
+
+设 $Z$ 表示构造的检验统计量，$z_0$ 表示根据样本数据计算得到的检验统计量的观测值。
+
+## 单个正态总体的参数检验
+
+### 单个正态总体均值的假设检验
+
+**当方差 $\boldsymbol {\sigma^2}$ 已知**，可以提出三类原假设和备择假设：
+
+1. $H_0 : \mu=\mu_0,H_1:\mu \not=\mu_0$；
+2. $H_0:\mu \ge \mu_0 ,H_1:\mu<\mu_0$；
+3. $H_0: \mu \le \mu_0,H_1:\mu >\mu_0$.
+
+采用检验统计量：
+$$
+U=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+对于 1.，选取拒绝域（双侧）：
+$$
+|U| > u_{\alpha/2}
+$$
+对于 2.3.，选取拒绝域（单侧）：
+$$
+U < -u_\alpha \quad U >u_\alpha
+$$
+**当方差 $\boldsymbol{\sigma^2}$ 未知**，选取检验统计量：
+$$
+T=\frac{\overline{X}-\mu_0}{S/\sqrt{n}}\sim t(n-1)
+$$
+
+1. 检验假设 $H_0: \mu=\mu_0 ,H_1 :\mu \not=\mu_0$，其拒绝域为：
+   $$
+   |T|>t_{\alpha/2}(n-1)
+   $$
+
+2. 检验假设 $H_0:\mu\ge \mu_0,H_1:\mu<\mu_0$，其拒绝域为：
+   $$
+   T<-t_{\alpha}(n-1)
+   $$
+
+3. 检验假设 $H_0:\mu \le \mu_0,H_1:\mu>\mu_0$，其拒绝域为：
+   $$
+   T>t_{\alpha}(n-1)
+   $$
+   
+
+称为 **$\boldsymbol t$ 检验法**。
+
+> pl 老师上课提出的简单记忆方法，拒绝域的符号和备择假设一致。
+
+### 单个正态总体方差的假设检验
+
+**当均值 $\boldsymbol \mu$ 已知**，选取检验统计量：
+$$
+\chi^2 = \frac{\sum_{i=1}^n (X_i-\mu)^2}{\sigma_0^2} \sim \chi^2(n)
+$$
+
+1. 检验假设 $H_0:\sigma^2=\sigma_0^2,H_1:\sigma^2\not=\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 <\chi^2_{1-\alpha/2}(n) 或 \hat \chi^2 >\chi^2_{\alpha/2}(n)
+   $$
+
+2. 检验假设 $H_0:\sigma^2\ge \sigma_0^2,H_1:\sigma^2 <\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 <\chi^2_{1-\alpha}(n)
+   $$
+
+3. 检验假设 $H_0:\sigma^2 \le \sigma_0^2 ,H_1:\sigma^2 >\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 >\chi^2_{\alpha}(n)
+   $$
+
+> 此时直接使用方差的定义，更加准确。
+
+**当均值 $\boldsymbol \mu$ 未知**，选取检验统计量：
+$$
+\chi^2 = \frac{\sum_{i=1}^n (X_i-\overline{X})^2}{\sigma_0^2} \sim \chi^2(n-1)
+$$
+
+1. 检验假设 $H_0:\sigma^2=\sigma_0^2,H_1:\sigma^2\not=\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 <\chi^2_{1-\alpha/2}(n-1) 或 \hat \chi^2 >\chi^2_{\alpha/2}(n-1)
+   $$
+
+2. 检验假设 $H_0:\sigma^2\ge \sigma_0^2,H_1:\sigma^2 <\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 <\chi^2_{1-\alpha}(n-1)
+   $$
+
+3. 检验假设 $H_0:\sigma^2 \le \sigma_0^2 ,H_1:\sigma^2 >\sigma_0^2$，其拒绝域为：
+   $$
+   \hat \chi^2 >\chi^2_{\alpha}(n-1)
+   $$
+
+称为 **$\boldsymbol \chi^2$ 检验法**
+
+![image-20231216122109395](https://notes.sjtu.edu.cn/uploads/upload_56ca2204790ec15bc7fbcc7bf4a31a3b.png)
+
+1. 先检验平均重量是否符合要求，提出假设：
+   $$
+   H_0:\mu=1000,\quad H_1:\mu\not=1000
+   $$
+   选取检验统计量：
+   $$
+   T=\frac{\overline{X}-1000}{S/\sqrt{10}}\sim t(9)
+   $$
+
+2. 提出假设：
+   $$
+   H_0:\sigma^2\le \sigma_0^2, \quad H_1:\sigma^2>\sigma_0^2
+   $$
+   选取检验统计量：
+   $$
+   \chi^2=\frac{9S^2}{\sigma_0^2} \sim \chi^2(n-1)
+   $$
+

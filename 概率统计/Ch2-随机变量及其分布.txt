@@ -1,0 +1,472 @@
+## 随机变量及其分布函数
+
+### 随机变量
+
+将样本空间中的每一个事件 $\omega$ 按照一定的的法则 $X$ 对应到一个实数，则称 $\Omega$ 上的单值实值函数 $X(\omega)$ 为 **随机变量**。
+
+随机变量是 $\Omega \to R$ 上的一个映射：
+
+- **定义域** 样本空间 $\Omega$.
+- **随机性** 随机变量的取值不能预测.
+- **概率特性** 随机变量以一定的概率取某个值或某些值.
+
+### 分布函数
+
+设 $X$ 为一随机变量，对于任意实数 $x$，称 $F(x)=P(X \le x), \quad -\infin <x < +\infin$ 为 $X$ 的 **分布函数**。
+
+分布函数的性质：
+
+- $0 \le F(x) \le 1$，$F(-\infin)=0,F(+\infin)=1$.
+- $F(x)$ 单调不减。
+- $F(x)$ 是右连续函数，即 $\displaystyle \lim_{t \to x^+} F(t)=F(x)$.
+- 例如：![image-20230922111038771](https://notes.sjtu.edu.cn/uploads/upload_8b0057025691fca5bc8ccc9cf1b004fd.png)
+
+$X$ 取 $x_0$ 的概率：
+$$
+\begin{aligned}
+P(X=x_0)&=\lim_{\Delta x \to 0^+}P(x_0 -\Delta x < X \le x_0)\\
+&=\lim_{\Delta x \to 0^+} [F(x_0)-F(x_0 - \Delta x)]=F(x_0)-F(x_0-0)
+\end{aligned}
+$$
+
+---------
+
+设 $X_1,X_2$ 相互独立，分布函数分别为 $F_1(x),F_2(x)$，则 $F_1(x)F_2(x)$ 必为某一随机变量 $X=\max\{X_1,X_2\}$ 的分布函数。
+
+证明，
+$$
+\begin{aligned}
+P(X=x_0)&=\lim_{\Delta x \to 0^+} [F_1(x_0)F_2(x_0)-F_1(x_0-\Delta x)F_2(x_0-\Delta x)]\\&=\lim_{\Delta x \to 0^
++} F_1(x_0) (F_2(x_0)-F_2(x_0-\Delta x)) + \lim_{\Delta x \to 0^+} F_2(x_0-\Delta x) (F_1(x_0)-F_1(x_0-\Delta x))\\
+&=F_1(x_0) P(X_2 = x_0)+F_2(x_0)P(X_1=x_0)\\
+&=P(X_1 \le x_0) P(X_2=x_0)+P(X_2 \le x_0) P(X_1=x_0)\\
+&=P(\max\{X_1,X_2\}=x_0)
+\end{aligned}
+$$
+
+也可以：
+$$
+F(x_0)=P(X \le x_0)=P(\max (X_1,X_2)\le x_0)=P(X_1 \le x_0) P(X_2 \le x_0)=F_1(x)F_2(x)
+$$
+
+------
+
+若 $F_1(X)$ 与 $F_2(X)$ 是分布函数，则 $F(X)=aF_1(X)+bF_2(x)$ 是分布函数的充要条件是 $a+
+b=1$.
+
+## 离散型随机变量及其分布律
+
+### 离散型随机变量概率分布的一般概念
+
+设离散型随机变量 $X$ 的所有可能取值为 $X=x_k(k=1,2,\cdots)$，不妨设 $x_1 < x_2 < \cdots$，称
+$$
+P(X=x_k)=p_k,k=1,2,\cdots
+$$
+为 $X$ 的 **分布律**，满足 $p_k \ge 0,k=1,2,\cdots$；$\displaystyle \sum_{k=1}^{+\infin} p_k=1$.
+
+**离散型随机变量分布函数和分布律的关系**
+
+- $\displaystyle F(x)=P(X \le x)=\sum_{x_k \le x } P(X=x_k)$,
+- $P(X=x_k)=p_k=P(x_{k-1} < X \le x_k)=F(x_k)-F(x_{k-1})$.
+
+### 常见的离散型随机变量
+
+#### 0-1 分布
+
+| $X$  | 1    | 0     |
+| ---- | ---- | ----- |
+| $P$  | $p$  | $1-p$ |
+
+也可以写成
+$$
+P(X=k)=p^k(1-p)^{1-k},k=0,1.
+$$
+
+#### 二项分布（Bernoulli 分布）
+
+**Bernoulli 试验**
+
+- 可以独立重复地进行 $n$ 次；
+- 每次试验的结果只有两个，不妨设为 $A$ 发生和 $\overline{A}$ 发生。
+
+$n$ 重 Bernoulli 试验的分布律：
+$$
+P(X=k)=C_n^k p^k(1-p)^{n-k}
+$$
+- 事件至少发生一次的概率为 $1-(1-p)^n$.
+- 如果知道事件至少发生一次的概率，就可以推出 $p$.
+
+**定义最可能成功次数** 为 $k^*$，满足：
+$$
+P(X=k^*) \ge P(X=j), \quad j=0,1,\cdots,n
+$$
+ 则称 $k^*$ 是 $n$ 次独立实验中最可能成功次数，在一般情况下：
+
+- $(n+1)p$ 为整数时，$k^*=(n+1)p,(n+1)p-1$.
+- $(n+1)p$ 为非整数时，$k^*=[(n+1)p]$.
+
+------
+
+访客对广告的点击率为 $p$，$X$ 表示点击这个广告（第） $r$ 次时该网站的访问量，写出 $X$ 的分布律。
+
+最后一次一定完成点击，因此
+$$
+P(X=k)=C_{k-1}^{r-1} p^{r-1}(1-p)^{k-r}p=C_{k-1}^{r-1} p^r (1-p)^{k-r}
+$$
+称为 **负二项分布**。
+
+当 $r=1$ 时（第一次点击），有
+$$
+P(X=k)=(1-p)^{k-1}p, \quad k=1,2,\cdots,
+$$
+称为 **几何分布**。
+
+#### Poisson 分布
+
+将某一时间段划分为 $n$ 段，每一时间段发生事件的概率和时间段的时长成正比，不妨记作 $\displaystyle \frac{\lambda}{n}$，那么这段发生事件数目的数量 $X$ 满足二项分布：
+$$
+X \sim B\left(n,\frac{\lambda}{n}\right)
+$$
+当 $n \to \infin$ 时，
+$$
+\begin{aligned}
+\lim_{n\to +\infin} P(X_n=k)&=\lim_{n \to \infin }C_{n}^k \left(\frac{\lambda}{n}\right)^k\left(1-\frac{\lambda}{n}\right)^{n-k}\\
+&=\lim_{n \to \infin} \frac{n!}{k! \cdot (n-k)!}  \cdot \frac{\lambda^k(n-\lambda)^{n-k}}{n^n}
+\end{aligned}
+$$
+**使用 Stirling 公式证明：**
+
+Stirling 公式：$\displaystyle n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n,n \to \infin$. …… 
+
+代入化简得到
+$$
+\begin{aligned}
+\lim_{n \to \infin} \frac{n!}{k! \cdot (n-k)!}  \cdot \frac{\lambda^k(n-\lambda)^{n-k}}{n^n}&=\lim_{n \to \infin} \frac{\sqrt{2\pi n} \left(\frac{n}{e}\right)^n}{k! \cdot \sqrt{2\pi (n-k)} \left(\frac{n-k}{e}\right)^{n-k}}  \cdot \frac{\lambda^k(n-\lambda)^{n-k}}{n^n}\\
+&=\lim_{n \to \infin}\frac{\lambda^k}{k!} e^{-k}\left(\frac{n-\lambda}{n-k}\right)^{n-k} 
+\end{aligned}
+$$
+接下来计算：
+$$
+\lim_{n \to \infin} \left(\frac{n-\lambda}{n-k}\right)^{n-k}
+$$
+换元 $m=n-k$，
+$$
+\lim_{m \to \infin} \left(\frac{m-(\lambda - k)}{m}\right)^{m} =e^{k-\lambda}
+$$
+于是得到最终：
+$$
+\boxed{\lim_{n \to \infin} P(X_n=k)=\lim_{n\to \infin} C_n^k p^k (1-p)^{n-k}=\frac{\lambda^k}{k!} e^{-\lambda}}
+$$
+
+实际计算可以拿这个公式做近似。
+
+
+-------
+
+设随机变量 $X$ 的所有可能取值为 $0,1,2,\cdots$，并且分布律为：
+$$
+P(X=k)=e^{-\lambda} \frac{\lambda ^k}{k!}, \quad k=0,1,2,\cdots
+$$
+其中 $\lambda>0$，则称随机变量 $X$ 服从参数为 $\lambda$ 的 Poisson 分布，记为 $X \sim P(\lambda)$. 也就是：
+$$
+X \sim B\left(n,\frac{\lambda}{n}\right) \overset{n \to +\infin}\Rightarrow X \sim P(\lambda)
+$$
+
+-------
+
+![image-20230923111822924](https://notes.sjtu.edu.cn/uploads/upload_2986f808091ef7f58fac1ec9d9c154f4.png)
+
+即计算
+$$
+\begin{aligned}
+P(Y=k)&=\sum _{m=k}^\infin P(X=m) C_m^k p^k (1-p)^{m-k}\\
+&=\sum_{m=k}^\infin e^{-\lambda} \frac{\lambda^m}{m!} \frac{m!}{k!(m-k)!} p^k(1-p)^{m-k}\\
+&\overset{凑 m-k}{=}\frac{e^{-\lambda} p^k \lambda^k}{k!}\sum_{m=k}^\infin \frac{\lambda^{m-k}}{(m-k)!}(1-p)^{m-k}
+\end{aligned}
+$$
+接下来换元 $m-k=l$，求：
+$$
+\sum_{l=0}^\infin \frac{\lambda^l}{l!}(1-p)^l=\sum_{l=0}^\infin \frac{[\lambda(1-p)]^l}{l!}
+$$
+这其实是一个级数的形式，因为 $\displaystyle e^x = \sum_{i=0}^\infin \frac{x^i}{i!}$， 所以上式等于 $e^{\lambda(1-p)}$.
+
+然后最后化简得到
+$$
+P(Y=k)=e^{-\lambda p} \frac{(\lambda p)^k}{k!}\quad Y\sim P(\lambda p)
+$$
+直觉上很好理解。
+
+## 连续型随机变量及其概率密度
+
+### 概率密度函数及其性质
+
+> 概率密度函数由分布函数定义.
+
+设 $X$ 是一随机变量，$F(x)$ 是其分布函数，若存在一个非负可积函数 $f(x)$，使得：
+$$
+F(x)=\int_{-\infin} ^x f(t)\mathrm d t, \quad -\infin < x <+\infin
+$$
+则称 $X$ 为 **连续型随机变量**，$f(x)$ 是它的 **概率密度函数**，满足以下性质：
+
+- 非负性，$f(x) \ge 0$；
+- 规范性，$\displaystyle \int_{-\infin}^{+\infin} f(x)\mathrm d x=F(+\infin)=1$.
+
+- $f(x)=F'(x)$，$P(x_0 < X \le x_0+\Delta x)\approx f(x_0)\Delta x$.
+- $P(X=a)=0$.
+- 可以加上或者去掉不等式的“等号”
+
+### 常见的连续型随机变量
+
+#### 均匀分布
+
+满足
+$$
+f(x)=\left\{
+\begin{aligned}
+&\frac{1}{b-a} , &a < x < b\\
+&0, &else
+\end{aligned}
+\right.
+$$
+记为，$X \sim U(a,b)$.
+
+分布函数为：
+$$
+F(x)=\left\{
+\begin{aligned}
+&\frac{x}{b-a} , &a < x < b\\
+&0, &else
+\end{aligned}
+\right.
+$$
+
+
+#### 指数分布
+
+满足
+$$
+f(x)=\left\{
+\begin{aligned}
+& \lambda e^{-\lambda x}, & x>0\\
+&0, & x \le 0
+\end{aligned}
+\right.
+$$
+记为，$X \sim E(\lambda)$.
+
+分布函数为：
+$$
+F(x)=\left\{
+\begin{aligned}
+& 1-e^{-\lambda x}, & x>0\\
+&0, & x \le 0
+\end{aligned}
+\right.
+$$
+如果在单位时间内出现的质点数符合 Poisson 分布，则任意两个质点出现的时间间隔服从指数分布。
+
+#### 正态分布
+
+满足
+$$
+\boxed{f(x)=\frac{1}{\sqrt{2\pi} \sigma} e^{-\dfrac{(x-\mu)^2}{2\sigma^2}},\quad  -\infin < x <+\infin}
+$$
+其中 $\mu,\sigma$ 为常数，$\sigma>0$，则称 $X$ 服从参数为 $\mu,\sigma$ 的正态分布，记为 $X \sim N(\mu ,\sigma^2)$。
+
+特点：
+
+- $f(\mu+x)=f(\mu-x)$，当 $x=\mu$ 时，$\displaystyle f_\max= \frac{1}{\sqrt{2\pi}\sigma}$. 称 $\mu$ 为位置参数，$\sigma$ 为形状参数。
+- $\sigma$ 越大，图像越扁。
+
+参数 $\mu=0,\sigma=1$ 称为 **标准正态分布**。这里记为 $X^* \sim N(0,1)$，概率密度为
+$$
+\boxed{\varphi(x)=\frac{1}{\sqrt{2\pi}} e^{-x^2/2}, -\infin < x <+\infin}
+$$
+分布函数：
+$$
+\Phi(x)=\frac{1}{\sqrt{2\pi}} \int_{-\infin}^x e^{-t^2/2}\mathrm d t,-\infin < x <+\infin
+$$
+一般的正态分布可以通过线性变换 $\displaystyle Y=\frac{X-\mu}{\sigma}$ 转换为标准正态分布。还具有以下性质（由图像得出）
+
+- $\Phi(-x)=1-\Phi(x)$.
+- $P(|X^*|<a)=2\Phi(a)-1$.
+
+推出：
+
+- 若 $X \sim N(\mu,\sigma^2)$，其分布函数记为 $F(x)$，则 $\boxed{\displaystyle F(x)=\Phi\left(\frac{x-\mu}{\sigma}\right)}$
+
+## 随机变量函数的分布
+
+### 离散型随机变量的分布
+
+> 问题：求 $Y=g(X)$ 的概率特性。
+
+一般地， 随机变量 $X$ 为离散型随机变量，其分布律为：
+$$
+P(X=x_k)=p_k, \quad k=1,2,\cdots
+$$
+又设函数 $y=g(x)$，求 $Y=g(X)$ 的概率分布的一般方法如下：
+
+- 确定随机变量 $Y=g(X)$ 的所有可能取值。
+
+- $Y$ 的概率分布为：
+  $$
+  P(Y=y_i)=P(g(X)=y_i) =\sum_{k:g(x_k)=y_i} p_k
+  $$
+
+----------
+
+已知随机变量 $X$ 的概率分布律为：
+$$
+P\left(X=k\frac{\pi}{2}\right)=pq^k,k=0,1,2,\cdots
+$$
+其中 $p+q=1,0<p<1$，求随机变量 $Y=\sin X$ 的概率分布，
+$$
+P(Y=-1)=\sum_{m=0}^{\infin} P\left(X=(4m+3)\frac{\pi}{2}\right)=\sum_{m=0}^{\infin} pq^{4m+3}=\frac{pq^3}{1-q^4}
+$$
+
+$$
+P(Y=0)=\sum_{m=0}^{\infin} P\left(X=2m \cdot \frac{\pi}{2}\right)=\frac{p}{1-q^2}
+$$
+
+$$
+P(Y=1)=\sum_{m=0}^{\infin} P\left(X=(4m+1)\frac{\pi}{2}\right)=\sum_{m=0}^{\infin} pq^{4m+1}=\frac{pq}{1-q^4}
+$$
+
+### 连续型随机变量函数的分布
+
+一般地，设 $X$ 为连续型随机变量，如果已知 $X$ 的概率密度为 $f_X(x)$（或分布函数），又设函数 $y=g(x)$，求 $Y=g(X)$ 的概率密度（或分布函数）的步骤如下：
+
+- 先求 $Y$ 的分布函数 $F_Y(y)$.
+- 再对 $F_Y(y)$ 求导数，得到 $Y$ 的概率密度 $\displaystyle f_Y(y)=\frac{\mathrm d }{\mathrm d y} F_Y(y)$.
+
+也就是：
+$$
+f_X(x) \rightarrow F_X(x)\rightarrow F_Y(y) \rightarrow f_Y(y)
+$$
+
+$$
+1.F_Y(y)= P\{Y\le y\}=P\{g(X)\le y\} = \int_{g(x)\le y} f_X(x)\mathrm d x \\
+2.f_Y(y)=F'_Y(y)
+$$
+
+注意范围需要讨论。
+
+--------
+
+**Problem**：气体分子的运动速度 $X$ 是一个随机变量，其概率密度为：
+$$
+f_X(x)=\left\{\begin{aligned}
+&\frac{4x^2}{\sigma^3 \sqrt{\pi}} e^{-\frac{x^2}{\sigma^2}} , &x>0,\\
+&0, & x\le 0,
+\end{aligned}\right.
+$$
+$\displaystyle Y=\frac{1}{2}mX^2$ 表示分子的动能，求随机变量 $Y$ 的概率分布。
+
+**Solution**：
+$$
+F_Y(y)=P \left(x \le \sqrt {\frac{2y}{m}}\right)=\int_0^{\sqrt{\frac{2y}{m}}} \frac{4 x^2}{\sigma^3 \sqrt{\pi}} e^{-\frac{x^2}{\sigma^2}}\mathrm d x \quad {\color{red}(y>0)}
+$$
+
+$$
+f_Y(y)=\frac{\mathrm d F_Y(y)}{\mathrm d y}
+$$
+
+----------
+
+![image-20231007142436840](https://notes.sjtu.edu.cn/uploads/upload_cbe9f7419ad5c24a83d861c898eb1193.png)
+
+这个例子的应用：设 $X\sim N(\mu,\sigma^2)$，则：
+$$
+f_Y(y)=\frac{1}{|a|} f_X\left(\frac{y-b}{a}\right)=\frac{1}{\sqrt{2\pi} \sigma |a|} e^{-\frac{y-b-a\mu^2}{2a^2\sigma^2}}
+$$
+则 $Y \sim N(a\mu+b,a^2\sigma^2)$.
+
+-------
+
+![image-20231007200758361](https://notes.sjtu.edu.cn/uploads/upload_86f4e59b72de506ed80d5fdc21fce0d5.png)
+$$
+P(X=x)=\frac{1}{\sqrt{2\pi}} e^{-x^2/2}, 得 F_X(x)
+$$
+**当 $\boldsymbol{y>0}$ 时**
+$$
+F_Y(y)=P(Y\le y)=P(|X|\le \sqrt{y})=2F_X(\sqrt{y})-1
+$$
+**当 $\boldsymbol{y \le 0}$ 时**
+$$
+F_Y(y)=0
+$$
+
+$$
+f_Y(y)=F'_Y(y)=2\cdot \frac{1}{2\sqrt{y}} \frac{1}{\sqrt{2\pi}} e^{-y/2},y>0;0,y\le 0
+$$
+
+----
+
+![image-20231007201233921](https://notes.sjtu.edu.cn/uploads/upload_4e807a6249eff710a8ce03fdc21078a2.png)
+
+先求 $F_X(x)$：
+$$
+F_X(x)= \left\{
+\begin{aligned}
+&0, x\le 0\\
+&\frac{x^2}{\pi^2},0<x<\pi\\
+&1,x \ge \pi
+\end{aligned}
+\right.
+$$
+
+$$
+F_Y(y)=P\{Y \le y\}=P\{\sin X \le y\}=F_X(\arcsin y)+(1-F_X(\pi - \arcsin y))
+$$
+
+$$
+f_Y(y)=F'_Y(y)=\frac{1}{\sqrt{1-y^2}} \frac{2\arcsin y}{\pi^2} + \frac{1}{\sqrt{1-y^2}} \frac{2(\pi-\arcsin y)}{\pi^2}=\frac{1}{\sqrt{1-y^2}} \frac{2\pi}{\pi^2}=\frac{2}{\pi \sqrt{1-y^2}}
+$$
+
+for 0<y<1, 其他情况 $f_Y(y)=0$.
+
+----------
+
+![image-20231007202747534](https://notes.sjtu.edu.cn/uploads/upload_0a9a81686ee1c93f3e647c3105d1d587.png)
+
+![image-20231007202758859](https://notes.sjtu.edu.cn/uploads/upload_9a1005663771303085caf7f09e737648.png)
+
+----------
+
+![image-20231007203424333](https://notes.sjtu.edu.cn/uploads/upload_c97d90c14f17f8985907c4ece12ae49e.png)
+
+--------
+
+一般性结论：
+
+设随机变量 $X$ 具有概率密度 $f_X(x),-\infin <x <+\infin$，$g(x)$ 为 $-\infin,+\infin$ 内的严格单调递增（或递减）的可导函数，则随机变量 $Y=g(X)$ 的概率密度为：
+$$
+f_Y(y)=\left\{
+\begin{aligned}
+&|h'(y)| f_X[h(y)], &\alpha<y<\beta\\
+&0, &else
+\end{aligned}
+\right.
+$$
+其中 $h(y)$ 是 $g(x)$ 的反函数，$\alpha=\min\{g(-\infin),g(+\infin)\},\beta=\max\{g(-\infin),g(+\infin)\}$.
+
+## 往年题目
+
+### 18-10
+
+![image-20231222173801089](https://notes.sjtu.edu.cn/uploads/upload_1e2b8603de432b0f82135b93ea7acb85.png)
+
+首先，因为 $X,Y$ 相互独立，由泊松分布的可加性，有：
+$$
+X+Y\sim P(\lambda+\mu)
+$$
+因此：
+$$
+P(X+Y=n)=e^{-(\lambda+\mu)} \frac{(\lambda+\mu)^n}{n!}
+$$
+而：
+$$
+P(X=i\mid X+Y=n)=\frac{P(X=i)P(Y=n-i)}{P(X+Y=n)}\\
+=\frac{e^{-\lambda}\frac{\lambda^i}{i!} e^{-\mu}\frac{\mu^{n-i}}{(n-i)!}}{e^{-(\lambda+\mu)} \frac{(\lambda+\mu)^n}{n!}}=C_n^i \frac{\lambda^i \mu^{n-i}}{(\lambda+\mu)^n}
+$$

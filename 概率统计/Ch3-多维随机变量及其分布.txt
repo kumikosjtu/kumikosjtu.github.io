@@ -1,0 +1,498 @@
+## 二维随机变量及其分布
+
+设 $E$ 是一个随机试验，$\Omega$ 是其样本空间，若对 $\Omega$ 中的任意一个样本点 $\omega$，按照一定的对应法则，存在一对实数 $(X(\omega),Y(\omega))$ 与之对应，简记为 $(X,Y)$，则称 $(X,Y)$ 为 **二维随机变量**。
+
+> 例如学生对应 $\omega$，$X(\omega)$ 对应其高数成绩，$Y(\omega)$ 对应其概统成绩。
+
+设 $(X,Y)$ 为二维随机变量，对于任意实数 $x,y$，称定义在实平面上的二元函数 $F(x,y)=P(\{X \leqslant x\} \cap\{Y \leqslant y\})=P(X \leqslant x,Y \leqslant y)$ 为二维随机变量 $(X,Y)$ 的 **联合分布函数**，简称为分布函数或联合分布。
+
+> 二维前缀和
+
+其性质：
+
+- $0 \leqslant F(x,y) \leqslant 1$，且对于任意固定的 $x,y$，有 $F(-\infty,y)=0,\quad F(x,-\infty)=0,\quad F(-\infty,-\infty)=0,\quad F(+\infty,+\infty)=1$
+
+- 对 $F(x,y)$ 固定其中一个变量，它关于另一个变量是单调不减的函数，即：
+
+  - 对于任意固定的 $y$，当 $x_{1}<x_{2}$ 时，$F\left(x_{1},y\right) \leqslant F\left(x_{2},y\right)$;
+  - 对于任意固定的 $x$，当 $y_{1}<y_{2}$ 时，$F\left(x,y_{1}\right) \leqslant F\left(x,y_{2}\right)$.
+
+- 对 $F(x,y)$ 固定其中一个变量，它关于另一个变量是右连续函数，即
+  $$
+  F(x+0,y)=F(x,y), \quad F(x,y+0)=F(x,y).
+  $$
+
+- 对任意实数 $a,b,c,d$，且 $a<b,c<d$，下述结论成立：
+  $$
+  F(b,d)-F(a,d)-F(b,c)+F(a,c)=P(a<X \le b,c < Y \le d) \ge0
+  $$
+
+  > tips: 相当于容斥原理，注意不等号能不能去到
+
+  > 作为二元函数是否能够成为某个二维随机变量的分布函数的判断条件。
+
+- $P(X>a,Y>c)=P(a<X < +\infin,c<Y< +\infin)=1-F(+\infty,c)-F(a,+\infty)+F(a,c)$
+
+设二维随机变量 $(X,Y)$ 的分布函数为 $F(x,y)$，分量 $X$ 和 $Y$ 也都是随机变量，各自的分布函数分别记为 $F_{X}(x)$ 和 $F_{Y}(y)$，并依次称为随机变量 $(X,Y)$ 关于 $X$ 和 $Y$ 的 **边缘分布函数**.
+
+由分布函数的定义可得联合分布函数和边缘分布函数的关系，
+$$
+F_X(x)=P(X \le x)=P(X\le x ,Y\le +\infin)=F(x,+\infin)
+$$
+同理可得
+$$
+F_Y(y)=F(+\infin,y)
+$$
+一般地，我们可以根据分布函数求边缘分布函数 $F_{X}(x)$ 和 $F_{Y}(y)$，**反之不然**.
+
+## 二维离散型随机变量及其分布律
+
+**定义**
+
+随机变量 $(X,Y)$ 在二维平面上所有可能的取值为有限对或 **可列** 无穷对，则称 $(X,Y)$ 为 **二维离散型随机变量**。(和一维的情况差不多)
+
+设二维随机变量 $(X,Y)$ 的所有可能取值为 $\left(x_{i},y_{j}\right)$，$i,j=1,2,\cdots$，则称 $P\left(X=x_{i},Y=y_{j}\right)=p_{i j}$，$i,j=1,2,\cdots$ 为二维离散型随机变量 $(X,Y)$ 的联合分布律或联合分布列，简称为 **分布律**。
+
+![image-20231009211739684](https://notes.sjtu.edu.cn/uploads/upload_f738dbeefe3a989eb943811b1d83f3da.png)
+
+容易看出分布律具有如下性质：
+
+- （非负性）$p_{i j} \geqslant 0(i,j=1,2,\cdots)$;
+
+- （规范性）$\sum_{i} \sum_{j} p_{i j}=1$.
+
+若某数列 $p_{i j}(i,j=1,2,\cdots)$ 满足上述两条性质，就可以作为某个二维离散型随机变量的分布律。
+
+### 分布律和分布函数的关系
+
+二维离散型随机变量的分布函数与分布律互为确定，其分布函数可按下式求得：
+$$
+F(x,y)=\sum_{x_i \le x} \sum_{y_i \le y} p_{ij}
+$$
+容易知道，二维离散型随机变量的两个分量均为离散型随机变量，且其分布律分别如下所示：
+$$
+\begin{array}{l}
+P\left(X=x_{i}\right)=\sum_{ji} p_{i j} \triangleq p_{i \cdot} ,i=1,2,\cdots\\
+P\left(Y=y_{j}\right)=\sum_{i} p_{i j} \triangleq p_{\cdot j},j=1,2,\cdots
+\end{array}
+$$
+分别称 $P\left(X=x_{i}\right)$ 和 $P\left(Y=y_{j}\right)$ 为 $(X,Y)$ 关于 $X$ 和关于 $Y$ 的 **边缘分布律**。
+
+## 二维连续型随机变量
+
+定义：对于二维随机变量 $(X,Y)$ 的分布函数 $F(x,y)$，如果存在一个二元 **非负可积** 函数 $f(x,y)$，使得对于任意一对实数 $(x,y)$，有
+$$
+F(x,y)=\int_{-\infin}^x \int_{-\infin}^y f(u,v)\mathrm d u\mathrm d v
+$$
+成立，则称 $(X,Y)$ 为二维连续型随机变量，并称 $f(x,y)$ 为 $(X,Y)$ 的 **联合概率密度函数**，简称联合概率密度或联合密度。满足以下性质：
+
+- 非负性：$f(x,y) \ge 0$.
+- 规范性. $F(+\infin,+\infin)=1,F(-\infin,\cdot)=0,F(\cdot ,-\infin)=0$.
+
+若二元函数 $f(x,y)$ 满足以上两条性质，就可以作为某个二维随机变量 $(X,Y)$ 的联合概率密度。可以用于计算落于某区间 $D$ 的概率：
+$$
+P((X,Y)\in D)=\iint_D f(x,y) \mathrm d x \mathrm d y
+$$
+在 $f(x,y)$ 的 **连续点** 处，有：
+$$
+\frac{\partial ^2 F(x,y)}{\partial x \partial y}=f(x,y)
+$$
+
+**边缘概率密度函数**
+$$
+f_X(x)=\int_{-\infin}^{+\infin} f(x,y)\mathrm d y \quad f_Y(y)=\int_{-\infin}^{+\infin} f(x,y)\mathrm d x
+$$
+
+### 二维均匀分布
+
+如果二维随机变量 $(X,Y)$ 在二维有界区域 $G$ 上取值，且它的联合概率密度为
+$$
+f(x,y)=
+\begin{cases}
+\frac{1}{G的面积}, &(x,y )\in G;\\
+0, &\mathrm{else}.
+\end{cases}
+$$
+则称 $(X,Y)$ 服从 $G$ 上的均匀分布。
+
+### 二维正态分布
+
+如果二维随机变量 $(X,Y)$ 的联合概率密度为
+$$
+f(x,y)=\frac{1}{2 \pi \sigma_{1} \sigma_{2} \sqrt{1-\rho^{2}}} \exp \left\{-\frac{1}{2\left(1-\rho^{2}\right)}\left[\frac{\left(x-\mu_{1}\right)^{2}}{\sigma_{1}^{2}}-2 \rho \frac{\left(x-\mu_{1}\right)\left(y-\mu_{2}\right)}{\sigma_{1} \sigma_{2}}+\frac{\left(y-\mu_{2}\right)^{2}}{\sigma_{2}^{2}}\right]\right\}
+$$
+其中 $\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$ 为常数，则称 $(X,Y)$ 服从二维正态分布，记为：
+$$
+(X,Y) \sim N\left(\mu_{1},\sigma_{1}^{2};\mu_{2},\sigma_{2}^{2};\rho\right)
+$$
+通过积分得边缘概率密度为：
+$$
+f_X(x)=\frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}, f_Y(y)=\frac{1}{\sqrt{2\pi} \sigma_2} e^{-\frac{(x-\mu_2)^2}{2\sigma_2^2}}
+$$
+所以 $X \sim N(\mu_1,\sigma_1^2),Y \sim N(\mu_2,\sigma_2^2)$——不依赖于参数 $\rho$.
+
+**因此，仅有关于 $\boldsymbol X$ 和 $\boldsymbol Y$ 的边缘分布，一般来说不能确定随机变量 $\boldsymbol{(X,Y)}$ 的联合分布。**
+
+验证 $\rho=0$ 时 $X,Y$ 相互独立？只需要验证 $f(x,y)=f_X(x)f_Y(y)$.
+
+------
+
+通过联合概率密度函数：
+$$
+f(x,y)=\frac{1}{2\pi} e^{-(x^2+y^2)/2} (1+\sin x\sin y), -\infin <x <+\infin,-\infin <y <+\infin
+$$
+求边缘概率密度 $f_X(x)$ 和 $f_Y(y)$.
+
+由边缘概率密度的公式，可以得到：
+$$
+f_X(x)=\int_{-\infin}^{+\infin} \frac{1}{2\pi} e^{-(x^2+y^2)/2} (1+\sin x\sin y) \mathrm d y= \frac{1}{2\pi} e^{-x^2/2} \int_{-\infin}^{+\infin} e^{-y^2/2} \mathrm d  y= \frac{1}{\sqrt{2\pi}} e^{-x^2/2}
+$$
+甚至可以加上这种相互抵消的部分，原因是 $e^{-y^2/2} \sin y$ 是 **奇函数**。
+
+> 已知 $X,Y$ 都服从正态分布，那么 $(X,Y)$ 是不是一定服从二维正态分布？不一定，就像这题可以叠加一个奇函数之类的东西。
+
+## 二维随机变量的条件分布
+
+例如，研究儿童发育情况，需要了解在给定身高下体重的分布、给定体重下身高的分布。 
+
+### 二维离散型随机变量的条件分布
+
+设有二维离散型随机变量 $(X,Y)$，对于固定的 $j$，若 $P(Y=y_i)>0$，则称
+$$
+P(X=x_i \mid Y=y_i) = \frac{P(X=x_i,Y=y_i)}{P(Y=y_i)}= \frac{p_{ij}}{p_{\cdot j}} , i=1,2,\cdots
+$$
+为在 $\{Y=y_i\}$ 的条件下 $X$ 的条件分布律。
+
+满足的性质：
+
+- 非负性，$P(X=x_i \mid Y=y_i)\ge 0$.
+- 全部情况，$\sum_i P(x=x_i \mid Y=y_i)=1$.
+- 乘法公式，$P(X=x_i,Y=y_i)=P(X=x_i \mid Y=y_i) P(Y=y_i)$.
+- 全概率公式，$P(X=x_i)=\sum_j P(Y=y_i) P(X=x_i \mid Y=y_i)$.
+
+### 二维连续型随机变量的条件分布
+
+在连续型的情况下，$P(X=x_i,Y=y_i)$ 和 $P(Y=y_i)$ 都为零，因此不能这么计算。
+
+引入：设平面区域 $G=\{(x,y) \mid x^2+y^2 \le r^2\}$，求条件概率密度 $f_{X\mid Y}(x\mid y)$.
+
+当 $-r < x <r$ 的情况下，当 $x$ 给定，随机变量 $Y$ 在 $(-\sqrt{r^2-x^2},\sqrt{r^2+x^2})$ 内服从均匀分布，因此
+$$
+f_{Y\mid X} (y\mid x) = \left\{
+\begin{aligned}
+&\frac{1}{2\sqrt{r^2-x^2}}, &-\sqrt{r^2-x^2} < y <\sqrt{r^2-x^2},\\
+&0,&其他,
+\end{aligned}
+\right.
+$$
+可以得到：
+$$
+f_{X\mid Y }(x\mid y)=\frac{f(x,y)}{f_Y(y)}
+$$
+如何理解，在 $f_Y(y)$ 的这么多情况中，取到 $f(x,y)$ 的概率。
+
+称：
+$$
+F_{X \mid Y} (x\mid y)=\int_{-\infin}^x f_{X\mid Y}(u\mid y) \mathrm d u=\int_{-\infin}^x \frac{f(u,y)}{f_Y(y)} \mathrm d u
+$$
+为在 $Y=y$ 条件下 $X$ 的条件分布函数。
+
+--------
+
+这个公式反过来用，可以通过条件概率密度函数和边缘分布函数计算得到联合分布概率密度函数。
+$$
+f(x,y)=f_{X\mid Y}(x\mid y)f_Y(y)
+$$
+
+---------
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5b22e91b57015dcff85aafde3f7d1ae8.png" alt="image-20231019091738061" style="zoom:33%;" />
+
+如果画图，很容易得出是在 $Y>0$ 的面积中 $X>1/2,Y>0$ 的部分所占的比例。
+
+## 随机变量的独立性
+
+可能出现这样的分布，其中 $X$ 的取值不影响 $Y$，$Y$ 的取值也不影响 $X$，这种情况 $X,Y$ 相互独立，这里给出两个随机变量相互独立的定义：
+
+- **连续型**：设 $(X,Y)$ 是二维随机变量，若对于任意实数 $x,y$，都有 $P(X\le x,Y\le y)=P(X\le x )P(Y \le y)$，则称 $X$ 与 $Y$ 相互独立。**联合分布律等于边缘分布律的乘积，联合概率密度等于边缘概率密度的乘积**
+
+- **离散型**：$P(X=x_i,Y=y_i)=P(X=x_i)P(Y=y_i)$. 即 $p_{ij}=p_{i\cdot}p_{\cdot j}$.
+
+--------
+
+如果相互独立，则：
+$$
+f_X(x)=f_{X\mid Y} (x\mid y) \\
+f_Y(y)=f_{Y\mid X} (y \mid x)
+$$
+是因为 $f_{X\mid Y}(x \mid y)=f(x,y)/f_Y(y)=f_X(x)$.
+
+------
+
+如果 $X,Y$ 相互独立，$g(x)$ 和 $h(y)$ 是两个确定函数，则 $g(X)$ 和 $h(Y)$ 也相互独立。
+
+![image-20231027200020006](https://notes.sjtu.edu.cn/uploads/upload_1b3bab8035170b0267dfc079f33d1ede.png)
+
+计算出：
+$$
+P(X=1,Y=n),P(X=0,Y=n);\\
+P(X=1),P(X=0);\\
+P(Y=n)
+$$
+验证相乘结果即可。
+
+-------
+
+![image-20231027200657069](https://notes.sjtu.edu.cn/uploads/upload_b4e953678d5fb3eeb2090802d0e45936.png)
+
+先计算边缘分布函数：
+
+对于 (1)：
+$$
+f_X(x)=\int_{x^2} ^1 6xy \mathrm d y=3x(1-x^4) \quad \mathrm{for} -1 <x<1\\
+f_Y(y)=\int_{0}^{\sqrt{y}} 6xy \mathrm d x=3y^2 \quad \mathrm{for} 0<y<1
+$$
+因此显然不独立。
+
+对于 (2)：
+
+可以发现 $f(x,y)=2x \cdot 2y$，应该是独立的。
+
+--------
+
+**独立性定理** 设 $(X,Y)$ 是二维连续型随机变量，$f(x,y)$ 是 $(X,Y)$ 的联合概率密度，则 $X$ 与 $Y$ 相互独立的充分必要条件是存在非负可积函数 $r(x)$ 和 $g(y)$，使得：
+$$
+f(x,y)=r(x)g(y)
+$$
+在一切连续点上成立，此时：
+$$
+f_X(x)= \frac{r(x)}{\int_{-\infin}^{+\infin} r(x) \mathrm d x}, f_Y(y)=\frac{g(y)}{\int_{-\infin}^{+\infin} g(y)\mathrm d y}
+$$
+
+## $n$ 维随机变量
+
+**分布函数的定义** 设 $(X_1,X_2,\cdots,X_n)$ 为 $n$ 维随机变量，对于任意 $x_1,x_2 \cdots,x_n \in \R$，称 $F(x_1,x_2,\cdots,x_n)=P(X_1 \le x_1,X_2 \le x_2,\cdots, X_n \le x_n)$ 为 $n$ 维随机变量 $(X_1,X_2,\cdots,X_n)$ 的 **联合分布函数**。
+
+**$k$ 维边缘分布函数** $(X_1,X_2,\cdots,X_n)$ 里面取 $k$ 个变量，构成的边缘分布函数。
+
+**独立性** 联合分布函数等于一维边缘分布函数的乘积。
+
+**$n$ 离散型随机变量** 当变量的取值有限或可列时，称为离散型随机变量。
+
+**独立性** $P(X_1=x_1,X_2=x_2,\cdots,X_n=x_n)=P(X_1=x_1)P(X_2=x_3)\cdots P(X_n=x_n)$.
+
+![image-20231027202720668](https://notes.sjtu.edu.cn/uploads/upload_9b5efd07f925c8cd80c495b9758b5ba3.png)
+
+**独立性** $n$ 维随机型连续随机变量 $(X_1,X_2,\cdots,X_n)$ 的 $n$ 个分量相互独立的充分必要条件是：在任意连续点 $(x_1,x_2,\cdots,x_n)$ 处有：
+$$
+f(x_1,x_2,\cdots,x_n)=f_{X_1}(x_1) f_{X_2}(x_2) \cdots f_{X_n} (x_n)
+$$
+其中 $x_1,x_2,\cdots,x_n \in \R$.
+
+## 多维随机变量函数的分布
+
+### 多维离散型随机变量函数的分布
+
+假设确定了 $X$ 和 $Y$ 的分布，如何确定 $Z=X+Y$ 的分布？
+$$
+P(Z=r)=P(X+Y=r) =\sum_{i=0}^r P(X=i,Y=r-i)
+$$
+进一步，当 $X$ 与 $Y$ 相互独立时，则
+$$
+P(Z=r)=\sum_{i=0}^r P(X=i)P(Y=r-i)
+$$
+如果对 Poisson 分布分析，假设 $X_1,X_2 \sim P(\lambda)$，$X=X_1+X_2$，则：
+$$
+\begin{aligned}
+P(X=r)&=\sum_{i=0}^r P(X_1=i) P(X_2=r-i)\\
+&= \sum_{i=0}^r \frac{\lambda^i}{i!} e^{-\lambda} \frac{\lambda^{r-i}}{(r-i)!} e^{-\lambda}\\
+&=e^{-2\lambda} \sum_{i=0}^r \frac{\lambda^r}{i! (r-i)!}\\
+&= e^{-2\lambda} \frac{1}{r!} \sum_{i=0}^r C_r^i \lambda^r \\
+&= \frac{\lambda^r(1+1)^r}{r!} e^{-2r}\\
+&= \frac{(2\lambda)^r}{r!} e^{-2r}
+\end{aligned} \sim P(2\lambda)
+$$
+因此，Poisson 分布具有可加性，即 $X \sim P(\lambda_1), Y\sim P(\lambda_2)$，则 $X+Y \sim P(\lambda_1 +\lambda_2)$.
+
+同理，二项分布也具有可加性，即 $X \sim B(n,p),Y\sim B(m,p)$，则 $X+Y \sim B(n+m,p)$.
+
+### 多维连续型随机变量函数的分布
+
+**正态随机变量的分布**
+
+若 $(X,Y) \sim N(\mu_1, \sigma_1^2,\mu_2,\sigma_2^2, \rho)$，则：
+$$
+X+Y \sim N(\mu_1+\mu_2,\sigma_1^2+2\rho \sigma_1\sigma_2+\sigma_2^2)
+$$
+特别地，若 $X,Y$ 相互独立，则 $\rho=0$，……
+
+若 $X_1,X_2,\cdots,X_n$ 相互独立，$X_i \sim N(\mu_i,\sigma_i^2),i=1,2,\cdots,n$，则：
+$$
+\sum_{i=1}^n X_i \sim N\left(\sum_{i=1}^n \mu_i,\sum_{i=1}^n \sigma_i^2\right)
+$$
+
+---------
+
+**和的分布 $\boldsymbol {Z=X+Y}$**
+
+设 $X$ 和 $Y$ 的联合密度为 $f(x,y)$，求 $Z=X+Y$ 的概率密度？
+
+从分布函数的定义出发，先去求分布函数，然后再求导。
+$$
+F_Z(z)=P(Z \le z)=P(X+Y\le z)=\int_{-\infin}^{+\infin} \mathrm d x \int_{-\infin}^{z-x} f(x,y)\mathrm d y
+$$
+可以得到：
+$$
+f_Z(z)=\int_{-\infin}^{+\infin} f(x,z-x) \mathrm d x
+$$
+或：
+$$
+f_Z(z)=\int_{-\infin}^{+\infin} f(z-y,y)\mathrm d y
+$$
+直观理解：一条线 $x+y=z$ 上的概率。
+
+**推广** 求 $Z=aX+bY+c$ 的概率密度？沿用相同的思路，直线是 $z=ax+by+c$，固定 $x$，则
+$$
+y=\frac{z-ax-c}{b}
+$$
+因此，
+$$
+\boxed{f_Z(z)=\underbrace{\frac{1}{|b|}}_{y'}\int_{-\infin}^{+\infin} f\left(x,\frac{z-ax-c}{b}\right)\mathrm d x}
+$$
+
+---------
+
+![image-20231027210323354](https://notes.sjtu.edu.cn/uploads/upload_5f6482c99939c4bd114495b08b8bb966.png)
+
+首先，可以判断出独立分布，然后代入公式：
+$$
+f_Z(z)=\int_{-\infin}^{+\infin} f(x,z-x)\mathrm d x
+$$
+当 $0<z<1$，$x\in(0,z)$ 的时候 $f(x,y)=1$，因此 $f_Z(z)=z$.
+
+当 $1\le z<2$，$x\in (z-1,1)$ 时候 $f(x,y)=1$，因此 $f_Z(z)=2-z$.
+
+其余？$f_Z(z)=0$.
+
+----------
+
+**商的分布 $\boldsymbol {Z=X/Y}$ **
+$$
+F_Z(z)=\cdots=\iint_{x/y \le z} f(x,y)\mathrm d x\mathrm d y
+$$
+重点是积分区域怎么画？将 $z$ 看为常数，则积分区域为：
+
+![image-20231027211614862](https://notes.sjtu.edu.cn/uploads/upload_6e90bc5cc365fc975924633541f92a9a.png)
+
+分为两部分考虑：
+$$
+=\int_0^{+\infin}  \left(\int_{-\infin}^{yz} f(x,y)\mathrm d x\right)\mathrm d y+\int_{-\infin}^0 \left(\int_{yz}^{+\infin} f(x,y)\mathrm d x\right)\mathrm d y
+$$
+然后再对 $z$ 求导：
+$$
+=\int_0^{+\infin} f\left(yz,y\right)y\mathrm d y - \int_{-\infin}^0 f(yz,y)y\mathrm d  y\\
+=\int_{-\infin}^{+\infin} f(yz,y)|y|\mathrm d  y
+$$
+---------
+
+**平方和的分布 $\boldsymbol {Z=X^2+Y^2}$**
+
+先讨论 $z \ge 0$ 的情况：
+$$
+F_Z(z)=\iint_{x^2+y^2 \le z} f(x,y)\mathrm d  x\mathrm d y
+$$
+令 $x=r\cos\theta,y=r\sin\theta,\mathrm d x\mathrm d y=r\mathrm d r\mathrm d \theta$.
+
+则替换后，形成：
+$$
+\int_0^{2\pi} \mathrm d \theta\int_0^{\sqrt{z}} f(r\cos\theta,r\sin\theta)r\mathrm d r
+$$
+对 $z$ 求导：
+$$
+f_Z(z)= \int_0^{2\pi}\mathrm d \theta \cdot \frac{1}{2} f(\sqrt{z} \cos\theta,\sqrt{z}\sin\theta)
+$$
+然后，$z<0$ 的情况，显然 $f_Z(z)=0$.
+
+例题：$X \sim N(0,1),Y\sim N(0,1)$，$X,Y$ 相互独立，$Z=X^2+Y^2$，则：
+$$
+f(X=x)=\frac{1}{\sqrt{2\pi}} e^{-x^2/2}
+$$
+
+$$
+f_Z(z)=\int_0^{2\pi}\mathrm d \theta \cdot \frac{1}{2} \frac{1}{2\pi} e^{-z^2/2}=\frac{1}{2} e^{-z^2/2}
+$$
+
+（当 $z\ge 0$）
+
+服从自由度为 2 的 $\chi^2$ 分布，卡方分布.
+
+------------
+
+**极值分布**
+
+设连续随机变量 $X,Y$ 相互独立，分布函数分别为 $F_X(x),F_Y(y)$，令 $M=\max\{X,Y\}$，$N=\min\{X,Y\}$，求 $M,N$ 的分布函数。
+
+还是先求分布函数，
+$$
+F_M(z)=P(\max\{X,Y\} \le z)=P(X \le z,Y \le z)=P(X\le z) P(Y \le z)
+$$
+所以：
+$$
+F_M(z)=F_X(z)F_Y(z)
+$$
+
+$$
+F_N(z)=P(\min\{X,Y\}\le z)=1-P(\min\{X,Y\}>z)=1-(1-F_X(z))(1-F_Y(z))
+$$
+
+![image-20231027231533366](https://notes.sjtu.edu.cn/uploads/upload_58d57944fd6e5aff2169a71ef7e7798b.png)
+
+![image-20231027231656411](https://notes.sjtu.edu.cn/uploads/upload_285aced55509dda284e83f3da4c6bb24.png)
+
+串联取决于最短的寿命，并联取决于最长的寿命。分布服从指数分布：
+$$
+F_{X_i}(x_i)=1-e^{-\lambda x_i}, x_i >0;0,x_i \le 0
+$$
+因此，
+$$
+F_{X_{串}}(z)= 1-\prod_{i=1}^n (1-F_{X_i}(z))=1-e^{-\lambda nz} 
+$$
+
+$$
+f_{X_串}(z)\sim E(n\lambda)
+$$
+
+$$
+F_{X_{并}} (z)= (1-e^{-\lambda z})^{n}
+$$
+
+$$
+f_{X_并}(z)=n \lambda e^{-\lambda z} (1-e^{-\lambda z})^{n-1}
+$$
+
+当然，这里的条件全部都是 $x>0$. 否则概率为零。
+
+--------------
+
+![image-20231027232515279](https://notes.sjtu.edu.cn/uploads/upload_ff685717947baf6ab5bc36269baf759c.png)
+
+这里讨论 $z>0$ 的情况。注意 $x,y$ 的范围：
+$$
+F_Z(z)=P(Z \le z)=P(XY \le z)=\int_0^{+\infin}\mathrm d x \int_{0}^{z/x} f(x,y)\mathrm d y
+$$
+求导之后得到：
+$$
+f_Z(z)=\int_{0}^{+\infin} -xe^{-(z+x)}\mathrm d x
+$$
+
+### 多维随机变量函数的联合分布
+
+![image-20231027233331878](https://notes.sjtu.edu.cn/uploads/upload_b458aed24c90735cd8f9e9e1fcd28243.png)
+
+##  往年试题
+
+### 21-4
+
+![image-20231205163738201](https://notes.sjtu.edu.cn/uploads/upload_d743e5bd1ce21e462f03191bd4adeaff.png)
+
+为什么不相关：$E(XY)=0$（对称）$E(X)=E(Y)=0$（对称）

@@ -1,0 +1,220 @@
+> 我们研究的大数定理和中心极限定理是概率论中两类极限定理的统称。我们知道随机现象在一次试验中出现什么结果往往具有偶然性，但是在大量重复观察和试验下，往往呈现必然的规律。
+
+## 预备知识
+
+**重要不等式**
+
+设非负连续型随机变量 $X$ 的期望 $E(X)$ 存在，则对于任意实数 $\varepsilon >0$，
+$$
+P(X\ge \varepsilon)\le \frac{E(X)}{\varepsilon}
+$$
+证明：
+$$
+P(X\ge \varepsilon)=\int_{X\ge \varepsilon} f(x)\mathrm d x=\frac{1}{\varepsilon}\int_{X\ge \varepsilon}\varepsilon f(x)\mathrm d x \\\le \frac{1}{\varepsilon}\int_{X\ge \varepsilon} x f(x)\mathrm d  x \le \frac{1}{\varepsilon}\int_{} x f(x)\mathrm d  x=\frac{E(X)}{\varepsilon}
+$$
+**马尔科夫不等式**
+
+设随机变量 $X$ 的 $k$ 阶绝对原点矩 $E(|X|^k)$ 存在，则对于任意实数 $\varepsilon>0$，
+$$
+P(|X|\ge \varepsilon)\le \frac{E(|X|^k)}{\varepsilon^k}
+$$
+
+
+**Chebyshev 不等式** 设随机变量 $X$ 的数学期望 $E(X)=\mu$，方差 $D(X)=\sigma^2$，则对于任意正数 $\varepsilon$，恒有不等式：
+$$
+P(|X-\mu| \ge \varepsilon) \le \frac{\sigma^2}{\varepsilon^2}
+$$
+或
+$$
+P(|X-\mu| \le \varepsilon) > 1-\frac{\sigma^2}{\varepsilon^2}
+$$
+
+> 描述了落在 $|X-\mu| \le \varepsilon$ 区间内或区间外的几率，我们现在分析落在区间内的情况，显然，$\sigma$ 越小，$\varepsilon$ 越大，落在区间内的几率就越大。
+
+证明：仅证明连续型随机变量的情况，设随机变量 $X$ 的概率密度为 $f(x)$，则：
+$$
+P(|X-\mu | \ge \varepsilon)=\int_{|X-\mu| \ge \varepsilon} f(x)\mathrm d x\le \int_{|X-\mu| \ge \varepsilon} \underbrace{\left(\frac{x-\mu}{\varepsilon}\right)^2}_{\ge 1} f(x)\mathrm d  x\\\le \int_{-\infin}^{+\infin}\left(\frac{x-\mu}{\varepsilon}\right)^2 f(x)\mathrm d  x=D(x)/\varepsilon^2=\frac{\sigma^2}{\varepsilon^2}
+$$
+一般地，
+$$
+P(|X-\mu| < k \sigma) > 1-\frac{1}{k^2} \quad (k>0)
+$$
+-----------
+
+注意这个公式是一个不等式，实际情况，可能估计相差较大，如下题：
+
+假设某地区有 $10000$ 盏电灯，每一盏灯是否开启相互独立，并且均为 0.7，用 Chebyshev 不等式估计夜晚同时开灯数在 6800~7200 的概率。
+
+先通过伯努利分布求出 $E(X)$ 和 $D(X)$，然后代入 Chebyshev 不等式。注意到给出的结果是 0.9475，但是实际上为 0.9999，说精度不高，而且要求估计区间中点为 $\mu$，否则效果较差。
+
+--------
+
+**依照概率收敛** 设 $Y_1,Y_2,\cdots, Y_n,\cdots$ 是一个随机变量序列，$X$ 是一个随机变量，若 $\forall \varepsilon>0$，有：
+$$
+\lim_{n \to +\infin} P(|Y_n-X|\ge \varepsilon)=0 \mathrm{~or~} \lim_{n \to +\infin} P(|Y_n -X|<\varepsilon)=1
+$$
+则称随机变量序列依概率收敛于 $X$，记作 $Y_{n} \underset{n \rightarrow+\infty}{\stackrel{P}{\longrightarrow}} X$. （并不能保证一定发生，只能保证出现偏差的概率很小）
+
+$X$ 为常数 $a$ 的情况（如果 $Y_1,\cdots,Y_n$ 同分布，此时分析应该最可能是 $E(Y)$）
+
+可见 $n$ 越大，曲线的图形越来越集中于 $a$ 点附近。
+
+![image-20231116225320021](https://notes.sjtu.edu.cn/uploads/upload_2c09e6b5870a0825c07c421bcd43539d.png)
+
+
+
+## 大数定理
+
+**Bernoulli 大数定理** 设 $n_A$ 表示 $n$ 次 **独立重复试验** 中，事件 $A$ 发生的次数，$p$ 是每次试验中 $A$ 发生的概率，则 $\forall \varepsilon>0$，有：
+$$
+\lim_{n \to +\infin} P\left(\left|\frac{n_A}{n}-p\right|\ge \varepsilon\right)=0
+$$
+
+> 类似于依概率收敛的定义。
+>
+> 证明，将 $n_A/n$ 看作随机变量 $Y$。
+>
+> 引入0-1随机变量序列 $X_1,X_2,\cdots,X_n,\cdots$，代表第 $k$ 次试验是否发生，可知：
+> $$
+> E(X_k)=p,D(X_k)=pq
+> $$
+> 代入 $n_A=\sum X_k$，有：
+> $$
+> E\left(Y\right)=np/n=p,D(Y)=pq\times n/n^2=pq/n
+> $$
+> 由 Chebyshev 不等式，有：
+> $$
+> 0\le P\left(|Y-p|\ge \varepsilon\right)=P(|Y-E(Y)|\ge \varepsilon)\le \frac{1}{\varepsilon^2} \cdot \frac{pq}{n}
+> $$
+> 因此，$\lim_{n \to +\infin} P\left(\left|Y-p\right|\ge \varepsilon\right)=0$
+
+说的其实就是用频率替代概率。
+
+**定义序列服从大数定理** 若随机变量序列 $X_1,X_2,\cdots,X_n,\cdots$ 满足 $\forall \varepsilon>0$，有：
+$$
+\lim_{n \to +\infin}P\left(\left|\frac{1}{n}\sum_{k=1}^n X_k-\frac{1}{n}\sum_{k=1}^n E(X_k)\right|<\varepsilon\right)=1
+$$
+则称该序列服从大数定律。
+
+> 即说明取无限多次后，随机变量序列的期望可以用每一项的期望代替。
+
+### 常用的几个大数定律
+
+**Chebyshev 大数定理** 设随机变量序列 $X_1,X_2\cdots,X_n$ 两两不相关，它们的方差存在，且有共同的上界，即 $\rho_{X_iX_j}=0,i\not=j$，$D(X_k)=\sigma_k^2 \le \sigma^2$，$k=1,2,3,\cdots,n,\cdots$，记 $E(X_k)=\mu_k$，则称该序列服从大数定律。
+
+证明：将随机变量 $X=\frac{1}{n}\sum_{k=1}^n X_k$ 代入 Chebyshev 不等式，可以得到：
+$$
+P(|X-E(X)|\ge \varepsilon)\le \frac{D(X)}{\varepsilon^2}
+$$
+而：
+$$
+E(X)=\frac{1}{n} \sum_{k=1}^n \mu_k, D(X)\overset{因为不相关}{=}\frac{1}{n^2}\sum_{k=1}^n D(X_i)=\frac{1}{n^2}\sum_{k=1}^n \sigma_k^2 \le \sigma^2/n
+$$
+因此：
+$$
+P(|X-E(X)|\ge \varepsilon) \le \frac{\sigma^2}{n\varepsilon^2}\\
+P(|X-E(X)|< \varepsilon) \ge 1-\frac{\sigma^2}{n\varepsilon^2}
+$$
+当 $n \to +\infin$ 时，$\sigma^2/(n\varepsilon^2)\to 0$，因此结论得证。
+
+> 注：$X_1,X_2,\cdots,X_n,\cdots$ 两两不相关的条件可以去掉，代之 $\displaystyle \frac{1}{n^2} D\left(\sum_{k=1}^n X_k\right) \overset{n\to +\infin}{-\!\!-\!\!\!\to } 0$. 更加本质。即 Markov 条件。满足 Markov 条件的序列服从 Markov 大数定律。
+
+**Khintchine 大数定理** 设随机变量序列 $X_1,X_2\cdots,X_n,\cdots$ 独立同分布，且它们的数学期望存在，$E(X_k)=\mu,k=1,2,\cdots$，则该序列服从大数定理。
+
+序列的 $k$ 阶原点矩也服从大数定理，即记 $\displaystyle \frac{1}{n}\sum_{i=1}^n X_i^k=M_k$，有 $M_k\underset{n \rightarrow+\infty}{\stackrel{P}{\longrightarrow}} \mu_k,k=1,2,\cdots$.
+
+> 按照大数定理，保险公司必须保证客户数量足够多，才能维持正常运营。
+
+## 中心极限定理
+
+> Q: 当 $n\to \infin$，如何求随机变量和式 $Y_n=X_1+X_2+\cdots+X_n$ 的分布？
+>
+> Q: 为什么正态分布如此重要，如此普遍？背后有什么原因？
+>
+> 前人告诉我们，在一般情况下 $Y_n$ 的极限分布就是正态分布。
+
+**独立同分布的中心极限定理（Lindeberg-Levy 中心极限定理）** 设 $X_1,X_2,\cdots,X_n,\cdots$ 为独立同分布的随机变量序列，它们的数学期望和方差都存在，$E(X_k)=\mu,D(X_k)=\sigma^2$，$k=1,2,\cdots,n\cdots$，则对于任意实数 $x$，有：
+$$
+\lim_{n \to \infin}P\left(\frac{\sum_{k=1}^n X_k-n\mu}{\sqrt{n} \sigma}\le x\right)=\Phi(x)
+$$
+其中 $\displaystyle \Phi(x)=\frac{1}{\sqrt{2\pi}} \int_{-\infin} ^x e^{-t^2/2}\mathrm d t$.
+
+如果研究 $Y_n=\sum_{k=1}^n X_k$. 那么 $E(Y_n)=n\mu,D(Y_n)=\sum_{k=1}^n \sigma^2=n \sigma^2$.
+
+因此，标准化的 $Y_n$ 就是不等式中出现的随机变量。
+
+这个不等式也就是在说，$Y_n$ 近似服从于：
+$$
+N(n\mu,n\sigma^2)
+$$
+> Q: 服从正态分布的随机数如何用电脑产生？
+>
+> 设 $X\sim U(0,1)$，则 $E(X)=1/2,D(X)=1/12$，令：
+> $$
+> Y_{12}=\sum_{i=1}^{12} X_i
+> $$
+> 其中 $X_1,X_2,\cdots,X_{12}$ 是 $(0,1)$ 上服从均匀分布的随机变量，则 $E(Y_{12})=6,D(Y_{12})=1$，近似：
+> $$
+> Y_{12}-6\sim N(0,1)
+> $$
+> Q: 还有什么其它的方法，可以生成服从任意分布的随机数？
+>
+> 使用 **逆变换法**：
+>
+> - 生成 $X\sim U(0,1)$.
+> - 设 $F(x)$ 为指定分布的分布函数，则 $F^{-1}(U)$ 即为服从指定分布的随机数。
+>
+> 例如指数分数 $F(x)=1-e^{-ax}$，其逆函数为 $F^{-1}(y)=-\frac{1}{a}\ln (1-y)$.
+>
+> 因为正态分布的分布函数不具有解析表达式，所以不好用逆变换法处理，事实上通过中心极限定理生成已经是最好的方法了。
+>
+> 使用 **拒绝分布采样法**：
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_424ac5fa4134f416e72c9f8166f97e12.png" alt="img" style="zoom:33%;" />
+>
+> - 产生样本 $z_0\in q(z)$ 和 $u_0\sim U(0,1)$.
+> - 如果 $u_0 \le p(z_0)/k q(z_0)$，则接受 $z_0$.
+> - 如果不的话，等于放弃这一轮，再次循环一轮。
+
+**De Moivre-Laplace 中心极限定理** 设随机变量 $Y_n\sim B(n,p),0<p<1,n=1,2,\cdots$，则对于任一实数 $x$，有：
+$$
+\lim_{n\to \infin} P\left(\frac{Y_n -np}{\sqrt{np(1-p)}}\le x\right)=\frac{1}{\sqrt{2\pi}} \int_{-\infin}^x e^{-t^2/2}\mathrm d t
+$$
+其实就是在说，$E(Y_n)=np,D(Y_n)=np(1-p)$，$Y_n$ 近似服从于 $N(np,np(1-p))$.
+
+也就是中心极限定理的一种特例。
+
+## 往年考题
+
+### 21-18
+
+![image-20231205155858122](https://notes.sjtu.edu.cn/uploads/upload_dc7c127042386796d18d4f9ebd44afde.png)
+
+先证明 $E(S_n)=1$. 事实上，假设表示第 $i$ 个匣子号码一致与否的随机变量为 $S_n^{(i)}$，$S_n^{(i)}\sim $ 0-1 分布，则 $E(S_n^{(i)})=\frac{1}{n}$，则 $E(S_n)=\sum E(S_n^{(i)})=1$.
+
+再求 $D(S_n)$. 首先，我们推导 $\operatorname{cov}(S_n^{(i)},S_n^{(j)})$，由协方差的定义，有：
+$$
+\operatorname{cov}(S_n^{(i)},S_n^{(j)})=E(S_n^{(i)}S_n^{(j)})-E(S_n^{(i)})E(S_n^{(j)})=E(S_n^{(i)}S_n^{(j)})-\frac{1}{n^2}
+$$
+而 $E(S_n^{(i)}S_n^{(j)})=P(S_n^{(i)}S_n^{(j)}=1)$，表示 $i$ 号位和 $j$ 号位都一致的概率，可以得到 $E(S_n^{(i)}S_n^{(j)})=1/n(n-1)$. 因此，
+$$
+\operatorname{cov}(S_n^{(i)},S_n^{(j)})=\frac{1}{n^2(n-1)}
+$$
+
+$$
+D(S_n)=\sum_{i=1}^n D(S_n^{(i)})+2\sum_{i<j} \operatorname{cov}(S_n^{(i)},S_n^{(j)})\\
+=n\cdot  \frac{1}{n}\left(1-\frac{1}{n}\right)+2\cdot \frac{n(n-1)}{2}\frac{1}{n^2(n-1)}=1
+$$
+因此，由 Chebyshev 不等式，有：
+$$
+P\left(|S_n-1| \ge n\varepsilon\right)=\frac{D(S_n)}{(n\varepsilon)^2} = \frac{1}{n^2 \varepsilon^2}
+$$
+
+$$
+\lim_{n\to +\infin} P(|S_n-1|\ge n\varepsilon)=0
+$$
+
+还可以推出：
+$$
+\frac{S_n-1}{n} 依概率收敛于零
+$$

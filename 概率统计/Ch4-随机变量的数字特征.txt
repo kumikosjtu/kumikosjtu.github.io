@@ -1,0 +1,520 @@
+- 随机变量的平均取值 —— 数学期望
+- 随机变量取值平均偏离平均值的情况 —— 方差
+- 描述两个随机变量之间某种关系的数 —— 协方差、相关系数
+
+## 数学期望
+
+### 数学期望的概念
+
+设 **离散型随机变量** $X$ 的分布律为：
+
+| $X$  | $x_1$ | $x_2$ | $\cdots$ | $x_k$ | $\cdots$ |
+| ---- | ----- | ----- | -------- | ----- | -------- |
+| $P$  | $p_1$ | $p_2$ | $\cdots$ | $p_k$ | $\cdots$ |
+
+若级数 $\displaystyle \sum_{k=1}^{+\infin} x_k p_k$ 绝对收敛，则称：
+$$
+\boxed{E(X)=\sum_{k=1}^{+\infin} x_kp_k}
+$$
+> Q: 为什么要求绝对收敛？即 $\displaystyle \sum_{k=1}^{\infin} |x_k|p_k <+\infin$.
+>
+> 不是绝对收敛的情况，例如 $x_k=2^k,p_k=1/2^k$ 或 $x_k=(-2)^k,p_k=1/2^k$，则数学期望不存在。
+>
+> 要求级数绝对收敛，是为了保证 $E(X)$ 和 $X$ 取值的排列次序无关。
+
+设 $X$ 为 **连续型随机变量**，其概率密度为 $f(x)$，若 $\displaystyle \int_{-\infin}^{+\infin} xf(x)\mathrm d x$ 绝对收敛，则称：
+$$
+\boxed{E(X)=\int_{-\infin}^{+\infin} xf(x)\mathrm d x}
+$$
+可以转化为离散的形式加以解释。
+
+> 注：数学期望又称均值，反应了随机变量取值的平均值，是一种加权平均。
+>
+> 注：$E(X)$ 是一个确定的数，因此叫做数学特征。
+
+Q: 求 **Poisson 分布** 的期望：
+$$
+P(X=k)=\frac{\lambda^k}{k!} e^{-\lambda}
+$$
+
+$$
+E(X)=\sum kP(x=k)=\sum_{k=1}^{+\infin} k \cdot \frac{\lambda ^k}{k!} e^{-\lambda}
+$$
+法1：使用级数求和：
+$$
+=\lambda e^{-\lambda} \sum_{k=1}^{+\infin} \frac{\lambda^{k-1}}{(k-1)!}=\lambda
+$$
+法2：使用 Poisson 分布的规范性：
+$$
+=\lambda \sum_{k=1}^{+\infin} \frac{\lambda^{k-1}}{(k-1)!} e^{-\lambda} = \lambda \sum_{k=1}^{+\infin} P(X=k-1)=\lambda
+$$
+Q：求 **几何分布** 的期望：
+$$
+P(X=k)=pq^{k-1}, \quad p+q=1,\quad k=1,2,\cdots
+$$
+
+$$
+E(X)=\sum_{k=1}^{+\infin} kpq^{k-1}=p\sum_{k=1}^{+\infin} kq^{k-1}=p \left(\sum_{k=1}^{+\infin} q^k\right)'=p\cdot \frac{1}{(1-q)^2}=\frac{1}{p}
+$$
+
+Q: 求 **指数分布** 的期望：
+$$
+f(x)=\left\{
+\begin{aligned}
+& \lambda e^{-\lambda x}, & x>0\\
+&0, & x \le 0
+\end{aligned}
+\right.
+$$
+
+$$
+E(X)=\int_0^{+\infin} \lambda e^{-\lambda x} x=-\int_{0}^{+\infin} x\mathrm d e^{-\lambda x}\\=-[xe^{-\lambda x}]^{+\infin}_0 +\int_{0}^{+\infin} e^{-\lambda x}\mathrm d x=\frac{1}{\lambda}
+$$
+
+Q:  电子元器件的寿命服从指数分布，求三个串联 or 三个并联的数学期望。**极小值分布 and 极大值分布**
+
+$N=\min\{X_1,X_2,X_3\}$，服从参数为 $3\lambda$ 的指数分布，$E(N)=1/3\lambda$.
+
+$M=\max\{X_1,X_2,X_3\}$，先求出分布函数，再求出概率密度函数，然后再积分。
+
+Q: 说明对于 Cauchy 分布：
+$$
+f_X(x)=\frac{1}{\pi} \frac{1}{1+x^2}, \quad -\infin  < x <+\infin
+$$
+$X$ 的数学期望不存在
+$$
+\int_{-\infin}^{+\infin} |x|f(x)\mathrm d x=\frac{2}{\pi} \int_0^{+\infin} \frac{x}{1+x^2}\mathrm d  x=\left.\frac{1}{\pi} \ln(1+x^2)\right|_{0}^{+\infin}=\infin
+$$
+
+### 随机变量函数的数学期望
+
+定义：设 $X$ 为随机变量，$Y=g(X)$，其中 $g(x)$ 是一个确定函数.
+
+1. 设 $X$ 为离散型随机变量，若级数 $\displaystyle \sum_{k=1}^{+\infin} g(x_k) p_k$ 绝对收敛，则：
+   $$
+   E(Y)=E[g(X)] =\sum_{k=1}^{+\infin} g(x_k)p_k
+   $$
+
+2. 对于连续型，若积分……收敛，则：
+   $$
+   E(Y)=E[g(X)]=\int_{-\infin}^{+\infin} g(x)f(x)\mathrm d x
+   $$
+
+对于二元函数，也是类似的。
+
+> Q: 求二维离散型随机变量的期望。
+> $$
+> E(X)=E(g(X,Y))=\sum_i \sum_j g(x_i,y_i)p_{ij}\\
+> =\sum_i g(x_i,y_i) p_{i\cdot}
+> $$
+> 因此是边缘函数的期望。再求 $E(XY)$，也很简单。
+
+求期望：
+
+> Q: 求二维连续型随机变量的期望。
+> $$
+> f(x,y)=
+> \begin{cases}
+> \frac{1}{4} x(1+3y^2), &0<x<2,0<y<1;\\
+> 0, &\mathrm{else}.
+> \end{cases}
+> $$
+> 求 $E(X)$?
+> $$
+> \begin{aligned}
+> E(X)&=\int_{-\infin}^{+\infin} \int_{-\infin}^{+\infin} x f(x,y)\mathrm d x\mathrm d y\\
+> &=\int_{-\infin}^{+\infin} x \int_{-\infin}^{+\infin} f(x,y)\mathrm d y \quad \mathrm d  x\\
+> &=\int_{-\infin}^{+\infin} x f_X(x)\mathrm d x
+> \end{aligned}
+> $$
+> 求 $E(X+Y)=E(X)+E(Y)$.
+> 
+>求 $E(XY)$? 当 $X,Y$ 独立，$f(x,y)=f_X(x)f_Y(y)$. 推出：$E(XY)=E(X)E(Y)$.
+> 
+>求 $E(Y/X)$? 没有特殊的结论……
+
+例题：设产品需求量为 $X$ 吨，$X \sim U[2000,4000]$，每出售一吨可以赚 3w, 每剩下一顿需要付 1w 仓库管理费。使得赚的钱的期望 $E(Y)$ 最大。
+$$
+E(Y)=\int_{2000}^{y} (3x-(y-x)) \frac{1}{2000}\mathrm d x+\int_{y}^{4000} 3y \frac{1}{2000} \mathrm d x
+$$
+
+$$
+\frac{\mathrm d  }{\mathrm d y} E(Y)= \cdots =0
+$$
+
+### 数学期望的性质
+
+- 设 $X$ 是任意随机变量，则 $X$ 的数学期望存在的充要条件是 $E(|X|)<+\infin$. 因为要求绝对收敛。
+
+- 设 $C$ 为常数，则 $E(C)=C$.
+
+- 设 $X,Y$ 是任意两个数学期望存在的随机变量，且 $X \le Y$，则 $E(X)\le E(Y)$.
+
+- 设 $C$ 为常数，且 $E(X)$ 存在，则 $E(CX)=CE(X)$.
+  
+- 设 $X,Y$ 是任意两个数学期望存在的随机变量，则 $E(X+Y)$ 也存在，$E(X+Y)=E(X)+E(Y)$.
+  
+- 推论：$E(aX+bY+c)=aE(x)+bE(Y)+c$.
+  
+- **当 $\boldsymbol{X,Y}$ 相互独立**，且 $E(X),E(Y)$ 存在，则 $E(XY)=E(X)E(Y)$. 不是充要条件，不能推出相互独立。
+
+例题：验血方案的选择，对 $n$ 人监测，已知患病率 $p$，每个人患病与否相互独立，说明哪一种方法比较经济：
+
+- 对每一个人都化验。
+- 将 $k$ 人分一组。
+
+对于第一种方案，化验次数为 $n$，对于第二种方案，分为 $t=\lfloor n/k\rfloor $ 组，第 $i$ 组平均化验次数：
+
+| $p$   | $1$         | $1+k$       |
+| ----- | ----------- | ----------- |
+| $X_i$ | $(1-p)^{k}$ | $1-(1-p)^k$ |
+
+$$
+E(X_i)=(1-p)^k+(1+k)(1-(1-p)^k)=1+k(1-(1-p)^k)
+$$
+
+每组（$X_i$）化验结果相互独立，则：
+$$
+E(X)=\sum_i E(X_i)=t+tk(1-(1-p)^k)+1+(n-tk)(1-(1-p)^{n-tk})
+$$
+所以比较这个和 $n$ 的大小。
+
+## 方差
+
+### 方差的概念
+
+> 引入，两个资产收益分布为 $X_1 \sim N(8,4),X_2 \sim N(8,9)$，我们希望选择收益稳定的。
+
+**定义** 设 $X$ 是随机变量，若 $E[(X-E(X))^2]$ 存在，则称其为随机变量 $X$ 的 **方差**，记为 $D(X)$. **标准差** 记为 $\sigma_X=\sqrt{D(X)}$
+
+> $|X-E(X)|\to (X-E(X))^2 \to E[\cdots]$，变成期望，方便比较。
+
+**离散型**：
+$$
+D(X)=\sum_{k=1}^{\infin} (x_k-E(X))^2 p_k
+$$
+**连续型**：
+$$
+D(X)=\int_{-\infin}^{+\infin} (x-E(x))^2 f(x)\mathrm d x
+$$
+还可以用计算公式 $D(X)=E(X^2)-E(X)^2$.
+
+> Why? 
+> $$
+> \begin{aligned}
+> D(X)&=E[(X-E(X))^2]\\
+> &= E(X^2-2XE(X)+E(X)^2)\\
+> &= E(X^2)-2E(X)E(X)+E(X)^2\\
+> &= E(X^2) -E(X)^2
+> \end{aligned}
+> $$
+> 注意证明时，$E(X)$ 可以看作常数，利用期望的线性性。
+
+------
+
+Poisson 分布的方差。设 $X \sim P(\lambda)$，求 $D(X)$.
+
+由上面的推导，$E(X)=\lambda$，现在只用求 $E(X^2)$ 即可。
+$$
+\begin{aligned}
+E(X^2)&=\sum_{k=0}^{\infin} k^2 \frac{\lambda^k}{k!} e^{-\lambda}\\
+&= \sum_{k=0}^{\infin} k \frac{\lambda^k}{k!} e^{-\lambda}+\sum_{k=0}^{\infin} k(k-1) \frac{\lambda^k}{k!} e^{-\lambda}\\
+&=\lambda + \lambda^2 \sum_{k=2}^{\infin} \frac{\lambda^{k-2}}{(k-2)!} e^{-\lambda}\\
+&=\lambda+\lambda^2
+\end{aligned}
+$$
+
+$$
+D(X)=E(X^2)-E(X)^2=\lambda
+$$
+
+-------------
+
+正态分布的方差。设 $X\sim N(\mu,\sigma^2)$，求 $D(X)$.
+
+观察到
+$$
+f(x)=\frac{1}{\sqrt{2\pi} \sigma} e^{-(x-\mu)^2/2\sigma^2}
+$$
+
+$$
+D(x)=\int_{-\infin}^{+\infin} (x-\mu)^2 f(x) \mathrm d x
+$$
+
+令 $(x-\mu)/\sigma=t$，得到：
+$$
+=\int_{-\infin}^{+\infin} \sigma^2 t^2 \frac{1}{\sqrt{2\pi}} e^{-t^2/2}\mathrm d  t=\sigma^2
+$$
+
+----------
+
+热水器实际使用寿命 $X$，用户使用的寿命 $Y$，则 $Y=\min\{X,m\}$.
+$$
+\begin{aligned}
+E(Y)=\int_{0}^{m} x \lambda e^{-\lambda x} \mathrm d x +\int_m^{+\infin} m \lambda e^{-\lambda x} \mathrm d x
+\end{aligned}
+$$
+
+$$
+E(Y^2)= \int_0^m x^2\lambda e^{-\lambda x}\mathrm d x+\int_m^{+\infin} m^2 \lambda e^{-\lambda x}\mathrm d  x
+$$
+
+利用方差的计算公式……
+
+> 归根结底还是随机变量函数的期望
+
+### 方差的性质
+
+- 若 $E(X)$ 存在，方差存在的充要条件是 $E(X^2 )$ 存在。
+
+- 设 $X,Y$ 是任意的随机变量，若 $X,Y$ 的方差都存在，则 $X\pm Y$ 的方差也存在。若 $X,Y$ 相互独立，还有：
+  $$
+  \begin{aligned}
+  D(X\pm Y)&=E((X\pm Y)^2)-E(X\pm Y)^2\\
+  &=E(X^2) \pm 2E(X)E(Y)+E(Y^2)- [E(X)^2\pm 2E(X)E(Y)+E(Y)^2]\\
+  &= D(X) \pm D(Y)
+  \end{aligned}
+  $$
+
+  > 应用：$X\sim N(\mu_1,\sigma_1^2),Y\sim N(\mu_2,\sigma_2^2)$，独立，则 $X\pm Y \sim N(\mu_1\pm \mu_2 ,\sigma_1^2+\sigma_2^2)$.
+
+- 设 $C$ 为常数，则 $D(C)=0$.
+
+- $D(CX)=C^2 D(X),D(X+C)=D(X)$.
+
+- 设 $X$ 为一个方差存在的随机变量，则对任意实数 $Y$，有：
+  $$
+  D(X)\le E((X-Y)^2)
+  $$
+  因为：
+  $$
+  E(X^2) -E(X)^2\le E(X^2)-2E(X)Y+Y^2
+  $$
+
+--------
+
+设 $X\sim N(1,3),Y\sim N(2,4)$，且 $X,Y$ 相互独立，求 $Z=2X-3Y$ 服从的分布。
+$$
+Z\sim N(2-6,12+36)=N(-4,48)
+$$
+
+--------
+
+设 $X \sim B(n,p)$，求 $D(X)$. 可以转换为 $n$ 次 0-1 分布。
+
+引入随机变量 $X_i $ 代表第 $i$ 次事件是否发生，则
+$$
+E(X_i)=p \quad D(X_i)=p\cdot (1-p)^2+(1-p)p^2 =p(1-p)
+$$
+因此，$E(X)=np,D(X)=np(1-p)$.
+
+------
+
+帕斯卡分布：设 $X$ 表示独立射击直到击中目标 $r$ 次位置所需要的射击次数，设每次击中概率为 $p$，求 $E(X),D(X)$.
+
+可以拆分成 $r$ 个几何分布，这些分布还是独立的。
+$$
+P(X=k)=C_{k-1}^{r-1} p^r (1-p)^{k-r} \quad k=r,r+1,\cdots
+$$
+$X_1,\cdots,X_r$ 独立，$X_i \sim G(p)$.
+
+其中：
+$$
+P(X_i=k)=(1-p)^{k-1} p
+$$
+
+$$
+E(X_i)=\sum_{k=1}^{+\infin} k(1-p)^{k-1}p = \frac{1}{p}
+$$
+
+$$
+E(X_i^2)=\frac{2-p}{p^2}
+$$
+
+（利用求导）
+$$
+D(X_i)=\frac{1-p}{p^2}
+$$
+所以：
+$$
+E(X)=\sum E(X_i)= \frac{r}{p}\quad D(X)=\sum D(x_i)=\frac{r(1-p)}{p^2}
+$$
+| 分布                    | 表达式                                                       | 期望        | 方差          |
+| ----------------------- | ------------------------------------------------------------ | ----------- | ------------- |
+| 0-1分布                 | $P(X=k)=p^k(1-p)^{1-k},k=0,1.$                               | $p$         | $p(1-p)$      |
+| $B(n,p)$: $n$ 个 0-1    | $P(X=k)=C_n^k p^k(1-p)^{n-k}$                                | $np$        | $np(1-p)$     |
+| $P(\lambda)$            | $P(X=k)=e^{-\lambda} \frac{\lambda ^k}{k!}, k=0,1,2,\cdots$  | $\lambda$   | $\lambda$     |
+| $G(p)$                  | $P(X=k)=(1-p)^{k-1}p,k=1,2,\cdots$                           | $1/p$       | $(1-p)/p^2$   |
+| Pascal 分布: $r$ 个几何 | $P(X=k)=C_{k-1}^{r-1}p^r q^{k-r},k=r,r+1,\cdots$             | $r/p$       | $r(1-p)/p^2$  |
+| $U(a,b)$                | $1/(b-a)$ 对于 $x\in [a,b]$，其余为零                        | $(a+b)/2$   | $(b-a)^2/12$  |
+| $E(\lambda)$            | $\lambda e^{-\lambda x}$ 对于 $x>0$，其余为零                | $1/\lambda$ | $1/\lambda^2$ |
+| $N(\mu,\sigma^2)$       | $f(x)=\frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad  -\infin < x <+\infin$ | $\mu$       | $\sigma^2$    |
+
+### 标准化随机变量
+
+> 引入，$X\sim N(\mu,\sigma^2)$，$\displaystyle \frac{x-\mu}{\sigma} \sim N(0,1)$.
+
+设随机变量 $X$ 的期望 $E(X)$ 和 $D(X)$ 都存在，且 $D(X)>0$，则称：
+$$
+X^*=\frac{X-E(X)}{\sqrt{D(X)}}
+$$
+为 $X$ 的标准化随机变量。
+
+> $E(X^*)=0$.
+>
+> $D(X^*)=\frac{D(X-E(X))}{D(X)}=1$ 因为 $E(X)$ 为常数。
+
+若 $Y=aX+b,(a>0)$，则 $X,Y$ 标准化得到的随机变量相同。若 $a<0$，则 $Y^*=-X^*$.
+
+已知分布的类型，分布的期望和方差，就可以得到分布的表达式。
+
+## 协方差
+
+### 协方差的概念
+
+若期望 $E\left(\left(X-E(X)\right)(Y-E(Y))\right)$ 存在，则称为 $X,Y$ 的协方差。
+
+记为：
+$$
+\operatorname{cov} (X,Y)=E\left(\left(X-E(X)\right)(Y-E(Y))\right)
+$$
+协方差的计算公式：
+$$
+\boxed{\operatorname{cov} (X,Y)=E(XY)-E(X)E(Y)}
+$$
+**定义** 若 $D(X)>0,D(Y)>0$，称：
+$$
+\boxed{\rho_{XY}=\frac{\operatorname{cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}}
+$$
+为 $X,Y$ 的相关系数。
+
+- 当 $\rho_{XY}=0$ 时，称为不相关，但是不相关不能推出独立，因为 $E(XY)=E(X)E(Y)$ 不能推出独立。
+- 当 $|\rho_{XY}|=1$ 时，称 $X,Y$ 完全相关：正相关/负相关；
+- 当 $|\rho_{XY}|<1$ 时，称 $X,Y$ 部分线性相关。
+
+相关系数的本质是“标准化”了的协方差，即 $\rho_{XY}=\operatorname{cov} (X^*,Y^*)$，其中 $X^*,Y^*$ 为 $X,Y$ 标准化随机变量。是因为：
+$$
+\rho_{XY}= E\left(\frac{(X-E(X))(Y-E(Y))}{\sqrt{D(X)}\sqrt{D(Y)}}\right) = E(X^*Y^*)-0=\operatorname{cov}(X^*,Y^*)
+$$
+分析特殊情况 $Y=aX+b$（a>0），则：
+$$
+\operatorname{cov}(X^*Y^*)=E((X^*)^2)=D(X^*)=1
+$$
+若 $a<0$，则 $\operatorname{cov}(X^*Y^*)=-1$.
+
+- $\operatorname{cov}(aX,bY)=ab\operatorname{cov}(X,Y)$.
+- $\operatorname{cov}(X\pm Y,Z)=\operatorname{cov}(X,Z)\pm \operatorname{cov}(Y,Z)$.
+- $\operatorname{cov}(X,X)=D(X)$.
+- $D(X\pm Y)=D(X)+D(Y)\pm 2\operatorname{cov}(X,Y)$.
+
+**Cauchy-Schwarz 不等式** $|\operatorname{cov}(X,Y)|\le \sqrt{D(X)}\sqrt{D(Y)}$.
+
+等号取到相当于 $Y$ 与 $X$ 有线性关系：$P(Y^*=\pm X^*)=1$.
+
+或者按照书上的定义：存在常数 $t_0$，使得：
+$$
+P(Y-E(Y)=t_0(X-E(X)))=1
+$$
+
+### 协方差和相关系数的性质
+
+**相关系数的性质**
+
+1. $|\rho_{XY}|\le 1$.
+2. $|\rho_{XY}|=1$ 的充要条件为 $P(Y^*=\pm X^*)=1$，并且
+   1. $\rho_{XY}=1$ 的充要条件为 $P(Y^*=X^*)$，此时称 $X,Y$ 完全正相关；
+   2. $\rho_{XY}=-1$ 的充要条件为 $P(Y^*=-X^*)$，此时称 $X,Y$ 完全负相关。
+
+注：我们可以推导出 $\min_{a,b} E[(Y-aX-b)^2]=D(Y)(1-\rho_{XY}^2)$。即 $|\rho_{XY}|$ 越接近 1，线性均方误差越小。
+
+**$\boldsymbol X$ 与 $\boldsymbol Y$ 不相关的等价命题**
+
+设随机变量 $X$ 与 $Y$ 的方差都存在，且 $D(X)>0$，$D(Y)>0$，则下列命题等价：
+
+1. $X$ 与 $Y$ 不相关；
+2. $\rho_{XY}=0$, $\operatorname{cov}(X,Y)=0$, $E(XY)=E(X)E(Y)$. 这三者的等价关系可以从表达式得出。
+3. $D(X\pm Y) = D(X)+D(Y)$.
+4. $D(X+Y)=D(X-Y)$.
+
+**$\boldsymbol X$ 与 $\boldsymbol Y$ 相互独立**
+$$
+P(XY)=P(X)P(Y)
+$$
+
+但是二维正态分布，$X,Y$ 不相关、独立都等价于 $\rho=0$，因此是等价的。
+
+## 随机变量的高阶矩
+
+> Q: $D(X)$ 描述了 $X$ 和自身相比偏离中心的程度，$\operatorname{cov}(X,Y)$ 描述了 $X$ 和 $Y$ 相比偏离程度，如果有 $n$ 个随机变量，怎么度量它们之间的相互关系？
+
+设 $X,Y$ 都是随机变量. 定义**（混合）原点矩/中心矩**：
+
+1. 若 $E(|X|^k)<+\infin (k=1,2,\cdots)$，则称 $E(X^k)$ 为 $X$ 的 $k$ 阶原点矩，$E\{[X-E(X)]^k\}$ 为 $X$ 的 $k$ 阶中心矩；
+2. 若 $E(|X|^k |Y|^l) < +\infin (k,l=1,2,\cdots)$，则称 $E(X^k Y^l)$ 为 $X,Y$ 的 $k+l$ 阶混合原点矩，$E\{[X-E(X)]^k [Y-E(Y)]^l\}$ 为 $X$ 的 $k+l$ 阶混合中心矩。
+
+$E(X)$ 是 $X$ 的一阶原点矩，$D(X)$ 是 $X$ 的二阶中心矩，$\operatorname{cov}(X,Y)$ 是 $X,Y$ 的二阶混合中心矩。
+
+定义 **协方差矩阵**，设 $(X_1,X_2,\cdots,X_n)$ 是 $n$ 维随机变量，$X_1,X_2,\cdots,X_n$ 的二阶矩都存在，记 $c_{ij}=\operatorname{cov}(X_i,X_j),i,j=1,2,\cdots,n$，则称矩阵：
+$$
+\boldsymbol C=\begin{pmatrix}
+c_{11}&c_{12}&\cdots&c_{1n}\\
+c_{21}&c_{22}&\cdots&c_{2n}\\
+\vdots & \vdots & & \vdots\\
+c_{n1} & c_{n2}&\cdots &c_{nn}
+\end{pmatrix}
+$$
+为 $n$ 维随机变量 $(X_1,X_2,\cdots,X_n)$ 的协方差矩阵。由于 $c_{ij}=c_{ji}$，因此是 **对称矩阵**。
+
+对于任意实数 $t_1,t_2,\cdots,t_n$，有：
+$$
+\begin{aligned}
+D(t_1 X_1+t_2X_2+\cdots+t_n X_n)&=\operatorname{cov}\left(\sum_{i=1}^n t_i X_i,\sum_{j=1}^n t_j X_j\right)\\
+&=\sum_{i=1}^n t_i \operatorname{cov}\left(X_i,\sum_{j=1}^n t_j  X_j\right)\\
+&=\sum_{i=1}^n \sum_{j=1}^n t_i t_j \operatorname{cov}(X_i,X_j)\\
+&=\sum_{i=1}^n \sum_{j=1}^n t_i t_j c_{ij}\\
+&= (t_1,t_2,\cdots,t_n) \boldsymbol C(t_1,t_2,\cdots,t_n) ^\top
+\end{aligned}
+$$
+由于 $D(\cdots)\ge 0$，所以 $\boldsymbol C$ 为 **半正定矩阵**。
+
+定义 **$\boldsymbol n$ 维正态分布**：设 $(X_1,X_2,\cdots,X_n) $ 为 $n$ 维随机变量，如果 $(X_1,X_2,\cdots,X_n)$ 的联合概率密度满足：
+$$
+f(x_1,x_2,\cdots,x_n)=\frac{1}{(2\pi)^{1/2} |\boldsymbol C|^{1/2}} e^{-\frac{1}{2} (x-\boldsymbol \mu)^\top \boldsymbol C^{-1} (x-\boldsymbol \mu)}
+$$
+则 $(X_1,X_2,\cdots,X_n) \sim N(\boldsymbol \mu ,\boldsymbol C)$.
+
+- 当 $n=1$ 时，……
+- 当 $n=2$ 时，……
+
+$X_1,X_2,\cdots,X_n$ 相互独立的充要条件是协方差矩阵 $\boldsymbol C$ 为对角阵，此时若 $i\not=j$，$\operatorname{cov}(i,j)=0$……
+
+## 往年试题
+
+### 19-3
+
+![image-20231115093428170](https://notes.sjtu.edu.cn/uploads/upload_11bcf273445380ef6554f15ba7e8e8d6.png)
+
+A 利用协方差的性质：
+$$
+\operatorname{cov}(X_1,\overline{X})=\operatorname{cov}\left(X_1,\frac{1}{n} X_1+ \frac{1}{n}\sum_{i=2}^n X_i\right)=\frac{1}{n}D(X_1)+\frac{1}{n}\sum_{i=2}^n \operatorname{cov}(X_1,X_i)
+$$
+对于 $i\ge 2$，因为 $X_1,X_i$ 独立，所以 $X_1,X_i$ 不相关，$\operatorname{cov}(X_1,X_i)=0$.
+
+因此，$\operatorname{cov}(X_1,\overline{X})=\sigma^2/n$.
+
+再计算 C：
+$$
+D(X_1+\overline{X})=D\left(\frac{n+1}{n}X_1+\frac{1}{n}\sum_{i=2}^n X_i\right)
+$$
+因为 $X_1,\cdots,X_n$ 相互独立，则：
+$$
+=\frac{(n+1)^2}{n^2} \sigma^2+\frac{1}{n^2} \times (n-1)\sigma^2=\frac{n^2+3n}{n^2}\sigma^2=\frac{n+3}{n}\sigma^2
+$$
+D 同理也是不对的。
+
+> 总结一下我们都用到了方差和协方差的哪些性质：
+>
+> - $X,Y$ 相互独立，推出 $D(X\pm Y)=D(X)+D(Y)$.
+> - $D(CX)=C^2 D(X)$.
+> - $\operatorname{cov}(X\pm Y,Z)=\operatorname{cov}(X,Z)\pm \operatorname{cov}(Y,Z)$.
+> - $\operatorname{cov}(X,X)=D(X)$.

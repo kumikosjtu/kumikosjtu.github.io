@@ -1,0 +1,406 @@
+> Q: 数理统计研究的是什么？和之前概率论研究的方法有什么异同？
+>
+> 在概率论的问题中，我们一般假定随机变量服从的分布已知。
+>
+> 在数理统计中，面对真实的数据和情况，我们一般不知道数据服从什么分布（Ch6-常见统计量的分布），或者知道分布的类型，但是不知道分布的参数（Ch7-参数估计）
+
+## 数理统计的基本概念
+
+### 总体和个体
+
+**总体**——研究对象全体元素组成的集合。记为 $X$.
+
+**个体**——组成总体的每一个元素。记为 $X_i$.
+
+**样本**——从总体中抽取的部分个体。用 $(X_1,X_2,\cdots,X_n)$ 表示，$(x_1,x_2,\cdots,x_n)$ 表示样本的观测值。
+
+如果总体 $X$ 的样本（$X_1,X_2\cdots,X_n$）满足：
+
+1. $X_1,X_2\cdots,X_n$ 与 $X$ 有相同的分布。
+2. $X_1,X_2\cdots,X_n$ 相互独立。（有放回地抽取）
+
+则称 $(X_1,X_2,\cdots,X_n)$ 为 **简单随机样本**。
+
+设总体 $X$ 的分布函数为 $F(X)$，则简单随机样本的联合分布函数：
+$$
+F(x_1,x_2,\cdots,x_n)=\prod_{i=1}^n F(x_i)\quad f(x_1,x_2,\cdots,x_n)=\prod_{i=1}^n f(x_i)
+$$
+
+> 是因为简单随机样本样本之间相互独立，具有比较好的性质。
+
+### 统计量和样本矩
+
+称随机变量 $g(X_1,X_2,\cdots,X_n)$ 为 **统计量**，$g$ 函数内不能含有未知参数。称 $g(x_1,x_2,\cdots,x_n)$ 为 **统计量的观测值**。
+
+一些常见的统计量：
+
+- $\displaystyle \overline{X}=\frac{1}{n}\sum_{i=1}^n X_i$ 称为 **样本均值**，$\overline{X}$ 的样本值记为 $\overline{x}$.
+
+- $\displaystyle S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X})^2 $ 称为 **样本方差**，$S^2$ 的样本值记为 $s^2$.
+
+  $S$ 称为 **样本标准差**，$S$ 的样本值记为 $s$.
+
+  > 为什么前面的系数是 $1/(n-1)$? 后面我们将会推导。
+
+- $\displaystyle M_k=\frac{1}{n}\sum_{i=1}^n X_i^k (k=1,2,\cdots)$ 称为样本 **$\boldsymbol k$ 阶原点矩**，$M_k$ 的样本值记为 $m_k$. $k=1$ 时退化为样本均值。
+
+- $\displaystyle (CM)_k=\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X})^k(k=1,2,\cdots)$ 称为样本的 **$\boldsymbol{k}$ 阶中心矩**，$(CM)_k$ 的样本值记为 $(cm)_k$.
+  $$
+  \boxed{(CM)_2=\frac{n-1}{n}S^2=\frac{1}{n}\sum_{i=1}^n(X_i-\overline{X})^2 \equiv S_n^2}
+  $$
+  因此 $(CM)_2$ 又称 $S_n^2$.
+
+> 可以分析 $S_n^2$，和方差类似：
+> $$
+> \begin{aligned}
+> S_n^2&=\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X})^2\\
+> &=\frac{1}{n}\sum_{i=1}^n X_i^2-2\overline{X} \cdot \frac{1}{n}\sum_{i=1}^n X_i+\overline{X}^2\\
+> &=\boxed{\frac{1}{n}\sum_{i=1}^n X_i^2-\overline{X}^2}\\
+> &=\boxed{M_2-\overline{X}^2}
+> \end{aligned}
+> $$
+> $$
+> S^2=\frac{n}{n-1}S_n^2 = \boxed{\frac{n}{n-1} (M_2-\overline{X}^2)}
+> $$
+
+- 顺序统计量和极差，设取值为 $(x_1,x_2,\cdots,x_n) \in \R^n$，定义随机变量：
+  $$
+  X_{(k)}=x^*_k, \quad k=1,2,\cdots,n
+  $$
+  则称统计量 $X_{(1)},X_{(2)},\cdots,X_{(n)}$ 为顺序统计量，其中 $(x_1,x_2,\cdots,x_n)$ 为样本值，且 $x_1^*\le x_2^*\le \cdots \le x_n^*$.
+
+注：由 Khintchine 大数定律，可得：
+$$
+M_k=\frac{1}{n} \sum_{i=1}^n X_i^k \to \mu_k=E(X^k)
+$$
+**重要结论** 设总体 $X$ 的期望与方差存在，$E(X)=\mu,D(X)=\sigma^2$，则：
+$$
+E(\overline{X})=\mu, D(\overline{X})=\frac{\sigma^2}{n},E(S^2)=\sigma^2
+$$
+> 研究了统计量的期望和方差。之后，我们会发现样本均值 $\overline{X}$ 是总体期望 $\mu$ 的无偏估计，样本方差 $S^2$ 是总体方差 $\sigma^2$ 的无偏估计——为什么名字叫样本方差。
+
+假设抽取简单随机样本 $X_1,X_2,\cdots,X_n$，则：
+$$
+E(X_i)=\mu,D(X_i)=\sigma^2
+$$
+则：
+$$
+E(\overline{X})=\frac{1}{n}\sum_{i=1}^n E(X_i)=\mu
+$$
+
+$$
+D(\overline{X})=\frac{1}{n^2}\sum_{i=1}^n D(X_i)=\frac{\sigma^2}{n}
+$$
+
+为了求 $S^2$，我们先计算 $S_n^2$，抽取某个 $k$：
+$$
+\begin{aligned}
+E(S_n^2)&=\frac{1}{n}\sum_{i=1}^n E(X_i^2)-E(\overline{X}^2)\quad 利用之前的结论\\
+&=E(X_k^2)-E(\overline{X}^2)\quad 因为 X_k^2 和 X_i^2 服从同一个分布\\
+&=D(X_k)+E(X_k)^2-(D(\overline{X})+E(\overline{X})^2)\\
+&=\sigma^2+\mu^2-\left(\frac{\sigma^2}{n}+\mu^2\right)\\
+&=\frac{n-1}{n}\sigma^2
+\end{aligned}
+$$
+
+$$
+E(S^2)=E\left(\frac{n}{n-1}S_n^2\right)=\sigma^2
+$$
+
+---------
+
+![image-20231122111628745](https://notes.sjtu.edu.cn/uploads/upload_e71900dae69db5f6b805d3c1ccda7128.png)
+
+由于 $X_1,X_2,\cdots, X_n$ 相互独立，得到联合分布律：
+$$
+P(X_1=k_1,X_2=k_2,\cdots,X_n=k_n)=\prod_{i=1}^n \left(\frac{\lambda^{k_i}}{k_i!}e^{-\lambda}\right)
+$$
+由于 $E(X)=D(X)=\lambda$，可知，$E(\overline{X})=\mu=\lambda,D(\overline{X})=\sigma^2/n=\lambda/n$. $E(S^2)=\sigma^2=\lambda$.
+
+-------
+
+若 $X$ 是连续型随机变量，其概率密度为 $f(x)$， $\alpha$ 为给定常数，$0<\alpha<1$，若 $P(X>x_\alpha)=\alpha$，则称 $x_\alpha$ 为 $X$ 所服从分布的上侧 $\alpha$ 分位数，若 $X$ 的概率密度为偶函数，则对于满足 $0<\alpha<1/2$ 的 $\alpha$，若 $P(|X|>x_{\alpha/2})=\alpha$，则称 $x_{\alpha/2}$ 为 $X$ 所服从的双侧 $\alpha$ 分位数。
+
+## 常用统计量的分布（抽样分布）
+
+> 因为实践中很多统计推断是基于正态分布的假设的，故以标准正态分布变量为基石而构造的三个著名统计量有很广泛的应用，被称为“三大抽样分布”
+
+### 正态分布
+
+当 $X_i \sim N(\mu,\sigma^2)$，平均值统计量：
+$$
+\frac{1}{n}\sum_{i=1}^n X_i \sim N(\mu,\sigma^2/n)
+$$
+可知 $n$ 越大，方差越小，偏离中心的程度越小。
+
+### 卡方分布
+
+设随机变量 $X_1,X_2,\cdots,X_n$ **相互独立**，且均服从标准正态分布 $N(0,1)$，则称统计量 $\chi^2=\sum_{i=1}^n X_i^2$ 服从自由度为 $n$ 的 $\chi^2$ 分布，记为 $\sum_{i=1}^n X_i^2 \sim \chi^2(n)$.
+
+**卡方分布的概率密度函数**
+
+特别地，$n=1$ 时，其密度函数为：
+$$
+f(x)=\frac{1}{\sqrt{2\pi}} x^{-1/2} e^{-x/2} ,x>0;0,x\le 0\Rightarrow \chi^2(1)=N(0,1)
+$$
+$n=2$ 时，其密度函数为：
+$$
+f(x)=\frac{1}{2} e^{-x/2} ,x>0;0,x\le 0
+$$
+服从指数分布。
+
+一般地，
+$$
+f_{\chi^{2}}(x)=\left\{\begin{array}{ll}
+\frac{1}{2^{\frac{n}{2}} \Gamma\left(\frac{n}{2}\right)} \mathrm{e}^{-\frac{x}{2}} x^{\frac{n}{2}-1},& x>0,\\
+0,& x \leqslant 0,
+\end{array}\right.
+$$
+利用 Gamma 函数和数学归纳法可证明。
+
+**卡方分布的性质**：
+
+- **期望和方差**：$E(\chi^2(n))=n,D(\chi^2(n))=2n$. 证明
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_633901305720be5b80eb4e95f914b6c6.png" alt="image-20231204204805578" style="zoom:25%;" />
+
+- **在独立前提下的可加性**：若 $X_1\sim \chi^2(n_1),X_2\sim \chi^2 (n_2)$，$X_1,X_2$ 相互独立，则：
+  $$
+  X_1+X_2\sim \chi^2 (n_1+n_2)
+  $$
+
+- **卡方分布的极限是正态分布**：当 $n\to\infin$ 时，$\chi^2(n)\to$ 正态分布。
+
+### t 分布
+
+设 $X\sim N(0,1),Y\sim \chi^2(n)$ 且 $X,Y$ 相互独立，则称随机变量
+$$
+T=\frac{X}{\sqrt{Y/n}}
+$$
+服从自由度为 $n$ 的 t 分布，记为 $T\sim t(n)$，其概率密度为：
+$$
+f(t)=\frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n \pi} \Gamma\left(\frac{n}{2}\right)}\left(1+\frac{t^{2}}{n}\right)^{-\frac{n+1}{2}},\quad-\infty<t<+\infty
+$$
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_e3f6d900a959e2c00b690fa0861efc08.png" alt="image-20231218225350014" style="zoom:33%;" />
+
+- $n=1$ 时，$t(1)$ 为 Cauchy 分布，其数学期望不存在；
+- $n>1$ 时，$t$ 分布的数学期望为零。
+- $t$ 分布的概率密度为 **偶函数**，且当 $n\to\infin$ 时，$f(t)\to \varphi(t)=\frac{1}{\sqrt{2\pi}} e^{-t^2/2}$.
+- $t_{1-\alpha}(n)=-t_\alpha(n)$
+
+趋于 $N(0,1)$.
+
+--------
+
+例题，设 $X,Y$ 相互独立，$X\sim N(0,16),Y\sim N(0,9)$，$X_1,X_2,\cdots,X_9$ 与 $Y_1,Y_2,\cdots,Y_{16}$ 分别是取自于 $X,Y$ 的简单随机样本。求下面统计量服从的分布：
+$$
+\frac{X_1+X_2+\cdots+X_9}{\sqrt{Y_1^2+Y_2^2+\cdots+Y_{16}^2}}
+$$
+注意到 $X/4\sim N(0,1),Y/3\sim N(0,1)$.
+
+则 $1/9\sum Y^2 \sim \chi^2(16)$，$1/4\sum X\sim N(0,9),1/12\sum X\sim N(0,1)$.
+
+上下同乘 $3$，可得服从 $n=16$ 的 $t$ 分布。
+
+----
+
+设总体 $X\sim N(0,\sigma^2)$，$(X_1,X_2,X_3,X_4)$ 为总体 $X$ 的一个样本，令：
+$$
+Y=\frac{\sqrt{3} X_4}{\sqrt{X_1^2+X_2^2+X_3^2}}
+$$
+好习惯：设出随机变量 $U,V$，设：
+$$
+U=\frac{X_4}{\sigma}\sim N(0,1)\quad V=\sum_{i=1}^3 (X_i/\sigma)^2\sim \chi^2(3)
+$$
+还有 $U,V$ 相互独立，则：
+$$
+Y=\frac{U}{\sqrt{V/n}}\sim t(3)
+$$
+再求 $Y$ 的期望，因为关于原点对称，且 $n>1$，所以期望为零。
+
+### F 分布
+
+设 $U\sim \chi^2(m),V\sim \chi^2(n)$，且 $U,V$ 相互独立，则称随机变量
+$$
+F=\frac{U/m}{V/n}
+$$
+服从第一自由度为 $m$，第二自由度为 $n$ 的 $F$ 分布，记为 $F\sim F(m,n)$，其概率密度为：
+$$
+f_{F}(t)=\left\{\begin{array}{ll}
+\frac{\Gamma\left(\frac{m+n}{2}\right)}{\Gamma\left(\frac{m}{2}\right) \Gamma\left(\frac{n}{2}\right)}\left(\frac{m}{n}\right)^{\frac{m}{2}} t^{\frac{m}{2}-1}\left(1+\frac{m}{n} t\right)^{-\frac{m+n}{2}},& t>0,\\
+0,& t \leqslant 0
+\end{array}\right.
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_219f5a9531159642ab58aefd91588101.png" alt="img" style="zoom: 33%;" />
+
+**性质**
+
+- 若 $F\sim F(m,n)$，则 $\displaystyle \frac{1}{F}\sim F(n,m)$.
+- $\displaystyle F_{1-\alpha}(n,m)=\frac{1}{F_\alpha(m,n)}$.
+
+-----------
+
+证明 $(t_{1-\alpha/2}(n))^2=F_\alpha(1,n)$.
+
+注意到
+$$
+F=\frac{G/1}{Y/n}\sim F(1,n)\quad T=\frac{G^2}{\sqrt{Y/n}} \sim t(n)
+$$
+因此 $F=T^2$.
+
+$P(F>F_\alpha(1-n))=\alpha,P(T^2>(-t_{\alpha/2}(n))^2)=\alpha$.
+
+代入 $-t_{\alpha/2}(n)=t_{1-\alpha/2}(n)$ 即可。
+
+## 正态总体的抽样分布
+
+### 单个正态总体的抽样分布
+
+设 $X\sim N(\mu,\sigma^2)$，$(X_1,X_2,\cdots,X_n)$ 是来自总体 $X$ 的一个简单随机样本，$\overline{X},S^2$ 分别为样本均值和样本方差。
+
+则
+
+- $$
+  \color{blue}\boxed{\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2=\sum_{i=1}^n \left(\frac{X_i-\overline{X}}{\sigma}\right)^2 \sim \chi^2 (n-1)}
+  $$
+
+  注意和下面结论的区分：
+  $$
+  \color{green}\boxed{\sum
+  _{i=1}^n \left(\frac{X_i-\mu}{\sigma}\right)^2 \sim \chi^2(n)}
+  $$
+  原因是 $X_i,\overline{X}$ 不是相互独立的。
+  
+- $$
+  \color{red}\boxed{\overline{X}\sim N\left(\mu,\frac{\sigma^2}{n}\right)\quad\displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt n} \sim N(0,1)}
+  $$
+
+- 样本方差和 $S^2$ 和样本均值 $\overline{X}$ 相互独立。
+
+- $$
+  \color{purple}\boxed{\frac{\overline{X}-\mu}{S/\sqrt{n}} \sim t(n-1)}
+  $$
+
+  使用 $\displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt n} \sim N(0,1)$ 和 $\displaystyle \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)$.
+
+为了证明上面的结论需要引理：已知 $X_1,X_2,\cdots,X_n$ 相互独立且服从同一分布 $X_i \sim N(0,1)$，若作正交变换（$\boldsymbol C$ 是一个正交矩阵）
+$$
+\boldsymbol Y=\begin{pmatrix}Y_1\\Y_2\\\vdots\\Y_n\end{pmatrix}=\boldsymbol C\begin{pmatrix}X_1\\X_2\\\vdots\\X_n\end{pmatrix}=\boldsymbol C\boldsymbol X
+$$
+则 $Y_1,Y_2,\cdots,Y_n$ 相互独立且服从同一分布 $Y_i \sim N(0,1)$.
+
+> 证明之前我们先直观感受一下它在说什么，正交变换代表将一个密度函数绕着原点旋转一定的方位（经过正交变换），仍然不变，这告诉我们 $(X_1,X_2,\cdots,X_n)$ 的分布关于原点中心对称。如图所示：
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_b1fa2376db52b091d5b19268e4da8225.png" alt="img" style="zoom:33%;" />
+>
+> 我们可以再观察每个点到原点的距离 $l=\sqrt{\sum x_i^2}$ 和联合密度函数：
+> $$
+> f_1(x_1,x_2,\cdots,x_n)=\prod_{i=1}^n \varphi(x_i)=\left(\frac{1}{\sqrt{2\pi}}\right)^n e^{-\frac{1}{2} \sum_{i=1}^n x_i^2}=\left(\frac{1}{\sqrt{2\pi}}\right)^n e^{-\frac{1}{2}l^2}
+> $$
+> 因此只和 $l$ 有关，直观上说明了我们的结论是正确的。会不会有其他的函数
+
+严谨的证明还要多一步，利用变量代换的 Jacobi 矩阵和正交变换的性质，说明：
+
+- $\sum x_i^2=\sum y_i^2$.
+- 变量代换乘以 Jacobi 矩阵的行列式 $=1$.
+
+并且，$Y_1$ 与 $g(Y_2,Y_3,\cdots,Y_n)=\displaystyle \sum_{i=2}^n Y_i^2$ 相互独立。（因为用的变量都不同）
+
+知道了这个引理之后，我们再次证明前面的结论，令：
+$$
+Y_i=\frac{X_i-\mu}{\sigma},i=1,2,\cdots,n\Rightarrow Y_i\sim N(0,1)
+$$
+将 $\boldsymbol Y$ 作一个特殊的正交变换，得到 $\boldsymbol Z$.
+$$
+\boldsymbol Z=\begin{pmatrix}Z_1\\Z_2\\\vdots\\Z_n\end{pmatrix}=\boldsymbol C\begin{pmatrix}Y_1\\Y_2\\\vdots\\Y_n\end{pmatrix}
+$$
+其中 $\boldsymbol C$ 特殊之处在于第一维做了“取平均的操作”
+$$
+\boldsymbol C=\begin{pmatrix}\frac{1}{\sqrt{n}}&\cdots&\frac{1}{\sqrt{n}}\\c_{21}&\cdots&c_{2n}\\\vdots&&\vdots\\c_{n1}&\cdots&c_{nn}\end{pmatrix}
+$$
+则：$Z_1=\sqrt{n}\overline{Y}$. 
+
+有：
+$$
+\begin{aligned}
+\frac{(n-1) S^2}{\sigma^2} &= \frac{1}{\sigma^2}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2\\
+&= \sum_{i=1}^n \left(\frac{X_i-\mu}{\sigma^2}-\frac{\overline X-\mu}{\sigma^2}\right)^2\\
+&=\sum_{i=1}^n (Y_i-\overline{Y})^2\\
+&= \sum_{i=1}^n Y_i^2-n \overline{Y}^2=\underbrace{\sum_{i=1}^n Z_i^2}_{到原点距离不变}-\underbrace{Z_1^2}_{第一维的特殊情况}\\
+&=\sum_{i=2}^n Z_i^2 \sim \chi^2(n-1)
+\end{aligned}
+$$
+由于 $Z_1=\displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$ 与 $\displaystyle \sum_{i=2}^n Z_i^2 = \frac{(n-1)S^2}{\sigma^2}$ 是相互独立的，所以样本方差 $S^2$ 和样本均值 $\overline{X}$ 相互独立。
+
+### 多个正态分布总体的抽样分布
+
+设 $(X_1,X_2,X_3,\cdots,X_m)$ 与 $(Y_1,Y_2,\cdots,Y_n)$ 为来自总体 $N(\mu_1,\sigma_1^2)$ 和 $N(\mu_2,\sigma_2^2)$ 的样本，且两样本之间相互独立，记：
+$$
+S_1^2=\frac{1}{m-1} \sum_{i=1}^{m} (X_i-\overline{X})^2 ,S_2^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X})^2
+$$
+则：
+
+- $\displaystyle F=\frac{S_1^2}{S_2^2} \cdot \frac{\sigma_2^2}{\sigma_1^2}\sim F(m-1,n-1)$.
+
+  证明，利用 $S_1^2=\sigma_1^2 \chi_1^2/(n-1), S_2^2=\sigma_2^2 \chi_2^2/(m-1)$.
+
+- 若 $\sigma_1^2=\sigma_2^2 = \sigma^2$，则：
+  $$
+  T=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{S_w \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim t(m+n-2)
+  $$
+  其中 $\displaystyle S_w^2 = \frac{(m-1)S_1^2+(n-1)S_2^2}{m+n-2}$.
+
+  证明，利用 t 分布的定义，注意到
+  $$
+  Q=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{\sigma^2 \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim N(0,1)
+  $$
+
+  $$
+  R=\frac{(m-1) S_1^2+(n-1)S_2^2}{\sigma^2}\sim \chi^2(m+n-2)
+  $$
+
+-------
+
+设 $(X_1,X_2)$ 为来自正态总体 $N(0,1)$ 的一个样本，求常数 $k$，使得：
+$$
+P\left(\frac{(X_1+X_2)^2}{(X_1-X_2)^2+(X_1+X_2)^2}>k\right)=0.05
+$$
+可知，$(X_1+X_2)\sim N(0,2)$，$(X_1-X_2)\sim N(0,2)$，且两者不相关。
+
+因此，
+$$
+U=\frac{1}{2}(X_1+X_2)^2 \sim \chi^2(1)\\
+V=\frac{1}{2}\left[(X_1+X_2)^2+(X_1-X_2)^2\right] \sim \chi^2(2)
+$$
+$U,V$ 之间似乎不是相互独立的……但是我们可以对函数做一些变换：
+$$
+P\left(1+\frac{(X_1-X_2)^2}{(X_1+X_2)^2}<\frac{1}{k}\right)=0.05\\
+P\left(\frac{(X_1-X_2)^2}{(X_1+X_2)^2}<\frac{1}{k}-1\right)=0.05
+$$
+这下，可以看出 $\displaystyle \frac{(X_1-X_2)^2}{(X_1+X_2)^2}\sim F(1,1)$. 再利用分位数的性质：
+$$
+P\left(\frac{(X_1-X_2)^2}{(X_1+X_2)^2}>\frac{1}{k}-1\right)=1-0.05
+$$
+
+$$
+F_{1-0.05}(1,1)= \frac{1}{F_{0.05}(1,1)}=\frac{1}{161}
+$$
+
+$$
+\frac{1}{k}-1=\frac{1}{161} \Rightarrow k=\frac{161}{162}
+$$
+
+## 往年试题
+
+### 19-1-8
+
+![image-20231218185751090](https://notes.sjtu.edu.cn/uploads/upload_d629975a5097c75fa51fb9aff5795940.png)
+
+可知，$\overline{X}-\mu \sim N(0,1/n)$，因此 $n(\overline{X}-\mu)^2\sim \chi^2(1)$.
+
+可知，$(n-1)S^2\sim \chi^2(n-1)$.
+
+因为样本均值 $\overline{X}$ 和样本方差 $S^2$ **相互独立**（回顾书里的结论）
+
+所以 $n(\overline{X}-\mu)^2 +(n-1)S^2 \sim \chi^2(n)$.

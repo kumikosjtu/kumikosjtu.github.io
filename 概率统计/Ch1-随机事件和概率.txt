@@ -1,0 +1,194 @@
+## 随机事件及其运算
+
+### 随机试验和随机事件
+
+**随机试验**
+
+- 可在相同条件下重复进行；
+- 所有可能结果不止一个，而且在试验之前应该是已知的；
+- 每次试验后所得到的结果应该在已知所有可能结果中， 并且事先无法预知会出现哪个结果.
+
+**随机现象**
+
+- 在一次观察或试验中其结果是具有随机性的
+- 在大量重复观察或试验中，出现的结果有一定的规律性 （称为统计规律性）
+
+**本课程的主要研究问题之一**
+
+随机试验中某些可能发生，也可能不发生的事件（随机事件）发生的可能性的大小（概率）
+
+- 随机试验 $E$ 所有可能的结果组成的集合称为样本空间 $\Omega$。
+- 样本空间的元素，即 $E$ 的直接结果（基本事件），称为样本点，记为 $\omega$。$\Omega = \{\omega\}$. 每次试验必定发生且只可能发生一个基本事件。
+- $\Omega$ 的子集称为随机事件，记为 $A,B,\cdots,$ 它是满足某些条件的样本点组成的集合。随机事件发生 —— 组成随机事件的一个样本点发生。
+
+- 必然事件 全体样本点组成的事件。记为 $\Omega$，每次试验必定发生的事件。
+- 不可能事件 不包含任何样本点的事件。记为 $\empty$，每次试验不发生的事件。
+
+### 随机事件之间的关系和运算
+
+**包含关系** $A \subset B$.
+
+**和事件** $A \cup B$.
+
+**积事件** $A \cap B=AB$.
+
+**差事件** $A-B=A\overline{B}=A-AB$.
+
+**互不相容事件** $AB=\varnothing$.
+
+**对立事件（或互逆事件）** $AB=\varnothing, A\cup B=\Omega$. $\Rightarrow A=\overline{B}$.
+
+**集合运算律**
+
+化简 $\overline{(\overline{A}\overline{B}\cup C)\overline{AC}}$
+$$
+=\overline{\overline{A}\overline{B}\cup C} \cup (AC)
+\\
+=(\overline{\overline{A}\overline{B}} \cap \overline{C}) \cup (AC)\\
+=(A\cup B) \cap \overline{C} \cup AC
+\\
+=A(C\cup\overline{C}) \cup (B\overline{C})\\
+=A\Omega \cup(B\overline{C})=A\cup B\overline{C}
+$$
+
+## 随机事件的概率
+
+### 频率和概率
+
+随机事件 $A$ 发生可能性大小的数值度量，称为 $A$ 的 **概率**，记为 $P(A)$.
+
+设在 $n$ 次重复试验中，事件 $A$ 发生了 $m$ 次，则称 $\displaystyle f_n(A)=\frac{m}{n}$ 为事件 $A$ 发生的 **频率**。
+
+**频率的性质**
+
+- $0 \le f_n(A) \le 1$ 非负性
+- $f_n(\Omega)=1$ 规范性
+- 随机事件 $A,B$ 互斥，则 $f_n(A \cup B) = f_n(A)+f_n(B)$ 可加性
+- 随机事件 $A_1 \sim A_n$ 两两互斥，则 $f_n (\cup_{i=1}^n A_i)=\sum_{i=1}^n f_n(A_i)$
+- $\lim_{n \to \infin} f_n(A)=P(A)$ 稳定性
+
+**概率的公理化定义**
+
+- 非负性 $\forall A \sub \Omega , P(A) \ge 0$.
+- 归一性 $P(\Omega)=1$.
+- 可列可加性 $P(\cup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i)$，$A_1 \sim A_n$ 两两互斥
+
+### 古典概型
+
+古典概型是样本点离散的情况
+
+### 几何概型
+
+设样本空间对应于一个有限区域 $\Omega$ ，若样本点落入 $\Omega$ 内任何子区域 $G$ 中的概率与区域 $G$ 的测度成正比，则样本点落入 $G$ 内的概率为
+$$
+P(A)=\frac{G \text { 的测度 }}{\Omega \text { 的测度 }}
+$$
+### 概率的基本性质
+
+- $P(\varnothing)=\mathbf{0}$
+- **有限可加性** 设 $A_1, A_2, \cdots, A_n$ 两两互斥，则 $P\left(\cup_{i=1}^n A_i\right)=\sum_{i=1}^n P\left(A_i\right)$
+- 若 $A \subset B$ ，则 $P(B-A)=P(B)-P(A) \Rightarrow P(A) \leq P(B)$
+- 对任意两个事件 $A, B$ ，有 $P(B-A)=P(B)-P(A B)$
+- **加法公式** 对任意两个事件 $A, B$ ，有 $P(A \cup B)=P(A)+P(B)-P(A B)$
+
+$$
+P(A \cup B) \leq P(A)+P(B)
+$$
+
+- **加法公式的推广**
+  $$
+  P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(AB)-P(AC)-P(BC)+P(ABC)
+  $$
+
+- **一般情况（容斥原理）**
+  $$
+  P\left(\cup_{i=1}^n A_i\right)=\sum_{i=1}^n P(A_i)-\sum_{1\le i <j \le n} P(A_iA_j)\\+\sum_{1\le i<j<k\le n} P(A_iA_jA_k)+\cdots+(-1)^{n-1}P(A_1\cdots A_n)
+  $$
+
+### 条件概率
+
+在事件 $B$ 发生的条件下求事件 $A$ 发生的概率，记作 $P(A\mid B)$，一般地，$P(A \mid B) \not= P(A)$.
+
+### 乘法公式
+
+$$
+P(AB)=P(A)P(B\mid A) \quad (P(A)>0)\\
+P(AB)=P(B)P(A\mid B) \quad (P(B)>0)
+$$
+
+三个的情况：
+$$
+P(A_1A_2)=P(A_1)P(A_2\mid A_1)\\
+P(A_1A_2A_3)=P(A_1A_2)P(A_3 \mid A_1A_2)=P(A_1)P(A_2\mid A_1)P(A_3 \mid A_1A_2)
+$$
+![image-20230914091422327](https://notes.sjtu.edu.cn/uploads/upload_59c764e36dbfad504a71743b82873e65.png)
+
+1. $P(A_1A_2)=P(A_1) P(A_2 \mid A_1)$.
+2. $P(A_2)=P(A_1A_2 \cup \overline{A_1}A_2)=P(A_1A_2)+P(\overline{A_1}A_2)$,（讨论 $A_1$ 发生与否 ）
+3. $P(\overline{A_1}\overline{A_2}A_3)$.
+4. $\displaystyle P(\overline{A_1} \mid A_2)=\frac{P(\overline{A_1}A_2)}{P(A_2)}=\frac{P(\overline{A_1})P(A_2 \mid \overline{A_1})}{P(A_1A_2)+P(\overline{A_1}A_2)}$ 贝叶斯公式
+
+**完备事件组**
+
+若 $B_1,B_2,\cdots,B_n$ 两两互斥，且 $\displaystyle \Omega=\cup_{i=1}^nB_i$，则称 $B_1,B_2,\cdots,B_n$ 为完备事件组，或称 $B_1,B_2,\cdots,B_n$ 为 $\Omega$ 的一个划分。
+
+### 全概率公式
+
+$$
+A=\cup_{i=1}^n AB_i, (AB_i)(AB_j)=\empty
+$$
+
+$$
+P(A)=P\left(\cup_{i=1}^n AB_i\right)=\sum_{i=1}^n P(AB_i)=\sum_{i=1}^n P(B_i)P(A\mid B_i)
+$$
+
+### Bayes 公式
+
+如果我们关心的事件 $A$ 满足 $P(A)>0$，$B_1,B_2,\cdots,B_n$ 是可能导致随机事件 $A$ 发生的所有因素，现在如果已经知道 $A$ 发生，不难求解导致 $A$ 发生的因素 $B_i$ 的概率：
+$$
+P(B_i \mid A) = \frac{P(AB_i)}{P(A)} = \frac{P(B_i)P(A \mid B_i)}{\sum_{j=1}^n P(B_j) P(A \mid B_j)},i = 1,2,\cdots,n
+$$
+
+- $P(B_i)$：先验概率；
+- $P(B_i \mid A)$：后验概率。
+
+$$
+P(ABC)=P(C \mid AB) \cdot P(AB)=P(C \mid AB)\cdot P(B\mid A)\cdot P(A)
+$$
+
+## 随机事件的独立性
+
+若 $P(AB)=P(A)P(B)$，则事件 $A$ 与事件 $B$ 相互独立。
+
+若 $A$ 与 $B$ 相互独立，则 $P(A)=P(A\mid B),P(B)=P(B \mid A)$.
+
+若 $A$ 与 $B$ 相互独立，则 $A$ 与 $\overline{B}$ 相互独立。
+
+三个随机事件 $A,B,C$ 相互独立是指下面的关系式同时成立：
+$$
+\begin{cases}
+P(AB)=P(A)P(B)\\
+P(AC)=P(A)P(C)\\
+P(BC)=P(B)P(C)
+\end{cases}\quad
+P(ABC)=P(A)P(B)P(C)
+$$
+前者指两两独立，如果再满足后者，称为相互独立。
+
+## 往年题目
+
+![image-20231115150127235](https://notes.sjtu.edu.cn/uploads/upload_00edf9f9fa0e0892420c68e836512235.png)
+
+![image-20231223104614681](https://notes.sjtu.edu.cn/uploads/upload_9f64943f4fb80a693b083f6baf74cbc5.png)
+
+关键是利用 $P(\overline{A}\ \overline{B})=1-P(A)-P(B)+P(AB)$. 直接暴力展开：
+$$
+\frac{P(AB)}{P(B)}+\frac{1-P(A)-P(B)+P(AB)}{1-P
+(B)}=0
+$$
+可得：
+$$
+P(AB)=P(A)P(B)
+$$
+然后也可以得到 $P(\overline{A}\ \overline{B})=P(\overline{A})P(\overline{B})$
+

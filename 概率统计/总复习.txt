@@ -1,0 +1,552 @@
+# 概统概统
+
+**第一章** 
+
+**第二章** 概率分布的定义、性质；常用分布；随机变量函数的分布；
+
+**第三章** 联合分布；边缘分布与条件分布；随机变量的独立性；随机变量的函数的分布（和的分布、线性组合的分布、商的分布、平方和的分布、极值的分布）；
+
+**第四种** 期望，方差，定义性质；随机变量函数的期望，方差；相关系数，协方差；期望方差的应用。
+
+**第六章** 总体、样本、统计量的概念；三大抽样分布定义、性质以及分位点定义；常用统计量（或枢轴量）的分布
+
+**第七章** 矩估计和最大似然估计（最大似然不变性原理）；参数估计的评价标准（无偏性、有效性、一致性）；参数的区间估计（一个正态总体下的双侧和单侧置信区间）
+
+**第八章** 假设检验的基本思想和实施步骤；可能产生的两类错误和控制方法；一个正态总体参数的单侧与双侧假设检验；$p$ 值检验方法。
+
+#### Q：条件概率公式？贝叶斯公式？全概率公式？
+
+$$
+P(A\mid B)=\frac{P(AB)}{P(B)}
+$$
+
+即，在 $B$ 已经发生的情况下，$A$ 发生的概率为 $A,B$ 均发生的概率除以 $B$ 发生的概率。
+
+全概率公式：
+$$
+P(A)=\sum_{i=1}^n P(B_i)P(A\mid B_i)
+$$
+贝叶斯公式：
+$$
+P(B\mid A)=\frac{P(A\mid B) P(B)}{P(A)}
+$$
+
+$$
+P(B_i \mid A)=\frac{P(B_i)P(A\mid B_i)}{\sum_{i=1}^n P(B_i)P(A\mid B_i)}
+$$
+
+#### Info：一类概率题目
+
+不太好分类，就记在这里了：如何转换 $P(B\mid A)=1-P(\overline{B}\mid \overline{A})$ 的条件？
+
+关键是利用 $P(\overline{A}\ \overline{B})=1-P(A\cup B)=1-P(A)-P(B)+P(AB)$. 直接暴力展开：
+$$
+\frac{P(AB)}{P(B)}+\frac{1-P(A)-P(B)+P(AB)}{1-P
+(B)}=0
+$$
+可得 $P(AB)=P(A)P(B)$，然后也可以得到 $P(\overline{A}\ \overline{B})=P(\overline{A})P(\overline{B})$. 因此这个条件和 $A,B$ 独立、$\overline{A},\overline{B}$ 独立等价。
+
+#### Q: 什么是泊松定理？
+
+当 $\lambda=np$，伯努利分布的极限（当 $n \to \infin$）就是泊松分布，也就是：
+$$
+\lim_{n\to \infin} C_n^k p^k (1-p)^{n-k}=e^{-\lambda }\frac{\lambda^k}{k!} 
+$$
+或者从分布近似相等的角度理解：
+$$
+X \sim B\left(n,\frac{\lambda}{n}\right) \overset{n \to +\infin}\Rightarrow X \sim P(\lambda)
+$$
+当 $n$ 比较大时，可以用这个公式做近似。
+
+#### Info：一些常见的分布的性质
+
+- 二项分布 $B(n,p)$ 最可能出现的结果是 $\lfloor(n+1)p\rfloor$.
+
+- 泊松分布 $P(\lambda)$ 最可能出现的结果是 $\lfloor \lambda\rfloor$，如果 $\lambda$ 是整数，则 $\lambda,\lambda-1$ 概率相当，都是最可能的。
+
+- 如果在单位时间内出现的质点数符合 Poisson 分布，则任意两个质点出现的时间间隔服从指数分布。证明如下：
+
+  考虑 $n$ 时间内没有质点出现，假设 $X$ 代表质点第一次出现的时间，根据 Poisson 分布，这种情况的概率为：
+  $$
+  P(X>n)=e^{-np}\frac{(np)^0}{0!}=e^{-np}
+  $$
+  反之，$n$ 时间内有质点出现，概率为：
+  $$
+  P(X\le n)=1-e^{-np}
+  $$
+  这就是指数分布的分布函数。其参数为 $p$.
+
+- 指数分布没有记忆性，也就是：
+  $$
+  P(X\ge a+b \mid X\ge a)=\frac{e^{-\lambda(a+b)}}{e^{-\lambda a}}=e^{-\lambda b}=P(X\ge b)
+  $$
+
+- 一维正态分布 $\frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，一维标准正态分布 $\frac{1}{\sqrt{2\pi} } e^{-\frac{x^2}{2}}$.
+- 二维正态分布 $N(\mu_1,\sigma_1^2;\mu_2,\sigma_2^2;\rho)$.
+
+#### Q: 分布函数的性质
+
+- $0 \le F(x) \le 1$，$F(-\infin)=0,F(+\infin)=1$.
+- $F(x)$ 单调不减。
+- $F(x)$ 是右连续函数，即 $\displaystyle \lim_{t \to x^+} F(t)=F(x)$.
+
+#### Q: 怎么求连续型随机变量函数的分布啊！
+
+一般地，设 $X$ 为连续型随机变量，如果已知 $X$ 的概率密度为 $f_X(x)$（或分布函数），又设函数 $y=g(x)$，求 $Y=g(X)$ 的概率密度（或分布函数）的步骤如下：
+
+- 先求 $Y$ 的分布函数 $F_Y(y)$. $\displaystyle F_Y(y)= P\{Y\le y\}=P\{g(X)\le y\} = \int_{g(x)\le y} f_X(x)\mathrm d x$.
+- 再对 $F_Y(y)$ 求导数，得到 $Y$ 的概率密度 $\displaystyle f_Y(y)=\frac{\mathrm d }{\mathrm d y} F_Y(y)$.
+
+> 当然，需要特别注意分段函数的范围！
+>
+> 也可以利用直接推导的结论： 假设 $Y=g(X)$ 的反函数为 $x=h(y)$，对于一个严格单调的区间来说，结论是：
+> $$
+> f_Y(y)=f_X(h(y))|h'(y)|
+> $$
+> 如果有多个严格单调的区间，应该对每个区间都计算，然后叠加。
+
+> 特别地，$Y=F_X(X)$ 的密度函数为 $U(0,1)$.
+
+#### Q: 定义二维随机变量的联合分布函数、边缘分布函数、联合分布律、边缘分布律！
+
+- **联合分布函数**：$F(x,y)=P(X \le x,Y\le y)$. 矩形区域的表示：
+  $$
+  F(b,d)-F(a,d)-F(b,c)+F(a,c)=P(a<X\le b,c<Y\le d)
+  $$
+  其性质为：函数值处于 $[0,1]$ 区间中；单调性；固定一个变量，关于另一个是右连续函数；矩形区域概率大于等于零。
+
+- **边缘分布函数**：$F_X(x)=F(x,+\infin)=P(X\le x),F_Y(y)=F(+\infin,y)=P(Y\le y)$.
+
+- **联合分布律**：$P(x=x_i,y=y_i)=p_{ij}$.
+
+- **边缘分布律**：$P(x=x_i)=\sum_j p_{ij},P(y=y_i)=\sum_i p_{ij}$.
+
+仅有关于 $X$ 和 $Y$ 的边缘分布，一般来说不能确定随机变量 ${(X,Y)}$ 的联合分布。
+
+#### Q: 给出二维连续型随机变量的条件分布的公式。
+
+对于离散型：
+
+- **条件概率密度** $P(X=x_i \mid Y=y_i)=\displaystyle \frac{p_{ij}}{p_{\cdot j}},i=1,2,\cdots$.
+
+对于连续型：
+
+- **条件概率密度** $\displaystyle f_{X\mid Y }(x\mid y)=\frac{f(x,y)}{f_Y(y)}$.
+- **条件分布函数** $F_{X \mid Y} (x\mid y)=\int_{-\infin}^x f_{X\mid Y}(u\mid y) \mathrm d u=\int_{-\infin}^x \frac{f(u,y)}{f_Y(y)} \mathrm d u$.
+
+#### Q: 给出二维随机变量独立的条件。
+
+- **连续型**：设 $(X,Y)$ 是二维随机变量，若对于任意实数 $x,y$，都有
+
+  - $f(x,y)=f_X(x)f_Y(y)$.
+  - $P(X\le x,Y\le y)=P(X\le x )P(Y \le y)$
+
+  则称 $X$ 与 $Y$ 相互独立。即 **联合分布律等于边缘分布律的乘积，联合概率密度等于边缘概率密度的乘积**。
+
+- **离散型**：$P(X=x_i,Y=y_i)=P(X=x_i)P(Y=y_i)$. 即 $p_{ij}=p_{i\cdot}p_{\cdot j}$.
+
+我们还有：**独立性定理** 设 $(X,Y)$ 是二维连续型随机变量，$f(x,y)$ 是 $(X,Y)$ 的联合概率密度，则 $X$ 与 $Y$ 相互独立的充分必要条件是存在非负可积函数 $r(x)$ 和 $g(y)$，使得：
+$$
+f(x,y)=r(x)g(y)
+$$
+在一切连续点上成立，此时：
+$$
+f_X(x)= \frac{r(x)}{\int_{-\infin}^{+\infin} r(x) \mathrm d x}, f_Y(y)=\frac{g(y)}{\int_{-\infin}^{+\infin} g(y)\mathrm d y}
+$$
+
+使用独立性定义判断时还需要注意定义域的影响，不能看到 $f(x,y)$ 可以分解为 $r(x)g(y)$ 的形式，就认为 $X,Y$ 相互独立。
+
+#### Info：特殊随机变量函数的分布
+
+**离散型随机变量和的分布 $\boldsymbol{Z=X+Y}$**
+$$
+P(Z=r)=\sum_{i=0}^r P(X=i)P(Y=r-i)
+$$
+即离散卷积公式。
+
+**连续型随机变量和的分布 $\boldsymbol {Z=X+Y}$**
+$$
+f_Z(z)=\int_{-\infin}^{+\infin} f(z-y,y)\mathrm d y=\int_{-\infin}^{+\infin } f(x,z-x)\mathrm d x
+$$
+**线性函数的分布 $\boldsymbol{Z=aX+bY+c}$**
+$$
+f_Z(z)=\frac{1}{|b|}\int_{-\infin}^{+\infin} f\left(x,\frac{z-ax-c}{b}\right)\mathrm d x
+$$
+
+> $|b|$ 是因为不同的 $b$ 对应的积分区域一个朝下，一个朝上。
+
+**商的分布 $\boldsymbol {Z=X/Y}$ **（积分区域怎么画）
+$$
+\int_{-\infin}^{+\infin} f(yz,y)|y|\mathrm d  y
+$$
+**平方和的分布 $\boldsymbol {Z=X^2+Y^2}$**（积分区域是一个圆）
+$$
+f_Z(z)= \int_0^{2\pi}\mathrm d \theta \cdot \frac{1}{2} f(\sqrt{z} \cos\theta,\sqrt{z}\sin\theta) \quad (z\ge 0)
+$$
+
+> 通过该结论，可以推出 $\chi^2(2)$ 服从参数为 $1/2$ 的指数分布。
+
+假设 $Z=f(X,Y)$，解出 $X=h(Y,Z)$，结论是：
+$$
+f_Z(z)=\left|\frac{\partial h(y,z)}{\partial z}\right|\int f(h(y,z),y)\mathrm d y
+$$
+不知道对不对？感觉用来记忆上面几个例子够用了。
+
+#### Q: 什么是方差不等式？并且给出证明
+
+对于任意实数 $Y$，
+$$
+D(X)\le E((X-Y)^2)
+$$
+因为：
+$$
+E(X^2) -E(X)^2\le E(X^2)-2E(X)Y+Y^2
+$$
+
+#### Info: 常见分布的期望和方差
+
+| 分布                    | 表达式                                                       | 期望        | 方差          |
+| ----------------------- | ------------------------------------------------------------ | ----------- | ------------- |
+| 0-1分布                 | $P(X=k)=p^k(1-p)^{1-k},k=0,1.$                               | $p$         | $p(1-p)$      |
+| $B(n,p)$: $n$ 个 0-1    | $P(X=k)=C_n^k p^k(1-p)^{n-k}$                                | $np$        | $np(1-p)$     |
+| $P(\lambda)$            | $P(X=k)=e^{-\lambda} \frac{\lambda ^k}{k!}, k=0,1,2,\cdots$  | $\lambda$   | $\lambda$     |
+| $G(p)$                  | $P(X=k)=(1-p)^{k-1}p,k=1,2,\cdots$                           | $1/p$       | $(1-p)/p^2$   |
+| Pascal 分布: $r$ 个几何 | $P(X=k)=C_{k-1}^{r-1}p^r q^{k-r},k=r,r+1,\cdots$             | $r/p$       | $r(1-p)/p^2$  |
+| $U(a,b)$                | $1/(b-a)$ 对于 $x\in [a,b]$，其余为零                        | $(a+b)/2$   | $(b-a)^2/12$  |
+| $E(\lambda)$            | $\lambda e^{-\lambda x}$ 对于 $x>0$，其余为零                | $1/\lambda$ | $1/\lambda^2$ |
+| $N(\mu,\sigma^2)$       | $f(x)=\frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad  -\infin < x <+\infin$ | $\mu$       | $\sigma^2$    |
+
+#### Q: 给出不相关和独立的定义.
+
+**$\boldsymbol X$ 与 $\boldsymbol Y$ 不相关的等价命题**
+
+设随机变量 $X$ 与 $Y$ 的方差都存在，且 $D(X)>0$，$D(Y)>0$，则下列命题等价：
+
+1. $X$ 与 $Y$ 不相关；
+2. $\rho_{XY}=0$, $\operatorname{cov}(X,Y)=0$, $E(XY)=E(X)E(Y)$. 这三者的等价关系可以从表达式得出。
+3. $D(X\pm Y) = D(X)+D(Y)$.
+
+**$\boldsymbol X$ 与 $\boldsymbol Y$ 相互独立**
+$$
+P(XY)=P(X)P(Y)
+$$
+
+**由相互独立推出不相关**
+$$
+E(XY)=\iint f(x,y)xy\mathrm d x\mathrm d y=\iint f_X(x)f_Y(y) xy\mathrm d x\mathrm d y\\
+=\int f_X(x)x\mathrm d x\int f_Y(y)y\mathrm d y=E(X)E(Y)
+$$
+
+当 ${X,Y}$ 服从正态总体，不相关和相互独立等价，相当于联合密度函数中 $\rho=0$。
+
+#### Q: 什么事 Chebyshev 不等式？并且定性描述其揭示的规律，给出证明。
+
+设随机变量 $X$ 的数学期望 $E(X)=\mu$，方差 $D(X)=\sigma^2$，则对于任意正数 $\varepsilon$，恒有不等式：
+$$
+P(|X-\mu| \ge \varepsilon) \le \frac{\sigma^2}{\varepsilon^2}
+$$
+或
+$$
+P(|X-\mu| \le \varepsilon) > 1-\frac{\sigma^2}{\varepsilon^2}
+$$
+
+> 描述了落在 $|X-\mu| \le \varepsilon$ 区间内或区间外的几率，我们现在分析落在区间内的情况，显然，$\sigma$ 越小，$\varepsilon$ 越大，落在区间内的几率就越大。
+
+证明从方差的定义出发：
+$$
+P(|X-\mu | \ge \varepsilon)=\int_{|X-\mu| \ge \varepsilon} f(x)\mathrm d x\le \int_{|X-\mu| \ge \varepsilon} \underbrace{\left(\frac{x-\mu}{\varepsilon}\right)^2}_{\ge 1} f(x)\mathrm d  x\\\le \int_{-\infin}^{+\infin}\left(\frac{x-\mu}{\varepsilon}\right)^2 f(x)\mathrm d  x=D(x)/\varepsilon^2=\frac{\sigma^2}{\varepsilon^2}
+$$
+
+#### Q: 什么是依照概率收敛？它和数列收敛有什么不同？
+
+**依照概率收敛** 设 $Y_1,Y_2,\cdots, Y_n,\cdots$ 是一个随机变量序列，$X$ 是一个随机变量，若 $\forall \varepsilon>0$，有：
+$$
+\lim_{n \to +\infin} P(|Y_n-X|\ge \varepsilon)=0 \mathrm{~or~} \lim_{n \to +\infin} P(|Y_n -X|<\varepsilon)=1
+$$
+则称随机变量序列依概率收敛于 $X$，记作 $Y_{n} \underset{n \rightarrow+\infty}{\stackrel{P}{\longrightarrow}} X$. （并不能保证一定发生，只能保证出现偏差的绝对值大于 $\varepsilon$ 的概率很小，趋于零）
+
+#### Q: 什么是序列服从大数定理？并且给出解释。
+
+**定义序列服从大数定理** 若随机变量序列 $X_1,X_2,\cdots,X_n,\cdots$ 满足 $\forall \varepsilon>0$，有：
+$$
+\lim_{n \to +\infin}P\left(\left|\frac{1}{n}\sum_{k=1}^n X_k-\frac{1}{n}\sum_{k=1}^n E(X_k)\right|<\varepsilon\right)=1
+$$
+当 $X_1,X_2,\cdots,X_k$ 同分布，也等价于：
+$$
+\lim_{n \to +\infin}P\left(\left|\overline{X}-E(X)\right|<\varepsilon\right)=1
+$$
+则称该序列服从大数定律。
+
+> 大数定律是有关随机变量序列的前 $n$ 项的算术平均值在一定条件下收敛到这 $n$ 项的数学期望的算术平均值的定律。
+
+#### Q: 给出几个常见的大数定律？
+
+大数定律成立的核心是利用 Chebyshev 不等式，证明随机变量的算术平均值收敛到其均值，要求
+$$
+\lim_{n\to \infin}D\left(\frac{1}{n}\sum_{i=1}^n X_i\right)=0
+$$
+**Chebyshev 大数定理** 设随机变量序列 $X_1,X_2\cdots,X_n$ 两两不相关，它们的方差存在，且有共同的上界，即 $\rho_{X_iX_j}=0,i\not=j$，$D(X_k)=\sigma_k^2 \le \sigma^2$，$k=1,2,3,\cdots,n,\cdots$，记 $E(X_k)=\mu_k$，则称该序列服从大数定律。
+
+其推广为 **Markov 大数定理**：$X_1,X_2\cdots,X_n$ 两两不相关的条件可以去掉，代之 $\displaystyle \frac{1}{n^2} D\left(\sum_{k=1}^n X_k\right) \underset{n \rightarrow+\infty}{\stackrel{P}{\longrightarrow}} 0$，即 Markov 条件。满足 Markov 条件的序列服从 Markov 大数定律。
+
+**Khintchine 大数定理** $M_k\underset{n \rightarrow+\infty}{\stackrel{P}{\longrightarrow}} \mu_k,k=1,2,\cdots$.
+
+#### Q: 中心极限定理？
+
+对于均值为 $\mu$，方差为 $\sigma^2$ 的随机变量，取足够多样本，样本的和近似服从：
+$$
+N(n\mu,n\sigma^2)
+$$
+
+样本的均值近似服从：
+$$
+N\left(\mu,\frac{\sigma^2}{n}\right)
+$$
+
+#### Q: 给出样本均值和样本方差数字特征
+
+**重要结论** 设总体 $X$ 的期望与方差存在，$E(X)=\mu,D(X)=\sigma^2$，则：
+$$
+E(\overline{X})=\mu, D(\overline{X})=\frac{\sigma^2}{n},E(S^2)=\sigma^2
+$$
+如果总体 $X$ 还服从正态分布，
+$$
+D(S^2)=\frac{2\sigma^4}{n-1}
+$$
+
+#### Q: 卡方分布当 $n=2$ 时服从什么分布？
+
+$n=2$ 时，其密度函数为：
+$$
+f(x)=\frac{1}{2} e^{-x/2} ,x>0;0,x\le 0
+$$
+服从参数为 $1/2$ 指数分布。
+
+#### Q: 卡方分布的性质
+
+**卡方分布的性质**：
+
+- **期望和方差**：$E(\chi^2(n))=n,D(\chi^2(n))=2n$.
+
+- **在独立前提下的可加性**：若 $X_1\sim \chi^2(n_1),X_2\sim \chi^2 (n_2)$，$X_1,X_2$ 相互独立，则：
+  $$
+  X_1+X_2\sim \chi^2 (n_1+n_2)
+  $$
+
+- **卡方分布的极限是正态分布**：当 $n\to\infin$ 时，$\chi^2(n)\to$ 正态分布。
+
+#### Q: t 分布的性质
+
+- $n=1$ 时，$t(1)$ 为 Cauchy 分布，其数学期望不存在；
+- $n>1$ 时，$t$ 分布的数学期望为零。
+- $t$ 分布的概率密度为 **偶函数**，且当 $n\to\infin$ 时，趋于正态分布.
+- $t_{1-\alpha}(n)=-t_\alpha(n)$
+
+#### Q: F 分布的性质
+
+- 若 $F\sim F(m,n)$，则 $\displaystyle \frac{1}{F}\sim F(n,m)$.
+- $\displaystyle F_{1-\alpha}(n,m)=\frac{1}{F_\alpha(m,n)}$.
+
+#### Info 单个正态总体的抽样分布的各种结论
+
+设 $X\sim N(\mu,\sigma^2)$，$(X_1,X_2,\cdots,X_n)$ 是来自总体 $X$ 的一个简单随机样本，$\overline{X},S^2$ 分别为样本均值和样本方差。
+
+则
+
+- $$
+  \color{blue}\boxed{\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n \left(X_i-\overline{X}\right)^2=\sum_{i=1}^n \left(\frac{X_i-\overline{X}}{\sigma}\right)^2 \sim \chi^2 (n-1)}
+  $$
+
+  注意和下面结论的区分：
+  $$
+  \color{green}\boxed{\sum
+  _{i=1}^n \left(\frac{X_i-\mu}{\sigma}\right)^2 \sim \chi^2(n)}
+  $$
+  原因是 $X_i,\overline{X}$ 不是相互独立的。事实上，限定样本均值 $\overline{X}$ 会减少一个自由度。
+
+- $$
+  \color{red}\boxed{\overline{X}\sim N\left(\mu,\frac{\sigma^2}{n}\right)\quad\displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt n} \sim N(0,1)}
+  $$
+
+- 样本方差和 $S^2$ 和样本均值 $\overline{X}$ **相互独立**。
+
+- $$
+  \color{purple}\boxed{\frac{\overline{X}-\mu}{S/\sqrt{n}} \sim t(n-1)}
+  $$
+
+  使用 $\displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt n} \sim N(0,1)$ 和 $\displaystyle \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)$ 可以推出。
+
+#### Info 多个正态分布总体的抽样分布的各种结论
+
+设 $(X_1,X_2,X_3,\cdots,X_m)$ 与 $(Y_1,Y_2,\cdots,Y_n)$ 为来自总体 $N(\mu_1,\sigma_1^2)$ 和 $N(\mu_2,\sigma_2^2)$ 的样本，且两样本之间相互独立，记：
+$$
+S_1^2=\frac{1}{m-1} \sum_{i=1}^{m} (X_i-\overline{X})^2 ,S_2^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X})^2
+$$
+则：
+
+- $\displaystyle F=\frac{S_1^2}{S_2^2} \cdot \frac{\sigma_2^2}{\sigma_1^2}\sim F(m-1,n-1)$.
+
+  证明，利用 $S_1^2=\sigma_1^2 \chi_1^2/(n-1), S_2^2=\sigma_2^2 \chi_2^2/(m-1)$.
+
+- 若 $\sigma_1^2=\sigma_2^2 = \sigma^2$，则：
+  $$
+  T=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{S_w \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim t(m+n-2)
+  $$
+  其中 $\displaystyle S_w^2 = \frac{(m-1)S_1^2+(n-1)S_2^2}{m+n-2}$.
+
+  证明，利用 t 分布的定义，注意到
+  $$
+  Q=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{\sigma^2 \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim N(0,1)
+  $$
+
+  $$
+  R=\frac{(m-1) S_1^2+(n-1)S_2^2}{\sigma^2}\sim \chi^2(m+n-2)
+  $$
+
+#### Q: 矩估计法的过程？
+
+矩估计法的理论基础是 Khinchine 大数定律，使用样本的 $k$ 阶矩作为总体的 $k$ 阶矩的估计量。如果需要估计 $k$ 个参数，至少需要研究总体的 $1,2,\cdots,k$ 阶矩。
+
+#### Q: 最大似然估计法的过程？
+
+写出似然函数：
+$$
+L(\boldsymbol \theta)=\prod_{i=1}^n f(a_i;\boldsymbol \theta)
+$$
+求其对数 $\ln L(\boldsymbol \theta)$.
+
+求解似然方程组：
+$$
+\frac{\partial \ln L(\boldsymbol \theta)}{\partial \theta_i}=0
+$$
+得到 $\theta_i^*$，确定最大似然估计值为 $\hat \theta_i=\theta_i^*$.
+
+> 当 $L(\boldsymbol \theta)$ 单调时，如何处理？极大值/极小值在边界取到。
+
+相关结论：
+
+- **正态总体** 的均值和方差的最大似然估计量为样本均值和样本二阶中心矩（不是样本方差）。
+- 如果概率密度函数是分段函数，根据不等号的方向，大概率是取 $\min/\max$.
+
+**最大似然估计不变性原理** 设 $\hat \theta$ 是未知参数 $\theta$ 的最大似然估计，又设 $g(\theta)$ 是 $\theta$ 的连续函数，则 $\hat g=g(\hat \theta)$ 是 $g=g(\theta)$ 的最大似然估计。
+
+#### Q: 给出一些常见无偏估计量
+
+- $\displaystyle \overline{X}=\frac{1}{n}\sum_{i=1}^n X_i$. 是总体期望的无偏估计量。
+
+- 样本二阶中心矩 $\displaystyle S_n^2=\frac{1}{n}\sum(X_i-\overline{X})^2$ 不是总体方差的无偏估计量。
+
+- 样本方差 $\displaystyle S^2 = \frac{1}{n-1} \sum _{i=1}^n (X_i-\overline{X})^2$ 是总体方差的无偏估计量。
+
+  因为：
+  $$
+  \begin{aligned}
+  E(S^2)&=\frac{1}{n-1} \sum_{i=1}^n E(X_i^2)-nE(\overline{X}^2)\\
+  &=\frac{1}{n-1} \left\{\sum_{i=1}^n [D(X_i)+E^2(X_i)]-n(D(\overline{X})+E^2(\overline{X}))\right\}\\
+  &=\frac{1}{n-1} (n\mu^2+n \sigma^2-n\cdot \sigma^2/n-n\mu^2)=\sigma^2
+  \end{aligned}
+  $$
+
+- 当 $\sum \alpha_i=1$，$\displaystyle \hat \mu = \sum_{i=1}^n \alpha_i E(X_i)$ 是总体期望的无偏估计量。
+
+- 当 $\hat \theta$ 是 $\theta$ 的无偏估计量，$g(\hat \theta)$ 不一定为 $g(\theta) $ 的无偏估计量，原因是期望只具有线性性。
+
+#### Q: 给出估计量有效性的定义
+
+设 $\hat \theta_1=\hat \theta_1(X_1,X_2,\cdots,X_n)$ 和 $\hat \theta_2=\hat \theta_2(X_1,X_2,\cdots,X_n)$ 均为 $\theta$ 的 **无偏估计量**（也就是两种不同的估计方法），对于任意 $n$ 有
+$$
+D(\hat \theta_1)<D(\hat \theta_2)
+$$
+则称 $\hat\theta_1$ 比 $\hat \theta_2$ 有效。
+
+> 估计量在无偏的情况下，才能评价有效性。
+
+#### Q: 给出估计量具有一致性的定义和等价条件
+
+**一致性的定义** 序列 $\{\hat \theta_n\}$ 依概率收敛于 $\theta$，即 $\forall \varepsilon>0$，有：
+$$
+\lim_{n\to\infin} P(|\hat \theta_n-\theta|<\varepsilon)=1
+$$
+则称 $\hat \theta_n$ 为 $\theta$ 的一致估计量。
+
+**等价条件**：$\displaystyle \lim_{n\to \infin} D(\hat \theta_n)=0$.
+
+证明，使用 Chebyshev 不等式。
+$$
+0\le P(|\hat \theta_n-E(\hat \theta)|\ge \varepsilon)=\frac{D(\hat \theta_n)}{\varepsilon^2}\to 0
+$$
+
+#### Info: 指数正态分布
+
+财富的分布并不服从正态分布，而是呈现左偏的一个形状，为什么呢，我们可以猜测影响财富的因素不是相加，而是相乘，~~比如考入交大可以让你的收入减半，考入浙大可以让你的收入翻倍~~，如：
+$$
+X=\prod_{i=1}^n X_i
+$$
+两边取对数：
+$$
+\log X=\sum_{i=1}^n \log X_i
+$$
+此时，我们就可以说 $\log X\sim N(\mu,\sigma^2)$. 如何求 $X$ 的期望和方差，利用随机变量函数的期望，设 $Y=\log X$，则 $X=e^Y$，
+$$
+E(X)=\int_{-\infin}^{+\infin} \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(y-\mu)^2}{2\sigma^2}}\cdot e^y\mathrm d y=e^{\mu+\sigma^2/2}\\
+E(X^2)=\int_{-\infin}^{+\infin} \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(y-\mu)^2}{2\sigma^2}}\cdot e^{2y}\mathrm d x=e^{2\mu+2\sigma^2}\\
+D(X)=E(X^2)-E(X)^2=e^{2\mu+\sigma^2}(e^{\sigma^2}-1)
+$$
+
+#### Q: 置信区间的定义？
+
+如果 $\theta$ 是待估计参数，$(X_1,X_2,\cdots,X_n)$ 是来自总体 $X$ 的一个样本，如果对于给定的 $\alpha(0<\alpha<1)$，存在 $\overline{\theta}(X_1,X_2,\cdots,X_n)$ 和 $\underline{\theta}(X_1,X_2,\cdots,X_n)$，使得：
+$$
+P(\underline{\theta}<\theta<\overline{\theta})=1-\alpha
+$$
+则称区间 $(\underline{\theta},\overline{\theta})$ 是 $\theta$ 的置信度为 $1-\alpha$ 的置信区间。$1-\alpha$ 称为置信度。
+
+置信区间的取法不唯一，需要保证置信度的前提下，最小化置信区间长度，也就是最小化平均长度 $E(|\overline{\theta}-\underline{\theta}|)$.
+
+一般来说，置信度越高，置信区间的长度越长——可靠度和估计的精度是矛盾的，在满足可靠度的前提下，可以增大样本容量，来增加估计的精度。
+
+#### Q: 给出正态分布总体的区间估计的枢轴量.
+
+对于正态总体 $N(\mu,\sigma^2)$.
+
+- 估计 $\mu$.
+  - 当 $\sigma^2$ 已知，枢轴量选为 $\displaystyle U=\frac{\overline{X}-\color{red}{\mu}}{\sigma/\sqrt n}\sim N(0,1)$.
+  - 当 $\sigma^2$ 未知，用样本方差替代总体方差，枢轴量选为 $\displaystyle T=\frac{\overline{X}-\color{red}{\mu}}{S/\sqrt{n}} \sim t(n-1)$.
+- 估计 $\sigma^2$.
+  - 当 $\mu$ 已知，枢轴量选为 $\displaystyle \chi^2=\frac{\sum_{i=1}^n (X_i-\mu)^2}{{\color{red}\sigma^2}}\sim \chi^2(n)$.
+  - 当 $\mu$ 未知，用样本均值代替总体均值，枢轴量选为 $\displaystyle \chi^2=\frac{\sum_{i=1}^n (X_i-\overline{X})^2}{{\color{red}\sigma^2}}=\frac{(n-1)S^2}{{\color{red}\sigma^2}}\sim \chi^2(n-1)$.
+
+为了强调枢轴量只含有待估计参数，不含有其它未知参数，将待估计参数标红。
+
+#### Q: 给出参数假设检验的步骤.
+
+- 提出原假设 $H_0$ 和备选假设 $H_1$.
+
+> 原假设和备选假设如何选取，原假设一般是认为系统工作正常，备择假设一旦成立，可能说明系统产生严重的问题。
+
+- 当 $H_0$ 为真时，选择合适的 **检验统计量** $U=g(\boldsymbol X)$，检验统计量服从的分布已知。
+
+- 计算很小的参数 $\alpha$（**显著性水平**） 对应的拒绝域 $W$，
+  $$
+  P(\boldsymbol X \in W)\le \alpha
+  $$
+  也就是构造一个小概率事件 $\boldsymbol X\in W$. 当拒绝域位于两侧，称为双侧检验，类似的，在左侧或者右侧称为左侧检验或右侧检验。
+
+- 观察统计量 $U$ 的观测值 $\hat U$是否落在拒绝域里面. 由此判断 $\boldsymbol X$ 是否落在 $W$ 中。
+
+- 给出结论，若 $\boldsymbol X\in W$，则拒绝 $H_0$，否则接受 $H_0$.
+
+> pl 老师上课提出的简单记忆方法，拒绝域的符号和备择假设一致。
+
+#### Q: 检验统计量怎么选取？
+
+和枢轴量类似。
+
+#### Q: 什么是参数假设检验的两类错误？
+
+|            | 接受 $H_0$              | 接受 $H_1$                   |
+| ---------- | ----------------------- | ---------------------------- |
+| $H_0$ 为真 | 正确（$>1-\alpha$）     | 犯第一类错误（$\le \alpha$） |
+| $H_0$ 为假 | 犯第二类错误（$\beta$） | 正确（$1-\beta$）            |
+
+**假设检验的原则** 控制犯第一类错误的概率不超过 $\alpha$，再尽可能降低犯第二类错误的概率。

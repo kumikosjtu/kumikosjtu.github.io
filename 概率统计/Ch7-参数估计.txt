@@ -1,0 +1,691 @@
+## 点估计
+
+### 频率替代法
+
+若从服从 $N(\mu,2)$ 的总体中抽样 28 次，有 21 次小于 4：
+$$
+\frac{n_A}{n}\approx P(X<4)=\Phi \left(\frac{4-\mu}{\sqrt{2}}\right)
+$$
+
+### 矩估计法
+
+> 其理论基础是 Khinchine 大数定律。一般只用到最高 $2$ 阶矩
+
+**矩估计法的核心** 是使用样本的 $k$ 阶矩作为总体的 $k$ 阶矩的估计量。
+
+设总体 $X$ 的分布函数为 $F(x;\theta_1,\theta_2,\cdots,\theta_k),r=1,2,\cdots,k$，其中待估计的参数为 $\theta_1,\cdots,\theta_k$，并假设 $k$ 阶原点矩存在，记为：
+$$
+E(X^r)=\mu_r(\theta_1,\cdots,\theta_k),r=1,2,\cdots,k
+$$
+根据大数定律，写出：
+$$
+\left\{\begin{array}{c}
+\mu_{1}\left(\theta_{1},\theta_{2},\cdots,\theta_{k}\right)=\frac{1}{n} \sum_{i=1}^{n} X_{i},\\
+\mu_{2}\left(\theta_{1},\theta_{2},\cdots,\theta_{k}\right)=\frac{1}{n} \sum_{i=1}^{n} X_{i}^{2},\\
+\vdots \\
+\mu_{k}\left(\theta_{1},\theta_{2},\cdots,\theta_{k}\right)=\frac{1}{n} \sum_{i=1}^{n} X_{i}^{k}
+\end{array}\right.
+$$
+如果方程组有解：
+$$
+\begin{array}{c}
+\hat{\theta}_{1}=\hat{\theta}_{1}\left(X_{1},X_{2},\cdots,X_{n}\right),\\
+\hat{\theta}_{2}=\hat{\theta}_{2}\left(X_{1},X_{2},\cdots,X_{n}\right),\\
+\vdots \\
+\hat{\theta}_{k}=\hat{\theta}_{k}\left(X_{1},X_{2},\cdots,X_{n}\right),
+\end{array}
+$$
+这些方程称为 **矩估计量**，将 $X_1,\cdots,X_n$ 以具体的样本值代入，称为矩估计值。
+
+例如：
+$$
+E(X)=\mu\quad 矩估计量 \overline{X}\\
+E(X^2)=\mu^2+\sigma^2\quad 矩估计量 \overline{X^2}=\frac{1}{n}\sum_{i=1}^n X_i^2
+$$
+
+-------
+
+设 $\displaystyle X\sim f(x)=\frac{1}{2\theta} e^{-\frac{|x|}{\theta}}$，给出 $\theta$ 的矩估计量。
+
+注意到 $E(X)=\mu=0$，因此不能用一阶矩估计。
+
+使用二阶矩：设 $Y\sim E(1/\theta)$.
+$$
+\begin{aligned}
+E(X^2)&=\int_{-\infin}^{+\infin} \frac{1}{2\theta} e^{-|x|/\theta} x^2\mathrm d x\\
+&=\int_{0}^{+\infin} \frac{1}{\theta} e^{-|x|/\theta} x^2\mathrm d x\\
+&=E(Y^2)=(1/(1/\theta))^2+1/(1/\theta)^2=2\theta^2
+\end{aligned}
+$$
+因此，$\theta$ 的矩估计量为：
+$$
+\hat \theta_{矩}=\frac{1}{2} \sqrt{\frac{1}{n}\sum_{i=1}^n X_i^2}
+$$
+
+-------
+
+设总体 $X$ 服从 $U[\theta_1,\theta_2]$，给出 $\theta_1,\theta_2$ 的矩估计量。
+$$
+E(X)=\mu=(\theta_1+\theta_2)/2\approx \frac{1}{n}\sum_{i=1}^n X_i\\
+E(X^2)=\mu^2+\sigma^2=\frac{(\theta_1+\theta_2)^2}{4}+\frac{(\theta_2-\theta_1)^2}{12}\approx \frac{1}{n}\sum_{i=1}^n X^2_i
+$$
+
+### 最大似然估计法
+
+一般地，设 $X$ 为离散型随机变量/连续型随机变量，其分布律/概率密度为：
+$$
+P(X=x)=f(x;\theta_1,\cdots,\theta_k)
+$$
+则 $X_1,X_2\cdots,X_n$ 的概率分布为：
+$$
+P(\boldsymbol X=\boldsymbol x)=\sum_{i=1}^n f(x_i;\boldsymbol \theta)=L(\boldsymbol x;\boldsymbol \theta)
+$$
+当 $\boldsymbol x$ 确定时，即为 $L(\boldsymbol \theta)$. 写出方程组：
+$$
+\frac{\partial L(\boldsymbol \theta)}{\partial \theta_i}=0
+$$
+
+-------
+
+设总体 $X\sim E(\lambda)$，$\boldsymbol x$ 是样本值，求 $\lambda$ 的最大似然估计。
+$$
+L(\lambda)=\prod_{i=1}^n f(x_i;\lambda)=\prod_{i=1}^n \lambda e^{-\lambda x_i} (当 x_i都>0)
+$$
+
+$$
+\mathcal L(\lambda)=n\ln \lambda -\lambda \sum_{i=1}^n x_i
+$$
+
+$$
+\frac{\mathrm d \mathcal L(\lambda)}{\mathrm d \lambda}=\frac{n}{\lambda}-\sum_{i=1}^n x_i \Rightarrow \hat \lambda_{\mathrm{MLE}}=\frac{1}{\overline{x}}
+$$
+
+因此，结论和矩估计法一样。
+
+-------
+
+设总体 $X\sim N(\mu,\sigma^2)$，$\boldsymbol x$ 是样本值，求 $\mu,\sigma^2$ 的最大似然估计。
+$$
+L(\mu,\sigma^2)=\prod_{i=1}^n f(x_i;\mu,\sigma^2)=\prod_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-(x-\mu)^2/(2\sigma^2)}
+$$
+
+$$
+\mathcal L(\mu,\sigma^2)=-n\underbrace{\ln (\sqrt{2\pi}\sigma)}_{1/2(\ln 2\pi+\ln \sigma^2)} -\sum_{i=1}^n \frac{(x-\mu)^2}{2\sigma^2}
+$$
+
+$$
+\frac{\partial \mathcal L(\mu,\sigma^2)}{\partial \mu}=\frac{\sum_i (x_i-\mu)}{\sigma^2}=0
+$$
+
+$$
+\frac{\partial \mathcal L(\mu,\sigma^2)}{\partial \sigma^2}=-\frac{n}{2\sigma^2}+\frac{\sum_i (x_i-\mu)^2}{2(\sigma^2)^2}=0
+$$
+
+则：
+$$
+\left\{
+\begin{aligned}
+&\hat \mu_{\mathrm{MLE}}=\overline{x}\\
+&\hat \sigma^2_{\mathrm{MLE}}=\frac{1}{n}\sum_i (x_i-\overline{x})^2
+\end{aligned}
+\right.
+$$
+
+--------
+
+> 似然函数是严格单调的时候，该怎么处理？极大值/极小值在边界取到。
+
+设 $X\sim U(a,b)$，求最大似然估计值和最大似然估计量。
+$$
+f(x;a,b)=\left\{
+\begin{aligned}
+
+&\frac{1}{b-a} & x\in(a,b)\\
+&0 & otherwise
+\end{aligned}
+\right.
+$$
+
+$$
+L(a,b)=\prod_{i=1}^n \frac{1}{b-a}=\frac{1}{(b-a)^n}\quad 当 x_i \in (a,b)
+$$
+
+则需要满足 $x_i$ 都在 $(a,b)$ 的区间内，使得 $b-a$ 最小：
+$$
+\left\{
+\begin{aligned}
+&\hat a_{\mathrm{MLE}}=\min\{x_i\}=X_{(1)}\\
+&\hat b_{\mathrm{MLE}}=\max\{x_i\}=X_{(n)}
+\end{aligned}
+\right.
+$$
+
+------
+
+综合问题：设总体 $X$ 的概率密度为：
+$$
+f(x;\theta)=\frac{3x^2}{\theta^3} , 0<x\le \theta ;0 ,otherwise.
+$$
+求 $\theta$ 的矩估计量和最大似然估计量。
+$$
+\mu=\int_0^{\theta} \frac{3x^2}{\theta^3} \cdot x\mathrm d x=\frac{3}{4} \theta\approx E(X)
+$$
+因此 $\hat \theta_{矩}=\frac{4}{3} E(X)$.
+$$
+L(\theta)=\prod_{i=1}^n \frac{3 X_i^2}{\theta^3}（当 0<x_i\le \theta）
+$$
+
+$$
+\mathcal L(\theta)=3\log n + \sum_{i=1}^n 2\log X_i-3\log \theta
+$$
+
+$$
+\frac{\partial \mathcal L(\theta)}{\partial \theta}=\frac{-3n}{\theta}
+$$
+
+因此是单调的，需要 $\theta$ 尽量小，但是不能小于 $\max\{X_i\}$，因此
+$$
+\hat \theta_{\mathrm{MLE}}=\max\{X_i\}=X_{(n)}
+$$
+
+---------
+
+**最大似然估计不变性原理** 设 $\hat \theta$ 是未知参数 $\theta$ 的最大似然估计，又设 $g(\theta)$ 是 $\theta$ 的连续函数，则 $\hat g=g(\hat \theta)$ 是 $g=g(\theta)$ 的最大似然估计。
+
+如果：
+$$
+\hat {\sigma^2}=\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X})^2
+$$
+$\sigma=\sqrt{\sigma^2}$，则可以算出 $\sigma$ 的最大似然估计为：
+$$
+\hat \sigma=\sqrt{\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X})^2}
+$$
+
+--------
+
+设 $X\sim N(\mu,\sigma^2)$，求 $g(\mu,\sigma^2)=P(X>3)$ 的最大似然估计。
+
+> 如何理解这件事，就是抽取样本 $(X_1,X_2,\cdots,X_n)$，要你给出 $P(X>3)$ 的最大似然估计。
+
+利用：
+$$
+g(\mu,\sigma^2)=P(X>3)=1-\Phi\left(\frac{3-\mu}{\sigma}\right)
+$$
+显然是关于 $\mu,\sigma^2$ 的连续函数，则 $g(\mu,\sigma^2)$ 的最大似然估计为：
+$$
+\hat g(\hat \mu,\hat {\sigma^2})=1-\Phi\left(\frac{3-\overline{X}}{\sqrt{S_n}}\right)
+$$
+
+## 估计量的评价指标
+
+> Q: 我们使用不同的方法（如矩估计法和最大似然估计法）可能得到不同 $\hat \theta$，如何确定这些 $\hat \theta$ 的好坏？
+>
+> 和真实的 $\theta$ 尽量接近？
+
+### 无偏性
+
+定义，若有：
+$$
+E(\hat \theta)=\theta
+$$
+则称 $\hat \theta$ 是 $\theta$ 的 **无偏估计量**，反之如果 $E(\hat\theta)\not=\theta$，则称 $\varepsilon=E(\hat \theta)-\theta$ 为估计量 $\theta$ 的 **偏差**。
+
+无偏性是对于一个估计量最基本的要求。
+
+-----
+
+说明 $\displaystyle M_k=\frac{1}{n}\sum_{i=1}^n X_i^k$ 是 $\mu_k=E(X^k)$ 的无偏估计量。
+$$
+E(X_i^k)=E(X^k)=\mu_k\\
+E(M_k)=\frac{1}{n}\sum_{i=1}^n  E(X_i^k)=\frac{1}{n} \sum_{i=1}^n\mu_k=\mu_k
+$$
+因此，**矩估计是无偏的**。当 $k=1$，我们有：样本均值是总体期望的无偏估计量。当 $k=2$，我们有：样本的二阶原点矩是总体二阶原点矩的无偏估计量。
+
+---------
+
+判断无偏性：
+
+- $\displaystyle \overline{X}=\frac{1}{n}\sum_{i=1}^n X_i$. 是总体期望的无偏估计量。
+
+- 样本二阶中心距 $\displaystyle S_n^2=\frac{1}{n}\sum(X_i-\overline{X})^2$ 不是总体方差的无偏估计量。
+
+- 样本方差 $\displaystyle S^2 = \frac{1}{n-1} \sum _{i=1}^n (X_i-\overline{X})^2$ 是总体方差的无偏估计量。
+
+  因为：
+  $$
+  \begin{aligned}
+  E(S^2)&=\frac{1}{n-1} \sum_{i=1}^n E(X_i^2)-nE(\overline{X}^2)\\
+  &=\frac{1}{n-1} \left\{\sum_{i=1}^n [D(X_i)+E^2(X_i)]-n(D(\overline{X})+E^2(\overline{X}))\right\}\\
+  &=\frac{1}{n-1} (n\mu^2+n \sigma^2-n\cdot \sigma^2/n-n\mu^2)=\sigma^2
+  \end{aligned}
+  $$
+
+- 当 $\sum \alpha_i=1$，$\displaystyle \hat \mu = \sum_{i=1}^n \alpha_i E(X_i)$ 是总体期望的无偏估计量。
+
+-------
+
+设总体 $X\sim N(\mu,\sigma^2)$，求常数 $k$，使得 $\displaystyle k\sum_{i=1}^n |X_i-\overline{X}|$ 为 $\sigma$ 的无偏估计量。
+
+先计算：
+
+- $E(X_i-\overline{X})=0$.
+- $\displaystyle D(X_i-\overline{X})=\sum_{i\not=j}\frac{1}{n^2} D(X_j)+\frac{(n-1)^2}{n^2} D(X_i)=\frac{n-1}{n}\sigma^2$.
+
+现在知道 $Y=X_i-\overline{X}$，求 $|Y|$ 的数学期望？
+$$
+E(|Y|)=\int_{-\infin}^{+\infin} |y| \cdot \frac{1}{\sqrt{2\pi} \sqrt \frac{n-1}{n}\sigma} e^{-y^2/(2(n-1)\sigma^2/n)}\mathrm d y=\frac{2}{\sqrt{2\pi}}\sqrt \frac{n-1}{n} \sigma
+$$
+
+$$
+E\left(\displaystyle k\sum_{i=1}^n |X_i-\overline{X}|\right)=knE(|Y|) 应该 = \sigma
+$$
+
+因此，
+$$
+k=\frac{\sqrt{2\pi}}{2} \sqrt\frac{n}{n-1}
+$$
+
+------
+
+设 $(X_1,X_2\cdots,X_m)$ 是总体 $X$ 的样本，$X\sim B(n,p),n>1 且 n已知$，求 $p^2$ 的无偏估计量。
+
+利用 $E(X)=np,D(X)=np(1-p)=np-np^2$.
+$$
+p^2= \frac{E(X)-D(X)}{n}\quad \hat{p^2}=\frac{\overbrace{\overline{X}}^{总体期望的无偏估计量}-\overbrace{S^2}^{总体方差的无偏估计量}}{n}
+$$
+再进行验证：
+$$
+E(\hat{p^2})=E\left(\frac{\overline{X}-S^2}{n}\right)=p^2
+$$
+
+> Q:
+> $$
+> E\left((\frac{\overline{X}}{n})^2\right)=p^2?
+> $$
+> 显然不等，因此 $(\overline{X}/n)^2$ 不是 $p^2$ 的无偏估计量。其原因是期望只具有线性性。
+>
+> Q: 能不能用 $E(X^2)$ 的表达式进行估计？
+> $$
+> E(X^2)=D(X)+(E(X))^2=np(1-p)+(np)^2=np+p^2(n^2-n)
+> $$
+> 因此有：
+> $$
+> p^2=\frac{E(X^2)-E(X)}{n^2-n}\quad \hat{p^2}=\frac{M_2-\overline{X}}{n^2-n}
+> $$
+> ——用不同的方法，也可以得出不同的估计量，它们都是无偏的。
+
+----
+
+当 $\hat \theta$ 是 $\theta$ 的无偏估计量，$g(\hat \theta)$ 是否为 $g(\theta) $ 的无偏估计量？
+
+### 有效性
+
+设 $\hat \theta_1=\hat \theta_1(X_1,X_2,\cdots,X_n)$ 和 $\hat \theta_2=\hat \theta_2(X_1,X_2,\cdots,X_n)$ 均为 $\theta$ 的 **无偏估计量**（也就是两种不同的估计方法），对于任意 $n$ 有
+$$
+D(\hat \theta_1)<D(\hat \theta_2)
+$$
+则称 $\hat\theta_1$ 比 $\hat \theta_2$ 有效。
+
+估计量在无偏的情况下，才能评价有效性。
+
+------
+
+设总体 $\displaystyle X\sim E\left(\frac{1}{\theta}\right),\theta>0$ 为未知参数，$(X_1,\cdots,X_n)$ 是总体 $X$ 的样本。证明 $\overline{X}$ 与 $nX_{(1)}$ 都是 $\theta$ 的无偏估计量。注意到：
+$$
+E(\overline{X})=1/(1/\theta)=\theta, X_{(1)}\sim E\left(\frac{n}{\theta}\right),E(X_{(1)})=\frac{\theta}{n},n E(X_{(1)})=\theta
+$$
+因此都是无偏估计量。
+
+然后比较方差：
+$$
+D(\overline{X})=\frac{D(X)}{n}=\frac{\theta^2}{n}\quad D(nX_{(1)})=n^2 D(X_{(1)})=n^2 (1/(n/\theta))^2=\theta^2
+$$
+因此 $\overline{X}$ 更有效。
+
+-------
+
+设总体 $X$ 的概率密度为：
+$$
+f(x;\theta)=\frac{3x^2}{\theta^3} , 0<x\le \theta ;0 ,otherwise.
+$$
+ 我们已经知道 $\hat \theta_{矩}=4/3 \overline{X},\hat{\theta}_{\mathrm{MLE}}=X_{(n)}$. 先求得分布函数：
+$$
+F(x)=x^3/\theta^3, 0<x\le \theta;else ...\\
+F_{X(n)}=x^{3n}/\theta^{3n};else...\\
+f_{X(n)}=3n \frac{x^{3n-1}}{\theta^{3n}}\\
+E(X_{(n)})=\int_0^{\theta} x\cdot \frac{3n}{\theta^{3n}} x^{3n-1}\mathrm d x=\frac{3n}{3n+1} \theta
+$$
+因此，$\hat \theta_{\mathrm{MLE}}$ 不是无偏估计量，需要乘以 $(3n+1)/3n$ 修正。
+
+------
+
+对于 $X$ 满足 Poisson 分布，判断哪一个最有效：
+$$
+\hat \theta_1=\frac{1}{5} X_1+\frac{3}{10}X_2+\frac{1}{2}X_3\\
+\hat \theta_2=\frac{1}{3} X_1+\frac{1}{3}X_2+\frac{1}{3} X_3\\
+\hat \theta_3=\frac{1}{3}\sum (X_i-\overline{X})^2
+$$
+注意到 $\hat \theta_3$ 不是无偏估计量。因此只用比较 $\hat \theta_1,\hat \theta_2$.
+$$
+D(\hat \theta_1)=\frac{1}{25} \theta+\frac{9}{100}\theta+\frac{1}{4}\theta=\frac{19}{50}\theta\\
+D(\hat \theta_2)=\frac{1}{9} \theta+\frac{1}{9}\theta+\frac{1}{9}\theta = \frac{1}{3}\theta
+$$
+因此 $D(\hat \theta_2)<D(\hat \theta_1)$，$\theta_2$ 更有效。注意到
+$$
+\hat \theta_i = \sum \alpha_i X_i \quad \sum \alpha_i=1
+$$
+都是无偏估计量，则使得 $\displaystyle \sum \alpha_i^2$ 尽量小，则估计量更有效。
+
+- 一方面，当 $n$ 恒定，
+  $$
+  D(\hat \theta_i)=\sum \alpha_i^2 D(X_i)=\sigma^2 \left(\sum_{i=1}^n \alpha_i^2\right)
+  $$
+  根据 Cauchy 不等式，有：
+  $$
+  \left(\sum_{i=1}^n \alpha_i^2\right) \cdot \left(\sum_{i=1}^n 1\right)\ge \left(\sum_{i=1}^n \alpha_i\right)^2=1
+  $$
+  因此，
+  $$
+  \sum_{i=1}^n \alpha_i^2\ge \frac{1}{n}
+  $$
+  等号当 $a_i=1/n,i=1,2,\cdots,n$ 时，即样本均值时取到。
+
+- 另一方面，如果想要更有效，我们还可以增加 $n$.
+
+这告诉我们样本均值在所有的样本加权和中，是最有效的无偏估计量。
+
+----------
+
+> 这样产生一个问题，$D(\hat \theta)$ 能不能任意小，是否存在下界？
+
+我们有 Rao-Cramer 不等式来说明这个问题
+
+- 设 $X$ 为离散型随机变量，其分布列为：
+
+$$
+P(X=x;\theta)=P(x;\theta), \theta \in \Theta
+$$
+
+​	其中 $\Theta$ 是实数轴上开区间。
+
+- 设 $X$ 为连续型随机变量，其密度为：
+  $$
+  f(x;\theta),\theta\in \Theta
+  $$
+
+并且设 $(X_1,X_2,\cdots,X_n)$ 为来自总体 $X$ 的一个样本，如果：
+
+- $\hat \theta$ 是 $\theta$ 的无偏估计量；
+
+- 集合 $\{x \mid P/f(x;\theta)>0\}$ 和 $\theta$ 无关；
+
+- $$
+  E\left[\left(\frac{\partial \ln P/f(X;\theta)}{\partial \theta}\right)^2\right]>0
+  $$
+
+则 $D(\hat \theta)$ 有以下结果：
+$$
+D(\hat \theta) \ge \frac{1}{n E\left[\left(\frac{\partial \ln P/f(X;\theta)}{\partial \theta}\right)^2\right]}\doteq D_0(\theta)>0
+$$
+称 $D_0(\theta)$ 为方差的下界，如果能够找到一个估计量 $\hat \theta_0$，使得 $D(\hat \theta_0)=D_0(\theta)$，则称 $\hat \theta_0$ 是 $\theta$ 的有效估计量。
+
+------
+
+设总体 $\displaystyle X\sim E\left(\frac{1}{\theta}\right),\theta>0$，判断 $\overline{X}$ 是否为 $\theta$ 的有效估计量。
+
+我们有：
+$$
+f(x;\theta)=\frac{1}{\theta} e^{-x/\theta},x>0;0,x\le 0
+$$
+
+$$
+\ln f(x;\theta)=-\ln \theta - x/\theta\\
+\frac{\partial \ln f(x;\theta)}{\partial \theta}=-\frac{1}{\theta}+\frac{x}{\theta^2}
+$$
+
+$$
+E\left[\left(\frac{\partial \ln P/f(X;\theta)}{\partial \theta}\right)^2\right]=\frac{1}{\theta^2}-\frac{2E(X)}{\theta^3}+\frac{E(X^2)}{\theta^4}=\frac{1}{\theta^2}-\frac{2\theta}{\theta^3}+\frac{\theta^2+\theta^2}{\theta^4}=\frac{1}{\theta^2}
+$$
+
+因此 $D_0(\theta)=\theta^2/n$，而且 $D(\overline{X})=\theta^2/n$，因此为有效估计量。
+
+### 一致性
+
+> 考虑 $n\to \infin$，$\hat \theta_n$ 在无穷远处的性态。
+
+**一致性的定义** 序列 $\{\hat \theta_n\}$ 依概率收敛于 $\theta$，即 $\forall \varepsilon>0$，有：
+$$
+\lim_{n\to\infin} P(|\hat \theta_n-\theta|<\varepsilon)=1
+$$
+则称 $\hat \theta_n$ 为 $\theta$ 的一致估计量。
+
+**等价条件**：$\displaystyle \lim_{n\to \infin} D(\hat \theta_n)=0$.
+
+证明，使用 Chebyshev 不等式。
+$$
+0\le P(|\hat \theta_n-E(\hat \theta)|\ge \varepsilon)=\frac{D(\hat \theta_n)}{\varepsilon^2}\to 0
+$$
+
+-----
+
+- 样本 $k$ 阶矩是总体 $k$ 阶矩的一致估计量（因为 Khinchine 大数定律）
+
+- 在 **正态总体** 下，样本方差是总体方差的一致估计量。
+  $$
+  \frac{(n-1)S^2}{\sigma^2}\sim \chi^2 (n-1)\\\Rightarrow D(S^2)=(\sigma^2/(n-1))^2D(\chi^2(n-1))=\frac{2\sigma^4}{(n-1)}\overset{n\to \infin}\to 0\\
+  回顾卡方分布的性质：E(\chi^2(n))=n,D(\chi^2(n))=2n
+  $$
+  
+
+--------
+
+利用样本 $k$ 阶矩是总体 $k$ 阶矩的一致估计量的性质，可以说明：
+
+- $\overline{X}$ 是 $\mu$ 的一致估计量；
+
+- $S^2$ 是 $\sigma^2$ 的一致估计量：
+  $$
+  S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X})^2 =\frac{1}{n-1}\left(\sum_{i=1}^n X_i^2 -\frac{1}{n}\left(\sum_{i=1}^n X_i\right)^2\right)
+  $$
+  一概率收敛于：
+  $$
+  \frac{1}{n-1}\left(\mu^2+\sigma^2-n()\right)
+  $$
+  
+
+## 区间估计
+
+> 能否给出一个参数区间 $[\theta_1,\theta_2]$，使得有 95% 的概率包含真实的 $\theta$?
+>
+> 用正态分布举例：
+> $$
+> \frac{\overline{X}-\mu}{\sqrt{1/5}}\sim N(0,1)\\
+> P\left(-z_{\alpha/2} < \frac{\overline{X}-\mu}{\sqrt{1/5}}<z_{\alpha/2}\right)=1-\alpha\\
+> P\left(\overline{X}-z_{0.05/2} \sqrt{1/5}<\mu<\overline{X}+z_{0.05/2} \sqrt{1/5}\right)=0.95
+> $$
+> 则称区间 $(\overline{X}-z_{0.05/2} \sqrt{1/5},\overline{X}+z_{0.05/2} \sqrt{1/5})$ 为参数 $\mu$ 的置信度为 $0.95$ 的置信区间。
+>
+> ——仅仅和 $\overline{X}$ 有关。
+
+### 双侧置信区间
+
+如果 $\theta$ 是待估计参数，$(X_1,X_2,\cdots,X_n)$ 是来自总体 $X$ 的一个样本，如果对于给定的 $\alpha(0<\alpha<1)$，存在 $\overline{\theta}(X_1,X_2,\cdots,X_n)$ 和 $\underline{\theta}(X_1,X_2,\cdots,X_n)$，使得：
+$$
+P(\underline{\theta}<\theta<\overline{\theta})=1-\alpha
+$$
+则称区间 $(\underline{\theta},\overline{\theta})$ 是 $\theta$ 的置信度为 $1-\alpha$ 的置信区间。$1-\alpha$ 称为置信度。
+
+> 问题，两端分位数选取 $\pm z_{\alpha/2}$，是否有其它取法？可不可以取 $(-z_{2\alpha/3},z_{\alpha/3})$？
+>
+> 可以分析，两种取法区间长度分别为：
+> $$
+> 2z_{\alpha/2}\frac{1}{\sqrt{5}}=1.75\quad (z_{2\alpha/3}+z_{\alpha/3})\frac{1}{\sqrt{5}}=1.775
+> $$
+> 不对称的区间长度更长。
+>
+> 置信区间的取法不唯一，需要保证置信度的前提下，最小化置信区间长度，也就是最小化平均长度 $E(|\overline{\theta}-\underline{\theta}|)$.
+>
+> 一般来说，置信度越高，置信区间的长度越长——可靠度和估计的精度是矛盾的，在满足可靠度的前提下，可以增大样本容量，来增加估计的精度。
+
+构造一个样本的函数：
+$$
+g(X_1,X_2,\cdots;\theta)
+$$
+称为**枢轴量**，**含有待估参数，不含有其它未知参数**，其分布已知，且分布不依赖待估计参数（我们通常选用标准的三大统计分布，一定不能含有其它未知参数，否则连分位数都不好求……）。
+
+> 枢轴量一定要会写哦，对于正态总体 $N(\mu,\sigma^2)$.
+>
+> - 估计 $\mu$.
+>   - 当 $\sigma^2$ 已知，枢轴量选为 $\displaystyle U=\frac{\overline{X}-\color{red}{\mu}}{\sigma/\sqrt n}\sim N(0,1)$.
+>   - 当 $\sigma^2$ 未知，用样本方差替代总体方差，枢轴量选为 $\displaystyle T=\frac{\overline{X}-\color{red}{\mu}}{S/\sqrt{n}} \sim t(n-1)$.
+> - 估计 $\sigma^2$.
+>   - 当 $\mu$ 已知，枢轴量选为 $\displaystyle \chi^2=\frac{\sum_{i=1}^n (X_i-\mu)^2}{{\color{red}\sigma^2}}\sim \chi^2(n)$.
+>   - 当 $\mu$ 未知，用样本均值代替总体均值，枢轴量选为 $\displaystyle \chi^2=\frac{\sum_{i=1}^n (X_i-\overline{X})^2}{{\color{red}\sigma^2}}=\frac{(n-1)S^2}{{\color{red}\sigma^2}}\sim \chi^2(n-1)$.
+>
+> 为了强调枢轴量只含有待估计参数，不含有其它未知参数，将待估计参数标红。
+
+给定置信度 $1-\alpha$，确定两个常数 $a,b$ 使得：
+$$
+P(a<g(X_1,X_2,\cdots;\theta)<b)=1-\alpha
+$$
+由 $a<g(X_1,X_2,\cdots;\theta)<b$，解出 $\overline{\theta},\underline{\theta}$.
+
+**正态总体 $\boldsymbol{N(\mu,\sigma^2)}$ 中均值 $\boldsymbol \mu$ 的置信区间**
+
+如果方差已知，则：
+$$
+U=\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)
+$$
+可以得到置信区间为 $(-z_{\alpha/2}\sigma/\sqrt{n},z_{\alpha/2}\sigma/\sqrt{n})$；
+
+如果方差 $\sigma^2$ 未知，可以用样本方差 $S^2$ 替代，枢轴量为：
+$$
+T=\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
+$$
+可得置信区间为：
+$$
+\left(\overline{X}-t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}},\overline{X}+t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\right)
+$$
+
+**正态总体 $\boldsymbol{N(\mu,\sigma^2)}$ 中方差 $\boldsymbol \sigma^2$ 的置信区间**
+
+当 $\mu$ 已知，取枢轴量：
+$$
+\frac{\sum_{i=1}^n (X_i-\mu)^2}{\sigma^2}\sim \chi^2(n)
+$$
+则有：
+$$
+P\left(\chi^2_{1-\alpha/2} (n) < \frac{\sum_{i=1}^n (X_i-\mu)^2}{\sigma^2}<\chi^2_{\alpha/2} (n)\right)=1-\alpha
+$$
+置信区间为：
+$$
+\left(\frac{\sum_{i=1}^n (X_i-\mu)^2 }{\chi^2_{\alpha/2}(n)},\frac{\sum_{i=1}^n (X_i-\mu)^2 }{\chi^2_{1-\alpha/2}(n)}\right)
+$$
+当 $\mu$ 未知，取枢轴量：
+$$
+\frac{\sum_{i=1}^n (X_i-\overline{X})^2}{\sigma^2}\sim \chi^2(n-1)
+$$
+得到方差 $\sigma^2$ 置信度为 $1-\alpha$ 的置信区间为：
+$$
+\left(\frac{(n-1) S^2}{\chi^2_{\alpha/2}(n-1)},\frac{(n-1) S^2}{\chi^2_{1-\alpha/2}(n-1)}\right)
+$$
+
+> 判断正确置信区间：
+>
+> - 判断选择了什么枢轴量，枢轴量服从什么分布。
+> - 满足概率要求，置信度为 $1-\alpha$.
+
+### 单侧置信区间
+
+对于给定的 $\alpha(0<\alpha<1)$，$\theta$ 是待估计参数，$(X_1,X_2,\cdots,X_n)$ 是样本，给出统计量 $\overline \theta$，满足：
+$$
+P(\theta<\overline{\theta})=1-\alpha
+$$
+则称区间 $(-\infin,\overline{\theta})$ 是置信度为 $1-\alpha$ 的单侧置信区间，$\overline{\theta}$ 是单侧置信上界。
+
+给出统计量 $\underline{\theta}$，满足：
+$$
+P(\underline{\theta}<\theta)=1-\alpha
+$$
+则称区间 $(-\underline{\theta},+\infin)$ 是置信度为 $1-\alpha$ 的单侧置信区间，$\overline{\theta}$ 是单侧置信下界。
+
+> 注意是直接和 $\theta$ 进行比较，而不是和枢轴量进行比较。
+
+**方差已知，求均值**
+
+枢轴量为：
+$$
+U=\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)
+$$
+**方差未知，求均值**
+
+枢轴量为：
+$$
+T=\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
+$$
+则：
+$$
+P\left(\frac{\overline{X}-\mu}{S/\sqrt{n}}<t_\alpha(n-1)\right)=1-\alpha
+$$
+单侧置信下界为：
+$$
+\overline{X}-t_\alpha(n-1) \frac{S}{\sqrt{n}}
+$$
+
+
+**均值未知，求方差**
+
+枢轴量为：
+$$
+\chi^2= \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)
+$$
+要使得：
+$$
+P(\chi^2<\chi^2_{1-\alpha}(n-1))=0.05
+$$
+则有：
+$$
+P\left(\sigma^2<\frac{(n-1)S^2}{\chi^2_{1-\alpha}(n-1)}\right)=0.05
+$$
+单侧置信上界为：
+$$
+\frac{(n-1)S^2}{\chi^2_{1-\alpha}(n-1)}
+$$
+
+> 注意还可以使用公式 $S_n^2=M_2-\overline{X}^2,(n-1)S^2=nS_n^2$.
+
+### 两个正态分布总体的区间估计
+
+对于两个正态总体 $X\sim N(\mu_1,\sigma^2),Y\sim N(\mu_2,\sigma^2)$，估计 $\mu_1-\mu_2$ 和 $\sigma_1^2/\sigma_2^2$.
+
+假设样本 $(X_1,X_2,\cdots,X_m)$ 和 $(Y_1,Y_2,\cdots,Y_n)$ 分别来自两个正态总体，并且它们相互独立，则：
+$$
+\overline{X}-\overline{Y}\sim N\left(\mu_1-\mu_2,\frac{\sigma_1^2}{m}+\frac{\sigma^2_2}{n}\right)
+$$
+因此，**当 $\boldsymbol {\sigma_1^2,\sigma_2^2}$ 已知**，包含 $\mu_1-\mu_2$ 的枢轴量可以取：
+$$
+U=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{m}+\frac{\sigma_2^2}{n}}}\sim N(0,1)
+$$
+**当 $\boldsymbol {\sigma_1^2,\sigma_2^2}$ 未知，但 $\boldsymbol {\sigma_1^2=\sigma_2^2}$**，枢轴量可以取：
+$$
+T=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{S_w^2 \sqrt{\frac{1}{m}+\frac{1}{n}}} \sim t(m+n-2)
+$$
+其中，$S_w^2$ 为加权平均，等于 $\displaystyle \frac{(m-1)S_1^2+(n-1)S_2^2}{m+n-2}$.
+
+**当 $\boldsymbol{\sigma_1^2,\sigma_2^2}$ 未知，但是 $\boldsymbol {m=n}$**，可以进行配对，$Z_i=X_i-Y_i\sim N(\mu_1-\mu_2,\sigma_1^2+\sigma_2^2)$，利用单个正态总体区间估计，有：
+$$
+\frac{\overline{Z_i}-(\mu_1-\mu_2)}{S^2_Z/\sqrt{n}}\sim t(n-1)
+$$
+其中 $\overline{Z}=\overline{X}-\overline{Y},\displaystyle S_Z=\frac{1}{n-1} \sum_{i=1}^n [(X_i-Y_i)-(\overline{X}-\overline{Y})]^2$.
+
+**当 $\boldsymbol {\sigma_1^2,\sigma_2^2}$ 未知，但是 $\boldsymbol {m,n}$ 很大**，可以使用中心极限定理：
+$$
+U=\frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{\sqrt{\frac{S_1^2}{m}+\frac{S_2^2}{n}}} 近似分布为 N(0,1)
+$$
+
+> 在单个正态总体区间估计中，我们用过用样本方差代替总体方差的做法，最后枢轴量服从 t 分布，而 t 分布当 $n$ 很大时又近似为正态分布。因此做一个不怎么严谨的类推，推广到两个正态分布，就可以理解为什么这里近似服从正态分布。
+
+**当 $\boldsymbol{\mu_1,\mu_2}$ 未知，求方差比 $\boldsymbol{\sigma_1^2/\sigma_2^2}$ 的置信区间** 构造枢轴量：
+$$
+F=\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2} =\frac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}\sim F(m-1,n-1)
+$$
