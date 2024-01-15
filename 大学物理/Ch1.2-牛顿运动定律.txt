@@ -1,0 +1,825 @@
+---
+title: 牛顿运动定律
+abbrlink: 39cc40b0
+date: 2023-03-02 08:40:59
+tags:
+---
+
+## 牛顿运动三定律
+
+### 牛顿第一定律（惯性定律）
+
+任何物体如果没有力的作用，都将保持静止或者匀速直线运动的状态。
+
+- 惯性参考系的概念。
+- 定义了惯性和力。
+
+### 牛顿第二定律
+
+牛顿第二定律
+实验表明: 力满足矢量的平行四边形叠加定则。即质 点所受的合力为所有作用在质点上的力的矢量和:
+$$
+\vec{F}=\sum_i \vec{F}_i
+$$
+在合力作用下, 质点的加速度 $\vec{a}$ 有以下性质:
+(1) 加速度方向同合力
+(2) $\displaystyle \vec{a} \propto \frac{\sum_i \vec{F}_i}{m}$
+$$
+\begin{aligned}
+\boldsymbol F&=F_x \boldsymbol i+F_y \boldsymbol j+F_z \boldsymbol k\\
+&=m(a_x \boldsymbol i+a_y \boldsymbol j+a_z \boldsymbol k)
+\end{aligned}
+$$
+
+在自然坐标系中：
+$$
+\begin{aligned}
+\boldsymbol F&=F_t \boldsymbol e_t+F_n \boldsymbol e_n\\
+&=m \frac{\mathrm d v}{\mathrm d t} \boldsymbol e_t+m \frac{v^2}{\rho} \boldsymbol e_n
+\end{aligned}
+$$
+切向、法向牛顿第二定律
+$$
+\displaystyle \left\{ \begin{matrix}F_t=m\frac{\mathrm d v}{\mathrm d t} \\ F_n=m\frac{v^2}{\rho}\end{matrix}\right.
+$$
+
+
+### 牛顿第三定律
+
+定义了相互作用的性质。
+
+力的传递速度是有限的。适用于实物的相互作用问题，不适用于 **场传递** 的相互作用。
+
+### 牛顿运动定律的适用范围
+
+惯性系、低速、宏观、实物。
+
+## 常见的力
+
+### 引力
+
+$$
+F_g=G\frac{m_GM}{R^2}
+$$
+
+$$
+F=m_Ia
+$$
+
+反应了两种完全不同的属性。惯性质量和引力质量有等同性。
+
+对于自由下落的物体，
+$$
+G\frac{m_GM}{R^2}=m_Ig
+$$
+
+$$
+\frac{m_I}{m_G}=\frac{GM}{gR^2}
+$$
+
+牛顿力学中这两种质量是等同的。Gravity 正比于 $k_1m_0$ Inertia 正比于 $k_2m_0$。
+
+调整 $G$ 使得 $m_I=m_G$。广义相对论的等效原理。General Relativity, Special Relativity.
+
+- 质点在球对称物体外面，则它受到的力等价于物体质量球心处时的吸引力。（三重积分）
+- 质点处于均匀球壳内部，受到的万有引力为 0。用微元法证明。角度 $\Delta \Omega$，第一块微元 $\Delta S_1 = \Delta \Omega \cdot r_1^2$，第二块微元 $\Delta S_2 = \Delta \Omega \cdot r_2^2$。面密度 $\sigma$，得到 $\Delta F_1=G \frac{\sigma\Delta \Omega \cdot r_1^2 m_0}{r_1^2}$，$\Delta F_1=\Delta F_2$ ，互相抵消。
+
+高斯定律：
+$$
+F_e=\frac{1}{4\pi \varepsilon_0} \frac{q_1q_2}{r^2} \Rightarrow \oiint \boldsymbol E \cdot \mathrm d \boldsymbol S=\frac{q}{\varepsilon_0}
+$$
+万有引力定律：
+$$
+F_g=G \frac{m_1m_2}{r^2} \Rightarrow \oiint \boldsymbol F \cdot \mathrm d \boldsymbol S=\frac{m}{\lambda_0}
+$$
+
+### 重力
+
+在地球表面物体所受力是引力和离心力的结合。
+$$
+\boldsymbol p =m \boldsymbol g=\boldsymbol F_e+\boldsymbol F_I\\
+\boldsymbol F_e=G \frac{mM}{R^2}\\
+\boldsymbol F_I=m\omega^2 r\quad r=R\cos\varphi
+$$
+
+$$
+\boldsymbol p ^2 =\boldsymbol F_e^2+\boldsymbol F_I^2-2\cos \varphi \boldsymbol F_e\boldsymbol F_I\\
+|\boldsymbol p|=(\boldsymbol F_e^2+\boldsymbol F_I^2-2\cos \varphi \boldsymbol F_e\boldsymbol F_I)^\frac{1}{2}\approx \boldsymbol F_e(1+\Delta-2\cos \varphi \frac{\boldsymbol F_I}{\boldsymbol F_e})^\frac{1}{2} \approx \boldsymbol F_e(1-\frac{\boldsymbol F_I}{\boldsymbol F_e}\cos \varphi)
+$$
+
+### 弹性力
+
+$$
+\boldsymbol F=-kx \boldsymbol i
+$$
+
+线性恢复力。$k$ 劲度系数，$x \boldsymbol i$ 物体的位移。
+
+弹性力起源于电磁力。
+
+金属丝的应力和应变关系。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_bee65b41d3b4d7b83d4ec92a6e095775.png" alt="image-20230307201209249" style="zoom:33%;" />
+
+### 摩擦力
+
+阻止两个相接触物体之间相对运动趋势的力。**摩擦力**
+$$
+f_{\mathrm{s~max}}=\mu_s N
+$$
+最大静摩擦力。
+$$
+f_{\mathrm k} = \mu_k N
+$$
+滑动摩擦系数与物体相对运动速度有关，低速下基本为常数。跟物体表面光滑和粗糙程度有关系。
+
+### 流体阻力
+
+$$
+f = \alpha v+\beta v^2 +\gamma v^3 + \cdots
+$$
+
+$$
+\alpha \gg \beta \gg \gamma
+$$
+
+物体速度小的时候：$\boldsymbol f = -b \boldsymbol v$。
+
+物体速度更大的时候：$\boldsymbol f=-c \boldsymbol v^2$。$c$ 与流体及物体的性质有关。湍流。
+
+物体运动速度更大：$\boldsymbol f$ 正比于 $v^3$。
+
+## 力学相对性原理
+
+### 非惯性参考系
+
+牛顿定律只能在特殊的参考系-惯性系中成立。
+
+常用近似惯性系：地面参考系，地心参考系，太阳参考系。
+
+$S'$ 相当于 $S$ 平动，速度为 $\boldsymbol u$。
+$$
+\boldsymbol v=\boldsymbol v'+\boldsymbol u\\
+\boldsymbol a=\boldsymbol a'+\frac{\mathrm d \boldsymbol u}{\mathrm d t}
+$$
+**在牛顿力学中，相互作用力与参考系无关。质量在不同参考系中测量是相同的。**
+
+力的测量、质量的测量是一样的，而加速度 $\boldsymbol a=\boldsymbol a'$，这样牛顿定律成立。
+
+一切惯性系在力学意义上是等价的，平权的。
+
+惯性力：
+$$
+\boldsymbol F_I=-m\boldsymbol a_0\\
+\boldsymbol F+\boldsymbol F_I=m \boldsymbol a'
+$$
+
+平动惯性力。
+
+### 匀速转动参考系
+
+在 $S$ 中 $T=ma,a=r \omega^2$，或者
+$$
+\displaystyle \left\{ \begin{matrix}T=m\frac{v^2}{r}=m\omega^2 r\\0=m\frac{\mathrm d v}{\mathrm d t}\end{matrix}\right.
+$$
+$T$ 提供小球的向心力。
+
+在转动参考系 $S'$ 中需要引入
+$$
+F_i=-ma_0=mR\omega^2
+$$
+
+$\boldsymbol F_i$ 被称为离心惯性力。
+$$
+\boldsymbol F_i=mr\omega^2\boldsymbol e_r
+$$
+在地面参考系上，地面上的物体受惯性离心力。
+
+### Coriolis 力
+
+让弹簧断开，使小球拥有速度。
+
+在 $S$（惯性系）中，需要有离心惯性力
+$$
+\boldsymbol F_i=-m\boldsymbol \omega \times (\boldsymbol \omega \times \boldsymbol r)
+$$
+Coriolis 力：
+$$
+\boldsymbol f_c=-2m\boldsymbol \omega \times \boldsymbol v'
+$$
+推导：
+$$
+\boldsymbol v=\boldsymbol \omega \times \boldsymbol r + \boldsymbol v'
+$$
+多出来一项转动的速度 $\boldsymbol \omega \times \boldsymbol r$。注意 $\mathrm  d\boldsymbol v'/\mathrm d t=\boldsymbol a'+\boldsymbol \omega \times \boldsymbol v'$。
+$$
+\begin{aligned}
+\frac{\mathrm d \boldsymbol v}{\mathrm d t}&=\boldsymbol a'+\boldsymbol \omega \times \boldsymbol v'+\underbrace{\frac{\mathrm d \boldsymbol \omega}{\mathrm d t}}_{=0}\times \boldsymbol r+\boldsymbol \omega \times \frac{\mathrm d \boldsymbol r}{\mathrm d t}\\
+&=\boldsymbol a'+\boldsymbol \omega \times \boldsymbol v'+\boldsymbol \omega \times (\boldsymbol \omega \times \boldsymbol r + \boldsymbol v')
+\end{aligned}
+\Rightarrow \boldsymbol a'=\boldsymbol a-2\boldsymbol \omega \times \boldsymbol v'-\boldsymbol \omega \times (\boldsymbol \omega \times \boldsymbol r)
+$$
+
+
+定性比较 $\boldsymbol F_i$ 和 $\boldsymbol f_c$。需要达到几百米的速度。
+
+地球参考系中：
+
+- 重力
+- 贸易风的偏向
+- 轨道磨损
+- 河床冲刷
+- 落体偏向
+- 傅科摆
+
+### 加速转动参考系
+
+$$
+\boldsymbol F_t=m\boldsymbol r'\times \boldsymbol \beta
+$$
+
+## 质心
+
+$$
+\boldsymbol r_c=\frac{\sum \boldsymbol r_i \cdot \mathrm d m_i}{\sum \mathrm d m_i}
+$$
+
+微元积分、分块、负质量（也可以用于转动惯量等等）
+
+### 质心运动定理
+
+$$
+\sum F=m a_c
+$$
+
+表达的内容和牛二不同。
+
+1. 外力合并在质心上，因此可以求解质心加速度。
+2. 已知质心加速度，求解外力。
+
+在惯性参考系中，质心的运动等同于一个质点的运动；该质点的质量等于质点系的总质量，作用在该质点上的力等于质点系所受到的合外力。该质点的运动遵守牛顿第二定律，作用在该质点上的力等于它的质量乘以它的加速度。质点系运动时，其质心的加速度完全决定于质点系所受的外力。而与质点系的内力无关。
+$$
+\left\{
+\begin{aligned}
+&N_2+mg\sin\theta=ma_{c\tau}=m\frac{1}{2}l\beta\\
+&N_1-mg\cos\theta=ma_{cn}=m\frac{1}{2}l\omega^2
+\end{aligned}
+\right.
+$$
+质点系质心守恒定理：如果作用于质点系的所有外力的矢量和恒等于零，于是有 $\boldsymbol a_c$ 是常量，即质心作匀速直线运动；如果质心原来是静止的，则它将在原处保持不动。 
+$$
+L=L_c+L'
+$$
+
+
+## 习题
+
+分析受力，分析运动找 **约束**，建系列方程，解之。 
+
+### 做题步骤
+
+- 明确运动的物体。
+- 考察物体所受力。
+- 运动的参考系。
+- 各个质点所受的力。
+- 运动方程（分量方程）
+- 几何关系。
+- 近似。
+
+---------
+
+质量为 $M$、长为 $L$ 的匀质细绳在水平面内以角速度 $\omega$ 绕点 $O$ 匀速转动，并且始终保持伸直状态。求绳子内离中心 $r$ 处的张力。
+$$
+m=(L-r)\frac{M}{L}
+$$
+质心距离原点 $O$ 的距离：
+$$
+\frac{1}{2}(L+r)
+$$
+张力：
+$$
+T=ma=(L-r)\frac{M}{L}\cdot \frac{1}{2}(L+r)\omega^2
+$$
+
+------------
+
+**两物体拉绳**
+$$
+B:\boldsymbol N+\boldsymbol T_B+\boldsymbol f+\boldsymbol G=m_B \boldsymbol a_B\\
+A:\boldsymbol G_A+\boldsymbol T_A= m_A \boldsymbol a_A
+$$
+
+附加约束，$\boldsymbol T_A=\boldsymbol T_B,\boldsymbol a_A=\boldsymbol a_B,\boldsymbol f=\mu \boldsymbol N$
+
+讨论……
+
+-------
+
+讨论雨滴下落过程中收到空气粘滞力作用时的运动规律。
+$$
+mg+f=ma\\f=-kv
+$$
+
+$$
+\Rightarrow mg-kv=m \frac{\mathrm d v}{\mathrm dt}
+$$
+
+$$
+\frac{\mathrm d v}{g-\frac{k}{m} v}=\mathrm d t
+\\ -\frac{m}{k}\ln (g-\frac{k}{m} v)=t+C
+$$
+
+由于一开始运动，$C=0$，得到：
+$$
+v=\frac{mg}{k} (1-e^{-\frac{k}{m}t})
+$$
+Terminal Velocity. 弛豫时间。
+$$
+\frac{\Phi}{\dot{\Phi}}=\tau
+$$
+
+------------
+
+$$
+\left\{\ 
+\begin{matrix}
+qE+qv_yB=m \frac{\mathrm d v_x}{\mathrm d t}\\
+qv_xB=m\frac{\mathrm d v_y}{\mathrm d t}
+\end{matrix}
+\right.
+$$
+
+令 $\omega=qB/m,\gamma=qE/m$，则
+$$
+\left\{\ 
+\begin{matrix}
+\dot{v}_x=\gamma + \omega v_y\\
+\dot{v}_y=\omega v_x
+\end{matrix}
+\right.
+$$
+
+$$
+v_y=(\dot{v}_x-\gamma)/\omega\\
+v_x=\dot{v}_y/\omega
+$$
+
+$$
+\Rightarrow\left\{\ 
+\begin{matrix}
+\ddot{v}_y+\omega^2v_y=\omega \gamma
+\end{matrix}
+\right.
+$$
+
+------------
+
+![image-20230310094337746](https://notes.sjtu.edu.cn/uploads/upload_1869b061b97c500c95d48bba64ed2b83.png)
+
+考虑 **几何关系**，可以得出 $A,B$ 的加速度大小相同，方向沿圆环切线方向。
+
+分析：1、几何约束关系。轻绳不可伸长。2、受力、绳拉力和环支持力（沿法向方向）
+
+-------
+
+已知：轻滑轮 $A$，物体 $m_1,m_2$，恒力 $F$。求 $A$ 和 $m_1,m_2$ 的加速度。
+
+![image-20230310094801511](https://notes.sjtu.edu.cn/uploads/upload_ba12b9955a15479ac062ab9cec2d7ace.png)
+
+轻绳的约束关系：设 $m_2$ 相对于 $A$ 有 $\boldsymbol a$，则 $m_1$ 相对 $A$ 有 $-\boldsymbol a$。
+
+轻滑轮一定受力平衡。设绳上拉力为 $T$，则……
+
+ 
+
+---------------
+
+一固定光滑圆柱体上的质量为 $m$ 的小球从顶端下滑，求小球下滑到 $\theta$ 时小球对圆柱体的压力。
+
+![image-20230310095335611](https://notes.sjtu.edu.cn/uploads/upload_3fc71d5d2091012dd001d10cf217b8e0.png)
+
+解析表达式。注意牛顿第二定律的矢量形式
+$$
+\boldsymbol N+m\boldsymbol g=m \boldsymbol a
+$$
+
+$$
+\left\{\ 
+\begin{matrix}
+mg \sin \theta = m\frac{\mathrm d v}{\mathrm d t}\\
+mg \cos \theta - N= m \frac{v^2}{R}
+\end{matrix}
+\right.
+$$
+
+若使用机械能守恒定律，可以得到
+$$
+\frac{1}{2}mv^2=mg(R-R\cos \theta)
+$$
+但是，我们现在还不知道，因此，需要使用牛顿第二定律分析过程。
+
+由于不好分析时间，根据惯用手法，我们使用：
+$$
+\frac{\mathrm d v}{\mathrm d t}=\frac{\mathrm d v}{\mathrm d s} \frac{\mathrm d s}{\mathrm d t}=\frac{\mathrm d v}{\mathrm d s} v\newline
+\Rightarrow \frac{\mathrm d v}{\mathrm d s} =\frac{\mathrm d v}{v\mathrm d t}=\frac{g \sin \theta}{v}
+$$
+这是一个微分方程，因此：
+$$
+v\mathrm d v=gR\sin \theta \mathrm d \theta \Rightarrow \frac{1}{2} v^2=-gR\cos \theta+C
+$$
+因此
+$$
+\frac{1}{2} v^2= (-gR \cos \theta)-(-gR\cos 0)=g(R-R\cos \theta)
+$$
+分析小球对圆柱体的压力 $N'$，圆柱体对小球的支持力 $N$。
+$$
+N'=N=mg \cos \theta -m \frac{v^2}{R}=mg(3\cos \theta-2)
+$$
+
+**分析结果**
+
+![image-20230310100452245](https://notes.sjtu.edu.cn/uploads/upload_39fabc1e746ac20e1073346b85d4282a.png)
+
+------------
+
+ 质量为 $n$ 的物体在无摩擦的桌面上滑动, 其运动被约 束于固定在桌面上的挡板内, 挡板是由 $A B, C D$ 平直板和半径 为 $R$ 的 $1 / 4$ 圆弧形板 $B C$ 组成, 如图所示。若 $t=0$ 时, 物体以 速度 $\vec{v}_0$ 沿着 $A B$ 的内壁运动, 物体与挡板间的摩擦系数为 $\mu$ 。 试求物体沿着 $C D$ 板运动时的速度。
+
+还是分析切向加速度和法向加速度。
+$$
+m\boldsymbol a_n=m\frac{v^2}{R}=N
+$$
+
+$$
+m\boldsymbol a_t=m\frac{\mathrm d v}{\mathrm d t}=-\mu N=-\mu m \frac{v^2}{R}
+$$
+可以得到 $v=v(t)$，但是不知道 $t$，知道 $s$，因此需要代换：
+$$
+\frac{\mathrm d v}{\mathrm d t}=\frac{\mathrm d v}{\mathrm d s}\frac{\mathrm d s}{\mathrm d t}=\frac{\mathrm d v}{\mathrm d s}v
+$$
+
+$$
+\frac{\mathrm d v}{v}=-\frac{\mu}{R} \mathrm d s
+$$
+
+积分得：
+$$
+v=v_0 e^{-\frac{1}{2} \pi \mu}
+$$
+
+注意点：摩擦力符号取负号，支持力的计算。
+
+-----------------
+
+![image-20230310101602446](https://notes.sjtu.edu.cn/uploads/upload_dd50dc3021f3a2f2d492839b2df97e11.png)
+$$
+\begin{aligned}
+a_t & =g \sin \theta \quad a_n=v^2 / l \\
+\vec{f} & =m a_x \vec{i} \\
+& =m\left(a_t \cos \theta+a_n \sin \theta\right) \vec{i} \\
+& =m \sin \theta\left(g \cos \theta+\frac{v^2}{l}\right) \vec{i} \\
+\vec{N} & =m\left(g+a_y\right) \vec{j}=m\left(g+a_n \cos \theta-a_t \sin \theta\right) \vec{j}
+\end{aligned}
+$$
+
+作用力就要分摩擦力和支持力考虑。
+
+
+---------
+
+由地面沿铅直方向发射质量为m的宇宙飞船。求宇宙飞船能脱离地球引力所需的最小初速度。（不计空气阻力及其它作用力，设地球半径为6378000m）
+$$
+\frac{\mathrm d v}{\mathrm d t}=a=-\frac{GM}{R^2}=\frac{\mathrm d v}{\mathrm d R}v
+$$
+得到：
+$$
+\frac{1}{2}v^2=\frac{GM}{R}+C
+$$
+所以最小初速度是：
+$$
+\sqrt{\frac{2GM}{R}}
+$$
+
+--------------
+
+例: 一质量为 $M$ 的机动船, 在进入河弯道前 $\mathrm{Q}$ 点处关闭发动机，以速度 $v_0$ 在静水中行驶, 设水的阻力与船速成正比, 且方向相反, 比例系数为 $k(f=-k v)$ (1) 若 $\mathrm{Q}$ 点至弯道处 $\mathrm{P}$ 点的距离为 $l_0$, 求船行至 $P$ 点时的速率 $v_{\mathrm{p}}$. (2) 若船行至 $P$ 点 时开动发动机, 给船以 $F_0$ 的转向力, $F_0$ 的方向与速度夹角 为 $\alpha$ (如图), 求船在该点的切向加速度及航道的曲率半径.
+
+1. 得到
+   $$
+   -\frac{M}{k} \mathrm d v=\mathrm d s
+   $$
+
+   $$
+   -\frac{M}{k}v=C+s
+   $$
+
+   得到 $C=-\frac{M}{k}v_0$，则 $v_p=v_0-\frac{kl_0}{M}$。
+
+2. 只用分析瞬时的问题。
+
+   切向加速度：
+   $$
+   a_t=(F_0\cos \alpha-kv_p)/M
+   $$
+   法向加速度：
+   $$
+   a_n=F_0 \sin \alpha/M
+   $$
+   而曲率半径：
+   $$
+   \rho=\frac{v_p^2}{a_n}=\frac{Mv_p^2}{F_0 \sin\alpha}
+   $$
+   $v_p$ 需要自己代入。
+
+------
+
+摩擦的临界角问题：
+$$
+F_f=mg\sin\theta\\
+F_N=mg\cos\theta\\
+\mu_s \ge F_f/F_N=\tan\theta
+$$
+
+-------------------
+
+近地重力加速度的近似：
+$$
+g'=\frac{GM}{(R+h)^2}
+$$
+
+$$
+(1+\frac{h}{R})^{-2} \approx 1-2\frac{h}{R}
+$$
+
+因此：
+$$
+g \approx g_0(1-2\frac{h}{R})
+$$
+
+---
+
+**质量为 $m$ 的渡船在恒定动力 $F_0$ 和与速度 $v$ 成正比的河水阻力共同作用下能达到的极限速度为 $v_0$，则以此极限速度运动的渡船在离码头多少距离 $l$ 就可关闭发动机，从而使船靠岸时的速度为零? 为不使靠岸过程的时间过长，船实际上在离码头 $4l/5$ 处才关闭发动机，这样船靠岸时的速度为多少? 从关闭发动机到船靠岸过程用了多少时间?
+
+极限速度：受力平衡。设比例系数为 $k$，即阻力 $f=-kv$。
+$$
+F_0+f=F_0-kv_0=0 \Rightarrow k=\frac{F_0}{v_0}
+$$
+关闭发动机后
+$$
+ma=m\frac{\mathrm d v}{\mathrm d t}=-kv
+$$
+事实上，这类条件等价于 $\mathrm d v/\mathrm d s=-k/m$。
+$$
+0=-kl/m+v_0 \Rightarrow l=\frac{mv_0}{k}=\frac{mv_0^2}{F_0}
+$$
+
+$$
+v'=\frac{1}{5}v_0
+$$
+
+实际上反映了速度和路程正相关。
+$$
+\int_{t=0}^{t_0} \frac{\mathrm d v}{\mathrm d t}\mathrm d t=-\frac{4}{5} v_0
+$$
+为了求出速度，需要变换微分方程 $a=-kv/m$。
+$$
+t=-m\ln v/k+C' \Rightarrow C'=m\ln v_0/k\\\Rightarrow t_0=m/k(\ln v_0-\ln (1/5v_0))=\frac{m v_0}{F_0}\ln 5
+$$
+
+-----------
+
+绳绕圆柱问题
+$$
+(F_T+\mathrm d F_T) \cos \frac{\mathrm d \theta}{2}-F_T\cos \frac{\mathrm d \theta}{2} -F_f=0,F_f=\mu F_N\\
+-(F_T+\mathrm d F_T)\sin \frac{\mathrm d \theta}{2}-F_T\sin \frac{\mathrm d \theta}{2}+F_N=0
+$$
+近似 $\sin,\cos $，
+
+也可以直接做力的分解：
+$$
+N=2F_T\cdot \frac{\mathrm d \theta}{2}=F_T \mathrm d \theta \quad \mathrm d \theta=\mu N
+$$
+
+$$
+\int_{F_{T_B}}^{F_{T_A}}\frac{\mathrm d F_T}{F_T}=\mu\int_0^\theta \mathrm d \theta
+$$
+
+$$
+\frac{F_{T_B}}{F_{T_A}}=e^{-\mu \theta}
+$$
+
+-----------
+
+如图所示，飞机以水平速度 $v_0$ 飞离跑道后逐步上升，其上升轨道为抛物线，并测得 $x=l$ 时 $y=h$。设飞机的质量为 $m$，上升过程中水平速度 $v_0$ 不变，求飞机起飞时受到的空气升力。
+
+>  确定飞机的轨道方程：$y=\frac{h}{l^2} x^2$。由于水平速度不变，因此加速度只朝向 $y$ 方向，设为 $a(x)$。
+> $$
+> \tan(\theta(x))=\frac{2h}{l^2}\\
+> a_t(x)=a(x) \cos (\theta (x))\\
+> a_n(x)=a(x) \sin (\theta (x))=\frac{v(x)^2}{\rho(x)}
+> $$
+>  而 $\rho(x)=$
+
+几何关系的约束，转化为参数方程：
+$$
+\frac{\mathrm d y}{\mathrm d t}=2kx \frac{\mathrm d x}{\mathrm d t}\\
+v_y=2kv_0x\\
+a_y=v_y'=\frac{2hv_0^2}{l^2}
+$$
+得到：
+$$
+F_s=mg+ma_y=m\left(\frac{2hv_0^2}{l^2}+g\right)
+$$
+
+注意飞机的重力。
+
+-------------------
+
+一质量为 $M$、顶角为 $\alpha$ 的三角形光滑物体上，放有一个质量为 $m$ 的物块。如图所示。
+
+设各面之间的摩擦力均可忽略不计。试按照下列三种方法求解三角形物块的加速度。
+
+![image-20230310113337807](https://notes.sjtu.edu.cn/uploads/upload_4d0d0051fb617d03cc41ffbb1575c52c.png)
+
+1. 用牛顿定律及约束方程。
+
+   由几何约束关系：
+   $$
+   y_m=(x_m-x_M)\tan \alpha
+   $$
+
+   $$
+   a_{my}=(a_{mx}-a_{Mx})\tan \alpha
+   $$
+
+   加速度正方向为 **距离减小** 的方向。
+
+   做受力分析：
+   $$
+   Ma_{Mx}=-N\sin \alpha\\
+   ma_{mx}=N \sin \alpha\\
+   ma_{my}=mg-N\cos \alpha
+   $$
+   得到
+   $$
+   N=\frac{gmM\cos\alpha }{M+m\sin^2\alpha}
+   $$
+   题目要求 $a_{Mx}$，等于
+   $$
+   a_{Mx}=-\frac{N\sin\alpha}{M}=-\frac{mg\sin\alpha\cos \alpha}{M+m\sin^2\alpha}
+   $$
+   朝向 $x$ 轴负方向。
+
+   **结果分析：**
+
+   当 $\alpha \to \frac{\pi}{2}$ 或 $\alpha \to 0$ 时，加速度 $\to 0$，结果合理。
+
+2. 用牛顿定律及 **运动叠加** 原理。
+
+   分析小滑块的运动，由于小滑块只能在斜面上运动，因此会有朝向斜面的加速度分量 $\boldsymbol a_m$，而斜面有自己的加速度 $\boldsymbol a_M$，因此，小滑块的加速度为 $\boldsymbol a_m+\boldsymbol a_M$。
+
+   对于三角块。
+   $$
+   N\sin\alpha=Ma_M
+   $$
+   对于小滑块：$N-mg \cos \alpha$ 为 $\boldsymbol a_m+\boldsymbol a_M$ 在 $N$ 方向的分量，$mg \sin \alpha$ 为 $\boldsymbol a_m+\boldsymbol a_M$ 在垂直 $N$ 方向的分量，因此：
+   $$
+   N-mg \cos \alpha=a_M\cos \alpha\\
+   mg \sin \alpha=a_M \cos \alpha-a_m
+   $$
+   解得：
+   $$
+   a_M=\frac{mg\sin\alpha\cos \alpha}{M+m\sin^2\alpha}
+   $$
+
+3. 用非惯性系中力学定律，需要引入惯性力。
+
+   设斜面的加速度为 $a_M$，以斜面为参考系（非惯性参考系），小滑块需要受水平向左的惯性力  $m a_M$。小滑块需要在垂直斜面方向受力平衡，因此：
+   $$
+   N\sin \alpha=M a_M\\
+   N+ma_M\sin\alpha=mg\cos \alpha
+   $$
+   得到
+   $$
+   N=\frac{mMg\cos \alpha}{M+m\sin^2\alpha}
+   $$
+   因此 $a_M=\frac{mg\sin\alpha\cos \alpha}{M+m\sin^2\alpha}$。
+
+**关联加速度问题**
+
+![image-20230311152019825](https://notes.sjtu.edu.cn/uploads/upload_1174a1f4e9fa251d62f2f1215465e953.png)
+
+设 $m_1$ 向右的加速度为 $a_1$，在 $m_1$ 参考系中，$m_3$ 有向上的加速度 $a_2$。
+
+绳拉力为 $T$，$m_3$ 受到 $m_1$ 支持力为 $N$。
+
+因此对 $m_1$：
+$$
+N+T-F=ma_1
+$$
+对 $m_3$：
+$$
+N=ma_1\\
+ma_2=T-mg
+$$
+对 $m_2$：
+$$
+ma_1-T=ma_2
+$$
+
+------------
+
+**等效重力**
+
+![image-20230311152730766](https://notes.sjtu.edu.cn/uploads/upload_fc2616f4836e37ffa48e3e7366b7e689.png)
+
+![image-20230311152823069](https://notes.sjtu.edu.cn/uploads/upload_9a342c3bff41266cb941871d9228d4ce.png)
+
+-------------
+
+**阻力问题**
+
+![image-20230311152853576](https://notes.sjtu.edu.cn/uploads/upload_18e722f7eab9f2c325d376629d5d7558.png)
+$$
+\boxed{-mg-kv=m \frac{\mathrm d v}{\mathrm d t}}
+$$
+是阻力，所以带负号。
+
+得到：
+$$
+\frac{\mathrm d v}{mg+kv}=-\frac{1}{m} \mathrm d t
+$$
+
+$$
+\ln\left(\frac{mg+kv}{mg+kv_0}\right)=-\frac{k}{m}t
+$$
+
+这里直接给出了常数项。
+
+解运动规律还需要知道任意时间的位移和加速度。
+$$
+y=\int_0^t v\mathrm d t \qquad
+a=\frac{\mathrm d v}{\mathrm d t}
+$$
+求解最高点？此时 $v=0$。然后得到对应的时间 $t_0$ 代入 $y$ 的表达式。也可以用变换 $\frac{dv}{dt}=v\frac{dv}{dy}$。这样，积分变量只和已知的速度有关。
+
+![image-20230311154324378](https://notes.sjtu.edu.cn/uploads/upload_670a36a5d28b748f285e6d1e3ab1993b.png)
+
+讨论是必要的，可以代入特殊情况看算的合不合理。
+
+### **17-2
+
+![image-20230318151941889](https://notes.sjtu.edu.cn/uploads/upload_4ca9b1362e3ca88cbb4ec0f16410d8b1.png)
+
+考虑到
+$$
+f_{阻}=c_1v^2+\mu(mg-c_2v^2) \quad mg=c_2v_0^2
+$$
+得到
+$$
+-m\frac{\mathrm d v}{\mathrm d t}=c_1v^2+\mu(c_2v_0^2-c_2v^2)
+$$
+考虑到需要求滑行距离，因此需要变换
+$$
+-mv\frac{\mathrm d v}{\mathrm d x}=c_1v^2+\mu(c_2v_0^2-c_2v^2)
+$$
+得到：
+$$
+\mathrm d x=\frac{-mv\mathrm d v}{\mu c_2v_0^2+(c_1-\mu c_2)v^2}\\
+\int_0^{x_c} \mathrm d x=-\int_{v_0}^0 \frac{mv\mathrm d v}{\mu mg+(c_1-\mu c_2)v^2}\\
+x_c=\frac{1}{2} \ln (\mu mg+(c_1-\mu c_2)v_0^2/\mu mg)  \times \frac{m}{c_1-\mu c_2}
+$$
+
+$$
+x_c=\frac{c_2 v_0^2}{2g(c_1-\mu c_2)}\ln \left(\frac{c_1v_0^2}{\mu c_2 {v_0^2}}\right)
+$$
+
+### 2-7
+
+![image-20230319092207830](https://notes.sjtu.edu.cn/uploads/upload_b7f1b9e6a57a7063361c4ef4aba71ac9.png)
+
+隔离B，在水平方向应用牛二，有：
+$$
+N\sin \theta-\mu(m_Bg+N\cos \theta)=m_Ba >0
+$$
+隔离A，在两个方向上：
+$$
+N\cos \theta \le m_Ag
+$$
+因此：
+$$
+\frac{m_Ag}{\cos \theta} \ge N > \frac{\mu m_Bg}{\sin\theta -\mu\cos\theta}
+$$
+因此，为了保证不等号成立：
+$$
+\mu < \frac{m_A}{m_A+m_B} \tan\theta
+$$
+当 $\mu$ 满足这个条件时，A 对地面的正压力为 $m_A g -N\cos \theta$，$A$ 受地面的水平向左的摩擦力为 $\mu(m_A g -N\cos \theta)$。在水平方面对 $A$ 用牛顿第二定律，得
+$$
+F-\mu(m_A g -N\cos \theta)-N\sin\theta=m_A a
+$$
+得到
+$$
+F=N(\sin\theta -\mu\cos \theta)(1+\frac{m_A}{m_B})
+$$
+将 $N$ 的取值范围代入即可得。
+

@@ -1,0 +1,286 @@
+## 麦克斯韦电磁理论
+
+高斯定理 $\displaystyle \oiint \boldsymbol E \cdot \mathrm d \boldsymbol A=\frac{q}{\varepsilon_0},\oiint \boldsymbol B \cdot \mathrm d  \boldsymbol A=0$.
+
+环路定理 $\displaystyle \oint \boldsymbol E_i\cdot \mathrm d \boldsymbol l=-\iint_S \frac{\partial \boldsymbol B}{\partial t}\cdot \mathrm d \boldsymbol S，\oint \boldsymbol B \cdot \mathrm d \boldsymbol l=\mu_0 \sum I$。
+
+> **问题**：如果拿掉导线？取之为变化的电场 $\mathrm d E/\mathrm d t$？是否也能产生磁场，表达式：
+> $$
+> \oint \boldsymbol B  \mathrm d \boldsymbol l =-\iint_S \frac{\partial \boldsymbol E}{\partial t} \cdot \mathrm d \boldsymbol S
+> $$
+
+### 位移电流
+
+稳恒磁场满足安培环路定理：
+$$
+\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l =\iint_S \boldsymbol j_c \cdot \mathrm d \boldsymbol S
+$$
+考虑缓慢变化的交流电流源。
+
+![image-20231107081653887](https://notes.sjtu.edu.cn/uploads/upload_e1cda65ba665037952aa03e6642c1f98.png)
+
+发现：
+$$
+\iint_{S_2} \boldsymbol j_c \mathrm d \boldsymbol S-\iint_{S_1} \boldsymbol j_c \mathrm d \boldsymbol S=\oiint_{S}\boldsymbol j_c\mathrm d \boldsymbol S \not=0
+$$
+按照电荷守恒定律：
+$$
+\oiint_S \boldsymbol j_c \cdot \mathrm d \boldsymbol S=-\frac{\mathrm d q}{\mathrm d t}
+$$
+
+$$
+\frac{\mathrm d q}{\mathrm d t}=\frac{\mathrm d }{\mathrm d t} \left(\oiint_{S} \boldsymbol D\cdot \mathrm d \boldsymbol S\right)=\oiint_{S} \frac{\partial \boldsymbol D}{\partial t}\cdot \mathrm d \boldsymbol S
+$$
+
+因此：
+$$
+\oiint_S \left(\boldsymbol j_c + \frac{\partial \boldsymbol D}{\partial t}\right)\cdot \mathrm d \boldsymbol S=0
+$$
+如果定义 $\displaystyle \boldsymbol j_d= \frac{\partial \boldsymbol D}{\partial t}$，即位移电流密度，则 **位移电流** $I_d$：
+$$
+\boxed{I_d= \iint_S \frac{\partial \boldsymbol D}{\partial t}\cdot \mathrm d \boldsymbol S=\frac{\mathrm d \Phi_e}{\mathrm d t}}
+$$
+全电流：$I_d+I_c$.
+$$
+\boxed{\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l=\iint_S \left(\boldsymbol j_c + \frac{\partial \boldsymbol D}{\partial t}\right)\cdot \mathrm d \boldsymbol S=I_c+I_d}
+$$
+
+> 讨论：如果在电介质中，则：
+> $$
+> \boldsymbol j_d= \frac{\partial \boldsymbol D}{\partial t}=\varepsilon_0 \frac{\partial \boldsymbol E}{\partial t}+\frac{\partial \boldsymbol P}{\partial t}
+> $$
+> 则，产生 $\partial \boldsymbol P/\partial t$，产生热效应。
+
+### 麦克斯韦方程组
+
+$$
+\left\{
+\begin{aligned}
+&\oiint_S \boldsymbol D\cdot \mathrm d \boldsymbol S=q_0\\
+&\oiint_S \boldsymbol B\cdot \mathrm d \boldsymbol S=0\\
+&\oint_l \boldsymbol E\cdot \mathrm d \boldsymbol l=-\iint_S \frac{\partial \boldsymbol B}{\partial t} \cdot \mathrm d \boldsymbol S\\
+&\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l = I+\iint_S \frac{\partial \boldsymbol D}{\partial t} \cdot \mathrm d \boldsymbol S
+\end{aligned}
+\right.
+$$
+
+$$
+\left\{
+\begin{aligned}
+&\nabla \cdot \boldsymbol D=\rho\\
+&\nabla \cdot \boldsymbol B=0\\
+&\nabla \times \boldsymbol E=-\frac{\partial \boldsymbol B}{\partial t}\\
+&\nabla \times \boldsymbol H=\boldsymbol J_c+\frac{\partial \boldsymbol D}{\partial t}
+\end{aligned}
+\right.
+$$
+
+当真空：
+$$
+\left\{
+\begin{aligned}
+&\nabla \cdot \boldsymbol D=0\\
+&\nabla \cdot \boldsymbol B=0\\
+&\nabla \times \boldsymbol E=-\frac{\partial \boldsymbol B}{\partial t}\\
+&\nabla \times \boldsymbol H=\frac{\partial \boldsymbol D}{\partial t}
+\end{aligned}
+\right.
+$$
+推导波动方程：
+$$
+\nabla \times \nabla \times \boldsymbol E=-\nabla \times \frac{\partial \boldsymbol B}{\partial t}\\
+\nabla \times \nabla \times \boldsymbol H=\nabla \times \frac{\partial \boldsymbol D}{\partial t}\\
+$$
+时间算法提到前面，可得：
+$$
+\nabla \times \nabla \times \boldsymbol E=-\varepsilon \mu \times \frac{\partial^2 \boldsymbol E}{\partial t^2}\\
+\nabla \times \nabla \times \boldsymbol B=-\varepsilon  \mu \times \frac{\partial^2 \boldsymbol B}{\partial t^2}\\
+$$
+由高斯定理得到：
+$$
+\nabla \times \nabla \times \boldsymbol{E}=\nabla(\nabla \cdot \boldsymbol{E})-\nabla^2 \boldsymbol{E}=-\nabla^2 \boldsymbol{E}\\
+\nabla \times \nabla \times \boldsymbol B=-\nabla^2 \boldsymbol B
+$$
+因此：
+$$
+\nabla^2 \boldsymbol E=\mu \varepsilon\frac{\partial^2 \boldsymbol E}{\partial t^2} \quad \nabla^2 \boldsymbol H=\mu \varepsilon \frac{\partial ^2 \boldsymbol H}{\partial t^2}
+$$
+
+研究一维的情况：
+$$
+\boxed{\frac{\partial^2 E_y}{\partial x^2} = \mu \varepsilon \frac{\partial ^2 E_y}{\partial t^2}}\quad \boxed{\frac{\partial^2 H_z}{\partial x^2} = \mu \varepsilon \frac{\partial ^2 H_z}{\partial t^2}}
+$$
+
+其中 $\displaystyle c=\frac{1}{\sqrt{\varepsilon_0\mu_0}}$. *波速与光速相等？光也是一种电磁波！*
+
+满足电磁高斯定理：
+$$
+\Phi_E=\oint \boldsymbol E\cdot \mathrm d \boldsymbol A=0\\
+\Phi_B=\oint \boldsymbol B\cdot \mathrm d \boldsymbol A=0
+$$
+代入电环路定理，则：
+$$
+\oint_l \boldsymbol E \cdot \mathrm d \boldsymbol l=-\iint_S \frac{\partial \boldsymbol B}{\partial t}\cdot \mathrm d \boldsymbol S
+$$
+
+$$
+\oint \boldsymbol E\cdot \mathrm d \boldsymbol l=-Ea \quad \frac{\mathrm d \Phi_B}{\mathrm d t}=Bac
+$$
+
+$$
+E=cB
+$$
+
+代入磁环路定理，则：
+$$
+\oint \boldsymbol H\cdot \mathrm d \boldsymbol l=\iint_S \frac{\partial D}{\partial t}\mathrm d \boldsymbol S
+$$
+
+$$
+B=\varepsilon_0\mu_0 cE
+$$
+
+## 电磁波
+
+### 电磁波的波动方程
+
+**电磁波的性质**
+$$
+E_y=E_0 \cos \omega \left(t-\frac{x}{u}\right)
+$$
+结合 $\displaystyle \frac{\partial E_y}{\partial x}=-\mu \frac{\partial H_z}{\partial t}$.
+
+可得：
+$$
+H_z=H_0 \cos \omega \left(t-\frac{x}{u}\right)
+$$
+性质：$\boldsymbol E\perp \boldsymbol H, \boldsymbol u // \boldsymbol E\times \boldsymbol H$. 一般 $\boldsymbol E\gg \boldsymbol H$.
+
+- 偏振性（E,H 各自有振动面，不会改变振动面）
+- 传播方向满足右手定则，沿着 $\boldsymbol E\times \boldsymbol H$ 方向。
+- 相位是相同的。
+
+![image-20231126151402406](https://notes.sjtu.edu.cn/uploads/upload_253930151ecea770fdd5fee21c4fd9c5.png)
+
+**电磁波能量**
+
+磁场能量密度：$\displaystyle w_m=\frac{1}{2}\boldsymbol B\cdot \boldsymbol H=\frac{1}{2} \mu H^2$.
+
+电场能量密度：$\displaystyle w_e = \frac{1}{2}\boldsymbol D \cdot \boldsymbol E=\frac{1}{2}\varepsilon E^2$.
+
+结合 $\varepsilon E^2=\mu H^2$. 可得，$w=w_m+w_e=2w_e$.
+
+代入，得到 **能流密度（单位时间内流入的能量）**：
+$$
+\boxed{S=wu=\varepsilon E^2 c=\sqrt{\varepsilon \mu} EH \cdot \frac{1}{\sqrt{\varepsilon \mu}}=EH}
+$$
+方向：$\boldsymbol S=\boldsymbol E\times \boldsymbol H$. 另一个名字叫做 **玻印亭矢量**。
+
+**电磁波强度**：
+$$
+I=\overline{S}=\frac{1}{2} E_0 H_0
+$$
+----
+
+![image-20231126152030256](https://notes.sjtu.edu.cn/uploads/upload_031887fffc05d0784a7348e593ec2946.png)
+
+![image-20231126152021122](https://notes.sjtu.edu.cn/uploads/upload_a74bd0da6be3af2e39668c770712bf6b.png)
+
+假设横截面面积为 $S$.
+
+一方面，由安培环路定理，可得：
+$$
+\oint \boldsymbol H\cdot \mathrm d \boldsymbol l =\underbrace{I_c}_{=0}+I_d=j_d S=\varepsilon_0 \frac{\mathrm d E}{\mathrm d t}S\\
+\Rightarrow \boldsymbol H=\varepsilon_0 \frac{\mathrm d E}{\mathrm d t} \frac{S}{l}
+$$
+另一方面单位时间内，由能流密度（玻印亭矢量）：
+$$
+P=\iint (\boldsymbol E\times\boldsymbol H)\mathrm d \boldsymbol A=EH ld=\varepsilon_0\frac{E\mathrm d E}{\mathrm d t}Sd=\varepsilon\frac{E\mathrm d E}{\mathrm d t}V
+$$
+其中 $\mathrm d A$ 为 **侧面的面元**。(我们可以分析能流密度的朝向，可以发现是垂直于侧面向内的)
+
+然后计算电容器的电场能：$W_e=\frac{1}{2}\varepsilon_0 E^2 V$，则 $\mathrm d W_e/\mathrm d t=\varepsilon_0 E\mathrm d E/\mathrm d t \cdot V=P$.
+
+### 辐射压强：电磁波的动量
+
+质量密度：$\displaystyle \frac{w}{c^2}$ ($E=mc^2,m=\frac{E}{c^2}$)
+
+动量密度：$\displaystyle \frac{w}{c^2}c=\frac{w}{c}=\frac{S}{c^2}$.
+
+动量流密度：$\displaystyle \frac{S}{c^2}c=\frac{S}{c}$.
+
+辐射压强：
+
+- 全部吸收时，$\displaystyle P=\frac{S}{c}$.
+- 全部反射时，$\displaystyle P=\frac{2S}{c}$.
+
+------
+
+![image-20240105163506191](https://notes.sjtu.edu.cn/uploads/upload_87752438f8210af58650a81eccb28e3e.png)
+
+![image-20240105163515595](https://notes.sjtu.edu.cn/uploads/upload_e8b3bd347be8eb258bc234b151d616e6.png)
+
+1. $t$ 时刻，角速度为 $\alpha t$，等效电流为 $I=LR\sigma\alpha t$，因此磁感应强度：
+   $$
+   B=\mu_0 I=\mu_0 LR\sigma \alpha t
+   $$
+   方向……
+
+2. 假设距离中心为 $r$，则：
+   $$
+   2\pi r \cdot E_i=\frac{\mathrm d B}{\mathrm d t} \cdot \pi r^2 \Rightarrow E_i=\mu_0 LR \sigma \alpha\frac{r}{2}
+   $$
+   方向……
+
+3. 玻印亭矢量：
+   $$
+   |\boldsymbol  S|=|\boldsymbol  E\times \boldsymbol  H|=(\mu_0 LR \sigma \alpha)^2 \frac{tR}{2\mu_0}
+   $$
+   方向垂直于圆柱面表面向内？
+
+4. $\boldsymbol S$ 通量：
+   $$
+   (\mu_0 LR \sigma \alpha)^2 \frac{tR}{2\mu_0} \cdot 2\pi RL
+   $$
+   上面那个东西等于：
+   $$
+   \frac{\pi R^2 L}{\mu_0 } B\frac{\mathrm d B}{\mathrm d t}
+   $$
+   
+
+## 电磁波的产生
+
+**LC 振荡电路** $\displaystyle \nu=\frac{\omega}{2\pi}=\frac{1}{2\pi \sqrt{LC}}$.
+
+## 考试题目
+
+### 2021
+
+![image-20231217143123199](https://notes.sjtu.edu.cn/uploads/upload_81190e1a7c38dc1c10c38db1263e81ed.png)
+
+全电流定律：
+$$
+\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l=\iint_S \left(\boldsymbol j_c + \frac{\partial \boldsymbol D}{\partial t}\right)\cdot \mathrm d \boldsymbol S=I_c+I_d
+$$
+假设左球带电 $q$，右球带电 $-q$，则 $\mathrm d t$ 时间内，流过电量 $I\mathrm d t$. 在距离轴线 $r$ 处的位置，有：
+$$
+D=\varepsilon_0 E=\frac{1}{2\pi}\frac{qL}{(L^2+r^2)^{3/2}}
+$$
+
+$$
+\frac{\partial D}{\partial t}=\frac{\partial D}{\partial q}\cdot \frac{\partial q}{\partial t}=\frac{LI}{2\pi(L^2+r^2)^{3/2}}
+$$
+
+因此，
+$$
+I_d=\iint_S \frac{LI}{2\pi(L^2+r^2)^{3/2}}\mathrm d \sigma=\int_0^d \frac{LI}{2\pi(L^2+r^2)^{3/2}}\cdot 2\pi r\mathrm d r\\
+=LI\left(\frac{1}{\sqrt{L^2+d^2}}-\frac{1}{L}\right)
+$$
+使用全电流定律，可得：
+$$
+H\cdot 2\pi d=I+LI\left(\frac{1}{\sqrt{L^2+d^2}}-\frac{1}{L}\right)=\frac{LI}{\sqrt{L^2+d^2}}
+$$
+因此，
+$$
+B=\frac{\mu_0I}{2\pi d}\frac{L}{\sqrt{L^2+d^2}}
+$$

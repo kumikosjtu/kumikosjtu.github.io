@@ -1,0 +1,517 @@
+## 电磁感应定律
+
+### 电磁感应现象
+
+- 实验一：当条形磁铁插入或拔出线圈回路时，在线圈回路中会产生电流，而当磁铁与线圈保持相对静止时，则回路中不存在电流。表明 **磁场变化产生感应电流**。
+- 实验二：以通电线圈代替条形磁铁。当运动或者改变电流时，产生感应电流。表明 **磁场变化产生感应电流**。
+- 实验三：将闭合回路置于稳恒磁场 B 中，当导体棒
+  在导体轨道上滑行时，回路内出现了电流。**当穿过闭合回路的磁通量发生变化时，产生感应电流**。
+
+**楞次定律**： 感应电动势产生的感应电流方向，总是使感应电流的磁场通过回路的磁通量阻碍原磁通量的变化。
+
+### 法拉第电磁感应定律
+
+当穿过回路所包围面积的磁通量发生变化时，回路中产生的感应电动势的大小与穿过回路的磁通量对时间的变化率成正比。
+$$
+\boxed{\varepsilon = -\frac{\mathrm d \Phi_m}{\mathrm d t}}
+$$
+
+这就是 **法拉第电磁感应定律**。
+
+- 对回路取任意绕行方向。
+
+- 回路平面的正法线方向由右手螺旋关系确定。
+  $$
+  \Phi=\iint_S \boldsymbol B\cdot \mathrm d \boldsymbol S
+  $$
+  磁通匝链数/全磁通：
+  $$
+  \Psi=\sum \Phi_i = n \Phi_0
+  $$
+  
+- 回路中的感应电动势方向与绕行方向一致时为正，反之为负。
+
+> 运用能量守恒定律，推导特例？
+>
+> 洛伦兹力：$F_B=IBl$.
+>
+> 损失的热能功率：$P=I^2 R$.
+>
+> 外力做功的功率：$P=-F_Bv$.
+>
+> 在 $\mathrm d t$ 时间内，$\mathrm d \Phi= Bl v\mathrm d t$. $IR=-Blv$. 则：
+> $$
+> IR=\varepsilon=-\frac{\mathrm d \Phi_m}{\mathrm d t}
+> $$
+
+如果是 $N$ 匝线圈，则：
+$$
+\varepsilon = -N\frac{\mathrm d \Phi_m}{\mathrm d t}
+$$
+感应电流：
+$$
+I=-\frac{1}{R} \frac{\mathrm d \Phi_m}{\mathrm d t}
+$$
+感应电量：
+$$
+q=\int_{t_1}^{t_2} I\mathrm d t=-\frac{1}{R}(\Phi_2-\Phi_1)
+$$
+这就推出了楞次定律：“来拒去留”
+
+总会使得感应电流的磁场通过回路磁通量阻碍原来磁通量变化。
+$$
+\varepsilon = -\frac{\mathrm d \Phi}{\mathrm d t}=-\frac{\mathrm d (\boldsymbol B \cdot \boldsymbol S)}{\mathrm d t}=\underbrace{-\frac{\mathrm d \boldsymbol B}{\mathrm d t} \cdot \boldsymbol S}_{感生}\underbrace{-\frac{\mathrm d \boldsymbol S}{\mathrm d t}\cdot \boldsymbol B}_{动生}
+$$
+
+-------
+
+![image-20231031082049772](https://notes.sjtu.edu.cn/uploads/upload_9ca663000e159a74da6b0e5cdd576285.png)
+
+利用：
+$$
+\Phi_m =\iint B\mathrm d S=\frac{\mu_0 lI}{2\pi} \ln \left(\frac{a+b}{a}\right)
+$$
+
+$$
+\mathcal E=-\frac{\mathrm d \Phi_m}{\mathrm d t}=\cdots \quad v=\frac{\mathrm d a}{\mathrm d  t}
+$$
+
+--------
+
+旋转的线圈：
+$$
+\Psi= N\Phi=NBS \cos \omega t\\
+\varepsilon = - \frac{\mathrm d \Psi}{\mathrm d t}=NBS\omega \sin \omega t=I_m \sin \omega t
+$$
+（开始的时候磁通量取最大值）
+
+## 动生电动势
+
+对于 **载流子**：
+
+载流子定向移动，产生静电场，产生动生电动势。当
+$$
+\boldsymbol F=q\boldsymbol v\times \boldsymbol B\\
+\boldsymbol E_k=\frac{\boldsymbol F}{q}=\boldsymbol v\times \boldsymbol B
+\\
+\overset{直导线}\Rightarrow\varepsilon=\boldsymbol v \times \boldsymbol B \cdot (b-a) 
+\\
+\overset{任意导线}\Rightarrow \varepsilon = \int_a^b \boldsymbol E_k\cdot \mathrm d \boldsymbol l=\int (\boldsymbol v \times \boldsymbol B)\mathrm d \boldsymbol l=\int (\mathrm d \boldsymbol  l \times \boldsymbol v) \cdot \boldsymbol B=\frac{\mathrm d  \boldsymbol S}{\mathrm d t}\boldsymbol B
+$$
+对于 **刚体**，
+$$
+\varepsilon=\boldsymbol v_0 \times \boldsymbol B \cdot \boldsymbol  l+\int (\boldsymbol w \times \boldsymbol r_{op}) \times \boldsymbol B \cdot \mathrm d  \boldsymbol l
+$$
+分为平动和转动两部分。
+
+-------
+
+![image-20231031083205467](https://notes.sjtu.edu.cn/uploads/upload_230d7fea6438174756814528ec6b5995.png)
+
+![image-20231031083219203](https://notes.sjtu.edu.cn/uploads/upload_5c998a500ff1e31eda46989b19885898.png)
+
+
+1. $\mathrm d S$ 为一个圆心角为 $\omega \mathrm d t$ 的扇形。
+$$
+   \varepsilon = -\frac{\mathrm d S}{\mathrm d t} B=\frac{\omega \mathrm d t L^2/2}{\mathrm d t} B=-\frac{1}{2} B \omega L^2
+$$
+
+2. $$
+   \varepsilon_{OA}=\int_O^A (\boldsymbol v\times \boldsymbol B) \cdot \mathrm d \boldsymbol l =\int_0^L -vB\mathrm d l=-\frac{1}{2} B\omega L^2
+   $$
+
+$O$ 端为正，$A$ 端为负。判断可以假想 $O$ 到 $A$ 存在电流，中和了前方的磁场。
+
+如果换成半径为 $L$ 的导体圆盘，可以把导体盘看作无穷多根并联的导体棒组合而成。因此，$\displaystyle \varepsilon = \frac{1}{2}B\omega L^2$.
+
+----------
+
+![image-20231031084046595](https://notes.sjtu.edu.cn/uploads/upload_031ecb5f80288995bd976f3addb390eb.png)
+
+![image-20231031084052836](https://notes.sjtu.edu.cn/uploads/upload_30c60b0f0878ef755de034d72466d15b.png)
+
+在 $\mathrm d t$ 时间内，
+$$
+\mathrm d \Phi=\int_{d}^{d+l} \frac{\mu_0 I}{2\pi x}\cdot v\mathrm d t \mathrm d x=\frac{\mu_0 I}{2\pi} \left(\ln (d+l)-\ln d\right)v\mathrm d t
+$$
+
+$$
+\varepsilon = - \frac{\mathrm d \Phi}{\mathrm d t}=-\frac{\mu_0 I}{2\pi} \left(\ln (d+l)-\ln d\right)v
+$$
+
+### 洛伦兹力是否做功
+
+![image-20231031080834142](https://notes.sjtu.edu.cn/uploads/upload_0add6a3a2e1dbf1f9b0e6d0544f88409.png)
+
+电子运动速度是导体棒速度 $\boldsymbol v$ 和向下漂移速度 $\boldsymbol u$ 的叠加，导致电子受 $\boldsymbol F_m$ 的洛伦兹力，其中的一个分力 $\boldsymbol F$，提供了电源电动势的非静电力，另外一个分量 $\boldsymbol F'$，表现为阻力，想要导体棒匀速运动，必须有外力抵消 $\boldsymbol F'$. 
+
+外力克服安培力做功通过洛伦兹力转化为导体回路中感应电流的能量。
+
+----
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_d8a883d63b11af86c8e0a20b906bfc6d.png" alt="image-20240105150316196" style="zoom: 50%;" />
+
+注意题目假设：施加恒力 $F$；$a$ 端固定；收缩过程中保持圆形不变；忽略导线质量（始终受力平衡）
+
+假设产生感应电流 $I_i$，分析 **左半圆弧**，计算电流元受力在 $x$ 轴方向的投影，则左半圆弧受力：
+$$
+F_A=\int_{-\pi/2}^{\pi/2} I_iBr\cos \theta\mathrm d \theta=2I_iBr
+$$
+因为受力平衡条件和对称性，$F=F'=F_A/2$.
+
+而产生的感应电流满足：
+$$
+I_i=\frac{\varepsilon}{R}=-\frac{\mathrm d \Phi}{R\mathrm d t}=-\frac{2\pi rB\mathrm d r}{R\mathrm d t}
+$$
+将 $I_i$ 的表达式代入 $F$，可得：
+$$
+F=-\frac{2\pi r^2B^2\mathrm d r}{R\mathrm d t}
+$$
+所以：
+$$
+\mathrm d t=-\frac{2\pi B^2 r^2}{RF} \mathrm d r
+$$
+积分可得：
+$$
+t_{总}=-\int_{r_0}^{0} \frac{2\pi B^2 r^2}{RF} \mathrm d r=\frac{2\pi B^2}{3RF}r_0^3
+$$
+
+## **感生电动势
+
+> 感应电动势并不是因为线圈在磁场中运动而产生的，因此电动势对应的非静电力不是洛伦兹力。
+
+### 感生电场与感生电动势
+
+感生电动势是由变化大小的磁场产生的，产生涡旋电场
+$$
+\varepsilon = -\frac{\mathrm d \Phi_m}{\mathrm d t}=-\frac{\mathrm d }{\mathrm d t} \iint_S \boldsymbol B \cdot \mathrm d \boldsymbol S=-\iint_S \frac{\partial \boldsymbol B}{\partial t} \cdot \mathrm d \boldsymbol S
+$$
+
+因此，**感生电动势对应的非静电力场强 $\boldsymbol E_k$ 和磁场的时间变化率 $\displaystyle \frac{\partial \boldsymbol B}{\partial t}$ 相关**。
+$$
+\varepsilon=\boxed{-\iint_S \frac{\partial \boldsymbol B}{\partial t}\cdot \mathrm d \boldsymbol S=\oint_l \boldsymbol E_k \cdot \mathrm d \boldsymbol l}
+$$
+
+因此，即使不存在导体回路，变化的磁场在其周围也会激发一种电场，称为感应电场，记为 $\boldsymbol E_i$. 感应电场是非保守场。利用 Stokes 公式，可以改写上式为：
+$$
+\nabla \times \boldsymbol E_i = -\frac{\partial \boldsymbol B}{\partial t}
+$$
+
+因此，如果对于闭合回路计算动生电动势和感生电动势的和，可得：
+$$
+\boxed{\varepsilon = \oint_l (\boldsymbol v\times \boldsymbol B) \cdot \mathrm d \boldsymbol l -\iint_S \frac{\partial \boldsymbol B}{\partial t}\cdot \mathrm d \boldsymbol S}
+$$
+
+------
+
+计算具有轴对称变化磁场产生的感应电场。
+
+利用：
+$$
+\oint_l \boldsymbol E_i \cdot\mathrm d \boldsymbol l=E_i \cdot 2\pi r =-\iint_S \frac{\partial \boldsymbol  B}{\partial t} \cdot \mathrm d \boldsymbol S=-\frac{\partial \boldsymbol B}{\partial t} \cdot S_{包含}
+$$
+
+--------
+
+例：求导体棒 $AB$ 中的感生电动势。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4df1bc3347626d287112437855410b79.png" alt="image-20231218175505464" style="zoom: 50%;" />
+
+注意到棒的各处感应电场 $E_i$ 各不相同，因此不能简单将棒的长度乘以感应电场场强。
+
+第一种方法，逐段求和（注意棒长方向和 $\boldsymbol E_i$ 的夹角），可得
+$$
+\mathcal E_{AB}=\int_A^B \boldsymbol E_i\cdot \mathrm d \boldsymbol l=\int_0^L E_i \cdot \mathrm d l \cos \theta =\\\cdots=\frac{L}{2}\frac{\partial B}{\partial t} \sqrt{R^2-L^2/4}
+$$
+第二种方法，使用补全回路的方法，**注意到 AO，BO 上，$\mathrm d \boldsymbol l$ 和 $\boldsymbol E_i$ 垂直，不会产生感应电动势**，因此，可以用回路 OABO 的感应电动势替代 AB 的感应电动势，因此：
+$$
+\mathcal E_{AB}=S_{OABO} \frac{\partial B}{\partial t}=\frac{L}{2}\sqrt{R^2-L^2/4} \frac{\partial B}{\partial t}
+$$
+
+> 本题的变种
+>
+> （解题时注意新增线段补成回路，新增线段上 $\mathrm d \boldsymbol l$ 和感应电场 $\boldsymbol E_i$ 方向垂直，感应电场方向垂直于当前点和磁场对称中心的连线）
+>
+> 1. 假设 $AB$ 向下移动一小段距离……
+>
+> 2. 假设 $AB$ 不规则，例如呈现圆弧状，不过还是连接 $AB$ 两点，则感应电动势需要计算新围成的面积。
+>
+> 3. 计算 $U_{MN}$，如何选取回路？
+>
+>    <img src="https://notes.sjtu.edu.cn/uploads/upload_b94033c58200d29828a3863a032e9d36.png" alt="image-20231218180810017" style="zoom:33%;" />
+>
+>    <img src="https://notes.sjtu.edu.cn/uploads/upload_0e280063536c37c2c91dd44b88b2e9f1.png" alt="image-20231218180747880" style="zoom:33%;" />
+
+----
+
+### 涡旋电场和涡电流
+
+> Q: 金属片插入磁场，是否受力？
+>
+> A: 金属片中载流子做环形运动，产生涡旋电流，电流在磁场中受到安培力的作用，阻碍金属片的运动。这种现象称为 **电磁阻尼**。
+>
+> 其中电流的方向怎么判断？楞次定理，阻碍磁通量变大/变小。
+>
+> 如果切割成梳子一样的形状，可以大大减小电磁阻尼效应。如变压器使用一片一片的金属，减小涡电流。
+>
+
+-------
+
+![image-20240105161554340](https://notes.sjtu.edu.cn/uploads/upload_dbaa0eb43ee5636b2d9a7028a6cc661b.png)
+
+![image-20240105161602844](https://notes.sjtu.edu.cn/uploads/upload_343d39ee83c8c4daabe205233c43d784.png)
+
+分析是什么让圆盘开始转动，是螺线管中的磁场吗？不是的，因为圆盘一开始是静止的，不存在电流。那么就是因为开关 K 接通，导致螺线管中产生变化的电流，进而产生变化的磁场，变化的磁场产生涡旋电场，使得圆盘转动。知道这一点之后，我们逐步分析：
+$$
+I=\frac{\varepsilon}{R}\quad B=\mu_0nI
+$$
+
+$$
+2\pi rE_i = \pi r^2 \frac{\mathrm d B}{\mathrm d t}\implies E_i=\frac{r}{2}\frac{\mathrm d B}{\mathrm d t}
+$$
+
+圆盘中 $r\to r+\mathrm d  r $ 的部分受到力矩为（假设圆盘半径为 $L$）：
+$$
+\mathrm d M=r\mathrm d F=rE_i\mathrm d q=rE_i \frac{Q\cdot 2\pi r\mathrm d r}{\pi L^2}
+$$
+总力矩为：
+$$
+M=\int_0^L \mathrm d M=\frac{\mathrm d B}{\mathrm d t} \frac{1}{4} QL^2
+$$
+而转动惯量为：
+$$
+J=\frac{1}{2}mL^2
+$$
+积分可得：
+$$
+\int_0^\omega J \mathrm d \omega=\int_0^BM \mathrm d t\implies \omega=\frac
+{BQ}{2m}
+$$
+代入 $\displaystyle B=\mu_0n\frac{\varepsilon}{R}$，可得：
+$$
+\omega=\frac{\mu_0Q \varepsilon}{2mR}
+$$
+
+
+## 自感和互感
+
+### 自感
+
+当通过线圈回路中电流发生变化时，引起穿过自身回路的磁通量发生变化，从而在回路自身产生感应电动势的现象称为 **自感现象**。自感现象中所产生的电动势称为自感电动势。
+
+根据毕奥萨伐尔定律，电流在空间中激发的磁场磁感应强度总是正比于通过线圈的电流 $I$，因此通过线圈的磁通匝链数：
+$$
+\Psi=\underbrace{L}_{自感系数}I
+$$
+> 求自感的通常步骤：假设线圈通电流 $I$，电流 $I$ 产生了磁场 $B$，再计算 $\Psi=NBS=LI$ 即可得 $L$.
+
+产生了自感电动势：
+$$
+\mathcal E_L = -\frac{\mathrm d \Psi}{\mathrm d  t}=-\frac{\mathrm d (LI)}{\mathrm d t}=-L\frac{\mathrm d I}{\mathrm d  t}-I\frac{\mathrm d  L}{\mathrm d  t}
+$$
+若 $L$ 恒定，则：
+$$
+\mathcal E_L = -L\frac{\mathrm d I}{\mathrm d t}
+$$
+![image-20231219180658604](https://notes.sjtu.edu.cn/uploads/upload_d179a39445534cd1c298d91469bb5243.png)
+
+![image-20231102103501961](https://notes.sjtu.edu.cn/uploads/upload_3b63a00b8ff0142d22126b21c6057a9d.png)
+
+磁通量是浅色阴影对应的部分，可以由若干黑色条叠加：
+$$
+\Phi_m = \iint_S \boldsymbol B\cdot \mathrm d \boldsymbol S=\int_{R_1}^{R_2} \frac{\mu I}{2\pi r} l\mathrm d r=\frac{\mu Il}{2\pi} \ln \frac{R_2}{R_1}
+$$
+
+$$
+L=\frac{\Phi_m}{I} = \frac{\mu l}{2\pi} \ln \frac{R_2}{R_1}
+$$
+
+![image-20231102104050688](https://notes.sjtu.edu.cn/uploads/upload_64613678aef334bfdfec8e7dec4b4b21.png)
+
+![image-20231102104055674](https://notes.sjtu.edu.cn/uploads/upload_dcbda0f4d5d63f8bb4ca8386f1b3d872.png)
+
+**假设内部磁导率为 $\boldsymbol{\mu_r}$.** 取任意一个横截面，计算磁通量 $\Phi_m$.
+$$
+\Phi_m=\mu_0 \mu_r \frac{NI}{l}\cdot S
+$$
+
+$$
+L=\frac{\Psi}{I}=\frac{N\Phi_m}{I}=\mu_0 \mu_r \frac{N^2}{l} S=\mu_0 \mu_r \frac{N^2}{l^2} lS
+$$
+
+设 $n=N/l$ 表示单位长度螺线管的匝数，$V=lS$ 表示螺线管内空间点体积，则自感系数可以表示为：
+$$
+L=\mu_0 n^2 V
+$$
+**螺绕环的自感系数**
+$$
+\begin{aligned}
+\Psi&=N \int_{R_1}^{R_2} B(r)h\mathrm d  r\\
+&=N\int_{R_1}^{R_2} \frac{NI}{2\pi r} \mu h \mathrm d r\\
+&=\frac{\mu h N^2 I}{2\pi} \ln \frac{R_2}{R_1}
+\end{aligned}
+$$
+
+$$
+L=\frac{\mu h N^2}{2\pi} \ln \frac{R_2}{R_1}
+$$
+
+### 互感
+
+![image-20231102110013879](https://notes.sjtu.edu.cn/uploads/upload_56067de6ffac0326a292e8290f5454fb.png)
+
+第一个线圈里面有电流 $I$，产生磁场，对第二个线圈磁通匝链数的贡献为 $\Psi_{21}$，产生了感生电动势，线圈 2 中的电流 $I_2$ 产生的磁场，对通过线圈 1 的磁通匝链数的贡献为 $\Psi_{12}$。
+
+根据毕奥萨伐尔定律，有：
+$$
+\Psi_{21}=M_{21} I_1\quad \Psi_{12}=M_{12} I_2
+$$
+可以证明 $M_{21}=M_{12}=M$. 若保持恒定则：
+$$
+\mathcal E_{21}=-M\frac{\mathrm d  I_1}{\mathrm d t} \quad \mathcal E_{12}=-M\frac{\mathrm d I_2}{\mathrm d t}
+$$
+![image-20231102110516045](https://notes.sjtu.edu.cn/uploads/upload_2fdf0d6e102917f0c55a2e7a7e12bec1.png)
+
+![image-20231102110523528](https://notes.sjtu.edu.cn/uploads/upload_0e00449487b659a5d93389674885e754.png)
+
+假设 $l_2<l_1$.
+
+假设第一个螺线管通 $I$ 电流，则产生的磁场：
+$$
+B_1=\frac{\mu_0 N_1I}{l_1}
+$$
+造成第二个线圈磁通匝链数的变化：
+$$
+\Psi_{21}=B_1 N_2 S=\frac{\mu_0 N_1 N_2 IS}{l_1}
+$$
+因此互感系数为：
+$$
+M=\mu_0 \frac{N_1N_2}{l_1} S
+$$
+也可以假设第二个螺线管通 $I'$ 电流，则产生的磁场：
+$$
+B_2=\frac{\mu_0 N_2 I'}{l_2}
+$$
+造成
+$$
+\Psi_{12}=B_2 N_1 S \cdot \frac{l_2}{l_1} =\mu_0 \frac{N_1N_2}{l_1} S I'
+$$
+两线圈的自感分别为：
+$$
+L_1=\mu_0 \frac{N_1^2}{l_1} S \quad L_2=\mu_0 \frac{N_2^2}{l_2} S
+$$
+互感最大的情况：
+$$
+M=k\sqrt{L_1L_2}
+$$
+$k$ 称为耦合系数，$0<k\le1$，只有两个线圈长度相同时，耦合系数才为 1. 此时两个线圈中有完全的磁耦合，互感 $M=\sqrt{L_1L_2}$.
+
+-----
+
+![image-20231102111643294](https://notes.sjtu.edu.cn/uploads/upload_2019cf95ebe2aa3aa8cce347cfa9013b.png)
+
+-------
+
+![image-20231102112315866](https://notes.sjtu.edu.cn/uploads/upload_1f53db03c0b270aa5e53675d23231887.png)
+
+假设 $I_1=I_2=I$，则通过第一个线圈的磁通匝链数：
+$$
+\Psi_1=\underbrace{L_1I_1}_{第一个线圈自感}+\underbrace{MI_2}_{第二个线圈对第一个线圈}=(L_1+M)I\\
+\Psi_2=(L_2+M)I
+$$
+因此，$\Psi=\Psi_1+\Psi_2$，等效自感就是：
+$$
+L=\Psi/I=L_1+L_2+2M
+$$
+如果两个线圈反向连接，则 $L=L_1+L_2-2M$.
+
+--------
+
+![image-20240105152630857](https://notes.sjtu.edu.cn/uploads/upload_03ff142c789348f8a2a3317865ef7ba1.png)
+
+线圈两端电动势需要计算自感部分和互感部分：
+$$
+\mathcal E_1=-L_1 \frac{\mathrm d i_1}{\mathrm d t}-M\frac{\mathrm d i_2}{\mathrm d t}\\
+\mathcal E_2=-L_2 \frac{\mathrm d i_2}{\mathrm d t}-M\frac{\mathrm d i_1}{\mathrm d t}
+$$
+结合基尔霍夫定律：$i_1=i_2,\mathcal E_1=\mathcal E_2$. 可得：
+$$
+\mathcal E_1=\mathcal E_2=-\frac{L_1L_2-M^2}{L_1L_2-2M}\frac{\mathrm d (i_1+i_2)}{\mathrm d t}
+$$
+若两线圈方向相反，$2M$ 前符号为正。
+
+-----
+
+![image-20240105153619149](https://notes.sjtu.edu.cn/uploads/upload_cfe27f5c01d6c6c253884ad700708caa.png)
+
+结论：$L_1,L_2$ 越是细长，两螺线管之间影响越小，耦合系数越小。反之耦合系数越大。
+
+## 磁场能量
+
+自感线圈总磁能，当载流 $I_0$：
+$$
+W_m=\frac{1}{2}LI_0^2
+$$
+**自感磁能**
+
+对于螺线管，设电流线密度 $n$，体积 $V$，
+$$
+B=\frac{\mu_0 n}{I_0}
+$$
+则总磁能：
+$$
+W_m=\frac{1}{2}LI_0^2=\frac{1}{2}\mu_0 n^2 V \left(\frac{B}{\mu_0 n}\right)^2 ={\color{red}\frac{1}{2} \frac{B^2}{\mu_0}} V={\color{red}{w_m}} V
+$$
+磁场能量密度：
+$$
+w_m=\frac{1}{2} \boldsymbol H\cdot \boldsymbol B
+$$
+类比电场能量密度。
+
+**互感磁能**
+$$
+W_m=\frac{1}{2} L_1 I_1^2+\frac{1}{2} L_2 I_2^2 +MI_1I_2
+$$
+利用磁场能量密度：
+$$
+W_m=\frac{1}{2} \iiint \boldsymbol B\cdot \boldsymbol H \mathrm d V=\cdots
+$$
+可以用 $\boldsymbol B_1,\boldsymbol B_2$ 之间的夹角描述耦合程度。
+
+**还可以通过磁场能量求自感**
+$$
+W_m=\iiint w_m \mathrm d V=\frac{1}{2} LI^2
+$$
+
+
+## 考试题目
+
+### 2021
+
+![image-20231217115108020](https://notes.sjtu.edu.cn/uploads/upload_1d924ec882a9004a6fd9996fd33094c4.png)
+
+1. 假设大线圈中通电流 $I$，由毕奥萨伐尔定律，有：
+   $$
+   B_x=\frac{\mu_0}{4\pi} \frac{I \cdot 2\pi R \cdot R/\sqrt{R^2+x^2}}{(\sqrt{R^2+x^2})^2}=\frac{\mu_0IR^2}{2(R^2+x^2)^{3/2}}
+   $$
+   这样的磁场在小线圈中产生磁通量为：
+   $$
+   \Phi=B_x S_x=\frac{\mu_0 IR^2}{2(R^2+x^2)^{3/2}} \cdot \pi r^2
+   $$
+   因此互感：
+   $$
+   M=\frac{\Phi}{I}=\frac{\mu_0 R^2 \pi r^2}{2(R^2+x^2)^{3/2}}
+   $$
+
+2. 大线圈中的磁通量为：
+   $$
+   \Phi'=MI_0=\frac{\mu_0 R^2 \pi r^2 I_0}{2(R^2+x^2)^{3/2}}
+   $$
+   因为感应电动势：
+   $$
+   \varepsilon =- \frac{\mathrm d \Phi'}{\mathrm d t}=-\frac{\mathrm d \Phi'}{\mathrm d x}\cdot \frac{\mathrm d x}{\mathrm d t}=\frac{3x \mu_0 R^2 \pi r^2 I_0}{2(R^2+x^2)^{5/2}}\cdot u
+   $$
+   感应电流为：
+   $$
+   i=\frac{\varepsilon}{h}
+   $$

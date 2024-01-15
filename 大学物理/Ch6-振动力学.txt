@@ -1,0 +1,315 @@
+---
+title: 振动力学
+abbrlink: 6360c449
+date: 2023-04-18 10:40:29
+tags:
+---
+
+基础的方程：
+$$
+-kx=m\frac{\mathrm d ^2 x}{\mathrm d t^2}
+$$
+
+$$
+\frac{\mathrm d^2 x}{\mathrm d t^2}+\underbrace{\frac{k}{m}}_{:=\omega^2}x=0
+$$
+
+$$
+\frac{\mathrm d ^2 x}{\mathrm d t^2}=-\omega^2 x
+$$
+
+$$
+x=A\sin/\cos(\omega t+\varphi)
+$$
+
+$$
+x=Ae^{\mathrm i(\omega t+\varphi)}
+$$
+
+## 简谐振动运动学
+
+振动是一种普遍存在的运动形式
+
+1. 物体的来回 **往复运动**（弹簧振子、单摆等）Vibration, Oscillation.
+2. 电流、电压的周期性变化
+
+任一物理量(如位移、电流等)在某一数值附近反复变化----振动。
+
+机械振动： 物体在一定位置附近作来回往复的运动
+
+可以证明: 任何复杂的振动都可以认为是由若干个简单而又基本的振动的合成。这种简单而又基本的振动形式称为简谐振动。
+
+**简谐振动的运动规律**
+
+![image-20230502194214739](https://notes.sjtu.edu.cn/uploads/upload_2b070c02813a729efb467eb1da8a9907.png)
+
+简谐振动：凡质点的运动遵从余弦（或正弦）规律时，其运动形式为简谐振动。
+$$
+\boxed{x=A\cos (\omega t+\varphi)}
+$$
+
+1. 振幅 $A$ Amplitude.
+
+2. 周期 $T$ 完成一次全振动所经历的时间。
+
+3. 频率 $\nu$：单位时间内完成全振动的次数。
+
+4. 角频率 $\omega$
+
+5. 相位 $\Phi=(\omega t+\varphi)$ 位置和速度仅仅由相位决定 $x=A\cos \Phi(t),v=-\omega A\sin \Phi(t)$。$\varphi$：振动的初相位。
+
+   求出 $\varphi,\Phi$：
+   $$
+   \varphi=\arctan\left(-\frac{v_0}{\omega x_0}\right)\quad \Phi=\arctan\left(-\frac{v}{\omega x}\right)
+   $$
+
+**相位差** 对于两同频率的谐振动 $\Delta \varphi=\varphi_2-\varphi_1$ 初相差。明确 $\varphi_2-\varphi_1$ 在 $-\pi \sim \pi$ 之间。
+
+**同相和反相** $\Delta \varphi=\pm2k\pi$ 同相，$\Delta\varphi=\pm(2k+1)\pi$ 反相。
+
+**超前和落后** 若 $0<\varphi_2-\varphi_1<\pi$ 则称 $x_2$ 超前与 $x_1$.
+
+这里 $\varphi_2=0,\varphi_1=-\pi/2$，因此 $x_2$ 超前于 $x_1$。
+
+**速度和加速度**
+$$
+x=A\cos (\omega t+\varphi)\\
+v=-\omega A\sin (\omega t+\varphi)=v_m\cos \left(\omega t+\varphi+\frac{\pi}{2}\right)\\
+a=-\omega^2 A\cos (\omega t+\varphi)=v_m\cos \left(\omega t+\varphi\pm \pi\right)
+$$
+
+1. $v_m=\omega A$ 称为速度幅，速度相位比位移超前 $\pi/2$。
+2. $a_m=\omega^2 A$ 称为加速度幅，和位移反相。
+
+![image-20230418113029447](https://notes.sjtu.edu.cn/uploads/upload_3698b3b59f4dacea82ed9483ccb7b2f1.png)
+
+**旋转振幅矢量法**
+
+## 简谐振动动力学
+
+**简写振动的动力学方程**
+
+受到线性恢复力 $F=-kx$，物体具有惯性。
+$$
+\frac{\mathrm d ^2 x}{\mathrm d t^2}+\frac{k}{m} x=0 \Rightarrow\frac{\mathrm d ^2 x}{\mathrm d t^2}+\omega^2 x=0
+$$
+完全的积分法：
+$$
+\frac{\mathrm d ^2 x}{\mathrm d t^2}=\frac{\mathrm d v}{\mathrm d t}=v\frac{\mathrm d v}{\mathrm d x}=-\omega^2 x
+$$
+解为：
+$$
+x=A\cos (\omega t+\varphi)
+$$
+由初始条件 $(x_0,v_0)$：
+$$
+A=\sqrt{x_0^2 +\frac{v_0^2}{\omega^2}}\quad \varphi=\arctan \left(-\frac{v_0}{\omega x_0}\right)
+$$
+怎么推的？
+$$
+x_0=A\cos (\omega t +\varphi)|_{t=0}=A\cos \varphi\\
+v_0=-\omega A\sin(\omega t +\varphi)|_{t=0}=-\omega A\sin\varphi
+$$
+因此
+$$
+x_0^2+\frac{v_0^2}{\omega^2}=A^2(\sin^2\varphi+\cos^2\varphi)=A^2
+$$
+
+$$
+\Rightarrow A=\sqrt{x_0^2 +\frac{v_0^2}{\omega^2}}\quad \varphi=\arctan \left(-\frac{v_0}{\omega x_0}\right)
+$$
+
+**如果存在常力 $\boldsymbol  F$ ？** 比如说重力或者电场力，位移振子。
+$$
+m\frac{\mathrm d ^2 x}{\mathrm d t^2}=-kx+F
+$$
+
+$$
+m\frac{\mathrm d ^2}{\mathrm d t^2}\left(x-\frac{F}{k}\right)=-k\left(x-\frac{F}{k}\right)
+$$
+
+令 $X=x-x_0,x_0=F/k$，得到
+$$
+\frac{\mathrm d ^2 X}{\mathrm d t^2}+\frac{k}{m} X=0
+$$
+满足 $x=A\cos (\omega t+\varphi)$，也可以是受迫振动。
+
+## 微振动的简谐近似
+
+**单摆在小角摆动**
+
+以角度增加的方向为正方向。那么重力分力：$f=-mg\sin\theta$。
+
+由于 $\theta$ 很小，$\sin \theta \approx \theta$，而且走过的弧长 $s=l\theta$，那么
+$$
+f=-\frac{mg}{l}s=-ks
+$$
+得到是简谐振动的形式，因此
+$$
+\omega=\sqrt{\frac{k}{m}}=\sqrt{\frac{g}{l}}
+$$
+周期
+$$
+T=2\pi \sqrt{\frac{l}{g}}
+$$
+**复摆的小角摆动**
+
+定轴转动问题，固定 $O$ 点，对应 $z$ 轴。以角度增加的方向为正方向。
+$$
+M_z=J\frac{\mathrm d ^2\theta}{\mathrm d t^2}
+$$
+
+$$
+M_z=-mgr_c\sin \theta \approx -mgr_c \theta
+$$
+
+因此
+$$
+\frac{\mathrm d ^2\theta}{\mathrm d t^2}+\omega ^2 \theta=0
+$$
+
+$$
+\omega=\sqrt{mgr_c/J}
+$$
+
+如果复摆就是一个质点，得到 $J=mr^2_c$，代入，得到 $\omega=\sqrt{g/l}$。
+
+设水平方向 $C$ 投影离原点距离为 $x$，则 $\theta \approx x/r_c$，得到
+$$
+E_p(x)=mgr_c(1-\cos \theta)\approx mgr_c \frac{\theta^2}{2}=\frac{mgx^2}{2r_c}=\frac{1}{2}kx^2
+$$
+**为什么能够近似简谐振动？**
+
+在最低点 $x$ 处泰勒展开。
+$$
+E_p(x)\approx E_p(0)+\underbrace{\frac{\mathrm d E_p}{\mathrm d x}}_{=0}x+\frac{1}{2}\frac{\mathrm d^2 E_p}{\mathrm d x^2} x^2
+$$
+----------
+
+![image-20230420092649944](https://notes.sjtu.edu.cn/uploads/upload_3e2a12030c4649400ec3c557eb2a39e5.png)
+
+对于板子，分析横向运动，需要分析摩擦力，因此需要分析支持力。选两个圆柱的中点为原点。
+
+首先，受力平衡，得到 $N_1+N_2=mg$，其次不能发生转动，力矩平衡
+$$
+N_1(l+x)=N_2(l-x)
+$$
+得到
+$$
+N_1=\frac{l-x}{2l}mg\quad N_2=\frac{l+x}{2l}mg
+$$
+
+$$
+f_1-f_2=ma \Rightarrow a=\frac{\mu}{m}(N_1-N_2)=-\frac{x}{l}\mu g
+$$
+
+得到
+$$
+T=2\pi \sqrt{\frac{l}{\mu g}}
+$$
+如何判别简谐振动？
+
+动力学方程形式：$\ddot{x}+\omega^2 x=0$ 动力学方程形式。$F_{合}=-k^* x+F_0$ 线性回复力。$E=\frac{1}{2}k^*x^2+\frac{1}{2}M^*v^2$ 能量的形式。
+
+**简谐振动的能量**
+
+*动能* $E_k=\frac{1}{2}mv^2=\frac{1}{2}kA\sin^2 (\omega t+\varphi)$。
+
+*势能* $E_p=\frac{1}{2}kx^2=\frac{1}{2}kA^2 \cos ^2(\omega t+\varphi)$。
+
+![image-20230420093910230](https://notes.sjtu.edu.cn/uploads/upload_db36f5d35433a4a034ea96526330c075.png)
+
+- 振子在振动过程中，动能和势能分别随时间变化，但任一时刻总机械能保持不变。
+
+- 动能和势能的变化频率是弹簧振子振动频率的两倍。
+
+- 谐振动的总能量与振幅的平方成正比。也就是说：
+  $$
+  E=\frac{1}{2}kA^2\quad A=\sqrt{\frac{2E}{k}}=\sqrt{\frac{2E_0}{m\omega^2}}
+  $$
+  
+
+## 平行简谐振动的合成 振动频谱
+
+**同方向同频率简谐振动的合成**
+
+某一质点同时参与两个独立的、同方向、同频率的简谐振动。
+$$
+x_1=A_1\cos (\omega t+\varphi_1)\\
+x_2=A_2\cos (\omega t+\varphi_2)\\
+x_1+x_2 = \cdots?
+$$
+**同方向不同频率两谐振动的合成 拍**
+
+![image-20230611225400527](https://notes.sjtu.edu.cn/uploads/upload_86a764119697bec4ec33feabfd16ede1.png)
+
+**振动的频谱分析**
+
+周期性振动可分解为一系列频率分立的简谐振动。
+
+周期振动频率 $\nu_0$，各分振动的频率为 $\nu_0,2\nu_0,3\nu_0\cdots$.
+
+## 垂直简谐振动的合成
+
+**同频率垂直简谐振动的合成**
+$$
+x=A_1\cos (\omega t+\varphi_1)\\
+y=A_2\cos (\omega t +\varphi_2)
+$$
+形成椭圆。
+
+**不同频率垂直简谐振动的合成**
+
+形成李萨如图形。
+
+## 阻尼振动
+
+受到和速度成正比的阻力 $f_r=-\gamma v$.
+
+运动方程：
+$$
+-kx-\gamma \dot x=m\ddot x
+$$
+令 $\displaystyle \omega_0^2=\frac{k}{m},2\delta =\frac{\gamma}{m}$.  其中 $\delta$ 称为阻尼因子。当阻尼较小，即 $\delta <\omega_0$ 时，特征方程的解为复数 $\lambda=-\delta\pm \sqrt{\omega_0^2-\delta^2}\mathrm i$，因此
+$$
+x=A_0 e^{-\delta t}\cos (\omega t+\varphi_0)\quad \omega=\sqrt{\omega_0^2-\delta^2}\quad T=\frac{2\pi}{\sqrt{\omega_0^2-\delta^2}}>T_0=\frac{2\pi}{\omega_0}
+$$
+速度随时间关系 $v=v_0 e^{-2\delta \cdot t}$. 振幅随时间关系 $A=A_0 e^{-2\delta \cdot t}$.
+
+总路程 $\displaystyle S=4\sum_{i=0}^\infin A_i=4A_0 \sum_{i=0}^\infin e^{-i\beta T}=\frac{4A_0}{1-e^{-\beta T}}$.
+
+## 习题
+
+- 简谐振动的方程 $\displaystyle -kx=m\frac{\mathrm d ^2 x}{\mathrm d t^2}$     $\ddot{x}+\omega^2 x=0$      $F_{合}=-k^* x+F_0$
+
+  - 如果不齐次，如 $-kx+F_0=\displaystyle m\frac{\mathrm{d}^2 x}{\mathrm{d} t^2}$，做变换 $x'=x-\displaystyle \frac{F_0}{k}$. 而且考虑问题在平衡位置附近比较好。
+  - $\displaystyle \omega=\sqrt{\frac{k}{m}}$    $T=2\pi/\omega$.    $f=\omega/2\pi$.
+  - 最大位移 $A$ 最大速度 $A\omega$ 最大加速度 $A\omega^2$
+  - 最大角度 $\theta_m$ 最大角速度 $\dot \theta=\theta_m \omega$ 最大角加速度 $\ddot \theta=\theta_m \omega^2$
+
+- 振动式：
+  $$
+  \boxed{x=A\cos (\omega t+\varphi)}
+  $$
+
+  1. 振幅 $A$ Amplitude.
+
+  2. 周期 $T$ 完成一次全振动所经历的时间。
+
+  3. 频率 $\nu$：单位时间内完成全振动的次数。
+
+  4. 角频率 $\omega$
+
+  5. 相位 $\Phi=(\omega t+\varphi)$
+
+- 简谐振动的能量      $\displaystyle \frac{1}{2}mv^2+\frac{1}{2}kx^2=E=\frac{1}{2}kA^2$.      $E_k+E_p=E$.
+
+  - 求导可得          $\displaystyle mav+kvx=0 \Rightarrow ma+kx=0$.
+
+- 微振动的近似         $\displaystyle \omega=\sqrt{\frac{mgr_c}{J}}\overset{J=mr_c^2}=\sqrt \frac{g}{r_c}$
+
+- 证明体系做简谐振动
+
+  - 力学方法、受力分析：$\ddot{x}+\omega^2 x+C=0$.
+  - 能量方法：利用机械能守恒。$\displaystyle \frac{1}{2}mv^2+\frac{1}{2}kx^2=E=\frac{1}{2}kA^2$  $\displaystyle \frac{1}{2}J_C\dot\theta^2+\frac{1}{2}mgr_c\theta^2=E=\frac{1}{2}mgr_c\theta_m^2$
+

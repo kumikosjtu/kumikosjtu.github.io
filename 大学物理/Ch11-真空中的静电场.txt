@@ -1,0 +1,368 @@
+## 知识点
+
+- 无限长均匀带电直线的电场分布。
+- 电偶极子的电场分布。
+
+## 电学基本概念
+
+电荷、电荷守恒、电荷量子化（最小电荷为电子电荷）、点电荷模型（忽略大小和形状）
+
+高斯定理：描述带电量和电场的关系
+
+库伦定理：力与带电量的关系
+
+## 电场与电场强度
+
+电荷间电相互作用的传递是需要通过电场媒介传播的，因此需要一段时间。
+
+基本的计算方法是叠加法，这里我们使用叠加法，先计算圆环，通过叠加同心圆环，得到圆盘的电场强度，通过叠加圆盘，得到圆锥的电场强度，对于圆盘，取半径趋于无穷大，可以得到平面的电场分布，通过叠加平面，可以得到有厚度平板的电场分布。
+
+### 直线的电场分布
+
+**无限长均匀带电直线**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_fac012eba0af6f3255051713a199a2e7.png" alt="image-20240115172748585" style="zoom:33%;" />
+
+**给出和直线两端连线的夹角**
+$$
+E_x = \int_{\theta_1}^{\theta_2} \frac{\lambda \cos\theta}{4\pi\varepsilon_0 a}\mathrm d \theta = \frac{\lambda}{4\pi\varepsilon_0 a}(\sin\theta_2-\sin\theta_1)
+$$
+
+$$
+E_y=\int_{\theta_1}^{\theta_2} \frac{\lambda \sin\theta}{4\pi\varepsilon_0 a }\mathrm d \theta = \frac{\lambda}{4\pi\varepsilon_0a}(\cos\theta_1-\cos \theta_2)
+$$
+
+- 无限长带电直线：$\theta_1=0,\theta_2=\pi$.
+- 半无限长带电直线：$\theta_1=0,\theta_2=\pi/2$.
+
+### 带电圆环
+
+电荷 $q$ 均匀分布在半径为 $R$ 的圆环上，计算离圆环中心 $x$ 处点的场强。
+
+$\mathrm d l$ 长度所带的电量：
+$$
+\mathrm d q=\frac{q}{2\pi R} \mathrm d l \Rightarrow \mathrm d E =\frac{\mathrm d q}{4\pi\varepsilon_0 r^2} =\frac{q \mathrm d l}{8\pi^2 R\varepsilon_0 r^2}
+$$
+然后：
+$$
+E=\int \cos \theta \mathrm d E=\frac{q}{4\pi\varepsilon_0 r^2} \cos \theta=\frac{q}{4\pi \varepsilon_0} \frac{x}{(x^2+R^2)^{3/2}}
+$$
+
+### 带电圆盘
+
+均匀带电圆盘，半径为 $R$，面电荷密度为 $\sigma$，则
+$$
+\mathrm d q = \sigma 2\pi r \mathrm d r
+$$
+对应 $\mathrm d E$，则
+$$
+\mathrm d E = \frac{\mathrm d q x}{4\pi \varepsilon_0(x^2+r^2)^{3/2}} = \frac{\sigma}{2\varepsilon_0} \frac{x r \mathrm d r}{(x^2+r^2)^{3/2}}
+$$
+总电场为：
+$$
+E = \int_0^ R \frac{\sigma x}{2\varepsilon_0} \frac{r \mathrm d r}{(x^2+r^2)^{3/2}} = \frac{\sigma}{2\varepsilon_0} \left(1-\frac{x}{\sqrt{x^2+R^2}}\right)
+$$
+若令 $P$ 点和圆盘边沿形成的直线和 $x$ 轴成的夹角为 $\theta$，也可以表示为：
+$$
+E=\frac{\sigma}{2\varepsilon_0} (1-\cos\theta)
+$$
+讨论：
+
+- 无限大带电平板的电场：板外为 0，板内为 $\displaystyle \frac{\sigma}{\varepsilon_0}$.
+- 若 $x \gg R$，则 $\displaystyle \approx \frac{\sigma}{2\varepsilon_0} \frac{R^2}{2x^2}=\frac{q}{4\pi \varepsilon_0 x^2}$.
+
+电势：
+$$
+V=\frac{\sigma}{2\varepsilon_0} (\sqrt{R^2+x^2}-x)
+$$
+
+### 带电圆锥
+
+求高为 $H$，底面半径为 $R$ 的均匀带电锥体（电荷体密度为 $\rho$）在顶点处的电场强度。
+
+可以看做圆盘的叠加，在高度为 $z$ 处取高度为 $\mathrm d z$ 的圆盘切面，则半径为 $R(H-z)/H$，电荷面密度为 $\rho \mathrm d z$。对顶点处场强的贡献为：
+$$
+\mathrm d E= \frac{\rho \mathrm d z}{2\varepsilon_0} (1-\cos \theta)
+$$
+其中 $\cos \theta=H/\sqrt{R^2+H^2}$，为常数，因此：
+$$
+E=\int_0^H\frac{\rho \mathrm d z}{2\varepsilon_0} (1-\cos \theta)=\frac{\rho H}{2\varepsilon_0} (1-H/\sqrt{R^2+H^2})
+$$
+$\boldsymbol E=E \boldsymbol k$. 如果不是在圆锥的顶点处，情况会更加复杂，因为 $\theta$ 不是一个常数。
+
+### 带电有厚度平板
+
+带电平板厚度为 $a$，电荷体密度为 $\rho =kx(0 \le x \le a)$，求板外场强大小。
+
+等效面电荷密度：$\sigma=\rho \mathrm d x$，则：
+$$
+E=\int_0^a \frac{\sigma}{2\varepsilon_0} =\int_0^a \frac{kx\mathrm d x}{2\varepsilon_0}=\frac{ka^2}{4\varepsilon_0}
+$$
+
+## 高斯定理
+
+### 电场线
+
+1. 曲线上每一点的切线方向代表电场强度 $\boldsymbol E$ 的方向。
+2. 曲线的疏密表示该点处场强 $\boldsymbol E$ 的大小，即通过垂直单位面积的电场线条数。
+3. 电场线起始于正电荷，终止于负电荷。
+4. 电场线不闭合，不相交。
+
+### 电通量
+
+**电通量** 的定义，通过电场中任一曲面的电场线条数：
+$$
+\Phi = ES \cos (\theta)= \boldsymbol E \cdot\boldsymbol S
+$$
+通过任意曲面的电通量如何计算：
+$$
+\Phi = \int \mathrm d \Phi = \int \boldsymbol E \cdot \mathrm d \boldsymbol S
+$$
+### 高斯定理
+
+高斯定理：定量描述源电荷和电通量的关系。
+
+**高斯定理**
+$$
+\oint_S \boldsymbol E \cdot \mathrm d \boldsymbol S = \frac{1}{\varepsilon_0} \sum_i q_i = \frac{1}{\varepsilon_0} \iiint_V \rho \mathrm d V
+$$
+相对于库伦定理，高斯定理更加根本。
+
+取球面包含点电荷
+$$
+\Phi_e = \oiint_S \boldsymbol E \cdot \mathrm d \boldsymbol S =\oiint_{S_0} \frac{q \mathrm d S_0}{4\pi \varepsilon_0 R^2} =\frac{q}{4\pi \varepsilon_0 R^2} \cdot 4\pi R^2 = \frac{q}{\varepsilon_0} 
+$$
+**立体角的定义** 面元 $\mathrm d S$ 边缘各点到 $O$ 点连线形成锥体的顶角。
+$$
+\mathrm d \Omega = \frac{\mathrm d S}{r^2}\cos \theta = \frac{\mathrm d S_0}{r_0^2}
+$$
+**由库伦定理证明高斯定理**
+
+点电荷的情况：
+$$
+\boldsymbol E =\frac{q}{4\pi \varepsilon_0 r^3} \boldsymbol r
+$$
+
+$$
+\mathrm d \Phi = \boldsymbol E \cdot \mathrm d \boldsymbol S =\frac{q}{4\pi \varepsilon_0 r^3} \boldsymbol r \mathrm d \boldsymbol S=\frac{q \mathrm d S \cos \theta}{4\pi \varepsilon _0 r^2}=\frac{q}{4\pi \varepsilon_0}\mathrm d \Omega
+$$
+
+$$
+\oint_S \boldsymbol E \cdot \mathrm d \boldsymbol S =\frac{q}{4\pi \varepsilon_0} 4\pi =\frac{q}{\varepsilon_0}
+$$
+
+![image-20230914104104694](https://notes.sjtu.edu.cn/uploads/upload_8632d8edd86d1625d4a66e77d095c37a.png)
+
+![image-20230914104136736](https://notes.sjtu.edu.cn/uploads/upload_96ff55d4244d0834c107e5ae37e88596.png)
+
+**高斯定理的微分形式**：
+$$
+\oint_S \boldsymbol E \cdot \mathrm d \boldsymbol S = \frac{1}{\varepsilon_0} \iiint \rho \mathrm d V
+$$
+利用数学上的高斯定理：
+$$
+\oint_{\partial V} \boldsymbol E \cdot \mathrm d \boldsymbol S = \iiint_{V} \nabla \cdot \boldsymbol E \mathrm d V
+$$
+ 得到
+$$
+\boxed{\nabla \cdot \boldsymbol E=\frac{\rho}{\varepsilon_0}}
+$$
+对电荷分布具有高度对称的情况，可以借助于高斯定理。
+
+### 高斯定理的应用
+
+求无限长均匀带电直线的电场分布，取半径为 $x$ 的圆柱面，长为 $l$：
+$$
+\Phi_E = 2\pi x \cdot l \cdot E=\frac{\lambda l}{\varepsilon_0}
+$$
+（顶面和地面的电通量都为 0）
+$$
+\boldsymbol E_p=\frac{\lambda}{2\pi \varepsilon_0 x}\boldsymbol i
+$$
+
+------
+
+求均匀带电球体的场强分布。（已知球体半径为*R*，电荷密度为*r*）
+
+根据 **对称性分析**，电场分布也应具有球对称性。
+$$
+\left|\boldsymbol E(r)\right|=\mathrm{const}，当 r = \mathrm{const} 时
+$$
+且电场强度方向沿径向。
+$$
+\boldsymbol E = E(r) \boldsymbol e_r
+$$
+可以选择以球面为中心的球面为 Gauss 面。
+
+1. 球面为中心：
+   $$
+   E(r) 4\pi r^2 = \oint_S \boldsymbol E \cdot \mathrm d  \boldsymbol S = \frac{\rho 4\pi R^3/3}{\varepsilon_0}
+   $$
+
+   $$
+   \boldsymbol E(r) =\frac{\rho R^3}{3\varepsilon _0r^3} \boldsymbol r
+   $$
+
+2. 球体内一点的场强，取 $R=r$：
+   $$
+   \boldsymbol E (r)=\frac{\rho}{3\varepsilon_0} \boldsymbol r
+   $$
+
+--------
+
+无限大均匀带电平面的电场分布（电荷面密度为s）
+
+根据 **对称性分析**，电场分布应具有（1）沿平面方向的平移对称性，即离开平面相同距离的地方场强大小相等；
+
+（2）对平面的反演对称性，即平面前后相同距离的地方场强大小相等；
+
+（3）电场方向沿垂直于平板平面方向。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_30d0410754ae71eeb93a3557d2079a6b.png" alt="image-20231006191732554" style="zoom:33%;" />
+
+------
+
+遇到有限尺寸的物体，不方便用高斯定理。如果能过拆分成若干具有对称性的物体也可以。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_ad1f508ee06af4f7fb85979ff4802a12.png" alt="image-20231006192029901" style="zoom:33%;" />
+
+无限大平面挖掉圆盘：
+$$
+\boldsymbol E=\frac{\sigma}{2\varepsilon_0} \cos \theta
+$$
+
+## 环流定理 电势
+
+**电势能怎么求？**
+
+先从点电荷做功开始：
+$$
+\boldsymbol E=\frac{\boldsymbol F_e}{q_o}=k_e \frac{q}{r^2} \boldsymbol{\hat r}
+$$
+受到的电磁力：$\boldsymbol F=q_0 \boldsymbol E$.
+
+移动 $\mathrm d \boldsymbol s$，电场力做功：$\boldsymbol F \cdot \mathrm d  \boldsymbol s$.
+
+当路径从 $A$ 到 $B$，比较复杂，则
+$$
+W = \int_A^B \boldsymbol F \cdot \mathrm d  \boldsymbol s. \quad W = q_0 \int_A^B \boldsymbol E \cdot \mathrm d  \boldsymbol s.
+$$
+电势能改变为：
+$$
+\Delta U = -W =-q_0 \int_A^B \boldsymbol E \cdot \mathrm d  \boldsymbol s
+$$
+**静电场力做功的特点**
+
+1. 点电荷：$\displaystyle \mathrm d  A=q_0 \boldsymbol E \cdot \mathrm d  \boldsymbol l=\frac{q_0q}{4\pi \varepsilon_0 r^3} \boldsymbol r \cdot \mathrm d \boldsymbol l$.
+
+   极坐标系下，$\boldsymbol r = r \boldsymbol e_r$. $\mathrm d  \boldsymbol l =\mathrm d r\boldsymbol e_r+\boldsymbol e_\theta r\mathrm d  \theta$. $\boldsymbol r \cdot \mathrm d  \boldsymbol l=r\mathrm d  r$
+
+   因此 $\displaystyle \mathrm d A=\frac{q_0q}{4\pi\varepsilon _0r^2}\mathrm d r$.
+   $$
+   A_{ab}=\int_{r_a}^{r_b} \frac{q_0q}{4\pi \varepsilon_0 r^2}\mathrm d r=\frac{q_0q}{4\pi \varepsilon_0}\left(\frac{1}{r_a}-\frac{1}{r_b}\right)
+   $$
+   所以是保守场。
+
+电势能的定义：$\displaystyle \Delta U = -q_0 \int_A^B \boldsymbol E \cdot \mathrm d \boldsymbol s$.
+
+电势的定义：$\displaystyle V=\frac{U}{q_0}$. $\displaystyle \Delta V =- \int_A^B \boldsymbol  E \cdot \mathrm d \boldsymbol s$. $\displaystyle V_A=\int_A^{电势零点} \boldsymbol E \cdot \mathrm d \boldsymbol s$.
+
+点电荷电势：
+$$
+V=\frac{q}{4\pi \varepsilon _0 r}
+$$
+
+2. 任意带电体的电势：
+   1. 由电势定义式出发进行计算 $\displaystyle V = \int_{(P)}^{P(0)} \boldsymbol E \cdot \mathrm d  \boldsymbol l$.
+   2. 对于点电荷系：$\displaystyle V = \sum_i V_i$
+   3. 对于连续电荷分布，有：$\displaystyle V =\int_{(Q)} \mathrm d V$ 或 $\displaystyle V = \int_{(Q)} \frac{\mathrm d  q}{4\pi \varepsilon_0 r}$.
+
+环路定理：
+$$
+\oint_L \boldsymbol E \cdot \mathrm d  \boldsymbol l =0
+$$
+
+$$
+\nabla \times \boldsymbol E=0
+$$
+
+-----
+
+计算均匀带电球面的电势分布。
+
+均匀带电球面的电场分布为：
+$$
+\boldsymbol E = 0,r <R;\frac{Q}{4\pi \varepsilon_0 r^2},r >R
+$$
+当在球内：
+$$
+V=\frac{Q}{4\pi\varepsilon_0 R}
+$$
+当在球外：
+$$
+V=\frac{Q}{4\pi\varepsilon _0 r}
+$$
+
+## 电势与电场强度的微分关系
+
+**等势面** 将电势相等的场点连成连续的曲面，满足 $V(x,y,z)=c$. 通常约定相邻等势面的电势差为常量。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_382960fa428654e456fc2c95411ea079.png" alt="image-20240115172821599" style="zoom:33%;" />
+
+在直角坐标系中，
+$$
+\boxed{\boldsymbol E = -\left(\frac{\partial V}{\partial x} \boldsymbol i +\frac{\partial V}{\partial y} \boldsymbol j + \frac{\partial V}{\partial z} \boldsymbol k\right)}=-\nabla V
+$$
+在极坐标系中，
+$$
+\mathrm d V = \frac{\partial V}{\partial r}\mathrm d r+\frac{\partial V}{\partial \theta} \mathrm d \theta
+$$
+
+$$
+\boldsymbol E \cdot \mathrm d  \boldsymbol l =(E_r \boldsymbol e_r+E_\theta \boldsymbol e_\theta) \cdot (\mathrm d  r \boldsymbol e_r+r\mathrm d \theta \boldsymbol e_\theta)=E_r \mathrm d  r+E_\theta r\mathrm d  \theta
+$$
+
+得到 $\displaystyle E_r = -\frac{\partial V}{\partial r},E_\theta = -\frac{\partial V}{r \partial \theta}$.
+$$
+\boxed{\boldsymbol E = - \left(\frac{\partial V}{\partial r} \boldsymbol e_r + \frac{1}{r} \frac{\partial V}{\partial \theta} \boldsymbol e_\theta\right)} \tag{1}
+$$
+
+也可以这么考虑，在 $r$ 方向，没有变化，但是在 $\theta$ 方向，变化 $\mathrm d \theta$，代表经过 $r \mathrm d \theta$ 的长度，因此
+$$
+E_\theta r \mathrm d \theta =\frac{\partial V}{\partial \theta}\mathrm d \theta \Rightarrow E_\theta = \frac{1}{r} \frac{\partial V}{\partial \theta}
+$$
+
+-----
+
+计算电偶极子电场的电势和电场强度
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b117eaa697bef128df9511c74c0a7cd8.png" alt="image-20240115172913147" style="zoom:33%;" />
+
+**思路一**：先计算电势，再通过梯度求电场强度。因为 $r_--r_+ \approx l \cos \theta$，$r_-r_+ \approx r^2$：
+$$
+V=V_++V_- = \frac{q}{4\pi \varepsilon_0}\left(\frac{1}{r_+}-\frac{1}{r_-}\right)=\frac{q}{4\pi \varepsilon_0} \frac{r_--r_+}{r_-r_+} = \frac{ql\cos \theta}{4\pi \varepsilon_0 r^2}
+$$
+使用式子 $(1)$，得到 $E_r = \cdots, E_\theta = \cdots$.
+$$
+\boldsymbol E = E_r \boldsymbol e_r + E_\theta \boldsymbol e_\theta=\frac{1}{4\pi \varepsilon_0 r^3} \left[-\boldsymbol p +\frac{3(\boldsymbol r \cdot \boldsymbol p) \boldsymbol r}{r^2}\right]
+$$
+因此衰减程度是三次方。
+
+**思路二**：求电场、求电势。
+
+------
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_20317e6f2b783f77a56667f316a1df63.png" alt="image-20240115172928721" style="zoom:33%;" />
+
+电偶极子受力：$\boldsymbol F=q\boldsymbol E_++(-q)\boldsymbol E_-$.
+
+力矩：$F=F_+=F_-$，$\boxed{M=Fl\sin\theta=\boldsymbol p \times \boldsymbol E}$.
+
+电势能：$W=W_++W_-=qV_++(-q)V_-=q(V_+-V_-)$.
+$$
+-(V_+-V_-)=El\cos\theta
+$$
+
+$$
+\boxed{W=-qEl\cos\theta=-pE\cos\theta = -\boldsymbol p \cdot \boldsymbol E}
+$$

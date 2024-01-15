@@ -1,0 +1,249 @@
+磁介质+电磁感应：
+
+磁介质：
+
+- 抗磁性和顺磁性
+- 磁化强度与磁化电流（核心的部分）
+- 介质中磁场，磁场强度的计算
+- 铁磁性
+
+电磁感应：
+
+- 电磁感应定律
+- 计算动生电动势
+- 计算感生电动势
+- 自感与互感
+- 磁场的能量
+
+## 抗磁性和顺磁性
+
+真空中给磁场 $\boldsymbol B_0$，则磁介质中产生的磁场 $\boldsymbol B=\boldsymbol B_0+\boldsymbol B'$.
+
+无限大均匀磁介质中：$\boldsymbol B=\mu_r\boldsymbol B_0$，其中 $\mu_r$ 为相对磁导率。
+
+- $\mu_r<1$ 抗磁质(铜、铋、硫、氢、银等)
+- $\mu_r >1$ 顺磁质(锰、铬、铂、氧、氮等)
+- $\mu_r \gg 1$ 铁磁质(铁、钴、镍等)
+- $\mu_r=0$ 完全抗磁性
+
+超导体分为：
+
+- I 类超导体，具有完全抗磁性；
+- II 类超导体，具有部分完全抗磁性。
+
+磁介质磁化理论：
+
+- 分子电流的观点；
+- 磁荷的观点。
+
+![image-20231029101208543](https://notes.sjtu.edu.cn/uploads/upload_141627b7ca4d84a5723d8f566ef301d1.png)
+
+### 原子中电子的磁矩
+
+核外电子的 **磁矩** 包括轨道磁矩和自旋磁矩两部分，$\boldsymbol \mu_e=\boldsymbol \mu _l +\boldsymbol \mu_s$
+
+其中，轨道磁矩是电子围绕原子核运动产生的，则
+$$
+\mu_l=IS=\frac{1}{2}|e| vr=\frac{|e|}{2m}L
+$$
+其中 $L$ 为角动量。
+
+则：
+$$
+\boldsymbol \mu_l=-\frac{|e|}{2m}\boldsymbol L
+$$
+实验表明，设电子的自旋角动量为 $\boldsymbol S$，则：
+$$
+\boldsymbol \mu_s=-\frac{|e|}{m}\boldsymbol S
+$$
+
+$$
+\Rightarrow \boxed{\boldsymbol \mu_e= -\frac{|e|}{m}\left(\frac{\boldsymbol L}{2}+\boldsymbol S\right)}
+$$
+
+### 抗磁质与磁场的相互作用机制
+
+根据磁矩叉乘外加磁场为电子所受力矩，可以得到：
+$$
+\mathrm d \boldsymbol L=\boldsymbol M\mathrm d t=(\boldsymbol \mu_l\times \boldsymbol B_0)\mathrm d t=-\frac{e}{2m} (\boldsymbol L\times \boldsymbol B_0)\mathrm d t
+$$
+
+由于电子角动量在外加磁场中的 **进动** 效应，使得物质表现出抗磁性质。
+
+![image-20231029100613698](https://notes.sjtu.edu.cn/uploads/upload_68d8a37d540ea13ee1d954014914cb35.png)
+
+之后，电子的磁矩趋向一致，相邻环流抵消，呈现为大的环流电流，称为磁化电流，产生了磁场 $\boldsymbol B'$。
+
+### 抗磁质和顺磁质
+
+定义分子的磁矩 $\mu_m$ 为所有电子磁矩之和，
+$$
+\boldsymbol \mu_m =\sum_i \boldsymbol\mu_{ei}
+$$
+
+- $\mu_m=0$，则为抗磁物质。
+- $\mu_m\not=0$，则顺磁。
+
+## 磁化强度和磁化电流
+
+### 磁化强度矢量
+
+定义与宏观体元无关的磁化强度矢量：
+$$
+\boldsymbol M=\lim_{\Delta V \to 0} \frac{\sum_{\Delta V} \boldsymbol \mu_{mi}}{\Delta V}
+$$
+当无外加磁场，对于抗磁质和顺磁质 $M=0$.
+
+如果施加外部磁场：
+
+![image-20231026111221567](https://notes.sjtu.edu.cn/uploads/upload_bcc4bf335c19c785577349bc65bf8e72.png)
+
+### 磁化电流
+
+这里可以类比极化电荷。磁化电流和磁化强度矢量有关系，设 **介质表面的法线方向** 为 $\boldsymbol e_n$，则 **磁化电流线密度**：
+$$
+\boldsymbol \alpha'=\boldsymbol M\times \boldsymbol e_n\\\alpha=M\sin\varphi
+$$
+其中 $\varphi$ 是磁化强度矢量和法向量的夹角。
+
+> $e_n$ 的方向：
+>
+> - 从介质内指向介质外；
+> - 垂直于介质表面。
+
+磁化电流只有介质表面存在。
+
+## 介质中磁场的基本规律 
+
+在外加磁场 $\boldsymbol B_0$ 中，磁介质会出现磁化现象，磁化电流会在空间中产生磁场 $\boldsymbol B'$（类比于极化电荷能够产生电场）。根据磁场叠加原理，介质中任意一点的总磁场为：
+$$
+\boldsymbol B=\boldsymbol B_0 + \boldsymbol B'
+$$
+
+### 介质中磁场的高斯定理
+
+$$
+\oiint_S \boldsymbol B\cdot \mathrm d \boldsymbol S=0
+$$
+
+### 介质中磁场的安培环路定理
+
+$$
+\oint_L \boldsymbol B \cdot \mathrm d \boldsymbol l=\underbrace{\mu_0 \sum_{L内} I_0}_{传导电流}+\underbrace{\mu_0 \sum_{L内} I'}_{磁化电流}
+$$
+
+定义磁场强度矢量：
+$$
+\boldsymbol H=\frac{\boldsymbol B}{\mu_0}-\boldsymbol M
+$$
+其中：
+
+- $\boldsymbol M$ 为磁化强度，满足 $\boldsymbol M=\chi_m \boldsymbol H$.
+- $\boldsymbol B$ 为磁感应强度，$\boldsymbol  B=\mu_0 (\boldsymbol H+\boldsymbol M)=\mu_0 (1+\chi_m)\boldsymbol H$。
+- 定义 $\mu_r=1+\chi_m$，为相对磁导率。
+- 再定义 $\mu=\mu_0\mu_r$，可得 $\boldsymbol B=\mu \boldsymbol H$.
+
+$$
+\boxed{\int_l \boldsymbol H \cdot  \mathrm d  \boldsymbol l=\sum I_0}
+$$
+
+![image-20231029101856163](https://notes.sjtu.edu.cn/uploads/upload_de248e09763bff16a3b4ddb3061f587d.png)
+
+![image-20231029102127683](https://notes.sjtu.edu.cn/uploads/upload_7905769ba18a3000eeacebd8ac0bdabf.png)
+
+--------
+
+![image-20240107170029322](https://notes.sjtu.edu.cn/uploads/upload_46bc7f75e11d2b3119759581f435c0db.png)
+
+首先，求出电流线密度如图所示，可以看作长直螺线管（磁场分布为 $B=\mu_0 nI=\mu_0 \alpha$），根据电流线密度，可以求出内部磁场：
+$$
+B_1=\mu_0 \alpha = \mu_0 M
+$$
+之后，使用安培环路定理，得到：
+$$
+B_1 \Delta l-B_2\Delta l=\alpha \Delta l \cdot \mu_0
+$$
+因此，$B_2=B_3=0$.
+
+根据长直螺线管两端磁感应强度等于中间一半，可得 $B_6=B_5=\mu_0 M/2$. 4,7 也是一样的。
+
+也可以取安培环路，由于4,5的磁感应强度法向分量是连续的，可得：
+$$
+B\Delta l=\alpha \cdot \frac{1}{2} \Delta l \mu_0\Rightarrow B_4,B_5=\frac{1}{2} \mu_0M
+$$
+
+----------
+
+![image-20231029103150981](https://notes.sjtu.edu.cn/uploads/upload_b477acf46acafbf389e69d708f402ec6.png)
+
+
+
+(1) 判断哪里有电流？上下表面是没有的，只有侧面有，相当于侧面存在电流环流。
+
+(2) 
+
+侧面的电流：$I=\alpha' \cdot h=Mh$.
+
+对于 $B_1$ 由于毕奥萨伐尔定律：
+$$
+|\boldsymbol B|=\frac{\mu_0}{4\pi} \frac{I \cdot 2\pi a}{a^2}=\frac{\mu_0 hM}{2a}
+$$
+对于 $B_2,B_3$，由于连续性，也等于 $B_1$.
+
+再根据定义求 $H$：
+$$
+H_1=\frac{B_1}{\mu_0} - M=\frac{hM}{2a}-M\approx -M\\
+H_2=H_3=\frac{B_2\text{\ or \ }B_3}{\mu_0} = \frac{Mh}{2a}
+$$
+
+(3) 
+
+### 连续性
+
+$B$ 法向分量连续（取Gauss面）
+
+$H$ 切向分量连续（取安培环路）
+
+###  磁场能量
+
+$$
+w_m = \frac{1}{2} \boldsymbol B \cdot \boldsymbol H
+$$
+
+## 考试题
+
+### 2020
+
+![image-20231217155327991](https://notes.sjtu.edu.cn/uploads/upload_a8d1de58802b3c5c5d6a8445d7caaeec.png)
+
+如果令 $\theta$ 为当前半径和球面中心轴的夹角，则在 $\theta\to \theta+\mathrm d \theta$ 这一部分的球面，
+
+- 面积为 $2\pi R\sin \theta \cdot R \mathrm d \theta$. 因此带电量为 $\sigma 2\pi R\sin \theta \cdot R\mathrm d \theta$. 
+- 等效电流为 $\displaystyle I=\frac{q}{t}=\frac{\omega q}{2\pi }$
+- 距离轴线 $R\sin \theta$.
+
+因此这一部分球面产生了磁场：
+$$
+\mathrm d B=\frac{\mu_0}{4\pi} \frac{I\cdot 2\pi R\sin \theta}{R ^2}=\frac{\mu_0}{4\pi} \cdot \sigma \omega 2\pi R \sin ^3 \theta \mathrm d \theta\\=\frac{\mu_0}{2}\sigma \omega R\sin ^3 \theta\mathrm d \theta
+$$
+总的磁感应强度：
+$$
+B=\int_0^{\pi}\mathrm d B=\frac{2}{3}\mu_0 \sigma \omega R
+$$
+这一部分球面产生了磁矩：
+$$
+\mathrm d m=IS=\pi (R\sin \theta)^2 \cdot \frac{\omega q}{2\pi}=\pi \sigma  \omega R^4 \sin^3 \theta \mathrm d \theta
+$$
+
+$$
+m=\int_0^\pi \mathrm d m=\frac{4}{3}\pi \omega \sigma R^4
+$$
+
+![image-20231217161356593](https://notes.sjtu.edu.cn/uploads/upload_b11d68774e265c8c5a2915de6e7206b5.png)
+$$
+M=2\int_{R_1}^{R_2} B(r) \cdot I_2 \cdot \mathrm d r \times \frac{\sqrt 2}{2} r=2\int_{R_1}^{R_2} \frac{\mu_0 I_1 I_2}{2\sqrt{2}\pi}\mathrm d r\\
+=\frac{\sqrt{2} \mu_0 I_1I_2}{2\pi}(R_2-R_1)
+$$
+方向沿 $x$ 轴正方向。
+
+注意 $M=mB$ 的结论仅当磁场为匀强磁场的时候适用，其它时候还是要走定义。

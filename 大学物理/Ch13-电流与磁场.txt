@@ -1,0 +1,512 @@
+## 电流与电源
+
+在静电场中的导体内部**电场强度为零**，导体内的自由电子不受电场的作用，因此导体内的自由电子只有无规则的**热运动**。然而，如果在导体内部维持一个**电场强度不为零的电场**，导体内的自由电子将在电场的作用下**定向运动**，但考虑到自由电子的无规则热运动，电子的定向运动实际上是电子在电场强度的反方向上有统计意义的平均漂移，简称为**定向漂移运动**。这种定向漂移运动的宏观效果就是在导体内产生**电流**。
+
+如上分析，导体内出现电流的前提是在导体内有电场，而非零静电场是不能存在于导体内部的。当导体内的电流不随时间变化时，称为**稳恒电流**。稳恒电流的前提是导体内有不随时间变化的**稳恒电场**。当在导体两端维持一个**恒定的电势差**时，导体内部就会出现相应的稳恒电场，导体内就会有稳恒电流出现。因此说，**稳恒电流的前提是导体内有稳恒电场**。除此之外，必须有包括导体在内的闭合回路时，导体内才可能有真正的稳恒电流存在。这是因为，电子在稳恒电场中的运动是从电势低的地方到电势高的地方。如果没有闭合回路，电子会在导体电势高的一端形成积累，而另一端由于电子缺乏而等效地出现正电荷积累。这样，导体两端的电荷积累在导体内产生的电场与稳恒电场方向相反，使得导体内部的总电场越来越弱，电子的运动就不可能稳定，则电流就不可能不变。因此，要在导体内部维持稳恒电流，就必须消除导体两端的电荷积累，通过外力再**把电子从电势高的地方移动到电势低的地方**。稳恒电场担当不了这个角色，闭合回路中担当这个角色的装置称为**电源**。
+
+实际上，电源除了能够把电子从电势高的地方移动到电势低的地方外，还可以间接地起到维持导体两端电势差的作用。另外，因为稳恒电场和静电场都不能把电子从电势高的地方移动到电势低的地方，电源中需要有**非静电力的作用力**作用在电子上。这种力可以是机械的、化学的或磁的作用力。现实的电源有干电池、蓄电池、太阳能电池、燃料电池和发电机等，其中的非静电力也各不相同。
+
+### 电源的电动势
+
+设作用在载流子上的非静电力为 $\boldsymbol F_k$，则单位正电荷所受的力称为非静电场强度 $\boldsymbol E_k$，为：
+$$
+\boldsymbol E_k=\frac{\boldsymbol F_k}{q}
+$$
+其中 $q$ 为载流子带电量，电源的电动势定义为：
+$$
+\mathscr{E}=\int_{-}^{+} \boldsymbol{E}_{\mathrm{k}} \cdot \mathrm{d} \boldsymbol{l}
+$$
+式中积分上下限的正、负号代表电源的正、负极。则电源电动势的大小就是将 **单位正电荷从电源负极移到正极过程中电源中非静电力所做的功**。
+
+多个电源存在或者有非静电力的情况：
+$$
+\mathscr{E}=\oint_{l} \boldsymbol{E}_{\mathrm{k}} \cdot \mathrm{d} \boldsymbol{l}
+$$
+
+### 电流强度与电流密度的定义
+
+> 无法一一测量每个载流子的位置和运动方向，需要用一个宏观的量，衡量载流子的运动。
+
+通常用电流强度 $I$ 来描述导体中电流的强弱，即单位时间通过导体截面的电量称为导体内的电流强度，并规定正电荷的运动方向为电流的方向。若 $\mathrm d t$ 时间内，由于载流子的定向漂移，通过导体截面的电量为 $\mathrm d q$，则导体内的 **电流强度** 为
+$$
+I=\frac{\mathrm{d} q}{\mathrm{d} t}
+$$
+电流强度的单位为安培（$\mathrm A$）。对于稳恒电流，其电流强度与时间无关。
+
+> 电流强度只能反映通过导体某截面电流总的强弱，但它并不能反映导体内各点电流的 **空间分布情况**，包括电流的方向（或载流子运动方向）。
+
+对于大块导体，引入**电流密度** $j$ 这个物理量来描述电流的**空间分布性质**。要能反映电流的空间分布性质，电流密度必须是一个矢量，其方向**平行于相应空间点稳恒电场的方向**。同时，电流密度必须是空间位置的函数，在直角坐标系中可表示为 $\boldsymbol j=\boldsymbol j(x,y,z)$。导体内某空间点的电流密度的大小定义为单位时间内通过相应空间点附近垂直于电场方向的单位截面的电量，即
+$$
+j=\frac{\mathrm{d} q}{\mathrm{d} t \mathrm{d} S_{\perp}}=\frac{\mathrm{d} I}{\mathrm{d} S_{\perp}}
+$$
+$\mathrm d I$ 为通过垂直截面 $\mathrm d  S_{\perp}$ 的电流强度。电流密度的单位是 $\mathrm{A} \cdot \mathrm{m}^{-2}$. 电流密度矢量定义为：
+$$
+\boldsymbol{j}=\frac{\mathrm{d} I}{\mathrm{d} S_{\perp}} \boldsymbol{e}_{\mathrm{n}}
+$$
+其中 $\boldsymbol e_n$ 为垂直于电场方向的截面 $\mathrm d S_\perp$ 的法线方向的方向向量，也是相应空间点处的电场强度的方向。
+
+### 电流强度与电流密度的关系
+
+如果导体内部的电流密度矢量已知，则通过任意面元 $\mathrm d \boldsymbol S$ 的电流强度为：
+$$
+\mathrm d I=j\mathrm d S \cos\theta =\boldsymbol j \cdot \mathrm d \boldsymbol S
+$$
+通过任意曲面的电流强度：
+$$
+I=\iint_S \boldsymbol j\cdot\mathrm d \boldsymbol S
+$$
+
+### 电流连续性方程
+
+在电流场内取一闭合面 $S$，当有电荷从 $S$ 面流入和流出时，则 $S$ 面内的电荷相应发生变化。由电荷守恒定律，单位时间内由 $S$ 流出的净电量应等于 $S$ 内电量的减少。
+$$
+\oiint_{\mathrm{S}} \vec{j} \cdot \mathrm{d} \vec{S}=-\frac{\mathrm{d} q_{S 内}}{\mathrm{d} t}
+$$
+微分形式：$\displaystyle \nabla \boldsymbol j +\frac{\partial \rho}{\partial t}=0$.
+
+稳恒电流条件：$\displaystyle \oiint_S=0$.
+
+### 电流密度矢量与载流子的平均漂移速度
+
+设导体中每个载流子电量为 $q$，数密度为 $n$，漂移速度为 $v_d$，则电流密度大小为：
+$$
+j=\frac{\mathrm d q}{\mathrm d t \mathrm d S_\perp}=\frac{nq\mathrm d S_\perp \cdot v_d \mathrm d t}{\mathrm d t\mathrm d S_\perp}=nqv_d
+$$
+
+$$
+\boxed{\boldsymbol j=nq\boldsymbol v_d}
+$$
+
+由此可见，对于金属导体，因为 $q=-|e|<0$，电流密度 $\boldsymbol j$ 与电子的平均漂移速度 $v_d$ 的方向相反。
+
+电流强度：
+$$
+\boxed{I_{av}=\Delta Q/\Delta t=jA=nq v_d A}
+$$
+
+### 欧姆电导模型
+
+若载流子受电场力，则 $v_d \uparrow$，这样 $I_{av}\uparrow$，不可能有恒定电流，这里，我们研究加速运动的一段：
+$$
+v_f=v_i+(qE/m_e) t
+$$
+
+假设：
+
+- 碰撞后的运动轨迹，与上一次碰撞前的运动状态完全无关。
+- 碰撞过程会完全损失掉获得的电势能。$v_i=0$
+
+$$
+v_f=(qE/m_e)t, \overline{v_f}=v_d=(qE/2m_e)t
+$$
+
+定义 $\tau$ 为平均相邻的两次碰撞，则：
+$$
+J=nqv_d=(nq^2 E /2m_e)\tau
+$$
+导体的电导率：
+$$
+\gamma = \frac{ne^2\tau}{2m_e}
+$$
+和载流子的质量，电荷密度，平均相邻碰撞时间相关。
+
+则：
+$$
+J=\gamma E
+$$
+
+## 磁场的磁感应强度
+
+### 磁感应强度的定义
+
+规定磁场磁感应强度 $\boldsymbol{B}$ 的方向为磁场中各空间点处小磁针 $\mathrm{N}$ 极的指向，设磁场中运动电荷运动速度 $v$，受力的大小 $|\boldsymbol{F}|$，$\theta$ 为电荷运动方向与磁感应强度 $\boldsymbol{B}$ 的夹角。定义磁场的磁感应强度 $\boldsymbol{B}$ 的大小
+$$
+B=\frac{|\boldsymbol F|}{|q|v\sin\theta}
+$$
+磁感应强度 $\boldsymbol{B}$ 的单位称为特斯拉（Tesla），用 $\mathrm{T}$ 表示。特斯拉是导出单位，即 $1 \mathrm{T}=1 \mathrm{N} \cdot \mathrm{s} /(\mathrm{C} \cdot \mathrm{m})$。实际中通常还会用到另外一个单位，即高斯（$\mathrm{G}$），$1 \mathrm{G}=1 \times 10^{-4} \mathrm{T}$。地球表面附近的磁场磁感应强度大约为 $0.5 \mathrm{G}$。
+
+### 洛伦兹公式
+
+按照上述讨论，当带电粒子 $q$ 在磁场 $\boldsymbol{B}$ 中运动时受到的磁作用力为
+$$
+\boldsymbol F=q\boldsymbol v\times \boldsymbol B
+$$
+方向可由右手螺旋法则判定，上式称为 **洛伦兹磁力公式**。（顺着磁场线方向运动不受力）
+
+### 磁通量
+
+为了形象化地理解矢量场，通常借助场的可视化方法来描述场。对于磁场，可以用**磁感应强度线**（简称**磁力线**）来描述磁场的分布。与电场线的引入方法类似，磁感应强度线上任一点的**切线方向**和该点处的**磁感应强度方向**相同，并在线上用箭头标出，而空间某点处通过与磁感应强度垂直的单位面积的**磁力线的根数**（**穿入为负，穿出为正**）正比于该处**磁感应强度的大小**。
+
+通过任意曲面 $S$ 的磁通量为
+$$
+\Phi_{\mathrm{m}}=\iint_{S} \boldsymbol{B} \cdot \mathrm{d} \boldsymbol{S}
+$$
+在国际单位制中，磁通量的单位为导出单位 $\mathrm{T} \cdot \mathrm{m}^{2}$，称为韦伯，用 $\mathrm{Wb}$ 表示。
+
+## 毕奥-萨伐尔定律
+
+设 $\displaystyle \boldsymbol r$ 为电流元指向 $P$ 点的矢量，任意线电流分布 $L$ 在空间 $P$ 点处的磁感应强度为
+$$
+\boldsymbol{B}=\int \mathrm{d} \boldsymbol{B}=\frac{\mu_{0}}{4 \pi} \int_{L} \frac{I \mathrm{~d} \boldsymbol{l} \times \boldsymbol{r}}{r^{3}}=\frac{\mu_{0}}{4 \pi} \int_{L} \frac{I \mathrm{~d} l \sin\theta}{r^{2}}
+$$
+式中 $k_{\mathrm{m}}$ 为比例系数，与空间介质的磁性质有关。在国际单位制中，对于真空来讲，通常取比例系数 $\displaystyle k_{\mathrm{m}}=\frac{\mu_{0}}{4 \pi}=1 \times 10^{-7} \mathrm{~T} \cdot \mathrm{m} / \mathrm{A}$，其中 $\mu_{0}=4 \pi \times 10^{-7} \mathrm{~T} \cdot \mathrm{m} / \mathrm{A}$ 称为真空磁导率。
+
+电流元可以这么理解：
+$$
+I\mathrm d \boldsymbol l = S(nq_ev_d) \mathrm d \boldsymbol l=S(nq_e\boldsymbol v_d)\mathrm d l=n(S\mathrm d l)q_e\boldsymbol v_d=\boldsymbol v_d \mathrm d q
+$$
+其实是一个运动速度为 $\boldsymbol v_d$ 的电流元 $\mathrm d q$.
+
+### 常见电流分布的空间磁场
+
+#### 总结
+
+载流直导线的磁场：$\displaystyle B=\frac{\mu_{0} I}{4 \pi d}\left(\cos \theta_{1}-\cos \theta_{2}\right)$
+
+圆环形电流在轴线上的磁场：$\displaystyle \frac{\mu_0 IR^2}{2(R^2+z^2)^{3/2}}$，当 $z=0$，得到 $\displaystyle \frac{\mu_0 I}{2R}$.
+
+圆弧形电流在圆心处的磁场：$\displaystyle \frac{\mu_0 I}{2R} \frac{\theta}{2\pi}$.
+
+密绕螺线管轴线上的磁场：$\displaystyle \frac{\mu_0 nI}{2}(\cos \beta_2-\beta_1)$，当无限长，变为  $\mu_0 nI$.
+
+#### 直线电流
+
+![img](https://notes.sjtu.edu.cn/uploads/upload_fa387e95cbbc448f0ce465a1e79f19cb.png)
+$$
+B=\frac{\mu_0}{4\pi}\int \frac{I\mathrm d z\sin\theta}{r^2}=\frac{\mu_0}{4\pi} \int_{\theta_1}^{\theta_2} \frac{I\sin\theta}{
+(d/\sin\theta)^2}\cdot \frac{d}
+{\sin^2\theta} \mathrm d \theta=\frac{\mu_0 I}{4\pi d} \int_{\theta_1}^{\theta_2} \sin\theta \mathrm d \theta=\frac{\mu_{0} I}{4 \pi d}\left(\cos \theta_{1}-\cos \theta_{2}\right)
+$$
+对于无限长的载流直导线，即 $\theta_1 \to 0,\theta_2 \to \pi$，得到：
+$$
+B= \frac{\mu_0 I}{2\pi d}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_15a6ddac3d3c59a4154573f1807d0a06.png" alt="image-20231015130507782" style="zoom:33%;" />
+
+#### 载流圆线圈上
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_cc2d479f87ab01a3ac2543a08e968bfe.png" alt="image-20231015130859317" style="zoom:33%;" />
+$$
+\begin{aligned}
+B &= \int \mathrm d  B_z \\
+&= \frac{\mu_0 I}{4\pi} \int \frac{\mathrm d l\sin\alpha}{r^2}\\
+&= \frac{\mu_0 I}{4\pi r^2} \sin \alpha \int_0^{2\pi R}\mathrm d l\\
+&= \frac{\mu_0 IR^2}{2(R^2+z^2)^{3/2}}
+\end{aligned}
+$$
+当 $z=0$ 时，得到圆心处 $B=\mu_0 I/2R$.
+
+当 $r\gg R,z \gg R$ 时，
+$$
+B\approx \frac{\mu_0 IR^2}{2z^3}
+$$
+定义磁矩：$\boldsymbol m=NIS \boldsymbol e_n=N \pi R^2 I \boldsymbol e_n$，则：
+$$
+\boldsymbol B =  \frac{\mu_0 \boldsymbol m}{2\pi z^3}
+$$
+给出了磁场强度和磁矩的关系。
+
+和电偶极子 $\boldsymbol p=q\boldsymbol l$ 在轴线上的电场强度 $\displaystyle \boldsymbol E=\frac{\boldsymbol p}{2\pi \varepsilon _0 r^3}$ 相似。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c4f145f366363b7d4965aecda1745e01.png" alt="image-20231015131602455" style="zoom:33%;" />
+
+#### 载流直螺线管
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_464520b4a60b23d80adb0e1550d746a0.png" alt="image-20231015131751517" style="zoom:33%;" />
+
+对于无限长的情况，$\beta_2 \to 0$，$\beta_1 \to \pi$，则，$B=\mu_0 nI$. 外部 $B=0$.
+
+对于半无限长的情况，$\beta_1 \to \frac{\pi}{2},\beta_2 \to 0$，则 $B=\mu_0 nI/2$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_28edf8be1689293b295953fbf538aaab.png" alt="image-20231015132011014" style="zoom:33%;" />
+
+有限长螺线管两端的电场强度，是中间的一半。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_20ce5142bb800bfe717045f8bc787214.png" alt="image-20231015142809842" style="zoom:33%;" />
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3dfd4dc23ef134115534d20dfcfed279.png" alt="image-20231015142814688" style="zoom:33%;" />
+
+#### 运动电荷产生的磁场
+
+$$
+\boldsymbol B = \frac{\mu_0}{4\pi} \frac{q\boldsymbol  v \times \boldsymbol r}{r^3}
+$$
+
+## 磁场中的定理
+
+### 高斯定理
+
+$$
+\oiint_S \boldsymbol B \cdot \mathrm d \boldsymbol S=0 \quad v.s. \quad \oiint \boldsymbol D\cdot\mathrm d \boldsymbol S=\sum q_i
+$$
+
+原因是磁感应线是闭合的，在曲面一侧穿入，必然在曲面另一侧穿出。$\boldsymbol B$ 无头无尾。
+
+磁场与电场不同等的原因：自然界无磁单极。
+
+### 安培环路定理
+
+$$
+\oint_L \boldsymbol E\cdot\mathrm d \boldsymbol l =0 \quad v.s. \quad \oint_L \boldsymbol B\cdot\mathrm d \boldsymbol l=\mu_0 \sum I_i
+$$
+
+证明：
+
+- 一根导线、环路取圆的情况：$\displaystyle \oint_L \boldsymbol B\cdot\mathrm d \boldsymbol l=\mu_0 I$.
+
+- 一根导线、环路在垂直于导线平面取任意回路的情况：
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_5798235f36603df8a408d68becafa370.png" alt="image-20231015144409081" style="zoom:33%;" />
+
+注意到图中，$\boldsymbol B\cdot \mathrm d \boldsymbol l=B\mathrm d l\cos \theta$，$\cos\theta \mathrm d l$ 恰好等于投影到圆周上的一段线段（紫色的方向），长度等于 $r\mathrm d \varphi$，则：
+$$
+\oint_L \boldsymbol B\cdot \mathrm d \boldsymbol l =\oint_LB \cos\theta  \mathrm d l=\oint_L Br\mathrm d \varphi = \frac{\mu_0I}{2\pi r} \int_0^{2\pi}\mathrm d \varphi=\mu_0 I
+$$
+
+- 若闭合曲线不在垂直于导线的平面内，投影即可：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c4d5775e1d81bdb9043656a19a8bdcfd.png" alt="image-20231015144817407" style="zoom:33%;" />
+
+- 若环路不包围电流，则积分结果为零。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_09a48c97448ce3537cb0cfa26683bdbd.png" alt="image-20231015144916541" style="zoom:33%;" />
+
+从而，得到 **安培环路定理**，表述为：稳恒电流的产生的磁感应强度沿任何闭合回路的线积分，等于穿过这回路的所有电流强度代数和的 $\mu_0$ 倍。
+$$
+\boxed{\displaystyle \oint_L \boldsymbol B\cdot\mathrm d \boldsymbol l=\mu_0 \sum I_i}
+$$
+用右手螺旋定则确定回路包围电流的正负：如果穿过回路的电流与回路绕向成右旋关系，规定电流强度为正；反之为负。
+
+### 安培环路定理的应用
+
+做题步骤：
+
+1. 分析磁场的对称性：同心圆上磁感应强度相等。
+
+   无限长直线电流、均匀圆柱面电流、均匀圆柱电流；
+
+   无限长密绕螺线管；无限大载流平面。
+
+2. 根据磁场的对称性，选择安培环路，使得环路上磁感应强度大小恒等。
+
+3. 有时还可以灵活运用叠加原理和补偿法，这里叠加原理注意是矢量叠加。
+
+#### 无限长圆柱面电流
+
+$$
+\oint_l \boldsymbol B \cdot \mathrm d \boldsymbol l = B \cdot 2\pi r = \mu_0 I
+$$
+
+（只有面上有电流）
+$$
+B=\left\{
+\begin{aligned}
+&\frac{\mu_0 I}{2\pi r}&, r>R\\
+&0&, r<R
+\end{aligned}
+\right.
+$$
+
+#### 无限长圆柱体电流
+
+当 $r<R$ 时，情况有所不同：
+$$
+\oint_l \boldsymbol B \cdot \mathrm d \boldsymbol l = B \cdot 2\pi r = \mu_0 I \cdot \frac{\pi r^2}{\pi R^2}
+$$
+
+$$
+B=\left\{
+\begin{aligned}
+&\frac{\mu_0 I}{2\pi r}&, r>R\\
+&\frac{\mu_0 I r}{2\pi R^2}&, r<R
+\end{aligned}
+\right.
+$$
+
+如果使用电流密度 $j=I/\pi R^2$。则式子更简洁，为 $\mu_0 jr/2$.
+
+#### 螺线管
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7eb4d62fedc5029a63e6408cc638abca.png" alt="image-20231017112834868" style="zoom:33%;" />
+
+螺线管内 $B$ 恒等，而管外无磁场强度，因此，选择矩形的安培环路。
+$$
+B \cdot MN=\mu_0 n \cdot MN\cdot I
+$$
+其中 $n$ 为螺线线密度，等于 $N/L$，因此：
+$$
+B=\mu_0 n I=\mu_0 NI/L
+$$
+
+#### 螺绕环
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c8c5138d818f91319fe52a0e66fc1895.png" alt="image-20231017113232391" style="zoom:33%;" />
+
+环内：
+$$
+\oint_l \boldsymbol B \cdot \mathrm d \boldsymbol l = B \cdot 2\pi R=\mu_0 NI
+$$
+因此，
+$$
+B=\frac{\mu_0 NI}{2\pi R}=\mu_0 nI
+$$
+和；螺线管的结论一样。
+
+环外（不管是里面还是外面）$B=0$.
+
+####  无限大均匀平面电流
+
+给出电流线密度 $\alpha$，线密度的定义，是在 $\mathrm d l$ 的长度里面，电流量为 $\alpha \mathrm d l$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_2899ef187bebcbbbe0054bb13b89f48c.png" alt="image-20231017115235920" style="zoom:33%;" />
+
+分析磁场强度的分布：
+
+1. 由于对称处磁场强度的 $y$ 分量相互抵消，因此上下部分磁场强度都平行于平面。
+2. 因为平面无限大，所以上方距离平面相等的地方，磁场强度恒等。
+3. 根据对称性，下方磁场强度和上方磁场强度相反。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_2edb3eb7627136a51c48440832c2ba40.png" alt="image-20231017115411901" style="zoom:33%;" />
+
+因此，可以取如图的安培环路，ad, cb 对积分贡献为零，而 cd, ab 相等：
+$$
+2\int_{l_1} \boldsymbol B\cdot\mathrm d \boldsymbol l_1=\mu_0 \alpha \boldsymbol l_1
+$$
+推出：
+$$
+B=\frac{\mu_0\alpha}{2}
+$$
+也就是，上下磁场强度均匀，方向相反。如果上面再放一个电流方向相反的，就类似于平行板电容器，中间 $B=\mu\alpha$，外面 $B=0$.
+
+#### 叠加原理的应用
+
+堂测: 通电导体的形状是：在一半径为R的无限长的导体圆柱内，在距柱轴为 d 远处，沿轴线方向挖去一个半径为 r 的无限长小圆柱，电流密度为 $j$。如图。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_fed36bbff18f6b63998c709683825e83.png" alt="image-20231017120003045" style="zoom:25%;" />
+$$
+B=\frac{\mu_0}{2} j \times \boldsymbol r_1+\frac{\mu_0}{2} (-j)\times \boldsymbol r_2=\frac{\mu_0}{2}j(\boldsymbol  r_1-\boldsymbol r_2)=\frac{\mu_0}{2} j d
+$$
+因此，内部为均匀场。类比于一个带电球里面挖掉一个小球。
+
+## 磁场对载流导线的作用
+
+利用洛伦兹公式：$\boldsymbol f=q\boldsymbol v\times \boldsymbol B$. 在长度为 $\mathrm d l$，截面积为 $S$，电子数密度为 $n$ 的导线中，电子总数为 $nS \mathrm d l$.
+
+因此，作用在电流元上的作用力为：
+$$
+\mathrm d \boldsymbol F=(nS\mathrm d l) \boldsymbol f= nS\mathrm d l(q\boldsymbol v \times \boldsymbol B)=nS\mathrm d \boldsymbol l(qv \times \boldsymbol B)
+$$
+利用电流强度的表达式 $I=qnvS$，可得：
+$$
+\mathrm d \boldsymbol F=I\mathrm d \boldsymbol l\times \boldsymbol B
+$$
+因此，磁场对载流导线的作用力：
+$$
+\boxed{\boldsymbol F=\int_L I\mathrm d \boldsymbol l\times \boldsymbol B}
+$$
+若是直导线，$\mathrm d \boldsymbol l$ 方向不变——$\boxed{\boldsymbol F=I\boldsymbol L \times \boldsymbol B}$.
+
+------------
+
+如图，无限长载流导线通过电流 $I_1$，还有一长为 $L$ 的导线通过电流 $I_2$，和水平方向夹角为 $\alpha$，求其受力。
+
+![image-20231019100511520](https://notes.sjtu.edu.cn/uploads/upload_81eb5da06fe5ab2ffe2c9a5705d4cf26.png)
+
+首先，按照如图建立坐标系，求 $x$ 处磁场强度：
+$$
+2\pi xB(x)=\mu_0 I_1 \Rightarrow B(x)=\frac{\mu_0 I_1}{2\pi x}
+$$
+然后
+$$
+F=\int_L I\mathrm d l \times B=\int_L I_2 \mathrm d x/\cos \alpha \cdot \frac{\mu_0 I_1}{2\pi x}\\
+=\frac{\mu_0 I_1I_2}{2\pi \cos \alpha }\int_r^{r+L\cos \alpha} \frac{\mathrm d  x}{x}=\frac{\mu_0 I_1I_2}{2\pi\cos \alpha} \ln \frac{r+L\cos \alpha}{r}
+$$
+方向垂直于导线。
+
+--------------
+
+线圈半径为 $R$，电流为 $I$，在均匀磁场 $B$ 中，求受到张力。
+
+![image-20231019101721043](https://notes.sjtu.edu.cn/uploads/upload_c604ef28000181002a2b6265e39c853e.png)
+
+右半线圈受到磁场力：
+$$
+\boldsymbol F=\int_{-\pi/2}^{\pi/2} I \mathrm d  l \times B=\int_{-\pi/2}^{\pi/2} I R \mathrm d  \theta \times B =IRB \int_{-\pi/2}^{\pi/2} \cos \theta \boldsymbol i +\sin\theta \boldsymbol j=2IRB \boldsymbol i
+$$
+因此 $T_1=T_2=IRB$.
+
+-----
+
+![image-20231019103005961](https://notes.sjtu.edu.cn/uploads/upload_6782b4530cbcd01d58ae99bfbcd25d40.png)
+
+外加磁场：$(B_1+B_2)/2$，产生的磁场：$(B_1-B_2)/2=\mu_0 \alpha/2$，因此，
+$$
+\alpha=\frac{B_1-B_2}{\mu_0}
+$$
+也可以取宽度为 $l$ 的小矩形环路：$B_1 l -B_2 l =\mu_0 \alpha l$.
+
+方向朝外，磁压强的定义：
+$$
+p=\frac{\mathrm d f}{\mathrm d l_1 \mathrm d  l_2}=\frac{\alpha \mathrm d l_1 \mathrm d l_2 \times \boldsymbol B_0}{\mathrm d l_1 \mathrm d  l_2}=\frac{1}{2\mu_0}(B_1^2-B_2^2)
+$$
+
+### 载流线圈受到的磁力矩
+
+![image-20231019103906368](https://notes.sjtu.edu.cn/uploads/upload_c11d9c5a25a73f9e3bfcdb7663ddf58f.png)
+
+如图，$F_3=BIl_1 \sin (\pi-\theta)=BIl_1\sin\theta$. $F_3=F_4$
+
+$F_1=F_2=BIl_2$.
+
+因此磁力矩：
+$$
+M=F_1l_1 \cos \theta = F_1l_1 \sin\varphi=BIl_1l_2 \sin\varphi=BIS \sin\varphi
+$$
+其中 $\varphi$ 为线圈法向量与 $B$ 的夹角。令磁矩：
+$$
+\boldsymbol m=NIS\boldsymbol n=NI\boldsymbol S
+$$
+则
+$$
+\boldsymbol M=\boldsymbol m\times \boldsymbol B
+$$
+对于 **不规则线圈**，总力矩：
+$$
+\boldsymbol M=\int \mathrm d \boldsymbol M=\int \mathrm d \boldsymbol m \times \boldsymbol B=\left(\int I\mathrm d S \boldsymbol n\right) \times \boldsymbol B=(IS\boldsymbol n) \times \boldsymbol B=\boldsymbol m\times \boldsymbol B
+$$
+因此，适用于任意形状的载流线圈。
+
+### 磁力的功
+
+**磁力对运动载流导线做的功**
+$$
+A=F\Delta x= BIL\Delta x=BI\Delta S =I\Delta \Phi_m
+$$
+**载流线圈在磁场中转动时磁力矩的功**
+$$
+\mathrm d A=-BIS\sin \varphi \mathrm d \varphi
+$$
+
+$$
+\mathrm d A=IBS\mathrm d (\cos \varphi)=I\mathrm d (BS\cos \varphi)=I\mathrm d \Phi_m
+$$
+
+所以 $A=I\Delta \Phi_m$.
+
+## 霍尔效应
+
+![image-20231019112335299](https://notes.sjtu.edu.cn/uploads/upload_f7902d9c2087249f233a41db883b814d.png)
+$$
+F_m=qvB, F_e=qE, F_e=F_m \Rightarrow E=vB,U=Eb=vBb
+$$
+而：$I=qnvS=qnvbd$，得到 $v=I/(qnbd)$，因此：
+$$
+U_H=\frac{1}{qn}\frac{IB}{d}
+$$
+因此定义霍尔系数 $\displaystyle R_H=\frac{1}{qn}$，霍尔电势差：
+$$
+U_H=R_H\frac{IB}{d}
+$$
+测量弱磁场比较好用，还可以通过确定霍尔系数知道载流子类型和载流子浓度。
+
+![image-20231019113044876](https://notes.sjtu.edu.cn/uploads/upload_fa19eda4a750cb0f81ed8f52cc1479f4.png)

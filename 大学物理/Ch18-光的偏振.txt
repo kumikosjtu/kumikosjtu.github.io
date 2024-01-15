@@ -1,0 +1,267 @@
+## 光学发展的历史
+
+**进入说**——古希腊哲学者认为，产生视觉的基本前提是，物体与眼睛之间必须有某种物理接触。进入说（intromission theory）表明，从物体表面蜕出的原子尺寸厚度的影像（eidola），持续地移动经过附近空间，进入眼睛内，成为视像。
+
+**光是一种微粒**——1704年，牛顿在著作《光学》里，详细阐述光微粒说。他认为光是由非常奥妙的微粒组成，遵守运动定律。这可以合理解释光的直线移动和反射性质。对于光的折射与衍射性质，牛顿用以太来解释。他认为以太是一种弥漫于空间与物体之中、能够快速传播振动的弹性介质，光与以太会互相作用，当光被物质吸收时，附近的以太会被振动，形成热。
+
+![image-20231128082119647](https://notes.sjtu.edu.cn/uploads/upload_ebce045fc494736f51527c2debaf130a.png)
+
+**光的波动说**——惠更斯：在波前的任何一点可以看为一个新的光源
+
+**光是电磁波**——麦克斯韦发现自生电磁波会以恒定速度传播，而且这个速度恰好等于光速。正是从这一点出发，麦克斯韦得出了光是一种电磁波的结论。20多年后，赫兹用实验证实了电磁波的存在，测得电磁波的传播速度的确与光速相同，同时电磁波也能够产生反射、折射、干涉、衍射、偏振等现象，从实验中证明了光是一种电磁波。
+
+**光电效应实验**——
+
+1．每一种金属在产生光电效应时都存在一极限频率（或称截止频率），即照射光的频率不能低于某一临界值。当入射光的频率低于极限频率时，无论多强的光都无法使电子逸出。
+
+2．光电效应中产生的光电子的能量与光的频率有关，而与光强无关。
+
+3．光电效应的瞬时性。实验发现，即几乎在照到金属时立即产生光电流。响应时间不超过十的负九次方秒（1ns）。
+
+无法用波动说解释。
+
+**光的粒子性** $E=hf$.
+
+**光的波粒二象性** 德布罗意物质波：
+$$
+f=\frac{E}{h}(频率和能量的关系)\quad \\\lambda =\frac{h}{p}=\frac{h}{mv}(波长和动量的关系)
+$$
+薛定谔方程：
+$$
+i\hbar \frac{\partial}{\partial t} \Psi(r,t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(r,t)+V(r)\Psi(r,t).
+$$
+即能量守恒。
+
+## 偏振光和自然光
+
+>Q: 为什么主要研究光矢量 $\boldsymbol E$？还使用光矢量 $\boldsymbol E$ 的振动状态来表现光的状态？
+>
+>光在物质中传播，电磁波作用在其中的一个电子上的洛伦兹力与电场力的比值为：
+>$$
+>\frac{f_m}{f_e}\sim \frac{evB}{eE}=\frac{v}{c}\ll 1
+>$$
+>因此，主要作用的是 $\boldsymbol E$ 矢量。磁场分量 $\boldsymbol B$ 较弱，一般不和物质作用。
+>
+>p.s. 光是横波，光的振动方向和传播方向垂直。
+
+### 线偏振光
+
+光矢量保持在一固定平面上，光矢量端点的轨迹为直线，即光矢量只沿着一个确定的方向振动，称为 **线偏振光**。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b78c6f2f30a8c82a4603f5b5bac1500f.png" alt="image-20231203211201129" style="zoom:50%;" />
+
+### 椭圆光和圆偏振光
+
+产生的原因：考虑两个偏振光叠加：
+$$
+\boldsymbol E_1=\boldsymbol j E_y \cos (kx-\omega t)\\
+\boldsymbol E_2=\boldsymbol k E_z\cos (kx-\omega t -90^\circ)
+$$
+![image-20231128090900717](https://notes.sjtu.edu.cn/uploads/upload_90f4625a878dcede0efd44d8b1b959de.png)
+
+方向的判断：迎着光传播的方向，如果光矢量的旋转方向做顺时针运动，则称为右旋偏振光，如果做逆时针运动，则称为左旋偏振光。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_94e7731720bd5b29be4a6079db0a8c09.png" alt="image-20231203230336137" style="zoom:50%;" />
+
+取两个相互垂直、同频率、相位差确定的线偏振光叠加，相位差 $\Delta \varphi$ 对合成结果的影响：
+
+- $\Delta \varphi = \pm \pi/2$ 为圆偏振光。
+- $\Delta\varphi = 0,\pi$ 为线偏振光。
+- 其它情况，为椭圆偏振光。
+
+###  自然光
+
+**自然光** 是不同频率，不同偏振方向的偏振光的叠加。
+
+Why? 一个原子或者分子在先后发射的两次波列之间，在相位和振动方向上的都是各自独立的，两次发光之间的时间间隔也是随机的。
+
+![image-20231203232716796](https://notes.sjtu.edu.cn/uploads/upload_3aa5a1b5e9b78a62cda753e2150260fb.png)
+
+### 部分偏振光
+
+部分偏振光可以看成是线偏振光、椭圆偏振光、圆偏振光和自然光的混合光。
+
+![image-20231203232724597](https://notes.sjtu.edu.cn/uploads/upload_aa6f7bac20beff9f02e97331dda071c6.png)
+
+## 偏振片、马吕斯定律
+
+> Q：为什么需要偏振光？
+>
+> Q: 怎么获得偏振光？怎么将自然光沿着某一方向振动的成分去除而留下其它特定成分？
+>
+> 获得线偏振光的常用方法
+>
+> 1. 利用物质的二向色性制成偏振片(器)
+>
+>    二向色性 : 某些物质能吸收某一方向的光振动 , 而只让与这个方向垂直的光振动通过，这种性质称二向色性 。
+>
+> 2. 利用反射光和折射光的偏振来产生（反射或玻璃片堆）
+>
+> 3. 利用各向异性晶体的双折射特性制成偏振棱镜
+>
+> Q: 怎么确定一束光是否为偏振光？
+>
+> 通过旋转偏振片，观察输出光强的变化。
+>
+> - 部分偏振光：光强最暗，不会全黑。
+>- 偏振光：存在一个角度全黑。
+
+--------
+
+**马吕斯定理** 线偏振光可以沿着与光传播方向垂直的任意方向上分解成两束振动方向相互垂直、同相位（或相位差为 $\pi$）的线偏振光。
+
+若强度为 $I_1$ 的线偏振光，方向和检偏器夹角为 $\alpha$，则透过检偏器后，透射光的强度为 $I_2=I_1\cos ^2\alpha$. 可能还有损失 $\gamma$，此时可以表示为 $I_2=\gamma I_1\cos ^2 \alpha$.
+
+一束光是自然光和线偏振光的混合光，当它垂直通过一偏振片后，随着偏振片的偏振化方向取向的不同，出射光强度可以变化 5 倍。问：入射光中自然光与线偏振光的强度各占入射光强度的百分比为多少？
+
+设两部分强度分别为 $I_1,I_2$，则：
+$$
+I=\frac{1}{2}I_1+I_2 \cos^2\alpha \in \left[\frac{1}{2}I_1,\frac{1}{2}I_1+I_2\right]
+$$
+因此，$I_2=2I_1$.
+
+## 反射光和折射光的偏振
+
+**部分偏振现象** 是由实验发现的，当自然光在两种介质的分界面上折射和反射时，反射光和折射光将都是部分偏振光：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_681789c715857436e8af3b0fd28c336c.png" alt="image-20231203233829535" style="zoom: 50%;" />
+
+布儒斯特发现，当反射光和折射光之间的夹角恰好为 $\pi/2$ 时，出射光完全为线偏振光。利用几何条件和折射定律 $n_1\sin\theta_B=n_2 \sin \gamma$，有：
+
+$$
+\tan \theta_B=\frac{n_2}{n_1} \quad \theta _B=\arctan \frac{n_2}{n_1}
+$$
+因此，可以选择对应的 $\theta_B$，来使得反射光为线偏振光。
+
+然而此时反射光光强较弱，折射光光强较强，为了产生较强的反射线偏振光，采用多层玻璃片叠加增大反射光光强。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3361d3f99cb1d505ac457dae3c9e9a19.png" alt="image-20231203234019438" style="zoom:50%;" />
+
+## 光的双折射
+
+> Q: 什么是 **双折射现象**？
+>
+> 对于各向异性晶体，一束光射入晶体后，可以观察到有两束折射光的现象。
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_d2391e7b717feb5a69b97d0a0392da4b.png" alt="image-20231203234532971" style="zoom: 67%;" />
+>
+> 产生服从通常折射定律的 o 光和不服从折射定律的 e 光，实验发现 o 光和 e 光偏振方向垂直，之后可以解释原理。
+>
+> ![image-20231217154806245](https://notes.sjtu.edu.cn/uploads/upload_78982c0a2f384c0706398aaf5c89e819.png)
+
+**光轴**：当光在晶体内沿某个特殊方向传播时不发生双折射(只有一条光线出来)，看起来和普通晶体一样，该方向称为晶体的光轴。
+
+**主平面**：光线和光轴所共处的平面，称为光线的主平面。只有当光线沿着光轴方向时，主平面才不唯一。
+
+**光线偏振方向和主平面的关系**：o 光偏振方向垂直于主平面，e 光偏振方向平行于主平面。
+
+**为什么会出现双折射现象**：晶体结构的各向异性，光线在晶体中传播速度的大小和光矢量与光轴之间的相对取向密切相关。
+
+**惠更斯原理对双折射现象的解释**：首先，根据晶体结构的各向异性，可以求出 o 光和 e 光的波阵面：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_498afe7fdefd915905fce7320fbea968.png" alt="image-20231204000033236" style="zoom:50%;" />
+
+大前提：**当光线平行于光轴入射**：
+
+入射光 $A$（线偏振）被分开为两束互相垂直的线偏振光 $A_o,A_e$：
+$$
+A_e=A\cos \alpha,A_o=A\sin \alpha
+$$
+
+$$
+\Delta \varphi=\varphi_e-\varphi_o\\=\left[\omega  \left(t-\frac{d}{u_e}\right)+\varphi_0\right]-\left[\omega  \left(t-\frac{d}{u_o}\right)+\varphi_0\right]\\
+= \omega \frac{d}{u_o}-\omega \frac{d}{u_e}=\omega \left(\frac{d}{c/n_o}-\frac{d}{c/n_e}\right)\\
+=\frac{2\pi}{\lambda}(n_od-n_ed)
+$$
+
+利用波矢，可以得出出射后在任意一处相遇 $o,e$ 光之间的相位差和光程差：
+$$
+\boxed{\delta = (n_o-n_e)d\quad \Delta \varphi=k\delta=\frac{2\pi}{\lambda} \delta}
+$$
+讨论：
+$$
+\Delta \varphi = \frac{2\pi}{\lambda}(n_o-n_e)d
+$$
+**四分之一波片/$\boldsymbol{\lambda/4}$ 波片**，将线偏振光变为正椭圆偏振光。将正椭圆偏振光变为线偏振光。
+
+**二分之一波片/$\boldsymbol{\lambda/2}$ 波片**。
+
+- 线偏振光通过 $\lambda/2$ 波片后仍为线偏振光，但振动方向与原振动方向相比转过 $2\alpha$ 角。（镜像对称）
+- 可以让圆偏振光左/右旋方向相反。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_85dfdb1dcc4fa63b6dca3f93503c41b0.png" alt="image-20231130111925782" style="zoom: 25%;" />
+
+圆偏振光的产生。
+
+----
+
+![image-20231205084121804](https://notes.sjtu.edu.cn/uploads/upload_9a2835b28ce67f3ac21fa1e6688363c7.png)
+
+问题：光学系统为自然光源、偏振片 $P_1$，1/4 波片，偏振片 $P_2$，波片的光轴与 $P_1$ 的偏振化方向之间成 $30^\circ$ 角，入射的单色自然光光强为 $I_0$，若旋转 $P_2$，当其偏振化方向与光轴平行时，经过 $P_2$ 的光强为：
+$$
+\frac{1}{2}I_0\cdot \cos^2 30^\circ=\frac{3}{8}I_0
+$$
+当其偏振化方向与光轴垂直时，经过 $P_2$ 的光强为：
+$$
+\frac{1}{2}I_0 \cdot \cos ^2 60^\circ = \frac{1}{8}I_0
+$$
+当 $P_2$ 平行于 $P_1$ 偏振化方向时，既存在 $A_{o1}$ 分量，也存在 $A_{e1}$ 分量，因此：
+$$
+\cos^2 30^\circ \cdot \frac{3}{8}I_0+\cos^2 60^\circ \cdot \frac{1}{8}I_0=\frac{5}{16}I_0
+$$
+
+-------
+
+![image-20240108091735774](https://notes.sjtu.edu.cn/uploads/upload_1cfb9571a9dfdc1d20511d5b3bc863e2.png)
+
+自然光穿过第一个偏振片之后，形成 $\displaystyle E_1=\frac{\sqrt 2}{2} E_0$ 的线偏振光。进而：
+$$
+E_{2o}=E_1 \sin \alpha \quad E_{2e}=E_1 \cos \alpha
+$$
+穿过第二块偏振片：
+$$
+E_{3o}=E_1 \sin \alpha \cos \alpha \quad E_{3e}=E_1 \sin \alpha \cos \alpha
+$$
+它们之间的相位差：
+$$
+\delta=(n_o-n_e)l+\frac{\lambda}{2}\\
+\Rightarrow \Delta \varphi=\frac{2\pi}{\lambda}(n_o-n_e)l+\pi
+$$
+因此两束光的合成振幅大小为：
+$$
+E=\sqrt{E_{3o}^2+E_{3e}^2+2E_{3o}E_{3e}\cos \Delta \varphi}\\=2E\cos \frac{\Delta \varphi}{2}=\cdots
+$$
+
+
+## 偏振光的获得与检验
+
+- 当线偏振光经过四分之一波片后，形成椭圆或圆偏振光。
+- 当线偏振光经过二分之一波片后，振动方向转过 $2\alpha$ 角度。
+- ![image-20231204090219976](https://notes.sjtu.edu.cn/uploads/upload_36f49a800a10d5f223289b5d88af82a1.png)
+
+- 自然光通过波片之后仍为自然光。因为自然光无确定相位和偏振关系。
+
+![image-20231204090536181](https://notes.sjtu.edu.cn/uploads/upload_a8a1fa7cab812f3e2494359d26619542.png)
+
+设计：$P_1,P_2$ 偏振化方向相同，波片光轴和 $P_1,P_2$ 方向成 45 度。
+
+因为线偏振光经过 1/2 波片时，转过 $2\alpha$ 角度，所以如果波片对于某一频率的光来说恰好为 1/2 波片，输出将会全被吸收。此时这样的光的波长满足：
+$$
+\frac{2\pi}{\lambda}(n_o-n_e)d=(2k+1)\pi
+$$
+
+> 如何区分自然光和圆偏振光，只要利用 1/4 波片和偏振片即可。
+
+## 考试题
+
+### 2021
+
+![image-20231217110729098](https://notes.sjtu.edu.cn/uploads/upload_09ca0e28ada8b2eaeda4d38983f32a44.png)
+
+因为光线射入晶体时，首先会产生折射，导致进入晶体的光线不平行于光轴，仍然产生双折射。
+
+![image-20231217151016948](https://notes.sjtu.edu.cn/uploads/upload_2e206f6c2218b796591b921f5c2a0b9b.png)
+$$
+\frac{1}{4}I_1
+$$
+

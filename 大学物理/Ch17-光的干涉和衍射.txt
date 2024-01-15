@@ -1,0 +1,738 @@
+## 光的相干性
+
+> Q：为什么两个普通光源不能构成相干光源？
+>
+> 分子或原子发光特点：
+>
+> - **间歇性**：分子或原子每次发光的时间极短，约 $10^{-8}$ 秒。发出一段有限长的光波，称为波列。每次的发光时间、振动方向、相位均不确定。
+> - **独立性**：不同分子或原子激发发光是彼此独立的，它们发出的波列的振动方向和初相位具有随机性。
+>
+> 因此，$\Delta\varphi$ 是随机量，有时相干，有时相消，外部看起来无法看到干涉现象。
+
+实验中发现，两个独立的同频率的单色普通光源发出的光相遇，却不能得到干涉图样——还有什么东西能够影响光的性质，光的相位。
+
+设两个来自不同光源（说明了 $\varphi$ 具有随机性）振动方向相同、频率相同的单色光（相位差不一定相同）在空间中某一点相遇，它们的光矢量大小分别为：
+$$
+E_1=E_{10}\cos (\omega t+\varphi_{10}), \quad E_2=E_{20} \cos (\omega t+\varphi_{20})
+$$
+可得：
+$$
+E=\sqrt{E_{10}^2+E_{20}^2 + 2E_{10} E_{20} \cos (\varphi_{20}-\varphi_{10})}
+$$
+利用 $I\propto E^2$，得到：
+$$
+I=I_1+I_2 +2 \sqrt{I_1I_2} \cdot \overline{\cos (\underbrace{\varphi_{20}-\varphi_{10}}_{具有随机性})}=I_1+I_2
+$$
+设两个来自相同光源（$\varphi$ 都一致或相位差恒定）振动方向相同，频率相同的单色光，则：
+$$
+I=I_1+I_2 +2 \sqrt{I_1I_2} \cdot \cos (\underbrace{\varphi_{20}-\varphi_{10}}_{不变})
+$$
+其中 $2\sqrt{I_1I_2} \cos (\varphi_{20}-\varphi_{10})$ 称为干涉项。
+
+- $\Delta \varphi=\pm 2k\pi$, $I=I_1+I_2+2\sqrt{I_1I_2}$ 取到可能最大值，称为干涉相长。
+- $\Delta \varphi=\pm (2k+1)\pi$，称为干涉相消。
+
+当 $I_1=I_2$，则可以推出 $I=4I_1 \cos ^2 \Delta \varphi/2$. 呈现常数叠加三角函数的形式：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_0b0eb05581ce399012f2299af8316ad4.png" alt="image-20231202214932381" style="zoom: 50%;" />
+
+## 双缝干涉
+
+### 杨氏双缝实验
+
+> Q: 怎么获得两束来自同一光源的光，即相干光源，来验证光的干涉？
+>
+> - 利用惠更斯原理。
+>
+> - 激光
+>
+> - 单色光源通过薄片，两束反色光为相干光
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_cd8457ee65e5ab461269f046359718e1.png" alt="image-20231202215554542" style="zoom: 50%;" />
+
+利用波矢 $k=2\pi/\lambda$ 将传播距离（光程）转化为相位，我们可以计算出观察屏上 $P$ 点引起的电场振动可以表示为：
+$$
+E_1=E_{10}\cos (\omega t-k r_1 + \varphi_1)\\
+E_2=E_{20}\cos (\omega t-k r_1 + \varphi_2)
+$$
+因此振幅可以表示为：
+$$
+E_0=\sqrt{E_{10}^2+E_{20}^2 + 2E_{10}E_{20}\cos [k(r_2-r_1) -\varphi_2+\varphi_1]}
+$$
+因为 $S_1,S_2$ 的子波面完全相同，可以认为 $E_{10}=E_{20},\varphi_1=\varphi_2$，因此：
+$$
+I=4 I_{1,2} \cos^2 \Delta \varphi/2
+$$
+代入 $\Delta \varphi =k(r_2-r_1),\delta =r_2-r_1$可得：
+
+> 在这里，我们使用光程差为 $r_2-r_1$，事实上，如果推广，考虑材料的折射率和半波损失时，更广义的写法是：
+> $$
+> \delta=\sum_{i} r^{(1)}_in^{(1)}_i-\sum_j r_j^{(2)}n_j^{(2)}+\left(\frac{\lambda}{2}\right)如果存在半波损失
+> $$
+
+$$
+I=4 I_0 \cos ^2 \frac{k\delta}{2}
+$$
+因为 $L \gg d$，由几何关系 $r_2-r_1 \approx d \sin\theta$，因此有：
+$$
+I=4I_0 \cos ^2 \left(\frac{2\pi}{\lambda} \cdot \frac{d \sin\theta}{2} \right)=4I_0 \cos ^2 \left(\frac{\pi d }{\lambda} \sin \theta \right)
+$$
+> 如果令 $\beta$ 为 $\displaystyle \frac{2\pi d}{\lambda} \sin \theta$ 
+
+因此，当 **光程差为波长的整数倍** 时，即 $\delta \approx \pm m\lambda$，有 $k\lambda = \pm 2\pi m$，此时两光波的合振动加强，出现明亮条纹。
+
+若不想表达为 $\theta$ 的形式，想给出明确位置 $x$，再注意到，由几何关系，
+$$
+\sin\theta \approx \tan \theta \approx \frac{x}{L}
+$$
+因此我们可以把 $\sin\theta$ 转换为 $x/L$，
+$$
+\delta \approx \pm m \lambda =d\sin\theta = \frac{xd}{L}
+$$
+有：
+$$
+x^+_m= \pm m \frac{L\lambda}{d},\quad m=0,1,2,\cdots
+$$
+式中， $m$ 为条纹的级次。
+
+- $m=0$ 的明条纹称为零级条纹或者中央明纹，对应的光程差为零（因为左右完全对称）
+- 左右对称分布 $m=1,2,\cdots$ 级条纹。（因此，没有正级和负级之说）
+
+当 **光程为半波长的奇数倍** 时，有 $\delta \approx \pm (2m-1) \lambda/2,m=1,2,\cdots$.
+
+此时：
+$$
+x_m^- = \pm (2m-1) \frac{L\lambda}{2d}, \quad m=1,2,\cdots
+$$
+由此可见：$x^{+/-}_{m+1}-x^{+/-}{m}=L\lambda/d$，即屏上两相邻明条纹或者暗条纹之间间距相等，即 **条纹等间距分布**。
+
+实验上，可以观察到明暗条纹的分布符合理论推导，但是靠近边缘的明条纹暗度较低，可能是因为不符合相干条件。
+
+> 注：上述的分析都基于 $L\gg d,x\ll d$ 的情况。
+>
+> 杨氏双缝实验的实验条件比较苛刻：
+>
+> 1. 光源宽度和双缝宽度应该足够窄，在 $10^{-2}\mathrm{~mm}$ 量级。
+> 2. 双缝间距较小，约在 $0.1\sim 1\mathrm{~mm}$.
+> 3. $L$ 较大，约为 $1\mathrm{~m}$.
+> 4. 光源的单色性较好。
+>
+> 我们还可以再通过条纹间隔 $\Delta x=\displaystyle \frac{L\lambda}{d}$ 分析这件事情，必须要 $L\gg d$ 才能将较小的 $\lambda$ 放大为可见的条纹间隔。
+
+![image-20231202221841192](https://notes.sjtu.edu.cn/uploads/upload_e68c35c4ea7d7ff13319b6bb84404328.png)
+
+> 除了使用惠更斯原理，我们还可以如图 17-4 所示，使用平面镜，创建两相位差恒定的光束（如果不考虑平面镜对于光强的损失），这被称为洛埃镜实验。
+>
+> 因为平面镜存在半波损失，即 $\delta'=r_2-r_1+\lambda/2$. 所以明暗条纹的位置和杨氏实验恰好相反。
+
+![image-20231202222305587](https://notes.sjtu.edu.cn/uploads/upload_dd3c790dff88139181d9841cc4aae474.png)
+
+> 菲涅尔的双棱镜实验和双面镜实验。
+
+
+
+分析双缝干涉的步骤：
+
+- 考虑有无半波损失；
+
+- 考虑不同光介质对光程差的影响；
+
+- 列出明条纹和暗条纹处的相干条件：
+  $$
+  \delta = \pm m \lambda\quad \delta = \pm (2m-1)\lambda/2
+  $$
+
+------
+
+![image-20231203102318362](https://notes.sjtu.edu.cn/uploads/upload_e46296d1e9456ac3bedda65653ec36bd.png)
+
+可以看作：
+$$
+D'=\sqrt{2} b, a'=\sqrt{2} a
+$$
+然后，因为屏幕倾斜，所以还要额外乘以 $\sqrt{2}$.
+
+### 光源性质对干涉条纹的影响
+
+**光强影响干涉条纹的可见度**
+
+考虑到：
+$$
+I=I_1+I_2 +2 \sqrt{I_1I_2} \cdot \cos (\varphi_{20}-\varphi_{10}) \\\in [(\sqrt{I_1}-\sqrt{I_2})^2,(\sqrt{I_1}+\sqrt{I_2})^2]
+$$
+我们发现，当 $I_1,I_2$ 越接近，$I$ 所取的范围可以越大，干涉越明显，当 $I_1,I_2$ 越原理，$I$ 所取的范围越小，干涉越不明显。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_2eada73f6336ab1d206c3568f160259b.png" alt="image-20231202223015831" style="zoom:33%;" />
+
+我们可以用 **干涉条纹的可见度** 来定量描述，如果设 $I_\max$ 为最亮光强，$I_\min$ 为最暗光强，则：
+$$
+I_\max = (\sqrt{I_1}+\sqrt{I_2})^2\quad I_\min = (\sqrt{I_1}-\sqrt{I_2})^2
+\\\Rightarrow V=\frac{I_\max -I_\min}{I_\max+I_\min} = \frac{2\sqrt{I_1I_2}}{I_1+I_2}
+$$
+有 $0\le V\le 1$.
+
+- 当 $I_1=I_2$ 时，$V=1$. 较为清晰。
+- 当 $I_1\ll I_2,I_2\ll I_1$ 时，有 $V\to 0$. 不能辨认干涉现象。
+
+**光源宽度影响干涉条纹** 当光源较宽，那么可以等效为多个点光源的叠加：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_721296d91711e29f09967951121f2f6a.png" alt="image-20231202223552507" style="zoom: 67%;" />
+
+假设 $S'$ 距离 $MN$ 中点距离为 $X$，此时由 $S'$ 传播到 $S_1,S_2$ 的光所经过的光程不等，为 $\delta=(r_2'-r_1')+(r_2-r_1)$，因此：
+$$
+\delta=\left(\frac{X}{D}+\frac{x}{L}\right)d
+$$
+因为较宽的光源的各处对应的 $X$ 不等，最终的干涉效果，也可以看作多个干涉条纹的叠加，使得干涉现象不明显。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7bfd3ed43326b10c7f857c54f05ac55e.png" alt="image-20231202223605693" style="zoom:67%;" />
+
+结论：
+
+- 光源的宽度越大，干涉条纹的可见度越小。
+- 当光源的宽度很大，使得两束光传播到 $S_1,S_2$ 时相位相差 $\pi$，干涉条纹可能完全消失，临界宽度为 $D\lambda/d$。
+- 但是如果狭缝 $MN$ 很窄，可能是的衍射现象消失，光穿不过去。因此需要合理选择 $MN$ 宽度。
+
+**光的单色性对干涉条纹的影响**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4e5c88a7da989a56e34c5126bd263881.png" alt="image-20231202223818378" style="zoom:67%;" />
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b4639f90627fbc6af2b416c7e0f1ede2.png" alt="image-20231205093638294" style="zoom:25%;" />
+
+因为 $\displaystyle \Delta x =\frac{L\lambda}{d}$，如果入射光是自然光，可以看到红光波长较长，分布靠外，蓝光波长较短，分布靠内。
+
+## 薄膜干涉
+
+> Q: 薄膜干涉举例？
+>
+> 阳光下的肥皂膜、油膜和昆虫翅膀。
+>
+> Q: 为什么产生薄膜干涉？
+>
+> 因为光在两个薄膜的表面上反射，之后相遇。
+
+### 等倾干涉条纹
+
+等倾干涉条纹是当点光源（比如太阳）发出的平行光照射到表面平整，**厚度均匀** 的薄膜上，在 **无穷远处** 产生的干涉条纹。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6e39d5c831f85186dfd30e42e3231ecd.png" alt="image-20231202224205574" style="zoom: 67%;" />
+
+> 上图得出的信息？两条光线均经过了薄膜反射，上面的一束光线从光疏介质照射到光密介质，因此产生了半波损失，而下面的一束光线没有产生半波损失；两条光线出射是平行的。光程差只取决于 $AD,AB,BC$ 三段。
+
+由几何条件有：
+$$
+|AC|=2d\tan\gamma\\
+|AB|=|BC|=d/\cos\gamma\\
+|AD|=|AC|\sin i=2d\tan \gamma \sin i
+$$
+则：
+$$
+\begin{aligned}
+\delta&=n_2(|AB|+|BC|)-n_1 |AD|+\frac{\lambda}{2}\\
+&=\frac{2n_2d}{\cos \gamma}-2d\tan\gamma \sin  in_1+\frac{\lambda}{2}
+\end{aligned}
+$$
+由折射的条件，有 $n_1\sin i=n_2\sin \gamma$，因此：
+$$
+\begin{aligned}
+\delta&=2dn_2\left(\frac{1}{\cos \gamma}-\frac{\sin^2 \gamma}{\cos \gamma}\right)+\frac{\lambda}{2}\\
+&=2dn_2 \cos \gamma + \frac{\lambda}{2}\\
+&=2d\sqrt{n_2^2-n_1^2 \sin ^2i}+\frac{\lambda}{2}
+\end{aligned}
+$$
+可以得出 $\delta$ 由入射角 $i$ 决定，最终的结论：
+$$
+\boxed{\delta =2d \sqrt{n_2^2 - n_1^2 \sin^2 i} + \frac{\lambda}{2}}
+$$
+
+- **干涉极大**：$\delta = m \lambda,m=1,2,3\cdots$，产生明条纹（因为 $\delta >0$，所以没有 $m<0$ 的部分）
+- **干涉极小**：$\delta = (2m+1)\lambda/2,m=0,1,2\cdots$，产生暗条纹。
+
+相同倾角的光经过入射之后，$\delta$ 相同，干涉情况相同，因此称为等倾条纹。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_59e39bb44d62cfb01630b3d15ec22b44.png" alt="image-20231202225155687" style="zoom:50%;" />
+
+- **薄膜干涉的等倾干涉实验装置**：S 为一个面光源，M 为半反射半透射平面镜（为了防止阻挡反射光）。发光面上一点发出的光线中，以相同倾角入射到膜表面上的光线在同一个锥面上，它们的反射线经透镜会聚后分别相交于焦平面上的同一个圆周上。因此，形成的等倾条纹是一组明暗相间的同心圆环。
+
+- **干涉级内高外低**：通过凸透镜透射的公式 $r=f\tan i$，半径越大的圆环对应的 $i$ 越大，$\delta$ 越小，干涉级越低。
+- **条纹呈现内疏外密分布**：中心条纹的 $i$ 接近 $90^\circ$，$\sin i$ 在附近变化率比较小，因此比较稀疏。变化不是线性的。
+- **当薄膜厚度增大，干涉条纹从中间冒出** 因为 $\delta$ 上升。
+- **面光源照明比点光源照明条纹明暗对比更鲜明**，因为每束从面光源发出的光，都可以分为两束相干光，因此光源大小对相干性没有影响。
+
+透射光的干涉，没有半波损失，光程差为：
+$$
+\delta'=2d\sqrt{n_2^2-n_1^2\sin i^2}
+$$
+只差了半波损失。**反射光明暗条纹与透射光的互补**。
+
+-----
+
+例题：空气中肥皂膜 ($n_2=1.33$)，厚度为 $0.32\mathrm{~\mu m}$，如果用白垂直光入射，呈现什么颜色。
+
+垂直入射，$i=0$.
+$$
+\delta=2n_2 e+\lambda/2=m\lambda\\
+\Rightarrow \lambda= \frac{2n_2 e}{k-1/2}
+$$
+
+- $k=1,\lambda_1=170000$Å.
+- $k=2,\lambda_2=5670$Å. 黄绿色
+- $k=3,\lambda_3=3410$Å.
+
+-------
+
+平面单色光垂直照射在厚度均匀的油膜上，油膜覆盖在玻璃板上。所用光源波长可以连续变化，观察到 5000Å 与 7000Å 这两波长的光在反射中消失。油膜的折射率为1.30，玻璃折射率为1.50，求油膜的厚度。
+
+两次半波损失抵消，两次干涉相消相邻，可得：
+$$
+2n_1 e =(2k+1)\frac{\lambda}{2}\\
+2n_1e=(2k-1)\frac{\lambda}{2}
+$$
+可得，$k=3$，$e=6.73\times 10^{-4} \mathrm{~mm}$.
+
+### 等厚干涉条纹
+
+当用平行光垂直照射到表面平整、**厚度不均匀** 的薄膜上，产生的干涉条纹将出现在薄膜的 **上表面**。通常我们在肥皂膜、油膜表面看到的就是这一类干涉条纹。
+
+**劈形膜的干涉**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_1d437ce9a69075e091c1219bcfcdaa2b.png" alt="image-20231202225840628" style="zoom:50%;" />
+$$
+\delta = \underbrace{2n e}_{膜介质反射回来的光程}+\underbrace{\frac{\lambda}{2}}_{半波损失}
+$$
+相邻的干涉条纹满足：
+$$
+\Delta \delta =\lambda =2n \Delta e_m \Rightarrow \Delta e_m = \frac{\lambda}{2n}
+$$
+由 $\Delta e_m$ 满足的几何关系，相邻亮条纹之间的间距 $\Delta l$ 满足：
+$$
+\Delta l=\frac{\Delta e_m}{\sin \alpha}=\frac{e_{m+1}-e_m}{\sin \alpha}= \frac{\lambda}{2n\sin \alpha} \approx \boxed{\frac{\lambda}{2n \alpha}}
+$$
+结论：
+
+- 干涉条纹等间距，为 $\Delta l$，劈尖处为暗条纹。
+- $\alpha$ 越小，越接近平面，干涉条纹越稀疏；
+- $\alpha$ 越大，干涉条纹越稠密，如果 $\alpha$ 过大，干涉条纹将密集得看不清。
+
+应用：
+
+- 通过干涉条纹的间隔，已知 $n,\alpha$，可以测出光的波长。
+- 已知 $\lambda$ 和 $n$，可以测出 $\alpha$.
+- 已知 $\lambda$ 和 $\alpha$，可以测介质折射率 $n$.
+- 测细小直径、厚度、微小变化。检测物体表面平整度。
+
+### 牛顿环
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_9cd6e1dd0d057b7468f72b3755a1ae39.png" alt="image-20231202230554796" style="zoom:50%;" />
+
+这次，“膜”将成为半径 $R$ 很大的平凸透镜和桌面之间的空气 $n\approx 1$. 还满足半波损失吗？
+
+即：
+$$
+\delta = 2n e +\frac{\lambda}{2}=2e + \frac{\lambda}{2}
+$$
+牛顿环的中心 $e=0$，$\delta =\lambda/2$，因此是暗斑。
+
+由几何关系，可以求得距离凸透镜轴线为 $r$ 处的 $e$：
+$$
+r^2=R^2-(R-e)^2 = 2Re-e^2 \approx 2eR \Rightarrow e= \frac{r^2}{2R}
+$$
+因此令 $\lambda=m\lambda\mathrm{~or~}(2m-1)/2\lambda$，牛顿环明纹和暗纹的半径分别为：
+$$
+\boxed {r_m^+=\sqrt{\frac{(2m-1)R\lambda}{2}},r_m^- = \sqrt{mR\lambda} \quad m=1,2,3\cdots}
+$$
+我们还可以通过明暗条纹的半径来确定透镜的曲率半径：
+$$
+\delta = 2e + \frac{\lambda}{2} = \frac{r^2}{R} + \frac{\lambda}{2}
+$$
+有 $\Delta \delta = \Delta (r^2)/R=\lambda$.
+
+因此叠加 $k$ 次：
+$$
+r^2_{m+k}-r^2_m = k R\lambda
+$$
+可得：
+$$
+R=\frac{1}{k\lambda} (r_{m+k}^2 - r_m^2) = \frac{1}{k\lambda}(r_{m+k}-r_m)(r_{m+k}+r_m)
+$$
+
+### 迈克尔逊干涉仪
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_edacbe15ac492eeac851a366a57b8e60.png" alt="image-20231202231614327" style="zoom:67%;" />
+
+- 可以测出光速；
+- 迈克尔逊-莫雷实验否定了以太的存在；
+- 测量恒星的尺寸。
+
+第一束光路径为 1, 1', 1'，第二束光路径为 2, 2', 2'. 作出 $M_1'$ 的像 $M_1$. 需要注意使用了特性完全一致的 $G_1,G_2$，补偿 $G_1$ 的厚度。
+
+**当 $\boldsymbol{M_1}$ 和 $\boldsymbol{M_2}$ 垂直时**，当 $M_1$ 移动 $\Delta d$ 时，屏上干涉条纹移动数目为 $\Delta N$，光程差为 $\delta=2\Delta d$，则：
+$$
+\boxed{\Delta d=\frac{\lambda}{2}\Delta N}
+$$
+**当 $\boldsymbol {M_1}$ 和 $\boldsymbol {M_2}$ 不垂直时**，为劈尖等厚干涉. 测出：
+$$
+\Delta l=\frac{\lambda}{2n\theta}
+$$
+**测介质的折射率** 在光路上放一长度为 $l$，折射率为 $n$ 的透明介质，则光程差变化为：
+$$
+\Delta \delta=2nl-2l=\lambda \Delta N
+$$
+**测量微小位移** 如已知波长,则可通过条纹移动数目来测量微小伸长量(如热胀冷缩量)
+$$
+\Delta d=\Delta N\cdot \frac{\lambda}{2}
+$$
+**测波长** 记下平移的距离和条纹移动数目,可测量入射光的波长
+$$
+\lambda=\frac{2\Delta d}{\Delta N}
+$$
+
+---------
+
+用钠灯（ $\lambda_1$ = 589nm， $\lambda_2$ = 589.6nm）作为迈克尔逊干涉仪的光源，首先调整干涉仪得到最清晰的条纹，然后移动反射镜 $M_1$，条纹逐渐模糊，至干涉现象第一次消失时，$M_1$ 由原来位置移动了多少距离？
+
+观察圆环中心的衍射情况。
+
+初始状态：两套干涉图样几乎重合：
+$$
+2d=k_1\lambda_1,2d=k_2\lambda_2\\
+\Rightarrow 2d(1/\lambda_1-1/\lambda_2)=k_1-k_2
+$$
+结束状态：两套干涉图样几乎互补：
+$$
+2d'=\left(k_1+\Delta k+\frac{1}{2}\right)\lambda_1,2d'=\left(k_2+\Delta k\right)\lambda_2\\
+\Rightarrow 2d'(1/\lambda_1-1/\lambda_2)=k_1-k_2+1/2=2d(1/\lambda_1-1/\lambda_2)+1/2\\
+\Rightarrow d'-d=(1/\lambda_1-1/\lambda_2)^{-1}/4
+$$
+
+## 夫琅禾费衍射
+
+> Q: 什么是衍射
+>
+> 当光在传播过程中遇到障碍物后会偏离原来的直线传播方向绕过障碍物继续传播,并在障碍物后的空间各点产生一定规律的光强分布，这种现象称为光的衍射现象,这是光的波动性的具体表现。在一般情况下,光的衍射现象并不明显。实验表明,只有当障碍物的大小与光的波长可以相比拟时,才能观察到衍射现象。一开始的实验，看到了一圈一圈的衍射条纹：
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_5a414d8d6915f49a165cdac03e3d8f17.png" alt="image-20231212091446823" style="zoom: 25%;" />
+>
+> 菲涅耳反其道而行之，利用波动学说，以严谨的数学推理，计算了圆孔所产生的衍射图样，结果与实验一致. 
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_315f6c1baf4e46719fb3db55ce6306ca.png" alt="image-20231212091550848" style="zoom:25%;" />
+>
+> 大数学家泊松别出心裁，将小孔换成小圆盘，重复数学推导，得到一个令人惊奇的结果：在圆盘后方的屏幕上，圆盘影子的中心将出现亮点。泊松认为这是不可想象的、荒谬的结论。 
+>
+> <img src="https://notes.sjtu.edu.cn/uploads/upload_ac6922faecf14b74922a2c5c392ab869.png" alt="image-20231212091739825" style="zoom:25%;" />
+
+衍射现象具体分类（根据衍射屏分别到光源和观察屏的距离是否有限）：
+
+- 菲涅尔衍射：当衍射屏与光源和观察屏的距离都是有限远的衍射。
+- 夫琅禾费衍射：都是无穷远，都是平行光。又叫做远场衍射。使用凸透镜进行聚焦。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4700e2932a7f3edc1525b95de79297df.png" alt="image-20231212092111057" style="zoom: 15%;" />
+
+### 单缝夫琅禾费实验
+
+![image-20231202232143480](https://notes.sjtu.edu.cn/uploads/upload_afc406fe045a72048c6c550c376c6ba0.png)
+
+推导光强分布的数学表达式之前，我们先看一下暗条纹的位置如何求得：
+
+将入射光线分为二等分，因为 $\displaystyle \frac{a}{2} \sin \theta=\frac{\lambda}{2}$，可得角度 $\theta$ 满足 $a\sin\theta=\lambda$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c8f878bf351ceff2ac0e4317a5cd9377.png" alt="image-20231212092701797" style="zoom:33%;" />
+
+分为 4,6,8 等分，因为 $\displaystyle \frac{a}{2m} \sin \theta=\frac{\lambda}{2}$，可得角度 $\theta$ 满足 $a\sin\theta=m\lambda$. 
+
+这样就可以推导暗条纹的位置。
+
+------
+
+为了求出亮条纹的的位置，我们把单缝看成无穷的点光源，画出单缝处的总光强：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7d35982bac6e6358c60b0a3bd200cd2a.png" alt="image-20231212094007340" style="zoom:25%;" />
+
+当光线到达屏幕上 $P$ 点时，因为光程差产生了相位差，角度 $\beta$ 为最上一点和最下一点之间的相位差。利用波矢，可得 $\displaystyle \beta=\frac{2\pi}{\lambda} a\sin\theta$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_cd1824656c94b9519b0923236c55f848.png" alt="image-20231212094016019" style="zoom:25%;" />
+
+> Q: 若光线通过了性质不同的光介质，比如折射率按照 $n=1+ky$ 变化的光介质，该如何分析？
+>
+> 还是分析第一个光矢量和最后一个光矢量之间的相位差：
+> $$
+> \beta'=\frac{2\pi}{\lambda}a\sin \theta+\frac{2\pi}{\lambda} akd.
+> $$
+> 这告诉我们掌握推导过程很重要！
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_88a4d776e52490bfc35c5fe684432228.png" alt="image-20231212094027876" style="zoom:25%;" />
+
+其中 $\displaystyle \beta=\frac{2\pi}{\lambda} a\sin\theta$，代入可得：
+$$
+I=I_0 \left[\frac{\sin[\pi a (\sin\theta) /\lambda]}{\pi a (\sin\theta)\lambda}\right]^2
+$$
+当 $\theta \to 0$ ，可得 $I\to I_0$.
+
+图像大致长成 $\sin^2 x/x^2$ 的样子，如图：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_cd9088e9d74830e5e542831cca9002b1.png" alt="image-20231202232402319" style="zoom: 25%;" />
+
+- 明条纹：$\mathrm d I/\mathrm d \beta=0\Rightarrow \tan \beta = \beta$.
+
+  $\beta = \pm 1.43\pi,\pm 2.46\pi,\pm 3.47\pi$. 近似为 $a\sin \theta = \pm(2m+1)\frac{\lambda}{2}$.
+
+  明条纹位置强度：$\displaystyle I_m\approx \frac{I_0}{\left(m+\frac{1}{2}\right)^2\pi^2}$. 衰减速度很快。
+
+- 暗条纹：$I=0,\beta = \pm m\pi,m=1,2,\cdots$.
+
+- 中央明条纹：$\beta=0$. 宽度为 $\beta=-\pi,\pi$ 所夹区域，因此 $\Delta x= 2\lambda f/a$.
+
+- 其他地方明条纹宽度为 $\Delta x=\lambda f/a$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_0494615aee66ab7c6df4db5edb28a1f6.png" alt="image-20231219212858333" style="zoom: 50%;" />
+
+### 双缝衍射
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_94343eb86ebd4e03b00707803388d8d9.png" alt="image-20231202233329511" style="zoom: 50%;" />
+$$
+I=2I'\left(1+\cos^2\left(\frac{2\pi d}{\lambda} \sin \theta\right)\right)=4I' \cos ^2 \left(\frac{\pi d }{\lambda} \sin \theta \right)\\
+I=4I_0 \left(\frac{\sin \beta}{\beta}\right) ^2 \cos ^2 \left(\Phi/2\right)
+$$
+其中 $\displaystyle \beta = \frac{k a x }{2f} =\frac{\pi a}{\lambda} \sin \theta$. $\displaystyle \Phi=\frac{\pi d }{\lambda} \sin \theta$.
+
+结果看上去像是双缝干涉和单缝衍射的叠加：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_ef0a4b685e7d07dae5d0fc324d69212c.png" alt="image-20231202233406889" style="zoom: 50%;" />
+
+### 圆孔衍射、光学仪器的分辨本领
+
+**圆孔夫琅禾费衍射**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_8324f855b4e8fdd1cb7c7481220c8640.png" alt="image-20231219213228989" style="zoom:33%;" />
+
+当小孔为圆形时，观察屏上可看到夫琅禾费圆孔衍射图样，中心大而亮，称为艾里斑。假设圆孔的半径和直径分别为 $r,d$，由理论计算可得，艾里斑的角半径 $\theta_0$ 和衍射角 $\theta_1$ 满足以下关系：
+$$
+\theta_0 \approx \sin \theta_1 = 0.61 \frac{\lambda}{r}=1.22 \frac{\lambda}{d}
+$$
+如果透镜焦距为 $f$，则艾里斑半径为：
+$$
+R=f\tan \theta_1 \approx f \theta_0=0.61\frac{\lambda f}{r}=1.22 \frac{\lambda f}{d}
+$$
+**光学仪器的分辨本领**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_1b6ab5a903e54544969540ff505b0bab.png" alt="image-20231219213833295" style="zoom: 67%;" />
+
+结论，如果一个点光源衍射图样的最亮处和另一个点光源的最暗处相重合，此时达到人眼能够分辨两个衍射图样的极限，这叫做 **瑞利判据**。图中所示的是两个圆孔衍射，对于光栅衍射也是同理。
+
+对于圆孔衍射来说，最小分辨角为：
+$$
+\Delta \theta \approx \frac{1.22\lambda}{D}
+$$
+线分辨极限，假设焦距为 $f$，则
+$$
+\Delta l=f \Delta \theta =\frac{1.22\lambda f}{D}
+$$
+分辨本领为：
+$$
+R=\frac{1}{\Delta l}=\frac{D}{1.22 \lambda f}
+$$
+
+### 光栅衍射
+
+> Q: 什么是光栅？用什么参数来描述一个光栅的特性？
+>
+> 光栅是由 $N$ 个（极多）等间距，等宽度的平行狭缝构成的光学元件。
+>
+> 用缝宽 $a$、缝间距 $b$ 和光栅常数 $d=a+b$ 描述光栅的几何结构。
+
+接下来，我们理论分析光栅衍射的干涉光强分布，首先从狭缝数目较少的简单情形分析，如果开了 $1,2,3,4$ 个小缝，衍射图样如图所示：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7ef7eb95d0e9433e584c12486c5d4b83.png" alt="image-20231214111041557" style="zoom:33%;" />
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_11dc76348e84cdf949f5ff50400bbfcb.png" alt="image-20231219220255317" style="zoom:33%;" />
+如果令 $\phi=\displaystyle \frac{2\pi}{\lambda} d\sin \theta$，代表相邻狭缝之间的相位差。
+
+我们先计算几个特殊 $\phi$ 对应的光强，画出 $N$ 个光矢量，它们长度相等，之间的夹角为 $\phi$，推出：
+
+- $\phi=\displaystyle \frac{i}{N}2\pi,i=1,2,\cdots,N-1$ 时全部相消；（光矢量形成了首尾相接的正多边形或者类似于星星一样的形状，反正转一圈还是回到原点）
+- $\phi=2k\pi$ 时光强最大，为 $N^2I_0$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6dc823641a02de879a04f175d242037e.png" alt="image-20231219220354647" style="zoom:33%;" />
+
+再进行理论严格推导（图里 $\alpha$ 符号就是前面的 $\phi$，符号有点混乱！）：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_9248cd46348268f54d28a38666fa1ae9.png" alt="image-20231219220458359" style="zoom:33%;" />
+
+如图，我们简单分析 $N=3$ 的情况，这里三个首尾相接的光矢量的合成是向量 $\overrightarrow{OA}$，注意到三个光矢量和合成矢量都是以 $|OC|$ 为半径的圆的弦，区别在于中心角分别为 $\phi$ 和 $N\phi$，根据几何关系，我们有：
+$$
+|OB|^2=2r^2 (1-\cos N\phi)=2r^2 \sin^2 \frac{N\phi}{2}\\
+|OA|^2=2r^2 (1-\cos\phi) =2r^2 \sin^2 \frac{\phi}{2}
+$$
+而 $I_0 \propto |OA|^2,I\propto |OB|^2$，可得：
+$$
+\boxed{I=I_0 \left(\frac{\sin N\alpha}{\sin \alpha}\right)^2\quad \alpha=\phi/2=\frac{\pi d \sin \theta}{\lambda}}
+$$
+可以用数学的方法作图做出图像：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_31819b1dbe77aa335a7f33f63753ff1f.png" alt="image-20231219215503092" style="zoom: 25%;" />
+
+可以得到，两个主极大之间，有 $N-1$ 个极小，$N-2$ 个次极大（极小之间）
+
+- 当 $\alpha=m\pi$ 时，$I=N^2 I_0$（可以用高数的等价无穷小分析），此时取到 **主极大**，此时有：
+  $$
+  \boxed{d\sin\theta_m=\pm m \lambda,m=0,1,2,\cdots}
+  $$
+  称为 **光栅方程**，给出了光栅衍射主极大的角位置 $\theta_m$.
+
+- 当 $\sin N\alpha=0,\sin \alpha\not=0$，$I=0$，此时取到 **衍射极小**，满足：
+  $$
+  \boxed{d\sin \theta_m=\pm \frac{m}{N}\lambda,m=1,2,\cdots,m\not=N,2N,\cdots}
+  $$
+
+在上述分析的基础上，考虑衍射效应，则：
+$$
+\boxed{I(\theta)=I_0 \underbrace{\left(\frac{\sin\beta}{\beta}\right)^2 }_{单缝衍射因子}\underbrace{\left(\frac{\sin N\alpha}{\sin \alpha}\right)^2}_{缝间干涉因子}}
+$$
+其中 $\displaystyle \beta=\frac{\pi a\sin \theta}{\lambda}$.
+
+> 如何记忆？衍射是由于缝有一定宽度 $a$ 产生的，而干涉是因为多条缝之间的距离 $d=a+b$ 产生的。
+
+当 $a/d$ 为整数比时，会出现缺级的现象。如图：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_311d2780d18b279f8c540afc838734c3.png" alt="image-20231219090051650" style="zoom: 25%;" />
+
+此时，多缝干涉的主极大与单缝衍射极小的角位置正好相同。
+$$
+\left\{
+\begin{aligned}
+&a\sin \theta=k\lambda, & k=\pm1,\pm2,\cdots 这是单缝衍射极小值条件\\
+&d \sin \theta=m\lambda, & m=0,\pm1,\pm2,\cdots 这是光栅方程
+\end{aligned}
+\right.
+$$
+此时，推出：
+$$
+\frac{a}{d}=\frac{k}{m}=整数比
+$$
+**光栅的分辨本领**
+
+> 如果同学们做过光栅衍射的实验，可能对钠灯的光谱比较熟悉。实验中观察到“双黄线”，在 $m=0$ 级是看不到的，$m$ 越大，双黄线分得越开。这是为什么？
+
+前面在“光学仪器的分辨本领”一节里面提到了瑞利判据：如果一个点光源衍射图样的最亮处和另一个点光源的最暗处相重合，此时达到人眼能够分辨两个衍射图样的极限。
+
+我们对光栅衍射图样应用瑞利判据，对于波长为 $\lambda$ 的光线和 $\lambda+\Delta \lambda$ 的光线。$\lambda+\Delta \lambda$ 波长光的 $Nm-1$ 级极小和 $\lambda$ 波长光的 $m$ 级主极大重合。
+
+> Q: 为什么 $\lambda$ 波长光在 $\lambda+\Delta \lambda$ 波长光“之前”?
+>
+> A: 由光栅方程，$\sin \theta\propto \lambda$。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_545ec767882758a1184612723b8a0fb3.png" alt="image-20231219223517645" style="zoom:33%;" />
+
+代入光栅方程和衍射极小的方程：
+
+- $d\sin\theta_m=\pm m \lambda,m=0,1,2,\cdots$
+- $\displaystyle d\sin \theta_m=\pm \frac{m}{N}\lambda,m=1,2,\cdots,m\not=N,2N,\cdots$
+
+我们有：
+$$
+m\lambda=\frac{mN-1}{N}(\lambda+\Delta \lambda)
+$$
+由此可以得到光栅的分辨本领为：
+$$
+R\doteq \frac{\lambda}{\Delta \lambda}=mN-1\approx mN(因为 N 很大)
+$$
+
+> Q: 为什么分辨本领定义为 $\lambda/\Delta \lambda$？
+>
+> A: 因为要消除波长 $\lambda$ 的影响。
+>
+> Q: 如何提高分辨本领？
+>
+> A: 增大 $N$（光栅本身性质决定） 或者增大 $m$（选取衍射级更高的图样进行观察，但是不宜过高）
+
+### 晶格衍射
+
+1895年伦琴发现，高速电子撞击某些固体时，会产生一种看不见的射线，它能够透过许多对可见光不透明的物质，对感光乳胶有感光作用，并能使许多物质产生荧光，这就是所谓的X射线或伦琴射线。
+
+特点是：
+
+1. 在电磁场中不发生偏转。
+2. 穿透力强；
+3. 波长较短的电磁波，范围在0.001nm~10nm之间。
+
+1913年，英国的布拉格(Bragg)父子提出一种研究X射线衍射的方法，即把晶体的空间点阵当作反射光栅处理。
+
+**布拉格公式**：
+
+如果电磁波以 $\theta$ 的掠射角的角度射下，在原子表面进行反射，$d$ 为相邻反射原子层之间的间距，有：
+$$
+\delta=2d\sin \theta=m\lambda
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b6cac3ea81ef7792120952caae23a014.png" alt="image-20231221150229091" style="zoom: 33%;" />
+
+干涉极大：
+$$
+\delta=2d\sin \theta=k\lambda,k=1,2,3,\cdots
+$$
+
+
+### 衍射与信息
+
+## 考试题
+
+### 2021
+
+![image-20231217110503970](https://notes.sjtu.edu.cn/uploads/upload_dc0472c3c3b653c51d245be0134de2eb.png)
+
+这种题一般算的是光程差的 **改变量**，需要注意一开始是 $2nl$，结束是 $2l$，则改变量：
+$$
+\delta=2(n-1)l
+$$
+有 $N$ 条干涉条纹移动：$2(n-1)l=N\lambda$，则：
+$$
+n=\frac{N\lambda}{2l} +1
+$$
+
+![image-20231217111228962](https://notes.sjtu.edu.cn/uploads/upload_fb5467cadf5a8e9aa3fe9495df9db9e2.png)
+
+注意计算的是透射光，可以计算光程差为：
+$$
+\delta=2n(e_1+e_2)
+$$
+其中，距离轴线 $r$ 处，有：
+$$
+e_1\approx \frac{r^2}{2R_1},e_2\approx \frac{r^2}{2R_2}
+$$
+对于第 $k$ 级明条纹，有 $\delta=k\lambda,k=1,2,\cdots$，则：
+$$
+r_k^+=\sqrt{ k\lambda \cdot \frac{R_1R_2}{R_1+R_2}}
+$$
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3299c1a00747127c9260fb2c8b676150.png" alt="image-20231217145137290" style="zoom: 50%;" />
+
+**衍射角的概念** 也就是用角度 $\theta$ 而不是 $y$ 坐标描述衍射条纹的位置。
+
+1. 最大光强的衍射角：
+   $$
+   I=I_0 \left(\frac{\sin \beta}{\beta}\right)^2
+   $$
+   其中：
+   $$
+   \displaystyle \beta=\frac{1}{2} 缝的端点发出光线到达屏幕时的相位差\\=\frac{1}{2} 波矢 \times 缝的端点发出光线到达屏幕时的波程差\\
+   = \frac{1}{2}\frac{2\pi}{\lambda}(a\sin \theta+kad)\\
+   =\frac{\pi}{\lambda} a\sin \theta+\frac{\pi}{\lambda} kad
+   $$
+   令 $\beta=0$ 可以找到最大光强，此时：
+   $$
+   \sin \theta_0=-kd
+   $$
+
+2. 第一级暗纹的位置：$\beta=\pm \pi$，此时
+   $$
+   \sin \theta_1=\pm \frac{\lambda}{a}-kd
+   $$
+
+3. 光栅方程描述了主极大衍射角的关系：
+
+   设光栅常数 $D=a+b$，则：
+   $$
+   \alpha=\frac{\pi}{\lambda}(D\sin \theta+Dkd)
+   $$
+   主极大衍射要求 $\alpha=\pm n\pi$，即
+   $$
+   (a+b)\sin \theta+(a+b)kd=\pm n\lambda, \quad n=0,1,2,\cdots
+   $$

@@ -1,0 +1,428 @@
+##  机械波的产生和传播
+
+振动是波动的基础，波动是振动的传播。机械振动在连续介质内的传播形成机械波。
+
+波动的共同特征：具有一定的传播速度，且都伴有能量的传播。能产生反射、折射、干涉和衍射等现象。
+
+产生条件：1）波源；2）介质；3）相邻介质的分子之间有相互作用。
+
+波是振动状态的传播，介质的质点并不随波传播。
+
+### 横波与纵波
+
+横波：质点振动方向与波的传播方向垂直；特征：具有交替出现的波峰和波谷。
+
+纵波：质点振动方向与波的传播方向平行；特征：具有交替出现的密部和疏部。
+
+在机械波中，横波只能在固体中出现；纵波可在气体、液体和固体中出现。空气中的声波是纵波。液体表面的波动情况较复杂，不是单纯的纵波或横波。
+
+**行波 脉冲波和持续波**
+
+### 波的参数
+
+1. 介质中所有质点做规律相同的简谐振动  
+2. 各质点做简谐振动的步调不一致  
+
+**下游质点的振动比上游质点滞后**
+
+波长 $\lambda$ ：沿波的传播方向上相位差为 $2\pi$ 的两个相邻质点之间的距离， 振动规律完全相同的两个相邻质点间距。
+
+波的周期 $T$：一个完整波形通过介质中某固定点所需的时间。
+
+波的频率 $\nu$，$\nu=1/T$.
+
+有：$\lambda=uT,\nu\lambda=u$.
+$$
+\boxed{\nu=1/T, \lambda=uT,u=\nu \lambda}
+$$
+
+### 波的几何描述
+
+- 波(阵)面：振动相位相同的点连成的面；
+- 波前：最前面的波阵面；
+- 波线：波的传播方向。
+
+## 平面简谐波
+
+机械波在弹性介质中传播时，各质元的运动规律与波源相同，波源及各质元均以简谐振动规律运动的波称为 **简谐波**。
+
+### 一维平面简谐波
+
+振动式：$y_0 = A\cos (\omega t +\varphi_0)$.
+
+其中 $y_0$ 是点 $O$ 处质点在 $t$ 时刻的位移，$A$ 是振幅，$\omega$ 是圆频率，$\varphi_0$ 是初相位。
+
+时间推迟方法，知道 $O$ 点振动式，也知道 $OP$ 距离，则可以用时间推移法得到：
+$$
+y_p=A \cos \left[\omega \left(t-\frac{x}{u}\right)+\varphi_0\right]
+$$
+利用：
+$$
+\omega = \frac{2\pi}{T}=2\pi \nu ,\quad uT=\lambda
+$$
+平面简谐波的表达式可以改写为：
+$$
+y_P=A\cos (\omega t- k x+\varphi_0)
+$$
+其中定义波矢 $\boxed{\displaystyle k=\frac{2\pi}{\lambda}}$。
+
+> 波矢将距离转换为相位差。
+
+### 行波表达式的意义
+
+波表达式可以表示为 $\displaystyle y=f\left(t-\frac{x}{u}\right)$ 的形式，即位移是自变量 $x,t$ 的函数，反映了波沿波线向前推进的规律，这样的波称为行波。波的表达式：
+$$
+\boxed{y=A\cos \left[\omega \left(t-\frac{x}{u}\right)+\varphi\right]=A\cos \left[2\pi \left(\frac{t}{T}-\frac{x}{\lambda}\right)+\varphi\right] \quad (A>0)}
+$$
+可得：
+
+- $y(x,t)=y(x,t+T)$，表明波具有时间的周期性。
+- $y(x,t)=y(x+\lambda,t)$，表明波具有空间的周期性。
+
+- 如果观察者以 $u$ 的速度跟随波一起运动，则波的相位不变。
+
+  $y(x+\mathrm d x,t+\mathrm d t)=y(x,t)$.
+
+> 平面简谐波的波函数 $y=A\cos (Bt-Cx)$，式中 $A,B,C$ 为正常数，求波长、波速、波传播方向上距离为 $d$ 的两点间的相位差。
+>
+> 可知可以转换为：$A\cos 2\pi \left(\frac{t}{T}-\frac{x}{\lambda}\right)$ 的形式，则：
+> $$
+> \lambda = \frac{2\pi}{C} , T=\frac{2\pi}{B},u=\frac{\lambda}{T}=\frac{B}{C},\Delta \Phi=2\pi \frac{d}{\lambda}=dC
+> $$
+
+**旋转矢量图** 可以很好地描述波的叠加。
+
+已知一平面波沿 $x$ 轴正方向传播，距离坐标原点 $O$ 为 $x_1$ 处点 $P$ 的振动规律为 $y_1=A\cos (\omega t+\varphi)$，波速为 $u$，求平面波的波函数，分正向和负向两种情况讨论。
+
+使用推迟时间法：
+$$
+y=A\cos \left[\omega \left(t\mp \frac{x-x_1}{u}\right)+\varphi\right]
+$$
+
+### 平面波的波动方程
+
+考虑一根弦的小横振动（软绳，绳子横截面上的力总是沿着切线方向，振动幅度很小，均匀）
+
+取 $t$ 时刻横坐标为 $x$ 的质元，设其纵坐标为 $y(x,t)$.
+
+质元接近于水平，则可以认为 $a_x=0,a_y\not=0$. 可以把力投影到 $y$ 方向。
+
+可以认为弦上各点的张力是相同的：
+$$
+F_a \cong F_b \cong F\quad \theta ,\theta'\sim 0
+$$
+在 $y$ 轴方向上：
+$$
+\begin{aligned}
+F_{by}-F_{ay} &= F_b \sin \theta'-F_a \sin \theta\\
+&= F(\sin \theta'-\sin \theta)\\
+&= a_y \mathrm d m=\frac{\partial^2 y}{\partial t^2}\mathrm d  m=\mu \mathrm d  x \frac{\partial ^2 y}{\partial t^2}
+\end{aligned}
+$$
+做近似：$\sin \theta \approx \tan \theta$.
+$$
+\begin{aligned}
+F(\sin \theta'-\sin\theta) &\approx F(\tan \theta'-\tan \theta)\\
+&=F\left(\left.\frac{\partial y}{\partial x}\right|_{x+\mathrm d x}-\left.\frac{\partial y}{\partial x}\right|_{x}\right)\\&=F\left(\frac{\partial^2 y}{\partial x^2}\right)\mathrm d  x\\
+&=\mu \mathrm d x \frac{\partial ^2 y}{\partial t^2}
+\end{aligned}
+$$
+因此：
+$$
+\boxed{\frac{\partial ^2 y}{\partial t^2}=\frac{F}{\mu}\frac{\partial ^2 y}{\partial x^2}}
+$$
+如果代入：
+$$
+y=A\cos \left[\omega \left(t-\frac{x}{u}\right)+\varphi\right]
+$$
+则：
+$$
+-\omega ^2 y=-\frac{F}{\mu} \frac{\omega^2}{u^2}y\Rightarrow u=\sqrt{\frac{F}{\mu}}
+$$
+扩展到平面——平面波的波动方程：
+$$
+\boxed{\frac{\partial ^2 y}{\partial t^2}=u^2\frac{\partial ^2 y}{\partial x^2}}
+$$
+如果对 $z$ 求微分，就是在 $z$ 轴传播。
+
+## 简谐波的能量传播
+
+### 质点的能量
+
+能量分为振动的动能和弹性势能。
+
+振动动能：
+$$
+\mathrm d E_k=\frac{1}{2} \mathrm d m \cdot v_y^2=\frac{1}{2}\mu\mathrm d x \left(\frac{\partial y}{\partial t}\right)^2
+$$
+由于绳子拉伸产生的势能，绳子长度变为：
+$$
+[(\mathrm d x)^2+(\mathrm d y)^2]^{1/2}=\mathrm d x \left[1+\left(\frac{\partial y}{\partial x}\right)^2\right]^{1/2}\approx \mathrm d x\left[1+\frac{1}{2} \left(\frac{\partial y}{\partial x}\right)^2\right]
+$$
+增加了：
+$$
+\Delta x=\frac{1}{2} \mathrm d x \left(\frac{\partial y}{\partial x}\right)^2
+$$
+用力 $F$ 拉伸，则：
+$$
+\mathrm d E_k=\mathrm d A=F \Delta x=\frac{1}{2} F\mathrm d x \left(\frac{\partial y}{\partial x}\right)^2
+$$
+质点总的机械能：
+$$
+\mathrm d E=\mathrm d E_k+\mathrm d E_p=\frac{1}{2}\mu\mathrm d x \left(\frac{\partial y}{\partial t}\right)^2+\frac{1}{2} F\mathrm d x \left(\frac{\partial y}{\partial x}\right)^2
+$$
+对于平面简谐波：
+$$
+y=A\cos (\omega t-kx +\varphi)
+$$
+可得：$\mathrm d E_k=\mathrm d E_p$.
+
+因此，可得：
+$$
+\mathrm d E=2\mathrm d E_k=2\mathrm d E_p=\mu \omega^2\mathrm d x A^2\underbrace{\sin^2 (\omega t-kx +\varphi)}_{1-\frac{y^2}{A^2}}=\mu \omega ^2 \mathrm d x(A^2-y^2)
+$$
+结论：
+
+1. 质点的动能和势能大小相等，同步变化；
+2. 质点处于平衡位置，$E$ 最大，质点处于波峰波谷，$E=0$ 最小；
+3. 单个质点的机械能不守恒，因为质点和相邻质点的相互作用，有外力对其做功，导致机械能不守恒。
+
+### 单位体积内的机械能
+
+如果考虑 **三维系统**，单位体积中的机械能：
+$$
+\varepsilon=\frac{\mathrm d E}{S\mathrm d x}=\rho \omega ^2  A^2 \sin^2 (\omega t-kx+\varphi)=\rho \omega ^2(A^2-y^2)
+$$
+其平均值：
+$$
+\overline{\varepsilon}=\frac{1}{T} \int_0^ T\varepsilon \mathrm d t= \frac{\rho \omega ^2 A^2}{T}\int_0^T \sin^2 t\mathrm d t=\frac{\rho \omega ^2 A^2}{T}\int_0^T \frac{1-\cos 2t}{2} \mathrm d t=\frac{1}{2}\rho\omega^2 A
+$$
+即：
+$$
+\boxed{\overline{\varepsilon}=\frac{1}{2}\rho\omega^2 A^2, \varepsilon_p=\rho\omega^2 A^2}
+$$
+### 波的能流密度
+
+**单位时间内** 通过垂直于波传播方向的 **某一面积内** 的能量称为通过该面积的能流：
+$$
+P=\frac{\varepsilon S\mathrm d x}{\mathrm d t}=\varepsilon Su
+$$
+能流密度：$J=P/S=\varepsilon u$. 如果为矢量：
+$$
+\boxed{\boldsymbol J=\varepsilon \boldsymbol u}
+$$
+定义波的强度：
+$$
+I=\overline{J}=\overline{\varepsilon}u
+$$
+对于平面简谐波，代入 $\overline{\varepsilon}=\frac{1}{2}\rho\omega^2 A$：
+$$
+I=\frac{1}{2} \rho \omega ^2 A^2 u
+$$
+如果传播方向和平面的法向夹角为 $\alpha$，则：
+$$
+I'=I\cos \alpha
+$$
+**球面简谐波** 的波表达式:
+$$
+I(r)=\frac{1}{2} \rho A(r)^2 \omega^2 u
+$$
+
+$$
+I(r) 4\pi r^2 = \mathrm{const}
+$$
+
+可得：$A(r)=A/r$
+$$
+y=\frac{A}{r}\cos \left[\omega \left(t-\frac{r}{u}\right)+\varphi\right]
+$$
+
+### 声波 声强级
+
+声强：
+$$
+I=\frac{1}{2}\rho A^2 \omega^2 u
+$$
+规定 $I_0=10^{-12}W\cdot m^{-2}$（即相当于频率为 1000Hz 的声波能引起听觉的最弱的声强）为测定声强的标准，如某声波的声强为 $I$，则比值 $I/I_0$ 的对数叫做相应于 $I$ 的声强级 $L_1$.
+
+分贝：
+$$
+L_1=10\lg \frac{I}{I_0}
+$$
+
+## 波的叠加和干涉
+
+> 之前我们只分析一个波源的情况，如果空间内有很多波源，该怎么分析？
+
+### 惠更斯原理
+
+波阵面上的每一点都可以看成是发射子波的波源，其后任一时刻（如 $t+\mathrm d t$ 时刻），这些子波波阵面的包络面就是该时刻的波阵面。
+
+### 波的干涉
+
+**波的叠加原理** 在相遇区域内，任一质点振动的位移是各列波单独存在时在该质点引起的位移的矢量和。用波动方程解释：两列平面波：
+$$
+\frac{\partial ^2 y_1}{\partial t^2}=u^2 \frac{\partial ^2 y_1}{\partial x^2}\quad \frac{\partial ^2 y_2}{\partial t^2}=u^2 \frac{\partial ^2 y_2}{\partial x^2}
+$$
+推出：
+$$
+\frac{\partial ^2 (y_1+y_2)}{\partial t^2}=u^2 \frac{\partial ^2 (y_1+y_2)}{\partial x^2}
+$$
+**波传播的独立性原理**：若干列波在传播过程中相遇，每列波仍将保持其原有的振动特性（频率，波长，振幅，振动方向），不受其它波的影响。
+
+**非线性波动方程** 如 $\displaystyle \frac{\partial ^2 y}{\partial t^2}=u^2 \frac{\partial^2 y}{\partial x^2}+cy^2$. 不满足叠加原理。
+
+如果波的强度过大，可能产生非线性波，此时叠加原理不成立。
+
+对于弱电磁场，麦克斯韦方程组是线性的，电磁波波动方程是线性的，叠加原理成立。
+
+弱光  媒质可看作线性媒质；强光  媒质非线性, 波的叠加原理不成立。
+
+**相干条件** 频率相同，振动方向相同，相位差恒定。
+
+两相干波在空间相遇，某些点的振动始终加强另一些点的振动始终减弱，即出现干涉现象。
+
+假设第一个波源距离观测点 $r_1$，第二个波源距离 $r_2$，则相位分别为：$\varphi_1-kr_1,\varphi_2-kr_2$，可得：
+$$
+y_1=A_1\cos (\omega t+\varphi_1-kr_1)\\
+y_2=A_2\cos (\omega t+\varphi_2-kr_2)\\
+y=y_1+y_2=A\cos (\omega t+\varphi)
+$$
+因此：
+$$
+A=\sqrt{A_1^2+A_2^2+2A_1A_2 \cos \Delta \Phi}
+$$
+其中 $\boxed{\Delta \Phi=\varphi_1-\varphi_2-k(r_2-r_1)}$.
+
+**干涉相长** 当 $\Delta \Phi=2n\pi$，$A=A_1+A_2$ 干涉相长。
+
+**干涉相消** 当 $\Delta \Phi=(2n+1)\pi$，$A=|A_1-A_2|$ 干涉相消。
+
+一般情况 $|A_1-A_2|<A<A_1+A_2$.
+
+如果 $\varphi_1=\varphi_2$，则：$\Delta \Phi=\frac{2\pi}{\lambda}(r_1-r_2)$.
+
+当 $r_1-r_2=\pm n\lambda$ 干涉相长，$r_2-r_2=\pm(2n+1)\frac{\lambda}{2}$ 干涉相消。
+
+### 驻波
+
+当两列振幅相同，频率相同，振动方向相同的波以相反方向传播时，叠加形成驻波。
+
+**驻波方程**
+
+两束波：
+$$
+y_1=A\cos (\omega t-kx),y_2=A\cos (\omega t+kx)
+$$
+合成波：$y=2A\cos kx \cos \omega t$. $\cos kx$ 描述了最大可能的振幅。
+
+**驻波的特征**
+
+波腹 $x=\pm n \frac{\lambda}{2}$ 波节 $x=\pm(2n+1)\frac{\lambda}{4}$.
+
+波腹只有动能，波节只有势能。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_527d1c06653cc90ca301a184784dd8fd.png" alt="img" style="zoom:50%;" />
+
+### 半波反射和全波反射
+
+有半波损失的反射也称为固定端反射，反射面处为波节，无半波损失的反射也称为自由端反射，反射面处为波腹
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c74c40acbbc1997409688f8a1c0aafa1.png" alt="img" style="zoom:50%;" />
+
+因为 $x_1$ 处质点的位移为 $+A/2$，且沿 y 轴负方向运动，所以 $x_1$  处相位为 $+\pi/3$.
+$$
+y=A\cos \left[2\pi \left(\frac{t}{T}-\frac{x}{\lambda}\right)+\varphi\right]\\
+=0.04 \cos [100\pi t-\pi x+5/6\pi]
+$$
+设反射波：
+$$
+y'=0.04\cos [100\pi t +\pi x +\varphi]
+$$
+其中 $\varphi$ 未知，$x$ 前系数取 +，因为速度大小相同，方向相反。
+
+根据 $x=10m$ 相位突变 $\pi$，可得：
+$$
+100\pi t- 10 \pi +\frac{5}{6}\pi=100\pi t +10\pi +\varphi-\pi
+$$
+
+$$
+\varphi=-20\pi +\frac{11}{6}\pi
+$$
+
+半波损失反射面处为波节，结合波节间距离为 $\lambda/2=1m$，可得：
+
+波节：$x=0,1,2,\cdots,10m$.
+
+波腹：$x=0.5,1.5,\cdots,9.5m$.
+
+## 多普勒效应
+
+多普勒效应是波源和观察者有相对运动时，观察者接受到波的频率与波源发出的频率并不相同的现象。
+
+假设 $\nu_s$ 是波源发出的频率，$\nu_r$ 为观测者接收到的频率。
+
+- 当波源和接收器都静止，$\nu_s=\nu_r$.
+
+- 波源不动，而观测者以速度 $v_r$ 相对于介质运动。
+
+  $u'=u+v_r$ 接收器测到的波速变大，$\lambda'=\lambda$ 波长不变。
+
+  则：
+  $$
+  \nu_r=\frac{u'}{\lambda'}=\frac{u+v_r}{u}\nu_s
+  $$
+
+- 观测者不动，波源相对介质以速度 $v_s$ 运动。
+
+  导致观测者接收到的波速改变，$\lambda'=(u-v_s)T=\lambda -v_s T=\frac{u-v_s}{u}\lambda$.
+
+  接收器静止，接收器测得的波速不变，$u'=u$. （相当于压缩了）
+
+  因此，
+  $$
+  \nu_r=\frac{u'}{\lambda'}=\frac{u}{u-v_s} \nu_s
+  $$
+
+- 波源和观测者均运动，是上面两者的叠加，
+  $$
+  \nu_r=\frac{u+v_r}{u-v_s}\nu_s
+  $$
+
+- 若 $s$ 和 $r$ 的运动不在二者连线上，做投影：
+  $$
+  v_r=\frac{u+v_r \cos \theta_r}{u-v_s \cos \theta_s} v_s
+  $$
+
+![image-20231121091001941](https://notes.sjtu.edu.cn/uploads/upload_cba45ddf6b6cc24bbc62c19555598cf4.png)
+
+拍的计算，假设两个振动：
+$$
+x_1(t)=A_1 \cos (\omega_1 t+\varphi),x_2(t)=A_2\cos (\omega_2 t+\varphi)
+$$
+考虑 $A_1=A_2,|\omega_1-\omega_2|<\omega_1+\omega_2$ 时，有：
+$$
+x(t)=2A_1 \left|\cos \frac{\omega_2-\omega_1}{2}t\right|\cos \left(\frac{\omega_1+\omega_2}{2}t+\varphi\right)
+$$
+反射面接收到直接由波源发出波的频率为：
+$$
+\nu_M=\frac{u+V_M}{u} \nu_0
+$$
+（观测者运动的情况）
+
+接收器接收到由反射面反射的波的频率为：
+$$
+\nu_{r2}=\frac{u+V_R}{u-V_M} \nu_M=\frac{(u+V_R)(u+V_M)}{u(u-V_M)} \nu_0
+$$
+接收器接收到的直接由波源发出的波的频率为：
+$$
+\nu_{r1}=\frac{u+V_R}{u}\nu_0
+$$
+然后计算拍频为 $\Delta \nu=\cdots$.
+
+---
+
+关于拍频的结论，当 $\nu_1,\nu_2$ 很接近，观测者听到了 $\nu_{1,2}$ 声音的叠加时，拍频为:
+$$
+\Delta \nu = |\nu_2-\nu_1|
+$$

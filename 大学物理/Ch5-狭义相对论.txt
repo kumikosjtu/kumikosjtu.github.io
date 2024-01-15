@@ -1,0 +1,332 @@
+---
+title: 狭义相对论
+abbrlink: fa3fb5a5
+date: 2023-04-27 08:02:43
+tags:
+---
+
+## 经典力学的困难
+
+在 $S$ 系中空间各点放置无穷系列的时钟，这些时钟与该惯性系保持相对静止、彼此同步。一个事件的时空坐标 $(x,y,z,t)$ 由该事件发生的地点及该处的时钟记录下来。
+
+### 同时性和时间间隔的绝对性
+
+**同时性**
+
+$t_2=t_1$, $t_2'=t_1'$.
+
+**时间间隔**
+$$
+\Delta t=t_2-t_1\\
+\Delta t'=t_2'-t_1'=\Delta t
+$$
+
+### 空间间隔的绝对性
+
+在 $S$ 系中 $P_1:(x_1,y_1,t_1)$，$P_2:(x_2,y_2,t_2)$ 推出 $L=x_2-x_1$。（同时测量）
+
+在 $S'$ 系中 $P_1:(x_1',y_1',t_1')$，$P_2:(x_2',y_2',t_2')$。
+
+得到 $L'=x_2'-x_1'=(x_2-ut_2)-(x_1-ut_1)=x_2-x_1$.
+
+牛顿：时间和空间是与物质的存在和 **运动** 无关的，是绝对不变的。考虑物体的运动，得出了 **狭义相对论 *Special Relativity***。
+
+### 牛顿牛顿的绝对时空观
+
+$$
+\left\{
+\begin{matrix}
+x_2'-x_1'=x_2-x_1\\
+t_2'-t_1'=t_2-t_1\\
+\end{matrix}
+\right.
+$$
+
+$$
+\left\{
+\begin{matrix}
+v_x'=v_x-u\\
+v_y'=v_y\\
+v_z'=v_z
+\end{matrix}
+\right.
+$$
+
+$$
+\left\{
+\begin{matrix}
+a_x'=a_x-\dfrac{\mathrm d u}{\mathrm d t}\\
+a_y'=a_y\\
+a_z'=a_z
+\end{matrix}
+\right.
+$$
+
+宏观低速物体的力学规律在任何惯性系中形式相同。力学的基本运动规律在所有惯性系中可以表示为相同形式。
+
+### 伽利略变换的局限性
+
+一维电磁波动方程：
+$$
+\frac{\partial ^2}{\partial x^2}\Phi(x,t)-\frac{1}{c^2}\frac{\partial^2}{\partial t^2}\Phi(x,t)=0
+$$
+利用 $x'=x-ut$ 进行变换，发现形式上不相同。
+$$
+\frac{\partial^2}{\partial x'^2}\Phi-\frac{1}{c^2}\frac{\partial ^2}{\partial t'^2} \Phi+\frac{2u}{c^2}\frac{\partial ^2}{\partial x '\partial t'}-\frac{u^2}{c^2} \frac{\partial ^2}{\partial x'^2}\Phi=0
+$$
+光速是否符合伽利略速度变换。
+
+**掷球实验**
+
+$t=t_{10}=0$ 时刻 A 加速球，$t=t_1$ 时刻球出手。
+
+$t=t_{20}=L/c$ 时刻，B 看到 A 开始投球的动作。$t=t_2=t_1+L/(c+u)$ 时刻，B 看到球离开 A 手的情况。
+
+但是如果 $L$ 很大，得到 $L/c>t_1+L/(c+u)$，因果律被破坏。
+
+## 狭义相对论的基本假设
+
+1. 狭义相对性原理：一切物理规律在任何惯性系中形式相同。
+2. 光速不变原理：在所有惯性系中，真空中的光速相同为 $c$，与光源和观测者的运动无关。
+
+## 狭义相对论的时空观
+
+### 同时性的相对性
+
+$S$ 地面参考系。在火车上 $A',B'$ 放置信号接收器
+
+### 时间间隔的相对性
+
+相对于 $S'$ 系静止：
+$$
+\Delta t_0'=\frac{2d}{c}
+$$
+$\Delta t_0'$ 称为固有时或者本征时。
+
+如果在 $S$ 系中观察，得到
+$$
+l=\sqrt{d^2+\left(\frac{u\Delta t}{2}\right)^2}\\
+\Rightarrow \Delta t =\frac{2d}{c}\frac{1}{\sqrt{1-\frac{u^2}{c^2}}}=\frac{\Delta t_0'}{\sqrt{1-\frac{u^2}{c^2}}}
+$$
+
+
+![image-20230504081156375](https://notes.sjtu.edu.cn/uploads/upload_7f79d834997db918307770efa9a6ce30.png)
+
+### 洛伦兹长度收缩
+
+如果在 $S$ 系中尺的长度是 $L$，那么在 $S'$ 系中的观测者测量为
+$$
+L'=L\sqrt{1-\frac{u^2}{c^2}}
+$$
+![image-20230504223856808](https://notes.sjtu.edu.cn/uploads/upload_3bf10c1b5ea51c7d47362e94cf04d050.png)
+
+![image-20230504082311480](https://notes.sjtu.edu.cn/uploads/upload_bee8e18da07414286b69cd742c0c3b29.png)
+
+ 宇宙射线进入大气层时与大气微粒碰撞形成 $\mu^-$ 介子。
+
+如果没有时间膨胀：
+$$
+s_0=u\tau\approx644\mathrm{~m}
+$$
+时间膨胀：
+$$
+\Delta t=\frac{\tau}{\sqrt{1-\frac{u^2}{c^2}}}
+$$
+
+$$
+s=u\Delta t\approx 1.02\times 10^4\mathrm{~m}
+$$
+
+如果在 $\mu^-$ 子上看：大气层的厚度变短了。尺缩效应。
+
+## 洛伦兹变换
+
+设有两个惯性参考系 $S$ 和 $S'$，$x$ 轴和 $x'$ 轴方向相同而且重合，$S'$ 系相对于 $S$ 系以速度 $\boldsymbol u$ 沿 $x$ 轴正方向运动。两个惯性系分别有自己的计时系统。
+
+在 $x$ 方向上考虑到 $x'$ 对参考系 $S$ 是 **动长**，故在 $S$ 系中测得 $P$ 点的坐标：
+$$
+x=ut+x'\sqrt{1-\frac{u^2}{c^2}}
+$$
+解得
+$$
+x'=\frac{x-ut}{\sqrt{1-\frac{u^2}{c^2}}}=\gamma(x-ut)
+$$
+
+在 $S'$ 系中测量 $x'$。
+$$
+x'=-ut'+\sqrt{1-\frac{u^2}{c^2}}x
+$$
+得到
+$$
+x=\gamma(x'+ut')
+$$
+解得：
+$$
+t=\gamma\left(t'+\frac{u}{c^2}x'\right)
+$$
+
+------
+
+坐标变换式：
+$$
+\left\{
+\begin{aligned}
+&x'=\gamma(x-ut)\\
+&y'=y\\
+&z'=z\\
+&t'=\gamma\left(t-ux/c^2\right)
+\end{aligned}
+\right.
+$$
+当 $u\ll c$，得到 $\gamma \to 1$。伽利略变换。
+
+时间变换：
+$$
+t_2=\gamma(t_2'+ux_2'/c^2)\\
+t_1=\gamma(t_1'+ux_1'/c^2)
+$$
+
+$$
+\Delta t=t_2-t_1=\gamma(\Delta t'+u\Delta x'/c^2)
+$$
+
+因此只有两个事件在同时同地点发生，在所有参考系来看才是同时的。
+
+**洛伦兹速度变换**
+
+利用
+$$
+v_x'=\frac{\mathrm d x'}{\mathrm d t'}=\frac{\mathrm d x'}{\mathrm d t}\cdot \frac{\mathrm d t}{\mathrm d t'}
+$$
+![image-20230504091551326](https://notes.sjtu.edu.cn/uploads/upload_b9add0cb0f1d17100d069c15c954cb78.png)
+
+
+
+## 时空间隔不变性
+
+定义四维空间间隔 $(\Delta s)^2$
+$$
+(\Delta s^2) \equiv c^2 \Delta t^2-[(\Delta x)^2+(\Delta y)^2+(\Delta z)^2]
+$$
+当其中的一个事件为 $(0,0,0,0)$ 时。
+$$
+\begin{aligned}
+(\Delta s)^2 & =c^2(\Delta t)^2-\left[(\Delta x)^2+(\Delta y)^2+(\Delta z)^2\right] \\
+& =c^2\left[\gamma\left(\Delta t^{\prime}+\frac{u}{c^2} \Delta x^{\prime}\right)\right]^2-\left[\gamma^2\left(\Delta x^{\prime}+u \Delta t^{\prime}\right)^2+\left(\Delta y^{\prime}\right)^2+\left(\Delta z^{\prime}\right)^2\right]\\
+&=(\Delta s')^2
+\end{aligned}
+$$
+## 相对论质量和动量
+
+动量守恒在洛伦兹变换下保持不变。
+$$
+\boldsymbol p=m\boldsymbol v
+$$
+实验表明相对论质量：
+$$
+\boxed{m=\frac{m_0}{\sqrt{1-v^2/c^2}}}
+$$
+
+- $v=0$ 时为物体的静止质量；
+- $v\ll c$ 时，$m=m_0$ 与牛顿力学一致。
+
+相对论动量：
+$$
+\boldsymbol p=m(v)\boldsymbol v=\frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}\boldsymbol v
+$$
+
+
+## 相对论动力学方程
+
+力定义为：
+$$
+\boldsymbol F=\frac{\mathrm d \boldsymbol p}{\mathrm d t}=\frac{\mathrm d }{\mathrm d t}\left(\frac{m_0\boldsymbol v}{\sqrt{1-\frac{v^2}{c^2}}}\right)
+$$
+当 $F$ 为恒力 $F_0$，得到
+$$
+\frac{\mathrm d v}{\mathrm d t}=\left(1-\frac{v^2}{c^2}\right)^{3/2} \frac{F_0}{m_0}
+$$
+当 $v \to c$ 时，得到 $\mathrm d v/\mathrm d t$ 趋于 0.
+
+## 相对论能量 质能关系
+
+**相对论动能**
+$$
+E_\mathrm k=\underbrace{mc^2}_{运动能量}-\underbrace{m_0c^2}_{静止能量}
+$$
+从形式上，相对论动能表达式和经典力学表达式完全不同，但是在 $v \ll c$ 情况下：
+$$
+E_k=\frac{m_0 c^2}{\sqrt{1-\frac{v^2}{c^2}}}-m_0c^2=\left(1+\frac{1}{2}\frac{v^2}{c^2}+\frac{3}{8}\frac{v^4}{c^4}+\cdots\right)-m_0c^2\approx \frac{1}{2}m_0v^2
+$$
+利用上述表达式解出 $v$，得到
+$$
+v=c\left[1-\left(1+\frac{E_k}{m_0c^2}\right)^{-2}\right]^{1/2}
+$$
+**相对论总能量**
+$$
+\underbrace{mc^2}_{总能量:=E}=\underbrace{E_k}_{相对论动能}+\underbrace{m_0c^2}_{静止能量}
+$$
+**相对论动量能量关系**
+
+由
+$$
+m=\frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}
+$$
+平方之后可得：
+$$
+m^2c^2=m_0^2 c^2+m^2 v^2
+$$
+同乘 $c^2$，得到
+$$
+m^2 c^4=m_0^2 c^4+m^2 v^2 c^2
+$$
+以 $p=mv,E=mc^2$ 取代：
+$$
+E^2=m_0^2 c^4 +p^2 c^2
+$$
+对于光子，静质量为 0，上式变为：$E=pc$。
+
+![image-20230507174838765](https://notes.sjtu.edu.cn/uploads/upload_0604bf6c38e9d38323f52ec83f41e93b.png)
+
+粒子的速率：由 **相对论动能**
+$$
+E_\mathrm k=mc^2-m_0c^2=nm_0c^2
+$$
+得到
+$$
+m=(n+1)m_0c^2=\frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}
+$$
+得到 $v=c\sqrt{1-\frac{1}{(n+1)^2}}$。
+
+**相对论动量** $p=m_0v/\sqrt{1-v^2/c^2}=\sqrt{n^2+2n}m_0c$。
+
+## 习题
+
+- 时间间隔的相对性与空间间隔的相对性（钟慢尺缩）令 $\beta=v/c$. $\gamma=1/\sqrt{1-\beta^2}$
+
+  - $l=l_0\sqrt{1-\beta^2}$.
+  - $\Delta t_0=\Delta t\sqrt{1-\beta^2}$.
+
+- 洛伦兹变换
+  $$
+  \left\{
+  \begin{aligned}
+  &x'=\gamma(x-ut)\\
+  &y'=y\\
+  &z'=z\\
+  &t'=\gamma\left(t-ux/c^2\right)=x' \left/\frac{x-ut}{t-ux/c^2}\right.
+  \end{aligned}
+  \right.
+  $$
+  其中 $u$ 是 $S'$ 相对于 $S$ 的速度。
+
+- 洛伦兹速度变换 其中 $u$ 是 $S'$ 相对于 $S$ 的运动速度，$v_x'$ 是物体相对于 $S'$ 的运动速度 $v_x$ 是物体相对于 $S$ 的运动速度。
+  $$
+  \displaystyle v_x=\frac{v_x'+u}{1+\frac{u}{c^2}v_x'}
+  $$
+
+- 相对论质量 $\displaystyle m=\frac{m_0}{\sqrt{1-\beta^2}}=\gamma m_0$     推出相对论动量 $p=\gamma m_0 v$.
+
+- 相对论能量（动能） $E_\mathrm k=\underbrace{mc^2}_{运动能量}-\underbrace{m_0c^2}_{静止能量}$       质能方程 $\Delta E=\Delta mc^2$.
+
+- 相对论动量能量关系 $E^2=m_0^2 c^4 +p^2 c^2$      当是光子，静止质量为 0 时，$E=pc$.

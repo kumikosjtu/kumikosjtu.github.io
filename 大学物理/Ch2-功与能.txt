@@ -1,0 +1,491 @@
+---
+title: 功与能
+abbrlink: efb81125
+date: 2023-03-14 11:03:12
+tags:
+---
+
+牛顿第二定律分析了物体运动的过程。但是想要分析力的累积效应，从空间和时间的角度来看，对物体运动状态的改变。
+
+1. 力的时间积累：冲量。
+2. 力的空间积累：做功。
+
+$$
+\boldsymbol F=m\boldsymbol a=m\frac{\mathrm d \boldsymbol v}{\mathrm d t}
+$$
+
+$$
+\boldsymbol F=m\frac{\mathrm d \boldsymbol v}{\mathrm d t} \Rightarrow m \mathrm d \boldsymbol v=\boldsymbol F \mathrm d t
+$$
+
+时间积累效应。
+$$
+\int_{t_a}^{t_b} \boldsymbol F \mathrm d t\\
+\int_{t_a}^{t_b} \boldsymbol F \cdot \mathrm d \boldsymbol r
+$$
+
+##  功  质点动能定理
+
+### 功
+
+衡力的功：
+$$
+A=\boldsymbol F \cdot \Delta \boldsymbol r 
+$$
+变力的功：
+$$
+A=F \Delta r \cos \theta
+$$
+
+$$
+A=\int_a ^b \boldsymbol F\cdot d \boldsymbol r= \int_a^b F \cos \alpha \mathrm d s
+$$
+路径积分。积分有没有近似？位移与参考系有关系。
+
+摩擦力做功：
+$$
+\boldsymbol F_f=-\mu mg \boldsymbol e_t\\
+A=\int_a^b \boldsymbol F_f \cdot \mathrm d \boldsymbol r=-F_f S_{ab}
+$$
+摩擦力做功与路径有关。
+
+### 动能定理
+
+$$
+\boldsymbol F \cdot \mathrm d \boldsymbol r = m \frac{\mathrm d \boldsymbol v}{\mathrm d t} \cdot \mathrm d \boldsymbol r = m \frac{\mathrm d \boldsymbol v}{\mathrm d \boldsymbol r} \frac{\mathrm d \boldsymbol r}{\mathrm d t} \cdot \mathrm d \boldsymbol r = m \boldsymbol v \cdot \mathrm d \boldsymbol v= m \mathrm d\left(\frac{1}{2} \boldsymbol v \cdot \boldsymbol v\right)
+$$
+
+物体具备某一个速度，就具备了某种能力，就是 $\frac{1}{2} m v^2$。kinetic energy.
+$$
+\mathrm d A=\boldsymbol F \cdot \mathrm d \boldsymbol r=m \mathrm d\left(\frac{1}{2} \boldsymbol v \cdot \boldsymbol v\right)=\mathrm d E_k
+$$
+
+$$
+A_{ab}=\int_a^b\boldsymbol F \cdot \mathrm d \boldsymbol r=\int_a^b\mathrm d E_k=E_{kb}-E_{ka}
+$$
+
+动能定理只在惯性系中成立。
+
+牛顿力学的 $E_k$。自然界的动能是不是？
+$$
+E_k=\frac{1}{2} mv^2 = mc^2-m_0c^2
+$$
+
+$$
+m=\frac{m_0}{\sqrt{1-v^2/c^2}}
+$$
+
+本来的面目。
+
+### 功率
+
+$$
+P=\frac{\mathrm d A}{\mathrm d t}=\boldsymbol F \cdot \boldsymbol v
+$$
+
+## 保守力 非保守力 耗散力
+
+### 力场
+
+$$
+\boldsymbol F=\boldsymbol F(\boldsymbol r,t,\boldsymbol v)
+$$
+
+当质点所受的力仅与位置有关，即
+$$
+\boldsymbol F=\boldsymbol F(\boldsymbol r)
+$$
+时，代表了质点受力的空间分布，称为力场。
+
+**有心力** 始终通过以固定的点的力。
+$$
+\boldsymbol F=\boldsymbol F(\boldsymbol r)=f(r) \boldsymbol e_r
+$$
+库仑力和万有引力，弹性力。力的方向容易定。
+
+有心力的功：
+$$
+\int_A^B \boldsymbol F_1 \cdot \Delta \boldsymbol r_1=\int_A^B f(r) |\Delta \boldsymbol r_1| \cos \theta_1=\int_A^B f(r)\Delta r
+$$
+沿着任意闭合回路做功均为 0。
+
+### 万有引力
+
+$$
+\boldsymbol F=-\frac{GMm\boldsymbol r}{r^3}
+$$
+
+在极坐标系中：
+$$
+\boldsymbol r=r \boldsymbol e_r\\
+\mathrm d \boldsymbol r=\mathrm d r \boldsymbol e_r+r \mathrm d \theta \boldsymbol e_\theta\\
+\Rightarrow \boxed{\boldsymbol r \cdot \mathrm d \boldsymbol r= r \mathrm d r}
+$$
+
+$$
+\int_A^B \boldsymbol F \cdot \Delta \boldsymbol r =\int_A^B -\frac{GMm\boldsymbol r}{r^3} \cdot \mathrm d \boldsymbol r=\int_A^B -\frac{GMm}{r^2} \mathrm d r = \boxed{-\frac{GMm}{r_A}+\frac{GMm}{r_B}}
+$$
+
+### 弹性力
+
+$$
+A=\int \boldsymbol F \cdot \mathrm d \boldsymbol x=\int_{x_1}^{x_2} -kx\boldsymbol i \cdot \mathrm d x \boldsymbol i = -\int_{x_1}^{x_2} kx \mathrm d x=\boxed{\frac{1}{2} kx_1^2 - \frac{1}{2} kx_2^2}
+$$
+
+### 惯性离心力
+
+### 回旋力
+
+$$
+\boldsymbol F =\beta r \boldsymbol e_\theta \\
+A=\int_a^b \boldsymbol F \cdot \mathrm d \boldsymbol r 
+$$
+
+![image-20230316082830230](https://notes.sjtu.edu.cn/uploads/upload_146634821669cc047b4b3fb4a91a1370.png)
+
+### 摩擦力
+
+**一对摩擦力** 所做总功与参考系无关。
+
+**一对力的功** 作用力和反作用力。
+$$
+A=\int_{A_1,B_1}^{A_2B_2} \boldsymbol f_{12} \cdot \mathrm d \boldsymbol r_1+\boldsymbol f_{21} \cdot \mathrm d \boldsymbol r_2=\int_{A_1,B_1}^{A_2B_2} \boldsymbol f_{21} \cdot \mathrm d (\boldsymbol r_2-\boldsymbol r_1)\\=\int_{A_1,B_1}^{A_2B_2} \boldsymbol f_{21} \cdot \underbrace{\mathrm d \boldsymbol r_{21}}_{元相对位移}
+$$
+如果选择 $1$ 为参考系：
+$$
+A=\int_{A_1,B_1}^{A_2B_2} \boldsymbol f_{21} \cdot \mathrm d \boldsymbol r_{2}
+$$
+**一对力的做功于参考系无关**。
+$$
+\boldsymbol r=\boldsymbol r_o+\boldsymbol r'\\
+\mathrm d \boldsymbol r_1=\mathrm d \boldsymbol r_o+\mathrm d \boldsymbol r'\\
+\mathrm d \boldsymbol r_2=\mathrm d \boldsymbol r_o+\mathrm d \boldsymbol r'\\
+\mathrm d \boldsymbol r_{21}=\mathrm d \boldsymbol r_2-\mathrm d \boldsymbol r_1=\mathrm d  \boldsymbol r'_{21}
+$$
+关键是相对。选物体 1 为参考系。
+
+注：无相对位移或相对位移与一对力垂直。
+
+**保守内力**：$A_{ab}=-(E_p(\boldsymbol r_b)-E_p(\boldsymbol r_a))$
+
+重力是地球与人之间做的功。
+$$
+\int_{A_1,B_1}^{A_2B_2} \overbrace{\boldsymbol f_{21} \cdot \underbrace{\mathrm d \boldsymbol r_{21}}_{=0}}^{垂直}
+$$
+考虑一对力做功之和 e.g. 支持力，传送带上摩擦力。
+
+### 保守力判据
+
+$$
+\oint \boldsymbol F \cdot \mathrm d  \boldsymbol r = \left\{
+\begin{matrix}
+=0 & \boldsymbol F \mathrm{~conservative}\\
+\not=0 & \boldsymbol F \mathrm{~non-conservative}\\
+<0 & \boldsymbol F \mathrm{~dissipative}
+\end{matrix}
+\right.
+$$
+
+$$
+\boxed{\nabla=\boldsymbol e_x\frac{\partial }{\partial x}+\boldsymbol e_y\frac{\partial }{\partial y}+\boldsymbol e_z\frac{\partial }{\partial z}}: \mathrm{gradient~operator}
+$$
+
+Stokes 公式：
+$$
+\oint_L \boldsymbol F \cdot \mathrm d  \boldsymbol r=\iint (\nabla \times \boldsymbol F )\cdot \mathrm d \boldsymbol S
+$$
+
+## 质点在保守力场中的势能
+
+### 引入势能
+
+**势能的引入** 物体在保守力场中 $a,b$ 两点的势能 $E_{pa},E_{pb}$ 之差等于质点由 $a$ 点移动到 $b$ 点过程中保守力做的功 $A_{ab}$。
+$$
+E_{pa}-E_{pb}=A_{ab}
+$$
+保守力做的功等于系统势能的减少。
+
+**引力场** 
+$$
+\underbrace{\left(-\frac{G m M}{r_B}\right)}_{E_{pB}}+E_{\mathrm{k} B}=\underbrace{\left(-\frac{G m M}{r_A}\right)}_{E_{pA}}+E_{\mathrm{k} A}
+$$
+总是相等的。是一个不变量。在保守力场中，质点的动能可以以“势能”的形式保存起来，也可以通过做功的方式再释放出来称为对外做功的“动能”。
+$$
+A_{A \to B}=-(E_{pB}-E_{pA})
+$$
+势能还可以有一个常量的差别，如引力势能：
+$$
+E_p=-\frac{GmM}{r}+\mathrm{Const} \Rightarrow E_{\infin}=0,E_p=-\frac{GmM}{r}
+$$
+**重力势能** $z_b=0$ $E_{pb}=0$ $E_p=mgz$
+
+**引力势能** $r_b=\infin$ $E_{pb}=0$ $E_p=-\frac{GMm}{r}$
+
+**弹性势能** $x_b=0$ $E_{pb}=0$ $E_p=\frac{1}{2} kx^2$
+
+**离心力的势能** $E_p=-\frac{1}{2}m\omega^2r^2$
+$$
+E_p+mgh=0
+$$
+ 推出
+$$
+h=\frac{\omega^2 r^2}{2g}
+$$
+
+### 保守力和势能的关系
+
+**积分关系**
+$$
+E_p(\boldsymbol r)=\int_p^{p_o} \boldsymbol F(\boldsymbol r)\cdot \mathrm d \boldsymbol r
+$$
+**微分关系**
+$$
+\mathrm d A=-\mathrm d E_p(\boldsymbol r)=-\mathrm d E_p(x,y,z)
+$$
+
+$$
+\mathrm d A=F_x \mathrm dx+F_y \mathrm dy+F_z \mathrm dz
+$$
+
+全微分：
+$$
+\mathrm d E_p=\frac{\partial E_p}{\partial x} \mathrm d x+\frac{\partial E_p}{\partial y} \mathrm d y+\frac{\partial E_p}{\partial z} \mathrm d z
+$$
+
+$$
+\boxed{F_x=-\frac{\partial E_p}{\partial x} \quad F_y=-\frac{\partial E_p}{\partial y}\quad F_z=-\frac{\partial E_p}{\partial z}}
+$$
+
+需要对应相等。
+$$
+\boldsymbol F=-\left(\frac{\partial E_p}{\partial x} \boldsymbol i+\frac{\partial E_p}{\partial y} \boldsymbol j+\frac{\partial E_p}{\partial z} \boldsymbol k \right)=-\nabla E_p
+$$
+
+总结：
+
+1. 保守力做的功等于势能的减少；
+2. 保守力为势能函数的梯度负值。
+
+### 势能曲线
+
+![image-20230316093141366](https://notes.sjtu.edu.cn/uploads/upload_e5f229f71068682f4c11d13d5c447f8b.png)
+
+**定性分析力。**
+
+重力是常量，指向 $z$ 轴负方向。
+
+引力越远越小。
+
+**定性分析物体运动情况。**
+
+分析地球运动，极坐标系下。研究 $v_r$，代表地球离太阳的距离的变化速率。因此，这样可以研究地球和太阳距离的变化情况。
+$$
+\begin{aligned}
+\underbrace{E}_{守恒，拉格朗日量}&=\frac{1}{2}mv^2+\left(-\frac{GMm}{r}\right)\\
+&=\frac{1}{2}m(v_r^2+v_\theta^2)+\left(-\frac{GMm}{r}\right)\\
+&=\frac{1}{2}m\left(\frac{\mathrm d r}{\mathrm d t}\right)^2+\underbrace{\frac{L^2}{2mr^2}-\frac{GMm}{r}}_{有效势能} \quad (L 守恒)
+\end{aligned}
+$$
+
+$$
+\frac{2(E-v_{\mathrm{eff}})}{m}=\left(\frac{\mathrm d r}{\mathrm d t}\right)^2
+$$
+
+$$
+\frac{\mathrm d r}{\mathrm d\theta}=\left.\underbrace{\frac{\mathrm d r}{\mathrm d t}}_{f(r)} \right/\frac{\mathrm d \theta}{\mathrm d t}
+$$
+
+**补充：有心力的性质**
+
+1. 有心力必为保守力。
+
+2. 有心力场中运动的质点相对于力心的角动量 $\boldsymbol L$ 守恒。
+
+   质点所受的力矩为
+   $$
+   \boldsymbol M = \boldsymbol r \times \boldsymbol F = \boldsymbol r \times \frac{F}{r} \boldsymbol r =0
+   $$
+   （叉乘的性质）
+
+3. 有心力场的质点始终在一垂直于其相对于力心的角动量的平面内运动。
+   $$
+   \boldsymbol r \cdot \boldsymbol L = \boldsymbol r \cdot (\boldsymbol r \times \boldsymbol p)=\boldsymbol p \cdot (\boldsymbol r \times \boldsymbol r)=0
+   $$
+   （混合积的性质）
+
+角动量定理，在 **万有引力场** 中，角动量守恒，也就是：
+$$
+\boldsymbol L=  \boldsymbol r \times \boldsymbol p = \boldsymbol  r \times (m\boldsymbol v)=r\times (m\boldsymbol v_r+m\boldsymbol v_\theta)=r\times m\boldsymbol v_\theta
+$$
+
+$$
+|\boldsymbol L|=|m\boldsymbol v_\theta r|
+$$
+
+$$
+L=mv_\theta r=m\omega r^2 \Rightarrow \frac{\mathrm d \theta}{\mathrm d t}=\frac{L}{mr^2}
+$$
+
+- $E<0$ 束缚体系
+- $E>0$ 开放体系
+
+计算过程，首先，得出
+$$
+\frac{\mathrm d r}{\mathrm d\theta} = \displaystyle \frac{r \sqrt{2 E m r^{2} + 2 G M m^{2} r - L^{2}}}{L}=F(r)
+$$
+
+$$
+\int_{0}^{r_0} \frac{\mathrm d r}{F(r)} =\int_0^{\theta_0} \mathrm d \theta
+$$
+
+不妨将 $2Em$ 看成 $a$，$2GMm^2$ 看成 $b$，$-L^2$ 看成 $c$，进行积分：
+$$
+L\int_0^{r_0} \frac{1}{r\sqrt{ar^2+br+c}} \mathrm d r \qquad ... (1)
+$$
+这其实可以使用高数中学过的 **倒置换**，然后配合三角换元解决，结果是：
+$$
+\theta(r)=L\frac{\operatorname{asinh}\left((b+2c\frac{1}{r})\sqrt{\frac{1}{4ac-b^2}}\right)}{\sqrt{c}}
+$$
+咦？怎么会出现根号里面是负数的情况……在这里卡了很久，其实提出一个 $i$ 即可。
+
+进一步化简，得到：
+$$
+\theta(r)=-i\operatorname{asinh}\left((b+2c\frac{1}{r})\sqrt{\frac{1}{4ac-b^2}}\right)
+$$
+
+$$
+\cosh(\theta(r))=-(b+2c\frac{1}{r})\underbrace{\sqrt{\frac{1}{-4ac+b^2}}}_{d}
+$$
+
+$$
+\frac{1}{r}=-\frac{\cosh(\theta(r))}{2cd}-\frac{b}{2c}
+$$
+
+这已经是椭圆曲线的形式，为了获得其对应通式的系数，对椭圆曲线的通式做如下变形：
+$$
+r=\frac{p}{1+\varepsilon \cos \theta} \quad \frac{1}{r}=\frac{\varepsilon}{p}\cos \theta+\frac{1}{p}
+$$
+计算得到，
+$$
+p=\frac{L^2}{GMm^2} \quad \varepsilon=\frac{\sqrt{2 E L^{2} + G^{2} M^{2} m^{3}}}{G M m^{\frac{3}{2}}}=\sqrt{1+\frac{2 E L^{2}}{G^2M^2m^3}}
+$$
+$\varepsilon <1$ 时为椭圆，$\varepsilon >1$ 时为双曲线，$\varepsilon =1$ 时为抛物线，$\varepsilon=0$ 时为圆。
+
+**对结果的粗略验证**
+
+1. 当 $E=0$ 时，$\varepsilon$ 显然为 $1$，轨迹为抛物线。
+
+2. 令 $\varepsilon =0$，则算出
+   $$
+   E=-\frac{G^2M^2m^3}{2L^2}=-\frac{G^2M^2m^3}{2m^2v^2R^2}=-\frac{GMm}{2R}
+   $$
+   恰为匀速圆周运动的总机械能。
+
+**补充的讨论**
+
+对于 $(1)$ 式的积分，我们在计算的时候存在凑微分的过程，当凑出来判别式小于 $0$
+$$
+\int\frac{1}{\sqrt{t^2+x^2}}\mathrm d x=\ln(x+\sqrt{t^2+x^2})+C=\operatorname{asinh}\left(\frac{x}{t}\right)+C
+$$
+判别式大于 $0$
+$$
+\int\frac{1}{\sqrt{t^2-x^2}}\mathrm d x=\arcsin \left(\frac{x}{t}\right)+C
+$$
+在以上的过程中，我们默认能量处于最低势能以上的位置。
+
+但是当能量处于最低势能以下的位置，即 $b^2-4ac>0$，
+$$
+E<-\frac{GMm}{2r}
+$$
+两个星体就会发生撞击。在极坐标中描点作图如下。
+
+![image-20230321231825443](https://notes.sjtu.edu.cn/uploads/upload_8479a95895551d876b956b726903d423.png)
+
+## 质点系的势能
+
+### 一对内力做功
+
+### 多质点系统的势能
+
+$$
+E_\mathrm p=\sum_{i<j} E_{\mathrm p ij}
+$$
+
+其中 $E_{\mathrm p ij}$ 为质点 $i$ 和 $j$ 之间的相互作用势能。
+
+## 功能原理 能量守恒定律
+
+### 质点系的动能定理
+
+设第 $i$ 个质点所受外力的功为 $A_{i\mathrm e}$，内力的功为 $A_{i\mathrm I}$，初速度为 $v_{i0}$，末速度为 $v_i$。
+
+$\mathrm{CI}$ 代表保守，$\mathrm{NI}$ 代表非保守。
+
+![image-20230323191634254](https://notes.sjtu.edu.cn/uploads/upload_d4f10fb9b15127fd2ec6b2de5ed74eef.png)
+$$
+A_{\mathrm{CI}}=-(E_\mathrm{p}-E_{\mathrm{p0}})=-\Delta E_\mathrm p
+$$
+
+$$
+\boxed{A_{\mathrm{e}}+A_{\mathrm{NI}}=\left(E_{\mathrm{k}}+E_{\mathrm{p}}\right)-\left(E_{\mathrm{k} 0}+E_{\mathrm{p} 0}\right)}
+$$
+
+$\Delta E_k$ 代表内力和外力做功之和，引力、摩擦力之类的内力，也会改变动能。
+
+**说明**
+
+1. 明确系统初末态。
+2. 适用于惯性系。
+3. 机械能守恒定律。
+
+系统的动能和势能可以转换，当 $A_{\mathrm{CI}}>0$，势能转化为动能，当 $A_{\mathrm{CI}}<0$，动能转化为势能，各质点之间的机械能也可以互换，但保持系统的总机械能不变。
+
+在某一惯性系中机械能守恒，但在另一惯性系中机械能不一定守恒。因为 $A_{\mathrm{NI}}$ 与参照系无关，而 $A_\mathrm e $ 与参照系有关。
+
+对于孤立系统：$A_\mathrm e=0$，则 $A_{\mathrm{NI}}=\Delta E$。**能量转换和守恒定理**。 
+
+- $A_{\mathrm{NI}}<0 \quad \Delta E >0$ 其他形式的能量转化为机械能。
+- $A_{\mathrm{NI}}<0 \quad \Delta E<0$ 机械能转化为其他形式的能量。
+
+对于孤立系统，系统的总能量不变。
+
+---------
+
+质点系动能定理
+$$
+\displaystyle A=\sum_i \frac{1}{2} m_i v_i^2 -\sum_i \frac{1}{2} m_i v_{i0}^2
+$$
+其中 $A$ 代表内力和外力做功之和，为什么，因为内力也有摩擦力，消耗能量。而质点系运动定律和动量定律内力都可以互相抵消，因此，不算内力。
+
+**能量不守恒的情况**
+
+摩擦力作用。速度突变。
+
+## 习题
+
+常见的解题方法：初末态，有无他力的功、正负号。
+
+### 例 3-4
+
+![image-20230316150553889](https://notes.sjtu.edu.cn/uploads/upload_472e7e45c07910dec8d0138bd3de9ec8.png)
+
+设潜入液体的深度为 $h$，则棒所受浮力为 $F_b=\rho_1 g h S$，其中 $S$ 为棒的横截面。棒所受重力为 $F_g=\rho_2 l gS$。
+
+当 $F_b=F_g$ 时，即 $h=\frac{\rho_2 l}{\rho_1}$ 时，速度最大。使用动能定理：
+$$
+\frac{1}{2}(\rho_2 lS) v_m^2=\rho_2lhgS-\frac{1}{2} \rho_1 g h^2 S 
+$$
+因此
+$$
+v_m=\sqrt{\frac{\rho_2lg}{\rho_1}}
+$$
+对于最大深度，动能为 $0$，而且注意到棒全部没入液体。
+$$
+\rho_2lHgS-\underbrace{\frac{1}{2}\rho_1g l^2S}_{棒全部没入液体时}-
+\underbrace{\rho_1 Sl}_{排开液体的质量} \cdot g (H-l)=0
+$$
+得到
+$$
+H=\frac{\rho_1}{\rho_1-\rho_2} \cdot \frac{l}{2}
+$$
+继续的讨论，如果 $\rho_1/2 > \rho_2$，则棒不会全部没入水中，会做振动。如果 $\rho_1<\rho_2$，则下沉具有向下加速度，不会有最大速度和最大深度。

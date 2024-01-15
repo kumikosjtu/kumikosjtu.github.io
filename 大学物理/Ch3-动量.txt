@@ -1,0 +1,722 @@
+---
+title: 动量
+abbrlink: 2b34c959
+date: 2023-03-21 11:28:04
+tags:
+---
+
+## 动量定理 动量守恒定律
+
+$$
+\boldsymbol p=m\boldsymbol v \quad \boldsymbol p=M\boldsymbol v_c
+$$
+
+牛顿第二定律：
+$$
+\boldsymbol F = \frac{\mathrm d (m \boldsymbol v)}{\mathrm d t} \Rightarrow \boldsymbol F =m \frac{\mathrm d \boldsymbol v}{\mathrm d t}=m\boldsymbol a
+$$
+恒力的冲量：$\boldsymbol I = \boldsymbol F (t_2-t_1)$。
+
+变力的冲量：$\boldsymbol I = \int_{t_0}^t \boldsymbol F \cdot \mathrm d t$。（是否可行）
+
+因此，质点在运动过程中，所受合外力的冲量等于质点动量的增量。**质点动量定理**
+$$
+\boxed{\boldsymbol I=\int_0^t \boldsymbol F \mathrm d t=\boldsymbol p -\boldsymbol p_o=m\boldsymbol v-m\boldsymbol v_0}
+$$
+
+冲击、碰撞问题中估算 **平均冲力**。
+
+作用时间短，变化复杂，无法通过力计算冲量。
+$$
+\overline{\boldsymbol F} = \frac{\boldsymbol I}{\Delta t}=\frac{1}{t-t_0} \int_{t_0}^t \boldsymbol F \cdot \mathrm d t= \frac{\boldsymbol p -\boldsymbol p_0}{t-t_0}
+$$
+适用于 **惯性系**，在非惯性系中，只有添加惯性力的冲量后才成立。
+
+![image-20230323083011552](https://notes.sjtu.edu.cn/uploads/upload_eb4a5972eca40d8b07adc85ccd75995c.png)
+$$
+\sum N \Delta t = mv_1 \sin \theta \quad -\sum \mu N \Delta t =mv_2 -mv_1 \cos \theta
+$$
+
+遇到斜面的问题，还要注意运动方向的改变，如果只用分析水平方向的动量守恒，也要注意水平方向分速度的改变。
+
+![image-20230328211852591](https://notes.sjtu.edu.cn/uploads/upload_8e213b619c870dedf6772820a2a42d7e.png)
+
+需要注意不要忘了重力。
+
+**动量守恒定律**
+
+当 $\sum F_i=0$ 时，$\boldsymbol p=\sum m_i\boldsymbol v_i=const$. 
+
+质量为 $M$ 的平板车开始时静止于光滑直轨道上，车上 $n$ 个质量均为 $m$ 的人相对车以速度 $u$ 向后跳离。
+
+1. 若所有人同时跳离，平板车的最终速度为多少？
+
+   根据动量守恒定律（一开始动量为0，则改变状态后动量为0）
+   $$
+   0=Mv+nm(-u+v) \Rightarrow v=\frac{nmu}{M+nm}
+   $$
+
+2. 若一个一个地跳离，平板车的最终速度又为多少？
+
+   第一个人跳离时，有：
+   $$
+   0=[M+(n-1)m]v_1+m(-u+v_1) \Rightarrow v_1=\frac{mu}{M+nm}
+   $$
+   第二个人跳离时，有：
+   $$
+   [M+(n-1)m]v_1=[M+(n-2)m]v_2+m(-u+v_2) \Rightarrow v_2-v_1=\frac{mu}{M+(n-1)m}
+   $$
+   第三个人跳离时，有：
+   $$
+   [M+(n-2)m]v_2=[M+(n-3)m]v_3+m(-u+v_3) \Rightarrow v_3-v_2=\frac{mu}{M+(n-2)m}
+   $$
+   因此
+   $$
+   v_n=\sum_{k=1}^n \frac{m}{M+km}>\frac{nm}{M+nm}
+   $$
+   启发：求出 $v_i$ 不好处理，可以考虑差分的形式，当然也可以归纳得出。
+
+## 质点系动量
+
+设有 $N$ 个质点构成一个系统，第 $i$ 个质点的质量为 $m_i$，内力 $\boldsymbol f_i$，外力 $\boldsymbol F_i$，初速度 $\boldsymbol v_{i0}$，末速度 $\boldsymbol v_i$。
+
+由质点动量定理：
+$$
+\int_{t_0}^t (\boldsymbol F_i + \boldsymbol f_i)\mathrm d t=m_i\boldsymbol v_i - m_i \boldsymbol v_{i0}
+$$
+一对内力做功不一定为 0。
+
+其中 $\sum \boldsymbol f_i=0$。
+
+因此
+$$
+\boxed{\int_{t_0}^t \sum \boldsymbol F_i \mathrm d t=\boldsymbol p-\boldsymbol p_0=\Delta \boldsymbol p}
+$$
+微分式：
+$$
+\sum \boldsymbol F_i = \frac{\mathrm d \boldsymbol p}{\mathrm d t}
+$$
+形式上，与单个质点动量定理相同，但内涵有差别。
+
+当 $\sum \boldsymbol F_i=0$，$\boldsymbol p = \sum m_i \boldsymbol v_i$ 为常量。
+
+1. 动量守恒是指系统动量总和不变，但系统内各个质点的动量可以变化, 通过内力进行传递和交换。
+2. 当外力作用远小于内力作用时，可近似认为系统的总动量守恒。（如：碰撞、打击等）
+
+质量分别为 $m_1$ 和 $m_2$ 的小孩在光滑的平面上彼此拉对方。设开始时静止，相距 $l$。问他们在何处相遇？
+$$
+m_1\boldsymbol v_1 + m_2 \boldsymbol v_2=0
+$$
+不能写作 $m_1v_1=m_2v_2$。
+
+在任意时刻
+$$
+x_1= x_{10}+\int_0^t v_1 \mathrm d t \quad x_2=x_{20}+\int_0^t v_2 \mathrm d t\\
+x_{20}-x_{10}=\int_0^t \left(1+\frac{m_1}{m_2}\right)v_1 \mathrm d t\\
+l=\int_0^t \left(1+\frac{m_1}{m_2}\right)v_1 \mathrm d t\\
+x=x_1=x_{10}+\int_0^t v_1\mathrm d t=\frac{m_1x_{10}+m_2x_{20}}{m_1+m_2}
+$$
+以质量为权重的位置。
+
+---------
+
+炮车的质量为 $M$，炮弹的质量为 $m$。若炮车与地面之间有摩擦，摩擦系数为 $\mu$，炮弹相对炮身的速度为 $u$，求炮身相对地面的反冲速度 $v$。
+
+**对系统分析**
+
+在 $\tau$ 的时间内，
+$$
+\int_0^\tau \sum F_i \mathrm d t=\int_0^\tau (M\boldsymbol g+m\boldsymbol g+\boldsymbol N+\boldsymbol f)\mathrm d t=\Delta p=M\boldsymbol v+m(\boldsymbol v+\boldsymbol u)-0
+$$
+分别对 $x,y$ 方向分析。注意 $\int \boldsymbol |f|=\mu \int \boldsymbol |N|$。
+
+则可以得到
+$$
+\int_0^\tau f \mathrm d t=-Mv+m(-v+u\cos \theta)\\
+\int_0^\tau(N-Mg-mg)\mathrm d t=mu\sin\theta \Leftrightarrow \int_0^\tau N\mathrm d t=mu\sin\theta 
+$$
+注意到 $(Mg+mg)\tau$ 为小量（相对于等号右边的 $mu\sin\theta$），因此可以略去。
+
+得到
+$$
+v=\frac{mu(\cos\theta-\mu\sin\theta)}{M+m}
+$$
+如果没有摩擦，相当于水平方向动量守恒。
+
+如果水平发射炮弹，相当于碰撞的逆过程。
+
+如果 $\cot \theta=\mu$ 或者 $\cot\theta<\mu$，炮车会发生自锁现象，不会移动，当然不会速度反向…
+
+## 质心 质心运动定理
+
+### 质心
+
+考虑两个质点组成的孤立体系。
+$$
+\begin{aligned}
+\boldsymbol P&=m_1\boldsymbol v_1+m_2\boldsymbol v_2\\
+&=m_1\frac{\mathrm d \boldsymbol r_1}{\mathrm d t}+m_2\frac{\mathrm d \boldsymbol r_2}{\mathrm d t}\\
+&=\frac{\mathrm d }{\mathrm d t}(m_1\boldsymbol r_1+m_2 \boldsymbol r_2)\\
+&=(m_1+m_2) \frac{\mathrm d }{\mathrm d t}\left(\frac{m_1\boldsymbol r_1+m_2 \boldsymbol r_2}{m_1+m_2}\right)\\
+&=\mathrm{Const}
+\end{aligned}
+$$
+定义：
+$$
+\boldsymbol r_c:=\frac{m_1\boldsymbol r_1+m_2 \boldsymbol r_2}{m_1+m_2}\\
+\boldsymbol v_c:=\frac{\mathrm d \boldsymbol r_c}{\mathrm d t}\\
+M:=m_1+m_2
+$$
+则
+$$
+\boldsymbol P=M\boldsymbol v_c
+$$
+推广到 $n$ 个粒子系统。
+$$
+\boldsymbol r_c := \frac{\sum_{i} m_i \boldsymbol r_i}{\underbrace{\sum_i m_i}_{M}}
+$$
+对于连续分布的物体：
+$$
+\boldsymbol r_c= \frac{\lim_{\max \{\Delta m_i\} \to 0} \sum_{i=1}^N \Delta m_i \boldsymbol r_i}{\lim_{\max \{\Delta m_i\} \to 0} \sum_{i=1}^N \Delta m_i}=\frac{\iiint_{\tau} \boldsymbol r\mathrm d m}{\iiint_{\tau} \mathrm d m}
+$$
+其中
+$$
+\mathrm d m=\rho\mathrm d V=\sigma \mathrm d S=\lambda\mathrm d l
+$$
+
+### 质心运动定理
+
+质心运动定理：质心的运动等同于一个质点的运动，这个质点具有质点系的总质量，它受到的外力为质点系所受的所有外力的矢量和。
+$$
+M\boldsymbol v_c=\sum_i m_i \boldsymbol v_i
+$$
+
+所有的参考系都成立。参考系存在质心上。
+$$
+\boldsymbol r_c \equiv 0 \Rightarrow \boldsymbol v_c=0\Rightarrow \sum_i m_i \boldsymbol v_i=0
+$$
+
+$$
+\boldsymbol a_c=\frac{\mathrm d \boldsymbol v_c}{\mathrm d t}=\frac{\mathrm d }{\mathrm d t} \left(\sum_i m_i \boldsymbol v_i /M\right)=\sum_i \boldsymbol F_i /M
+$$
+
+$$
+\boldsymbol F = M\boldsymbol a_c
+$$
+
+只描述平动。
+
+适用于 **惯性系**。
+
+若 $\boldsymbol a_c=0$，则质心系为惯性系。
+
+若 $\boldsymbol a_c \not=0$，质心系为非惯性系。
+
+动量守恒、功能原理、角动量定理在质心系成立。质点系相对惯性系的运动可以分解为：随质心的运动+相对质心的运动。
+$$
+\boldsymbol v_i=\boldsymbol v_c+\boldsymbol v_i'
+$$
+
+$$
+\sum_i \frac{1}{2} m_i v_i^2=\frac{1}{2} Mv_c^2+\underbrace{\sum_i \boldsymbol v_c\cdot m_i\boldsymbol v_i'}_{=0}+\underbrace{\sum_{i}\frac{1}{2} m_iv_i'^2}_{资用能}
+$$
+
+只有在质心系中成立。
+$$
+\left(\frac{\sum_i{m_i\boldsymbol v'_i}}{M}\right)\cdot \boldsymbol v_c M
+$$
+代表在质心系中质心的速度。换句话说，在质心系中系统总动量为 $0$。
+
+孤立系中，合外力的冲量为 0，则 $\displaystyle \frac{1}{2}Mv_c^2 =\mathrm{Const}$，则资用能为常数。
+
+如果 $\sum_i \frac{1}{2} m_i v_i^2$ 为固定值，为了使 $\sum_{i}\frac{1}{2} m_iv_i'^2$ 最大，需要让 $v_c$ 最小，对撞。
+
+### 质心的特性
+
+质心系的动量为0。内力的冲量和为0。内力的力矩和为0。
+
+速度、加速度的分解：相对于质心的速度、加速度+质心的速度、加速度。
+
+动量的分解：没有分解，就是质心整体的动量。
+
+角动量的分解：相对于质心的角动量+质心的动量。
+
+质心系下功能原理/角动量定理守恒是适用的。
+
+## 碰撞问题
+
+碰撞是自然界中十分普遍的现象。
+
+两者有可能结合在一起，或产生新的成分。
+
+1. 相互作用强。
+2. 力的形式复杂
+3. 无法直接测量和记录碰撞过程
+
+处理碰撞的物理定律是动量守恒。
+
+**弹性碰撞** 碰撞后的物体和碰撞前相同，而且物体内部状态无变化。能量相同。碰撞后物体的形变可以完全恢复，且碰撞前后系统的总机械能守恒。
+
+**非弹性碰撞** 碰撞后的物体与碰撞前不相同，或物体内部状态有变化。碰撞后物体的形变只有部分恢复，系统有部分机械能损失。
+
+**完全非弹性碰撞** 碰撞后物体的形变完全不能恢复，两物体合为一体一起运动，沿着碰撞方向的速度相等。系统有机械能损失。
+
+微观粒子：碰撞 $\Leftrightarrow$ 散射
+$$
+\left\{
+\begin{matrix}
+m_1v_{10}+m_2v_{20}=m_1v_1+m_2v_2\\
+\frac{1}{2}m_1v_{10}^2+\frac{1}{2}m_2v_{20}^2=\frac{1}{2}m_1v_1^2+\frac{1}{2}m_2v_2^2
+\end{matrix}
+\right.
+$$
+
+$$
+\left\{
+\begin{matrix}
+v_1=\frac{(m_1-m_2)v_{10}+2m_2v_{20}}{m_1+m_2}\\
+v_2=\frac{(m_2-m_1)v_{20}+2m_1v_{10}}{m_1+m_2}
+\end{matrix}
+\right.
+$$
+
+1. $m_1=m_2$ 时，交换速度。
+2. $v_{20}=0$ 且 $m_2 \gg m_1$ 撞墙调转运动方向。
+3. $v_{20}=0$ 且 $m_2 \ll m_1$，则 $v_1\approx v_{10},v_2 \approx 2v_{10}$。
+
+一般情况的非弹性碰撞，碰撞后两球的分离速度 $(v_2-v_1)$ 与碰撞前两球的接近速度 $(v_{10}-v_{20})$ 成正比。比值由材料决定。**恢复系数的定义：沿着碰撞方向的前后相对速度之比。**
+$$
+\boxed{e=\frac{v_2-v_1}{v_{10}-v_{20}}}
+$$
+弹性碰撞 $e=1$，非弹性碰撞 $0<e<1$，完全非弹性碰撞 $e=0$。
+
+碰撞后两球的速度
+$$
+v_1=v_{10}-m_2\frac{(1+e)(v_{10}-v_{20})}{m_1+m_2}\\
+v_2=v_{20}+m_1\frac{(1+e)(v_{10}-v_{20})}{m_1+m_2}
+$$
+**机械能损失**
+$$
+\boxed{\Delta E_k=-\frac{1}{2}\left(1-e^2\right) \frac{m_1m_2}{m_1+m_2}(v_{10}-v_{20})^2}
+$$
+当 $e=0$，代表完全非弹性碰撞，令折合质量
+$$
+\mu=\frac{m_1m_2}{m_1+m_2}
+$$
+
+$$
+\Delta E_k =-\frac{1}{2}\mu(v_{10}-v_{20})^2
+$$
+
+接近速度。
+
+对于二维碰撞，如果给出散射角，就能唯一确定。
+
+恢复系数的物理意义：
+$$
+e=\frac{v_2-v_1}{v_{10}-v_{20}}=\frac{恢复阶段冲量}{压缩阶段冲量}
+$$
+压缩阶段
+$$
+\frac{I_1}{m_2}=v-v_{20} \quad \frac{I_1}{m_1}=v_{10}-v \quad I_1\left(\frac{1}{m_1}+\frac{1}{m_2}\right)=v_{10}-v_{20}
+$$
+恢复阶段
+$$
+I_1\left(\frac{1}{m_1}+\frac{1}{m_2}\right)=v_2-v_1
+$$
+$e<0,e>1$ 的情况
+
+质心系中，在碰撞前后两质点的动量始终大小相等，方向相反。
+
+--------
+
+光滑桌面上，质量为 $m_1$ 的小球以速度 $u$ 碰在质量为 $m_2$ 的静止小球上，$u$ 与两球的连心线成 $\theta$ 角（称为斜碰）。设两球表面光滑，它们相互撞击力的方向沿着两球的连心线（也就是说，$m_1$ 球给 $m_2$ 球的动量沿着连心线方向，$m_2$ 速度的方向已知，给了我们建系的提示），已知恢复系数 $e$。求碰撞后两球的速度。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7d46e464fa4aabc5ed12f9f606102bf2.png" alt="image-20230328222315941" style="zoom:50%;" />
+
+利用 $x,y$ 方向动量分别守恒（其中 $y$ 方向速度不变，可以隔离分析，只用分析一个一维的运动）
+$$
+m_1v_{1x}+m_2v_2=m_1u\cos\theta\\
+-m_1v_{1y}=-m_1u\sin\theta
+$$
+恢复系数
+$$
+e=\frac{v_2-v_1}{v_{10}-v_{20}}=\frac{v_2-v_{1x}}{u\cos\theta}
+$$
+
+-----------
+
+**![image-20230416195425646](https://notes.sjtu.edu.cn/uploads/upload_e77de24d6573ffd2e34ac6c4aba17ab2.png)
+
+首先得到 $v_x=v_0,v_y=\sqrt{2gh}$，碰撞后（以竖直向上为正方向）
+$$
+v_M=\frac{m-M}{m+M}v_y\quad v_{my}=\frac{2m}{m+M} v_y
+$$
+然后使用机械能守恒，以 $M$ 初始位置为零势能点，然后可以忽略 $M$ 的重力，得到
+$$
+\frac{1}{2}Mv_M^2=\frac{1}{2}kx^2
+$$
+因此，
+$$
+x=\sqrt{\frac{M}{k}}v_M=\frac{2m}{m+M}\sqrt{\frac{2Mgh}{k}}
+$$
+只发生一次碰撞，应该正好在板子的边缘离开板子。
+
+## 变质量物体的运动
+
+运动主体+抛（吸）物体
+
+在 $t$ 时刻动量为 $\boldsymbol P(t)$，在 $t+\Delta t$ 时刻动量为 $\boldsymbol P(t+\Delta t)$。则 $\Delta \boldsymbol P=\boldsymbol P(t+\Delta t)-\boldsymbol P(t)=\sum \boldsymbol F \Delta t$。
+
+提绳子，线密度 $\lambda$。$t$ 时刻提到 $x$，速度为 $v$，在 $t+\mathrm d t$，多提起来 $v\mathrm d t$ 长度的绳子。
+$$
+F\mathrm d t-x\lambda g \mathrm d t=\lambda(x+v\mathrm d t)(v+\mathrm d v)-\lambda x v
+$$
+火箭、提链子。
+
+设 $t$ 时刻，火箭质量为 $m_1$，速度为 $v$，在 $\mathrm d t$ 时间内，喷出气体为 $\mathrm d m_2$，喷气相对火箭的速度（喷气速度）为 $u$ 向下。
+$$
+\boxed{-\boldsymbol P(t)+\boldsymbol P(t+\mathrm d t)=\boldsymbol F_{外}\cdot \mathrm d t}
+$$
+研究喷气的动量变化：
+$$
+(\underbrace{v+\mathrm d v}_{下一时刻火箭的速度}-u)\mathrm d m_2-v\mathrm d m_2\approx-u\mathrm d m_2
+$$
+由动量定理：
+$$
+(F+\mathrm d m_2 g)\mathrm d t=F\mathrm d t=-u\mathrm d m_2
+$$
+**反作用力**
+$$
+F_P=u\frac{\mathrm d m_2}{\mathrm d t}
+$$
+对于火箭和喷气组成的系统
+$$
+F\mathrm d t=(m_1-\mathrm d m_2)(v+\mathrm d v)+\mathrm d m_2(v+\mathrm d v-u)-m_1v=m_1\mathrm dv-u\mathrm d m_2
+$$
+因此推出：
+$$
+\boxed{F=m_1\frac{\mathrm d v}{\mathrm d t}-u\frac{\mathrm d m_2}{\mathrm d t}\overset{\mathrm d m_1=-\mathrm d m_2}{=\!=\!=\!=\!=}m_1\frac{\mathrm d v}{\mathrm d t}+u\frac{\mathrm d m_1}{\mathrm d t}}
+$$
+火箭的速度公式，如果只记重力，$F=-m_1g$，两边同时除以 $m_1$，分离变量：
+$$
+\int_0^t -g\mathrm d t=\int_0^t \frac{\mathrm d v}{\mathrm d t}\mathrm d t+\int_0^t u\frac{\mathrm d m_1}{m_1 \mathrm d t}\mathrm d t\\
+-gt=v(t)-v(0)+u\ln\frac{m(t)}{m(0)}\\
+v=u\ln \frac{m_{10}}{m_1}-\underbrace{gt}_{阻力}
+$$
+如果不计重力，得到
+$$
+v=u\ln \frac{m_{10}}{m_1}
+$$
+如何最大化速度，
+$$
+v_\max = u \ln \frac{m_{10}}{m_{1\min}}
+$$
+问题相当于，原来静止 $m_{10}$ 的物体，一份一份地以相对速度 $u$ 射出物体的部分，求物体质量为 $m_1$ 时可能达到的最大速度。需要分的越小越好。
+
+希望最小化剩下的质量。
+
+提高火箭速度的途径
+
+1. 增加 $u$。
+2. 增加 $m_{10}/m_{1\min}$。但是由技术方面的限制。
+
+**多级火箭**
+$$
+v=\sum_i u\ln N_i=u \ln \left(\prod_i N_i\right)
+$$
+
+**绳子、链条运动的问题**
+
+质量为 $M$ 的运至链条，全长为 $L$，手持其上端，使其下端刚好碰到桌面。然后放手让它自由下落到桌面上，如图。求链条落到桌面长度为 $l$ 时，桌面所受链条作用力的大小。
+
+令 $\lambda=M/L$，
+$$
+({\color{red}{mg}}-N)\mathrm d t=-\lambda (L-l)v+\lambda (L-l-v\mathrm d t)(v+g\mathrm d t)
+$$
+得到
+$$
+N=\frac{3Mgl}{L}
+$$
+
+
+![image-20230416192633417](https://notes.sjtu.edu.cn/uploads/upload_10346ed6a206b35264ac1de10b07b5d0.png)
+
+![image-20230416192644622](https://notes.sjtu.edu.cn/uploads/upload_1a61c8719819f4dd06256b4a927cb53b.png)
+
+## 质点的角动量 角动量守恒定律
+
+### 角动量（动量矩）
+
+由于动量 $\boldsymbol p=m\boldsymbol v$ 不能描述转动问题。例如一个轻杆连接两个物体，这时候动量恒为 0。
+
+![image-20230330081907449](https://notes.sjtu.edu.cn/uploads/upload_c338fa0231fa0c88d3401da4cdeb18ea.png)
+
+引入质点关于参考点 $O$ （参考系中不动点）的角动量。
+$$
+\boxed{\boldsymbol L := \boldsymbol r \times \boldsymbol p=\boldsymbol r \times m\boldsymbol v}
+$$
+大小：
+$$
+L=rmv\sin\theta
+$$
+分量式：
+$$
+\boldsymbol L=\boldsymbol r \times \boldsymbol p=\begin{vmatrix}
+\boldsymbol i & \boldsymbol j & \boldsymbol k\\
+x & y & z\\
+p_x & p_y & p_z
+\end{vmatrix}
+$$
+因此，
+$$
+L_x=yp_z-zp_y=m(yv_z-zv_y)
+$$
+
+![image-20230418100507534](https://notes.sjtu.edu.cn/uploads/upload_be3998a7c3b2dfcf23eaa73f0be9e438.png)
+
+### 质点角动量定理
+
+类比
+$$
+E_k=\frac{1}{2}mv^2 \quad \frac{\mathrm d E_k}{\mathrm d t}=\boldsymbol F \cdot \boldsymbol v（功率）\\
+\boldsymbol p=m\boldsymbol v \quad \frac{\mathrm d \boldsymbol p}{\mathrm dt}=\boldsymbol F（力）\\
+\frac{\mathrm d \boldsymbol L}{\mathrm d t}=\frac{\mathrm d (\boldsymbol r \times m \boldsymbol v)}{\mathrm d t}=\boldsymbol r \times \frac{\mathrm d (m\boldsymbol v)}{\mathrm d t}+\underbrace{\frac{\mathrm d \boldsymbol r}{\mathrm d t}}_{\boldsymbol v}\times m \boldsymbol v\\=\boldsymbol r \times \frac{\mathrm d (m\boldsymbol v)}{\mathrm d t}=\boldsymbol r \times \boldsymbol F
+$$
+合力对 **同一参考点** $O$ 的力矩。
+$$
+\boldsymbol M :=\boldsymbol r \times \boldsymbol F\\
+M=Fd=Fr\sin\theta
+$$
+角动量是力矩的时间累积效应。
+$$
+\boxed{\boldsymbol M=\boldsymbol r \times \boldsymbol F=\frac{\mathrm d \boldsymbol L}{\mathrm d t}}
+$$
+**微分形式**，表示在 $\mathrm d t$ 时间的变化
+$$
+\boldsymbol M\mathrm d t=\mathrm d \boldsymbol L
+$$
+**积分形式**
+$$
+\boxed{\boldsymbol r \times \boldsymbol I=\int_{t_0}^t \boldsymbol M \mathrm d t=\int_{\boldsymbol L_0}^{\boldsymbol L} \mathrm d\boldsymbol L=\boldsymbol L-\boldsymbol L_0}
+$$
+$\int_{t_0}^t \boldsymbol M \mathrm d t$ 称为合力矩在 $t_0 \to t$ 时间内的 **冲量矩**。
+
+### 角动量守恒定律
+
+当 $\boldsymbol M=0$，比如 $\boldsymbol F=0$，$\boldsymbol F $ 过 $O$ 点：有心力（如行星受中心恒星的万有引力）
+$$
+\boldsymbol L=\mathrm{Const}
+$$
+轨道在同一个平面内。
+
+在中心力场中，关于力心的角动量守恒：
+$$
+L=mvr\sin\alpha=m\frac{|\mathrm d \boldsymbol r|}{\mathrm d t} r\sin\alpha=2m\frac{\frac{1}{2} r \overbrace{|\mathrm d \boldsymbol r|\sin\alpha}^{三角形的高}}{\mathrm d t}=2m\frac{\mathrm d S}{\mathrm d t}
+$$
+得到 **开普勒第二定律** **面积定律**
+$$
+\boxed{\frac{\mathrm d S}{\mathrm d t}=\frac{L_0}{2m}}
+$$
+常量，只和运动的行星有关。
+
+**质点对轴的转动定律**
+$$
+M_z=0 \Rightarrow L_z=\mathrm{Const}
+$$
+如果外力使质点变换轨道，由角动量守恒得到
+$$
+R_2mv_2=R_1mv_1 \Rightarrow v_2=\frac{R_1}{R_2} v_1
+$$
+
+### 质点系的角动量
+
+作用于质点系的力矩
+$$
+\boldsymbol M=\sum_i \boldsymbol M_i=\sum_i \boldsymbol r _i\times \boldsymbol F_i
+$$
+**重力矩**
+$$
+\boldsymbol M_g=\sum_i \boldsymbol r_i\times (m_i\boldsymbol g)=\boldsymbol r_c \times m\boldsymbol g
+$$
+取质心为轴，重力的力矩为 0。
+
+**内力矩**
+
+一对力力的方向沿两者连线上，因此
+$$
+\boldsymbol M_{ij}=\boldsymbol r_i\times \boldsymbol f_{ij} + \boldsymbol r_j \times \boldsymbol f_{ji}=(\boldsymbol r_i-\boldsymbol r_j)\times\boldsymbol f_{ij}=\boldsymbol r_{ij}\times \boldsymbol f_{ij} \equiv0
+$$
+
+$$
+\boxed{\frac{\mathrm d \boldsymbol L}{\mathrm d t}=\sum_i \boldsymbol r_i \times \underbrace{\boldsymbol F_i}_{外力}=\boldsymbol M}
+$$
+
+质点系角动量守恒的条件：
+
+1. 外力为 0.
+2. 每个外力矩为 0.
+3. 外力矩加起来为 0.
+
+质点系的动量守恒和角动量守恒是独立的，可以同时满足。
+
+### 质心系的角动量定理
+
+$$
+\boldsymbol L=\sum _i \boldsymbol r_i \times m_i \boldsymbol v_i
+$$
+
+与惯性系中形式完全相同，但是无论质心系做匀速平动还是加速平动都成立。
+
+--------
+
+[例4-12] 发射宇宙飞船去考察一质量为 $m_1$ 、半径为 $R$ 的行星, 当飞船静止于距行星中心 $4 R$ 处时, 以速度 $\vec{v}_0$ 发射一 质量为 $m_2\left(m_2\right.$ 远小于飞船质量) 的仪器, 要使仪器恰好掠着 行星的表面着陆, $\theta$ 角应是多少? 着陆滑行初速度 $v$ 多大?
+
+运用 **角动量守恒** 和 **系统机械能守恒** 定律。
+
+----------
+
+[例2-30] 将一质点沿一个半径为 $r$ 的光滑半球形碗的内面 **水平地** 投射, 碗保持静止, 如图, 设 $v_0$ 是质点恰好能达到 碗口所需的初速率. (1) 试说明质点为什么能到达碗口?
+(2) 求 $v_0$ 与 $\theta_0$ 的关系。 ( $\theta_0$ 是质点的初始角位置, $o$ 为球心 $)$
+
+当 $N\cos \theta_0 > mg$ 时，小球能向上加速。
+
+临界条件：
+$$
+N\sin\theta_0=m\frac{v_0^2}{r\sin\theta_0} \quad N\cos\theta_0=mg \Rightarrow v_0=\sqrt{gr\frac{\sin^2\theta_0}{\cos \theta_0}}
+$$
+恒力的力矩沿着这个力的方向为 0，因此分角动量守恒。这里，在 $z$ 轴角动量守恒。
+
+角动量守恒：
+$$
+mv_0{\color{red}{r\sin\theta_0}}=mvr
+$$
+
+------------
+
+[例2-32] 如图所示, 质量为 $m$ 的飞船绕质量为 $M$ 的地球作匀速 圆周运动, 轨道半径为 $3 R$ ( $R$ 为地球半径), 它的运行速率 $v_0$ 为 多少?飞船在此处要将它的运动速度至少增加到 $v_1$ 为多少时, 才能飞离地球? 若飞船在 $3 R$ 处将速度增加到 $v_1$ 后关闭发动机, 在离地心为 $12 R$ 处, 它的切向加速度分量 $a_{\mathrm{t}}$ 为多少?该处轨道的 曲率半径 $\rho$ 为多少 (用地球半径 $R$ 以及地球表面附近的重力加速 度 $\mathrm{g}$ 表示结果)?
+
+在地面处：
+$$
+G\frac{Mm}{R^2}=mg \quad g=G\frac{M}{R^2}
+$$
+飞船在 $3R$ 处绕地球做匀速圆周运动，得到
+$$
+m\frac{v_0^2}{3R}=G\frac{mM}{(3R)^2} =\frac{mg}{9}
+$$
+得出 $v_0$。
+
+为了脱离地球，系统机械能至少为零。
+$$
+\frac{1}{2}mv_1^2-G\frac{Mm}{3R}=0 \Rightarrow v_1=\sqrt{\frac{2Rg}{3}}
+$$
+从 $3R$ 到 $12R$，系统机械能守恒。
+$$
+\frac{1}{2}mv_2^2 -G\frac{Mm}{12R}=0\Rightarrow v_2 =\sqrt{\frac{Rg}{6}}
+$$
+实际上，若机械能为零，应该做抛物线运动。
+
+在此过程中，飞船相对于地心角动量守恒：
+$$
+mv_1 \cdot 3R = mv_2 \cdot 12 R \sin\theta \Rightarrow \sin\theta=\frac{1}{2}
+$$
+需要把飞船的加速度沿速度方向和垂直速度方向分解。
+$$
+|\boldsymbol a|=G\frac{M}{(12R)^2}=\frac{g}{144}
+$$
+所以 
+$$
+\boldsymbol a_\mathrm t=-a\cos\theta=-\frac{\sqrt{3}g}{288} \quad \boldsymbol a_\mathrm n =a\sin\theta =\frac{g}{288}\\
+\rho=v_2^2 /a_n=48R
+$$
+
+-----
+
+质量为 $M$ 的静止粒子 $A$ 与质量为 $m$，具有速度的粒子 $B$ 碰撞，实验发现，当 $B$ 的动能小于某个数值时，$A,B$ 发生非弹性碰撞，只有当 $B$ 的动能大于此值时，$A,B$ 发生非弹性碰撞，此时 $B$ 将吸收数值为  $\Delta E$ 的固定能量。
+
+计算 $B$ 所应具有的这一动能值。
+
+质心速度不变
+$$
+v_c=\frac{m}{m+M}v_0
+$$
+系统能量守恒：
+$$
+\frac{1}{2}mv_0^2=\underbrace{\frac{1}{2}(m+M)v_c^2}_{\mathrm{const}}+\frac{1}{2}mv^2+\frac{1}{2}MV^2+\Delta E
+$$
+为了使 $v_0$ 最小，需要
+$$
+\frac{1}{2}mv^2=\frac{1}{2}MV^2=0
+$$
+因此，
+$$
+E_k=\frac{m^2}{2(m+M)}v_0^2+\Delta E
+$$
+
+-----
+
+同轴圆筒 $\left(M_a 、 M_b\right)$ 均可自由转动, 外筒开始静止。内筒开有许多小孔，内表面散布着一薄层沙 $\left(M_0\right)$, 以 $\omega_0$ 匀速转动,沙飞出并附着在 外筒内壁。单位时间喷出沙的质量为 $k$, 忽略 沙的飞行时间,求 $t$ 时刻两筒角速度。
+
+内筒仅仅是把沙子甩出，所以角速度不变。利用沙子和外筒角动量守恒，可以得到：
+$$
+kta^2 \omega_0=(M_b+kt)b^2 \omega_b
+$$
+因此，
+$$
+\omega_b = \frac{kta^2}{(M_b+kt)b^2} \omega_0
+$$
+
+------------
+
+两球的质量均为 $m$，轻绳，光滑水平面，求运动规律及绳中张力。
+
+首先，分析质点系的平动，得到水平方向守恒，也就是
+$$
+mv_0=2mv_c \Rightarrow v_c=\frac{1}{2}v_0
+$$
+然后再在质心系中分析，得到系统相对质心角动量守恒，为了处理角速度：
+$$
+mv_0 \frac{l}{2}=m\left(\frac{l}{2}\right)^2 \omega + m\left(\frac{l}{2}\right)^2 \omega \Rightarrow \omega =\frac{v_0}{l}
+$$
+为什么不选择相对于其他的点角动量守恒，也可以得到：
+$$
+mv_0l=m l^2 \omega \Rightarrow \omega =\frac{v_0}{l}
+$$
+所以可以选择质心以外的点分析。
+
+绳中的张力：
+$$
+T=m\frac{l}{2} \omega^2=\frac{1}{2}m\frac{v_0^2}{l}
+$$
+
+-------
+
+三球质量均为 $m$，轻杆，光滑水平面，对心弹性碰撞，分析其运动情况。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7f62958f7c7b64c0da3508aafc2f86ca.png" alt="image-20230404224621200" style="zoom:33%;" />
+
+$a,b$ 被轻杆束缚，因此选择 $ab$ 作为一个整体分析。其质心位于两球连线的中央。
+
+因此动量守恒，得到：
+$$
+mv_0=mv+2mv_c
+$$
+$cb$ 两球的作用力沿两球连线方向，碰撞之后 $c$ 运动仍然在 $cb$ 连线这条直线上。
+
+设 $ab$ 杆相对于质心的角速度为 $\omega$，则相对于 $c$，$v_a=v_b=\omega \frac{l}{2}$，$r=\frac{l}{2}$，因此总角动量为
+$$
+2m\left(\frac{l}{2}\right)^2 \omega
+$$
+ 因此，系统角动量守恒就是说：
+$$
+mv_0\frac{l}{2}\sin 45 ^\circ=mv\frac{l}{2} \sin 45 ^\circ +2m\left(\frac{l}{2}\right)^2 \omega
+$$
+系统机械能守恒就是：
+$$
+\frac{1}{2}mv_0^2 = \frac{1}{2} mv^2 +\frac{1}{2} (2m) v_c^2 +\frac{1}{2}(2m)\left(\frac{l}{2}\right)^2 \omega^2
+$$
+为什么不选择 $abc$ 整体的质心分析，因为 $c$ 不受束缚，质心的位置难以确定。
+
+----------
+
+处理天体运动，一般需要机械能守恒+角动量守恒。
