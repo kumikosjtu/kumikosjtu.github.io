@@ -1,0 +1,666 @@
+---
+title: 分子动理论
+abbrlink: 78f15731
+date: 2023-03-11 17:41:32
+tags:
+---
+
+## 热物理学
+
+组成物质的分子或者粒子都在做永不停息的无规则运动，称为热运动。大量分子的热运动的集体效应在宏观上表现为物体的热现象和热性质。
+
+**宏观理论——热力学** 以观察和实验为基础，通过归纳和推理得出有关热现象的基本规律，因而其结论普遍而且可靠。
+
+**微观理论——分子动理论** 从分子结构和分子运动出发，应用力学规律和统计方法，研究大量分子热运动的集体效应，从微观本质上解释热现象和热性质。 
+
+## 平衡态
+
+**热力学系统**—热力学研究的对象，包括极大量的分子、原子
+
+外界：热力学系统外的物体。
+
+**宏观量与微观量** 宏观量：在整体上描述系统的状态量，如 $M,V,E$ 可以叠加，称为广延量。$P,T$，不可累加，称为强度量。
+
+**微观量** 分子的质量，直径，位置，速度，动量，能量等等。
+
+### 热力学第零定律
+
+热平衡的概念：在与外界影响隔绝的条件下，使两物体（热力学系统）接触，让他们之间能发生传热（这种接触叫做热接触），之后它们的宏观性质不再发生改变，称为热平衡。
+
+当A、B与C同时达到热平衡时，A与B也必然处于热平衡。Thermal equilibrium state 热平衡有 **可传递性**。
+
+达到热平衡的系统具有共同的内部属性—温度 热平衡具有可传递性:原因具有 **共同属性**
+
+确定温度数值的表示方法：**温标**
+
+1. 选定测温物体
+2. 选定与温度单调变化的属性
+3. 假定测温属性与温度成线性关系 $t=aX+b$， 其中 $t$ 为温度，$X$ 为水银体积。
+4. 选定温度标准点，将温度计分度
+
+由定压气体温度计和定容气体温度计得到，所建立的温标与温度计的测温物质和测温属性有关。有没有与测温物质无关的统一的温标？
+
+当气体非常稀薄的时候，用实际气体所建立的温标趋于一个共同的极限，称为理想气体温标。
+
+<img src="https://fastly.jsdelivr.net/gh/GaisaiYuno/imghost/202305110850524.png" alt="image-20230511085027937" style="zoom:50%;" />
+
+### 理想气体温标和状态方程
+
+对于一个简单系统，存在以下函数：
+$$
+F(p,V,T)=0
+$$
+实验发现：
+
+- $V$ 不变，$p\propto T$，称为查理定律。
+- $p$ 不变，$V\propto T$，称为盖-吕萨克定律。
+
+得到：$pV=DT$.
+
+当 $T_0=273.15 \mathrm{~K}$，$p_0=$一个大气压时，得到
+$$
+D=\frac{p_0 V_0}{T_0}=\underbrace{\nu}_{物质的量} \frac{p_0 \overbrace{V_{0 \mathrm{~mol}}}^{22.4}}{T_0}\equiv \nu R
+$$
+因此算出 $R=8.31\mathrm{~ J/(mol\cdot K^{-1})}$.
+
+设气体质量为 $m$，摩尔质量为 $M$，气体的分子数为 $N$，阿伏伽德罗常数 $N_A$，最后得到理想气体的状态方程为：
+$$
+\boxed{pV=\nu RT=\frac{m}{M} RT=\frac{N}{N_A} RT}
+$$
+引入玻尔兹曼常数：
+$$
+k_B=\frac{R}{N_{A}}=1.38\times 10^{-23}(\mathrm{J\cdot K^{-1}})
+$$
+
+$$
+\Rightarrow pV=\frac{N}{N_A} RT=k_BNT
+$$
+
+设气体分子数密度（单位体积内的分子数）为 $n$，则 $p=nk_BT$.
+
+### 理想气体微观模型 压强和温度的统计意义
+
+**气体分子热运动的特征**：
+
+- 分子的密度 $3\times 10^{19}$ 个分子 $/\mathrm{cm}^3=$ 三千亿个亿；
+- 分子之间有一定的间隙，有一定的作用力；
+- 分子热运动的平均速率约为 $\overline{v}=500\mathrm{~m/s}$.
+- 分子平均碰撞次数约为 $\overline{z}=10^{10}$ 次/秒。
+
+**理想气体的微观模型**
+
+- 分子线度与分子间距相比可以忽略，分子看作质点；
+- 除了分子碰撞的瞬间外，忽略分子间的相互作用；
+- 气体分子在运动中遵守经典力学规律，假设碰撞为弹性碰撞；
+- 除需特别考虑外，不计分子受到的重力。
+
+分子间间距
+$$
+\left(\frac{V_{\mathrm{mol}}}{N_A}\right)^\frac{1}{3}
+$$
+**统计假设**：气体处在平衡态时，分子在容器中的空间分布平均来说是均匀的。
+$$
+n=\frac{\mathrm d N}{\mathrm d V}=\frac{N}{V}
+$$
+$\mathrm d V$ 无限大的小，宏观上是小的，微观上是大的。
+
+气体在平衡态时，具有相同速率的分子向各个方向运动的平均分子数是相同的，定义
+$$
+\overline{v_x}=\frac{\sum_i v_{xi}}{N}\\
+\overline{v_x^2}=\frac{\sum_i v_{xi}^2}{N}
+$$
+由于各向同性，得到 $\overline{v_x}=\overline{v_y}=\overline{v_z}=0$ 和 $\overline{v_x^2}=\overline{v_y^2}=\overline{v_z^2}$。
+
+所以 $\overline{v_x^2}=\overline{v_y^2}=\overline{v_z^2}=\frac{1}{3}\overline{v^2}$。
+
+设第 $i$ 组分子的速度在 $\overline{v_i}\sim\overline{v_i}+\mathrm d \overline{v_i}$ 区间内，以 $n_i$ 表示单位体积内第 $i$ 组分子的数量。$m$：分子质量，$n=\sum n_i$
+
+一次碰撞分子动量变化 $2mv_{ix}$，完全弹性碰撞，在 $\mathrm d t$ 时间内与 $\mathrm d A$ 碰撞的分子数 $n_i \underbrace{v_{ix}\mathrm d t}_{能碰到容器壁对应的距离}\underbrace{\mathrm d S}_{面元}$。
+
+他们给容器壁的总冲量：
+$$
+2mn_iv_{ix}^2 \mathrm d t\mathrm d S
+$$
+考虑不同速度分子，一半朝左一半朝右，朝左碰右壁，朝右碰左壁：
+$$
+\mathrm d I=\sum_{i,v_{ix}>0 朝左} 2mn_i v_{ix}^2 \mathrm d t\mathrm d S=\sum_i m n_iv_{ix}^2 \mathrm d t\mathrm d S
+$$
+得到
+$$
+P=\frac{\mathrm d F}{\mathrm d S}=\frac{\mathrm d I/\mathrm d t}{\mathrm d S}=\sum_i mn_iv_{ix}^2 =nm\frac{\sum_i n_i v_{xi}^2}{\underbrace{\sum_i n_i}_{n}}=nm\overline{v_x^2}=\frac{1}{3}nm\overline{v^2}
+$$
+代入平均分子动能 $\overline{\varepsilon _t}=\frac{1}{2}m\overline{v^2}$，得到 $P=\frac{2}{3}n\overline{\varepsilon_t}$。
+
+代入 $P=nkT$，结论 $\overline{\varepsilon_t}=\frac{3}{2}kT$， 温度标志着物体内部分子热运动的剧烈程度，它是大量分子热运动的平均平动动能 $\overline{\varepsilon_t}$ 的统计平均值的量度。
+
+均方根速率：$\overline{\varepsilon_t}=\frac{1}{2}m\overline{v^2}=\frac{3}{2}kT$，得到
+$$
+\sqrt{\overline{v^2}}=\sqrt{\frac{3kT}{m}}\overset{\times N_A}{=}\sqrt{\frac{3RT}{M}}
+$$
+**道尔顿分压定律** 混合理想气体是由若干种化学纯的气体构成的，设 $n_1 \sim n_m$ 为气体的数密度，则总数密度为 $n=\sum n_i$. 各组气体的平动动能相等，得到
+$$
+p=\frac{2}{3}\left(\sum_i n_i\right) \overline{\varepsilon}=\sum_i \frac{2}{3}n_i \overline{\varepsilon}=\sum_i p_i
+$$
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4880193d73151f5063c66c8ceb61c7cb.png" alt="image-20230511223125559" style="zoom:33%;" />
+
+## 分子热运动的速度和速率统计分布规律
+
+### 速率分布函数
+
+设速率分布在 $v \to v+\Delta v$ 间隔内的分子数为 $\Delta N$，则 $\Delta N$ 正比于 $\Delta v$。比值 $\Delta N/\Delta v$ 代表在速率 $v$ 附近 **单位速率区间内分布的分子数**。比值 $\Delta N/N\Delta v$ 代表在速率 $v$ 附近 **单位速率区间内分布的分子数占总分子数的比例**。
+$$
+\boxed{f(v)=\lim_{\Delta v\to 0} \frac{\Delta N}{N\Delta v}=\frac{\mathrm d N}{N\mathrm d v}}
+$$
+> 当速率间隔 $\Delta v$ 很小的时候，即 $\Delta v =|v_1-v_2| \ll v_1$，可以用小矩形替代积分，分布在 $v\to v+\Delta v$ 或者 $v-\Delta v/2 \to v+\Delta v/2$ 区间内的分子数可以近似为 $\mathrm{d} N=f(v) N\mathrm{d} v$.
+
+归一化条件：
+$$
+\boxed{\int_0^\infin f(v)\mathrm d v=\int_0^\infin \frac{\mathrm d N}{N}=\frac{1}{N}\int_0^\infin \mathrm d N=1}
+$$
+归一化条件说明 $f(v)-v$ 曲线和 $x$ 轴包围的面积为 $1$。
+
+平均速率：
+$$
+\overline{v}=\int_0^\infin v f(v)\mathrm d v
+$$
+分子速率平方的平均值：
+$$
+\overline{v^2}=\int_0^\infin v^2 f(v)\mathrm d v
+$$
+分子动能的平均值为：
+$$
+\overline{\varepsilon_t}=\int_0^\infin \frac{1}{2}mv^2 f(v)\mathrm d v=\frac{1}{2}m\int_0^\infin v^2 f(v)\mathrm d v=\frac{1}{2}m\overline{v^2}
+$$
+
+$f(v)$ 可以看成权重。广义上来讲：
+$$
+\overline{g}=\int_0^\infin gf(v)\mathrm d v
+$$
+
+
+### 速度分布函数
+
+令 $\mathrm d N$ 表示速度分布在速度范围 $(v_x \to v_x +\mathrm d v_x,v_y\to v_y +\mathrm d v_y,v_z\to v_z +\mathrm d v_z)$ 之间的分子数，简单记为 $\boldsymbol v \to \boldsymbol v+\mathrm d ^3 \boldsymbol v$，其中 $\mathrm d ^3 \boldsymbol v$ 称为速度体积元。
+
+如果把整个容器内分子的运动速度拿出来，画在三维坐标系里面，就可以发现应该形成一个分布不均的球，这样分布仅仅和速率有关，形成 number density。因为速度分布应该是各向同性的。（类比三维坐标系中的位矢）
+
+速度分布函数可以表示为：
+$$
+F(v_x,v_y,v_z)=\frac{\mathrm d N}{N\mathrm d v_x\mathrm d v_y\mathrm d v_z}\quad F(\boldsymbol v)=\frac{\mathrm d N}{N \mathrm d ^3 \boldsymbol v}
+$$
+其中
+$$
+\mathrm d N=N F(v_x,v_y,v_z) \mathrm d v_x \mathrm d v_y \mathrm d v_z
+$$
+归一化条件：
+$$
+\int_{-\infin}^\infin\int_{-\infin}^\infin\int_{-\infin}^\infin F(\boldsymbol v)\mathrm d^3 \boldsymbol v=1
+$$
+
+$$
+\overline{v^2}=\int_{-\infin}^\infin\int_{-\infin}^\infin\int_{-\infin}^\infin v^2 F(v_x,v_y,v_z)\mathrm d v_x\mathrm d v_y\mathrm d v_z
+$$
+
+$$
+\mathrm d N_{v_x}=N \mathrm d v_x\int_{-\infin}^\infin \int_{-\infin}^\infin  F(v_x,v_y,v_z)\mathrm d v_y \mathrm d v_z
+$$
+
+定义：
+$$
+g(v_x)=\frac{\mathrm d N_{v_x}}{N\mathrm d v_x}=\int_{-\infin}^\infin \int_{-\infin}^\infin  F(v_x,v_y,v_z)\mathrm d v_y \mathrm d v_z
+$$
+处于 $v_x \to v_x +\mathrm d v_x$ 的概率为 $g(v_x)$。
+$$
+\overline{v_x}=\frac{\int_{-\infin}^\infin v_x \mathrm d N_{v_x}}{N}=0
+$$
+下面定量计算处于平衡态的理想气体对容器壁的压强。假设气体分子的数密度为 $n$，每个分子的质量为 $m$，分布在 $\boldsymbol v \to \boldsymbol v+\mathrm d ^3 \boldsymbol v$ 的分子具有相同的速度 $\boldsymbol v$。
+
+研究 $\mathrm{d} A$ 为底，$v_x\mathrm{d} t$ 为高的斜柱体中的满足分布在 $\boldsymbol v \to \boldsymbol v+\mathrm d ^3 \boldsymbol v$ 分子数：
+$$
+\mathrm{d} N=\underbrace{[n F(\boldsymbol v) \mathrm{d} v_x\mathrm{d} v_y\mathrm{d} v_z]}_{\boldsymbol v \to \boldsymbol v+\mathrm d ^3 \boldsymbol v 分子数} \underbrace{v_x \mathrm{d} t\mathrm{d} A}_{体积}
+$$
+每个分子都会产生 $2mv_x$ 的冲量，因此冲量之和：
+$$
+\mathrm{d} I'=2mv_x \mathrm{d} N
+$$
+碰撞时要求 $v_x \ge0$，因此所有能碰到面元上的分子在 $\mathrm{d}t$ 时间给面元 $\mathrm{d} A$ 的冲量为积分：
+$$
+\mathrm{d} I=\int_0^\infin \int_{-\infin}^\infin\int_{-\infin}^\infin \mathrm{d} I'\\
+=\int_0^\infin \mathrm{d} v_x\int_{-\infin}^\infin \mathrm{d} v_y\int_{-\infin}^\infin \mathrm{d} v_z\cdot 2mv_x\cdot n F(\boldsymbol v) v_x \mathrm{d} t\mathrm{d} A
+$$
+由 $\mathrm{d} I=F\mathrm{d} t=p\mathrm{d} A\mathrm{d} t$，得到
+$$
+p=\frac{\mathrm{d} I}{\mathrm{d} t\mathrm{d} A}=2mn \int_0^\infin \mathrm{d} v_x\int_{-\infin}^\infin \mathrm{d} v_y\int_{-\infin}^\infin \mathrm{d} v_z F(\boldsymbol v) v_x^2
+$$
+速度分布函数应该具有以下特点：
+
+1. 各向同性，速度分布函数与速度方向无关，也就是：
+   $$
+   F(v_x,v_y,v_z)=F(v^2)=F(v_x^2+v_y^2+v_z^2)
+   $$
+
+2. 分布对等
+   $$
+   \overline{v_x^2}=\overline{v_y^2}=\overline{v_z^2}=\frac{1}{3}\overline{v^2}
+   $$
+
+3. 分子对三个速度分量的分布应该是相互独立的，同时处于三个间隔的概率。
+   $$
+   F(v_x^2+v_y^2+v_z^2)=F(v^2)=g(v_x^2)g(v_y^2)g(v_z^2)
+   $$
+
+由于速度分布函数是偶函数，得到
+$$
+p=mn \overline{v_x^2}=\frac{1}{3}nm \overline{v^2}=\frac{2}{3}n\overline{\varepsilon_t}
+$$
+对比 $p=nk_BT$，得到
+$$
+\overline{\varepsilon_t}=\frac{3}{2}k_BT=\frac{1}{2}m\overline{v^2}
+$$
+
+$$
+\sqrt{\overline{v^2}}=\sqrt{\frac{3k_BT}{m}}\overset{\times N_A}{=}\sqrt{\frac{3RT}{M}}
+$$
+
+道尔顿分压定理：
+$$
+n=\sum_i n_i\\
+p=\sum \frac{2}{3} n_i \overline{\varepsilon_i}=\frac{2}{3} \sum_i n_i \overline{\varepsilon}=k_B T\sum_i n_i=\sum_i p_i
+$$
+混合气体的压强等于各气体的分压之和。
+
+### 麦克斯韦速度分布律与速率分布律
+
+**速度分布律**
+
+由 $F(v_x^2+v_y^2+v_z^2)=F(v^2)=g(v_x^2)g(v_y^2)g(v_z^2)$ 可得应该取 $g(x)$ 为指数函数，得到
+$$
+F(v_x,v_y,v_z)=Ae^{-\alpha \left(v_x^2+v_y^2+v_z^2\right)}=Ae^{-\alpha v^2}
+$$
+由归一化条件：
+$$
+\int_{-\infin}^\infin\int_{-\infin}^\infin\int_{-\infin}^\infin F(v_x,v_y,v_z)\mathrm d v_x\mathrm d v_y\mathrm d v_z=1
+$$
+可以得到
+$$
+A\left(\int_{-\infin}^\infin e ^{-\alpha v_x^2}\mathrm d v_x\right)^3=1
+$$
+
+$$
+A=\left(\frac{\alpha}{\pi}\right)^{3/2}
+$$
+接下来确定常数 $\alpha$，由
+$$
+\overline{v_x^2}=\frac{\int_{-\infin}^\infin v_x^2 g(v_x^2)\mathrm d v_x}{\int_{-\infin}^\infin g(v_x^2)\mathrm d v_x}=\frac{1}{2\alpha}
+$$
+由温度公式就可以得到
+$$
+\overline{v_x^2}=\frac{1}{3}\overline{v^2}=\frac{1}{2\alpha}=\frac{kT}{m}
+$$
+得到
+$$
+\alpha=\frac{m}{2kT}
+$$
+因此得到麦克斯韦速度分布函数
+$$
+\boxed{F(v_x,v_y,v_z)=\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-\frac{m}{2kT}\left(v_x^2+v_y^2+v_z^2\right)}}
+$$
+
+**速率分布律**
+$$
+\boxed{f(v)=4\pi v^2 \left(\frac{m}{2\pi k_BT}\right)^{3/2} e^{-\frac{m}{2k_BT}v^2}}
+$$
+
+其中 $m$ 是一个分子的质量。
+$$
+f(v)\mathrm d v=F(\boldsymbol v) 4\pi v^2 \mathrm d v
+$$
+
+#### 最概然速率
+
+$$
+\frac{\mathrm d}{\mathrm d v} f(v)=0 \Rightarrow v_p=\sqrt{\frac{2RT}{M}}=1.414 \sqrt{\frac{k_B T}{m}}
+$$
+改造公式：
+$$
+f(v)=4\pi \cdot \pi ^{-3/2} v_p^{-2} v^2 e^{-v^2/v_p^2} 
+$$
+
+$$
+f(v)=4\pi^{-1/2} \left(\frac{v}{v_p}\right)^2 e^{-v^2/v_p^2}/v_p
+$$
+
+证明速度分布在 $v_p\sim 2v_p/\sqrt{\pi}$ 分子比例与气体种类、温度无关。（也就是最概然速率和平均速率之间）
+$$
+\int_{v_p}^{\overline{v}}f(v)\mathrm d v
+=\int_{v_p}^{\overline{v}} 4\pi^{-1/2} \left(\frac{v}{v_p}\right)^2 e^{-v^2/v_p^2} \mathrm d v/v_p\\
+=\int_{v_p}^{2v_p/\sqrt{\pi}} 4\pi^{-1/2} x^2 e^{-x^2}\mathrm d x\\
+=\int_1^\frac{2}{\sqrt{\pi}} 4\pi^{-1/2} x^2 e^{-x^2}\mathrm d x=C
+$$
+
+#### 平均速率
+
+$$
+\int_0^\infin v f(v)\mathrm{d} v=\overline{v}=\frac{2}{\sqrt{\pi}} v_p=\sqrt\frac{8k_BT}{\pi m}=\sqrt{\frac{8}{\pi}} \sqrt{\frac{k_B T}{m}}=1.60\sqrt{\frac{k_B T}{m}}
+$$
+#### 均方根速率
+
+$$
+\sqrt{\int_0^\infin v^2 f(v)\mathrm{d} v}=\sqrt{\overline{v^2}}=\sqrt{\frac{3RT}{M}}=1.73 \sqrt{\frac{k_B T}{m}}
+$$
+分子的平均动能（平动）
+$$
+\overline{\varepsilon}=\frac{1}{2}m \frac{3RT}{M}=\frac{3}{2}k_BT
+$$
+结论相同。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_83b8bea7ea2db202d1948b6836eb164e.png" alt="image-20230516113344874" style="zoom:33%;" />
+
+没有一个线恰好把曲线平分为面积相同的两半……
+
+-------
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_639233d47033b49eadd82f58ce61b033.png" alt="image-20230518081715160" style="zoom:33%;" />
+
+注：温度必须一样，否则速率分布不一样。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_e17e035eb1020d0d4daf5e597db256ff.png" alt="image-20230518082057258" style="zoom:33%;" />
+
+$N(S_2-S_1)=N(1-A)$.
+
+### 分子的速率分布律实验验证 泄流
+
+思考，在容器壁上开一个小孔，从小孔里面泄流出来的气体分子的速率分布能不能代表容器内部的气体分子速率分布。答案是不能，因为气体分子速率越大，从小孔泄出的概率越高，通过下面的推导，我们能够验证泄流速率和速度分布有以下关系：$f_e(v) \propto vf(v)$.
+
+碰壁频率：**单位时间内撞到单位面积上的分子数**，以 $\Gamma$ 表示。
+
+计算得到碰壁频率为：
+$$
+\Gamma=n \frac{1}{4}\left(\frac{8k_B T}{\pi m}\right)^{1/2}=\frac{1}{4}n\overline{v}
+$$
+
+如果从数密度 $n$ 的容器向真空泄流，写成微分方程的形式，其中 $S$ 为小孔的面积：
+$$
+\frac{\mathrm{d} N}{\mathrm{d} t}=-\frac{1}{4}n \overline{v}S
+$$
+用麦克斯韦速率分布律可以将碰壁频率表示为：
+$$
+\Gamma=\frac{1}{4}n \underbrace{\int_0^\infin vf(v)\mathrm d v}_{\overline{v}}\equiv \int_0^\infin \gamma(v)\mathrm d v
+$$
+
+其中 $\displaystyle \gamma (v)=\frac{1}{4}nv f(v)$，物理意义为**单位时间，从小孔单位面积上射出的在速率 $\boldsymbol  v$ 附近单位速率间隔内的分子数**。
+
+泄流速率分布函数是指**分子束中速率在 $\boldsymbol v$ 附近单位速率间隔内的分子数占总泄流分子数的比率**，也就是代表了泄流气体分子速率的分布函数，由归一化，得到：
+$$
+f_e(v)=\frac{\gamma(v)}{\Gamma}=\frac{\frac{1}{4} nv f(v)}{\frac{1}{4} n\overline{v}}=\frac{v}{\overline{v}} f(v)=\frac{1}{2}\left(\frac{m}{k_B T}\right)^2 e^{-\frac{m}{2k_B T}v^2}v^3
+$$
+
+可见：$f_e(v) \propto vf(v)$.
+
+---------
+
+理想气体，温度 $T$，求气体分子按平动动能的分布律 $f(\varepsilon) \ (\varepsilon=\frac{1}{2}\mu v^2)$ 并求最可几速率。
+
+需要把 $f(v)$ 变成 $f(\varepsilon)$，满足在 $v$ 附近，$\varepsilon=\frac{1}{2}mv^2$ 附近：
+$$
+f(v)\mathrm d v=f(\varepsilon)\mathrm d \varepsilon=\frac{\mathrm d N}{N}
+$$
+代入 $v^2=2\varepsilon/m$，$\displaystyle \mathrm d v=\frac{\mathrm d \varepsilon}{\sqrt{2\mu \varepsilon}}$.
+$$
+f(\varepsilon)=4\pi \left(\frac{\mu}{2\pi kT}\right)^{3/2} e^{-\mu v^2/(2kT)} v^2 \frac{1}{\sqrt{2\mu \varepsilon}}=\frac{2}{\sqrt{\pi}} \left(\frac{1}{kT}\right)^{3/2} \varepsilon ^{1/2} e^{-\varepsilon/(kT)}
+$$
+
+### 玻尔兹曼能量分布
+
+问题：在重力场的作用下，如何求 $h\to h+\Delta h$ 范围内的分子数。
+
+**玻尔兹曼能量分布**：
+
+如果分子的势能相同，由麦克斯韦速度分布函数：
+$$
+\mathrm{d} N=NF(v_x,v_y,v_z)\mathrm{d}^3\boldsymbol v=N\left(\frac{m}{2\pi k_BT}\right)^{3/2} e^{-\frac{m}{2kT}\left(v_x^2+v_y^2+v_z^2\right)}\mathrm{d}^3 \boldsymbol v\propto e^{-\varepsilon_k/(k_B T)}
+$$
+如果气体系统处于外场（如重力场中），每个分子的能量 $\varepsilon=\varepsilon_k+\varepsilon_p$.
+
+可以推出同时处在六个间隔 $\boldsymbol v \to \boldsymbol v +\mathrm d ^3 \boldsymbol v,
+\boldsymbol r \to \boldsymbol r +\mathrm d ^3 \boldsymbol r$ 的分子几率和指数函数成正比，也就是
+$$
+\boxed{\mathrm{d} N\propto{\large{e}}^{-\dfrac{\varepsilon_k+\varepsilon_p}{kT}}={\large{e}}^{-\dfrac{\varepsilon}{kT}}}
+$$
+（体现了能量越小，几率越大）
+
+设归一化因子 $C$，则处于这个区间内的分子数：
+$$
+\mathrm d N=C e^\frac{-\varepsilon}{kT}\mathrm d^3 \boldsymbol v\mathrm d^3 \boldsymbol r
+$$
+写成：
+$$
+\mathrm{d} N=n_0\left(\frac{m}{2\pi k_B T}\right)^{3/2}e^{-\frac{\varepsilon_k+\varepsilon_p}{kT}}\mathrm d^3 \boldsymbol v\mathrm d^3 \boldsymbol r=n_0 e^{-\frac{\varepsilon_p}{kT}}F(\boldsymbol v)\mathrm{d}^3 \boldsymbol v\mathrm{d}^3 \boldsymbol r
+$$
+其中 $n_0$ 是待定常数。
+
+则处在空间体积元 $\mathrm{d} x\mathrm{d} y\mathrm{d} z$ 内的分子数为：
+$$
+\mathrm{d} N'=n_0 e^{-\frac{\varepsilon_p}{kT}} \mathrm{d}^3 \boldsymbol r \iiint F(\boldsymbol v)\mathrm{d}^3 \boldsymbol v=n_0 e^{-\frac{\varepsilon_p}{kT}}\mathrm{d}^3 \boldsymbol r 
+$$
+因此在 $x,y,z$ 附近分子的数密度为：
+$$
+\boxed{n=\frac{\mathrm{d} N'}{\mathrm{d}^3 \boldsymbol r}=n_0 e^{-\varepsilon_p/kT}}
+$$
+其中 $n_0$ 代表 $\varepsilon_p=0$ 处单位体积内具有各种速度的分子总数。称为**玻尔兹曼分布律**。
+
+重力场中 $\varepsilon_p=mgz$，则
+$$
+n=n_0 e^{-mgz/kT}
+$$
+
+$$
+P=nkT=n_0 kT e^{-mgz/kT}=P_0 e^{-mgz/kT}
+$$
+
+$$
+z=\frac{kT}{mg}\ln P_0/P
+$$
+
+知道了地面的气体压强和待测高度的气体压强，可以测出高度。
+
+------
+
+稳定大气温度 $T$，以地面为重力势能零点，试证明大气分子 $\overline{E_p}=kT$.
+
+取截面积为 $\mathrm d S$，高度为 $\mathrm d z$ 的小体积。
+$$
+\overline{E_p}=\frac{\iint mgz \cdot n_0 e^{-mgz/kT}\mathrm d S\mathrm d z}{\iint n_0 e ^{-mgz/kT}\mathrm d S\mathrm d z}
+$$
+
+----------
+
+分子原子在能级上的分布也遵守玻尔兹曼定律：$\displaystyle N_i \propto e^{-\frac{E_i}{kT}}$
+
+一般假定 $N_i=Ce^{-\frac{E_i}{kT}}$，然后根据 $\displaystyle \sum N_i=N$ 求出 $C$.
+
+-------
+
+系统有4000个粒子,能级0,E,2E,初始,三能粒子数分别为2000,1700,300,问是否是平衡态？ 平衡态下应如何分布?
+
+1. 系统分子数 $\displaystyle C\left(1+e^{-\frac{E}{kT}}+e^{-\frac{2E}{kT}}\right)=4000$
+2. 系统能量守恒 $Ce^{-\frac{0}{kT}}\cdot 0+Ce^{-\frac{E}{kT}}\cdot E+Ce^{-\frac{2E}{kT}}\cdot 2E=2000\cdot 0+1700\cdot E+300\cdot 2E=2300E$.
+
+### 能量均分定理
+
+自由度：决定某物体在空间的位置所需要的独立坐标数。
+
+- **单原子分子** $t=3,r=0,s=0$ 三个自由度。
+- **双原子分子（刚性）** $t=3,r=2,s=0$ 五个自由度。
+- **多原子分子（刚性）** $t=3,r=3,s=0$ 六个自由度。
+- **双原子分子（非刚性）** $t=3,r=2,s=1$ 七个自由度。
+- **多原子分子（非刚性）** $s=3n-6,t=3,r=3$.
+
+**能量均分定理（Equipartition Theorem）**
+
+在温度为 $T$ 的平衡态下，物质分子的每一个自由度都具有相同的平均动能，其大小都等于 $k_BT/2$，<u>对每一振动自由度还有 $k_B T/2$ 的平均势能</u>。
+
+设平动自由度 $t$，转动自由度 $r$，振动自由度 $s$，则 **一个分子** 的平均能量：
+$$
+\overline{E}=(t+r+2s)\frac{1}{2}kT=\frac{i}{2}kT
+$$
+**理想气体内能**
+$$
+E=E_k (对应 t+r+s)+E_{pa}(对应s)+E_{pm}(理想气体无分子间势能)
+$$
+$\displaystyle \frac{3}{2}kT$ 是一个分子的平均动能。
+
+对于 $\nu \mathrm{~mol}$ 气体，得到
+$$
+E=N\left(\frac{i}{2}kT\right)=\nu  N_A\left(\frac{i}{2}kT\right)=\nu \left(\frac{i}{2}RT\right)=\frac{i}{2}PV
+$$
+因此：
+$$
+\boxed{E=\frac{i}{2}PV}
+$$
+理想气体的内能只能是温度的函数。
+
+----
+
+绝热容器被绝热板分隔为 $A,B$ 两部分，两部分的体积、压强相等，均为 $P_0,V_0$，$A$ 内储存 $1\mathrm{~mol}$ 单原子理想气体，$B$ 内储存 $2\mathrm{~mol}$ 双原子理想气体。
+
+求
+
+1. 内能 $E_A,E_B$。
+
+   $\displaystyle  E_A=1\cdot \frac{3}{2}RT_A=\frac{3}{2}P_0V_0$
+
+   $\displaystyle E_B=2\cdot \frac{5}{2}RT_B=\frac{5}{2}P_0V_0$.
+
+2. 抽出绝热板，两种气体混合后处于平衡时的温度。
+
+   混合气体能量守恒，也就是：
+   $$
+   E_A+E_B=1\cdot \frac{3}{2}RT+2\cdot \frac{5}{2}RT=\frac{13}{2}RT
+   $$
+
+   $$
+   T=\frac{8 P_0V_0}{13 R}
+   $$
+
+----------
+
+容器内贮有质量为 $m$ 摩尔质量为 $M$ 的理想气体， 设容器以速度 $u$ 作定向运动，今使容器突然停止，问： 
+
+1. 定向运动机械能转化为什么形式的能量？转化为无规则热运动的动能。
+
+2. 分子速度平方的平均值增加多少？（单原子、双原子）
+
+   对于单原子分子，容器动能全部转化为分子的平动动能，因此
+   $$
+   \frac{1}{2}mu^2= \Delta \left(\frac{m}{M} N_A  \frac{3}{2} k_BT\right)=\Delta \left(\frac{m}{M} N_A \overline{\varepsilon_t}\right)=\Delta \left(\frac{m}{M} N_A \frac{1}{2} \frac{M}{N_A} \overline{v^2}\right)
+   $$
+   $u^2=\Delta \overline{v^2}$.
+
+   对于双原子分子，还有一部分能量转化为分子的转动动能。
+   $$
+   \frac{1}{2}mu^2= \Delta \left(\frac{m}{M} N_A  \frac{5}{2} k_BT\right)=\Delta \left(\frac{m}{M} N_A \frac{5}{3}\overline{\varepsilon_t}\right)=\Delta \left(\frac{m}{M} N_A \frac{5}{6} \frac{M}{N_A} \overline{v^2}\right)
+   $$
+   因此 $\Delta \overline{v^2}=\frac{3}{5}u^2$
+
+## 习题
+
+- 如果两个热力学系统中的每一个都与第三个热力学系统处于热平衡(温度相同)，则它们彼此也必定处于热平衡。这一结论称做“热力学第零定律”。
+
+- 理想气体状态方程 $\displaystyle pV=\nu RT=\frac{m}{M} RT=\frac{N}{N_A} RT$. 数密度 $\displaystyle n=\frac{p}{k_B T}$.
+
+- 速率分布函数
+
+  - 设速率分布在 $v \to v+\Delta v$ 间隔内的分子数为 $\Delta N$，则 $\Delta N$ 正比于 $\Delta v$。比值 $\Delta N/\Delta v$ 代表在速率 $v$ 附近 **单位速率区间内分布的分子数**。比值 $\Delta N/N\Delta v$ 代表在速率 $v$ 附近 **单位速率区间内分布的分子数占总分子数的比例**。
+
+  $$
+  f(v)=\lim_{\Delta v\to 0} \frac{\Delta N}{N\Delta v}=\frac{\mathrm d N}{N\mathrm d v}
+  $$
+
+  > 当速率间隔 $\Delta v$ 很小的时候，即 $\Delta v =|v_1-v_2| \ll v_1$，可以用小矩形替代积分，分布在 $v\to v+\Delta v$ 或者 $v-\Delta v/2 \to v+\Delta v/2$ 区间内的分子数可以近似为 $\Delta  N=f(v) N\Delta v$.
+
+  - 归一化条件：
+
+  $$
+  \int_0^\infin f(v)\mathrm d v=\int_0^\infin \frac{\mathrm d N}{N}=\frac{1}{N}\int_0^\infin \mathrm d N=1
+  $$
+
+  - 最概然速率：
+    $$
+    \frac{\mathrm{d} f}{\mathrm{d} v}=0
+    $$
+
+  - 从 $v_1$ 到 $v_2$ 的分子的平均速率：
+    $$
+    \overline v=\frac{\int_{v_1}^{v_2} vf(v)\mathrm{d} v}{\int_{v_1}^{v_2} f(v)\mathrm{d} v}\overset{全体分子}=\int_0^\infin vf(v)\mathrm{d} v
+    $$
+
+  - 从 $v_1$ 到 $v_2$ 的分子的方均根速率：
+    $$
+    \sqrt{\overline{v^2}}=\sqrt \frac{\int_{v_1}^{v_2} v^2f(v)\mathrm{d} v}{\int_{v_1}^{v_2} f(v)\mathrm{d} v}\overset{全体分子}=\sqrt {\int_0^\infin v^2f(v)\mathrm{d} v}
+    $$
+
+  - 从 $v_1$ 到 $v_2$ 的分子的平均平动动能：
+    $$
+    \varepsilon _t=\frac{1}{2} m \overline{v^2}= \frac{\int_{v_1}^{v_2} \frac{1}{2}mv^2f(v)\mathrm{d} v}{\int_{v_1}^{v_2} f(v)\mathrm{d} v}\overset{全体分子}= \int_0^\infin \frac{1}{2}mv^2f(v)\mathrm{d} v
+    $$
+
+- 麦克斯韦速度分布律
+  $$
+  \boxed{F(v_x,v_y,v_z)=\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-\frac{m}{2kT}\left(v_x^2+v_y^2+v_z^2\right)}} \quad \boxed{f(v)=4\pi v^2 F(v^2)=\cdots}
+  $$
+
+  - $$
+    v_p=\sqrt{\frac{2RT}{M}}=1.414 \sqrt{\frac{k_B T}{m}}
+    $$
+
+  - $$
+    \overline{v}=\frac{2}{\sqrt{\pi}} v_p=\sqrt\frac{8k_BT}{\pi m}=\sqrt{\frac{8}{\pi}}\sqrt{\frac{k_B T}{m}}=1.60\sqrt{\frac{k_B T}{m}}
+    $$
+
+  - $$
+    \sqrt{\overline{v^2}}=\sqrt{\frac{3RT}{M}}=\sqrt{3} \sqrt{\frac{k_B T}{m}}
+    $$
+
+  摩尔质量需要发现是 $g/mol$，因此要除 $10^3$.
+
+  用 $v_p$ 表示的速率分布函数？$4 \pi ^{-1/2} e^{-v^2/v_p^2} v^2/v_p^2  \cdot 1/v_p$
+
+- 泄流 $\displaystyle \frac{\mathrm{d} N}{\mathrm{d} t}=-\frac{1}{4}n \overline{v}S=-\frac{1}{4}(n_1-n_2)\overline{v} S$.
+
+  如果要求压强相关关系，利用 $N=pV/k_B T,n=p/k_B T$，得到
+  $$
+  V\frac{\mathrm{d} p}{\mathrm{d} t}=-\frac{1}{4} (p_1-p_2)\overline{v}S
+  $$
+
+- 能量均分定理
+
+  - 气体的等容摩尔热容为 $C_{V,m}=\displaystyle \frac{i}{2} R$. 内能 $\displaystyle E=\frac{i}{2}PV$。
+  - 单个气体分子的平均动能为 $\displaystyle \overline{\varepsilon}=\frac{i}{2}k_B T$. 平动动能为 $\displaystyle \overline{\varepsilon}=\frac{3}{2}k_B T$. 在任意自由度上的平均动能为 $\varepsilon_1=\displaystyle \frac{1}{2} k_B T$.
+
+- 玻尔兹曼能量分布
+
+  - $$
+    n=\frac{\mathrm{d} N'}{\mathrm{d}^3 \boldsymbol r}=n_0 e^{-\varepsilon_p/kT}
+    $$
+
+  - 重力场中 $n=n_0 e^{-mgz/kT}$，$p=p_0 e^{-mgz/kT}$
+
+### 19-9
+
+![image-20230611133801013](https://notes.sjtu.edu.cn/uploads/upload_2895654d226de0f137e59dac1777b021.png)
+
+最概然速率：$\displaystyle v_p=\sqrt{2} \sqrt{\frac{k_B T}{m}}$
+
+平均速率：$\displaystyle \overline{v}=\sqrt \frac{8}{\pi} \sqrt \frac{k_B T}{m}=\sqrt \frac{4}{\pi} v_p$.
+
+将 $f(v)$ 用 $v_p$ 代换：
+$$
+f(v)=4\pi \left(\frac{1}{\pi v_p^2}\right)^{3/2} e^{-v^2/v_p^2} v^2=4 \pi ^{-1/2} e^{-v^2/v_p^2} v^2/v_p^2  \cdot 1/v_p
+$$
+速率在 $v_p$ 到 $\overline{v}$ 范围内的分子数占总分子数的百分比可以由以下式子计算：
+$$
+\int_{v_p}^{\overline{v}}4 \pi ^{-1/2} e^{-v^2/v_p^2} v^2/v_p^2  \cdot 1/v_p \mathrm{d} v \overset{换元 u=v/v_p}{=}\int_{1}^{\sqrt \frac{4}{\pi}} 4 \pi^{-1/2} e^{-u^2} u^2 \mathrm{d} u =\mathrm{Const}
+$$
+如果是 $v_p \sim \overline{v^2}$？ 也是不变的。考虑将速度参量化：$\displaystyle v=\sqrt{\frac{kT}{m}}x$，因此只要 $x$ 从常数到常数，占比不变。

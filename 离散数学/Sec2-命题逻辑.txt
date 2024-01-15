@@ -1,0 +1,596 @@
+[TOC]
+
+# Ch1 **命题逻辑基本概念**
+
+### 命题
+
+**命题** 是一个 **非真即假** 的 **陈述句**。凡与事实相符的陈述句为真语句，而与事实不符的陈述句为假语句。因为只有两种取值，所以这样的命题逻辑称为 **二值逻辑**。
+
+-------
+
+**命题变项（变元）**
+
+用大写字母表示命题变项。命题与命题变项含义是不同的，命题指具体的陈述句，是有确定的真值，而命题变项的真值不定，只当将某个具体命题代入命题变项时，命题变项化为命题，方可确定其真值。
+
+-------
+
+**命题的分类**
+
+**简单命题**又称**原子命题**，它是不包含任何的与、或、非一类联结词的命题。这样的命题不可再分割，如再分割就不是命题了。
+
+>雪是白的
+
+把一个或几个简单命题用联结词（如与、或、非）联结所构成的新的命题称为**复合命题**，也称为**分子命题**。复合命题自然也是陈述句，**其真值依赖于构成该复合命题的各简单命题的真值以及联结词**，从而复合命题有确定的真值。
+
+> 雪是白的而且1+1=2
+
+> 数理逻辑不关心内容，也就是这些具体的陈述句的真值究竟为什么。主要关心推理。
+
+### 命题联结词及真值表
+
+常用的联结词：
+$$
+\neg\quad  \wedge\quad   \vee\quad   \to\quad   \leftrightarrow\quad \uparrow \quad \downarrow
+$$
+**否定词**“$\neg$”是个一元联结词，亦称否定符号。一个命题 $P$ 加上否定词就形成了一个新的命题，记作 $\neg P$，这个新命题是命题的否定，读作非 $P$。
+
+否定词的真值规定如下：若命题 $P$ 的真值为真，那么 $\neg P$ 的真值就为假；若 $P$ 的真值为假，那么 $\neg P$ 的真值就为真。
+
+**真值表**
+
+| $P$  | $\neg P$ |
+| ---- | -------- |
+| T    | F        |
+| F    | T        |
+
+**合取词**“$\wedge$”是个二元命题联结词，亦称合取符号。将两个命题 $P,Q$ 联结起来，构成一个新的命题 $P \wedge Q$，读作 $P,Q$ 的合取，也可读作 $P$ 与 $Q$。
+
+| $P$  | $Q$  | $P\wedge Q$ |
+| ---- | ---- | ----------- |
+| T    | T    | T           |
+| T    | F    | F           |
+| F    | T    | F           |
+| F    | F    | F           |
+
+**析取词**“$\vee$”是个二元命题联结词，亦称析取符号。将两个命题 $P,Q$ 联结起来，构成一个新的命题 $P \vee Q$，读作 $P,Q$ 的析取，也读作 $P$ 或 $Q$。
+
+| $P$  | $Q$  | $P\wedge Q$ |
+| ---- | ---- | ----------- |
+| T    | T    | T           |
+| T    | F    | T           |
+| F    | T    | T           |
+| F    | F    | F           |
+
+**蕴涵词**“$\rightarrow$”也是个二元命题联结词，亦称推断符号。将两个命题 $P,Q$ 联结起来，构成一个新的命题 $P \rightarrow Q$，读作如果 $P$ 则 $Q$，或读作 $P$ 蕴涵 $Q$，如果 $P$ 那么 $Q$，其中 $P$ 称前件（前项、条件），$Q$ 称后件（后项、结论）
+
+| $P$  | $Q$  | $P\to Q$ |
+| ---- | ---- | -------- |
+| T    | T    | T        |
+| T    | F    | F        |
+| F    | T    | T        |
+| F    | F    | T        |
+
+规定只有当 $P$ 为 $\mathrm{T}$ 而 $Q$ 为 $\mathrm{F}$ 时，$P \rightarrow Q=\mathrm{F}$，而 $P=\mathrm{F}$、$Q$ 任意，或 $P=\mathrm{T}$、$Q=\mathrm{T}$ 时，$P \rightarrow Q$ 均取值为 $T$。
+$$
+\boxed{P\to Q =\neg P \vee Q}
+$$
+$(\neg, \vee)$ 是完备的命题联结词集合。
+
+**双条件词**“$\leftrightarrow$”同样是个二元命题联结词，亦称等价符号。将两个命题 $P,Q$ 联结起来构成新命题 $P \leftrightarrow Q$，读作 $P$ 当且仅当 $Q$，或读作 $P$ 等价于 $Q$.
+
+| $P$  | $Q$  | $P\leftrightarrow Q$ |
+| ---- | ---- | -------------------- |
+| T    | T    | T                    |
+| T    | F    | F                    |
+| F    | T    | F                    |
+| F    | F    | T                    |
+
+$$
+(P\to Q) \wedge (Q \to P) = P\leftrightarrow Q
+$$
+
+**异或（半加）**$\bar{\vee}: P \bar{\vee} \mathrm{Q}=(\neg \mathrm{P} \wedge \mathrm{Q}) \vee(\mathrm{P} \wedge \neg \mathrm{Q})$
+
+**与非** $\uparrow: \mathrm{P} \uparrow \mathrm{Q}=\neg(\mathrm{P} \wedge \mathrm{Q})$
+
+**或非** $\downarrow: \mathrm{P} \downarrow \mathrm{Q}=\neg(\mathrm{P} \vee \mathrm{Q})$
+
+### 合式公式
+
+合式公式（简记为 $\mathrm{Wff}$, well-formed formula）是将符号用命题联结词连接起来形成的公式。
+
+优先级从高到低：$\neg \wedge \vee \to \leftrightarrow$.
+
+### 三类公式
+
+**重言式** 全真。
+
+- 如果一个公式，对于它的任一解释 $I$ 下其真值都为真，就称为重言式（永真式）
+- $P \vee \neg P$ 是一个重言式
+- 显然由 $\vee$、$\wedge$、$\rightarrow$ 和 $\leftrightarrow$ 联结的重言式仍是重言式
+
+**可满足式** 可以为真。
+
+- 一个公式，如有某个解释 $\mathrm{I}_{0}$，在 $\mathrm{I}_{0}$ 下该公式真值为真，则称这公式是可满足的
+- 重言式都是可满足的
+
+**矛盾式 ** 全假。
+
+- 如果一个公式，对于它的任一解释 $I$ 下真值都是假，便称是矛盾式（永假式）
+- $\mathrm{P} \wedge \neg \mathrm{P}$ 是矛盾式
+
+**三类公式间的关系**
+
+- 公式 $\mathrm{A}$ 永真，当且仅当 $\neg \mathrm{A}$ 永假
+- 公式 $\mathrm{A}$ 可满足，当且仅当 $\neg \mathrm{A}$ 非永真（存在一个解释使得 $A$ 真）
+- 不是可满足的公式必永假
+- 不是永假的公式必可满足
+
+永真属于可满足，但是可满足和永假没有交集
+
+**置换规则**
+
+- $A$ 是一个公式，对 $A$ 使用代入规则得到公式 $B$，若 $A$ 是重言式，则 $B$ 也是重言式。
+
+为保证重言式经代入规则仍得到保持，要求：
+- 公式中被代换的**只能是命题变元（原子命题）**，**不能是复合命题**；
+- 对公式中某命题变项施以代入，必须对该公式中出现的**所有同一命题**变项代换同一公式；
+
+例如，不能用 $P$ 代替 $Q \vee \neg Q$，而且代入必去代入全部的。可以用 $P\wedge Q$ 代替 $R$，如：
+$$
+R \vee \neg R \Rightarrow (P\wedge Q) \vee \neg (P\wedge Q)
+$$
+Q: 判断 $(P\wedge Q) \vee \neg (P\wedge Q)$ 为重言式？不难判断 $A \vee \neg A$ 为重言式，进行代替即可。
+
+### 命题形式化
+
+如何将自然语句化成逻辑语言？
+
+**简单自然语句的形式化**
+
+| 自然语言       | 合式公式          |
+| -------------- | ----------------- |
+| ……是……         | $P$               |
+| ……不是……       | $\neg P$          |
+| 既……又……       | $P \wedge Q$      |
+| 如果……，那么…… | $P \rightarrow Q$ |
+| ……，但是……     | $P \wedge Q$      |
+
+**较复杂自然语句的形式化**
+
+| 自然语言                   | 合式公式               |
+| -------------------------- | ---------------------- |
+| ……或……都能……               | $P \wedge Q$           |
+| ……或……（两者不能同时发生） | $P \overline{\vee } Q$ |
+| ……，除非……                 | $\neg P \rightarrow Q$ |
+
+特例：
+
+- 张三或李四都能做这件事，$P$ 作为张三能做这件事，$Q$ 作为李四能做这件事，命题是 $P \wedge Q$. 表示张三能做，李四也能做。
+
+- 今晚我再家里看电视或者去体育馆看球赛。$P \overline{\vee}Q$. $\neg (A \leftrightarrow B) = A \overline{\vee} B$.
+
+- 今天我上班，除非我病了。以 $P$ 代替我上班，$Q$ 代替我病了，则 $\neg P \to Q$.
+
+  如果我不生病，那么我来上班。$\neg Q \to P$.
+
+### 波兰表达式
+
+如果直接采用中缀式，计算机处理时需要经常从左到右，从右到左读取。
+
+前缀式也被称为波兰式，以波兰式表达的公式，由计算机识别处理的过程，当自右向左扫描时可以一次完成，避免了重复扫描。同样后辍表示（逆波兰式）也有同样的优点，而且自左向右一次扫描（看起来更合理）便可识别处理一个公式，很是方便，常为计算机的程序系统所采用。
+
+例如：$(P\vee (Q\wedge R)) \vee (S\wedge T)$.
+
+前缀式（波兰式）：$\vee \vee P \wedge QR\wedge ST$.
+
+后缀式（逆波兰式）：$PQR \wedge \vee ST\wedge \vee$.
+
+# Ch2 **命题逻辑等值和推理演算**
+
+### 等值
+
+推理形式和推理验算是数理逻辑研究的基本内容。
+
+**等值的定义**
+
+给定两个命题公式 $A$ 和 $B$，而 $P_{1},\cdots,P_{n}$ 是出现于 $A$ 和 $B$ 中的所有命题变项，那么公式 $A$ 和 $B$ 共有 $2^{n}$ 个解释，若在其中的任一解释下，公式 $A$ 和 $B$ 的真值都相等，就称 $A$ 和 $B$ 是**等值**的（或称**等价**），记作 $A=B$ 或 $A \Leftrightarrow B$
+
+- 等号是联结词 x
+- 出现的命题变元不一定相等，例如 $P \wedge \neg P = Q \wedge \neg Q$. 出现重言式：无关。
+
+**等值定理**
+
+对公式 $A$ 和 $B$，$A=B$ 的充分必要条件是 $A \leftrightarrow B$ 是重言式。
+
+证明：
+
+- 若 $A \leftrightarrow B$ 是重言式，则只有在任意解释下，$A$ 和 $B$ 都有相同的真值，因此 $A=B$.
+- 反过来，如果 $A =B$，则在任何解释下 $A$ 与 $B$ 的真值相同，从而 $A\leftrightarrow B$ 是重言式。
+
+注意区分 $A=B$ 和 $A \leftrightarrow B$.
+
+**证明等值的思路**：
+
+- 列出真值表。
+- 利用基本的等值公式进行化简。
+
+**等值的性质**
+
+- （自反性）$A = A$
+- （对称性）若 $A =B$，则 $B = A$
+- （传递性）若 $A= B$，$B =C$，则 $A = C$
+
+**Problem** 论域是所有合式公式组成的集合，证明 $R=\{\langle A,B \rangle\mid A\leftrightarrow B\}$ 是等价关系。
+
+利用 $A=B$ 的充分必要条件是 $A\leftrightarrow B$.
+
+- 自反性，$A\leftrightarrow A$.
+- 对称性，若 $A\leftrightarrow B$，则 $B\leftrightarrow A$.
+- 传递性，若 $A\leftrightarrow B$ 且 $B\leftrightarrow C$，则 $A\leftrightarrow C$.
+
+**基本等值公式（命题定律）**
+
+- 双重否定律 $\neg\neg P=P$.
+
+- 结合律 $(P\vee Q)\vee R = P\vee (Q\vee R),(P\leftrightarrow Q)\leftrightarrow  R = P\leftrightarrow (Q\leftrightarrow R)$.
+
+- 交换律 $P\vee Q=Q\vee P$.
+
+- **分配律** 主合取范式，主析取范式比较有用。
+
+  - $P\vee (Q \wedge R)=(P\vee Q) \wedge (P\vee R)$.
+  - $P\wedge (Q \vee R)=(P\wedge Q) \vee (P\wedge R)$.
+  - $P \to (Q \to R)=(P \to Q) \to (P\to R)$.
+
+- 等幂律（恒等律）
+
+  - $P \vee P =P, P\wedge P =P$.
+  - $P \to P =T, P\leftrightarrow P =T$.
+
+- 吸收律
+
+  - $P\vee (P\wedge Q) = P$.
+  - $P\wedge(P\vee Q)=P$.
+
+- 摩根律
+
+  - $\neg (P\vee Q)=\neg P \wedge \neg Q$.
+  - $\neg (P\wedge Q)=\neg P \vee \neg Q$.
+
+  对蕴涵词；双条件词作否定有：
+
+  - $\neg (P \to Q)=P \wedge \neg Q$.
+  - $\neg (P\leftrightarrow Q)=(\neg P \wedge Q) \vee (P \wedge \neg Q)$.
+
+- 同一律，是命题 $P$ 和 $T/F$ 进行操作，结果和 $P$ 有关的
+
+- 零律，是命题 $P$ 和 $T/F$ 进行操作，结果和 $P$ 无关的
+
+- 补余律，只包含 $P$。
+
+我们可以使用 Venn 图进行理解。
+
+**常用等值公式**
+
+- $\boxed{P\rightarrow Q=\neg P\vee Q}$
+- $\boxed{P\rightarrow Q=\neg Q\rightarrow \neg P}$（逆否命题，反证法）
+- $P\rightarrow (Q\rightarrow R)=(P \wedge Q)\rightarrow R$
+- $P \leftrightarrow Q = (P\wedge Q)\vee(\neg P\wedge \neg Q)$（析取）
+- $P \leftrightarrow Q = (P\vee \neg Q)\wedge(\neg P\vee Q)$（合取）
+- $\boxed{P \leftrightarrow Q = (P\rightarrow Q)\wedge(Q\rightarrow P)}$
+- $\boxed{P\rightarrow (Q\rightarrow R)=Q\rightarrow (P\rightarrow R)=(P\wedge Q)\rightarrow R}$（意思是 $P,Q$ 都为真的时候 $R$ 为真）
+- $(P\rightarrow R)\wedge (Q\rightarrow R)=(P \vee Q)\rightarrow R$
+- 等价否定式等值式 $P \leftrightarrow Q = \neg P \leftrightarrow \neg Q$.
+- 归谬论 $(P\to Q) \wedge (P\to \neg Q) = \neg P$ （$P$ 不成立时，才为真）
+
+**置换规则**
+
+对公式 $A$ 的子公式，用与之 **等值** 的公式代换称为 **置换**，公式置换后，$A$ 化为公式 $B$，必有 $A=B$
+
+- 当 $A$ 是重言式时，置换后的公式 $B$ 必也是重言式。
+- 置换与代入的区别：
+  - 置换规则被替代的不一定是简单命题，不一定要替换全部。
+  - 代入规则必须替代所有同一的子公式，需要替换全部。
+  
+
+### 联结词的完备集
+
+**Definition（联结词的完备集）** 如果对任一命题公式都有由 $\mathrm{C}$ 中的联结词表示出来的公式与之等值，就说 $\mathrm{C}$ 是完备的联结词集合，或说 $\mathrm{C}$ 是联结词的**完备集**
+
+**完备**
+
+- 显然全体联结词的无限集合是完备的
+- $\{\neg,\vee,\wedge\}$ （不独立）
+- $\{\neg, \vee\}$ （独立）
+- $\{\neg, \wedge\}$ （独立）
+- $\{\neg, \rightarrow\}$ （独立，$\to$ 可以转化为 $\vee$，然后取反转化为 $\wedge$）
+- $\{\uparrow\}$ （独立）
+- $\{\downarrow\}$ （独立）
+
+包含上述集合的任意联结词集合都是完备集。
+
+**不完备**
+
+- $\{\vee, \wedge, \rightarrow, \leftrightarrow\}$ 的任何子集都是不完备的
+- $\{\neg, \leftrightarrow\}$ 的任何子集也是不完备的
+
+如果一个联结词的集合是不完备的，那么它的任何子集都是不完备的。因此，上述集合的子集都不是完备的。
+
+### 对偶式
+
+将 $A$ 中出现的 $\vee,\wedge,T,F$ 分别以 $\wedge,\vee,F,T$ 代换，得到公式 $A^{\star}$，则称 $A^{\star}$ 是 $A$ 的对偶式，或说 $A$ 和 $A^{\star}$ 互为对偶式
+
+> 假定只出现 $\neg ,\vee,\wedge$ 三个联结词。
+
+为方便，若 $A=A\left(P_{1},\cdots,P_{n}\right)$，令 $A$ 的内否式 $A^{-}=A\left(\neg P_{1},\cdots,\neg P_{n}\right)$
+
+- $\neg\left(A^{\star}\right)=(\neg A)^{\star}$，$\neg\left(A^{-}\right)=(\neg A)^{-}$
+- $\left(A^{\star}\right)^{\star}=A$，$\left(A^{-}\right)^{-}=A$
+- $\neg A=A^{\star-}=A^{-\star}$
+- $(A \vee B)^{\star}=A^{\star} \wedge B^{\star}$
+- $(A \wedge B)^{\star}=A^{\star} \vee B^{\star}$
+- $(A \vee B)^{-}=A^{-} \vee B^{-}$
+- $(A \wedge B)^{-}=A^{-} \wedge B^{-}$
+- 若 $A=B$，必有 $A^{\star}=B^{\star}$
+- 若 $A \rightarrow B$ 永真，必有 $B^{\star} \rightarrow A^{\star}$ 永真
+- $A$ 与 $A^{-}$ 同永真，同可满足；$\neg A$ 与 $A^{\star}$ 同永真，同可满足
+- 注意：替换前先加满括号！替换后运算顺序不会变！
+
+--------
+
+命题公式 $P \to Q \wedge R$ 的对偶式为？
+
+先把 $\to$ 转换：
+$$
+\neg P \vee (Q \wedge R)
+$$
+再进行替换。
+
+### 范式
+
+> 范式是一种标准形式，例如椭圆的范式 $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}=1$.
+
+**相关概念**
+
+- 范式：一种命题公式的统一标准形式
+- 文字：简单命题 $P$ 及其否定式 $\neg P$ 统称为文字
+- 合取式：有限个文字的合取称为合取式（也称**短语**）
+- 析取式：有限个文字的析取称为析取式（也称**子句**）
+- 互补对：$P$ 与 $¬P$ 称为互补对
+- **析取范式**：有限个合取式的析取式，形如 $A_{1} \vee A_{2} \vee \cdots \vee A_{n}$，其中 $A_{i}(i=1,\cdots,n)$ 为合取式
+- **合取范式**：有限个析取式的合取式，形如 $A_{1} \wedge A_{2} \wedge \cdots \wedge A_{n}$，其中 $A_{i}(i=1,\cdots,n)$ 为析取式
+
+**范式定理**
+
+任一命题公式都存在与之等值的合取范式和析取范式（注：不唯一）
+
+**求范式的步骤**
+
+对一个已给的公式，可按下述步骤求得该公式的合取范式和析取范式
+
+1. 按照等值公式，消去已给公式中的联结词 $\rightarrow$ 和 $\leftrightarrow$。
+2. 重复使用摩根律和双重否定律，把否定词内移到直接作用于命题变项上。这可利用等值式：将所有的否定词，都内移到命题变项前，这也是范式的要求
+3. 重复使用分配律。这可利用等值式：将公式化成一些合取式的析取，或化成一些析取式的合取，都必须使用分配律来实现
+
+**范式功能**
+
+- 判断重言式：合取范式中所有析取式都是互补对
+- 判断矛盾式：析取范式中存在合取式是互补对
+- 判断公式等值：范式不唯一，引入唯一主范式，判断公式等值
+
+### 主范式
+
+#### 主析取范式
+
+对 $n$ 个命题变项（原子命题） $P_{1},\cdots,P_{n}$ 来说，所组成的公式
+
+其中 $Q_{i}=P_{i}$ 或 $\neg P_{i}(i=1,\cdots,n)$，则称 $Q_{1} \wedge \cdots \wedge Q_{n}$ 为**极小项**，并以 $m_{i}$ 表示。极小项**必须含有** $Q_{1},\cdots,Q_{n}$ **全部** $n$ 个文字。仅由极小项构成的析取式为**主析取范式**。
+
+任一含有 $n$ 个命题变项的公式，都有唯一的一个与之等值的恰仅含这 $n$ 个命题变项的主析取范式
+
+**求解步骤**
+
+1. 求出该公式对应的析取范式
+2. 消去重复出现的命题变元，重言式，矛盾式
+3. 在析取范式的所有短语中补齐全部命题变元
+4. 用幂等律（$A \vee A=A$）消去重复的极小项，用交换律调整顺序
+
+-----
+
+展开 $\neg P \vee Q$？
+
+等于：
+$$
+(\neg P \wedge (Q \vee \neg Q)) \vee (Q \wedge (P \vee \neg P))\\
+=(\neg P \wedge Q ) \vee (\neg P \wedge \neg Q) \vee (Q \wedge P ) \vee (Q \wedge \neg P)\\
+=\cdots
+$$
+
+-------------
+
+
+
+**极小项的性质**
+
+- 对一个含有 $n$ 个变项的公式来说，所有可能的极小项个数和该公式的解释个数一样多，都是 $2^{n}$
+- 每个极小项只在一个解释下为真
+- 极小项两两不等值，而且 $m_{i} \wedge m_{j}=\mathrm{F}(i \neq j)$
+- 任一含有 $n$ 个变项的公式，都可由 $k$ 个 $\left(k \leqslant 2^{n}\right)$ 极小项的析取来表示，或说所有的极小项可建立一个“坐标系”
+- 恰由 $2^{n}$ 个极小项的析取构成的公式，必为重言式
+- 若 $A$ 由 $k$ 个极小项的析取组成，那么其余的 $2^{n}-k$ 个极小项的析取必是公式 $\neg A$
+
+#### 主合取范式
+
+由 $n$ 个命题变项 $P_{1},\cdots,P_{n}$ 所组成的公式
+
+其中 $Q_{i}=P_{i}$ 或 $\neg P_{i}(i=1,\cdots,n)$，则称 $Q_{1} \vee \cdots \vee Q_{n}$ 为**极大项**，并以 $M_{i}$ 表示。极大项**必须含有** $Q_{1}$，$\cdots$，$Q_{n}$ **全部** $n$ 个文字。仅由极大项构成的合取式为**主合取范式**。
+
+任一含有 $n$ 个命题变项的公式，都有唯一的一个与之等值的恰仅含这 $n$ 个命题变项的主合取范式.
+
+**求解步骤**
+
+1. 求出该公式对应的合取范式
+2. 消去重复出现的命题变元，重言式，永真式
+3. 在合取范式的所有子句中补齐命题变元
+4. 用幂等律（$A\wedge A=A$）消去重复的极大项，用交换律调整顺序
+
+**极大项的性质**
+
+- 对一个含有 $n$ 个变项的公式来说，所有可能的极大项个数和该公式的解释个数一样多，都是 $2^{n}$
+- 每个极大项只在一个解释下为假
+- 极大项两两不等值，而且 $M_{i} \vee M_{j}=T(i \neq j)$
+- 任一含有 $n$ 个变项的公式，都可由 $k$ 个 $\left(k \leqslant 2^{n}\right)$ 极大项的合取来表示。或说可将所有的极大项建立一个“坐标系”
+- 恰由 $2^{n}$ 个极大项的合取构成的公式，必为矛盾式
+- 若 $A$ 由 $k$ 个极大项的合取组成，那么其余的 $2^{n}-k$ 个极大项的合取必是公式 $\neg A$
+
+$\neg P$ 看成 $0$，$P$ 看成 $1$，按变项的字典序连起来形成一个二进制数 $x$
+
+- 极小项简记为 $m_x$，主析取范式可记为 $\vee_{m_{x_1};m_{x_2};\cdots}$
+- 极大项简记为 $M_x$，主析取范式可记为 $\wedge_{M_{x_1};M_{x_2};\cdots}$
+
+----------
+
+写成主合取范式：$(P\wedge Q) \leftrightarrow R$. 将 $\leftrightarrow$ 用合取范式的形式展开：
+$$
+=((P\wedge Q) \vee \neg R) \wedge (\neg P \vee \neg Q \vee R)\\
+=(P \vee \neg R) \wedge (Q\vee \neg R) \wedge (\neg P \vee \neg Q \vee R)\\
+=(P \vee \neg R \vee \underbrace{(Q \wedge  \neg Q)}_{0}) \wedge (Q \vee \neg R \vee \underbrace{(P \wedge \neg P)}_{0}) \wedge (\neg P \vee \neg Q \vee R)\\
+=(P\vee \neg R \vee Q) \wedge (P \vee \neg R \vee \neg Q) \wedge (Q  \vee \neg R \vee P)\wedge (Q \vee \neg R \vee \neg P) \wedge (\neg P \vee \neg Q \vee R)\\
+=(P \vee \neg R \vee \neg Q) \wedge (Q  \vee \neg R \vee P)\wedge (Q \vee \neg R \vee \neg P) \wedge (\neg P \vee \neg Q \vee R)
+$$
+
+### 推理
+
+引入：
+
+- 前提 1：如果我病了，则我不去上课：$P \to Q$.
+- 前提 2：今天我病了 $P$.
+- 结论：所以我没来上课 $Q$.
+
+-----
+
+正确的推理形式：
+
+- $((P \to Q) \wedge P) \to Q$.
+- $((P\to Q) \wedge \neg Q) \to \neg P$. 如果我来上课，则我没病。
+
+#### 永真蕴含
+
+如果给定两个公式 $A,B$，只要 $A$ 取值为真，$B$ 就必取值为真，便称 $A$ **重言（永真）蕴涵** $B$，或称 $B$ 是 $A$ 的**逻辑推论**，并用符号 $A \Rightarrow B$ 表示。
+
+- 符号“$\Rightarrow$”表示两个公式间的一种真值关系，它不是逻辑联结词，$\boldsymbol {A \Rightarrow B}$ **也不是合式公式**.
+- 如果 $A\Rightarrow B$，则 $A\to B$ 是正确的推理形式。
+
+用真值表表示的话，就是 $A$ 取真的情况 $B$ 必然取真。以韦恩图的形式表示，就是 $A \subseteq B$.
+
+**性质**
+
+- 如果 $A \Rightarrow B$，$A$ 为重言式，则 $B$ 也是重言式
+
+- 如果 $A \Rightarrow B$，$B \Rightarrow A$ 同时成立，必有 $A=B$
+
+  反过来，$A=B$ 也必有 $A \Rightarrow B$ 和 $B \Rightarrow A$
+
+- 如果 $A \Rightarrow B$，$B \Rightarrow C$，则 $A \Rightarrow C$
+
+- 如果 $A \Rightarrow B$，$A \Rightarrow C$，则 $A \Rightarrow B \wedge C$
+
+- 如果 $A \Rightarrow C$，$B \Rightarrow C$，则 $A \vee B \Rightarrow C$
+
+#### 推理演算法
+
+- $P \wedge Q \Rightarrow P$
+
+- $\neg(P \rightarrow Q) \Rightarrow P$
+
+- $\neg(P \rightarrow Q) \Rightarrow \neg Q$
+
+因为只有可能 $P=1,Q=0$ 的时候式子成立……
+
+- $P \Rightarrow P \vee Q$
+- $\neg P \Rightarrow P \rightarrow Q$
+- $Q \Rightarrow P \rightarrow Q$
+
+只要 $P=0$ 或 $Q=1$，$P\to Q$ 都能成立。
+
+- $\neg P \wedge(P \vee Q) \Rightarrow Q$
+- $P \wedge(P \rightarrow Q) \Rightarrow Q$
+
+三段论
+
+- $\neg Q \wedge(P \rightarrow Q) \Rightarrow \neg P$
+- $(P \rightarrow Q) \wedge(Q \rightarrow R) \Rightarrow P \rightarrow R$
+- $(P \leftrightarrow Q) \wedge(Q \leftrightarrow R) \Rightarrow P \leftrightarrow R$
+- $(P \rightarrow R) \wedge(Q \rightarrow R) \wedge(P \vee Q) \Rightarrow R$
+
+构造性二难（特殊形式）
+
+- $(P \rightarrow Q) \wedge(R \rightarrow S) \wedge(P \vee R) \Rightarrow Q \vee S$
+
+构造性二难
+
+- $(P \rightarrow Q) \wedge(R \rightarrow S) \wedge(\neg Q \vee \neg S) \Rightarrow \neg P \vee \neg R$
+- $(Q \rightarrow R) \Rightarrow((P \vee Q) \rightarrow(P \vee R))$
+- $(Q \rightarrow R) \Rightarrow((P \rightarrow Q) \rightarrow(P \rightarrow R))$
+
+**证明推理公式的方法**
+
+- $A \Rightarrow B$ 成立的充分必要条件是 $A \rightarrow B$ 为重言式
+- $A \Rightarrow B$ 成立的充分必要条件是 $A \wedge \neg B$ 是矛盾式
+- 逆否命题法 $A\Rightarrow B$ 的充分必要条件是 $\neg B \Rightarrow \neg A$.
+- 真值表法 $A \subseteq B$.
+
+**推理规则**
+
+- **前提引入规则**：在推理过程中，可以随时引入前提 $A_1 ,A_2,\cdots,A_n$.
+- **结论引用规则**：在推理过程中所得到的中间结论，可作为后续推理的前提
+- **代入规则**：在推理过程中，对 **重言式** 中的命题变项可使用代入规则
+- **置换规则**：在推理过程中，命题公式中的任何部分公式都可以用与之等值的命题公式来置换
+- **分离规则**（假言推理）：如果已知命题公式 $A \rightarrow B$ 和 $A$，则有命题公式 $B$
+- **条件证明规则**：$A_{1} \wedge A_{2} \Rightarrow B$ 与 $A_{1} \Rightarrow A_{2} \rightarrow B$ 是等价的. 说的是，如果 $A_1,A_2$ 都成立，则有 $B$.
+
+例题：证明 $R$ 是 $P \to Q,Q \to R ,P$ 的逻辑推论。还可以对命题变项采用代入规则。
+
+1. $P$ 前提引入。
+2. $P\to Q$ 前提引入。
+3. $Q \to R$ 前提引入。
+4. $Q$ （1. 2. 分离）
+5. $R$ （3. 4. 分离）
+
+例题：证明 $(P\vee Q) \wedge (P \to R) \wedge (Q \to S) \Rightarrow S\vee R$.
+
+1. $\neg P \to Q$ （置换）
+2. $Q \to S$
+3. $\neg P \to S$（三段论）
+4. $P \to R$（三段论）
+5. $\neg S \to P$（3 置换）
+6. $\neg S \to R$（三段论）
+7. $S \vee R$（6 置换）
+
+例题：证明 $(P \to (Q \to S)) \wedge (\neg R \vee P)\wedge Q \Rightarrow R\to S$. 引入前提 $R$，则 $P$ 必须成立，…… 推出 $S$ 成立。
+
+例题：证明 $(\neg (P \to Q) \to \neg (R \vee S)) \wedge ((Q\to P) \vee \neg R) \wedge R\Rightarrow (P\leftrightarrow Q)$.
+
+$R$ 成立，则 $Q \to P$ 成立，前面转化为逆否命题 $(R \vee S) \to (P\to Q)$，前提为真，因此 $P \to Q$ 成立，两条件结合在一起，则 $P \leftrightarrow Q$.
+
+#### 归结推理法
+
+**归结证明过程** 是找矛盾的过程。
+
+1. 为证明 $A \rightarrow B$（可称作定理）是重言式，则 **等价于证明 $\boldsymbol{A \wedge \neg B}$ 是矛盾式**（不可能 $A=1,B=0$）。使用归结证明法，就是从 $A \wedge \neg B$ 出发。
+2. 建立子句集 $S$
+   将 $A \wedge \neg B$ 化成 **合取范式**，进而将所有子句（析取式）构成子句集合即以集合来描述这合取范式
+3. 对 $S$ 作归结
+   进而对 $S$ 的子句作归结（消互补对），如子句 $P \vee R$ 与 $\neg P \vee \neg Q$ **作归结**，得归结式 $R \vee\neg Q$，并将这归结式仍放入 $S$ 中。重复这过程。
+4. 直到推出矛盾式。
+
+例如，证明 $((P\to Q )\wedge (Q\to R)) \Rightarrow (P\to R)$.
+
+先化为合取范式：$(P \to Q) \wedge (Q \to R) \wedge \neg (P \to R)=(\neg P \vee Q) \wedge (\neg Q \vee R) \wedge P \wedge \neg R$.
+
+则子句集 $S=\{\neg P \vee Q,\neg Q \vee R,P,\neg R\}$.
+
+1. 归结 $P,\neg P \vee Q$，得到 $Q$.
+2. 归结 $\neg R,\neg Q \vee R$，得到 $\neg Q$. 
+3. 归结 $Q,\neg Q$，得到矛盾 $\square$。

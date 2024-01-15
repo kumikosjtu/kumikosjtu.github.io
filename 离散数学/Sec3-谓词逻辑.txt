@@ -1,0 +1,530 @@
+[TOC]
+
+# Ch4-谓词逻辑的基本概念
+
+> Q: 能否用命题逻辑刻画以下推理：
+>
+> - 凡有理数都是实数 $p$；
+> - 2/7 是有理数 $q$；
+> - 所以 2/7 是实数 $r$。
+>
+> 不能说是 $(p\wedge q) \to r$. 需要再引用符号，来表示一个个体是否具有某个性质。
+
+##  谓词和个体词
+
+**Definition（谓词）**：谓词是给定个体到 $\{T,F\}$ 上的映射。常常使用大写字母 $P,Q,\cdots$ 表示。
+
+- 在一个命题里，如果主词只有一个，则此时表示该主词性质或属性的词便称为谓词，以 $P(x),Q(x),\cdots $ 表示。
+- 如果多于一个，表示主词之间的关系，以 $P(x,y),Q(x,y),R(x,y,z)$ 表示。
+
+> **Example**：
+>
+> 例如 “3 是有理数”，其中“是有理数”是谓词，表示了 3 的关系；
+>
+> “5 大于 3”，其中“大于”是谓词，表示了 5,3 之间的关系。
+
+**Definition（个体词）**：是一个命题里面表示思维对象的词。若指定了，称为个体常量；若没有指定，则称为个体变项。
+
+**Definition（谓词变项）** 有 $n$ 个个体的谓词 $P(x_1,\cdots,x_n)$ 称为 $n$ 项谓词。如果 $P$ 有明确含义，则称为谓词常项，而 $P$ 表示任一谓词时，称为谓词变项。
+
+**Definition（个体域/论域）** 将个体变项的变化范围称为 **个体域** 或者 **论域**。e.g. 自然数集，实数集。命题正确与否，也取决于论域。
+
+> 谓词 $P(x)$ 是不是命题？不是，因为没有给出 $P,x$ 的具体定义，如 $P(x)$ 表示 $x$ 是有理数，$x$ 代表 3，则 $P(x)$ 取值为 T. 谓词逻辑是命题逻辑的推广。可以认为一个命题是一个零元谓词。
+
+## 函数和量词
+
+**Definition（函数）**：是某个体域到另外一个体域的映射，约定用小写字母表示。
+
+> **Example**：书上的举例：$\mathrm{MARRIED}(father(张三),mother(张三))$，表示张三的父亲和母亲是否结婚。
+
+**Definition（量词）：$\forall ,\exists$** 作用于个体变元，不允许作用于命题变项和谓词变项。表示为：
+$$
+\begin{array}{c}
+ (\forall x)  (  x  是运动的)\\
+ (x)  (  x  是运动的)\\
+ \forall x  (  P(x)   ) \\
+ \exists x(x 是动物)
+\end{array}
+$$
+> $\forall x (P(x))$ 为真，当且仅当任意 $x_0 \in D$，都有 $P(x_0)=T$.
+>
+> $\forall x(P(x))$ 为假，当且仅当存在 $x_0 \in D$，有 $P(x_0)=F$.
+>
+> 不允许出现 $(\exists x) P(x) \wedge Q(x)$.
+>
+> 变量易名规则：$(\forall x) P(x)=(\forall y) P(y)$，间接说明了和具体的 $x,y$ 无关。
+
+**Definition（辖域）**：是量词所约束的范围。
+
+> $(\exists x)((\forall y) P(x,y))$ 中，$P(x,y)$ 是 $\forall y$ 的辖域。
+
+![image-20231111174326838](https://notes.sjtu.edu.cn/uploads/upload_c37ffc9596a4f4c7d7da1d7884e4046d.png)
+
+## 谓词逻辑合式公式
+
+符号约定：
+
+- $p,q,r,\cdots$ 表示命题变项；
+- $x,y,z,\cdots$ 表示个体；
+- $P,Q,R,\cdots$ 表示谓词变项；
+- $f,g,\cdots$ 表示函数。
+
+**Definition（谓词逻辑的合式公式）**：合式公式的定义：
+
+- 命题常项、命题变项和原子谓词公式（不含联结词的谓词）都是合式公式；
+- 若 $A$ 是合式公式，则 $\neg A$ 也是合式公式；
+- 若 $A,B$ 是合式公式，且 $x$ 不能在 $A$ 里被约束，在 $B$ 里自由，则 $(A\wedge /\vee B)$，$(A \to /\leftrightarrow B)$ 也是合式公式；
+
+> 反面：$(\forall x) F(x)\wedge G(x)$. $G(x)\to (\forall x)F(x)$.
+
+- 若 $A$ 是合式公式，而 $x$ 在 $A$ 中是自由变元（不能被 $A$ 中其它谓词约束），则 $(\forall x)(A),(\exists x)(A)$ 也是合式公式。
+
+> 反面：$(\exists x)((\forall x) P(x))$. $(\forall x) P(y)$.
+
+简单理解，就是能不能给出一个解释，使得合式公式合理。
+
+## 自然语句的形式化
+
+**所有的……都是……**
+$$
+(\forall x) (P(x) \to Q (x))
+$$
+> 不等价于 $(\forall x)(P(x)\wedge Q(x))$，因为这句话说的是 $(\forall x)(P(x))\wedge (\forall x)(Q(x))$.
+>
+> 当真值取真时，真值和论域无关？
+>
+> “所有的实数都是有理数”，若论域取 $\{1,2,3\}$，则成立；若取 $\{1,2,\pi\}$，则不成立；若取 $\{\mathrm i\}$，则成立。
+
+**有的……是……**
+$$
+(\exists x) (P(x) \wedge Q(x))
+$$
+> 设 $P:是有理数$，$Q:是无理数$，不等价于 $(\exists x)(P (x) \to Q(x))$. 假设我们找到一个数既不是有理数，也不是无理数，那么这个是对的。
+
+**没有……是……**
+$$
+\neg (\exists x) (P(x) \wedge Q(x))
+$$
+$$
+(\forall x)(P(x)\to \neg Q(x))
+$$
+
+**有的……不是……**
+$$
+(\exists x)(A(x) \wedge \neg B(x))
+$$
+
+$$
+\neg (\forall x)(A(x)\to B(x))
+$$
+
+**至少有一偶数是素数和至少有一偶数并且至少有一素数** 第一个命题等价于“有的……是……”，第二个命题等价于：
+$$
+(\exists x) P(x) \wedge (\exists x) Q(x)
+$$
+**积木世界的形式描述**
+
+谓词 $ON$，表示是否在上；$CLEAR$ 表示是否其上有积木块，则：
+$$
+(\forall x)(CLEAR(x)\to \neg (\exists y)(ON(y,x)))
+$$
+**自然数集的形式化描述**
+
+论域是自然数集，来形式化语句：
+
+（1）对每个数，有且仅有一个相继后元
+（2）没有这样的数，0 是其相继后元
+（3）对除 0 而外的数，有且仅有一个相继前元（可将这三句话作为建立自然数集合的公理）
+
+引入：
+
+- 谓词 $E(x,y)$ 代表 $x=y$；
+- $f(x)$ 表示个体 $x$ 的相继后元；
+- $g(x)$ 表示个体 $x$ 的相继前元。
+
+那么可以这样表示：
+$$
+(\forall x)(\exists y)(E(y, f(x))\quad  \wedge \quad (\forall z)(E(z, f(x)) \rightarrow E(y, z)))
+$$
+
+在说：存在一个 $y$ 是 $x$ 的相继后元，如果另外一个数 $z$ 也是相继后元，那么 $y=z$.
+$$
+\neg (\exists x) E(0,f(x))
+$$
+在说：没有一个数的后继是 $0$.
+$$
+(\forall x)(\neg E(x, 0) \underbrace{\rightarrow(\exists y)(E(y, g(x)) \wedge(\forall z)(E(z, g(x)) \rightarrow E(y, z))}_{在说有且仅有一个相继前元}))
+$$
+
+## 谓词变元多次量化和公式表示法
+
+$$
+\begin{array}{l}
+(\forall x)(\forall y) P(x, y)=(\forall x)((\forall y) P(x, y)) \\
+(\forall x)(\exists y) P(x, y)=(\forall x)((\exists y) P(x, y)) \\
+(\exists x)(\forall y) P(x, y)=(\exists x)((\forall y) P(x, y)) \\
+(\exists x)(\exists y) P(x, y)=(\exists x)((\exists y) P(x, y))
+\end{array}
+$$
+
+可得：$(\exists x)(\exists y) P(x,y)=(\exists y)(\exists x) P(x,y),(\forall x)(\forall y) P(x,y)=(\forall y)(\forall x) P(x,y)$
+
+假设论域为 $\{1,2,\cdots,k\}$，我们可以枚举：
+$$
+\begin{array}{l}
+(\forall x) P(x)=P(1) \wedge P(2) \wedge \cdots \wedge P(k) \\
+(\exists x) P(x)=P(1) \vee P(2) \vee \cdots \vee P(k)
+\end{array}
+$$
+
+因此，$\forall$ 是 $\wedge$ 的推广，$\exists$ 是 $\vee$ 的推广。
+
+在论域 $\{1,2\}$ 上多次量化公式：
+$$
+(\exists x)(\forall y) P(x,y)=(\forall y)P(1,y) \vee (\forall y)P(2,y)=(P(1,1)\wedge P(1,2))\vee(P(2,1)\wedge P(2,2))
+$$
+
+## 公式的普遍有效性和判定问题
+
+和命题公式类似，也有三类：
+
+> 如何理解一个解释，就是将个体变元以具体的事物代之。
+
+ - 对一个谓词公式来说，如果在它的任一解释 $I$ 下真值都为真，便称作 **普遍有效的**。
+
+- 对一个谓词公式来说，如果在它的某个解释 $I$ 下真值为真，便称作 **可满足的**。
+
+- 对一个谓词公式来说，如果在它的任一解释 $I$ 下真值均为假，便称作 **不可满足的**。
+
+
+**有限域** 上一个公式的可满足性和普遍有效性依赖于个体域个体的个数且仅依赖于个体域个体的数目
+
+- 在某个含 $k$ 个元素的 $k$ 个体域上普遍有效 (或可满足)，则在任一 $k$ 个体域上也普遍有效 (或可满足)；
+- 如果某公式在 $k$ 个体域上普遍有效，则在 $k-1$ 个体域上也普遍有效；
+- 如果某公式在 $k$ 个体域上可满足，则在 $k+1$ 个体域上也可满足。
+
+谓词逻辑的判定问题，指的是任一公式的普遍有效性。若说谓词逻辑是可判定的，就要给出一个能行方法，使得对任一谓词公式都能判断其是否普遍有效。
+
+- 谓词逻辑是不可判定的；
+  - 对任一谓词公式而言，没有能行的方法判明它是否是普遍有效的
+  - 并不排除谓词公式有子类是可判定的
+  - 判定问题的困难在于个体域是个无穷集以及对谓词设定的任意性
+- 个体域有穷的时候，可以遍历每一个个体，因此是可判定的。
+- 只含一元谓词变元的公式是可判定的。
+
+# Ch5-谓词逻辑的等值和推理演算
+
+## 谓词逻辑的等值
+
+等值式的定义：如果公式 $A,B$ 的任何解释下，$A,B$ 都有相同的真值，则 $A,B$ 等值。
+
+**Theorems 由命题公式移植来的等值式** （命题公式中，直接以谓词公式代入命题变项）
+
+1. $\neg \neg P(x)= P(x)$
+2. $\neg \neg(\forall x) P(x)=(\forall x) P(x)$
+3. $P(x) \rightarrow Q(x)=\neg P(x) \vee Q(x)$
+4. $(\forall x) P(x) \rightarrow(\exists x) Q(x)=\neg(\forall x) P(x) \vee(\exists x) Q(x)$
+5. $(P(x) \wedge Q(x)) \vee R(x)=(P(x) \vee R(x)) \wedge(Q(x) \vee R(x))$
+6. $((\forall x) P(x) \wedge Q(y)) \vee(\exists z) R(z)=((\forall x) P(x) \vee(\exists z) R(z)) \wedge(Q(y) \vee(\exists z) R(z))$
+
+**Theorems 否定型等值式（摩根律）**
+$$
+\begin{array}{l}
+\neg(\forall x) P(x)=(\exists x) \neg P(x) & (\forall x)P(x)=\neg(\exists x)(\neg P(x))\\
+\neg(\exists x) P(x)=(\forall x) \neg P(x) & (\exists x)P(x)=\neg (\forall x)(\neg P(x))
+\end{array}
+$$
+如果不是对所有 $x$ 都成立，一定对一个 $x$ 不成立。
+
+------
+
+**Examples**
+
+“并非所有的动物都是猫” 设 $A(x)$：$x$ 是动物，$B(x)$：$x$ 是猫。
+
+- $\neg (\forall x)(A(x)\to B(x))$.
+- 也等价于 $(\exists x) \neg(\neg A(x)\vee B(x))=(\exists x)(A(x)\wedge \neg B(x))$.
+
+“天下乌鸦一般黑” 设 $F(x)$：$x$ 是乌鸦，$G(x,y)$：$x,y$ 一般黑。
+
+- $(\forall x)(F(x)\wedge (\forall y)(F(y)\to G(x,y)))$.
+- $(\forall x)(\forall y) F(x)\wedge F(y)\to G(x,y)$.
+- 等值的公式：不存在两个东西是乌鸦且不一般黑：$\neg (\exists x)(\exists y)(F(x)\wedge F(y)\wedge \neg G(x,y))$.
+- 证明：$(\forall x)(\forall y)\neg(F(x)\wedge F(y)\wedge \neg G(x,y))=(\forall x)(\forall y)(\neg(F(x)\wedge F(y))\vee G(x,y))=(\forall x)(\forall y) F(x)\wedge F(y)\to G(x,y)$
+
+**Theorems 量词对合取、析取的分配律** 若 $q$ 不含 $x$，则：
+$$
+\begin{array}{l}
+(\forall x)(P(x) \vee q)=(\forall x) P(x) \vee q \\
+(\exists x)(P(x) \vee q)=(\exists x) P(x) \vee q \\
+(\forall x)(P(x) \wedge q)=(\forall x) P(x) \wedge q \\
+(\exists x)(P(x) \wedge q)=(\exists x) P(x) \wedge q
+\end{array}
+$$
+
+$$
+\begin{array}{l}
+(\forall x)(P(x) \wedge Q(x))=(\forall x) P(x) \wedge(\forall x) Q(x) \\
+(\exists x)(P(x) \vee Q(x))=(\exists x) P(x) \vee(\exists x) Q(x)
+\end{array}
+$$
+
+> $\forall $ 对 $\vee$，$\exists $ 对 $\wedge$ 的分配率一般不成立。
+
+**Problem**：证明 $(\forall x)(P(x)\vee Q(x))\not=(\forall x)P(x)\vee(\forall x)Q(x)$.
+
+**Proof**：例如，对于论域 $\{1,2\}$，令 $P(1)=1,P(2)=0,Q(1)=0,Q(2)=1$，则不成立。
+
+**Problem**：但是 $(\forall x)P(x)\vee(\forall x)Q(x) \Rightarrow (\forall x)(P(x)\vee Q(x))$.
+
+**Proof**：枚举 $(\forall x)P(x)$ 成立或者 $(\forall x)Q(x)$ 成立。
+
+**Problem**：证明 $(\exists x)(P(x)\wedge Q(x))\not=(\exists x)P(x)\wedge (\exists  x)Q(x)$. 和上面举例相同。
+
+**Problem**：证明 $(\exists x)(P(x)\wedge Q(x))\Rightarrow(\exists x)P(x)\wedge (\exists  x)Q(x)$,
+
+**Proof**：消去存在量词，$P(a)\wedge Q(a)$ 为真，则 $P(a),Q(a)$ 均为真，此时 $(\exists x)P(x)$ 和 $(\exists x)Q(x)$ 均成立。
+
+**Theorems 量词对 $\boldsymbol{\to}$ 的分配律**
+$$
+\begin{array}{l}
+(\forall x)(P(x) \rightarrow q)=(\exists x) P(x) \rightarrow q \\
+(\exists x)(P(x) \rightarrow q)=(\forall x) P(x) \rightarrow q \\
+(\forall x)(p \rightarrow Q(x))=p \rightarrow(\forall x) Q(x) \\
+(\exists x)(p \rightarrow Q(x))=p \rightarrow(\exists x) Q(x)
+\end{array}
+$$
+
+**Proof（1.）**
+$$
+(\forall x)(\neg P(x)\vee q)=(\forall x)(\neg P(x))\vee q=\neg (\exists x)P(x)\vee q=(\exists x)P(x)\to q
+$$
+
+也可以这样证明，引入前提假设 $(\exists x)P(x)$，则 $q$ 成立当且仅当 $(\forall x)(P(x)\to q)$。
+
+**Theorems 变元易名后的分配律**
+$$
+(\forall x)(\forall y)(P(x)\vee Q(y))=(\forall x)P(x)\vee (\forall x)Q(x)\\
+(\exists x)(\exists y)(P(x)\wedge Q(y))=(\exists x)P(x)\wedge (\exists x) Q(x)\\
+{\color{grey}
+(\forall x)(\forall y)(P(x)\wedge Q(y))=(\forall x)P(x)\wedge (\forall x)Q(x)}\\{\color{grey}
+(\exists x)(\exists y)(P(x)\vee Q(y))=(\exists x)P(x)\vee (\exists x) Q(x)}
+$$
+**Proof（1.）** RHS先做替换：$(\forall x)P(x)\vee (\forall y)Q(y)$. 然后后面一项对于第一项来说，可以视作常量 $q$，则：
+$$
+(\forall x)(P(x)\vee (\forall y)Q(y))
+$$
+因此：
+$$
+(\forall x)(\forall y)(P(x)\vee Q(y))
+$$
+
+## 谓词逻辑的范式
+
+**Definition 前束范式** 如果 $A$ 中的一切量词都位于公式的最左边（不含否定词），而且量词的辖域都延伸到公式的末端，前束范式 $A$ 的一般形式为：
+$$
+(Q_1 x_1)\cdots (Q_n x_n)M(x_1,\cdots,x_n)
+$$
+其中 $Q_i$ 为量词，$M$ 称为公式 $A$ 的母式（基式），$M$ 中不再有量词。
+
+谓词逻辑的任一公式都可以化为与之 **等值** 的前束范式，但是不唯一。
+
+**Definition $\exists$ 前束范式**一个公式的 $\exists$ 前束范式为 $(\exists x_1)\cdots (\exists x_i)(\forall x_{i+1})\cdots (\forall x_n) M(x_1,\cdots,x_n)$. 所有的存在量词都在全称量词的左边。$M(x_1,\cdots,x_n)$ 不含量词和自由个体变元。
+
+谓词逻辑的任一公式 $A$，都可以化作相应的 $\exists$ 前束范式，并且 $A$ 是 **普遍有效** 的当且仅当其 $\exists$ 范式是 **普遍有效** 的。
+
+**Problem**：求 $(\exists x)(\forall y)(\exists u)P(x,y,u)$ 的 $\exists$ 前束范式（P 中无量词）。
+
+**Solution**：将全称量词 $(\forall y)$ 改写为存在量词 $(\exists y)$，再引入谓词 $S$ 和一个变元 $z$，得到 $S(x,z)$，建立公式
+$$
+(\exists x)(((\exists y)(\exists u)P(x,y,u)\wedge \neg S(x,y))\vee (\forall z)S(x,z))
+$$
+$\exists$ 前束范式仅在普遍有效的意义下与原公式等值，
+$$
+(\forall y)(F(y)\to G(y))\to ((\forall y)F(y)\to (\forall z)G(z))
+$$
+**Problem** 求公式 $(\forall x)(P(x)\leftrightarrow (\exists y)Q(x,y))$ 的前束范式。
+
+**Solution**：
+$$
+\begin{aligned}
+&(\forall x)(P(x)\leftrightarrow (\exists y)Q(x,y))\\
+=&(\forall x)((P(x)\to (\exists y)Q(x,y)) \wedge ((\exists y)Q(x,y)\to P(x)))\\
+=&(\forall x)(\exists y)(\forall z)((P(x)\to Q(x,y))\wedge (Q(x,z)\to P(x)))
+\end{aligned}
+$$
+**Definition Skolem 标准型** 仅仅保留全称量词的前束形。
+
+谓词逻辑的任一公式 $A$，都可以化作相应的 Skolem 标准型，并且 $A$ 是 **不可满足** 的当且仅当其 Skolem 标准型是 **不可满足** 的。
+
+从左到右消去存在量词，设要消去 ($\exists x$)，则将谓词 $P$ 中出现的所有变元 $x$ 均以论域中的某个常项 $a$ 代入。若 ($\exists x$) 的左边有若干全称量词 $(\forall y)\cdots (\forall z)$，需将谓词 $P$ 中出现的所有变元 $x$ 均以全称量词 $y,\cdots,z$ 的某个多元函数 $f(y,\cdots,z)$ 代入。
+
+**Example** 求公式 $(\exists x)(\forall y)(\forall z)(\exists u)(\forall v)(\exists w)P(x,y,z,u,v,w)$ 的 Skolem 标准型.
+
+- $x$ 替代为未出现的常项 $a$.
+- $u$ 替代为 $y,z$ 的函数 $f(y,z)$.
+- $w$ 替代为 $y,z,v$ 的函数 $g(y,z,v)$.
+
+因此 Skolem 标准型为 $(\forall y)(\forall z)(\forall v)P(a,y,z,f(y,z),v,g(y,z,w))$.
+
+> 可以这样理解，比如说极限的定义是 $\forall \varepsilon>0,\exists \delta>0,\forall |x-x_0|<\delta,|f(x)-f(x_0)|<\varepsilon$.
+>
+> 可以给出 $\delta$ 关于 $x_0,\varepsilon$ 的一个函数。
+
+## 谓词逻辑的基本的推理公式
+
+$$
+(\forall x) P(x) \vee(\forall x) Q(x) \Rightarrow(\forall x)(P(x) \vee Q(x))\\
+(\exists x)(P(x) \wedge Q(x)) \Rightarrow(\exists x) P(x) \wedge(\exists x) Q(x)\\
+$$
+
+**Proof**：前面推导过。
+
+------------
+
+$$
+(\forall x)(P(x) \rightarrow Q(x)) \Rightarrow(\forall x) P(x) \rightarrow(\forall x) Q(x)\\
+(\forall x)(P(x) \rightarrow Q(x)) \Rightarrow(\exists x) P(x) \rightarrow(\exists x) Q(x)
+$$
+
+**Proof**：引入前提假设 $(\forall x)P(x)$ 或 $(\exists x)P(x)$. 在 $(\forall x)(P(x)\to Q(x))$ 的条件下，可以分别推得 $(\forall x)Q(x)$ 或 $(\exists x)Q(x)$ 成立。
+
+-------------
+
+$$
+(\forall x)(P(x) \leftrightarrow Q(x)) \Rightarrow(\forall x) P(x) \leftrightarrow(\forall x) Q(x)\\
+(\forall x)(P(x) \leftrightarrow Q(x)) \Rightarrow(\exists x) P(x) \leftrightarrow(\exists x) Q(x)
+$$
+
+**Proof**：和上面证明方法一样，证明双向。
+
+----------
+
+$$
+(\forall x)(P(x) \rightarrow Q(x)) \wedge(\forall x)(Q(x) \rightarrow R(x)) \Rightarrow(\forall x)(P(x) \rightarrow R(x))
+$$
+
+**Proof**：
+$$
+\begin{aligned}
+&(\forall x)(P(x) \rightarrow Q(x)) \wedge(\forall x)(Q(x) \rightarrow R(x))\\
+\Rightarrow&(\forall x)((P(x)\to Q(x))\wedge (Q(x)\to R(x)))\\
+\Rightarrow &(\forall x)(P(x)\to R(x))
+\end{aligned}
+$$
+
+----------
+
+$$
+(\forall x)(P(x) \rightarrow Q(x)) \wedge P(a) \Rightarrow Q(a)
+$$
+
+-----------
+
+$$
+(\forall x)(\forall y) P(x, y) \Rightarrow(\exists x)(\forall y) P(x, y)\\
+(\exists x)(\forall y) P(x, y) \Rightarrow(\forall y)(\exists x) P(x, y)
+$$
+
+**Proof**：解释性的说明：
+
+1. 当 $P(x,y)$ 对于任意论域中的 $x,y$ 都成立，则存在 $x_0$，使得任意 $P(x_0,y)$ 成立。
+2. 设在一解释 $I$ 下，有 $(\exists x)(\forall y)P(x,y)=T$，于是有 $x_0\in D$，使得对于一切的 $y\in D$，都有 $P(x_0,y)=T$. 从而对于一切的 $y\in D$，都有一个 $x$（均选为 $x_0$）使得 $P(x,y)=T$.
+
+## 谓词逻辑的推理演算
+
+1. 前提引入规则；
+2. 结论引用规则；（中间结论可以作为后续推理的前提）
+3. 代入规则；（代入重言式的命题变项）
+4. 置换规则；（用等值公式置换）
+5. 分离规则（假言推理）$A\to B$ 和 $A$ 推出 $B$.
+6. 条件证明规则。引入前提条件。$A_1\Rightarrow A_2 \to B$ 和 $A_1\wedge A_2 \Rightarrow B$ 是等价的。
+
+**谓词逻辑的推理规则**
+
+- **全称量词消去规则**。$(\forall x)P(x)\Rightarrow P(y)$. 其中 $y$ 是论域中的一个个体。注意如果 $P(x)$ 中存在量词和变项时，需要限制 $y$ 不在 $P(x)$ 中不能出现，不能使用重复的符号。
+- **全称量词引入规则**。$P(y)\Rightarrow (\forall x)P(x)$. 其中 $y$ 是论域中任意个体。
+- **存在量词消去规则**。$(\exists x)P(x)\Rightarrow P(c)$. 其中 $c$ 是论域中一个个体常项。需要限制 $(\exists x)P(x)$ 中没有自由个体出现。
+- **存在量词引入规则**。$P(c)\Rightarrow (\exists x)P(x)$. 其中 $c$ 是论域中的一个个体常项。$x$ 不能出现在 $P(c)$ 里。
+
+> 例如 $(\forall x)(\exists y)P(x,y)\Rightarrow (\exists y)P(x,y)\Rightarrow P(x,a)$.
+>
+> 但是不能再推出 $(\forall x)P(x,a)$，因为不是对于同一个 $a$ 都成立。
+
+需要分析好变量之间的依赖关系。
+
+**Example**：分析下述推理的正确性
+
+1. $(\forall x)(\exists y)(x>y)$. 前提;
+2. $(\exists y)(z>y)$. 全称量词消去，$y$ 与 $z$ 相关;
+3. $z>b$. 存在量词消去，$b$ 依赖 $z$.
+4. $(\forall z)(z>b)$. 全称量词引入（错误，$b$ 不能依赖 $z$）
+
+**Problem**：有的病人喜欢所有的医生：
+$$
+(\exists x)(P(x) \wedge (\forall y)( D(y)\to L(x,y)))
+$$
+没有病人喜欢庸医：
+$$
+(\forall x)(P(x)\to (\forall y) (Q(y)\to \neg L(x,y)))
+$$
+推出，没有医生是庸医：
+$$
+(\forall x)(D(x)\to \neg Q(x))
+$$
+
+**Solution**.
+
+1. $(\exists x)(P(x) \wedge (\forall y)( D(y)\to L(x,y)))$
+2. 存在量词消去 $P(c)\wedge (\forall y)(D(y)\to L(c,y))$.
+3. $(\forall x)(P(x)\to (\forall y) (Q(y)\to \neg L(x,y)))$
+4. 全称量词消去 $P(c)\to (\forall y) (Q(y)\to \neg L(c,y))$
+5. $P(c)$ 2. 推出
+6. $(\forall y)(D(y)\to L(c,y))$ 2. 推出
+7. $D(y)\to L(c,y)$ 6. 消去
+8. $(\forall y)(Q(y) \to \neg L(c,y))$. 5. 4. 分离
+9. $Q(y)\to \neg L(c,y)$. 8. 消去
+10. $L(c,y)\to \neg Q(y)$. 9. 置换。
+11. $D(y)\to \neg Q(y)$. 三段论
+12. $(\forall y )(D(y)\to \neg Q(y))$. 全称量词引入（因为 $y$ 为论域中任何一个个体）
+
+## 谓词逻辑的归结证明
+
+1. 根据 $A\wedge \neg B=G$，写出公式 $G$.
+2. 建立子句集。
+3. 归结出矛盾。
+
+------
+
+证明 $(\forall x)(P(x)\to Q(x)) \wedge (\forall x)(P(x)\to Q(x))=(\forall x)(P(x)\to R(x))$.
+
+首先写出：$G=(\forall x)(P(x)\to Q(x)) \wedge (\forall x)(P(x)\to Q(x))\wedge \neg (\forall x)(P(x)\to R(x))$
+
+- $(\forall x)(P(x)\to Q(x))$ 的子句集为 $\{\neg P(x)\vee Q(x)\}$.
+
+- $(\forall x)(Q(x)\to R(x))$ 的子句集为 $\{\neg Q(x)\vee R(x)\}$.
+
+- $\neg (\forall x)(P(x)\to R(x))=(\exists x)\neg (\neg P(x)\vee R(x))=(\exists x)(P(x)\wedge \neg R(x))$.
+
+  Skolem 化，得子句集 $\{P(a),\neg R(a)\}$.
+
+因此 $G$ 的子句集为 $\{\neg P(x)\vee Q(x),\neg Q(x)\vee R(x),P(a),\neg R(a)\}$.
+
+- $\neg P(x)\vee Q(x), P(a)$ 得到 $Q(a)$.
+- $\neg Q(x)\wedge R(x),Q(a)$ 得到 $R(a)$.
+- $R(a), \neg R(a)$ 矛盾。
+
+----
+
+- $A_1=(\exists x)(P(x) \wedge (\forall y)( D(y)\to L(x,y)))$.
+- $A_2=(\forall x)(P(x)\to (\forall y) (Q(y)\to \neg L(x,y)))$.
+- $B=(\forall x)(D(x)\to \neg Q(x))$.
+
+求证 $A_1 \wedge A_2 \Rightarrow B$. $G=A_1\wedge A_2\wedge \neg B$.
+
+建立子句集：
+$$
+\{P(a),\neg D(y)\vee L(a,y)\}\\
+\{\neg P(x)\vee \neg Q(y)\vee \neg L(x,y)\}\\
+D(b),Q(b)
+$$

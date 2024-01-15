@@ -1,0 +1,1008 @@
+[TOC]
+
+## 二元关系
+
+**Definition**：对集合 $A$ 和 $B$，$A\times B$ 的任一子集 $R$ 称为 $A$ 到 $B$ 的一个 **二元关系**. 若 $\langle x,y\rangle \in R$，可记作 $x Ry$；若 $\langle x,y \rangle \notin R$，可记作 $x \not R y$。
+
+特殊地，当 $A=B$ 时， $A\times A$ 的任一子集称为 $A$ 上的一个二元关系。二元关系可简称为关系。
+
+**Example**：用描述的方法定义二元关系，例如：
+$$
+D_x=\left\{\langle x,y\rangle \mid x\in X \wedge y\in Y\wedge x 整除 y\right\}
+$$
+
+**Example**：定义集合的真包含关系和包含关系：
+$$
+R_1=\left\{\langle x,y\rangle \mid x \in P(A) \wedge y\in P(A) \wedge x\subseteq y\right\}\\
+R_2=\left\{\langle x,y\rangle \mid x \in P(A) \wedge y\in P(A) \wedge x\subset y\right\}
+$$
+
+**Definition**：若 $n\in N$ 且 $n>1$，$A_1\sim A_n$ 是 $n$ 个集合，则 $A_1\times A_2\times \cdots\times A_n$ 的任一子集称为 $A_1$ 到 $A_n$ 上的一个 **$\boldsymbol n$ 元关系**。
+
+**Definition**：特殊的关系
+
+- 恒等关系 $I_A= \left\{\langle x,x\rangle \mid x \in A\right\}$.
+- 全域关系 $E_A= \left\{\langle x,y\rangle \mid x \in A \wedge y\in A\right\}$.
+- 空关系 $\varnothing$.
+
+**Definition**：定义域、值域、域。
+
+- $\operatorname{dom}(R)=\{x \mid (\exists y) (\langle x,y\rangle \in R)\}$. 即左边的一项组成的集合。
+- $\operatorname{ran}(R)=\{y \mid (\exists x) (\langle x,y\rangle \in R)\}$. 即右边的一项组成的集合。
+- $\operatorname{fld}(R)=\operatorname{dom}(R)\cup \operatorname{ran}(R)=\cup \cup R$. 即所有讨论的元素组成的集合。
+
+**Lemma**：对 $A$ 到 $B$ 的关系 $R$，如果 $\langle x,y \rangle \in R$，则 $x\in \cup\cup R,y\in \cup\cup R$.
+
+**Proof**：$\{x,\{x,y\}\}\in R \Rightarrow \{x,y\}\in \cup {R}\Rightarrow x\in \cup\cup R,y\in \cup\cup R$.
+
+## 关系矩阵和关系图
+
+**Definition**：关系矩阵 $M(R)=(r_{i,j})_{m\times n}$，其中 $r_{i,j}=[\langle i,j \rangle\in R]$.
+
+**Definition**：关系图。$x,y$ 连边 $\Leftrightarrow \langle x,y \rangle \in R$.
+
+## 关系的逆、合成、限制和象
+
+若 $R: X\to Y,S : Y\to Z$：
+
+**Definition（关系的逆）**：$R$ 的逆 $R^{-1}$ 为 $Y$ 到 $X$ 的关系：
+
+$$
+R^{-1}=\left\{\langle x,y \rangle \mid \langle y,x \rangle \in R\right\}
+$$
+仅仅交换了二元组 $x,y$ 的顺序。可知 $\langle x,y \rangle \in R \Leftrightarrow \langle y,x \rangle \in R^{-1}$.
+
+**Definition（关系的合成）**：，$R$ 与 $S$ 的合成 $S \circ R$ 为 $X$ 到 $Z$ 的关系：
+$$
+{\color{red}S} \circ R=\left\{\langle x,y \rangle \mid  (\exists z)(\langle x,z \rangle \in R \wedge {\color{red}\langle z,y \rangle \in S})\right\}
+$$
+可以看成是 $S$ 作用在 $R$ 上。
+
+**Definition（关系的限制）**：$R$ 在 $A$ 上的限制 $R \upharpoonright A$ 是从 $A$ 到 $Y$ 的关系：
+$$
+R \upharpoonright A =\left\{\langle x,y \rangle \mid \langle x,y \rangle \in R \wedge x \in A\right\}
+$$
+关系的限制也是一个关系，但是限制关系左端只能是 $A$ 中的元素。
+
+**Definition（关系的象）**：$A$ 在 $R$ 下的象 $R[A]$ 为集合：
+$$
+R[A]=\left\{y \mid (\exists x)(x \in A \wedge \langle x,y \rangle \in R)\right\}
+$$
+从 $A$ 出发，$R$ 中能到达的元素的集合。
+
+**Example**：例如，$R=\{\langle a,\{a\} \rangle,\langle \{a\},\{\{a\}\} \rangle\}$.
+
+- $R \upharpoonright \{a\}=\{\langle a,\{a\} \rangle\}$.
+- $R \upharpoonright \{\{a\}\}=\{\langle \{a\},\{\{a\}\} \rangle\}$.
+- $R^{-1} \upharpoonright \{a\}=\varnothing$.
+- $R[\{a\}]=\{\{a\}\},R[\{\{a\}\}]=\{\{\{a\}\}\}$.（关系的象接收的参数是集合，输出也是集合）
+
+我们可以用 **关系矩阵** 再来表示关系的逆和关系的合成。
+
+- $\boldsymbol M(R^{-1})=\boldsymbol M(R)^{\top}$.
+- $\boldsymbol M(S \circ R)=\boldsymbol M(R)\boldsymbol M(S)$. 
+
+为什么是反的，因为关系矩阵里面行代表左端元素，列代表右端元素，同时，矩阵乘法里面的乘法用析取替代.
+
+**Theorem（关系的逆的性质）**：
+
+- $\operatorname{dom}(R^{-1})=\operatorname{ran}(R), \operatorname{ran}(R^{-1})=\operatorname{dom}(R)$.
+- $(R^{-1})^{-1}= R$.
+- $(S\circ R)^{-1}=R^{-1} \circ S^{-1}$. （可以类比矩阵求逆）
+
+我们还可以发现 $R \circ R^{-1}=I_Y$，$I_Y\circ R=R \circ I_Y=R$.
+
+**Theorem（关系的合成满足结合律）**：
+
+若 $Q:X\to Y,S:Y\to Z , R:Z\to W$，则：
+$$
+(R\circ S)\circ Q=R\circ (S\circ Q)
+$$
+就像矩阵乘法，满足结合律，但是通常不满足交换律。
+
+**Proof**：
+$$
+\begin{aligned}
+&\langle x,y \rangle \in (R\circ S)\circ Q\\
+&\Leftrightarrow (\exists z)(\langle x,z \rangle \in Q \wedge \langle z,y \rangle \in R\circ S)\\
+&\Leftrightarrow (\exists z)(\langle x,z \rangle \in Q \wedge (\exists w)(\langle z,w \rangle \in S \wedge \langle w,y \rangle \in R))\\
+&\Leftrightarrow (\exists w)(\exists z)(\langle x,z \rangle \in Q \wedge \langle z,w \rangle \in S \wedge \langle w,y \rangle \in R)\\
+&\Leftrightarrow (\exists w)(\langle x,w \rangle \in S\circ Q \wedge \langle w,y \rangle \in R)\\
+&\Leftrightarrow \langle x,y \rangle \in R\circ (S\circ Q)
+\end{aligned}
+$$
+
+**Theorem**: 关系的合成的性质。
+
+对于 $R_2,R_3:X\to Y,R_1:Y\to Z$， 有：
+
+
+1. $R_1\circ(R_2\cup R_3)=R_1\circ R_2 \cup R_1\circ R_3$.
+2. $R_1\circ (R_2 \cap R_3)\sube R_1\circ R_2 \cap R_1 \circ R_3$.
+
+是因为对于任意的 $\langle x,y \rangle$，有：
+$$
+\begin{aligned}
+&\langle x,y \rangle \in R_1\circ(R_2\cup R_3) \Leftrightarrow (\exists z)(\langle x,z \rangle \in R_2\cup R_3 \wedge \langle z,y \rangle \in R_1)\\
+&\Leftrightarrow (\exists z)(\langle x,z \rangle \in R_2 \vee \langle x,z \rangle \in R_3 \wedge \langle z,y \rangle \in R_1)\\
+&\Leftrightarrow (\exists z)(\langle x,z \rangle \in R_2 \wedge \langle z,y \rangle \in R_1) \vee (\exists z)(\langle x,z \rangle \in R_3 \wedge \langle z,y \rangle \in R_1)\\
+&\Leftrightarrow \langle x,y \rangle \in R_1\circ R_2 \cup R_1\circ R_3
+\end{aligned}
+$$
+
+而对于交集的情况，仅仅是包含关系，是因为两个 "z" 不一定相同。
+
+对于 $R_3:X\to Y$，$R_1,R_2:Y\to Z$，有：
+1. $(R_1\cup R_2)\circ R_3=R_1\circ R_3 \cup R_2\circ R_3$.
+2. $(R_1 \cap R_2)\circ R_3\sube R_1\circ R_3 \cap R_2 \circ R_3$.
+
+**Theorem**：象的性质。
+
+1. $R[A\cup B]=R[A]\cup R[B]$.
+2. $R[\cup A]=\cup \{R[B]\mid B\in A\}$.
+3. $R[A\cap B]\sube R[A]\cap R[B]$.
+4. $R[\cap A]\sube \cap \{R[B]\mid B\in A\},A\not= \varnothing$.
+5. $R[A]-R[B]\sube R[A-B]$.
+
+**Proof**：证明性质 2，对于任意的 $y$，有：
+$$
+\begin{aligned}
+y\in R[\cup A]&\Leftrightarrow y\in \operatorname{ran}(R\upharpoonright  \cup A)\\
+&\Leftrightarrow (\exists x)(x\in \cup A\wedge \langle x,y \rangle \in R)\\
+&\Leftrightarrow (\exists x)(\exists B)(B\in A\wedge x\in B\wedge \langle x,y \rangle \in R)\\
+&\Leftrightarrow (\exists B)(B\in A\wedge (\exists x)(x\in B\wedge \langle x,y \rangle \in R))\\
+&\Leftrightarrow (\exists B)(B\in A\wedge y\in R[B])\\
+&\Leftrightarrow (\exists B)(y\in R[B]\wedge R[B]\in \{R[B]\mid B\in A\})\\
+&\Leftrightarrow y\in \cup \{R[B]\mid B\in A\}
+\end{aligned}
+$$
+证明性质 3，对于任意的 $y$，有：
+$$
+\begin{aligned}
+y\in R[A\cap B]&\Leftrightarrow (\exists x)(x\in A\cap B\wedge \langle x,y \rangle \in R)\\
+&\Leftrightarrow (\exists x)(x\in A\wedge x\in B\wedge \langle x,y \rangle \in R)\\
+&{\color{red}\Rightarrow} (\exists x)(x\in A\wedge \langle x,y \rangle \in R)\wedge (\exists x)(x\in B\wedge \langle x,y \rangle \in R)\\
+&\Leftrightarrow y\in R[A]\wedge y\in R[B]\\
+&\Leftrightarrow y\in R[A]\cap R[B]
+\end{aligned}
+$$
+
+## 关系的性质
+
+关系的性质，我认为从一些常见的运算引入，比较容易理解，先给出一系列定义。对于一个关系 $R$。
+
+- 若 $\forall x\in A, xRx$，则称 $R$ 是 **自反的**；
+
+- 若 $\forall x\in A, x\not R x$，则称 $R$ 是 **非自反的**。
+
+- 对于 $A$ 上的关系 $R$，若 $\forall x,y\in A, xRy\to yRx$，则称 $R$ 是 **对称** 的；
+
+- 若 $\forall x,y\in A, xRy\wedge yRx\to x=y$，则称 $R$ 是 **反对称** 的；
+
+  不能说 $\forall x,y\in A, xRy \to y \not R x$.
+
+- 若 $\forall x,y\in A, xRy\to y\not R x$，则称 $R$ 是 **非对称** 的。
+
+- 对于任意的 $x,y,z\in A$，若 $(x Ry\wedge yRz) \to xRz$，则称 $R$ 为 $A$ 上的传递的关系。
+
+| 性质       | 定义                                               | 关系矩阵                                              | 关系图                                                |
+| ---------- | -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| 自反关系   | $\forall x\in A, xRx$                              | 对角线全为 1                                          | 每个节点都有自环                                      |
+| 非自反关系 | $\forall x\in A,x\not Rx$                          | 对角线全为 0                                          | 每个节点都没有自环                                    |
+| 对称关系   | $\forall x,y\in A,xRy\to yRx$                      | $M(R)$ 对称矩阵，$M(R)=M(R)^\top$                     | 每条边都有反向边                                      |
+| 反对称关系 | $\forall x,y\in A,(xRy\wedge yRx)\to x=y$          | 对角线可以为 0,1；非对角线的对称位置不能同时为 1.     | 每条边都没有反向边，但是可以有自环                    |
+| 非对称关系 | $\forall x,y\in A,x Ry\to y\not Rx$                | 对角线全为 0；非对角线的对称位置不能同时为 1.         | 每条边都没有反向边，不可以有自环                      |
+| 传递关系   | $\forall x,y,z\in A$，$$(x Ry\wedge yRz) \to xRz$$ | $M^2 \vee M=M$；$M^2$ 里面 1 的位置在 $M$ 里面也为 1. | 若 $u$ 到 $v$ 存在长度为 $2$ 的路径，$u,v$ 也有连边。 |
+
+关注具体的运算：
+
+- "=" 运算，是自反的，对称的，传递的。
+
+  是因为 $a=a$；$a=b\to b=a$；$a=b\wedge b=c\to a=c$.
+
+- "<" 运算，是非自反的，反对称的，非对称的，传递的。
+
+  是因为 $a\not<a$；$a<b \wedge b<a$ 不成立；$a<b\to b\not<a$；$a<b,b<c\to a<c$.
+
+- "$\sube$" 运算，是自反的，反对称的，传递的。
+
+  是因为 $a\sube a$；$a\sube b \wedge b\sube a \to a=b$；$a\sube b \wedge b\sube c \to a\sube c$.
+
+- "$\le$" 运算，是自反的，反对称的，传递的。
+
+  是因为 $a\le a$；$a\le b \wedge b\le a \to a=b$；$a\le b \wedge b\le c \to a\le c$.
+
+**Definition（自反、非自反）**：对于 $A$ 上的关系 $R$：
+
+- 若 $\forall x\in A, xRx$，则称 $R$ 是自反的；
+- 若 $\forall x\in A, x\not R x$，则称 $R$ 是非自反的。
+
+**Example**
+
+恒等关系 $I_A$ 和全关系 $E_A$ 都是自反的。集合 $A$ 的幂集 $P(A)$ 上的包含关系和相等关系都是自反的。这些关系都不是非自反的。
+
+在 **非空集合** $A$ 上的空关系 $\varnothing$ 是非自反的，在集合 $\N$ 上的小于关系 $<$ 是非自反的，在集合 $A$ 的幂集 $P(A)$ 上的真包含关系 $\subsetneq$ 是非自反的。这些关系都不是自反的。
+
+Q: 空集合 $A$ 上的空关系 $\varnothing$ 是自反的。
+>
+Q: 为什么定义域选为 $P(A)$？
+
+存在既不是自反的，也不是非自反的关系。例如，$A=\{1,2\}$，$R=\{\langle 1,1 \rangle, \langle 2,2\rangle,\langle 3,1 \rangle\}$.
+
+自反关系的图形解释（绿色表示一定存在该关系，红色表示一定不存在该关系，灰色表示不关心）
+><img src="https://notes.sjtu.edu.cn/uploads/upload_2b15781a1da26251cf45415bede13044.png" alt="image-20240115001527253" style="zoom: 50%;" />
+
+>非自反关系的图形解释：
+
+><img src="https://notes.sjtu.edu.cn/uploads/upload_152d3ae057d177c6fee4b73ed58ef879.png" alt="image-20240115001538490" style="zoom: 50%;" />
+- 如果 $R$ 是 $A$ 上自反的，则关系矩阵 $\boldsymbol M(R)$ 的主对角线元素都是 1，关系图 $G(R)$ 的每个顶点都有自环；
+- 如果 $R$ 是 $A$ 上非自反的，则关系矩阵 $\boldsymbol M(R)$ 的主对角线元素都是 0，关系图 $G(R)$ 的每个顶点都没有自环。
+
+在非空集合 $A$ 上，不存在既是自反的，又是非自反的关系。
+
+
+**Definition**：对称、反对称、非对称。
+>
+对于 $A$ 上的关系 $R$，若 $\forall x,y\in A, xRy\to yRx$，则称 $R$ 是 **对称** 的；注，也等价于 $\forall x,y\in A, xRy\leftrightarrow yRx$.
+>
+等价表述：$M(R)$ 是对称矩阵，$G(R)$ 之间互相连接有向边 $e_{i,j}$ 和 $e_{j,i}$ 或者没有连边。
+>
+若 $\forall x,y\in A, xRy\wedge yRx\to x=y$，则称 $R$ 是 **反对称** 的；
+>
+等价表述：$M(R)$ 是反对称矩阵（对于 $i\not=j$，$r_{i,j} \wedge r_{j,i}\not =1$），$G(R)$ 之间互相连接有向边 $e_{i,j}$ 和 $e_{j,i}$ 时，$i=j$。
+>
+若 $\forall x,y\in A, xRy\to y\not R x$，则称 $R$ 是 **非对称** 的。
+
+空关系 $\varnothing$ 是对称的、反对称的、非对称的。
+
+存在既不是对称的，也不是反对称的关系，例如 $A=\{1,2\}$，$R=\{\langle 1,2 \rangle, \langle 3,2 \rangle, \langle 2,3 \rangle\}$.
+
+**Definition**：传递关系。
+>
+对于任意的 $x,y,z\in A$，若 $(x Ry\wedge yRz) \to xRz$，则称 $R$ 为 $A$ 上的传递的关系。
+
+恒等关系、全关系、空关系都是传递的。也可以表述为 $\boldsymbol M(R)^2=\boldsymbol M(R)$.
+
+一些结论：
+
+- $R_1,R_2$ 是 $A$ 上自反的关系，则 $R_1^{-1},R_1\cap R_2,R_1\cup R_2$ 也是 $A$ 上自反的关系。
+
+  证明比较容易。
+
+- $R_1,R_2$ 是 $A$ 上对称的关系，则 $R_1^{-1},R_1\cap R_2,R_1\cup R_2$ 也是 $A$ 上对称的关系。
+
+  可以利用对称矩阵的性质，也可以利用定义：
+  $$
+  \begin{aligned}
+  \langle x,y \rangle \in R_1\cup R_2 \Leftrightarrow \langle x,y \rangle \in R_1 \vee \langle x,y \rangle \in R_2\\
+  \Leftrightarrow \langle y,x \rangle \in R_1 \vee \langle y,x \rangle \in R_2\Leftrightarrow \langle y,x \rangle \in R_1\cup R_2
+  \end{aligned}
+  $$
+
+- $R_1,R_2$ 是 $A$ 上传递的关系，则 $R_1^{-1},R_1\cap R_2$ 是 $A$ 上传递的关系。但是 $R_1\cup R_2$ 不一定是传递的关系。
+
+  $$
+  \begin{aligned}
+  &\langle x,y \rangle \in R_1\cap R_2\wedge \langle y,z \rangle\in R_1 \cap R_2\\
+  \Leftrightarrow & \langle x,y \rangle \in R_1 \wedge \langle x,y \rangle \in R_2 \wedge \langle y,z \rangle \in R_1 \wedge \langle y,z \rangle \in R_2\\
+  \Rightarrow& \langle x,z \rangle \in R_1 \wedge \langle x,z \rangle \in R_2\\
+  \Leftrightarrow & \langle x,z \rangle \in R_1\cap R_2
+  \end{aligned}
+  $$
+
+
+- 对 $A$ 上的关系 $R$，则
+
+  - $R$ 是对称的 $\Leftrightarrow R=R^{-1}$. 是因为 $\langle x,y \rangle \in R \Leftrightarrow \langle y,x \rangle \in R \Leftrightarrow \langle x,y \rangle \in R^{-1}$.
+
+  - $R$ 是反对称的 $\Leftrightarrow R\cap R^{-1}\sube I_A$.
+
+    先证明 $\Rightarrow$，假设 $R$ 是反对称的，
+    $$
+    \langle x,y \rangle \in R\cap R^{-1} \Leftrightarrow \langle x,y \rangle \in R \wedge \langle x,y \rangle \in R^{-1}\\
+    \Leftrightarrow \langle x,y \rangle \in R \wedge \langle y,x \rangle\in R\\
+    \Rightarrow x=y \Rightarrow \langle x,y \rangle \in I_A
+    $$
+    所以 $R\cap R^{-1} \sube I_A$.
+
+    再证明 $\Leftarrow$，假设 $R\cap R^{-1}\sube I_A$，我们想要证明 $R$ 是反对称的，即 $\langle x,y \rangle \in R\wedge \langle y,x \rangle\in R\Rightarrow x=y$，从这个条件出发：
+    $$
+    \langle x,y \rangle \in R\wedge \langle y,x \rangle\in R\Leftrightarrow \langle x,y \rangle \in R \wedge \langle x,y \rangle \in R^{-1}\\\Leftrightarrow \langle x,y \rangle \in R\cap R^{-1}\Rightarrow \langle x,y \rangle \in I_A\Rightarrow x=y
+    $$
+    因此得证。
+
+## 关系的闭包
+
+### 多个关系的合成（关系的幂）
+
+**Definition（多个关系的合成）**
+
+
+对于 $A$ 上的关系 $R$，$n\in \N$，关系 $R$ 的 $n$ 次幂 $R^n$ 定义如下：
+
+- $R^0=\{\langle x,x \rangle\mid x\in A\}=I_A$.
+- $R^{n+1} =R^n \circ R(n\ge 0)$.
+
+**Lemma（关系的幂存在循环节）**：设 $A$ 是有限集合，$|A|=n$，$R$ 是 $A$ 上的关系，则存在自然数 $s,t,s\not=t$，使得 $R^{s}=R^t$，其中 $R^s$ 是 $R$ 的 $s$ 次合成。
+
+**Proof**：对于 $i\in N$，$R^i$ 都是 $A$ 上的关系，它们都是 $P(A\times A)$ 的元素，因为 $|A|=n$，所以 $|P(A\times A)|=2^{n^2}$。
+
+则 $R^0,R^1,\cdots,R^{2^{n^2}}$ 有 $2^{n^2}+1$ 个，根据鸽笼原理，即存在 $s,t,s\not=t$，使得 $R^{s}=R^t$.
+
+**Lemma（幂次的性质）**：设 $A$ 是有限集合，$R$ 是 $A$ 上的关系，$m,n$ 是非零自然数，则：
+
+1. $R^{m+n}=R^m\circ R^n$.
+2. $R^{mn}=(R^m)^n$.
+
+**Proof**：
+
+1. 对于任意的 $m$，归纳 $n$，
+>
+   1. $n=1$ 时，$R^{m+1}=R^m\circ R^1=R^m\circ R$
+   2. 假设 $n=k(k\ge 1)$ 时结论成立，$n=k+1$ 时，$R^{m+k+1}=R^{m+k}\circ R=R^m\circ R^k\circ R=R^m\circ R^{k+1}$.
+>
+2. 对于任意的 $m$，归纳 $n$，
+>
+   1. $n=1$ 时，$R^{m\cdot 1}=R^m$.
+>
+   2. 假设 $n=k(k\ge 1)$ 时结论成立，$n=k+1$ 时，利用刚刚 1 的结论，有：
+>
+      $R^{m(k+1)}=R^{mk+m}=R^{mk}\circ R^m=(R^m)^k\circ R^m=(R^m)^{k+1}$.
+
+**Lemma（循环相等的性质）**：设 $A$ 是有限集合，$R$ 是 $A$ 上的关系，若存在自然数 $s,t$，$s<t$，使得 $R^s=R^t$，则：
+
+1. $R^{s+k}=R^{t+k}$，其中 $k$ 是任意的自然数。
+2. $R^{s+kp+i}=R^{s+i}$，其中 $k$ 是任意的自然数，$i$ 是任意的自然数，$p=t-s$.
+3. 令 $B=\{R^0,R^1,\cdots,R^{t-1}\}$，则 $R$ 的各次幂都是 $B$ 的元素，也就是对于任意的自然数 $q$，有 $R^q\in B$.
+
+**Proof**：
+
+1. $R^{s+k}=R^s \circ R^k =R^t \circ R^k=R^{t+k}$.
+2. $$
+   R^{s+(n+1)p+i}=R^{s+np+i} \circ R^p\\=R^{s+i}\circ R^p=R^{s+p+i}=R^{t+i}=R^{s+i}
+   $$
+3. 若 $q<t$，由 $B$ 的定义，$R^q\in B$；
+>
+   若 $q\ge t$，则 $q-s>0$，一定存在自然数 $k,i$，使得 $q=s+kp+i$，其中 $0\le i\le p-1$，于是 $R^q =R^{s+kp+i}=R^{s+i}$，此外有 $s+i \le t-1$.
+>
+   因此，$R^q=R^{s+i}\in B$.
+
+### 闭包的定义
+
+**Definition（闭包）**：
+>
+对于非空集合 $A$ 上的关系 $R$，如果有 $A$ 上的另一个关系 $R'$，满足：
+>
+1. $R'$ 是自反的（对称的，传递的）,
+2. $R\sube R'$,
+3. $R'$ 是 $A$ 上满足 1 和 2 的关系中最小的一个。也就是说：
+   $$
+   (\forall R'')(R'' 具有某性质 \wedge R\sube R''  \to R' \sube R'' )
+   $$
+>
+则称关系 $R'$ 为 $R$ 的自反闭包（对称闭包，传递闭包），记作 $r(R)$ （$s(r),t(R)$）
+>
+另一种理解方式，在 $R$ 的关系图中加入最少的边，使得其称为自反（对称，传递）的，即使自反（对称，传递）闭包。
+>
+![image-20231215142221135](https://notes.sjtu.edu.cn/uploads/upload_8487bd9e0e1288c47d64a17345850dfd.png)
+
+### 闭包的性质
+
+**Lemma（闭包的性质）**：
+>
+对于非空集合 $A$ 上的关系 $R$，有 **不变性**：
+>
+1. $R$ 是自反的 $\Leftrightarrow r(R)=R$.
+2. $R$ 是对称的 $\Leftrightarrow s(R)=R$.
+3. $R$ 是传递的 $\Leftrightarrow t(R)=R$.
+>
+**Proof**：抓住“最小”超集合的概念即可。
+>
+对于非空集合 $A$ 上的关系 $R_1,R_2$，若 $R_1\sube R_2$，则有 **包含关系**：
+>
+1. $r(R_1) \sube r(R_2)$;
+2. $s(R_1) \sube s(R_2)$;
+3. $t(R_1)\sube t(R_2)$.
+>
+**Proof**：抓住“最小”超集合的概念即可。例如：
+>
+因为 $R_1\sube R_2$，和 $R_2\sube r(R_2)$，有 $R_1 \sube r(R_2)$：
+$$
+r(R_2) 自反 \wedge R_1\sube r(R_2)\to r(R_1)\sube r(R_2)
+$$
+
+>
+对于非空集合 $A$ 上的关系 $R_1,R_2$，有 **并集的关系**：
+>
+1. $r(R_1) \cup r(R_2) =r(R_1\cup R_2)$.
+2. $s(R_1)\cup s(R_2)=s(R_1\cup R_2)$.
+3. $t(R_1)\cup t(R_2)\sube t(R_1\cup R_2)$.
+>
+**Proof**：因为 $r(R_1)$ 和 $r(R_2)$ 都是 $A$ 上自反的关系，所以 $r(R_1)\cup r(R_2)$ 是 $A$ 上自反的关系，有 $R_1\cup R_2 \sube r(R_1)\cup r(R_2)$，因此 $r(R_1)\cup r(R_2)$ 是包含 $R_1 \cup R_2$ 的自反关系，所以 $r(R_1\cup R_2) \sube r(R_1)\cup r(R_2)$. （最小关系的性质）
+>
+而另一方面，$R_1\sube R_1 \cup R_2 \Rightarrow r(R_1)\sube r(R_1\cup R_2)$，且 $r(R_2)\sube r(R_1\cup R_2)$，则有 $r(R_1)\cup r(R_2)\sube r(R_1\cup R_2)$.
+>
+因此，$r(R_1\cup R_2)=r(R_1)\cup r(R_2)$.
+>
+但是，对于 $t$ 而言，不一定满足 $t(R_1)\cup t(R_2)$ 是 $A$ 上传递的关系，因此，只能说 $t(R_1)\cup t(R_2)\sube t(R_1\cup R_2)$.
+
+### 闭包的构造方法
+
+**Lemma（闭包的构造方法）**
+
+1. **构造自反闭包** 对于非空集合 $A$ 上的关系 $R$，有 $r(R)=R\cup R^0$.
+2. **构造对称闭包** 对于非空集合 $A$ 上的关系 $R$，有 $s(R)=R\cup R^{-1}$.
+3. **构造传递闭包** 对于非空集合 $A$ 上的关系 $R$，有 $t(R)=R\cup R^2\cup R^3 \cup \cdots$.
+
+**Proof**：
+
+1. 首先，因为 $\forall x\in A,\langle x,x \rangle\in R\cup R^0$，所以 $R\cup R^0$ 是自反的。
+>
+   再设任意关系 $R''$，需要证明
+   $$
+   R'' 是自反的 \wedge R\sube R'' \to R\cup R^0 \sube R''
+   $$
+   若 $\langle x,y \rangle \in R\cup R^0$，则 $\langle x,y \rangle \in R$ 或者 $\langle x,y \rangle \in R^0$
+>
+   - 如果 $\langle x,y \rangle \in R$，则因为 $R\sube R''$，有 $\langle x,y \rangle \in R''$.
+   - 如果 $\langle x,y \rangle \in R^0$，则 $x=y$，因为 $R''$ 是自反的，$\langle x,y \rangle \in R''$.
+>
+   因此 $\forall\langle x,y \rangle(  \langle x,y \rangle \in R\cup R^0 \to \langle x,y \rangle \in R'')$. 所以 $R\cup R^0 \sube R''$.
+>
+2. 对于 $\forall x,y\in A, \langle x,y \rangle \in R\cup R^{-1}$，则
+>
+   - $\langle x,y \rangle \in R$，则 $\langle y,x \rangle \in R^{-1}\sube R \cup R^{-1}$.
+   - $\langle x,y \rangle \in R^{-1}$，则 $\langle y,x \rangle\in R \sube R\cup R^{-1}$.
+>
+   因此 $\forall x,y\in A, \langle x,y \rangle \in R\cup R^{-1}\to \langle y,x \rangle\in R\cup R^{-1}$. $R\cup R^{-1}$ 是对称的。
+>
+   设任意关系 $R''$，需要证明
+  $$
+   R'' 是对称的 \wedge R\sube R''\to R\cup R^{-1} \sube R''
+  $$
+   若 $\langle x,y \rangle \in R\cup R^{-1}$，则 $\langle x,y \rangle \in R$ 或者 $\langle x,y \rangle \in R^{-1}$
+>
+   - 如果 $\langle x,y \rangle \in R$，则因为 $R\sube R''$，有 $\langle x,y \rangle \in R''$.
+   - 如果 $\langle x,y \rangle \in R^{-1}$，则 $\langle y,x \rangle \in R$，因为 $R\sube R''$，所以 $\langle y,x \rangle\in R''$，再因为 $R''$ 是对称的，所以 $\langle x,y \rangle \in R''$.
+>
+   因此 $\langle x,y \rangle \in R\cup R^{-1} \to \langle x,y \rangle \in R''$，所以 $R\cup R^{-1}\sube R''$.
+>
+3. 对于 $n\in \N,n\ge 1$，有 $R^n \sube t(R)$，所以 $R\cup R^2\cup R^3 \cup \cdots \sube t(R)$.
+>
+   再证明 $t(R)\sube R\cup R^2\cup R^3 \cup \cdots$.
+
+**Lemma（$\boldsymbol{t(R)}$ 可以有限构造出）**
+
+>
+$A$ 为非空有限集合，$|A|=n$，$R$ 是 $A$ 上的关系，则存在一个正整数 $k\le n$，使得：
+$$
+t(R)=R^+ = R\cup R^2 \cup \cdots \cup R^k
+$$
+**Proof**：因为关系的幂存在循环。从图论的角度理解，从一个点出发，到另一个点，最短路最长为 $k\le n$.
+
+**Algorithm（Warshall）**
+
+>
+令 $\boldsymbol B[j,i]$ 表示矩阵 $\boldsymbol B$ 第 $j$ 行第 $i$ 列的元素；
+>
+1. 令矩阵 $\boldsymbol B=\boldsymbol M(R)$.
+2. 令 $i=1,n=|A|$.
+3. 对 $1\le j\le n$，如果 $\boldsymbol B[j,i]=1$，则对 $1\le k\le n$，令：
+   $$
+   \boldsymbol B[j,k]=\boldsymbol B[j,k] \vee \boldsymbol B[i,k]
+   $$
+4. $i=i+1$.
+5. 如果 $i\le n$，则转到 3，否则停止。
+
+### 闭包的性质
+
+**Theorem**
+
+1. 若 $R$ 是自反的，则 $s(R),t(R)$ 是自反的；
+2. 若 $R$ 是对称的，则 $r(R),t(R)$ 是对称的；
+3. 若 $R$ 是传递的，则 $r(R)$ 是传递的。
+
+**Proof**：
+
+1. 等价于，如果每个点都有自环，则自环在 $s(R),t(R)$ 中都能保持；
+2. 等价于，加入自环，不破坏对称性；对于无向图来说，如果 $a$ 能到 $b$，则 $b$ 也能到 $a$.
+
+**Theorem**：对于非空集合 $A$ 上的关系 $R$，有：
+
+1. $rs(R)=sr(R)$.
+2. $rt(R)=tr(R)$.
+3. $st(R)\sube ts(R)$.
+
+**Proof**：利用闭包的构造方法。
+
+3. 也就是说，如果把一个有向图变成无向图，则可能出现新的“联通关系”
+
+## 等价关系和划分
+
+常见的等价关系：
+- 等于关系，相当于恒等关系 $I_A$，一个数就是一个等价类；
+- 谓词公式的等值，一个等价类有无穷多种谓词公式；
+- 模 $m$ 同余，$i,i+m,i+2m\cdots$ 就是一个等价类。
+- 全关系 $E_A$，只要属于 $A$ 统统等价，$A$ 是一个等价类。
+
+### 等价关系、等价类
+
+**Definition（等价关系）**
+
+
+对非空集合 $A$ 上的关系 $R$，如果 $R$ 是自反的、对称的和传递的，则称 $R$ 是 $A$ 上的等价关系。
+
+等价关系在关系矩阵和关系图中的表示：
+
+- 在关系矩阵中，表示为一个一个正方形。为什么呢？自反关系保证了对角线上一定都存在关系，对称关系保证了矩阵一定对称，传递关系保证了任意“直角型”$(a,b),(b,c)$，其顶点 $(a,c)$ 一定属于矩阵。因此只能是一个是一个一个正方形。
+
+  如果不存在传递性，只能是一个对称矩阵，如果不存在对称性，只能由一个一个阶梯型构成。
+
+- 在关系图中，表现为关系图由一个一个全联通图组成。
+
+**Definition（等价类）**
+
+
+$R$ 是非空集合 $A$ 上的等价关系，对于任意的 $x\in A$，令
+$$
+[x]_R =\{z\mid z \in A\wedge xRz\}
+$$
+称集合 $[x]_R$ 是 $x$ 关于 $R$ 的 **等价类**。
+
+**Theorem（等价类满足的性质）**
+
+1. $[x]_R \not=\varnothing$，且 $[x]_R \sube A$.
+2. 若 $xRy$，则 $[x]_R =[y]_R$.
+3. 若 $x\not R y$，则 $[x]_R \cap [y]_R =\varnothing$.
+4. $\cup \{[x]_R \mid x\in A\}=A$.
+
+**Proof**：
+
+1. 显然；
+2. 先说明 $[x]_R \sube [y]_R$，因为等价关系具有对称性，因此 $yRx$，有：
+   $$
+   z\in [x]_R \Rightarrow z\in A\wedge xRz \overset{yRx}\Rightarrow z\in A\wedge yRz\Rightarrow z\in [y]_R
+   $$
+   同样，可以说明 $[y]_R\sube [x]_R$，因此  $[x]_R=[y]_R$.
+3. 若 $yRz$ 且 $xRz$，则 $xRy$，因此，当 $yRz$ 且 $x\not Ry$，有 $x\not Rz$：
+   $$
+   z\in [y]_R \Rightarrow z\in A\wedge yRz \overset{x\not R y}\Rightarrow z\in A\wedge x\not R z \Rightarrow z\notin [x]_R
+   $$
+   因此， $[x]_R\cap [y]_R=\varnothing$.
+4. 对于任意的 $x\in A,[x]_R\sube A$，则有 $\cup \{[x]_R \mid x\in A\}\sube A$；
+>
+   反之对于任意的 $x\in A$, $x\in [x]_R$，则有 $x\in \cup \{[x]_R \mid x\in A\}$，所以 $A\sube \cup \{[x]_R \mid x\in A\}$.
+>
+   因此，$\cup \{[x]_R \mid x\in A\}=A$.
+
+**Definition（商集）**
+$$
+A/R =\{y\mid (\exists x)(x\in A\wedge y=[x]_R)\}
+$$
+是包含了 $A$ 所有可能的等价类的集合。例如，设 $A$ 是 1 到 7 的整数，$R$ 是同余 3 的关系，则：
+$$
+A/R=\{\{1,4,7\},\{2,5,8\},\{3,6\}\}
+$$
+
+### 划分
+
+引入，对于 $\{a,b,c,d\}$ 这个集合，我们想要不重不漏地将其划分为集合 $\{\{a\},\{b\},\{c,d\}\}$，思考怎么用数学语言来表示合法的划分。
+
+**Definition（划分、划分块）**
+>
+对于非空集合 $A$，若存在集合 $\pi$ 满足下列条件：
+>
+1. $(\forall x)(x\in \pi \to x\sube A)$；（不能凭空出现 $A$ 以外的元素）
+2. $\varnothing \notin \pi$；（不存在空集）
+3. $\cup \pi =A$；（不漏）
+4. $(\forall x)(\forall y)((x\in \pi \wedge y\in \pi \wedge x\not=y)\to x\cap y =\varnothing)$；（不重）
+>
+则称 $\pi$ 为 $A$ 的一个 **划分**，称 $\pi$ 中的元素为 $A$ 的 **划分块**。
+
+**Theorem（商集是划分）**
+
+
+对于非空集合 $A$ 上的等价关系 $R$，$A$ 的商集 $A/R$ 就是 $A$ 的划分，它称为由等价关系 $R$ 诱导出来的 $A$ 的划分，记作 $\pi_R$.
+
+**Proof**：利用等价类的性质。
+
+**Lemma（通过等价关系构造划分）**对非空集合 $A$ 的一个划分 $\pi$，令 $A$ 上的关系 $R_\pi$ 为：
+$$
+R_\pi=\{\langle x,y \rangle \mid (\exists z) (z\in \pi \wedge x\in z\wedge y\in z)\}
+$$
+则 $R_\pi$ 为 $A$ 上的等价关系（验证是否满足自反性、对称性、传递性），它被称为划分 $\pi$ **诱导** 出来的 $A$ 上的等价关系。
+
+**Lemma（等价关系和划分一一对应）**对非空集合 $A$ 的一个划分 $\pi$ 和 $A$ 上的等价关系 $R$，$\pi$ 诱导 $R$ 当且仅当 $R$ 诱导 $\pi$.
+
+**先证必要性** 若 $\pi$ 诱导 $R$，且 $R$ 诱导 $\pi'$，对任意的 $x\in A$，设 $x$ 在 $\pi$ 的划分块 $B$ 中，也在 $\pi'$ 的划分块 $B'$ 中，若要证明 $\pi=\pi'$，则需要 $B=B'$. 再取任意 $y\in A$，有：
+$$
+y\in B\overset{\pi 诱导 R}\Leftrightarrow xRy \Leftrightarrow [x]_R=[y]_R \overset{R 诱导 \pi'}\Leftrightarrow y\in B'
+$$
+因此 $B=B'$，由 $x$ 的任意性，$\pi=\pi'$.
+
+**再证明充分性** 若 $R$ 诱导 $\pi$，且 $\pi$ 诱导 $R'$，对于任意的 $x,y\in A$，有：
+$$
+xRy \Leftrightarrow [x]_R =[y]_R  \Leftrightarrow x\in [x]_R \wedge y\in [y]_R \\
+\Leftrightarrow x,y 在 \pi 的一个划分块里面 \Leftrightarrow xR'y
+$$
+
+## 相容关系和覆盖
+
+**Definition（相容关系）**
+
+
+对于非空集合 $A$ 上的关系 $R$，如果 $R$ 是自反的，对称的，则称 $R$ 为 $A$ 上的相容关系。
+
+从图论的角度看，每个顶点都有自环，且没有有向边，都是无向边。
+
+**Definition（相容类）**
+
+对于 $C\sube A$，如果 $C$ 中任意两个元素 $x$ 和 $y$ 都有 $xRy$，则称 $C$ 是由相容关系 $R$ 产生的相容类，简称相容类（也就是一个团）
+$$
+C=\{x\mid x\in A\wedge (\forall y)(y\in C \to xRy)\}
+$$
+**Definition（最大相容类）**
+
+
+对于非空集合 $A$ 上的相容关系 $R$，一个相容类，若不是任何相容类的真子集，称为最大相容类，记作 $C_R$.
+
+最大相容类的性质：
+
+- $(\forall x)(\forall y)((x\in C_R \wedge y\in C_R)\to xRy)$. 互相有关系
+- $(\forall x)(x\in A-C_R \to (\exists y)(y\in C_R \wedge x\not Ry))$. 不能加入新的元素
+
+
+从图论的角度看，就是最大子团。
+
+**Theorem（最大相容类的构造）**对于非空有限集合 $A$ 上的相容关系 $R$，如果 $C$ 是一个相容类，则存在一个最大相同类 $C_R $，使得 $C \sube C_R$.
+
+**Proof**：不断加入和 $C$ 每个元素都相关的元素集合，至多只需要构造 $n-|C_0|$ 步。
+
+**Lemma（每个元素都有对应包含的最大相容类）** 从相容类 $\{a\}$ 出发即可。这样的最大相容类不唯一，因为选择元素的序列可能不同。
+
+**Definition（覆盖）**
+
+
+对于非空集合 $A$，如果存在集合 $\Omega$，满足下列条件：
+
+1. $(\forall x)(x\in \Omega \to x\sube A)$；
+2. $\varnothing \notin \Omega$.
+3. $\cup \Omega =A$.
+
+则称 $\Omega$ 为 $A$ 的一个覆盖，称 $\Omega$ 中的元素为 $\Omega$ 的覆盖块。
+
+**Examples**.
+
+- 一个划分是一个覆盖，但是一个覆盖不一定是一个划分；
+- 对于非空集合 $A$ 上的相容关系 $R$，最大相容类的集合是 $A$ 的一个覆盖，称为 $A$ 的 **完全覆盖**，记作 $C_R(A)$，且 $C_R(A)$ 是唯一的。
+
+- 由 $A$ 上的一个相容关系 $R$，可以确定 $A$ 的完全覆盖 $C_R(A)$.
+- 用覆盖的子集的笛卡尔积（也就是子集的完全图）求并，得到的关系，是相容关系。
+- 不同的覆盖可能确定相同的相容关系，比如：
+  $$
+  \Omega _1=\{\{1,2,3\},\{3,4\}\};\\
+  \Omega_2=\{\{1,2\},\{2,3\},\{1,3\},\{3,4\}\}
+  $$
+
+## 偏序关系
+
+### 偏序关系和拟序关系
+
+**Definition（偏序关系）**
+
+
+定义一个偏序集 $(P,\le)$ 是一个集合 $P$ 和一个偏序 $\le$ 组成的二元组。满足以下性质：
+
+- （自反性）$(\forall a\in P)(a\le a)$.
+- （反对称性）$(\forall a,b\in P)(a\le b\wedge b\le a\to a=b)$.
+- （传递性）$(\forall a,b,c\in P)(a\le b\wedge b\le c \to a\le c)$.
+
+
+偏序关系 $\le$ 需要满足自反性、反对称性、传递性。
+
+**Definition（拟序关系）**
+
+拟序关系 $<$ 需要满足非自反性、传递性。
+
+- （非自反性）$(\forall a)(a \not<a)$.
+- （传递性）$(\forall a,b,c)(a< b \wedge b < c\to a<c)$.
+
+
+反对称性：$a<b \wedge b<a$ 为假。因此，拟序关系也符合反对称性。
+
+**Lemma（拟序关系和偏序关系的相互转换）**
+
+也就是有没有取等：
+
+- 对于 $A$ 上的拟序关系 $R$，$R\cup R^0$ 是 $A$ 上的偏序关系；
+- 对于 $A$ 上的偏序关系 $R$，$R-R^0$ 是 $A$ 上的逆序关系。
+
+
+因此，拟序关系和偏序关系的区别只是自反性。
+
+**Examples** 可以验证，
+
+- 对于集合 $U$ 来说 $(2^U,\sube)$ 是一个偏序集。主要根据集合包含的性质。
+
+- 整数上的整除关系是一个偏序。给定 $a,b\in \Z$，定义 $a\le b$ 当且仅当 $a|b$，则 $(\Z,\le)$ 是一个偏序集。证明，可以将整数用其所有因数组成的集合表示，可以转换为集合包含的关系。例如：
+  $$
+  2|4 \Rightarrow\{1,2\}\sube \{1,2,4\}
+  $$
+
+### Hasse 图
+
+我们用 Hasse 图来直观地表示一个偏序集，如果 $a<b$ 且不存在中间元素 $c$ 使得 $a<c<b$，则从 $a$ 到 $b$ 连边；也就是 **不画自环** 和 **传递关系得到的有向边**。
+
+**Definition（盖住关系）**：对于偏序集 $(A,\le)$，如果 $x,y\in A,x\le y,x\not=y$，且不存在元素 $z\in A$ 使得 $x\le z$ 且 $z\le y$，则称 $y$ 盖住 $x$，$A$ 上的盖住关系 $\operatorname{cov}(A)$ 定义为：
+$$
+\operatorname{cov}A=\{\langle x,y \rangle \mid x\in A\wedge y\in A \wedge y 盖住 x\}
+$$
+
+**Example**：集合 $\{1,2,3,4,6,12\}$ 上的整除关系 $D_A$ 是 $A$ 上的偏序关系，则 $A$ 上的盖住关系 $\operatorname{cov}A$ 为：
+$$
+\operatorname{cov} A=\{\langle 1,2 \rangle,\langle 1,3 \rangle,\langle 2,4 \rangle,\langle 2,6 \rangle,\langle 3,6 \rangle,\langle 4,12 \rangle,\langle 6,12 \rangle\}
+$$
+结论：对于自然数来说，若 $y$ 盖住 $x$，则 $y/x$ 为质数。
+
+例如 $(2^{[n]},\sube)$ 的 Hasse 图：
+
+![image-20240115002153809](https://notes.sjtu.edu.cn/uploads/upload_6655ef7da9337084222697361a0c119e.png)
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_46ff747c167d1fa0d93c43ae0edd4d96.png" alt="image-20231210114844219" style="zoom:50%;" />
+
+![image-20231210114859484](https://notes.sjtu.edu.cn/uploads/upload_b6d0ad7597ced273fd5911663b3230d5.png)
+
+- 如果 $(P,\sube)$ 中元素 $x$ 满足不存在任何 $y\in P$ 使得 $y>x$ 成立，则称 $x$ 是一个极大元素。
+- 如果 $x$ 满足对于任何 $z\in P$，都有 $z\le x$，则称为最大元素。
+- 类似定义极小元素和最小元素。
+
+一个偏序集可能不存在最大和最小元素。
+
+例如 $P=\{2,3,4,5,6\}$ 上的整除关系，4,5,6 都是极大元素，但是没有最大元素。
+>
+例如 $(2^{[n]},\sube)$，最大元素和极大元素都是 $\{1,2,3\}$.
+
+**Definition（最大最小元，极大极小元）**
+
+1. 若 $(\exist y)(y\in B\wedge (\forall x)(x\in B\to y\le x))$，则称 $y$ 为 $B$ 的最小元；
+2. 若 $(\exist y)(y\in B\wedge (\forall x)(x\in B\to x\le y))$，则称 $y$ 为 $B$ 的最大元；
+3. 若 $(\exist y)(y\in B\wedge (\forall x)((x\in B\wedge x\le y)\to x=y))$，则称 $y$ 为 $B$ 的极小元；
+4. 若 $(\exist y)(y\in B\wedge (\forall x)((x\in B\wedge y\le x)\to x=y))$，则称 $y$ 为 $B$ 的极大元。
+>
+通俗的解释，如果 $y$ 和 $B$ 中其他元素都有关系，而且都小于等于/大于等于它们，则称为最小/最大元；（要求比较严格，必须能够比较）
+>
+如果 $y$ 和 $B$ 中有关系的元素比较，都小于等于/大于等于它们，称为极大/极小元。
+
+**Lemma（最大最小元存在必唯一）**
+
+**Proof** 假设 $y_1,y_2$ 都是 $B$ 的最大元，则 $y_2 \in B\to y_1 \le y_2$，且 $y_1 \in B\to y_2\le y_1$，因为反对称性，所以 $y_1=y_2$.
+
+**Lemma（最大最小元是极大极小元）**
+
+**Proof** 假设 $y$ 是 $B$ 的最大元，则 $(\forall x)(x\in B\to x\le y)$，因为 $y\le x \wedge x\le y$，所以 $x=y$. 因此是极大元。
+
+**Definition（上（下）确界）**
+
+
+对偏序集 $(A,\le)$，且 $B\sube A$，进一步定义：
+
+1. 若 $(\exists y)(y\in A\wedge (\forall x)(x\in B \to x\le y))$，则称 $y$ 为 $B$ 的上界（即大于等于 $B$ 中所有元素的元素，不一定存在）
+2. 若 $(\exists y)(y\in A\wedge (\forall x)(x\in B \to y\le x))$，则称 $y$ 为 $B$ 的下界（即小于等于 $B$ 中所有元素的元素，不一定存在）
+3. 若集合 $C=\{y\mid y 是 B 的上界\}$，则 $C$ 的最小元称为 $B$ 的上确界或最小上界；（不一定存在，如果存在必唯一）
+4. 若集合 $C=\{y\mid y 是 B 的下界\}$，则 $C$ 的最大元称为 $B$ 的下确界或最大下界。（不一定存在，如果存在必唯一）
+
+**Definition（全序关系）**
+
+
+对于偏序集 $(P,\le)$，如果 $\le$ 是反对称的，则称 $\le$ 是全序关系。
+$$
+(\forall x,y)(x\le y\vee y\le x)
+$$
+**Definition（良序关系）**
+
+
+对于偏序集 $(A,\le)$，如果 $A$ 的任何非空子集都有最小元，则称 $\le$ 为良序关系，称 $(A,\le)$ 为良序集。
+
+- $(\N,\le)$ 是全序集，也是良序集；
+- $(\Z,\le)$ 是全序集，但是不是良序集。
+
+**Proof（一个良序集一定是全序集）**
+
+只需要证明任意两个元素 $x,y\in A$ 可比较，构造 $\{x,y\}\sube A$，根据良序集的性质，它有最小元 $x$ 或 $y$，所以 $x\le y$ 或者 $y\le x$，因此 $(A,\le)$ 是全序集。
+
+**Proof（一个有限的全序集一定是良序集）**
+
+假设偏序集 $(A,\le)$ 是有限的全序集
+
+对于任何有限的非空子集 $B\in A$，如果不存在最小元，则存在 $x,y\in B$，使得 $x,y$ 无关系，和全序集矛盾。
+
+**Theorem（Zorn）**
+
+对于一个非良序的集合，可以 **定义** 集合上的一个全序关系，使该集合成为良序集。
+
+任何集合都是可以良序化的。良序定理、Zorn 引理、选择公理三者等价。
+
+例如，$(\Z,\le)$ 不是良序集，但是在 $\Z$ 上定义全序关系 $R$ 为：
+$$
+|a|\le |b| \implies aRb
+$$
+则最小元是绝对值最小的那个，$\Z$ 的最小元是 0，$(\Z,R)$ 是良序集。
+
+**Definition（区间）**
+
+在全序集 $(R,\le)$ 上，对于 $a,b \in R,a\not=b,a\le b$，则：
+
+1. $[a,b]=\{x\mid x\in R\wedge a\le x \le b\}$，称为 $a$ 到 $b$ 的闭区间；
+2. $(a,b)=\{x\mid x\in R \wedge a\le x \le b \wedge x\not= a \wedge x\not= b\}$. 称为从 $a$ 到 $b$ 的开区间；
+3. 定义半开区间……
+
+**Definition（链）**
+
+对于偏序集 $(P,\le)$，如果 $C\sube P$ 是链，即 $C$ 中任意两个元素都是可比较的，则称 $C$ 是 $P$ 的一个链。
+$$
+(\forall x,y)(x\in C\wedge y\in C\to x\le y\vee y\le x)
+$$
+**Definition（反链）**
+
+对于偏序集 $(P,\le)$，如果 $C\sube P$ 是反链，即 $C$ 中任意两个元素都是不可比较的，则称 $C$ 是 $P$ 的一个反链。
+$$
+(\forall x,y)(x\in C\wedge y\in C\to x\not\le y\wedge y\not\le x)
+$$
+**Definition（链和反链的长度）**
+
+
+对于偏序集 $(P,\le)$，如果 $C\sube P$ 是链，且 $|C|=n$，则称 $C$ 是 $P$ 的一个 $n$ 链；如果 $C\sube P$ 是反链，且 $|C|=n$，则称 $C$ 是 $P$ 的一个 $n$ 反链。
+
+**Definition**
+
+- **极大链**：我们说一个链是极大的，当且仅当把任何一个其它的元素添加进去之后都不再是一个链。
+- **最大链** 则定义为元素最多的链。
+>
+都不是唯一的。
+
+**Definition** 个偏序集的 **宽度** 则被定义为其中最大反链的大小。
+
+![image-20240115002201420](https://notes.sjtu.edu.cn/uploads/upload_9f6166c6e814d60fcdc7dbf046272a09.png)
+
+从 Hasse 图理解这件事情
+- $\{\{1,2,3\},\{2\}\}$ 是链（在 Hasse 图上不一定连续）
+- $\{\varnothing,\{2\},\{2,3\},\{1,2,3\}\}$ 是极大链，同时也是最大链。
+- $\{\{1\},\{2,3\}\}$ 是极大反链；
+- $\{\{1\},\{2\},\{3\}\}$ 是极大反链，也是最大反链。
+
+### 链划分和反链划分
+
+**Definition**
+
+- **链划分**（不重不漏地覆盖）一些不相交的链的集合 $\mathcal C=\set{C_1,C_2,\dots,C_m}$ 满足并集恰好为 $P$，且对于任意 $i,j\in [m],i\not=j\implies C_i\cap C_j=\varnothing$.
+- 类似定义 **反链划分**。
+
+**Theorem** 任何偏序集最小反链划分的大小等于其高度。
+><img src="https://notes.sjtu.edu.cn/uploads/upload_71ba92dfaa3b4a2b9d859c46875916dc.png" alt="image-20231210132420137" style="zoom:33%;" />
+
+>![image-20231210132254672](https://notes.sjtu.edu.cn/uploads/upload_80abb6e886b6dd727c393de4115f7004.png)
+
+>证明类似于一层一层剥下来。
+
+**Theorem** 任何偏序集最小链划分的大小等于其宽度。
+>![image-20240115002207046](https://notes.sjtu.edu.cn/uploads/upload_989a6b56d6f91d147f3ce3ba40dd88e5.png)
+
+>![image-20231210144936140](https://notes.sjtu.edu.cn/uploads/upload_044cb9e14b94bbdbafd228f6439f0e4a.png)
+
+><img src="https://notes.sjtu.edu.cn/uploads/upload_c7e7404d527bcc8a4ea8f2fa23c63585.png" alt="image-20231210144943222" style="zoom:50%;" />
+
+>我们对谁归纳？$|P|$. 前提是，命题对小于 $|P|$ 的偏序集都成立……
+
+>![image-20231210145150118](https://notes.sjtu.edu.cn/uploads/upload_568e5730e3f7a1e3863d6fe1092a47e9.png)
+
+## 关系的计数
+
+若 $|A|=n$，则：
+
+- 定义在 $A$ 上的所有关系一共 $2^{n\times n}$ 种；
+
+- 自反关系一共 $2^{n^2-n}$ 种（固定了对角线元素）；
+
+- 对称关系一共 $2^{\sum_{i=1}^ni}=2^{(n(n+1)/2)}$ 种；
+
+- 反对称关系，对于 $x\not=y$，其合法取值只有 $(0,0),(0,1),(1,0)$ 三种，而对于 $x=y$，取值没有限制。因此一共：
+  $$
+  3^{(n(n-1)/2)}\cdot 2^n
+  $$
+  种；
+
+- 非对称关系，需要对角线上全为零，一共 $3^{(n(n-1)/2)}$ 种。
+
+- 等价关系，枚举分为 $k$ 个等价类，一共 $\sum_{k=0}^n S(n,k)$ 种。递推表达式为：
+  $$
+  r_{n+1}=\sum_{k=0}^{n} C_n^k r_k
+  $$
+
+- 传递关系、偏序关系的计数比较困难。可以去 OEIS 搜一下。
+
+问：$A\times A$ 上的关系 $R_1,R_2$ 取逆/交/并/合成/平方是否能够保持自反性、非自反性、对称性、反对称性、传递性。
+
+|            | $^{-1}$ | $\cap$ | $\cup$     | $\circ$    | $^2$        |
+| ---------- | ------- | ------ | ---------- | ---------- | ----------- |
+| **自反**   | 可以    | 可以   | 可以       | 可以       | 可以        |
+| **非自反** | 可以    | 可以   | 可以       | 不可以(24) | 不可以 (25) |
+| **对称**   | 可以    | 可以   | 可以       | 不可以(34) | 可以 (35)   |
+| **反对称** | 可以    | 可以   | 不可以(43) | 不可以(44) | 不可以(45)  |
+| **传递**   | 可以    | 可以   | 不可以(53) | 不可以(54) | 可以 (55)   |
+
+反例及说明：
+
+(24). $A=\{1,2\}$，$R_1=\{\langle 1,2 \rangle\},R_2=\{\langle 2,1 \rangle\}$. 发现了 $\langle 2,2 \rangle$ 出现在 $R_1\circ R_2$ 中。
+
+(25). $A=\{1,2\}$，$R_1=\{\langle 1,2 \rangle,\langle 2,1 \rangle\}$. 发现了 $\langle 2,2 \rangle$ 出现在 $R_1^2$ 中。
+
+(34). $A=\{1,2,3\}$，$R_1=\{\langle 1,2 \rangle,\langle 2,1 \rangle \}$,$R_2=\{\langle 2,3 \rangle,\langle 3,2 \rangle\}$.
+
+(35). 事实上，任何额外满足 $R_1\circ R_2=R_2\circ R_1$ 的关系都可以保持对称性。
+
+(43). $A=\{1,2\}$，$R_1=\{\langle 1,2 \rangle\},R_2=\{\langle 2,1 \rangle\}$.
+
+(44). $A=\{1,2,3\}$，$R_1=\{\langle 1,2 \rangle,\langle 2,3 \rangle,\langle 1,3 \rangle\}$，$R_2=\{\langle 2,1 \rangle,\langle 3,2 \rangle,\langle 3,1 \rangle\}$.
+
+发现了 $\langle 2,3 \rangle$ 和 $\langle 3,2 \rangle$ 同时出现在 $R_1\circ R_2$ 中。
+
+(45). $A=\{1,2,3,4\}$，$R_1=\{\langle 1,2 \rangle,\langle 2,4 \rangle,\langle 4,3 \rangle,\langle 3,1 \rangle\}$. 发现 $\langle 4,1 \rangle$ 和 $\langle 1,4 \rangle$ 同时出现在 $R_1^2$ 中。
+
+(53). $A=\{1,2,3\}$，$R_1=\{\langle 2,3 \rangle\},R_2=\{\langle 1,2 \rangle\}$.
+
+(54). $A=\{1,2,3\}$，$R_1=\{\langle 1,2 \rangle,\langle 2,3 \rangle,\langle 1,3 \rangle\},
+R_2 = \{\langle 3,1 \rangle,\langle 1,2 \rangle,\langle 3,2 \rangle\}$.
+
+则 $R_1\circ R_2=\{\langle 3,2 \rangle,\langle 3,3 \rangle,\langle 1,3 \rangle\}$。
+
+(55). 因为 $R$ 是传递关系，所以 $t(R)=R=R\cup R^2\cup\cdots$.
+
+**Theorem (55)**：若 $R$ 是传递的关系，则 $R^2$ 也是传递关系：
+$$
+xR^2y \wedge yR^2 z \Rightarrow xRs\wedge sRy \wedge y Rt \wedge tRz\\
+\Rightarrow xRy \wedge yRz\Rightarrow xR^2z
+$$
+![image-20231221230109801](https://notes.sjtu.edu.cn/uploads/upload_097d1bf825a268864c62ad07bf578b8c.png)
+
+假设加入了 $n$ 这个元素，我们考虑 $n$ 和哪些其他元素分在了一个等价类，假设还有其他 $k$ 个元素被分在一个等价类，这 $k$ 个元素的取法有 $C_{n-1}^k$ 种，剩下 $n-1-k$ 个元素，又可以有 $r_{n-1-k}$ 种等价关系。因此：
+$$
+r_n=\sum_{k=0}^{n-1}  C_{n-1}^k r_{n-1-k}=\sum_{k'=0}^{n-1} C_{n-1}^{k'} r_{k'}
+$$
+化为题目要求的形式，也就是：
+$$
+r_{n+1}=\sum_{k=0}^{n} C_n^k r_k
+$$
+可以写出前几项：
+$$
+1, 1, 2, 5, 15, 52, 203
+$$
+称为贝尔数列。
+
+还可以通过第二类斯特林数求出其通项，
+
+**第二类斯特林数**（斯特林子集数）$\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
+
+**递推式**
+$$
+\begin{Bmatrix}n\\ k\end{Bmatrix}=\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}+k\begin{Bmatrix}n-1\\ k\end{Bmatrix}
+$$
+
+边界是 $\begin{Bmatrix}n\\ 0\end{Bmatrix}=[n=0]$。
+
+考虑用组合意义来证明。
+
+我们插入一个新元素时，有两种方案：
+
+-   将新元素单独放入一个子集，有 $\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}$ 种方案；
+-   将新元素放入一个现有的非空子集，有 $k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$ 种方案。
+
+根据加法原理，将两式相加即可得到递推式。
+
+**通项公式**
+$$
+\begin{Bmatrix}n\\m\end{Bmatrix}=\sum\limits_{i=0}^m\dfrac{(-1)^{m-i}i^n}{i!(m-i)!}
+$$
+根据定义，我们有：
+$$
+r_n=\sum_{k=1}^n \begin{Bmatrix}n\\ k\end{Bmatrix}=\sum_{k=1}^n\sum\limits_{i=0}^k\dfrac{(-1)^{k-i}i^n}{i!(k-i)!}
+$$

@@ -1,0 +1,218 @@
+[TOC]
+
+## 函数和选择公理
+
+### 函数的定义
+
+**Definition（函数）**对于集合 $A$ 到集合 $B$ 的关系 $f$，若满足下列条件：
+
+- （单值性，保证不会将 $A$ 中的元素对应到多个 $B$ 中的元素）对于任意的 $x\in \operatorname{dom} f$，存在唯一的 $y\in \operatorname{ran} (f)$，使得  $xfy$ 成立。
+- （定义域，保证 $f$ 在 $A$ 每个元素上都有定义）$\operatorname{dom}(f)=A$.
+
+> 英文 domain 和 range 的缩写。
+
+则称 $f$ 为从 $A$ 到 $B$ 的函数，或称 $f$ 把 $A$ 映射到 $B$.
+
+**Definition（部分函数）**如果 $\operatorname{dom}(f)\sub A$，则称为部分函数。
+
+> 函数的两个条件等价于：
+> 
+> - $(\forall x)\left(\forall y_{1}\right)\left(\forall y_{2}\right)\left(\left(x f y_{1} \wedge x f y_{2}\right) \rightarrow y_{1}=y_{2}\right)$.
+> - $(\forall x)(x \in A \rightarrow(\exists y)(y \in B \wedge x f y))$.
+
+函数的逆关系不一定是函数。
+
+从关系图和关系矩阵的角度考虑：
+
+- 关系矩阵每行恰好有一个 $1$，其余为 $0$；
+- 关系图中每个 $A$ 中的顶点恰好发出一条有向边。
+
+**Definition（所有函数的集合）** 对于集合 $A$ 和 $B$，从 $A$ 到 $B$ 的所有函数的集合记为 $A_B$.
+
+> 若 $|A|=m,|B|=n$，则 $A$ 到 $B$ 的函数有 $n^m$ 种。
+>
+> 从 $\varnothing$ 到 $\varnothing$ 的函数或 $\varnothing$ 到 $B$ 的函数只有 1 种，即 $\varnothing$.
+>
+> 从 $A$ 到 $\varnothing$ 的函数不存在。
+
+**Definition（函数的象和完全原象）**
+设 $f:A \rightarrow B$，$A_{1} \subseteq A$，定义 $A_{1}$ 在 $f$ 下的象 $f\left[A_{1}\right]$ 为
+$$
+f[A_1]=\{y\mid (\exists x)(x\in A_1 \wedge y=f(x))\}
+$$
+把 $f[A]$ 称为函数的象。
+
+设 $B_1\sube B$，定义 $B_1$ 在 $f$ 下的完全原象 $f^{-1}[B_1]$ 为：
+$$
+f^{-1}[B_1]=\{x\mid x\in A \wedge f(x)\in B_1\}
+$$
+
+$f^{-1}$ 表示 $f$ 的逆关系，因为函数的逆关系不一定是函数，所以 $f^{-1}$ 一般只表示逆关系，不是逆函数。
+
+> $|f[A_1]| \le |A_1|$，而 $f^{-1}[B_1]$ 的大小和 $B_1$ 的大小没有一定关系。
+
+### 特殊的函数
+
+对于函数 $f:A\rightarrow B$：
+
+- 若 $\operatorname{ran}(f)=B$，则称 $f$ 是 **满射** 的，或称 $f$ 是 $A$ 到 $B$ 上的；
+
+  > 如果 $f:A \rightarrow B$ 是满射的，则对任意的 $y \in B$，存在 $x \in A$，使 $f(x)=y$；
+
+- 若对任意的 $x_{1},x_{2} \in A,x_{1} \neq x_{2}$，都有 $f\left(x_{1}\right) \neq f\left(x_{2}\right)$，则称 $f$ 是 **单射** 的，或内射的，或一对一的
+
+  > 如果 $f:A \rightarrow B$ 是单射的，则对任意的 $y \in \operatorname{ran}(f)$，存在唯一的 $x \in A$，使 $f(x)=y$
+
+- 若 $f$ 是满射的又是单射的，则称 $f$ 是 **双射** 的。
+
+  > 特别地，$\varnothing:\varnothing \rightarrow B$ 是单射的，$\varnothing:\varnothing \rightarrow \varnothing$ 是双射的。
+  >
+  > 若 $|A|=0$，则不存在 $x_1,x_2$，因此是单射的；如果 $|B|=0$，则不存在 $y\in B$，因此是双射的。
+
+**Examples**：构造双射：
+
+- $\R \to \R$.
+- $\R \to \R_+$. $f(x)=e^x$.
+- $[0,1)\to (\frac{1}{4},\frac{1}{2}]$. $f(x)=\frac{1}{2} -\frac{x}{4}$.
+- $\N\times \N\to \N$. 使用 Cantor table 构造。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_ab838686792226b2ac5248b3670f316f.png" alt="image-20231226213145017" style="zoom: 50%;" />
+
+- $\N_{+}\to \N$，构造 $f(x)=(x-1)/2 \mathrm{\ if \ x\ is \ odd\ else\ } -x/2$.
+
+### 常用的函数
+
+- 设 $f:A \rightarrow B$，如果存在一个 $y \in B$，使得对所有的 $x \in A$，有 $f(x)=y$，即有 $f[A]=\{y\}$，则称 $f:A \rightarrow B$ 为 **常函数**
+
+- $A$ 上的恒等关系 $I_{A}:A \rightarrow A$ 称为 **恒等函数**。对任意的 $x \in A$，有 $I_{A}(x)=x$
+
+- 对实数集 $\mathbb{R}$，设 $f:\mathbb{R} \rightarrow \mathbb{R}$，如果 $(x \leqslant y) \rightarrow(f(x) \leqslant f(y))$，则称 $f$ 为 **单调递增** 的；如果 $(x<y) \rightarrow(f(x)<f(y))$，则称 $f$ 为 **严格单调递增** 的，类似可定义单调递减和严格单调递减的函数
+
+- 对集合 $A$，$n \in \mathbb{N}$，把函数 $f:A^{n} \rightarrow A$ 称为 $A$ 上的 **n 元运算**
+
+- 设 $A,B,C$ 是集合，$B_{C}$ 为从 $B$ 到 $C$ 的所有函数的集合，则 $F:A \rightarrow B_{C}$ 称为一个 **泛函**（有时 $G:B_{C} \rightarrow A$ 称为一个泛函）
+
+- 设 $E$ 是全集，对任意的 $A \subseteq E$，$A$ 的 **特征函数** $\chi_{A}$ 定义为：
+  $$
+  \chi_A:E\to\{0,1\},\chi_A(a)=1 \mathrm{\ if \ } a\in A \mathrm{\ else \ }0
+  $$
+
+- 设 $R$ 是 $A$ 上的等价关系，令 $g:A \rightarrow A / R$，$g(a)=[a]_{R}$，则称 $g$ 为从 $A$ 到商集 $A / R$ 的 **典型映射** 或 **自然映射**. 这个函数将元素映射到集合。
+
+### 函数的选择公理
+
+**Axiom（选择公理）** 对于任意的关系 $R$，存在函数 $f$，使得 $f\sube R$ 且 $\operatorname{dom} f =\operatorname{dom} R$.
+
+**Examples**：例如，对于关系 $R=\{\langle 1,a \rangle,\langle 1,b \rangle,\langle 2,b \rangle\}$，可以构造：
+
+- $f_1=\{\langle 1,a \rangle,\langle 2,b \rangle\}$；
+- $f_2=\{\langle 1,b \rangle,\langle 2,b \rangle\}$；
+
+
+都是满足条件的函数。
+
+## 函数的合成和函数的逆
+
+### 函数的合成
+
+**Definition（函数的合成）** 设 $g:A\to B,f:B\to C$，则：
+
+1. $f\circ g$ 是函数 $f\circ g$：$A\to C$. 可以理解为 $f$ 作用在 $g$ 的输出之上。
+
+2. 对任意的 $x\in A$，有 $(f\circ g)(x)=f(g(x))$.
+
+**Proof**
+
+对于 1. 先证明 $f\circ g$ 满足 **定义域条件**，利用 $g$ 的定义域条件和 $f$ 的定义域条件，有：
+$$
+(\forall x)(x\in A\to (\exists y)(y\in B\wedge \langle x,y \rangle\in g))\\
+(\forall y)(y\in B\to (\exists z)(z\in C\wedge \langle y,z \rangle\in f))\\
+\Rightarrow (\forall x)(x\in A\to (\exists z)(z\in C \wedge \langle x,z \rangle\in f\circ g))
+$$
+因此 $f\circ g$ 也满足定义域条件。再看 **单值性条件**，即对于任意的 $x\in A$，存在 $z_1,z_2$ 使得 $\langle x,z_1 \rangle\in f\circ g$ 且 $\langle x,z_2 \rangle\in f\circ g$，则：
+$$
+(\exists y_1) (\langle x,y_1 \rangle\in g \wedge \langle y_1,z_1 \rangle \in f)\\
+(\exists y_2)(\langle x,y_2 \rangle \in g \wedge \langle y_2,z_2 \rangle \in f)
+$$
+因为 $g$ 的单值性条件，有 $y_1=y_2$，因为 $f$ 的单值性条件，有 $z_1=z_2$，因此 $f\circ g$ 满足单值性条件。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5fbaae72ad3996d945c42ec3c09713ff.png" alt="image-20231227112657103" style="zoom:33%;" />
+
+对于 2.，考虑任意的 $x\in A$，因为 $\langle x,g(x) \rangle\in g,\langle g(x),f(g(x)) \rangle\in f$，所以 $\langle x,f(g(x)) \rangle\in f\circ g$，又因为 $f\circ g$ 是函数，所以可以写作 $(f\circ g)(x)=f(g(x))$.
+
+**Theorem（合成函数维持单射、双射、满射性质）** 设 $g:A\to B,f:B\to C$，则：
+
+1. 若 $f,g$ 是满射的，则 $f\circ g$ 是满射的。
+2. 若 $f,g$ 是单射的，则 $f \circ g$ 是单射的；
+3. 若 $f,g$ 是双射的，则 $f \circ g$ 是双射的；
+
+**Proof**
+
+1. 对于任意的 $z\in C$，都存在 $y\in B$ 使得 $f(y)=z$，对于这个 $y$ 来说，又存在 $x\in A$ 使得 $g(x)=y$，因此对于任意的 $z$ 存在 $x$ 使得 $f(g(x))=z$。因此 $f\circ g$ 是满射的。
+2. 对于任意的 $z\in \operatorname{ran} (f\circ g)$，若存在 $x_1,x_2$ 使得 $(f\circ g)(x_1)=z$ 且 $(f\circ g)(x_2)=z$，则存在 $y_1,y_2$ 使得 $x_1 g y_1 \wedge y_1 fz$ 且 $x_2 g y_2 \wedge y_2 f z$，因为 $f$ 是单射的，所以 $y_1=y_2$，因为 $g$ 是单射的，所以 $x_1=x_2$，因此 $f\circ g$ 是单射的。
+
+形象的证明过程：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5f5753df62ba889764585c9eb592a823.png" alt="image-20231226220425556" style="zoom:33%;" />
+
+3. 由 1.2. 得证。
+
+> 若 $f$ 是单射的，则 $f:A\to \operatorname{ran} f$ 是双射的。
+
+**Problem** 设 $R$ 是 $A$ 上的等价关系，$g:A\to A/R$ 是自然映射，什么条件下 $g$ 是双射的？
+
+**Solution 1**（从单射角度出发）
+
+对于等价类 $[x]_R$，总有 $x$ 使得 $g(x)=[x]_R$，则 $g$ 为满射；若 $g$ 为双射，还要要求 $g$ 为单射，即对于任意 $x\not=y$ 有 $g(x)\not=g(y)$. 若取 $x,y$ 为 $[x]_R$ 中的两个元素，则 $g(x)=g(y)$，因此只能 $x=y$，则 $[x]_R=\{x\}=g(x)$，即 $R=I_A$.
+
+**Solution 2**（从双射角度出发）
+
+要求 $|A|=|A/R|$，则 $(\forall x)(g(x))=\{x\}$.
+
+**Theorem（上述定理的逆定理）** 设 $g:A\to B,f: B\to C$，则有：
+
+1. 若 $f\circ g$ 是满射的，则 $f$ 是满射的；
+2. 若 $f\circ g$ 是单射的，则 $g$ 是单射的；
+3. 若 $f\circ g$ 是双射的，则 $f$ 是满射的，$g$ 是双射的。
+
+**Proof**
+
+1. 对于任意的 $z\in C$，因为 $f\circ g$ 是满射的，故 $\exists x\in A$，使得 $x(f\circ g) z$，则 $\exists y\in B$，使得 $xgy \wedge yfz$，则 $\exists y\in B$，使得 $f(y)=z$，$f$ 是满射的。
+2. 对于任意的 $y\in \operatorname{ran} (g)$，若存在 $x_1,x_2 \in A$，使得 $x_1gy \wedge x_2 g y$，即 $g(x_1)=y=g(x_2)$. 对这个 $y\in B$，（因为 $\operatorname{ran}(g) \sube B$），存在 $z\in \operatorname{ran}(f)$ 使得 $zfy$，所以 $f(g(x_1))=f(g(x_2))$. 因为 $f\circ g$ 是单射的，所以 $x_1=x_2$，所以 $g$ 是单射的。
+3. 由 1.2. 得证。
+
+### 函数的逆
+
+一个关系的逆不一定是函数，一个函数的逆也不一定是函数。
+
+**Theorem（双射函数的逆）** 若 $f:A\to B$ 是双射的，则 $f^{-1}$ 是函数 $f^{-1} :B\to A$.
+
+**Proof**：
+
+- 利用 $f$ 的满射性质，对于 $\forall y\in B$，存在 $x\in A$，使得 $xfy$，则 $\langle y,x \rangle\in f^{-1}$，因此 $\operatorname{dom} f^{-1}=B$.（定义域）
+- 利用 $f$ 的单射性质，对于 $\forall y\in B$，如果存在 $x_1,x_2\in A$，使得 $\langle y,x_1 \rangle \in f^{-1}$ 且 $\langle y,x_2 \rangle \in f^{-1}$，则 $\langle x_1,y \rangle \in f$ 且 $\langle x_2,y \rangle\in f$，因此 $x_1=x_2$. （单值性）
+
+**Definition（反函数）** 若 $f:A\to B$ 是双射的，则 $f^{-1}$ 是函数 $f$ 的反函数。且 $f^{-1}$ 是双射的。
+
+**Theorem** 若 $f:A\to B$ 是双射的，则对于任意的 $x\in A$，有 $f^{-1}(f(x))=x$，对于任意的 $y\in B$，有 $f(f^{-1}(x))=x$.
+
+**Definition（函数的左逆、右逆）**设 $f:A\to B,g:B\to A$，若 $g\circ f=I_A$，则称 $g$ 是 $f$ 的左逆；若 $f\circ g=I_B$，则称 $g$ 是 $f$ 的右逆。
+
+**Theorem** 设 $f:A\to B,A\not=\varnothing$，则：
+
+1. $f$ 存在左逆，当且仅当 $f$ 是单射的；
+2. $f$ 存在右逆， 当且仅当 $f$ 是满射的；
+3. $f$ 存在左逆和右逆，当且仅当 $f$ 是双射的；
+4. 若 $f$ 是双射的，则 $f$ 的左逆等于右逆。
+
+对于 1. 先证充分性：设存在 $x_1,x_2$ 使得 $f(x_1)=f(x_2)$，因为 $f$ 存在左逆，假设为 $g$，则：
+$$
+x_1=g(f(x_1))=g(f(x_2))=x_2
+$$
+因此，$x_1=x_2$，$f$ 是单射函数；
+
+再证必要性，因为 $f$ 是单射的，所以 $f:A\to \operatorname{ran} f $ 是双射的，则 $f^{-1}:\operatorname{ran} f \to A$ 是双射的，已知 $A\not=\varnothing$，则 $\exists a\in A$，构造 $g:B\to A$ 为：
+$$
+g(y)=f^{-1}(y) \mathrm{~if ~} y\in\operatorname{ran} f \mathrm{~else~} a
+$$
+则对于任一 $x\in A$，有 $g(f(x))=x$，所以 $g\circ f=I_A$.

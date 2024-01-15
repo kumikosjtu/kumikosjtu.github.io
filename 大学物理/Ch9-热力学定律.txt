@@ -1,0 +1,530 @@
+---
+title: 热力学定律
+date: 2023-06-10 15:57:40
+tags:
+---
+
+## 热力学第一定律
+
+### 准静态过程
+
+之前所讲的物理规律都是在静态的状态成立的，但是系统的状态一旦发生改变，系统就会处于非平衡态。非平衡态到平衡态的过度时间就是弛豫时间，如果实际每一次压缩所用的时间都大于弛豫时间，那么压缩过程中就几乎随时接近平衡态。
+
+对于一个准静态过程，压强 $p$ 和体积 $V$ 都是确定的值，在 $p-V$ 图上为实线；对于非静态过程，在 $p-V$ 图上为虚线。
+
+### 准静态过程的功
+
+如果用 $F$ 压缩活塞，则系统 **对外做功**：
+$$
+\delta A=-F\mathrm{d} l=-ps\mathrm{d} l=p\mathrm{d} V\\
+A=\int_{V_1}^{V_2} p\mathrm{d} V
+$$
+如果自由膨胀，则 $p=0$，不做功。
+
+焦耳发现，使得系统从一个状态转移到另一个状态，不管通过什么方式，所做的功是相等的。
+
+因此，利用功可以定义**内能**：$E_2-E_1=A_s$。微观上，热力学系统的内能是所有分子热运动动能和分子间势能的总和。系统的内能是状态量。
+
+还可以通过内能定义**热量**。热力学系统 **从外界吸收的热量** 定义为在不做功过程中系统内能的增量。$Q=E_2-E_1$.
+
+### 热容
+
+**摩尔热容量** 当 $1\mathrm{~mol}$ 物体温度升高一度时所吸收的热量。
+$$
+C_m=\frac{\Delta Q}{\Delta T}
+$$
+**定容热容**
+$$
+C_V=\left.\lim_{\Delta T\to 0}\frac{\Delta Q}{\Delta T}\right|_V=\left.\frac{\delta Q}{\mathrm{d} T}\right|_V
+$$
+**定压热容**
+$$
+C_p=\left.\lim_{\Delta T\to 0}\frac{\Delta Q}{\Delta T}\right|_p=\left.\frac{\delta Q}{\mathrm{d} T}\right|_p
+$$
+**定容摩尔热容**
+$$
+C_{V,m}=C_V/\nu
+$$
+**定压摩尔热容**
+$$
+C_{p,m}=C_p/\nu
+$$
+
+### 热力学第一定律
+
+某一过程，系统从外界吸热 $Q$，对外界做功 $W$，系统内能从初始态 $E_1$ 变为 $E_2$，则由**能量守恒**：
+$$
+对于准静态过程：Q=E_2-E_1+W=\Delta E+\int_{V_1}^{V_2}p\Delta V
+$$
+
+$$
+对于微元过程：\delta Q=\mathrm{d} E+p\mathrm{d} V
+$$
+
+**热力学第一定律的另一表述**：第一类永动机无法制成。
+
+也就是
+$$
+\underbrace{Q}_{系统吸收热量（过程量）}=\underbrace{\Delta U}_{内能增量（状态量）}+\underbrace{A}_{系统对外做功（过程量）}
+$$
+
+### 热力学第一定律的应用
+
+对理想气体状态方程两边求导：
+$$
+p\mathrm{d} V+V\mathrm{d}p=\nu R\mathrm{d}T
+$$
+等容过程：$\mathrm{d} V=0$，也就是 $V\mathrm{d} p=\nu R\mathrm{d} T$.
+
+等压过程：$\mathrm{d} p=0$，也就是 $p\mathrm{d} V=\nu R\mathrm{d}  T$.
+
+等温过程：$\mathrm{d} T=0$，也就是 $p\mathrm{d} V+V\mathrm{d}p=0$.   $\displaystyle \frac{\mathrm{d} p}{\mathrm{d} V}=-\frac{p}{V}$.
+
+绝热过程：也就是 $\displaystyle \frac{\mathrm{d} p}{\mathrm{d} V}=-\gamma \frac{p}{V}$.
+
+#### 等体过程
+
+理想气体状态变化时其体积始终不发生变化，则气体经历了一个等体过程，过程的特点是 $V=C$，或 $\mathrm{d} V=0$，所以外界对系统不做功，$\delta A=0$。由热力学第一定律，气体在微元过程中吸收的热量完全转化为内能增量：
+$$
+\delta Q=\mathrm{d} E
+$$
+由于内能只能是温度的函数，可以写成：
+$$
+\delta Q=\frac{\mathrm{d} E}{\mathrm{d} T}\mathrm{d} T=C_V\mathrm{d} T=\nu C_{V,m} \mathrm{d} T
+$$
+对于理想气体，还可以利用微观方法计算定容热容：
+$$
+E=\frac{i}{2}pV=\nu \frac{i}{2} RT\Rightarrow C_V=\frac{\mathrm{d} E}{\mathrm{d} T}=\nu \frac{i}{2} R,C_{V,m}=\frac{i}{2}R
+$$
+这时发现
+$$
+Q=E_2-E_1=\nu C_{V,m}(T_2-T_1)=\frac{i}{2} (p_2-p_1)V
+$$
+也就是内能的改变量 $\Delta U=\nu C_{V,m}\Delta T$.
+
+#### 等压过程
+
+外界对系统做的功：
+$$
+A=-\int_{V_1}^{V_2} p\mathrm{d} V=-p(v_2-v_1)=-\nu R(T_2-T_1)
+$$
+根据 $C_p$ 的定义，得到：
+$$
+C_p=\left.\frac{\mathrm{d} E+p\mathrm{d} V}{\mathrm{d} T}\right|_p=\nu C_{V,m}+\nu R
+$$
+因此等压摩尔热容和等容摩尔热容有如下的关系：
+$$
+\boxed{C_{p,m}=C_{V,m}+R=\frac{i}{2}R+R=\frac{i+2}{2}R}
+$$
+从外界吸收的热量为
+$$
+Q=\int_{T_1}^{T_2} C_p\mathrm{d} T=\nu \frac{i+2}{2}R(T_2-T_1)
+$$
+内能的增量
+$$
+\Delta E=Q+A=\nu C_{V,m} \Delta T
+$$
+可见只要气体的初末状态的温度确定，内能增量也就确定了。
+
+#### 等温过程
+
+此时温度不改变，$\Delta E=0$，由热力学第一定律 $Q=-A$.
+$$
+Q=-A=\int_{V_1}^{V_2} p\mathrm{d} V=\nu RT \ln \frac{V_2}{V_1}
+$$
+等温过程中有热量释放，但系统的温度不变，可以认为等温过程的热容为无限大。
+
+#### 绝热过程
+
+$$
+\delta Q=0 \Rightarrow \mathrm{d} E=\delta A=-p\mathrm{d} V
+$$
+
+代入理想气体内能公式：$\mathrm{d} E=\nu C_{V,m} \mathrm{d} T$
+
+因此
+$$
+\nu C_{V,m} \mathrm{d} T=\nu \frac{i}{2}R \mathrm{d} T=-p\mathrm{d} V
+$$
+另一方面，对理想气体状态方程 $pV=\nu RT$ 两端求微分，得到
+$$
+p\mathrm{d} V+V\mathrm{d} p=\nu R\mathrm{d} T
+$$
+消去温度 $T$，可以得到
+$$
+(C_{V,m} +R)p\mathrm{d}  V+C_{V,m} V\mathrm{d} p=0
+$$
+代入 $\gamma = \dfrac{C_{p,m}}{C_{V,m}}=\dfrac{i+2}{i}$，得到：
+$$
+\frac{\mathrm{d} p}{p}+\gamma \frac{\mathrm{d} V}{V}=0
+$$
+积分后 $\boxed{pV^\gamma =C_1}$. 可以得到比等温线更加陡峭。代入理想气体的状态方程，可以得到
+$$
+\boxed{TV^{\gamma-1}=C_2,T^{-\gamma}p^{\gamma-1}=C_3}
+$$
+得到
+$$
+A=-\int_{V_1}^{V_2} p\mathrm{d}V=-\frac{p_2 V_2-p_1V_1}{1-\gamma}=-\frac{\nu R(T_2-T_1)}{1-\gamma}
+$$
+对于微元过程
+$$
+\delta A=\mathrm{d} E=-\frac{\nu R \mathrm{d} T}{1-\gamma}
+$$
+比热容 $\displaystyle C_{V,m}=\frac{R}{\gamma-1}$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_536990290ff2b4c5c0ab9fa0afc3a343.png" alt="image-20230610225142830" style="zoom:33%;" />
+
+#### 多方过程
+
+称热容量为常数的过程为多方过程。
+
+- 等体过程 $\displaystyle C_{V,m}=\frac{i}{2}R$.
+- 等压过程 $\displaystyle C_{p,m}=C_{V,m}+R=\frac{i+2}{2}R$.
+- 等温过程 $C_{T,m}=\infin$.
+- 绝热过程 $\displaystyle C_{V,m}=\frac{R}{\gamma-1}$.
+
+仿照 $(C_{V,m} +R)p\mathrm{d}  V+C_{V,m} V\mathrm{d} p=0$，
+
+$\delta Q=\nu C_{n,m} \mathrm{d} T=\underbrace{\nu C_{V,m}\mathrm{d} T}_{\mathrm{d} E}-\underbrace{\nu (C_{V,m}-C_{n,m})\mathrm{d} T}_{\mathrm{d} A}$
+
+得到
+$$
+(C_{n,m}-C_{p,m}) p\mathrm{d} V-(C_{n,m}-C_{V,m})V\mathrm{d} p=0
+$$
+因此 $\boxed{n=\dfrac{C_{n,m}-C_{p,m}}{C_{n,m}-C_{V,m}},pV^n=C}$.
+
+通过 $n$ 求出 $C_{n,m}$. $n(C_{n,m}-C_{V,m})=C_{n,m}-C_{p,m}\Rightarrow (n-1)C_{n,m}=nC_{V,m}-C_{p,m}\Rightarrow C_{n,m}=\frac{\gamma-n}{1-n} C_{V,m}$.
+
+- 当 $n \to \infin$ 时，$C_m=C_{V,m}$，对应等体过程。
+
+- 当 $n=0$ 时，$C_m=C_{p,m}$，对应 $p=C$，是等压过程。
+- 当 $n=1$ 时，$C_m\to\infin$，对应 $pV=C$，是等温过程。（无论怎么吸收热量，温度都不发生改变）
+- 当 $n=\gamma$ 时，$C_m=0$，对应绝热过程。（吸收热量为 0，却能使温度发生变化）
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_979b1e58c1c87045b72bfad64425f818.png" alt="image-20230610225625467" style="zoom:33%;" />
+
+#### 总结
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_906c8c27b92cf2cbabdd0bbb5d695f73.png" alt="image-20230610225713601" style="zoom:33%;" />
+$$
+利用的公式：Q=\Delta U+A \quad \Delta U=\nu C_{V,m} \Delta T\quad pV=\nu RT
+$$
+
+- 等温过程       $pV=C$     $\Delta T =0\Rightarrow \Delta U=0$         $Q=A=\nu RT \ln \dfrac{V_2}{V_1}$.       $p\mathrm{d} V+V\mathrm{d}p=0$.
+
+- 等压过程       $p=C$       $\Delta U=\nu C_{V,m}\Delta T$      $A=p\Delta V=\nu R\Delta T$    
+
+  $Q=\nu C_{p,m} \Delta T=\Delta U+A=\nu (C_{V,m}+R)\Delta T$.     $C_{p,m}=C_{V,m}+R$.    $\mathrm{d} p=0$，也就是 $p\mathrm{d} V=\nu R\mathrm{d}  T$.
+
+- 等容过程      $V=C$       $A=p\Delta V=0$         $Q=\Delta U=\nu C_{V,m}\Delta T$.    $\mathrm{d} V=0$，也就是 $V\mathrm{d} p=\nu R\mathrm{d} T$.
+
+- 绝热过程      $Q=0 \Rightarrow \Delta U+A=0$.
+
+  状态方程      $pV^\gamma=C,TV^{\gamma-1}=C,p^{\gamma-1} T^{-\gamma}=C$.
+
+  绝热系数     $\gamma=\dfrac{C_{p,m}}{C_{V,m}}=\dfrac{i+2}{i}$.
+
+  求导可得      $V^\gamma \mathrm{d} p+\gamma p V^{\gamma-1}\mathrm{d} V=0$.
+
+- 多方过程
+
+  状态方程      $pV^n=C,TV^{n-1}=C,p^{n-1}T^{-n}=C$.
+
+  多方系数     $n=\dfrac{C_{n,m}-C_{p,m}}{C_{n,m}-C_{V,m}}$   $C_{n,m}=\dfrac{\gamma-n}{1-n} C_{V,m}$.  当 $n<\gamma$ 时 $C_{n,m}>0$，吸热且升温，当 $n>\gamma$ 时 $C_{n,m}<0$，放热且升温。
+
+绝热曲线和 $p-V$ 曲线的切点是吸放热的交叉点。等温曲线和 $p-V$ 曲线的切点代表了温度的最大值和最小值点。
+
+![image-20230611084135727](https://notes.sjtu.edu.cn/uploads/upload_551e55cfd2b3c59865f2008117b9f36f.png)
+
+$U_{AB}=Q_{ACB}+A$.
+
+![image-20230611084447680](https://notes.sjtu.edu.cn/uploads/upload_f2623282c06c1ee4118e2d8e7e9f721e.png)
+
+
+
+--------
+
+![image-20230611085344924](https://notes.sjtu.edu.cn/uploads/upload_cdf83d4935f3640276d1153412160cfc.png)
+
+由 $p^{\gamma-1} T^{-\gamma}=C$，得到 $T_{右}=3/2 T_0$.
+
+$\gamma=(i+2)/i=1.5 \Rightarrow i=4$.
+
+由于右边吸放热为 $0$，$\Delta Q_{右}=0$，所以 $A=-\Delta U=-\nu \frac{i}{2} R\Delta T=-C_V \Delta T=-C_V 1/2 T_0$. 做功为 $1/2 C_V T_0$.
+
+最终两个容器压强应该相等，所以 $p_{左}=p_{右}=\frac{27}{8}p_0$.
+
+因此 $p_右V_{右}=\nu R3/2T_0,p_0 V_0=\nu R T_0$ 推出 $V_{右}=4/9 V_0, V_{左}=14/9 V_0$.
+
+因此左侧气体的终温为 $21/4 T_0$.
+
+左侧气体吸收的热量 $Q=\Delta U+A$.
+
+- $\Delta U=C_V\Delta T=C_V\cdot 17/4 T_0$.
+- $A=1/2 C_V T_0$.
+
+$Q=19/4 C_V T_0$.
+
+![image-20230611091221430](https://notes.sjtu.edu.cn/uploads/upload_2376ad6891180d755f8a1fa96437b545.png)
+
+最高温度当 $V=2\times 10^{-3}\mathrm{~m^3},p=1.0\times 10^5 \mathrm{~Pa}$. 得到 $T=240.67\mathrm{~K}$.
+
+$B$ 到 $C$ 过程中，$Q=\Delta U+A$.  求极大值是 $225 \mathrm{~J}$ 整个循环吸收热量再加上 $AB$ 段的吸热，也就是 $\Delta U=\nu C_{V,m}\Delta T=150 \mathrm{~J}$.
+
+## 循环过程和热机的效率
+
+**循环过程** 是指热力学系统状态经历一系列变化之后又回到初始状态的过程。
+
+特征：
+
+1. 经历一个循环过程后，内能不变 $\displaystyle \oint \mathrm{d} E=0$.
+
+2. 经历一个循环过程后，系统从热源吸收的热量等于系统对外界作的功。
+   $$
+   \oint\delta Q=\oint \mathrm{d} E+\oint \underbrace{\delta A}_{=p\mathrm{d}V}\Rightarrow Q=A
+   $$
+
+**准静态循环过程**
+
+若循环所经历的过程都是准静态过程，则此循环过程为准静态循环过程。
+
+结论：在任何一个循环过程中，系统所作的净功在数值上等于 $p-V$ 图上循环曲线所包围的面积。
+
+**循环过程的分类**
+
+1. 正循环，在 $p-V$ 图上循环过程按顺时针进行。可以使用 Green 公式推导做功：
+   $$
+   \oint p\mathrm{d} V=-\iint_D \mathrm{d} \sigma=-S
+   $$
+   也就是系统对外界做功，通过从外界吸收热量转化为功，称为 **热机**。
+
+**热机效率**
+
+工作物质从高温热源吸热 $Q_1$，向低温热源放热 $Q_2$，对外作净功为 $A=Q_1-Q_2$.
+
+越高的效率，代表对外做功/燃料内能越高，也就是定义效率
+$$
+\eta=\frac{A}{Q_1}=\frac{Q_1-Q_2}{Q_1}
+$$
+
+2. 逆循环，在 $p-V$ 图上按逆时针进行。工作于逆循环的机器，通过外界对工作物质做功，使工作物质从低温热源吸热，到高温热源放热，使低温热源降温。这类机器称为制冷机。
+
+**制冷系数**
+
+外界对工质作正功 $A$，系统从低温热源吸热 $Q_2$，向高温热源放热 $Q_1$，则 $A=Q_1-Q_2$。吸热与做功的比值越大效率越高。
+
+定义制冷系数
+$$
+w=\frac{Q_2}{A}=\frac{Q_2}{Q_1-Q_2}
+$$
+
+$Q_2$ 是从低温热源吸收的热量，$A$ 是制冷机做功。
+
+### 卡诺热机
+
+卡诺循环是由**两个准静态等温过程**和**两个准静态绝热过程**组成 。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4c692cd5a636e35ec643e55858a25073.png" alt="image-20230610233150986" style="zoom:33%;" />
+
+从 $A$ 到 $B$ 对外做功为从 $A$ 到 $B$ 吸收的热量（内能不变）
+$$
+Q_1=\int_{V_1}^{V_2} p\mathrm{d} V=\nu RT_1 \ln \frac{V_2}{V_1}
+$$
+从 $C$ 到 $D$ 对外做功为从 $C$ 到 $D$ 吸收的热量（为负值，代表放热）
+$$
+Q_2=\nu RT_2 \ln \frac{V_4}{V_3}
+$$
+也就是热机效率
+$$
+\eta=1-\frac{Q_2}{Q_1}=1-\frac{T_2}{T_1} \frac{\ln V_3/V_4}{\ln V_2/V_1}
+$$
+根据 $TV^{\gamma-1}=C$，得到 $V_2/V_1=V_3/V_4$，因此 **热温比相同** $Q_1/T_1=Q_2/T_2$，卡诺循环的效率为
+$$
+\eta=1-\frac{T_2}{T_1}
+$$
+为了提高效率，可以提高 $T_1$ 或者降低 $T_2$. 提高高温热源的温度比较现实。
+
+低温热源温度 $T_2\not=0$，说明 $\eta<1$。
+
+- 热机循环不向低温热源放热是不可能的
+- 热机循环至少需要两个热源
+
+### **卡诺致冷机（卡诺逆循环）**
+
+根据 $Q_2/Q_1=T_2/T_1$
+$$
+w=\frac{Q_2}{A}=\frac{Q_2}{Q_1-Q_2}=\frac{T_2}{T_1-T_2}
+$$
+
+### 奥托循环
+
+四冲程汽油机的理想工作过程称为奥托循环。如下图，1-2和3-4为绝热过程，2-3和4-1为等容过程。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_209e923e2bc28d5019c58186f48fbec1.png" alt="image-20230610234425838" style="zoom:33%;" />
+
+循环效率为 $\eta=1-r^{1-\gamma}$. 其中 $r$ 为绝热压缩比 $V_1/V_2$.
+
+## 热力学第二定律
+
+热力学第一定律建立在能量守恒的基础上，而任何满足能量守恒的过程都可能发生吗？
+
+热力学第二定律的两种表述：
+
+- **开尔文表述**：热机不可能从单一热源吸热，使其完全转化为有用功。任何热机的效率一定小于 $100\%$. 称从单一热源吸热的热机为第二类永动机，热力学第二定律也可表述为“第二类永动机制不成”。**功热转换是不可逆的**
+- **克罗修斯表述**：不可能把热量从低温物体传到高温物体而不引起其他变化。也可表述为制冷机的效率 $w=Q_2/A$ 不可能无穷大。**热传导是不可逆的**
+
+**两种表述的等价性**
+
+- 若开尔文表述不成立，则 $A=0$：
+  - <img src="https://notes.sjtu.edu.cn/uploads/upload_1efaabab7c44b285bc9551a377b32d19.png" alt="image-20230613103036258" style="zoom:25%;" />
+- 若克罗修斯表述不成立：
+  - <img src="https://notes.sjtu.edu.cn/uploads/upload_0b7f8461d62a11dae0f21912d887c547.png" alt="image-20230613103350024" style="zoom:25%;" />
+
+设在某过程 P 中，系统从状态 A 变化到状态 B，如果存在一个过程能使系统从状态 B 回复到初状态 A，而且在回复到初态 A 时，外界环境也能各自恢复原状，则称过程 P 是 **可逆过程**。一切与热现象有关的实际宏观过程都是不可逆的
+
+一定量的功可以全部转化为热，但是热量无法自发转化为功。
+
+## 熵和熵增原理
+
+**卡诺定理**
+
+所有工作在相同的高温热源与相同的低温热源之间的可逆机效率均为 $\eta=1-\frac{T_2}{T_1}$，所有不可逆热机的效率都小于这个值。
+
+**克莱修斯不等式**
+$$
+\eta=\frac{Q_1-Q_2}{Q_1} \le \frac{T_1-T_2}{T_1}
+$$
+写成
+$$
+\frac{Q_1}{T_1} - \frac{Q_2}{T_2}\le 0
+$$
+如果令 $Q_2$ 代表在 $T_2$ 热源处吸收的热量（原来是放热），则上式变为
+$$
+\frac{Q_1}{T_1} + \frac{Q_2}{T_2}\le 0
+$$
+对于可逆卡诺循环，热温比之和等于零；不可逆卡诺循环，热温比之和小于零。
+$$
+\oint_{可逆} \frac{\delta Q}{T}=0\quad \oint_{不可逆} \frac{\delta Q}{T}<0
+$$
+根据克劳修斯不等式引入熵（态函数）的概念：会考熵变的计算。
+$$
+\boxed{S_2-S_1=\int_1^2 \frac{\delta Q}{T}}
+$$
+系统熵的变化和过程无关，只要系统的初末状态确定了，系统从初态变到末态熵的增量也就确定。根据熵的定义，只要理想气体的状态确定，熵函数 $S(p,V)$ 也就确定。
+$$
+S-S_0=\int_{(p_0,V_0)}^{(p,V)} \frac{\delta Q}{T}=\int_{(p_0,V_0)}^{(p,V)} \frac{\mathrm{d} E+p\mathrm{d} V}{T}=\int_{(p_0,V_0)}^{(p,V)} \frac{C_V\mathrm{d} T}{T}+\frac{\nu R}{V}\mathrm{d} V\\
+=C_V \ln \frac{T}{T_0}+\nu R\ln\frac{V}{V_0}
+$$
+
+$$
+S-S_0=C_V \ln\frac{T}{T_0}+\nu R \ln \frac{V}{V_0}
+$$
+
+$$
+S-S_0=C_V \ln \frac{p}{p_0}+C_p \ln \frac{V}{V_0}\\
+S-S_0=C_p \ln \frac{T}{T_0}-\nu R \ln \frac{p}{p_0}
+$$
+
+$$
+T=T_0:\Delta S=\nu R \ln \frac{V}{V_0}\\
+p=p_0:\Delta S=C_p \ln \frac{V}{V_0}\\
+V=V_0:\Delta S=C_V \ln \frac{p}{p_0}
+$$
+
+---
+
+设一可逆卡诺机工作于高低温热源之间（$T_1,T_2$），求每次循环工作物质和两热源的熵变和总熵变。
+
+- 工作物质：经历可逆卡诺循环，$\Delta S_0=0$.
+- $T_1$ 热源：根据定义 $\Delta S_1=-Q_1/T_1$.
+- $T_2$ 热源：根据定义 $\Delta S_2=Q_2/T_2$.
+- 总熵变 $\Delta S=0$.
+
+------
+
+一物体热容量 $C$，温度 $T$，环境温度 $T'$，要求热机在 $T$ 和 $T'$ 之间工作（$T>T'$），最大输出功是多少？
+
+**使用卡诺热机**
+
+![image-20230613110850961](https://notes.sjtu.edu.cn/uploads/upload_3cddd785dd691ba6a6214e8e060f6008.png)
+
+- $Q_1=A+Q_2\Rightarrow \displaystyle \mathrm{d} Q_1-\mathrm{d} Q_2=\mathrm{d} A$.
+- 热容的定义：$\mathrm{d} Q_1=-C\mathrm{d} T$（物体温度下降，放热）
+- 最大输出功时，熵变为0，即 $\displaystyle \frac{\mathrm{d} Q_1}{T}-\frac{\mathrm{d} Q_2}{T'}=0$.
+
+推出 $\displaystyle \mathrm{d} A=-C\mathrm{d} T\left(1-\frac{T'}{T}\right)$
+
+当 $T$ 变为 $T'$ 时，$A=\displaystyle \int_T^{T'}-C\mathrm{d} T\left(1-\frac{T'}{T}\right)$
+
+**等熵过程**
+
+可逆而且绝热：$\mathrm{d} S=\mathrm{d} Q/T$. 绝热线上的任意两点熵相等。
+
+**温熵图**
+
+以 $S$ 为横坐标，$T$ 为纵坐标，曲线下面积：
+$$
+\mathrm{d} Q=T\mathrm{d} S\\
+Q=\int_a^b T\mathrm{d} S
+$$
+对于闭合曲线 $\displaystyle Q_{净}=\oint T\mathrm{d} S=Q_1-Q_2=A$.
+
+温熵图中纵向：绝热过程；温熵图中横向：等温过程。
+
+![image-20230613140823566](https://notes.sjtu.edu.cn/uploads/upload_73ac87d63b0b897f80494362771d0cd6.png)
+
+**熵增加原理**
+
+由克劳修斯不等式知，对任意不可逆循环过程（由可逆过程 c2 和不可逆过程 c1 构成）：
+$$
+\oint \frac{\mathrm{d} Q}{T}=\int_{1\mathrm{(irr\ c_1)}}^2\frac{\mathrm{d} Q}{T}+\int_{2\mathrm{(re\ c_2)}}^1\frac{\mathrm{d} Q}{T}<0
+$$
+推出：
+$$
+\int_{1\mathrm{(irr\ c_1)}}^2\frac{\mathrm{d} Q}{T}<\int_{1\mathrm{(re\ c_2)}}^2\frac{\mathrm{d} Q}{T}=S_2-S_1
+$$
+因此：
+$$
+\mathrm{d} S\ge \frac{\mathrm{d}Q}{T}
+$$
+如果是孤立系统，则 $Q=0$，$\mathrm{d} S\ge 0$.
+
+**孤立系统的热传导过程**
+
+设两物体 A,B，质量和比热容相同，温度分别为 $T_1,T_2$，热接触达到平衡，求熵变。($T_1>T_2$) 平衡为 $1/2 (T_1+T_2)$，最大功为平衡在 $\sqrt{T_1T_2}$
+$$
+\Delta S=\Delta S_1+\Delta S_2=Cm\ln \frac{T_3^2}{T_1T_2}=Cm\ln \frac{1}{4} \frac{(T_1+T_2)^2}{T_1T_2}>0
+$$
+理想气体绝热自由膨胀的熵变
+$$
+\Delta S=\nu R\int_{V_1}^{V_2} \frac{\mathrm{d} V}{v}=\nu R\ln \frac{V_2}{V_1}>0
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_33766d16d4cd6fd5684780e57873e87a.png" alt="image-20230613143603152" style="zoom:33%;" />
+
+熵增原理不受具体过程限制，它既包含了热力学第二定律的克氏说法，也包含了开氏说法。因此，熵增原理是热力学第二定律的一种更为普遍的陈述。
+
+**两种气体混合之后的熵变**。
+
+玻尔兹曼关系 $S=k\ln \Omega$. 如何计算 $\Omega$ 的关系？
+
+当体积从 $V_1 \rightarrow V_2$ 时，一个分子的位置分布可能的微观状态将增加到 $V_2/V_1$ 倍。
+
+整个气体的微观状态数将增加到 $(V_2/V_1)^{\nu N_A}$ 倍。
+$$
+\Delta S=S_2-S_1=k_B \ln\left(\frac{\Omega_2}{\Omega_1}\right)=k_B \nu N_A \ln \left(\frac{V_2}{V_1}\right)=\nu R \ln \left(\frac{V_2}{V_1}\right)
+$$
+两种温度相同的不同气体，被分为体积相同的两部分，求混合前后熵的变化：
+$$
+\Delta S=S_{A2}+S_{B2}-S_{A1}-S_{B1}\\
+=k_B \ln \left(\frac{V_2}{V_1}\right)^{\nu_A N_A}+k_B \ln \left(\frac{V_2}{V_1}\right)^{\nu_B N_B}\\
+=\nu_A N_A k_B \ln 2+\nu _B N_A k_B \ln2=(\nu_A+\nu_B) R\ln2
+$$
+Q: 混合之后的温度：
+
+- $$
+  \nu_1 \frac{i_1}{2} R T_1+\nu_2 \frac{i_2}{2} R T_1=\nu_1 \frac{i_1}{2} R T+\nu_2 \frac{i_2}{2} R T
+  $$
+
+- 混合后的压强：$pV=(\nu_1+\nu_2) RT$.
+
+- 混合后的内能。
