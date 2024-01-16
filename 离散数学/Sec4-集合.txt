@@ -702,26 +702,3 @@ $$
 
 自然数的三歧性：即 $m<n,m=n,m>n$ 中恰好成立一个。
 
-## 往年题目
-
-设分别用符号 $<_A$、$<_B$ 表示集合 $A,B$ 上的线序（拟序），则在笛卡尔积 $A\times B$ 上定义二元关系 $<_L$ 如下：
-$$
-\langle a,b \rangle <_L \langle a',b' \rangle \Leftrightarrow \mathrm{either~} a <_A a' \mathrm{~or~} (a=a'\wedge b<_B b')
-$$
-
-请证明 $<_L$ 也是一个线序关系。
-
-1. $<_L$ 具有非自反性，因为 $a\not<_A a$ 且 $a=a \wedge b\not<_Bb'$ 均不成立。
-
-2. $<_L$ 具有传递性：
-
-   假设 $\langle a,b \rangle<_L \langle a',b' \rangle$ 且 $\langle a',b' \rangle<_L\langle a'',b'' \rangle$，则：
-
-   - $a<_A a'$ 且 $a'<_A a''$ 成立，根据 $<_A$ 的传递性，有 $a<_A a''$，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
-   - $a<_A a'$ 且 $a'=a'' \wedge b'<_B b''$ 成立，则 $a<_A a''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
-   - $a=a' \wedge b<_B b'$ 且 $a'<_A a''$ 成立，则 $a<_A a''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
-   - $a=a' \wedge b<_B b'$ 且 $a'=a'' \wedge b'<_B b''$ 成立，则 $a=a''\wedge b<_B b''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
-
-   综上，$<_L$ 具有传递性。
-
-因此，$<_L$ 是一个线序关系。

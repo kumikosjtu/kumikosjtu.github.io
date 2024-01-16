@@ -920,6 +920,8 @@ $$
 
 - 传递关系、偏序关系的计数比较困难。可以去 OEIS 搜一下。
 
+## 关系性质的保持
+
 问：$A\times A$ 上的关系 $R_1,R_2$ 取逆/交/并/合成/平方是否能够保持自反性、非自反性、对称性、反对称性、传递性。
 
 |            | $^{-1}$ | $\cap$ | $\cup$     | $\circ$    | $^2$        |
@@ -955,13 +957,15 @@ R_2 = \{\langle 3,1 \rangle,\langle 1,2 \rangle,\langle 3,2 \rangle\}$.
 
 则 $R_1\circ R_2=\{\langle 3,2 \rangle,\langle 3,3 \rangle,\langle 1,3 \rangle\}$。
 
-(55). 因为 $R$ 是传递关系，所以 $t(R)=R=R\cup R^2\cup\cdots$.
-
 **Theorem (55)**：若 $R$ 是传递的关系，则 $R^2$ 也是传递关系：
+
+**Proof**：
 $$
 xR^2y \wedge yR^2 z \Rightarrow xRs\wedge sRy \wedge y Rt \wedge tRz\\
 \Rightarrow xRy \wedge yRz\Rightarrow xR^2z
 $$
+## 往年题目
+
 ![image-20231221230109801](https://notes.sjtu.edu.cn/uploads/upload_097d1bf825a268864c62ad07bf578b8c.png)
 
 假设加入了 $n$ 这个元素，我们考虑 $n$ 和哪些其他元素分在了一个等价类，假设还有其他 $k$ 个元素被分在一个等价类，这 $k$ 个元素的取法有 $C_{n-1}^k$ 种，剩下 $n-1-k$ 个元素，又可以有 $r_{n-1-k}$ 种等价关系。因此：
@@ -1006,3 +1010,27 @@ $$
 $$
 r_n=\sum_{k=1}^n \begin{Bmatrix}n\\ k\end{Bmatrix}=\sum_{k=1}^n\sum\limits_{i=0}^k\dfrac{(-1)^{k-i}i^n}{i!(k-i)!}
 $$
+
+-----
+
+设分别用符号 $<_A$、$<_B$ 表示集合 $A,B$ 上的线序（拟序），则在笛卡尔积 $A\times B$ 上定义二元关系 $<_L$ 如下：
+$$
+\langle a,b \rangle <_L \langle a',b' \rangle \Leftrightarrow \mathrm{either~} a <_A a' \mathrm{~or~} (a=a'\wedge b<_B b')
+$$
+
+请证明 $<_L$ 也是一个线序关系。
+
+1. $<_L$ 具有非自反性，因为 $a\not<_A a$ 且 $a=a \wedge b\not<_Bb'$ 均不成立。
+
+2. $<_L$ 具有传递性：
+
+   假设 $\langle a,b \rangle<_L \langle a',b' \rangle$ 且 $\langle a',b' \rangle<_L\langle a'',b'' \rangle$，则：
+
+   - $a<_A a'$ 且 $a'<_A a''$ 成立，根据 $<_A$ 的传递性，有 $a<_A a''$，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
+   - $a<_A a'$ 且 $a'=a'' \wedge b'<_B b''$ 成立，则 $a<_A a''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
+   - $a=a' \wedge b<_B b'$ 且 $a'<_A a''$ 成立，则 $a<_A a''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
+   - $a=a' \wedge b<_B b'$ 且 $a'=a'' \wedge b'<_B b''$ 成立，则 $a=a''\wedge b<_B b''$ 成立，因此 $\langle a,b \rangle<_L \langle a'',b'' \rangle$.
+
+   综上，$<_L$ 具有传递性。
+
+因此，$<_L$ 是一个线序关系。
