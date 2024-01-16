@@ -1,0 +1,396 @@
+# 大物期末速查
+
+## 稳恒电流
+
+**电源电动势** 代表将单位正电荷从电源负极移动到正极过程中电源中的非静电力所做的功：
+$$
+\mathcal E=\int_{-}^{+} \boldsymbol E_k\cdot \mathrm d \boldsymbol l
+$$
+**电流** 代表单位时间内通过导体截面的电荷量：
+$$
+I=\frac{\mathrm d q}{\mathrm d t}
+$$
+**电流密度** 的大小为单位时间内通过导体截面单位面积的电荷量，方向垂直于导体截面：
+$$
+\boldsymbol j=\frac{\mathrm d q}{\mathrm d t\mathrm d S_\perp}=\frac{\mathrm d I}{\mathrm d S_\perp} \boldsymbol e_n
+$$
+
+$$
+I=\iint_S \boldsymbol j\cdot \mathrm d \boldsymbol S
+$$
+
+通过推导，我们可以得出电流密度 $j$ 与载流子体密度 $n$、载流子带电量 $q$ 和载流子平均漂移速度 $\boldsymbol v_d$ 的关系：
+$$
+j=\frac{\mathrm d q}{\mathrm d t \mathrm d S_\perp}=\frac{nq\mathrm d V}{\mathrm d t \mathrm d S_\perp}=\frac{nq\mathrm d S_\perp \cdot v_d \mathrm d t}{\mathrm d t\mathrm d S_\perp}=nqv_d
+$$
+
+$$
+\boldsymbol j=nq\boldsymbol v_d
+$$
+
+**欧姆电导模型**，为了解释欧姆定律，作出假设：
+
+- 碰撞后的运动轨迹，与上一次碰撞前的运动状态完全无关。
+- 碰撞过程会完全损失掉获得的电势能。
+
+则得出：
+$$
+J=\gamma E\propto E \quad \gamma = \frac{ne^2\tau}{2m_e}
+$$
+
+## 磁感应强度
+
+规定磁场磁感应强度 $\boldsymbol{B}$ 的方向为磁场中各空间点处小磁针 $\mathrm{N}$ 极的指向，设磁场中运动电荷运动速度 $v$，受力的大小 $|\boldsymbol{F}|$，$\theta$ 为电荷运动方向与磁感应强度 $\boldsymbol{B}$ 的夹角。定义磁场的磁感应强度 $\boldsymbol{B}$ 的大小：
+$$
+B=\frac{|\boldsymbol F|}{|q|v\sin\theta}
+$$
+磁感应强度 $\boldsymbol{B}$ 的单位称为特斯拉（Tesla），用 $\mathrm{T}$ 表示。可以导出洛伦兹磁力公式，即速度为 $\boldsymbol v$，带电为 $q$ 的运动电荷在磁场 $\boldsymbol B$ 中受力为：
+$$
+\boldsymbol F=q\boldsymbol v\times \boldsymbol B
+$$
+
+## 毕奥-萨伐尔定律
+
+设 $\displaystyle \boldsymbol r$ 为电流元指向 $P$ 点的矢量，$\boldsymbol l$ 为电流元的方向，任意线电流分布 $L$ 在空间 $P$ 点处的磁感应强度为
+$$
+\boldsymbol{B}=\frac{\mu_{0}}{4 \pi} \int_{L} \frac{I \mathrm{d} \boldsymbol{l} \times \boldsymbol{r}}{r^{3}}=\frac{\mu_0}{4\pi} \int_L \frac{I\mathrm d \boldsymbol l\times \boldsymbol e_r}{r^2}=\frac{\mu_{0}}{4 \pi} \int_{L} \frac{I \mathrm{d} l \sin\theta}{r^{2}}
+$$
+电流元可以这么理解：
+$$
+I\mathrm d \boldsymbol l = S(nq_ev_d) \mathrm d \boldsymbol l=S(nq_e\boldsymbol v_d)\mathrm d l=n(S\mathrm d l)q_e\boldsymbol v_d=\boldsymbol v_d \mathrm d q
+$$
+其实是一个运动速度为 $\boldsymbol v_d$ 的电流元 $\mathrm d q$. 那么，等价于：
+$$
+\boldsymbol B=\frac{\mu_0}{4\pi} \int \frac{\mathrm d  q\boldsymbol v_d \times \boldsymbol r}{r^3}
+$$
+
+> 推导常见电流分布的空间磁场：
+>
+> - 载流直导线的磁场：$\displaystyle B=\frac{\mu_{0} I}{4 \pi d}\left(\cos \theta_{1}-\cos \theta_{2}\right)$，当无限长，变为 $\displaystyle \frac{\mu_0 I}{2\pi d}$.
+>
+> - 圆环形电流在轴线上的磁场：$\color{red}\displaystyle \frac{\mu_0 IR^2}{2(R^2+z^2)^{3/2}}=\frac{\mu_0 IR^2}{2r^3}$，其中 $z$ 代表观测点离圆环形电流中心的距离，$r$ 代表观测点离圆环形电流外周的距离，$R$ 代表圆环形电流的半径。
+>
+>   当 $z=0$，得到中心处为 $\displaystyle \frac{\mu_0 I}{2R}$.
+>
+>   这个结论比较重要也不是那么容易推导，建议记住。
+>
+>   <img src="https://notes.sjtu.edu.cn/uploads/upload_c0cd55bb5085552c5be2d553c5ddfff4.png" alt="image-20231226100127518" style="zoom: 33%;" />
+>
+> - 圆弧形电流在圆心处的磁场：$\displaystyle \frac{\mu_0 I}{2R} \frac{\theta}{2\pi}$.
+>
+> - 密绕螺线管轴线上的磁场：$\displaystyle \frac{\mu_0 nI}{2}(\cos \beta_2-\cos \beta_1)$，当无限长，变为  $\mu_0 nI$，当半无限长，变为 $\frac{1}{2}\mu_0 nI$. 其中 $nI$ 可以理解为电流线密度 $\alpha$，可得 $B=\mu_0\alpha$.
+>
+> 请指出它们之间的互相联系。
+
+1. 根据磁场的对称性，选择安培环路，使得环路上磁感应强度大小恒等（环形/矩形）。
+
+2. 有时还可以灵活运用叠加原理和补偿法，这里叠加原理注意是 $\boldsymbol B$ 矢量叠加。
+
+> 使用安培环路定理推导常见常见电流分布的空间磁场（定义 $n$ 为单位长度的螺线管圈数，即线密度）：
+>
+> - 转换为无限长载流导线的磁场。
+>
+> - 无限长圆柱面电流 $B=\left\{
+>   \begin{aligned}
+>   &\frac{\mu_0 I}{2\pi r}&, r>R\\
+>   &0&, r<R
+>   \end{aligned}
+>   \right.$. 
+>
+> - 无限长圆柱体电流 $B=\left\{
+>   \begin{aligned}
+>   &\frac{\mu_0 I}{2\pi r}&, r>R\\
+>   &\frac{\mu_0 I r}{2\pi R^2}&, r<R
+>   \end{aligned}
+>   \right.$.
+>
+> - 螺线管 $B=\mu_0 NI/L=\mu_0 n I$；螺绕环 $\displaystyle B=\frac{\mu_0 NI}{2\pi R}=\mu_0 nI$.
+>
+> - 无限大均匀平面电流（磁场强度分布的性质为：只有和平面平行的分量、关于平面对称的位置磁场强度相反）
+> $$
+>   B=\frac{\mu_0\alpha}{2}
+> $$
+>
+> - 当两无限大均匀平面电流大小相同，方向相反，所夹区域中 $B=\mu_0\alpha$，其余区域磁场强度相互抵消，强度为零。类似于电容器。
+>
+> - 磁压强的计算：
+>   $$
+>   P=\frac{F}{S}=\frac{BIL}{S}=\frac{B\alpha dL}{S}=\alpha B
+>   $$
+>
+> - 叠加原理的应用：通电圆柱体内挖掉一个小圆柱体，怎么算？
+
+## 磁场对载流导线的作用
+
+磁场对载流导线的作用力称为 **安培公式**， 即：
+$$
+\boldsymbol F=\int_L I\mathrm d \boldsymbol l\times \boldsymbol B
+$$
+若是直导线，$\mathrm d \boldsymbol l$ 方向不变——$\boldsymbol F=I\boldsymbol L \times \boldsymbol B$.
+
+载流线圈受 **磁矩** 定义为：
+$$
+\boldsymbol m=NIS\boldsymbol n=NI\boldsymbol S
+$$
+其中 $\boldsymbol n$ 的方向用右手螺旋法则进行判断。如果外加匀强磁场 $\boldsymbol B$，则受到的 **磁力矩** 为：
+$$
+\boldsymbol M=\boldsymbol m\times \boldsymbol B
+$$
+如果不是匀强磁场，还是根据力矩的定义，积分计算。
+
+载流线圈在磁场中转动时，若通过线圈的磁通量变化为 $\Delta \Phi_m$，则 **磁力矩的功**：
+$$
+A=I\Delta \Phi_m
+$$
+导线之间的相互作用力：
+$$
+\frac{\mathrm d F_{12}}{\mathrm d l}=\frac{\mathrm d F_{21}}{\mathrm d l}=\frac{\mu_0}{2\pi} \frac{I_1I_2}{d}
+$$
+霍尔效应：
+$$
+U_H=\frac{1}{qn}\frac{IB}{d}
+$$
+
+## 磁场和物质的相互作用
+
+磁介质磁化理论：分子电流的观点；磁荷的观点。
+
+- 真空中给磁场 $\boldsymbol B_0$，磁介质出现磁化现象，磁化电流在空间中产生磁场 $\boldsymbol B'$，总磁场：
+   $$
+   \boldsymbol B=\boldsymbol B_0+\boldsymbol B'=(1+\chi_m) \boldsymbol B_0=\mu_r \boldsymbol B_0
+   $$
+
+   - $\mu_r<1$ 抗磁质(铜、铋、硫、氢、银等)
+   - $\mu_r >1$ 顺磁质(锰、铬、铂、氧、氮等)
+   - $\mu_r \gg 1$ 铁磁质(铁、钴、镍等)
+   - $\mu_r=0$ 完全抗磁性
+
+- 由于电子角动量在外加磁场中的 **进动** 效应，使得物质表现出抗磁性质。
+
+- 分子电流的角度，研究磁化强度矢量：
+   $$
+   \boldsymbol M=\lim_{\Delta V \to 0} \frac{\sum_{\Delta V} \boldsymbol \mu_{mi}}{\Delta V}
+   $$
+   其中 $\boldsymbol \mu_{mi}$ 是体元中电子的磁矩。量纲是 $\mathrm{A/m}$.
+
+- 设介质表面的法线方向为 $\boldsymbol e_n$，则磁化电流线密度：
+   $$
+   \boldsymbol \alpha'=\boldsymbol M\times \boldsymbol e_n\\\alpha=M\sin\varphi
+   $$
+   $\boldsymbol e_n$ 需要满足：1. 垂直于介质表面；2. 朝外。
+
+- 介质中磁场的高斯定理：
+   $$
+   \oiint_S \boldsymbol B\cdot \mathrm d \boldsymbol S=0
+   $$
+   介质中磁场的安培环路定理：
+   $$
+   \oint_L \boldsymbol B \cdot \mathrm d \boldsymbol l=\mu_0\underbrace{ \sum_{L内} I_0}_{传导电流}+\mu_0\underbrace{ \sum_{L内} I'}_{磁化电流}
+   $$
+
+- 为了去除磁化电流的影响，定义磁场强度矢量：
+   $$
+   \boldsymbol H=\frac{\boldsymbol B}{\mu_0}-\boldsymbol M
+   $$
+   满足：
+   $$
+   \int_L \boldsymbol H \cdot  \mathrm d  \boldsymbol l=\sum_{L内} I_0
+   $$
+   结合磁化强度和磁场强度的关系 $\boldsymbol M=\chi_m \boldsymbol H$，可以推得磁感应强度和磁场强度的关系如下：
+   $$
+   \boldsymbol B=\mu_0 (\boldsymbol H+\boldsymbol M)=\mu_0\underbrace{(1+\chi_m)}_{\doteq \mu_r} \boldsymbol H\\
+   =\underbrace{\mu_0\mu_r}_{\doteq \mu} \boldsymbol H=\mu\boldsymbol  H
+   $$
+
+- 特殊地，若无电流存在，则 $\boldsymbol H\equiv 0$，推出处处 $\boldsymbol B=\mu_0 \boldsymbol M$.
+
+- 使用磁高斯定理，可以证明磁感应强度在法线方向连续，即 $B_{1n}=B_{2n}$；使用磁环路定理，可以证明磁场强度在切线方向连续，即 $H_{1t}=H_{2t}$.
+
+- 解题的基本步骤，就是通过电流分布 $I_0$，使用安培环路定理求解磁场强度 $\boldsymbol H$，根据 $\boldsymbol  B=\mu \boldsymbol H$ 求解 $\boldsymbol B$，根据 $\boldsymbol H=\frac{\boldsymbol B}{\mu_0}-\boldsymbol M$ 求解 $\boldsymbol M$，根据 $\boldsymbol \alpha'=\boldsymbol M\times \boldsymbol e_n$ 求解磁化电流的线密度。
+
+> 区分
+>
+> - 磁感应强度：$B$ 单位为 $T$.
+> - 磁场强度大小：$H$ 单位为 $\mathrm{A/m}$. 和电流线密度同量纲。
+> - 磁化强度大小：$M$ 单位为 $\mathrm{A/m}$.
+>
+
+## 电磁感应
+
+当穿过回路所包围面积的磁通量发生变化时，回路中产生的感应电动势的大小与穿过回路的磁通量对时间的变化率成正比。
+$$
+\varepsilon = -\frac{\mathrm d \Phi_m}{\mathrm d t}
+$$
+
+这就是 **法拉第电磁感应定律**。如果线圈匝数为 $N$，替换 $\Phi_m$ 为 $\Psi_m=N\Phi_m$，即磁通匝链数。
+
+假设回路的电阻为 $R$，分析回路中流经的电荷量 $q$，我们有：
+$$
+q=\int i\mathrm d t=\int \frac{\varepsilon}{R}\mathrm d t=-\int \frac{\mathrm d \Phi_m}{R\mathrm d t}\mathrm d t=-\frac{\Delta \Phi_m}{R}
+$$
+如果展开 $\Phi_m$ 为 $ \boldsymbol B\cdot \boldsymbol S$，可得：
+$$
+\varepsilon = -\frac{\mathrm d \Phi_m}{\mathrm d t}=-\frac{\mathrm d (\boldsymbol B \cdot \boldsymbol S)}{\mathrm d t}=\underbrace{-\frac{\mathrm d \boldsymbol B}{\mathrm d t} \cdot \boldsymbol S}_{感生}\underbrace{-\frac{\mathrm d \boldsymbol S}{\mathrm d t}\cdot \boldsymbol B}_{动生}
+$$
+
+- 动生电动势（原始公式）：
+  $$
+  \varepsilon=\int_L (\boldsymbol v\times \boldsymbol B)\cdot \mathrm d \boldsymbol l
+  $$
+  当导体上平动，且为匀强磁场，此时 $\boldsymbol v\times \boldsymbol B$ 处处相等，可以提出 $\boldsymbol v\times \boldsymbol B$，化曲为直，即：
+  $$
+  \varepsilon=(\boldsymbol v\times \boldsymbol B)\int_L \cdot \mathrm d \boldsymbol l=(\boldsymbol v\times \boldsymbol B)\cdot\boldsymbol l
+  $$
+  当不满足这些条件，例如不是匀强磁场，不是平动而是转动，可以利用法拉第电磁感应定律或者利用 **原始公式** 计算。
+  
+  特殊动生电动势的计算：旋转的杆（$\frac{1}{2}B\omega L^2$）法拉第圆盘（旋转的杆并联）刚体（平动+转动）绕轴旋转圆弧（作业 15-8）：
+  $$
+  \varepsilon=\omega R^2 B\int_{\theta_1}^{\theta_2} \sin^2 \theta\mathrm d \theta=\omega R^2 B\left.\left(\frac{1}{2}\theta-\frac{1}{4} \sin 2\theta\right)\right|^{\theta_2}_{\theta_1}
+  $$
+  
+- 感生电动势（涡旋电场，有旋无源场）：
+  $$
+  -\iint_S {\color{red}{\frac{\partial \boldsymbol B}{\partial t}}}\cdot \mathrm d \boldsymbol S=\oint_l \boldsymbol E_k \cdot \mathrm d \boldsymbol l
+  $$
+  > 注意不要忘了对 $t$ 求导，否则就变成磁通量了。
+  
+  可以使用补全回路的方法进行计算，注意补全的线段上 $\boldsymbol E_k\perp \mathrm d \boldsymbol l$.
+  
+  区分 *电动势* 和 *电势差*，前者是通过涡旋电场公式直接计算而来的，是导体回路固有的属性；后者还要结合回路中的电流考虑。
+
+## 自感和互感
+
+**自感**：根据毕奥萨伐尔定律，电流在空间中激发的磁场磁感应强度总是正比于通过线圈的电流 $I$：
+$$
+\Psi=\underbrace{L}_{自感系数}I
+$$
+求自感的通常步骤：假设线圈通电流 $I$，电流 $I$ 产生了磁场 $B$，再计算 $\Psi=NBS=LI$ 即可得 $L$.
+
+> 设绕环密度为 $n$，则长直螺线管的自感为 $L=\mu n^2 V$.
+
+**互感**：根据毕奥萨伐尔定律，有：
+$$
+\Psi_{21}=M_{21} I_1\quad \Psi_{12}=M_{12} I_2\quad M_{12}=M_{21}
+$$
+求互感的通常步骤：假设线圈 1 通电流 $I$，产生了磁场 $B_1$，磁场 $B_1$ 又对第二个线圈磁通匝链数 $\Psi_{21}$ 产生了影响，使得 $\Psi_{21}=N_2B_1S_2=MI$. 可以求出 $M$.
+
+> 两线圈正接/反接的自感系数为 $L=L_1+L_2\pm 2M$. 耦合系数 $k$ 定义为 $M=k\sqrt{L_1L_2}$，$k$ 越接近 $1$，耦合越紧密。
+
+**磁场能量**
+
+自感：
+$$
+W_m=\frac{1}{2}LI_0^2
+$$
+互感：
+$$
+W_m=\frac{1}{2} L_1 I_1^2+\frac{1}{2} L_2 I_2^2 \pm MI_1I_2
+$$
+
+任意磁场空间的磁能：
+$$
+W_m=\int_V w_m\mathrm d V\quad w_m=\frac{1}{2}BH
+$$
+
+> Q: 如何使用磁场能量计算线圈的自感和互感？
+
+总结，电磁感应中主要运用三类物理量 $I,\Phi,\varepsilon$ 的关系
+
+- 法拉第电磁感应定律：$\displaystyle \varepsilon = -\frac{\mathrm d \Phi_m}{\mathrm d t}$，告诉我们 $\varepsilon$ 和 $\Phi$ 的关系；
+- 使用欧姆定律分析：$\displaystyle I=\frac{\varepsilon}{R}$，告诉我们 $\varepsilon$ 和 $I$ 的关系；
+- 自感和互感：$\Psi_1=L_1I_1+M_{12}I_2$，告诉我们 $\Psi(\Phi)$ 和 $I$ 的关系。
+
+## 麦克斯韦电磁理论
+
+之前理论没涉及到的部分：变化的磁场能产生涡旋电场（电磁感应），变化的电场能产生磁场吗？实验说明是可以的，原先计算磁场强度的公式应该考虑变化的电场。定义 **位移电流密度和位移电流**：
+$$
+\boldsymbol j_d=\frac{\partial \boldsymbol D}{\partial t} \quad I_d=\iint_S \frac{\partial \boldsymbol D}{\partial t} \mathrm d \boldsymbol S
+$$
+
+> 可以看出，$\boldsymbol j_d$ 和 $I_d$ 的方向和 $\boldsymbol D$ 的变化率的方向一致。
+
+考虑位移电流，对 **磁环路定理** 做修正，如下：
+$$
+\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l=\iint_S \left(\boldsymbol j_c + \underbrace{\frac{\partial \boldsymbol D}{\partial t}}_{\boldsymbol j_d}\right)\cdot \mathrm d \boldsymbol S=I_c+I_d
+$$
+至此，我们可以完整地写出 **麦克斯韦方程组**：
+$$
+\left\{
+\begin{aligned}
+&\oiint_S \boldsymbol D\cdot \mathrm d \boldsymbol S=q_0\\
+&\oiint_S \boldsymbol B\cdot \mathrm d \boldsymbol S=0\\
+&\oint_l \boldsymbol E\cdot \mathrm d \boldsymbol l=-\iint_S \frac{\partial \boldsymbol B}{\partial t} \cdot \mathrm d \boldsymbol S\\
+&\oint_l \boldsymbol H\cdot \mathrm d \boldsymbol l = I+\iint_S \frac{\partial \boldsymbol D}{\partial t} \cdot \mathrm d \boldsymbol S 
+\end{aligned}
+\right.
+$$
+
+$$
+\left\{
+\begin{aligned}
+&\nabla \cdot \boldsymbol D=\rho\\
+&\nabla \cdot \boldsymbol B=0\\
+&\nabla \times \boldsymbol E=-\frac{\partial \boldsymbol B}{\partial t}\\
+&\nabla \times \boldsymbol H=\boldsymbol J_c+\frac{\partial \boldsymbol D}{\partial t}
+\end{aligned}
+\right.
+$$
+
+当系统处在真空，即无 $q_0$ 和 $I$，有：
+$$
+\left\{
+\begin{aligned}
+&\nabla \cdot \boldsymbol D=0\\
+&\nabla \cdot \boldsymbol B=0\\
+&\nabla \times \boldsymbol E=-\frac{\partial \boldsymbol B}{\partial t}\\
+&\nabla \times \boldsymbol H=\frac{\partial \boldsymbol D}{\partial t}
+\end{aligned}
+\right.
+$$
+方程组的解满足：
+$$
+\nabla^2 \boldsymbol E=\mu \varepsilon\frac{\partial^2 \boldsymbol E}{\partial t^2} \quad \nabla^2 \boldsymbol H=\mu \varepsilon \frac{\partial ^2 \boldsymbol H}{\partial t^2}
+$$
+## 电磁波
+
+如果研究一维的情况可得：
+$$
+{\frac{\partial^2 E_y}{\partial x^2} = \mu \varepsilon \frac{\partial ^2 E_y}{\partial t^2}} \quad {\frac{\partial^2 H_z}{\partial x^2} = \mu \varepsilon \frac{\partial ^2 H_z}{\partial t^2}}
+$$
+根据波速：
+$$
+u=\frac{1}{\sqrt{\mu_0 \varepsilon_0}}=c
+$$
+可知电磁波的波速和光速相等。其中一组解为：
+$$
+E_y=E_0 \cos \omega \left(t-\frac{x}{u}\right)\\
+H_z=H_0 \cos \omega \left(t-\frac{x}{u}\right)
+$$
+性质：$\boldsymbol E\perp \boldsymbol H, \boldsymbol u // \boldsymbol E\times \boldsymbol H$. 一般 $\boldsymbol E\gg \boldsymbol H$.
+
+- 偏振性（$\boldsymbol E,\boldsymbol H$ 各自有振动面，不会改变振动面）
+- 传播方向满足右手定则，沿着 $\boldsymbol E\times \boldsymbol H$ 方向。
+- 相位是相同的。
+
+![image-20231126151402406](https://notes.sjtu.edu.cn/uploads/upload_93ee05a35b4376ad824c88f6399b8335.png)
+
+**电磁波能量**
+
+磁场能量密度：$\displaystyle w_m=\frac{1}{2}\boldsymbol B\cdot \boldsymbol H=\frac{1}{2} \mu H^2$.
+
+电场能量密度：$\displaystyle w_e = \frac{1}{2}\boldsymbol D \cdot \boldsymbol E=\frac{1}{2}\varepsilon E^2$.
+
+结合 $\boxed{\varepsilon E^2=\mu H^2}$. 可得 **电磁场的能密度**：
+$$
+w=\underbrace{\frac{1}{2}\varepsilon E^2}_{w_e}+\underbrace{\frac{1}{2}\mu H^2}_{w_m}\quad w_e=w_m
+$$
+代入，得到 **能流密度（单位时间内流入的能量）**：
+$$
+S=wu=\varepsilon E^2 c=\sqrt{\varepsilon \mu} EH \cdot \frac{1}{\sqrt{\varepsilon \mu}}=EH
+$$
+方向：$\boldsymbol S=\boldsymbol E\times \boldsymbol H$. 另一个名字叫做玻印亭矢量。
+
+如果取平均，可以得到 **电磁波强度（平均能流密度）**：
+$$
+I=\overline{S}=\frac{1}{2} E_0 H_0
+$$

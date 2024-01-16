@@ -1,0 +1,168 @@
+# 大物期末速查
+
+##  机械波的产生和传播
+
+机械振动在连续介质内的传播形成机械波，伴有能量的传播，能产生反射、折射、干涉、衍射等现象。
+
+产生条件：1）波源；2）介质；3）相邻介质的分子之间有相互作用。
+
+机械波可以分类为横波与纵波，横波特点是质点振动方向与波的传播方向垂直，如电磁波；纵波特点是质点振动方向与波的传播方向平行，如声波。
+
+**波的参数**
+
+- 波速 $u$ 是机械波单位时间内传播的距离；
+
+- 波的周期 $T$ 是各质点完成一次全振动所需的时间；
+
+- 波的频率 $\nu$ 是周期的倒数。
+
+- 波长 $\lambda$ 是沿着波的传播方向上相位差为 $2\pi$ 的两点之间的距离。
+
+  由于经过 $T$ 时间波传播了 $\lambda$ 距离，所以 $\lambda=uT$. 同理可以推出 $u=\nu \lambda$.
+
+- 角速度 $\omega=2\pi/T=2\pi \nu$.
+
+## 平面简谐波的波动式
+
+$$
+y(x,t)=A \cos \left[\omega \left(t\mp\frac{x}{u}\right)+\varphi_0\right]\\
+y(x,t)=A\cos \left[\omega t\mp kx+\varphi_0\right]\quad k=\frac{2\pi}{\lambda}
+$$
+
+代表了 $t$ 时刻，处于 $x$ 位置的质点的 $y$ 坐标。
+
+> 如何理解波动式的形式，可以关注两点：
+>
+> - 乘以 $\omega$，可以将时间差转换为相位差；
+> - 乘以波矢 $k$，可以将距离差转换为相位差.
+>
+> 而 $\cos $ 必须接受相位差的参数。
+
+> 如何理解波的周期性，波动式可以写成 $\displaystyle t\mp\frac{x}{u}$ 的函数，则：
+>
+> - $y(x,t)=y(x,t+T)$，表示波具有时间的周期性；
+>
+> - $y(x,t)=y(x+\lambda,t)$，表明波具有空间的周期性；
+>
+> - 如果观察者以 $u=\pm \mathrm d x/\mathrm d t$ 的速度跟随波一起运动，则波的相位不变。
+>
+>   $y(x+\mathrm d x,t+\mathrm d t)=y(x,t)$.
+
+## 平面波的波动方程
+
+使用小横振动模型，考虑软绳的小横振动，假设绳子的线密度为 $\mu$，两端施加的力为 $F$，可得：
+$$
+\frac{\partial ^2 y}{\partial t^2}=\frac{F}{\mu}\frac{\partial ^2 y}{\partial x^2}
+$$
+如果将波动式代入，可以解得 $F/\mu$ 其实就是波速 $u$ 的平方，即：
+$$
+\frac{\partial ^2 y}{\partial t^2}=u^2\frac{\partial ^2 y}{\partial x^2}
+$$
+这就是平面波的波动方程。
+
+## 简谐波的能量传播
+
+继续使用小横振动模型计算，可得波的能量包括绳子上各质点振动产生的振动动能和由于绳子拉伸产生的势能，两者 **大小相同**。
+
+具体结果如下：横坐标为 $x\to x+\mathrm d x$ 的一段绳子的振动势能 $\mathrm d E_k=\mathrm d E_p$，且总势能为：
+$$
+\mathrm d E=\mathrm d E_k+\mathrm d E_p=\mu \omega^2 A^2 \sin ^2(\omega t-kx+\varphi)\mathrm d x
+$$
+如果代入 $\cos (\omega t-kx+\varphi)=y/A$，可得：
+$$
+\mathrm d E=\mu \omega^2 (A^2-y^2)\mathrm d x
+$$
+单位长度内的机械能为：
+$$
+\varepsilon =\frac{\mathrm d E}{\mathrm d x}=\mu \omega^2 (A^2-y^2)
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_57b3c326bbe5c2464ef4f2dc49c7ec07.png" alt="image-20231226164200902" style="zoom:33%;" />
+
+考虑三维系统，如果考虑波在单位体积内的机械能（**波的能量密度**），则只需把线密度 $\mu$ 换为体密度 $\rho$，即：
+$$
+\varepsilon=\frac{\mathrm d E}{S\mathrm d x}=\rho \omega^2 (A^2-y^2)
+$$
+对一个时间周期内的 $\varepsilon$ 求平均值，可得 **波的平均能量密度**：
+$$
+\overline\varepsilon=\frac{1}{2}\rho \omega^2 A^2
+$$
+单位时间内通过垂直于波传播方向的某一面积 $S$ 内的能量称为通过该面积的**能流** $P$，即：
+$$
+P=\frac{\varepsilon \mathrm d V}{\mathrm d t}=\frac{\varepsilon S\mathrm d x}{\mathrm d t}=\varepsilon Su
+$$
+如果再考虑通过单位面积内的能量，可以得到 **能流密度** $J=P/S=\varepsilon u$. 如果考虑方向，则 $\boldsymbol J=\varepsilon \boldsymbol u$.
+
+定义 **波的强度** 为波的平均能流密度，即：
+$$
+I=\overline{J}=\overline{\varepsilon}u
+$$
+对于平面简谐波，代入 $\displaystyle \overline{\varepsilon}=\frac{1}{2}\rho\omega^2 A$：
+$$
+I=\frac{1}{2} \rho \omega ^2 A^2 u
+$$
+
+## 波的叠加和干涉
+
+**波的叠加原理** 在相遇区域内，任一质点振动的位移是各列波单独存在时在该质点引起的位移的矢量和。
+
+分析空间内有多个波源的情况。几列波叠加时产生强度稳定分布现象称为波的 **干涉现象**。想要产生干涉现象，需要波源频率相同，振动方向相同，相位差恒定。 
+
+使用上述两原理分析波的相干现象：
+
+假设第一个波源距离观测点 $r_1$，第二个波源距离 $r_2$，则相位分别为：$\varphi_1-kr_1,\varphi_2-kr_2$，可得：
+$$
+y_1=A_1\cos (\omega t+\varphi_1-kr_1)\\
+y_2=A_2\cos (\omega t+\varphi_2-kr_2)\\
+y=y_1+y_2=A\cos (\omega t+\varphi)
+$$
+因此：
+$$
+A=\sqrt{A_1^2+A_2^2+2A_1A_2 \cos \Delta \Phi}
+$$
+其中 $\Delta \Phi=\varphi_1-\varphi_2-k(r_2-r_1)$.
+
+- **干涉相长** 当 $\Delta \Phi=2n\pi$，$A=A_1+A_2$。
+
+- **干涉相消** 当 $\Delta \Phi=(2n+1)\pi$，$A=|A_1-A_2|$。
+
+## 驻波
+
+当两列振幅相同，频率相同的波以相反方向传播时，叠加形成驻波。
+$$
+y_1=A\cos (\omega t-kx),y_2=A\cos (\omega t+kx)\\
+y=y_1+y_2=2A\cos kx \cos \omega t
+$$
+$2A|\cos kx|$ 描述了最大可能的振幅。
+
+- 当 $|\cos kx|=1$ 时，$kx=n\pi$，即波腹位置为 $\displaystyle \pm n\frac{\lambda}{2}$. 因为波腹没有拉伸，所以只有动能。
+- 当 $\cos kx=0$ 时，$kx=\left(n+\frac{1}{2}\right)\pi$，波节位置为 $\displaystyle \pm (2n+1)\frac{\lambda}
+  {4}$. 因为波节没有运动，所以只有势能。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4461e131e92b2324f8f18482df95e01f.png" alt="駐波" style="zoom: 50%;" />
+
+相邻波节（波腹）之间的距离为 $\lambda/2$.
+
+**半波反射和全波反射** 有半波损失的反射也称为固定端反射，反射面处为波节（波节没有位移），无半波损失的反射也称为自由端反射，反射面处为波腹。
+
+一般分析步骤：
+
+- 反射波的速度和入射波大小相等，速度方向相反，相当于在波动式 $x$ 前系数取相反数。
+- 判断是全波反射还是半波反射，如果全波反射，在反射面处相位相等，如果半波反射，在反射面处相位相差 $\pi$.
+
+## 多普勒效应
+
+假设 $s$ 代表波源，$r$ 代表观测者，$u$ 是声速，则：
+$$
+\nu_r=\frac{u\pm v_r}{u\mp v_s}\nu_s
+$$
+判断正负的方法，最好用画图的方法，看看是让频率升高还是降低，如图：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_132baa8fa32ef2bd4709f5d45c39c4b1.png" alt="14.1 多普勒追踪- 物联网前沿实践- 清华大学- 王继良" style="zoom:10%;" />
+
+如果存在反射面，先将反射面看成接收器，计算其接收到的声波的频率，然后再将反射面看成发射器。
+
+当 $\nu_1,\nu_2$ 很接近，观测者听到了 $\nu_{1},\nu
+_{2}$ 声音的叠加时，拍频为:
+$$
+\Delta \nu = |\nu_2-\nu_1|
+$$
