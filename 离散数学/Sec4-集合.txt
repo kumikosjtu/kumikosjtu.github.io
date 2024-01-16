@@ -119,7 +119,7 @@ $n$ 元有序对可以递归定义：
 
 > Q：能不能这样定义：$\{\{x_1\},\{x_1,x_2\},\{x_1,x_2,x_3\}\}$?
 >
-> 不能分清 $\langle a,b,a \rangle,\langle a,a,b \rangle$
+> 不能分清 $\langle a,b,a \rangle,\langle a,b,b \rangle$
 
 笛卡尔积可以定义为：
 $$
