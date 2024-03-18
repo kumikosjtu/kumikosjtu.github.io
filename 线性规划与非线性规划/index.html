@@ -597,44 +597,45 @@
     if max_score &lt;= 0:
         return False
     print("in", in_i, in_j)</p>
-<pre><code>bfs[in_i][in_j] = 1
-A = np.zeros((n + m, n + m))
-id = np.zeros((n, m))
-cnt = 0
-p = []
-for i in range(n):
-    for j in range(m):
-        if bfs[i][j] == 1:
-            id[i][j] = cnt
-            if i == in_i and j == in_j:
-                k0 = cnt
-            p.append((i, j))
-            cnt = cnt + 1
-for i in range(n):
-    for j in range(m):
-        if (bfs[i][j]):
-            A[i][(int)(id[i][j])] = 1
-for j in range(m):
-    for i in range(n):
-        if (bfs[i][j]):
-            A[j + n][(int)(id[i][j])] = 1
-V = scipy.linalg.null_space(A)
-V = V / V[k0]
-V = -V
-minn = 1e9
-out_i, out_j = -1, -1
-for k in range(cnt):
-    i, j = p[k]
-    if not (i == in_i and j == in_j) and V[k] &gt; 0 and T[i][j] / V[k] &lt; minn:
-        minn = T[i][j] / V[k]
-        out_i, out_j = i,j
-print("out", out_i, out_j)
-for k in range(cnt):
-    i, j = p[k]
-    T[i][j] -= minn * V[k]
-bfs[out_i][out_j] = 0
-return True
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">bfs</span><span class="o">[</span><span class="n">in_i</span><span class="o">][</span><span class="n">in_j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">))</span>
+<span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">))</span>
+<span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">bfs</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span>
+<span class="w">            </span><span class="n">id</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cnt</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in_i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">in_j</span><span class="p">:</span>
+<span class="w">                </span><span class="n">k0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cnt</span>
+<span class="w">            </span><span class="n">p</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">))</span>
+<span class="w">            </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bfs</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="err">:</span>
+<span class="w">            </span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">(int)(id[i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bfs</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="err">:</span>
+<span class="w">            </span><span class="n">A</span><span class="o">[</span><span class="n">j + n</span><span class="o">][</span><span class="n">(int)(id[i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scipy</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">null_space</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">V</span><span class="o">[</span><span class="n">k0</span><span class="o">]</span>
+<span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">V</span>
+<span class="n">minn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span>
+<span class="n">out_i</span><span class="p">,</span><span class="w"> </span><span class="n">out_j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">[</span><span class="n">k</span><span class="o">]</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in_i</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">in_j</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">V</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">T</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">V</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">minn</span><span class="p">:</span>
+<span class="w">        </span><span class="n">minn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">V</span><span class="o">[</span><span class="n">k</span><span class="o">]</span>
+<span class="w">        </span><span class="n">out_i</span><span class="p">,</span><span class="w"> </span><span class="n">out_j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">j</span>
+<span class="k">print</span><span class="p">(</span><span class="ss">&quot;out&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">out_i</span><span class="p">,</span><span class="w"> </span><span class="n">out_j</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">[</span><span class="n">k</span><span class="o">]</span>
+<span class="w">    </span><span class="n">T</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">minn</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">V</span><span class="o">[</span><span class="n">k</span><span class="o">]</span>
+<span class="n">bfs</span><span class="o">[</span><span class="n">out_i</span><span class="o">][</span><span class="n">out_j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">return</span><span class="w"> </span><span class="k">True</span>
+</code></pre></div>
+
 <p>```</p>
 <ul>
 <li>其实问题也可以用最小费用最大流解决，扩展阅读：https://oi-wiki.org/graph/flow/min-cost/</li>
