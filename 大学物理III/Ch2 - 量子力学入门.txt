@@ -1,0 +1,815 @@
+## 电磁波与光子
+
+**光的不相符实验**
+
+![image-20240422101430057](https://notes.sjtu.edu.cn/uploads/upload_831f23a6e0b1e4b76d6e513bef2f04ed.png)
+
+$PM_t$ 和 $PM_r$ 中间每次只有其中一个，而不是同时两个，探测到光子到达。（光的粒子性）
+
+**单光子的杨氏干涉实验**
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3321a653bee680983dbf27ea480aa187.png" alt="image-20240422101537542" style="zoom:50%;" />
+
+表现了几个光子之间存在某种“相互作用”。（光的波动性）
+
+**单光子的广角度干涉实验**
+
+![image-20240422101634493](https://notes.sjtu.edu.cn/uploads/upload_e3120c56c46b114fab087b45e772aea7.png)
+
+![image-20240422101659099](https://notes.sjtu.edu.cn/uploads/upload_6dfa5bab1493b501a255bb80964b51fb.png)
+
+**光的波粒二象性 光子的波函数**
+
+- 光的波动性：光在光源和探测器之间以概率波的形式传播，概率波具有叠加性，$p\propto |\vec E|^2$.
+- 光的粒子性：光以光子的形式产生，光是由光子组成的能量流，光作为光子在探测器中被吸收。可以测量光子的能量，动量，角动量。
+
+**波函数,  概率幅与概率**
+
+- 用概率波来描述光子的状态, 波函数是概率波的数学表达, 其物理意义是 <u>概率幅</u>. 以位置为变量的波函数就是位置概率幅.
+- 波函数 $E(x,t)$ 是 <u>复变函数</u>, 检测到光子的概率正比于 <u>波函数模的平方</u>.
+
+- 相应于平面简谐波的光子的波函数：
+  $$
+  E(x,t)=e^{i(kx-\omega t)}
+  $$
+
+**波函数的乘积与叠加**
+
+波函数的乘积: 如果一个事件的发生过程可以看成是 **分几步发生**, 比如光的不相符实验中光子先从光源到达分光器,  再从分光器到达光电倍增管,  则波函数应该是每一步对应的波函数的乘积.
+
+波函数的叠加性: 如果一个事件的发生是可以 **通过多种途径发生**, 比如双缝实验中测量光子出现在某个位置,  则波函数应该是所有可能途径的波函数的叠加：
+
+## 实物粒子与物质波
+
+**德布罗意的物质波假说**
+
+爱因斯坦提出的光子的能量和频率之间的关系式对电子那样的物质粒子依然成立，称为德布罗意关系：
+$$
+E=h\nu,p=\frac{h}{\lambda}
+$$
+**德布罗意关系的合理性**
+
+- 符合洛伦兹变换的对称性；
+
+- 电子的群速的和电子的运动速度是一致的；
+
+- 满足驻波条件。
+
+- 满足原子内电子轨道的量子化条件：
+  $$
+  2\pi r=n\lambda,\quad n=1,2,\cdots\\
+  \Rightarrow L=mvr=pr=\frac{h}{\lambda} \frac{1}{2\pi} n\lambda=n\hbar
+  $$
+
+**物质波假说的实验验证**
+
+- 戴维孙-革末实验
+
+  ![image-20240422103434010](https://notes.sjtu.edu.cn/uploads/upload_b5604de54f63eb3075c2ea7b6f3b711e.png)
+
+- 电子衍射-布拉格公式
+
+  ![image-20240422103454269](https://notes.sjtu.edu.cn/uploads/upload_0a69ac2bb2dc20e385a50c0b7960b3b7.png)
+
+**实物粒子的波粒两象性**
+
+![image-20240422103850638](https://notes.sjtu.edu.cn/uploads/upload_ece33f5b890a48e845d75edd2d852716.png)
+
+> 电子的双缝实验
+
+- 实物粒子的粒子性方面和波动性方面是不可分割的, 它同时表现为波和粒子流，波可以用来计算粒子出现的概率.
+- 对实物粒子行为的预言只能是概率性的.
+- 波函数为 $\psi(\vec r,t)$.
+
+类比具有确定频率的光子, 具有确定动量与能量的自由粒子的波函数为平面波
+$$
+\psi(x,t)=Ae^{i(kx-\omega t)}
+$$
+德布罗意关系：
+$$
+k=\frac{2\pi}{\lambda}\Rightarrow p=\frac{h}{\lambda}=\hbar k\\
+E=h\nu=\hbar \omega
+$$
+具有确定动量 $p$ 与能量 $E$ 的自由粒子的波函数：
+$$
+\psi(x,t)=Ae^{\frac{i}{\hbar}(px-Et)}
+$$
+
+## 波函数
+
+**波函数的广义定义**
+
+- 量子力学的基本假设: 波函数描述了在时刻 $t$ 时量子体系的状态. 只要波函数确定了, 则量子体系的状态就唯一确定了. 
+- 波函数是对与量子体系, 如光子, 实物粒子, 相联系的波动性的定量描述. 波函数满足叠加性. 
+- 与量子体系相联系的波是概率波, 波函数是概率幅. 
+
+**玻恩的统计诠释**
+
+粒子的状态由 $\psi(x)$ 描述. 粒子出现在位置 𝑥 处的位置 <u>概率振幅</u> 就是波函数 $\psi(x)$.
+
+- 测量到粒子出现在 $[x,x+\mathrm d x]$ 区间的概率
+  $$
+  \mathrm d P=|\psi(x)|^2\mathrm d x
+  $$
+
+- 位置概率密度：
+  $$
+  \rho(x)=|\psi(x)|^{2}=\psi^{*}(x)\psi(x)
+  $$
+
+- 粒子出现在有限间隔 $[a,b]$ 的概率：
+  $$
+  P_{ab}=\int_a^b \rho(x)\mathrm d x
+  $$
+
+**波函数满足的条件**
+
+- **有限性**: 任意区间 $[a,b]$ 内 <u>平方可积</u>
+  $$
+  \int_{a}^{b}|\psi(x)|^{2}dx<\infty 
+  $$
+
+- **连续性**: 波函数及其导数在空间各处连续
+
+- **单值性**：只有一个函数值和变量对应。
+
+- **归一化条件**: 在整个区间上粒子出现的概率为 1
+  $$
+  \int_{-\infty}^{\infty}\lvert\psi(x)\rvert^{2}dx=1
+  $$
+
+平面波的归一化：
+$$
+\begin{gathered}
+\phi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}e^{\frac{i}{\hbar}(px-Et)} \\
+\phi(x,t)=\frac{1}{\sqrt{L}}e^{\frac{i}{\hbar}(px-Et)} \\
+\phi(\vec{r},t)=\frac{1}{\sqrt{L^{3}}}e^{\frac{i}{\hbar}(\vec{p}\cdot\vec{r}-Et)} 
+\end{gathered}
+$$
+
+## 薛定谔方程 概率流密度
+
+观察平面波
+$$
+\psi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}e^{\frac{i}{\hbar}(px-Et)}
+$$
+满足条件（含时的薛定谔方程）：
+$$
+\boxed{-\frac{\hbar^2}{2m}\frac{\partial ^2 \psi}{\partial x^2}=i\hbar \frac{\partial \psi}{\partial t}}
+$$
+如果粒子处于势场 $𝑉(𝑥, 𝑡)$，则：
+$$
+E=\frac{p^2}{2m}+V(x,t)
+$$
+
+- 一维情况：
+  $$
+  \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x,t)\right]\psi(x,t)=i\hbar\frac\partial{\partial t}\psi(x,t)
+  $$
+
+- 三维情况：
+  $$
+  \left[-\frac{\hbar^2}{2m}\nabla^2+V(\vec{r},t)\right]\boldsymbol{\psi}(\vec{r},t)=\boldsymbol{i}\hbar\frac\partial{\partial t}\boldsymbol{\psi}(\vec{r},t)
+  $$
+
+> 其中 $\nabla^2$ 是拉普拉斯算子：
+> $$
+> \nabla^2=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}
+> $$
+
+- 薛定谔方程是量子力学的基本假设, 无从推导. 它的正确性只能由实验验证. 
+- 所有波函数随时间的演化必须满足含时的薛定谔方程.
+- 薛定谔方程是对时间的一阶偏微分方程, 即知道初态的状态波函数, 可以计算以后任意时刻的状态波函数. 
+- 薛定谔方程是线性的偏微分方程, 如果 $\psi_1,\psi_2,\cdots$ 满足薛定谔方程, 则它们的叠加态 $\Psi=c_1\psi_1+c_2\psi_2+\cdots$ 也满足薛定谔方程, $c_i$ 是常复数. 这与态叠加原理一致. 
+
+**定态薛定谔方程**
+
+若微观粒子处在稳定的势场中，则势能函数 $V(\vec{r})$ 与时间无关，称这类问题为定态问题。此时，薛定谔方程可以通过分离变量法求解。设 $\Psi(\vec r, t)=\psi(\vec r) T(t)$：
+$$
+\left[-\frac{\hbar^{2}}{2m}\nabla^{2}+V(\vec{r})\right]\psi(\vec{r})T(t)=i\hbar\frac{dT(t)}{dt}\psi(\vec{r})
+$$
+上式两端同除以 $\psi(\vec{r})T(t)$.
+$$
+\frac{[-\frac{\hbar^2}{2m}\nabla^2+V(\vec{r})]\psi(\vec{r})}{\psi(\vec{r})}=i\hbar\frac{dT(t)}{dt}\frac{1}{T(t)}=E
+$$
+可得：
+$$
+\boxed{i\hbar\frac{dT(t)}{dt}=ET(t)}
+$$
+其中解得时间振动因子：
+$$
+T(t) \propto e^{-\frac{i}{\hbar} Et}
+$$
+——只和时间、能量有关。
+
+定态薛定谔方程：
+
+- 一维情况：
+  $$
+  \left[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)\right]\psi(x)=E\psi(x)
+  $$
+
+- 三维情况：
+  $$
+  \left[-\frac{\hbar^2}{2m}\nabla^2+V(\vec{r})\right]\psi(\vec{r})=E\psi(\vec{r})
+  $$
+
+定态含时波函数 $\Psi(\vec r,t)$ 满足：
+$$
+\Psi(\vec{r},t)=\psi(\vec{r})e^{-\frac{i}{\hbar}Et}
+$$
+
+- 定态下的位置密度函数不随时间变化
+  $$
+  |\Psi(\vec{r},t)|^{2}=\left|\psi(\vec{r})e^{-\frac{i}{\hbar}Et}\right|^{2}=|\psi(\vec{r})|^{2}
+  $$
+
+- 定态下测量位置, 动量, 角动量等可观测量的概率分布, 包括期待值与标准差都不随时间变化. 
+
+含时薛定谔方程的一般解是定态波函数的叠加：
+$$
+\boxed{\Psi(x,t)=\sum_E C_E\Psi_E(\vec r,t)=\sum_E C_E \psi_E(\vec r)e^{-\frac{i}{\hbar} Et}}
+$$
+
+> 其中按照 $E$ 的不同分类讨论，$C_E$ 为叠加系数，为常复数。
+
+**概率流密度 概率守恒**
+
+若粒子不能自发产生或湮灭, 则粒子的总数目不会随时间变化, 即在全空间找到单个粒子的概率与时间无关。根据这个条件和薛定谔方程，可得
+$$
+\boxed{\frac{\partial\rho}{\partial t}=\frac{i\hbar}{2m}\nabla\cdot(\psi^{*}\nabla\psi-\psi\nabla\psi^{*})}
+$$
+
+> 其中：
+>
+> - $\rho$ 是粒子在特定位置出现的概率，对 $t$ 求导描述了这个概率的变化。
+>
+> - $\nabla \cdot$ 代表向量的散度。
+
+**概率流密度**
+
+定义概率流密度 $\vec{\jmath}$.
+$$
+\vec{\jmath}=-\frac{i \hbar}{2m}(\psi^{\ast}\nabla\psi-\psi\nabla\psi^{\ast})\\
+\nabla \cdot \vec{\jmath} = -\frac{\partial \rho}{\partial t}\\
+\frac{\partial \rho}{\partial t}+\nabla \cdot \vec{\jmath} =0
+$$
+
+> 与电荷守恒的微分形式类比, 上式为概率守恒 (粒子数守恒) 的微分形式. $\vec{\jmath}$ 描述粒子在单位时间内通过单位面积的概率。
+
+**概率守恒 (粒子数守恒)**
+
+在空间中任意选取一个闭合曲面 $S$，曲面内的粒子数目的减少的速率等于由内向外通过曲面的速率．
+$$
+\iiint_{\Omega}\frac{\partial\rho}{\partial t}dV=-\iiint_{\Omega}(\nabla\cdot\vec{\jmath})dV=-\oint_{S}\vec{\jmath}\cdot dS
+$$
+
+## 位置与动量的期待值
+
+符号标记：$\langle r \rangle$ 代表变量 $r$ 的期望。
+
+- 方差 $\sigma_{r}^{2}=\langle(r-\langle r\rangle)^{2}\rangle $.
+- 标准差 $$\sigma_r=\sqrt{\sigma_r^2}=\sqrt{\langle r^2\rangle-\langle r\rangle^2}$$.
+
+**位置的期待值与不确定度**
+$$
+\langle x \rangle=\int_{-\infin}^{\infin} x|\psi(x)|^2\mathrm d x\\
+\langle f(x)\rangle = \int_{-\infin}^{\infin} f(x) |\psi(x)|^2 \mathrm d x
+$$
+位置的标准差在量子力学中称为位置的不确定度 $\sigma_x$（或 $\Delta x$）
+$$
+\sigma_x = \sqrt{\langle x^2\rangle-\langle x\rangle^2}
+$$
+**动量的期待值与不确定度**
+
+根据 Ehrenfest 定理：量子力学在适当的极限情况下应与经典物理相符, 所以应该有
+$$
+\langle p\rangle = m \frac{\mathrm d \langle x \rangle}{\mathrm d t}
+$$
+可得：
+$$
+\langle p\rangle=\int_{-\infin}^{\infin} \psi^* \left(-i \hbar \frac{\partial}{\partial x}\right) \psi \mathrm d x
+$$
+
+- 动量函数 $f(p)$ 的期待值
+  $$
+  \langle f(p)\rangle=\int_{-\infty}^{\infty}\psi^{*}f\left(-i\hbar\frac{\partial}{\partial x}\right)\psi dx
+  $$
+
+- 动量平方的期待值
+  $$
+  \langle p^{2}\rangle=\int_{-\infty}^{\infty}\psi^{*}(x,t)\left(-\hbar^{2}\frac{\partial^{2}}{\partial x^{2}}\right)\psi(x,t)dx
+  $$
+
+- 动量的不确定度 (标准差)
+  $$
+  \sigma_{p}=\sqrt{\langle p^{2}\rangle-\langle p\rangle^{2}}
+  $$
+
+- 定态: $$\langle x\rangle,\sigma_{x},\langle p\rangle,\sigma_{p}$$ 都不随时间变化。
+
+**位置算符与动量算符**
+
+不能用位置，动量描述一维粒子的运动状态，只能用统计结果描述运动状态，如位置、动量、能量、角动量等的统计结果。
+
+量子力学的基本假设: 可观测量可用相应的算符表示. 可观测量 $A$ 对应的算符是 $\hat A$.
+
+当体系处于波函数 $\psi(x)$ 描述的状态时，测量 $A$ 的期待值 $\langle A\rangle$:
+$$
+\langle A\rangle=\int_{-\infty}^{\infty}\psi^{*}\hat{A}\psi dx
+$$
+**位置算符 $\boldsymbol{\hat x}$**：
+$$
+\hat x \psi (x) =x\psi(x)
+$$
+**动量算符 $\boldsymbol{\hat p}$**：
+$$
+\hat{p}\psi(x)=-i\hbar\frac{\partial\psi(x)}{\partial x}
+$$
+算符 $\hat A$ 的函数 $f(\hat A)$ 称为 **算符函数**：
+$$
+f(\hat A)=f(0)+\frac{f^{\prime}}{1!}\hat{A}+\frac{f^{\prime\prime}}{2!}\hat{A}^{2}+\cdots+\frac{f^{(n)}}{n!}\hat{A}^{n}
+$$
+如果 $f(x)$ 是多项式函数，情况简单一些，例如：
+
+- $\hat{x}^{2}\psi(x)=x^{2}\psi(x)$；
+- $\displaystyle  \hat{p}^{2}\psi(x)=-\hbar^{2}\frac{\partial ^{2}}{\partial x^{2}}\psi(x)$.
+
+经典物理中动能 $E_k = \frac{p^2}{2m}$，**动能算符 $\boldsymbol{\hat K}$**，
+$$
+\hat K=\frac{\hat p^2}{2m}
+$$
+
+$$
+\hat K \psi(x)=-\frac{\hbar ^2}{2m} \frac{\partial ^2}{\partial x^2} \psi(x)
+$$
+
+经典物理中势能函数 $V(x)$，**势能算符 $\boldsymbol{\hat V}$**，
+$$
+\hat V\psi(x)=V(x)\psi(x)
+$$
+
+**哈密顿算符 $\boldsymbol{\hat H}$**
+$$
+\hat H=\hat K+\hat V
+$$
+**能量算符 $\boldsymbol{E}$**
+$$
+E=i\hbar \frac{\partial}{\partial t}
+$$
+薛定谔方程可以表示为：
+$$
+\boxed{\hat H \psi(x)=E\psi(x)}
+$$
+定态薛定谔方程是哈密顿算符的本征方程，$\psi(x)$ 是哈密顿算符 $\hat H$ 的本征函数，$E$ 是哈密顿算符 $\hat H$ 的本征值。
+
+可以解释能量的量子化的条件: 哈密顿算符 $\hat H$ 的本征值只允许取某些分立的值。
+
+可得，能量的期待值：
+$$
+\langle E\rangle=\int_{-\infin}^{\infin} \psi^* \hat H \psi \mathrm d x
+$$
+能量的不确定度：
+$$
+\sigma_E=\sqrt{\langle E^2\rangle-\langle E\rangle^2}\\
+\langle E^2\rangle=\int_{-\infin}^{\infin}\psi^* \hat H^2 \psi\mathrm d x
+$$
+若 $t=0$ 时体系波函数处于能量的本征态 $\psi_n(\vec r)$，对应能量本征值为 $E_n$，则体系波函数在以后任意时刻为：
+$$
+\Psi(\vec r,t)=\psi_n(\vec r)e^{-\frac{i}{\hbar}E_n t}
+$$
+若波函数为此形式，则测量能量的结果唯一确定（$\sigma_E=0$），其值为 $E_n$.
+
+## 一维定态问题
+
+### 无限深势阱
+
+$$
+\left.V(x)=\left\{\begin{matrix}0&x\in[0,L]\\+\infty&\text{其他}\end{matrix}\right.\right.
+$$
+
+> 求解波函数的一般步骤：
+>
+> 1. 列定态薛定谔方程；
+> 2. 将方程化为微分方程形式，求解微分方程；
+> 3. 通过波函数的性质（连续性、归一化条件）确定微分方程中的参数。
+
+- <u>在势阱外</u>，定态薛定谔方程为
+  $$
+  \left(-\frac{\hbar^2d^2}{2mdx^2}+\infty\right)\psi(x)=E\psi(x)
+  $$
+  使得薛定谔方程成立
+  $$
+  \psi_e(x)=0
+  $$
+  没有粒子存在。
+
+- <u>在势阱内</u>，定态薛定谔方程
+  $$
+  -\frac{\hbar^{2}d^{2}}{2mdx^{2}}\psi(x)=E\psi(x)
+  $$
+  引入 ${\color{red}\displaystyle k^2= \frac{2mE}{\hbar^2}}$，可得：
+  $$
+  \frac{\mathrm d ^2\psi}{\mathrm d x^2}+k^2\psi = 0
+  $$
+  方程的一般解写为
+  $$
+  \psi(x)=A\sin (kx+\delta)
+  $$
+  为了确定待定常数 $A,\delta$，确定参数 $k$，需要利用波函数的连续性条件：
+  $$
+  \psi(0)=\psi_e(0)=0\\
+  \psi(L)=\psi_e(L)=0
+  $$
+
+  $$
+  \begin{aligned}&\Rightarrow A\sin \delta=0\Rightarrow\delta=0\\&\Rightarrow A \sin kL=0\Rightarrow {\color{red}kL=n\pi}\end{aligned}
+  $$
+
+  $$
+  \psi=A\sin \frac{n\pi}{L} x
+  $$
+
+  归一化：
+  $$
+  \int_{-\infin}^{+\infin} |\psi(x)|^2 \mathrm d x=1 \Rightarrow A= \sqrt{\frac{2}{L}}
+  $$
+
+
+$$
+\boxed{\begin{aligned}\psi(x)=\begin{cases}\sqrt{\frac{2}{L}}\sin\frac{n\pi x}{L}&x\in[0,L]\\0&\text{其他}\end{cases}\end{aligned}}
+$$
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_75304bd88c38e263184b9287bb71dfef.png" alt="image-20240407173134280" style="zoom:50%;" />
+
+**无限深势阱的能量**
+
+通过标红的两式，可得能量本征值为：
+$$
+E_n=\frac{k^2\hbar^2}{2m}=\boxed{\frac{n^2\pi^2\hbar^2}{2mL^2}}
+$$
+能量取分立值(能级), 即能量量子化，$n=1,2,\cdots$，称为 **量子数**。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_db723d58331b57465131bc8356ff7b85.png" alt="image-20240412195702541" style="zoom:33%;" />
+
+基态能量：最低能量，当 $n=1$ 时，
+$$
+\boxed{E_1=\frac{\pi^2 \hbar^2}{2mL^2}}
+$$
+激发态能量 $E_n=n^2 E_1$.
+
+> $E_1>0$，又称为零点能，说明粒子不是经典的粒子，不可能静止。
+
+**一维束缚态的一般性质**
+
+- 能量值分立， 可由量子数表征。
+- 粒子具有最低能级 $E_{基态}$, 即零点能，与经典粒子不同。且 <u>空间约束越大，$L$ 越小，基态能量越高</u>. 
+- 能量越高， 对应的定态波函数在空间上振荡越快
+- 除去两个端点， 基态波函数无节点， 第一激发态有一个节点 ⋯
+- 若势场为偶函数, 则定态波函数具有确定的奇偶性. 从基态开始: 偶-奇-偶-⋯
+
+### 有限深势阱
+
+有限深势阱的势能：
+$$
+V(x)=\left\{\begin{matrix}V_0&\quad|x|>a\\0&\quad|x|<a\end{matrix}\right.
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_9b6d424dfd386bdcc68d639fc8c01e6b.png" alt="image-20240412200702631" style="zoom:33%;" />
+
+代入定态薛定谔方程：
+$$
+-\frac{\hbar^2}{2m} \frac{\mathrm d ^2 \psi}{\mathrm d x^2}+V(x)\psi=E\psi
+$$
+所以：
+$$
+\begin{cases}
+\frac{d^2\psi}{dx^2}+\frac{2mE}{\hbar^2}\psi=0, &|x|<a\\
+\frac{d^{2}\psi}{dx^{2}}+\frac{2m}{\hbar^{2}}(E-V_{0})\psi=0,&|x|>a
+\end{cases}
+$$
+
+设 $\displaystyle k^2=\frac{2mE}{\hbar^2},k'^2=\frac{2m(V_0-E)}{\hbar^2}$.
+
+则：
+$$
+\frac{d^{2}\psi}{dx^{2}}+k^{2}\psi=0\quad|x|<a\\\frac{d^{2}\psi}{dx^{2}}-k^{\prime2}\psi=0\quad|x|>a
+$$
+解为：
+$$
+\psi=A\sin(kx+\delta)\quad\mid x\mid<a\\\psi=Be^{-k^{\prime}x}+Ce^{k^{\prime}x}\quad\mid x\mid>a
+$$
+$A,B,C,\delta$ 为待定常数。
+
+因为波函数平方可积，在 $|x|\to \infin$ 时不发散，$|x|>a$ 的解可以分成：
+$$
+\psi=Be^{-k^{\prime}x}\quad x>a\\\psi=Ce^{k^{\prime}x}\quad x<-a
+$$
+
+--------
+
+因为 $\psi(x)$ 连续，可得：
+
+- $x=a$ 处：
+  $$
+  \begin{aligned}&A\sin(ka+\delta)=Be^{-k'a}\\&kA\cos(ka+\delta)=-k'Be^{-k'a}\end{aligned}
+  $$
+  即 $\boxed{k\cot(ka+\delta)=-k'}$.
+
+- $x=-a$ 处：
+  $$
+  \begin{aligned}&A\sin(-ka+\delta)=Ce^{-k'a}\\&kA\cos(-ka+\delta)=k'Ce^{-k'a}\end{aligned}
+  $$
+  即 $\boxed{k\cot (-ka+\delta)=k'}$.
+
+$k,k',a$ 都是给定的，所以可以把 $\delta$ 求出。
+
+由上两式有 $\cot (ka+\delta)=-\cot (-ka+\delta)$，$\delta$ 有两组解
+$$
+\delta=\begin{cases}
+n\pi\\
+\left(n+\frac{1}{2}\right)\pi
+\end{cases}\quad , n=0,\pm1,\pm2,\cdots
+$$
+之后都是周期性的，所以取 $n=0$ 即可，$\delta=0$ 或 $\pi/2$.
+
+----
+
+取 $\delta=0$ 时，
+$$
+\psi=\begin{cases}A\sin kx&\quad\mid x\mid<a\\Be^{-k'x}&\quad x>a\\Ce^{k'x}&\quad x<-a\end{cases}
+$$
+
+- $x=a$ 连续，有 $A\sin (ka)=Be^{-k'a}$.
+- $x=-a$ 连续，有 $A\sin (-ka)=Ce^{-k'a}$.
+
+可以推出 $B=-C$，因此
+$$
+\boxed{\psi_{A}=\begin{cases}A\sin kx&\quad|x|<a\\Be^{-k\cdot x}&\quad x>a\\-Be^{k\cdot x}&\quad x<-a\end{cases}}
+$$
+**奇宇称反对称波函数**，关于原点反对称。
+
+-----
+
+取 $\delta=\frac{\pi}{2}$ 时，
+$$
+\psi_{S}=\begin{cases}A\cos kx&\quad|x|<a\\Be^{-k^{\prime}x}&\quad x>a\\Be^{k^{\prime}x}&\quad x<-a\end{cases}
+$$
+**偶宇称对称波函数**，关于原点对称。
+
+> 波函数中常数 $A,B$ 可由连接条件以及波函数归一化条件定出
+
+![image-20240422213336863](https://notes.sjtu.edu.cn/uploads/upload_267e7e3b598ee6c85a33fec2d58cc1e8.png)
+
+![image-20240422213343637](https://notes.sjtu.edu.cn/uploads/upload_977f0a2f9f52da79cfbac5a8a01dfc34.png)
+
+![image-20240422213356494](https://notes.sjtu.edu.cn/uploads/upload_d84cee0b9dc0206c8e5a4d671274e64b.png)
+
+### 谐振子
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_330211f665fe87930c052c5113a63038.png" alt="image-20240419160304257" style="zoom:50%;" />
+
+在平衡点附近做泰勒展开：
+$$
+V(x)=\frac{1}{2}m\omega^2 x^2
+$$
+哈密顿算符：
+$$
+\hat H=\frac{\hat p^2}{2m}+\frac{1}{2}m\omega^2 x^2
+$$
+定态薛定谔方程：
+$$
+\hat H \psi(x)=\left(-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+\frac{1}{2}m\omega^2x^2\right)\psi(x)=E\psi(x)
+$$
+引入无量纲量 
+$$
+\xi=\alpha x,\quad\alpha=\sqrt{\frac{m\omega}{\hbar}},\lambda=\frac{E}{\frac{1}{2}\hbar \omega}
+$$
+则：
+$$
+\frac{\mathrm d ^2\psi}{\mathrm d \xi^2}+(\lambda-\xi^2)\psi=0
+$$
+当 $\xi \to \pm \infin$（相当于 $x\to \pm \infin$ 时）
+$$
+\frac{d^{2}\psi}{d\xi^{2}}-\xi^{2}\psi=0
+$$
+渐进解：
+$$
+\psi\sim e^{\pm \frac{1}{2}\xi^2}
+$$
+满足物理边界条件（平方可积）的解：
+$$
+\psi\sim e^{-\frac{1}{2}\xi ^2}
+$$
+设 $\psi=e^{-\frac{1}{2}\xi^2} u(\xi)$. 代入定态薛定谔方程有：
+$$
+\frac{d^2u}{d\xi^2}-2\xi\frac{du}{d\xi}+(\lambda-1)u=0
+$$
+设（待定系数法）：
+$$
+\begin{aligned}
+&u(\xi)=\sum_{k=0}^{\infty}c_{k}\xi^{k} \\
+\end{aligned}
+$$
+可得：
+$$
+\boxed{c_{j+2}=\frac{2j-(\lambda-1)}{(j+2)(j+1)}c_{j},}\quad j=0,1,2,\cdots
+$$
+即系数递推关系式.
+
+所有偶次幂系数都可以 ${c_0}$ 表示；所有奇次幂系数都可以$c_{1}$表示，其中 $c_1,c_0$ 任意。
+
+因此，方程有二个线性无关的解
+$$
+u_1(\xi)=c_0+c_2\xi^2+c_4\xi^4+\cdots 
+$$
+
+$$
+u_2(\xi)=c_1\xi+c_3\xi^3+c_5\xi^5+\cdots 
+$$
+
+这两个解在 $\xi$ 取有限值时都收敛，考察当 $|\xi| \to \infin$ 时是否收敛？
+
+如果级数无限，
+
+- $j$ 为偶数时，$u_1(\xi) \to e^{\xi^2}$；
+- $j$ 为奇数时，$u_2(\xi)\to \xi e^{\xi^2}$.
+
+但是 $\psi=e^{-\frac{1}{2}\xi^2} u(\xi)$，$\xi \to \infin$ 时 $\psi$ 发散。
+
+所以若 $\xi$ 满足束缚态条件，则级数必须截断为多项式。根据
+$$
+\boxed{c_{j+2}=\frac{2j-(\lambda-1)}{(j+2)(j+1)}c_{j},}\quad j=0,1,2,\cdots
+$$
+当 $\lambda=2n(n=0,1,2,\cdots)$ 时，系数 $c_{n+2},c_{n+4},c_{n+6},\cdots$ 都为零。（分类 $n$ 奇偶性）
+
+- $n$ 为偶数时，$u_1(\xi)$ 截断为多项式；
+- $n$ 为奇数时，$u_2(\xi)$ 截断为多项式。
+
+而能量 $\displaystyle E=\frac{1}{2}\lambda \hbar \omega=\left(n+\frac{1}{2}\right)\hbar \omega$. 可得：
+$$
+\boxed{\lambda=\frac{E}{\frac{1}{2}\hbar \omega}}
+$$
+即 **一维谐振子能量是量子化的，并且等间隔**。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_aa13b36163048406d79934a774d9391b.png" alt="image-20240419162723289" style="zoom:50%;" />
+
+对应能量本征函数：
+$$
+\psi_n(x)=N_nH_n(\xi) e^{-\frac{1}{2}\xi^2}
+$$
+归一化后：
+$$
+\boxed{\psi_n(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{\frac14}{\color{red}\frac1{\sqrt{2^nn!}}H_n(\xi)}e^{-\frac12\xi^2}}
+$$
+
+> $H_n(\xi)$ 为厄米 (Hermite) 多项式。
+
+其生成函数为：
+$$
+e^{-z^{2}+2z\xi}=\sum_{n=0}^{\infty}\frac{z^{n}}{n!}H_{n}(\xi)\text{即}H_{n}(\xi)=\left[\frac{d^{n}}{dz^{n}}(e^{-z^{2}+2z\xi})\right]_{z=0}
+$$
+例：
+$$
+\begin{aligned}&H_{0}(\xi)=1,\quad H_{1}(\xi)=2\xi\\&H_{2}(\xi)=4\xi^{2}-2,\quad H_{3}(\xi)=8\xi^{3}-12\xi\end{aligned}
+$$
+满足的性质：
+
+- 正交归一化 $\int_{-\infty}^{\infty}H_{n}(\xi)H_{m}(\xi)e^{-\xi^{2}}d\xi=\sqrt{\pi}2^{n}n!\delta_{mn}$.
+- 能量本征函数满足 $\int_{-\infty}^{\infty}\psi_{n}^{*}(\xi)\psi_{m}(\xi)dx=\delta_{mn}$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7675b3a0d50230204557be8fe3380242.png" alt="image-20240419163450253" style="zoom:50%;" />
+
+### 一维方势垒
+
+设 $\displaystyle V(x)=\begin{cases}V_0, & 0<x<a\\0,&x<0,x>a\end{cases}$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5af679392f77d069b45438569153e85d.png" alt="image-20240422214814782" style="zoom:50%;" />
+
+现有粒子从左向右人射，能量为 $E$，问粒子穿透势垒或被反射的几率是多少？
+
+- 经典力学中，如果 $E>V_0$ 粒子是完全穿过的，如果$E<V_0$, 则不可能穿过势垒
+
+- 量子力学中由于实物粒子的波粒两象性，情况就完全不同，可用求解定态薛定谔方程来确定
+
+1. $E<V_0$：
+   $$
+   \begin{aligned}&\frac{d^{2}\psi}{dx^{2}}+\frac{2mE}{\hbar^{2}}\psi=0\quad x<0,x>a\\&\frac{d^{2}\psi}{dx^{2}}+\frac{2m}{\hbar^{2}}(E-V_{0})\psi=0\quad0<x<a\end{aligned}
+   $$
+   设：$\displaystyle k^2=\frac{2mE}{\hbar^2},k'^2=\frac{2m(V_0-E)}{\hbar^2}$，则：
+   $$
+   \frac{d^{2}\psi}{dx^{2}}+k^{2}\psi=0\quad x<0,x>a\\\frac{d^{2}\psi}{dx^{2}}-k^{\prime2}\psi=0\quad0<x<a
+   $$
+   解为：
+   $$
+   x<0\quad \psi_{1}=Ae^{ikx}+A^{\prime}e^{-ikx}\\0<x<a\quad \psi_{2}=Be^{k'x}+B'e^{-k'x}\\x>a\quad \psi_{3}=Ce^{ikx}+C'e^{-ikx}
+   $$
+
+   - $e^{ikx}$：左到右，入射波或者透射波；
+   - $e^{-ikx}$：右到左，反射波。
+
+   从物理条件考虑，$C'=0$. 代表 $>a$ 的部分没有反射波。
+
+   **波函数及其导数的连续性条件**：
+
+   - $x=0$ 处，$A+A'=B+B'$，$ik(A-A')=k'(B-B')$；
+
+   - $x=a$ 处，$Be^{k'a}+B'e^{-k'a}=Ce^{ika}$；
+
+     $k'(Be^{k'a}-B'e^{-k'a})=ikCe^{ika}$.
+
+   因此
+   $$
+   \begin{aligned}
+   & B=\frac{C}{2}\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a} \\
+   & B^{\prime}=\frac{C}{2}\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
+   \end{aligned}
+   $$
+
+   由(1), (2)
+   $$
+   \begin{aligned}
+   & A=\frac{1}{2}\left[\left(1+\frac{k^{\prime}}{i k}\right) B+\left(1-\frac{k^{\prime}}{i k}\right) B^{\prime}\right] \\
+   & A^{\prime}=\frac{1}{2}\left[\left(1-\frac{k^{\prime}}{i k}\right) B+\left(1+\frac{k^{\prime}}{i k}\right) B^{\prime}\right]
+   \end{aligned}
+   $$
+
+   所以
+   $$
+   A=\frac{C}{4}\left(1+\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a}+\frac{C}{4}\left(1-\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
+   $$
+
+   $$
+   \Longrightarrow C=\frac{2 i k k^{\prime} e^{-i k a}}{\left(k^2-k^{\prime 2}\right) \sinh k^{\prime} a+2 i k k^{\prime} \cosh k^{\prime} a} A
+   又
+   $$
+
+   $$
+   A^{\prime}=\frac{C}{4}\left(1-\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a}+\frac{C}{4}\left(1+\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
+   $$
+
+   所以
+   $$
+   \begin{aligned}
+   & \frac{A^{\prime}}{A}=\frac{\left(1-\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{-k^{\prime} a}+\left(1+\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{k^{\prime} a}}{\left(1+\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{-k^{\prime} a}+\left(1-\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{k^{\prime} a}} \\
+   & =\frac{\left(k^2+k^{\prime 2}\right) \sinh k^{\prime} a}{\left(k^2-k^{\prime 2}\right) \sinh k^{\prime} a+2 i k k^{\prime} \cosh k^{\prime} a}
+   \end{aligned}
+   $$
+   透射系数
+   $$
+   \quad T=\frac{|C|^2}{|A|^2}=\frac{4 k^2 k^{\prime 2}}{\left(k^2-k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2} \cosh ^2 k^{\prime} a}
+   $$
+   但 $\cosh ^2 x-\sinh ^2 x=1$
+   因此
+   $$
+   T=\frac{|C|^2}{|A|^2}=\frac{4 k^2 k^{\prime 2}}{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2}}
+   $$
+
+   $$
+   R=\frac{\left|A^{\prime}\right|^2}{|A|^2}=\frac{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a}{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2}}
+   $$
+
+   显然
+   $$
+   \boxed{T+R=1}
+   $$
+
+   -----------
+
+   当 $k^{\prime} a\gg 1$ 时, $\displaystyle \sinh k^{\prime} a=\frac{e^{k^{\prime} a}-e^{-k^{\prime} a}}{2} \approx \frac{1}{2} e^{k^{\prime} a}$
+   $$
+   \begin{gathered}
+   \sinh ^2 k^{\prime} a \approx \frac{1}{4} e^{2 k^{\prime} a} \\
+   D \sim \frac{16 E}{V_0}\left(1-\frac{E}{V_0}\right) e^{-2 k^{\prime} a} \sim D_0 \exp \left[-\frac{2}{\hbar} \sqrt{2 m\left(V_0-E\right)} a\right]
+   \end{gathered}
+   $$
+
+   - 势垒越高, 宽度越宽, 穿透几率越小, 但总有一定几率穿透, 这一现象称为量子隧道效应
+   - 另外, 量子隧道效应中穿透几率 $D$ 对势垒的宽度的变化很敏感
+
+2. $E>V_0$，完全一样处理, 只是把 $k^{\prime} \rightarrow i k^{\prime}$
+
+$$
+k^{\prime 2}=\frac{2 m}{\hbar^2}\left(E-V_0\right)
+$$
+
+结果为 $\displaystyle T=\frac{4 k^2 k^{\prime 2}}{\left(k^2-k^{\prime 2}\right)^2 \sin ^2 k^{\prime} a+4 k^2 k^{\prime 2}}$或
+$$
+\begin{gathered}
+T=\frac{1}{1+\frac{1}{4} \frac{V_0^2}{E\left(E-V_0\right)} \sin ^2 k^{\prime} a} \\
+R=\frac{\left(k^2-k^{\prime 2}\right)^2 \sin ^2 k^{\prime} a}{\left(k^2-k^{\prime 2}\right)^2 \sin ^2 k^{\prime} a+4 k^2 k^{\prime 2}} \\
+\boxed{T+R=1}
+\end{gathered}
+$$
+当 $k^{\prime} a=n \pi, \quad(n=1,2, \cdots)$，令 $\displaystyle k^{\prime}=\frac{2 \pi}{\lambda}$, 则当 $\displaystyle a=n \frac{\lambda}{2}$ 时, $T=1$，即当势垒宽度为半波长整数倍时，发生共振透射。这与光学中情况类似。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b31a8e732677ed6e3c8a2e1b4151b864.png" alt="image-20240422215519499" style="zoom:33%;" />
+
+**$\boldsymbol{\alpha}$ 衰变**
+
+微观粒子势垒贯穿的现象已被很多实验所证实。伽莫夫(Gamow)首先用势垒贯穿解释了放射元素的 $\alpha$ 衰变现象.
+
+在原子核内部，因为短程核力强烈吸引，势能很小。从核内总有一定几率透过势垒，概率幅虽然小但为有限值。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_c669ddd564dab92d2c01e81714790623.png" alt="image-20240422215628607" style="zoom:50%;" />
+
+量子隧道效应一个重要的应用：**扫描隧道显微镜** (scanning tunneling microscope，简写为STM)。
