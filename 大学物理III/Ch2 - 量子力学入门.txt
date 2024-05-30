@@ -58,7 +58,8 @@ $$
 - 满足原子内电子轨道的量子化条件：
   $$
   2\pi r=n\lambda,\quad n=1,2,\cdots\\
-  \Rightarrow L=mvr=pr=\frac{h}{\lambda} \frac{1}{2\pi} n\lambda=n\hbar
+  \Rightarrow L=mvr=pr=\frac{h}{\lambda} \frac{1}{2\pi} n\lambda=n\hbar\\
+  \boxed{L=n\hbar}
   $$
 
 **物质波假说的实验验证**
@@ -66,6 +67,16 @@ $$
 - 戴维孙-革末实验
 
   ![image-20240422103434010](https://notes.sjtu.edu.cn/uploads/upload_b5604de54f63eb3075c2ea7b6f3b711e.png)
+
+  经过电压 $U$ 加速的电子（在非相对论条件下），它的德布罗意波长：
+  $$
+  \lambda=\frac{h}{p}=\boxed{\frac{h}{\sqrt{2meU}}}
+  $$
+  当考虑相对论效应，可得：
+  $$
+  \lambda=\frac{h}{\sqrt{2m_e E}}=\frac{h}{\sqrt{2meU+\frac{e
+  ^2}{c^2}U^2}}
+  $$
 
 - 电子衍射-布拉格公式
 
@@ -97,22 +108,16 @@ $$
 
 ## 波函数
 
-**波函数的广义定义**
-
-- 量子力学的基本假设: 波函数描述了在时刻 $t$ 时量子体系的状态. 只要波函数确定了, 则量子体系的状态就唯一确定了. 
-- 波函数是对与量子体系, 如光子, 实物粒子, 相联系的波动性的定量描述. 波函数满足叠加性. 
-- 与量子体系相联系的波是概率波, 波函数是概率幅. 
-
 **玻恩的统计诠释**
 
-粒子的状态由 $\psi(x)$ 描述. 粒子出现在位置 𝑥 处的位置 <u>概率振幅</u> 就是波函数 $\psi(x)$.
+粒子的状态由 $\psi(x)$ 描述。粒子出现在位置 𝑥 处的位置 <u>概率振幅</u> 就是波函数 $\psi(x)$。
 
 - 测量到粒子出现在 $[x,x+\mathrm d x]$ 区间的概率
   $$
   \mathrm d P=|\psi(x)|^2\mathrm d x
   $$
 
-- 位置概率密度：
+- **位置概率密度**：
   $$
   \rho(x)=|\psi(x)|^{2}=\psi^{*}(x)\psi(x)
   $$
@@ -133,27 +138,19 @@ $$
 
 - **单值性**：只有一个函数值和变量对应。
 
-- **归一化条件**: 在整个区间上粒子出现的概率为 1
-  $$
-  \int_{-\infty}^{\infty}\lvert\psi(x)\rvert^{2}dx=1
-  $$
+- **归一化条件**。
 
-平面波的归一化：
+**例题**：归一化
 $$
-\begin{gathered}
-\phi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}e^{\frac{i}{\hbar}(px-Et)} \\
-\phi(x,t)=\frac{1}{\sqrt{L}}e^{\frac{i}{\hbar}(px-Et)} \\
-\phi(\vec{r},t)=\frac{1}{\sqrt{L^{3}}}e^{\frac{i}{\hbar}(\vec{p}\cdot\vec{r}-Et)} 
-\end{gathered}
+\Psi(x)=\begin{cases}
+Nx(1-x),&0<x<L\\
+0,& x\le 0,x\ge L
+\end{cases}\Rightarrow N=\sqrt \frac{30}{L^5}
 $$
 
-## 薛定谔方程 概率流密度
+## 薛定谔方程
 
-观察平面波
-$$
-\psi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}e^{\frac{i}{\hbar}(px-Et)}
-$$
-满足条件（含时的薛定谔方程）：
+含时的薛定谔方程：
 $$
 \boxed{-\frac{\hbar^2}{2m}\frac{\partial ^2 \psi}{\partial x^2}=i\hbar \frac{\partial \psi}{\partial t}}
 $$
@@ -164,7 +161,7 @@ $$
 
 - 一维情况：
   $$
-  \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x,t)\right]\psi(x,t)=i\hbar\frac\partial{\partial t}\psi(x,t)
+  \boxed{\left[-\frac{\hbar^2}{2m}\frac{\mathrm d ^2}{\mathrm d  x^2}+V(x,t)\right]\psi(x,t)=i\hbar\frac\partial{\partial t}\psi(x,t)}
   $$
 
 - 三维情况：
@@ -177,22 +174,9 @@ $$
 > \nabla^2=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}
 > $$
 
-- 薛定谔方程是量子力学的基本假设, 无从推导. 它的正确性只能由实验验证. 
-- 所有波函数随时间的演化必须满足含时的薛定谔方程.
-- 薛定谔方程是对时间的一阶偏微分方程, 即知道初态的状态波函数, 可以计算以后任意时刻的状态波函数. 
-- 薛定谔方程是线性的偏微分方程, 如果 $\psi_1,\psi_2,\cdots$ 满足薛定谔方程, 则它们的叠加态 $\Psi=c_1\psi_1+c_2\psi_2+\cdots$ 也满足薛定谔方程, $c_i$ 是常复数. 这与态叠加原理一致. 
-
 **定态薛定谔方程**
 
-若微观粒子处在稳定的势场中，则势能函数 $V(\vec{r})$ 与时间无关，称这类问题为定态问题。此时，薛定谔方程可以通过分离变量法求解。设 $\Psi(\vec r, t)=\psi(\vec r) T(t)$：
-$$
-\left[-\frac{\hbar^{2}}{2m}\nabla^{2}+V(\vec{r})\right]\psi(\vec{r})T(t)=i\hbar\frac{dT(t)}{dt}\psi(\vec{r})
-$$
-上式两端同除以 $\psi(\vec{r})T(t)$.
-$$
-\frac{[-\frac{\hbar^2}{2m}\nabla^2+V(\vec{r})]\psi(\vec{r})}{\psi(\vec{r})}=i\hbar\frac{dT(t)}{dt}\frac{1}{T(t)}=E
-$$
-可得：
+若微观粒子处在稳定的势场中，则势能函数 $V(\vec{r})$ 与时间无关，称这类问题为定态问题。此时，薛定谔方程可以通过分离变量法求解。设 $\Psi(\vec r, t)=\psi(\vec r) T(t)$，可得：
 $$
 \boxed{i\hbar\frac{dT(t)}{dt}=ET(t)}
 $$
@@ -202,17 +186,12 @@ T(t) \propto e^{-\frac{i}{\hbar} Et}
 $$
 ——只和时间、能量有关。
 
-定态薛定谔方程：
+**定态薛定谔方程**：
+$$
+\boxed{\left[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)\right]\psi(x)=E\psi(x)}
+$$
 
-- 一维情况：
-  $$
-  \left[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)\right]\psi(x)=E\psi(x)
-  $$
-
-- 三维情况：
-  $$
-  \left[-\frac{\hbar^2}{2m}\nabla^2+V(\vec{r})\right]\psi(\vec{r})=E\psi(\vec{r})
-  $$
+> 可见能量 $E$ 只由势场的分布 $V(x)$ 和具体的 $\psi(x)$ 有关，而与 $t$ 无关。
 
 定态含时波函数 $\Psi(\vec r,t)$ 满足：
 $$
@@ -233,29 +212,14 @@ $$
 
 > 其中按照 $E$ 的不同分类讨论，$C_E$ 为叠加系数，为常复数。
 
-**概率流密度 概率守恒**
-
-若粒子不能自发产生或湮灭, 则粒子的总数目不会随时间变化, 即在全空间找到单个粒子的概率与时间无关。根据这个条件和薛定谔方程，可得
-$$
-\boxed{\frac{\partial\rho}{\partial t}=\frac{i\hbar}{2m}\nabla\cdot(\psi^{*}\nabla\psi-\psi\nabla\psi^{*})}
-$$
-
-> 其中：
->
-> - $\rho$ 是粒子在特定位置出现的概率，对 $t$ 求导描述了这个概率的变化。
->
-> - $\nabla \cdot$ 代表向量的散度。
-
-**概率流密度**
-
-定义概率流密度 $\vec{\jmath}$.
+定义 **概率流密度** $\vec{\jmath}$ 为粒子单位时间内通过单位面积的概率，
 $$
 \vec{\jmath}=-\frac{i \hbar}{2m}(\psi^{\ast}\nabla\psi-\psi\nabla\psi^{\ast})\\
 \nabla \cdot \vec{\jmath} = -\frac{\partial \rho}{\partial t}\\
 \frac{\partial \rho}{\partial t}+\nabla \cdot \vec{\jmath} =0
 $$
 
-> 与电荷守恒的微分形式类比, 上式为概率守恒 (粒子数守恒) 的微分形式. $\vec{\jmath}$ 描述粒子在单位时间内通过单位面积的概率。
+> 与电荷守恒的微分形式类比, 上式为概率守恒 (粒子数守恒) 的微分形式.
 
 **概率守恒 (粒子数守恒)**
 
@@ -264,14 +228,20 @@ $$
 \iiint_{\Omega}\frac{\partial\rho}{\partial t}dV=-\iiint_{\Omega}(\nabla\cdot\vec{\jmath})dV=-\oint_{S}\vec{\jmath}\cdot dS
 $$
 
+**例题**：求以下一维平面波的概率流密度
+$$
+\psi=Ae^{\frac{i}{\hbar}(px-Et)}
+$$
+解得：
+$$
+j=-\frac{i\hbar}{2m}\left(\psi^* \frac{\partial \psi}{\partial x}-\psi \frac{\partial \psi^*}{\partial x}\right)=-\frac{i\hbar}{2m}\cdot 2|A|^2 \frac{i}{\hbar} p=|A|^2 \frac{p}{m}
+$$
+
 ## 位置与动量的期待值
 
-符号标记：$\langle r \rangle$ 代表变量 $r$ 的期望。
+### 位置的期待值与不确定度
 
-- 方差 $\sigma_{r}^{2}=\langle(r-\langle r\rangle)^{2}\rangle $.
-- 标准差 $$\sigma_r=\sqrt{\sigma_r^2}=\sqrt{\langle r^2\rangle-\langle r\rangle^2}$$.
-
-**位置的期待值与不确定度**
+根据波函数的定义，
 $$
 \langle x \rangle=\int_{-\infin}^{\infin} x|\psi(x)|^2\mathrm d x\\
 \langle f(x)\rangle = \int_{-\infin}^{\infin} f(x) |\psi(x)|^2 \mathrm d x
@@ -280,15 +250,25 @@ $$
 $$
 \sigma_x = \sqrt{\langle x^2\rangle-\langle x\rangle^2}
 $$
-**动量的期待值与不确定度**
+### 动量的期待值与不确定度
 
 根据 Ehrenfest 定理：量子力学在适当的极限情况下应与经典物理相符, 所以应该有
 $$
 \langle p\rangle = m \frac{\mathrm d \langle x \rangle}{\mathrm d t}
 $$
+根据薛定谔方程，
+$$
+\begin{aligned}
+\frac{\mathrm d \left\langle x\right\rangle}{\mathrm d t}&=\frac{\mathrm d }{\mathrm d t}\int_{-\infin}^{\infin} \psi^* x\psi \mathrm d x\\
+&= \int_{-\infin}^{\infin} \frac{\partial \psi^*}{\partial t}x\psi\mathrm d x+\int_{-\infin}^{\infin}\psi^* x\frac{\partial \psi}{\partial t}\mathrm d x\\
+&=-\int_{-\infin}^{\infin} \frac{i\hbar}{2m}\frac{\partial ^2}{\partial x^2} \psi^* x\psi\mathrm d x-\int_{-\infin}^{\infin} \frac{i\hbar}{2m} \psi ^*x\frac{\partial ^2}{\partial x
+^2}\psi\mathrm d x\\
+&=\frac{1}{m} \int_{-\infin}^{\infin}\psi^* (-i\hbar) \frac{\partial}{\partial x}\psi\mathrm d x
+\end{aligned}
+$$
 可得：
 $$
-\langle p\rangle=\int_{-\infin}^{\infin} \psi^* \left(-i \hbar \frac{\partial}{\partial x}\right) \psi \mathrm d x
+\boxed{\langle p\rangle=\int_{-\infin}^{\infin} \psi^* \left(-i \hbar \frac{\partial}{\partial x}\right) \psi \mathrm d x}
 $$
 
 - 动量函数 $f(p)$ 的期待值
@@ -308,13 +288,8 @@ $$
 
 - 定态: $$\langle x\rangle,\sigma_{x},\langle p\rangle,\sigma_{p}$$ 都不随时间变化。
 
-**位置算符与动量算符**
+### 位置算符与动量算符
 
-不能用位置，动量描述一维粒子的运动状态，只能用统计结果描述运动状态，如位置、动量、能量、角动量等的统计结果。
-
-量子力学的基本假设: 可观测量可用相应的算符表示. 可观测量 $A$ 对应的算符是 $\hat A$.
-
-当体系处于波函数 $\psi(x)$ 描述的状态时，测量 $A$ 的期待值 $\langle A\rangle$:
 $$
 \langle A\rangle=\int_{-\infty}^{\infty}\psi^{*}\hat{A}\psi dx
 $$
@@ -326,6 +301,8 @@ $$
 $$
 \hat{p}\psi(x)=-i\hbar\frac{\partial\psi(x)}{\partial x}
 $$
+**矢量算符的定义**
+
 算符 $\hat A$ 的函数 $f(\hat A)$ 称为 **算符函数**：
 $$
 f(\hat A)=f(0)+\frac{f^{\prime}}{1!}\hat{A}+\frac{f^{\prime\prime}}{2!}\hat{A}^{2}+\cdots+\frac{f^{(n)}}{n!}\hat{A}^{n}
@@ -335,18 +312,18 @@ $$
 - $\hat{x}^{2}\psi(x)=x^{2}\psi(x)$；
 - $\displaystyle  \hat{p}^{2}\psi(x)=-\hbar^{2}\frac{\partial ^{2}}{\partial x^{2}}\psi(x)$.
 
-经典物理中动能 $E_k = \frac{p^2}{2m}$，**动能算符 $\boldsymbol{\hat K}$**，
+经典物理中动能 $\displaystyle E_k = \frac{p^2}{2m}$，**动能算符 $\boldsymbol{\hat K}$**，
 $$
 \hat K=\frac{\hat p^2}{2m}
 $$
 
 $$
-\hat K \psi(x)=-\frac{\hbar ^2}{2m} \frac{\partial ^2}{\partial x^2} \psi(x)
+\boxed{\hat K \psi(x)=-\frac{\hbar ^2}{2m} \frac{\partial ^2}{\partial x^2} \psi(x)}
 $$
 
 经典物理中势能函数 $V(x)$，**势能算符 $\boldsymbol{\hat V}$**，
 $$
-\hat V\psi(x)=V(x)\psi(x)
+\boxed{\hat V\psi(x)=V(x)\psi(x)}
 $$
 
 **哈密顿算符 $\boldsymbol{\hat H}$**
@@ -367,19 +344,8 @@ $$
 
 可得，能量的期待值：
 $$
-\langle E\rangle=\int_{-\infin}^{\infin} \psi^* \hat H \psi \mathrm d x
+\boxed{\langle E\rangle=\int_{-\infin}^{\infin} \psi^* \hat H \psi \mathrm d x}
 $$
-能量的不确定度：
-$$
-\sigma_E=\sqrt{\langle E^2\rangle-\langle E\rangle^2}\\
-\langle E^2\rangle=\int_{-\infin}^{\infin}\psi^* \hat H^2 \psi\mathrm d x
-$$
-若 $t=0$ 时体系波函数处于能量的本征态 $\psi_n(\vec r)$，对应能量本征值为 $E_n$，则体系波函数在以后任意时刻为：
-$$
-\Psi(\vec r,t)=\psi_n(\vec r)e^{-\frac{i}{\hbar}E_n t}
-$$
-若波函数为此形式，则测量能量的结果唯一确定（$\sigma_E=0$），其值为 $E_n$.
-
 ## 一维定态问题
 
 ### 无限深势阱
@@ -416,7 +382,7 @@ $$
   $$
   \psi(x)=A\sin (kx+\delta)
   $$
-  为了确定待定常数 $A,\delta$，确定参数 $k$，需要利用波函数的连续性条件：
+  为了确定待定常数 $A,\delta$，确定参数 $k$，需要利用波函数的 **连续性条件**：
   $$
   \psi(0)=\psi_e(0)=0\\
   \psi(L)=\psi_e(L)=0
@@ -451,13 +417,9 @@ $$
 能量取分立值(能级), 即能量量子化，$n=1,2,\cdots$，称为 **量子数**。
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_db723d58331b57465131bc8356ff7b85.png" alt="image-20240412195702541" style="zoom:33%;" />
-
-基态能量：最低能量，当 $n=1$ 时，
 $$
-\boxed{E_1=\frac{\pi^2 \hbar^2}{2mL^2}}
+\boxed{E_1=\frac{\pi^2 \hbar^2}{2mL^2},E_n=n^2E_1}
 $$
-激发态能量 $E_n=n^2 E_1$.
-
 > $E_1>0$，又称为零点能，说明粒子不是经典的粒子，不可能静止。
 
 **一维束缚态的一般性质**
@@ -466,7 +428,6 @@ $$
 - 粒子具有最低能级 $E_{基态}$, 即零点能，与经典粒子不同。且 <u>空间约束越大，$L$ 越小，基态能量越高</u>. 
 - 能量越高， 对应的定态波函数在空间上振荡越快
 - 除去两个端点， 基态波函数无节点， 第一激发态有一个节点 ⋯
-- 若势场为偶函数, 则定态波函数具有确定的奇偶性. 从基态开始: 偶-奇-偶-⋯
 
 ### 有限深势阱
 
@@ -476,10 +437,6 @@ V(x)=\left\{\begin{matrix}V_0&\quad|x|>a\\0&\quad|x|<a\end{matrix}\right.
 $$
 <img src="https://notes.sjtu.edu.cn/uploads/upload_9b6d424dfd386bdcc68d639fc8c01e6b.png" alt="image-20240412200702631" style="zoom:33%;" />
 
-代入定态薛定谔方程：
-$$
--\frac{\hbar^2}{2m} \frac{\mathrm d ^2 \psi}{\mathrm d x^2}+V(x)\psi=E\psi
-$$
 所以：
 $$
 \begin{cases}
@@ -568,10 +525,6 @@ $$
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_330211f665fe87930c052c5113a63038.png" alt="image-20240419160304257" style="zoom:50%;" />
 
-在平衡点附近做泰勒展开：
-$$
-V(x)=\frac{1}{2}m\omega^2 x^2
-$$
 哈密顿算符：
 $$
 \hat H=\frac{\hat p^2}{2m}+\frac{1}{2}m\omega^2 x^2
@@ -642,17 +595,13 @@ $$
 $$
 当 $\lambda=2n(n=0,1,2,\cdots)$ 时，系数 $c_{n+2},c_{n+4},c_{n+6},\cdots$ 都为零。（分类 $n$ 奇偶性）
 
-- $n$ 为偶数时，$u_1(\xi)$ 截断为多项式；
-- $n$ 为奇数时，$u_2(\xi)$ 截断为多项式。
+- $n$ 为偶数时，$u_1(\xi)$ 截断为多项式；波函数偶宇称。
+- $n$ 为奇数时，$u_2(\xi)$ 截断为多项式。波函数奇宇称。
 
 而能量 $\displaystyle E=\frac{1}{2}\lambda \hbar \omega=\left(n+\frac{1}{2}\right)\hbar \omega$. 可得：
 $$
 \boxed{\lambda=\frac{E}{\frac{1}{2}\hbar \omega}}
 $$
-即 **一维谐振子能量是量子化的，并且等间隔**。
-
-<img src="https://notes.sjtu.edu.cn/uploads/upload_aa13b36163048406d79934a774d9391b.png" alt="image-20240419162723289" style="zoom:50%;" />
-
 对应能量本征函数：
 $$
 \psi_n(x)=N_nH_n(\xi) e^{-\frac{1}{2}\xi^2}
@@ -664,14 +613,6 @@ $$
 
 > $H_n(\xi)$ 为厄米 (Hermite) 多项式。
 
-其生成函数为：
-$$
-e^{-z^{2}+2z\xi}=\sum_{n=0}^{\infty}\frac{z^{n}}{n!}H_{n}(\xi)\text{即}H_{n}(\xi)=\left[\frac{d^{n}}{dz^{n}}(e^{-z^{2}+2z\xi})\right]_{z=0}
-$$
-例：
-$$
-\begin{aligned}&H_{0}(\xi)=1,\quad H_{1}(\xi)=2\xi\\&H_{2}(\xi)=4\xi^{2}-2,\quad H_{3}(\xi)=8\xi^{3}-12\xi\end{aligned}
-$$
 满足的性质：
 
 - 正交归一化 $\int_{-\infty}^{\infty}H_{n}(\xi)H_{m}(\xi)e^{-\xi^{2}}d\xi=\sqrt{\pi}2^{n}n!\delta_{mn}$.
@@ -679,13 +620,26 @@ $$
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_7675b3a0d50230204557be8fe3380242.png" alt="image-20240419163450253" style="zoom:50%;" />
 
+令 $\displaystyle  \alpha=\sqrt \frac{m\omega}{\hbar}$，则 $\psi_{0,1,2}(x)$ 可以表示为：
+$$
+\psi_0(x)=\left(\frac{\alpha}{\sqrt{\pi}}\right)^{1/2} e^{-\frac{1}{2}\alpha^2 x^2}\\
+\psi_1(x)=\left(\frac{\alpha}{2\sqrt{\pi}}\right)^{1/2} 2(\alpha x)^2e^{-\frac{1}{2}\alpha^2 x^2}\\
+\psi_2(x)=\left(\frac{\alpha}{8\sqrt{\pi}}\right)^{1/2}[2-4(\alpha x)^2] e^{-\frac{1}{2}\alpha^2 x^2}
+$$
+**例题** 当谐振子处于基态时，在经典物理不允许存在的范围内测量到粒子的概率是多大？
+
+经典物理只能允许势能小于等于总能量：
+$$
+V(x_0)=\frac{1}{2}m\omega^2 x_0^2=E=\frac{1}{2}\hbar \omega
+$$
+
 ### 一维方势垒
 
 设 $\displaystyle V(x)=\begin{cases}V_0, & 0<x<a\\0,&x<0,x>a\end{cases}$.
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_5af679392f77d069b45438569153e85d.png" alt="image-20240422214814782" style="zoom:50%;" />
 
-现有粒子从左向右人射，能量为 $E$，问粒子穿透势垒或被反射的几率是多少？
+现有粒子从左向右入射，能量为 $E$，问粒子穿透势垒或被反射的几率是多少？
 
 - 经典力学中，如果 $E>V_0$ 粒子是完全穿过的，如果$E<V_0$, 则不可能穿过势垒
 
@@ -804,12 +758,99 @@ $$
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_b31a8e732677ed6e3c8a2e1b4151b864.png" alt="image-20240422215519499" style="zoom:33%;" />
 
-**$\boldsymbol{\alpha}$ 衰变**
+## 习题
 
-微观粒子势垒贯穿的现象已被很多实验所证实。伽莫夫(Gamow)首先用势垒贯穿解释了放射元素的 $\alpha$ 衰变现象.
+### 例题 22-4
 
-在原子核内部，因为短程核力强烈吸引，势能很小。从核内总有一定几率透过势垒，概率幅虽然小但为有限值。
+原子从某一激发态跃迁到基态，发射出中心波长为 $\lambda$，谱线宽度 $\Delta \lambda$ 的光子，试估算：
 
-<img src="https://notes.sjtu.edu.cn/uploads/upload_c669ddd564dab92d2c01e81714790623.png" alt="image-20240422215628607" style="zoom:50%;" />
+1. 此光子动量的不确定度 $\Delta p$；
 
-量子隧道效应一个重要的应用：**扫描隧道显微镜** (scanning tunneling microscope，简写为STM)。
+   因为：
+   $$
+   p=\frac{h}{\lambda}
+   $$
+   可得：
+   $$
+   \frac{\Delta p}{\Delta \lambda}=-\frac{h}{\lambda^2}
+   $$
+
+   $$
+   \Delta p=\left|-\frac{h}{\lambda^2} \Delta \lambda\right|=\frac{h}{\lambda^2} \Delta \lambda
+   $$
+
+2. 此光子位置的不确定度 $\Delta x$；
+
+   由不确定度关系：
+   $$
+   \Delta x \Delta p \ge h \Rightarrow \Delta x\ge \frac{h}{\Delta p}=\frac{\lambda^2}{\Delta \lambda}
+   $$
+
+3. 原子处在激发态的寿命 $\tau$；
+   $$
+   \tau=\Delta t=\frac{\Delta x}{c}=\frac{\lambda^2}{c\Delta \lambda}
+   $$
+
+4. 激发态的能量宽度：
+   $$
+   \Delta E=\frac{h}{\Delta t}=\frac{hc \Delta \lambda}{\lambda^2}
+   $$
+
+### 例题 22-5
+
+试用下列 3 种方法计算无限深一维势阱中质量为 $m$ 的粒子的最小能量（零点能）；
+
+1. 德布罗意波的驻波条件；
+
+   驻波的波长为 $2a,a,2a/3,\cdots$，为了使得能量最小，要让波长最短：
+   $$
+   p=\frac{h}{\lambda}=\frac{h}{2a},E=\frac{p^2}{2m}=\frac{h^2}{8ma^2}
+   $$
+
+2. 不确定度关系式；
+   $$
+   \Delta x=a,\Delta p=\frac{h}{\Delta x}=\frac{h}{a}
+   $$
+
+   $$
+   E\approx \frac{\Delta p^2}{2m}=\frac{h^2}{2ma^2}
+   $$
+
+### 习题 22-1
+
+在 3K 温度下中子的动能等于 $\displaystyle \frac{3}{2}kT$，求其德布罗意波长。
+$$
+\lambda=\frac{h}{p}=\frac{h}{\sqrt{2mE_k}}=\frac{h}{\sqrt{3mkT}}
+$$
+
+### 习题 22-6
+
+设电子位置的不确定度为 $1\times 10^{-2}\mathrm{~nm}$，计算它的动量不确定度；若电子的能量约为 $1\mathrm{~keV}$，计算电子能量的不确定度。
+$$
+\Delta p=\frac{h}{\Delta x}
+$$
+
+$$
+\Delta t=\frac{\Delta x}{v}=\frac{\Delta x}{\sqrt{2E/m}}
+$$
+
+$$
+\Delta E=\frac{h}{\Delta t}
+$$
+
+$$
+\Delta E=\frac{h\sqrt{2E/m}}{\Delta x}
+$$
+
+### 习题 22-10
+
+粒子作圆周运动，试证其不确定度关系可以表示为 $\Delta L\Delta \theta \ge h$.
+$$
+\Delta p \Delta x\ge h \Leftrightarrow R\Delta p \frac{\Delta x}{R} \ge h
+$$
+
+### 习题 22-12
+
+
+
+![image-20240526215913072](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526215913072.png)

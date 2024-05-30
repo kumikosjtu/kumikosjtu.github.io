@@ -99,9 +99,9 @@ $$
   $$
   得出 $\displaystyle \boxed{\overline{E}=\frac{h\nu}{e^{h\nu/k_BT}-1}}$.
 
-因此：
+因此推出 **普朗克黑体辐射公式**：
 $$
-M_0(\nu,T)=\frac{2\pi \nu^2}{c^2} \overline{E}=\frac{2\pi \nu^2}{c^2} \frac{h\nu}{e^{h\nu/(k_BT)}-1}
+\boxed{M_0(\nu,T)=\frac{2\pi \nu^2}{c^2} \overline{E}=\frac{2\pi \nu^2}{c^2} \frac{h\nu}{e^{h\nu/(k_BT)}-1}}
 $$
 当 $\nu \to 0$ 时，趋近于瑞利-金斯公式 $\displaystyle M_0(\nu,T)\approx \frac{2\pi \nu^2}{c^2} k_B T$. 当 $v\to \infin$ 时，趋近于维恩公式 $\displaystyle M_0(\nu,T)\approx \frac{2\pi h\nu^3}{c^2} e^{-h\nu /(k_B T)}$.
 
@@ -291,3 +291,58 @@ $$
 $$
 f_n = \frac{2R c}{n^3}=\nu_n
 $$
+
+## 习题
+
+### 例题 21-1
+
+真空中有四块完全相同且彼此接近的金属板平行放置，表面涂黑（可看作绝对黑体）。最外侧两块板的热力学温度为 $T_1$ 和 $T_4$，且 $T_1>T_4$，当到达热平衡时，求第二和第三块板的热力学温度 $T_2$ 和 $T_3$.
+
+<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526203752467.png" alt="image-20240526203752467" style="zoom:50%;" />
+
+达到热平衡时，有：
+$$
+\sigma T_1^4 S+\sigma T_3^4 S-2\sigma T_2^4 S=0\\
+\sigma T_2^4 S+\sigma T_3^4S-2\sigma T_4^4 S=0
+$$
+
+### 例题 21-2
+
+![image-20240526204111483](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204111483.png)
+
+注意单色辐出度的量纲。
+
+### 例题 21-3
+
+真空中一孤立的不带电的金属球，半径为 $R$，该金属材料的红限波长为 $\lambda_0$，若以波长为 $\lambda(<\lambda_0)$ 的光照射该金属球，问此金属球至多能发射多少光电子？
+
+由爱因斯坦方程：
+$$
+h\nu=eU+h\nu_0\\
+\Rightarrow U=\frac{hc}{e}\left(\frac{1}{\lambda}-\frac{1}{\lambda_0}\right)
+$$
+金属球的电势：
+$$
+U=\frac{Ne}{4\pi\varepsilon_0R}
+$$
+可以解出 $U$.
+
+### 例题 21-7
+
+![image-20240526204900880](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204900880.png)
+
+![image-20240526204915368](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204915368.png)
+
+### 习题 21.8
+
+波长为 0.1nm 的 X 射线在石墨上发生康普顿散射，如在 $\displaystyle \theta=\frac{\pi}{2}$ 处观察到散射光，试求：
+
+1. 散射光的波长 $\lambda'$；
+   $$
+   \Delta \lambda=2\frac{h}{m_e c}\sin^2 \frac{\theta}{2}=\frac{h}{m_e c}
+   $$
+   电子的康普顿波长为 $2.4\mu m$.
+
+2. 反冲电子的动能和运动方向。
+
+   能量守恒算。
