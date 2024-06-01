@@ -244,6 +244,12 @@ $$
 $$
 $C(p)$：动量测量值为 $p$ 的概率幅。
 
+**动能算符**
+$$
+\hat T=-\frac{\hbar^2}{2m}\nabla^2
+$$
+因为动能算符和动量算符对易，所以拥有相同的本征函数。
+
 求解 **哈密顿算符的本征值与本征函数**, 即 **定态薛定谔方程**
 $$
 \hat H \psi=E\psi
@@ -380,6 +386,13 @@ $$
 > $$
 > [\hat p_x,x^n]=-in\hbar x^{n-1}
 > $$
+
+**例题**：求对易关系 $[x,\hat T]$.
+
+因为 $\hat T=\frac{\hat p^2}{2m}$，所以
+$$
+[x,\hat T]=\frac{i\hbar}{m}\hat p=\frac{\hbar^2}{m}\frac{\partial}{\partial x}
+$$
 
 ## 态叠加原理
 
@@ -590,6 +603,22 @@ $$
 > =y[p_z,z]p_x+z[y,p_x]p_x\\
 > =y[p_z,z]p_x
 > $$
+> **求证**：$[\hat L_x,\hat p_x]=0$.（因为 $\hat L_x$ 只与 $y,z$ 有关，因此 $=0$）
+>
+> **求证**：$[\hat L_y,\hat p_x]=-i\hbar \hat p_z$.
+> $$
+> \begin{aligned}
+> \text{[}\hat L_y,\hat p_x]&=[\hat z\hat p_z-\hat x\hat p_z,\hat p_x]\\
+> &= [\hat z\hat p_x,\hat p_x]-[\hat x\hat p_z,\hat p_x]\\
+> &= \hat z[\hat p_x,\hat p_x]+[\hat z,\hat p_x]\hat p_x-\hat x[\hat p_z,\hat p_x]-[\hat x,\hat p_x]\hat p_z\\
+> &= -i\hbar \hat p_z
+> \end{aligned}
+> $$
+> **求证**：$[\hat L_z,\hat p_x]=i\hbar \hat p_y$. <u>同理。</u>
+>
+> **求证**：$[\hat L_x,x]=0$。（$\hat L_x$ 只与 $y,z$ 相关。）
+>
+> **求证**：$[\hat L_y,x]=-i\hbar z$. 类似计算即可。
 
 **轨道角动量平方的对易关系**
 

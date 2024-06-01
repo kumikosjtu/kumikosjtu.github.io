@@ -178,15 +178,17 @@ $$
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_ea95e371f51d2f5daf4caa00c0598f2c.png" alt="image-20240316120911541" style="zoom:50%;" />
 
-由动量守恒和能量守恒：
+由 **动量守恒和能量守恒**：
 
 - $\vec p_i=\vec p_f+\vec p_e$ 即：
   $$
-  \frac{h\nu_i}{c}=\frac{h \nu_f}{c}
+  \color{red}\frac{h\nu_i}{c}=\frac{h \nu_f}{c}
   \cos \theta +p_e \cos \phi
   $$
 
-- $h\nu_i +m_e c^2=h\nu _f + \sqrt{(p_e c)^2+(m_e c^2)^2}$.
+- $$
+  \color{red}h\nu_i +m_e c^2=h\nu _f + \sqrt{(p_e c)^2+(m_e c^2)^2}
+  $$
 
 可得：
 $$
