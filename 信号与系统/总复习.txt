@@ -1,0 +1,382 @@
+# Signals and Systems
+
+## Ch1 Signals and Systems
+
+**Power and Energy of signals**
+$$
+E_{\infin} = \lim_{T\to \infin} \int_{-T}^{T} |x(t)|^2\mathrm d t\\
+P_{\infin}=\lim_{T\to \infin} \frac{1}{2T}\int_{-T}^{T}|x(t)|^2\mathrm d t\\
+E_{\infin} = \sum_{n=-\infin}^{\infin} |x[n]|^2\\
+P_{\infin} = \lim_{N\to \infin}\frac{1}{2N+1}\sum_{n=-\infin}^{\infin}|x[n]|^2
+$$
+**Odd and Even signals**
+
+**Odd and Even components of signals**
+
+**Impulse signal**
+
+- Sampling property: $x(t)\delta(t-t_0)=x(t_0)\delta(t-t_0)$.
+- Scaling property: $\delta(at)=\delta(t)/|a|$.
+
+**Unit step signal**
+
+**Properties of systems**
+
+- ***Linearity***: Scaling + Superposition
+
+  - Scaling: If $x(t)\to y(t)(x[n]\to y[n])$, then
+    $$
+    kx(t)\to ky(t)(kx[n]\to ky[n])
+    $$
+
+  - Superposition: If $x_1(t)\to y_1(t),x_2(t)\to y_2(t)$, then
+    $$
+    x_1(t)+x_2(t)\to y_1(t)+y_2(t)
+    $$
+
+- ***Time Invariance***. If $x(t)\to y(t)$, then
+  $$
+  x(t-t_0)\to y(t-t_0)
+  $$
+
+- ***Causality***. If $x(t)=0,t<t_0$, then
+  $$
+  y(t)=0,t<t_0
+  $$
+
+- ***Stability***. A system is stable if the input to a stable system is bounded, then the output must also be bounded and therefore cannot diverge.
+  $$
+  |x(t)|<\infin \to |y(t)|<\infin
+  $$
+
+**Example**
+
+- $y(t)=x(t-2)+x(2-t)$.
+
+  Linear; Not Time Invariant; Non causal; Stable.
+  $$
+  x(t)\to x(t-2)+x(2-t)\\
+  x(t-t_0)\to x(t-t_0-2)+{\color{red}x(2-t-t_0)}\\
+  y(t-t_0)=x(t-t_0-2)+x(2-t+t_0)
+  $$
+
+- $y(t)=tx(t)$.
+
+  Linear; Not Time Invariant; Causal; Unstable.
+
+- $y(t)=\frac{\mathrm d ^2x(t)}{\mathrm d t^2}+3\frac{\mathrm d x(t)}{\mathrm d t}+2x(t)$.
+
+  Linear; Time Invariant; Causal; Unstable（求导）.
+
+- $\displaystyle y[n]=\begin{cases}x[n],&n\ge0\\-x[n],&n<0\end{cases}$.
+
+  Linear; Not Time Invariant; Causal; Stable.
+
+- $y[n]=nx[n-1]+x[n+1]$.
+
+  Linear; Not Time Invariant; Non causal; Unstable.
+
+## Ch2 - LTI Systems
+
+离散时间信号可以看成单位脉冲序列 $\delta[n-k]$ 的加权求和（线性组合），即：
+$$
+x[n]=\sum_{k=-\infin}^{\infin} x[k]\delta[n-k]
+$$
+卷积的性质：交换律、结合律、函数卷积后的微分：
+$$
+\frac{\mathrm d }{\mathrm d t}[x(t)*h(t)]=x(t)*\frac{\mathrm d }{\mathrm d t}h(t)=\frac{\mathrm d }{\mathrm d t}x(t)*h(t)
+$$
+
+## Ch3 - Fourier Series
+
+### CT
+
+$$
+\boxed{x(t)=\sum_{k=-\infin}^{\infin} a_k e^{jk\omega_0 t}}
+$$
+
+$$
+\boxed{a_k={\color{red}\frac{1}{T}}\int_T x(t) e^{-jk\omega_0 t}\mathrm d t}
+$$
+
+**Convergence of FS**
+
+Dirichlet Condition:
+
+- Condition 1: $\displaystyle \int_T |x(t)|\mathrm d t<\infin$.
+- Condition 2: In a finite time interval, $x(t)$ has a finite number of maxima and minima.
+
+> Example: $x(t)=\displaystyle \sin \left(\frac{2\pi}{t}\right), 0<t\le 1$ violates condition 2.
+>
+> ![img](https://notes.sjtu.edu.cn/uploads/upload_d9db2022117e1625f6cbdfedd8b29fb4.png)
+
+- Condition 3: In a finite time interval, $x(t)$ has only a finite number of discontinuities.
+
+> Example:![img](https://notes.sjtu.edu.cn/uploads/upload_1e282c3ef0fd4e13f7bda8415c9b8d95.png)
+
+$$
+\mathrm{Dirichlet} \Rightarrow \mathrm{Converge}\\
+\mathrm{Converge} \not\Rightarrow \mathrm{Dirichlet}
+$$
+
+**根据公式手推 Fourier Series**
+
+| Property        | Signal                                             | Fourier Series                                               |
+| --------------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| Time Shifting   | $x(t-t_0)$                                         | $a_ke^{-jk\omega_0 t_0}$                                     |
+| Time Scaling    | $x(at)$                                            | $x(at)=\displaystyle  \sum_{k=-\infin}^{\infin} a_k e^{jk(a\omega_0) t}$ |
+| Time Reversal   | $x(-t)$                                            | $a_{-k}$                                                     |
+| Conjugation     | $x^*(t)$                                           | $a_{-k}^*$                                                   |
+| Differentiation | $\displaystyle \frac{\mathrm d x(t)}{\mathrm d t}$ | $jk\omega_0 a_k$                                             |
+| Integration     | $\displaystyle \int_{-\infin}^t x(t)$              | $\displaystyle \frac{1}{jk\omega_0} a_k$                     |
+| Multiplication  | $x(t)y(t)$                                         | $c_k=a_k*b_k$                                                |
+
+### DT
+
+$$
+\boxed{x[n]=\sum_{k=\left\langle N\right\rangle}a_k e^{jk\omega_0 n}}\\
+\boxed{
+a_k={\color{red}\frac{1}{N}}\sum_{n=\langle N\rangle} x[n] e^{-jk\omega_0 n}
+}
+$$
+
+## Ch4 - Fourier Transform
+
+$$
+\underbrace{\mathrm{Periodic\ Signals}}_{\mathrm{Fourier\ Series}} \Rightarrow \underbrace{\mathrm{All \ Signals}}_{\mathrm{Fourier\ Transform}}
+$$
+
+### CT
+
+**Analysis FT equation**:
+$$
+\boxed{X(j\omega)=\int_{-\infin}^{\infin} x(t) e^{-j\omega t}\mathrm d t}
+$$
+**Synthesis FT equation**:
+$$
+\boxed{x(t)={\color{red}\frac{1}{2\pi}} \int_{-\infin}^{\infin} X(j\omega) e^{j\omega t}\mathrm d \omega}
+$$
+**Basic CTFT pairs**
+
+| Name                  | Function                                                     | Fourier Transform                                            | Equation        |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
+| Impulse Function      | $\delta(t-t_0)$                                              | $e^{-j\omega t_0}$                                           | Analysis        |
+| Impulse Function 2    | $e^{j\omega_0t}$                                             | $2\pi\delta(\omega-\omega_0)$                                | Synthesis       |
+| Gate Function         | $$\begin{cases}1, & |t|\le T\\0, & else\end{cases}$$         | $\displaystyle \frac{2\sin (\omega T)}{\omega}=2T\operatorname{Sa}(\omega T)$ | Analysis        |
+| Ideal low pass filter | $\displaystyle \frac{\sin Wt}{\pi t}=t\operatorname{Sa}(Wt)/\pi$ | $\begin{cases}1,&|\omega|\le W\\0,&else\end{cases} $         | Synthesis       |
+| Single-side Exp       | $e^{-\alpha t}u(t)$                                          | $\displaystyle \frac{1}{a+j\omega}$                          | Analysis        |
+| Sign Function         | $\operatorname{sgn}(t)$                                      | $\displaystyle \frac{2}{j\omega}$                            | Single-side Exp |
+| Step Function         | $u(t)$                                                       | $\displaystyle \pi \delta(\omega)+\frac{1}{j\omega}$         | Sign            |
+| Cosine Function       | $\cos (\omega_0 t)$                                          | $\pi\delta(\omega-\omega_0)+\pi\delta(\omega+\omega_0)$      | Impulse         |
+| *Triangle* Function   | $$\begin{cases}1-|t|/T, & |t|\le T\\0, & else\end{cases}$$   | $\displaystyle \frac{4 \sin^2 (\omega T/2)}{\omega^2T}=T\operatorname{Sa}^2(\omega T/2)$ | Gate            |
+
+**Properties of CTFT**
+
+> 先写下 Analysis 和 Synthesis Equation，然后填空
+
+| Property                      | Signal                                                 | Fourier Transform                                            |
+| ----------------------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| Time Shifting                 | $x(t-t_0)$                                             | $e^{-j\omega t_0}X(j\omega)$                                 |
+| Frequency Shifting            | $x(t) e^{ j\omega_0 t}$                                | $X[j(\omega - \omega_0)]$                                    |
+| Conjugation                   | $x^*(t)$                                               | $ X^*(-j\omega)$                                             |
+| Time and frequency Scaling    | $x(at)$                                                | $\displaystyle \frac{1}{|a|}X\left(\frac{j\omega}{a}\right)$ |
+| Time reverse                  | $x(-t)$                                                | $X(-j\omega)$                                                |
+| Differentiation(in Time)      | $\displaystyle \frac{\mathrm d x(t)}{\mathrm d t}$     | $j\omega X(j\omega)$                                         |
+| Integration                   | $\displaystyle \int_{-\infin}^t x(\tau)\mathrm d \tau$ | $\displaystyle \frac{1}{j\omega} X(j\omega)+ \pi X(0)\delta(\omega)$ |
+| Differentiation(in frequency) | $tx(t)$                                                | $\displaystyle j\frac{\mathrm d }{\mathrm d \omega}X(j\omega)$ |
+| Duality                       | $X(jt)$                                                | $2\pi x(-\omega)$                                            |
+| Convolution Property          | $h(t)*x(t)$                                            | $H(j\omega)X(j\omega)$                                       |
+| Multiplication Property       | $h(t)x(t)$                                             | $\displaystyle \frac{1}{2\pi}H(j\omega)*X(j\omega)$          |
+
+**Parseval's Relation**
+$$
+\int_{-\infin}^{\infin} |x(t)|^2 \mathrm d t = \frac{1}{2\pi} \int_{-\infin}^{\infin} |X(j\omega)|^2 \mathrm d \omega \\= \int_{-\infin}^{\infin} |X(f)|^2 \mathrm d f
+$$
+***Comparing with Laplace Transform***
+
+**System Analysis by CTFT**
+$$
+H(j\omega)=\frac{Y(j\omega)}{X(j\omega)}=\frac{\sum_{k=0}^M b_k (j\omega)^k}{\sum_{k=0}^{N} a_k (j\omega)^k}
+$$
+
+### DT
+
+$$
+\boxed{X(e^{j\omega})=\sum_{n=-\infin}^{\infin} x[n] e^{-j\omega n }}\\
+\boxed{x[n]={\color{red}\frac{1}{2\pi}}\int_{2\pi} X(j\omega) e^{j\omega n}\mathrm d \omega}
+$$
+
+**Basic DTFT pairs**
+
+| Name           | Signal                                            | Fourier Transform                                           |
+| -------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| Impulse        | $\delta[n-n_0]$                                   | $e^{-j\omega n_0}$                                          |
+| Exp            | $u(n)a^n$                                         | $\displaystyle \frac{1}{1-ae^{-j\omega}}$                   |
+| Gate           | $\begin{cases}1,|n|\le N_1\\0,|n|>N_1\end{cases}$ | $\displaystyle \frac{\sin \omega(N_1+1/2)}{\sin(\omega/2)}$ |
+| Ideal low-pass | $\displaystyle \frac{\sin Wn}{\pi n}$             | $\begin{cases}1,&|\omega| \le W\\0,&else\end{cases}$        |
+
+**Properties of DTFT**
+
+> *Periodicity only for DTFT*
+> $$
+> X(e^{j\omega})=X(e^{j(\omega+2\pi)})
+> $$
+
+| Property                     | Signal                                  | Fourier Transform                                            |
+| ---------------------------- | --------------------------------------- | ------------------------------------------------------------ |
+| Time Shifting                | $x[n-n_0]$                              | $e^{-j\omega n_0} X(e^{j\omega})$                            |
+| Frequency Shifting           | $x[n]e^{j\omega_0 n}$                   | $X(e^{j(\omega-\omega_0)})$                                  |
+| Conjugation                  | $x^*[n]$                                | $X^*(e^{j(-\omega)})$                                        |
+| Differencing                 | $x[n]-x[n-1]$                           | $(1-e^{-j\omega})X(e^{j\omega})$                             |
+| Accumulation                 | $\displaystyle \sum_{k=-\infin}^n x[k]$ | $X(e^{j\omega})+\pi X(e^{j0})\sum_{l=-\infin}^n \delta[\omega-2\pi l]$ |
+| Time Scaling                 | $x_{(k)}[n]$                            | $X(e^{jk\omega})$                                            |
+| Time Reversing               | $x[-n]$                                 | $X(e^{-j\omega})$                                            |
+| Differentiation in frequency | $nx[n]$                                 | $\displaystyle j\frac{X(e^{j\omega})}{\mathrm d \omega}$     |
+| Convolution property         | $x[n]*h[n]$                             | $X(e^{j\omega})H(e^{j\omega})$                               |
+| Multiplication property      | $x[n]h[n]$                              | $\displaystyle \frac{1}{2\pi}X(e^{j\omega})*H(e^{j\omega})$  |
+
+**Parseval's relationship**
+$$
+\sum_{n=-\infin}^{\infin} |x[n]|^2 = \frac{1}{2\pi} \int_{2\pi} |X(e^{j\omega})|^2 \mathrm d \omega
+$$
+***Comparing with Z transform***
+
+## Ch5 - Application of Fourier Transform
+
+## Ch6 - Laplace Transform
+
+The ***Bilateral Laplace transform*** is defined as
+$$
+x(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}} X(s)=\int_{-\infin}^{\infin} x(t) e^{-st}\mathrm d t=\boxed{\int_{-\infin}^{\infin} x(t) e^{-\sigma t}\mathrm d t}
+$$
+where $s=\sigma+j\omega$. Notice that $X(s)=\mathcal F\{x(t)e^{-\sigma t}\}$.
+
+The ***Inverse Laplace Transform*** can be derived from the inverse FT.
+$$
+\boxed{x(t)={\color{red}\frac{1}{2\pi j}}\int_{\sigma-j\infin}^{\sigma+j\infin} X(s)e^{st}\mathrm d s}
+$$
+**Properties of the Laplace Transform**
+
+| Property                   | Signal                                                  | Laplace Transform                                      | ROC                                            |
+| -------------------------- | ------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| Linearity                  | $ax_1(t)+bx_2(t)$                                       | $aX_1(s)+bX_2(s)$                                      | At least $R_1 \cap R_2$                        |
+| Time Shifting              | $x(t-t_0)$                                              | $e^{-st_0}X(s)$                                        | $R$                                            |
+| Shifting $s$               | $e^{s_0 t}$                                             | $X(s-s_0)$                                             | $R+s_0$                                        |
+| Time Scaling               | $x(at)$                                                 | $\displaystyle \frac{1}{|a|}X\left(\frac{s}{a}\right)$ | $aR$                                           |
+| Conjugation                | $x^*(t)$                                                | $X^*(s^*)$                                             | $R$                                            |
+| Convolution                | $x_1(t)*x_2(t)$                                         | $X_1(s)X_2(s)$                                         | At least $R_1 \cap R_2$                        |
+| D in Time Domain           | $\mathrm d x(t)/\mathrm d t$                            | $sX(s)$                                                | At least $R$                                   |
+| D in $s$-Domain            | $-tx(t)$                                                | $\mathrm d X(s)/\mathrm d s$                           | $R$                                            |
+| Integration in Time Domain | $\displaystyle \int_{-\infin}^{t}x(\tau)\mathrm d \tau$ | $\displaystyle \frac{1}{s}X(s)$                        | At least $R\cap \{\operatorname{Re}\{s\} >0\}$ |
+
+**Initial- and Final-value Theorems**
+
+If $x(t)=0$ for $t<0$ and $x(t)$ contains *no singularities* at $t=0$, then
+$$
+x(0^+) = \lim_{s\to \infin} sX(s)
+$$
+**Final-value theorem**
+
+If $x(t)=0$ for $t<0$ and $x(t)$ has *a finite limit* as $t\to \infin$, then
+$$
+\lim_{t\to \infin} x(t) =\lim_{s\to 0} sX(s)
+$$
+
+**Geometric evaluation of FT from pole-zero**
+
+**CT system function properties**
+
+1. System is **stable** $\Leftrightarrow $ $h(t)$ is stable $\Leftrightarrow$ $\displaystyle \int_{-\infin}^{\infin} |h(t)|\mathrm d t<\infin$ $\Leftrightarrow$ ROC of $H(s)$ includes $j\omega$ axis.
+
+2. **Causality** $\Rightarrow$ $h(t)$ right-sided signal $\Rightarrow$ ROC of $H(s)$ is a right-half plane.
+
+   > 特别注意 causal 和 right-sided 的区别。
+
+   ROC right-half plane 但系统不 Causal 的反例：$\displaystyle H(s)=\frac{e^{sT}}{s+1}, \operatorname{Re}\{s\} >-1$
+
+   但是当且仅当 $H(s)$ 有理时，系统因果和 ROC 在最右侧极点的右侧等价。
+
+   当 $H(s)$ 有理且因果时，系统稳定等价于虚轴在 ROC 中，等价于所有极点都在左半平面。
+
+**Block Diagram**
+
+**Unilateral Laplace Transform**
+$$
+\mathcal X(s)=\int_{0^-} ^{\infin } x(t) e^{-st}\mathrm d t=\mathcal {UL} \{x(t)\}
+$$
+If system is causal, then $H(s)=\mathcal H(s)$.
+
+
+$$
+\boxed{\frac{\mathrm d x(t)}{\mathrm d t} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ s\mathcal X(s)-x(0^{-})}
+$$
+
+$$
+\boxed{\frac{\mathrm d^2 x(t)}{\mathrm d t^2} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ s^2\mathcal X(s)-sx(0^{-})-x'(0^{-})}
+$$
+
+$$
+\boxed{\frac{\mathrm d ^3 x(t)}{\mathrm d t^3} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}s^3 \mathcal X(s)-s^2 x(0^-)-sx'(0^-)-x''(0^-)}
+$$
+
+- ZIR: Response for zero input. $x(t)=0,\mathcal X(s)=0$.
+- ZSR: Response for zero state input. (Bilateral)
+
+- Total Response: ZIR+ZSR
+
+## Ch7 - Z Transform
+
+The ***Bilateral Z transform*** is defined as
+$$
+x[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}}
+
+ X(z)=\sum_{n=-\infin}^{\infin} x[n] z^{-n} =Z \{x[n]\}
+$$
+The relationship between Z transform and DTFT:
+$$
+X(z)=\sum_{n=-\infin}^{\infin} x[n]r^{-n} e^{-j\omega n}=\mathcal F \{x[n]r^{-n}\}
+$$
+***Inverse Z transform***
+$$
+x[n]=\frac{1}{2\pi j}\oint_{|z|=r} X(z)z^{n-1}\mathrm d z
+$$
+Other method:
+$$
+X(z)=\sum_{n=0}^{\infin} x(n)z^{-n}
+$$
+Rational form:
+
+Steps:
+
+1. Divide by $z$: $\displaystyle \frac{X(z)}{z}=\frac{N(z)}{D(z)}$.（Add one pole to the function）
+
+2. Using Partial fractional expansion: $\displaystyle \frac{X(z)}{z}\cdot z$.
+
+3. Inverse Z transform.
+   $$
+   \frac{z}{z-a} \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}}
+   
+   \begin{cases}
+   a^n u(n),&|z|>|a|\\
+   -a^{n} u(-n-1),&|z|<|a|
+   \end{cases}
+   $$
+
+**Properties of Z Transform**
+
+
+
+| Property   | Signal            | Z Transform                         |
+| ---------- | ----------------- | ----------------------------------- |
+| Linearity  | $ax_1[n]+bx_2[n]$ | $a\mathcal X_1(z)+b\mathcal X_2(z)$ |
+| Time delay | $x[n-1]$          | $z^{-1}X(z)+x[-1]$                  |
+|            |                   |                                     |
+|            |                   |                                     |
+|            |                   |                                     |
+|            |                   |                                     |
+|            |                   |                                     |
+|            |                   |                                     |
+|            |                   |                                     |
+
