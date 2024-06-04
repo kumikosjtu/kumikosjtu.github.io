@@ -87,6 +87,11 @@ $$
 \frac{\mathrm d }{\mathrm d t}[x(t)*h(t)]=x(t)*\frac{\mathrm d }{\mathrm d t}h(t)=\frac{\mathrm d }{\mathrm d t}x(t)*h(t)
 $$
 
+函数时移后的卷积：
+$$
+x(t-t_1)*h(t-t_2)=y(t-t_1-t_2)
+$$
+
 ## Ch3 - Fourier Series
 
 ### CT
@@ -146,6 +151,8 @@ $$
 \underbrace{\mathrm{Periodic\ Signals}}_{\mathrm{Fourier\ Series}} \Rightarrow \underbrace{\mathrm{All \ Signals}}_{\mathrm{Fourier\ Transform}}
 $$
 
+对于特征函数，输入 $x(t)=e^{j\omega t}$，输出 $y(t)=H(j\omega)e^{j\omega t}$.
+
 ### CT
 
 **Analysis FT equation**:
@@ -168,6 +175,7 @@ $$
 | Sign Function         | $\operatorname{sgn}(t)$                                      | $\displaystyle \frac{2}{j\omega}$                            | Single-side Exp |
 | Step Function         | $u(t)$                                                       | $\displaystyle \pi \delta(\omega)+\frac{1}{j\omega}$         | Sign            |
 | Cosine Function       | $\cos (\omega_0 t)$                                          | $\pi\delta(\omega-\omega_0)+\pi\delta(\omega+\omega_0)$      | Impulse         |
+| Sine Function         | $\sin (\omega_0t)$                                           | $-j(\pi\delta(\omega-\omega_0)-\pi\delta(\omega+\omega_0))$  | Impulse         |
 | *Triangle* Function   | $$\begin{cases}1-|t|/T, & |t|\le T\\0, & else\end{cases}$$   | $\displaystyle \frac{4 \sin^2 (\omega T/2)}{\omega^2T}=T\operatorname{Sa}^2(\omega T/2)$ | Gate            |
 
 **Properties of CTFT**
@@ -184,23 +192,26 @@ $$
 | Differentiation(in Time)      | $\displaystyle \frac{\mathrm d x(t)}{\mathrm d t}$     | $j\omega X(j\omega)$                                         |
 | Integration                   | $\displaystyle \int_{-\infin}^t x(\tau)\mathrm d \tau$ | $\displaystyle \frac{1}{j\omega} X(j\omega)+ \pi X(0)\delta(\omega)$ |
 | Differentiation(in frequency) | $tx(t)$                                                | $\displaystyle j\frac{\mathrm d }{\mathrm d \omega}X(j\omega)$ |
-| Duality                       | $X(jt)$                                                | $2\pi x(-\omega)$                                            |
+| Duality                       | $X(j\boxed{t})$                                        | $\boxed{2\pi} x(\boxed{-\omega})$                            |
 | Convolution Property          | $h(t)*x(t)$                                            | $H(j\omega)X(j\omega)$                                       |
-| Multiplication Property       | $h(t)x(t)$                                             | $\displaystyle \frac{1}{2\pi}H(j\omega)*X(j\omega)$          |
+| Multiplication Property       | $h(t)x(t)$                                             | $\displaystyle \frac{1}{2\pi}H(j\omega)*X(j\omega)\\{\color{grey}Y(f)=H(f)*X(f)}$ |
 
 **Parseval's Relation**
 $$
-\int_{-\infin}^{\infin} |x(t)|^2 \mathrm d t = \frac{1}{2\pi} \int_{-\infin}^{\infin} |X(j\omega)|^2 \mathrm d \omega \\= \int_{-\infin}^{\infin} |X(f)|^2 \mathrm d f
+\int_{-\infin}^{\infin} |x(t)|^2 \mathrm d t = \frac{1}{2\pi} \int_{-\infin}^{\infin} |X(j\omega)|^2 \mathrm d \omega = \int_{-\infin}^{\infin} |X(f)|^2 \mathrm d f
 $$
 ***Comparing with Laplace Transform***
 
 **System Analysis by CTFT**
+
+如果系统可以用微分方程的形式表示，则 $H(j\omega)$ 为有理函数。
 $$
 H(j\omega)=\frac{Y(j\omega)}{X(j\omega)}=\frac{\sum_{k=0}^M b_k (j\omega)^k}{\sum_{k=0}^{N} a_k (j\omega)^k}
 $$
 
 ### DT
 
+傅里叶变换时求和，逆变换是积分。
 $$
 \boxed{X(e^{j\omega})=\sum_{n=-\infin}^{\infin} x[n] e^{-j\omega n }}\\
 \boxed{x[n]={\color{red}\frac{1}{2\pi}}\int_{2\pi} X(j\omega) e^{j\omega n}\mathrm d \omega}
@@ -215,6 +226,11 @@ $$
 | Gate           | $\begin{cases}1,|n|\le N_1\\0,|n|>N_1\end{cases}$ | $\displaystyle \frac{\sin \omega(N_1+1/2)}{\sin(\omega/2)}$ |
 | Ideal low-pass | $\displaystyle \frac{\sin Wn}{\pi n}$             | $\begin{cases}1,&|\omega| \le W\\0,&else\end{cases}$        |
 
+For DT, $e^{jk\omega_0n} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \delta(\omega-k\omega_0)$,
+$$
+x[n]=\sum_{k=\langle N\rangle} a_k e^{jk\omega_0 n},\omega_0=\frac{2\pi}{N} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}}\\
+X(j\omega)=\sum_{k=-\infin}^{\infin} 2\pi a_k \sum_l \delta (\omega-k\omega_0-2\pi l)
+$$
 **Properties of DTFT**
 
 > *Periodicity only for DTFT*
@@ -241,13 +257,31 @@ $$
 $$
 ***Comparing with Z transform***
 
+| Time Domain | Frequency Domain |
+| ----------- | ---------------- |
+| Continuous  | Aperiodic        |
+| Discrete    | Periodic         |
+| Periodic    | Discrete         |
+| Aperiodic   | Continuous       |
+
 ## Ch5 - Application of Fourier Transform
+
+**Sampling Theorem**
+
+**The Modulation Property**（经过低通滤波，幅值为二）
+
+**Ideal Filters**
+
+- Lowpass, Highpass(1-low).
+- Bandpass(low-low), Bandstop(1-bandpass).
+
+**Practical Filters**
 
 ## Ch6 - Laplace Transform
 
 The ***Bilateral Laplace transform*** is defined as
 $$
-x(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}} X(s)=\int_{-\infin}^{\infin} x(t) e^{-st}\mathrm d t=\boxed{\int_{-\infin}^{\infin} x(t) e^{-\sigma t}\mathrm d t}
+x(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}} X(s)=\int_{-\infin}^{\infin} x(t) e^{-st}\mathrm d t=\boxed{\int_{-\infin}^{\infin} [x(t) e^{-\sigma t}]e^{-j\omega t}\mathrm d t}
 $$
 where $s=\sigma+j\omega$. Notice that $X(s)=\mathcal F\{x(t)e^{-\sigma t}\}$.
 
@@ -255,13 +289,21 @@ The ***Inverse Laplace Transform*** can be derived from the inverse FT.
 $$
 \boxed{x(t)={\color{red}\frac{1}{2\pi j}}\int_{\sigma-j\infin}^{\sigma+j\infin} X(s)e^{st}\mathrm d s}
 $$
+**Laplace Pairs**
+$$
+\frac{1}{s+a} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \begin{cases}
+ e^{-at}u(t),&\operatorname{Re}\{s\} >-\operatorname{Re}\{a\}\\
+ -e^{-at}u(-t),&\operatorname{Re}\{s\} <-\operatorname{Re}\{a\}
+\end{cases}
+$$
 **Properties of the Laplace Transform**
 
 | Property                   | Signal                                                  | Laplace Transform                                      | ROC                                            |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
 | Linearity                  | $ax_1(t)+bx_2(t)$                                       | $aX_1(s)+bX_2(s)$                                      | At least $R_1 \cap R_2$                        |
 | Time Shifting              | $x(t-t_0)$                                              | $e^{-st_0}X(s)$                                        | $R$                                            |
-| Shifting $s$               | $e^{s_0 t}$                                             | $X(s-s_0)$                                             | $R+s_0$                                        |
+| Shifting $s$               | $e^{s_0 t}x(t)$                                         | $X(s-s_0)$                                             | $R+s_0$                                        |
 | Time Scaling               | $x(at)$                                                 | $\displaystyle \frac{1}{|a|}X\left(\frac{s}{a}\right)$ | $aR$                                           |
 | Conjugation                | $x^*(t)$                                                | $X^*(s^*)$                                             | $R$                                            |
 | Convolution                | $x_1(t)*x_2(t)$                                         | $X_1(s)X_2(s)$                                         | At least $R_1 \cap R_2$                        |
@@ -275,6 +317,8 @@ If $x(t)=0$ for $t<0$ and $x(t)$ contains *no singularities* at $t=0$, then
 $$
 x(0^+) = \lim_{s\to \infin} sX(s)
 $$
+> 分母的阶次高于分子的阶次，不能有常数值。
+
 **Final-value theorem**
 
 If $x(t)=0$ for $t<0$ and $x(t)$ has *a finite limit* as $t\to \infin$, then
@@ -294,9 +338,11 @@ $$
 
    ROC right-half plane 但系统不 Causal 的反例：$\displaystyle H(s)=\frac{e^{sT}}{s+1}, \operatorname{Re}\{s\} >-1$
 
-   但是当且仅当 $H(s)$ 有理时，系统因果和 ROC 在最右侧极点的右侧等价。
+   但是当且仅当 $H(s)$ <u>有理</u>时，<u>系统因果和 ROC 在最右侧极点的右侧等价</u>。
 
-   当 $H(s)$ 有理且因果时，系统稳定等价于虚轴在 ROC 中，等价于所有极点都在左半平面。
+   当 $H(s)$ 有理且因果时，<u>系统稳定</u> 等价于虚轴在 ROC 中，<u>等价于所有极点都在左半平面</u>。
+   
+3. Steady State Response.
 
 **Block Diagram**
 
@@ -366,17 +412,36 @@ Steps:
 
 **Properties of Z Transform**
 
+| Property                          | Signal                    | Z Transform                                          | ROC                    |
+| --------------------------------- | ------------------------- | ---------------------------------------------------- | ---------------------- |
+| Linearity                         | $ax_1[n]+bx_2[n]$         | $aX_1(z)+bX_2(z)$                                    | At least $R_1\cap R_2$ |
+| Time shifting                     | $x[n-n_0]$                | $z^{-n_0}X(z)$                                       | $R$                    |
+| Scaling in the $z$-domain         | $z_0^nx[n]$               | $X(z/z_0)$                                           | $z_0R$                 |
+| Time reversal                     | $x[-n]$                   | $X(z^{-1})$                                          | $R^{-1}$               |
+| Time expansion                    | $x_{(k)}[n]$              | $X(z^k)$                                             | $R^{1/k}$              |
+| Conjugation                       | $x^*[n]$                  | $X^*(z^*)$                                           | $R$                    |
+| Convolution                       | $x_1[n]*x_2[n]$           | $X_1(z)X_2(z)$                                       | At least $R_1\cap R_2$ |
+| First Difference                  | $x[n]-x[n-1]$             | $(1-z^{-1})X(z)$                                     | At least $R\cap |z|>0$ |
+| Accumulation                      | $\sum_{k=-\infin}^n x[k]$ | $\dfrac{X(z)}{1-z^{-1}}$                             | At least $R\cap |z|>1$ |
+| **Differentiation in $z$-domain** | $nx[n]$                   | $\displaystyle -z\frac{\mathrm d X(z)}{\mathrm d z}$ | $R$                    |
 
+*Initial Value Theorem*: If $x[n]=0$ for $n<0$, then $x[0]=\lim_{z\to \infin} X(z)$.
 
-| Property   | Signal            | Z Transform                         |
-| ---------- | ----------------- | ----------------------------------- |
-| Linearity  | $ax_1[n]+bx_2[n]$ | $a\mathcal X_1(z)+b\mathcal X_2(z)$ |
-| Time delay | $x[n-1]$          | $z^{-1}X(z)+x[-1]$                  |
-|            |                   |                                     |
-|            |                   |                                     |
-|            |                   |                                     |
-|            |                   |                                     |
-|            |                   |                                     |
-|            |                   |                                     |
-|            |                   |                                     |
+- Causal?
+- Stability?
+
+**Properties of Unilateral Z Transform**
+
+| Property                      | Signal                            | Uni ZT                                                       |
+| ----------------------------- | --------------------------------- | ------------------------------------------------------------ |
+| Linearity                     | $ax_1[n]+bx_2[n]$                 | $a\mathcal X_1(z)+b\mathcal X_2(z)$                          |
+| Time Delay                    | $x[n-1]$                          | $z^{-1}\mathcal X(z)+x[-1]$                                  |
+| Time Delay 2                  | $x[n-2]$                          | $z^{-2}\mathcal X(z)+z^{-1}x[-1]+x[-2]$                      |
+| Time Advance                  | $x[n+1]$                          | $zX(z)-zx[0]$                                                |
+| Time Advance 2                | $x[n+2]$                          | $z^2X(z)-z^2x[0]-zx[1]$                                      |
+| First Difference              | $x[n]-x[n-1]$                     | $(1-z^{-1})\mathcal X(z)-x[-1]$                              |
+| Accumulation                  | $\displaystyle \sum_{k=0}^n x[k]$ | $\displaystyle \frac{1}{1-z^{-1}}\mathcal X(z)$              |
+| Differentiation in $z$-domain | $nx[n]$                           | $-\displaystyle z\frac{\mathrm d \mathcal X(z)}{\mathrm d z}$ |
+
+*Initial Value Theorem*: $x[0]=\lim_{z\to \infin} \mathcal X(z)$.
 

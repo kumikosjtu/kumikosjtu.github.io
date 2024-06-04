@@ -2,6 +2,11 @@
 
 ## 可观测量的算符表示
 
+> - 掌握厄密算符的定义
+> - 掌握厄密算符的本征值与本征函数的基本性质与物理意义
+> - 应用常用的可观测算符
+> - 计算对易关系
+
 ### 算符的基本性质
 
 **算符相等**：对于任意波函数 $\psi$，都有 $\hat A\psi=\hat B\psi$。则称 $\hat A=\hat B$.
@@ -423,6 +428,10 @@ $$
 
 ## 不确定关系
 
+> - 理解不确定关系是量子体系波粒两象性的表示
+> - 应用不确定关系估算束缚态的基态能量
+> - 理解光谱的自然展宽
+
 ### 海森堡不确定关系
 
 具有确定动量的粒子的波函数为平面波：
@@ -519,6 +528,10 @@ $$
 $$
 
 ## 轨道角动量
+
+> - 掌握角动量算符的对易关系
+> - 掌握轨道量子数和磁量子数的物理意义
+> - 掌握球谐函数的基本性质和物理意义
 
 ### 轨道角动量的定义
 
@@ -724,7 +737,11 @@ $$
 $$
 \begin{aligned}dP&=|Y_{lm}(\theta,\varphi)|^{2}d\Omega\\&=|Y_{lm}(\theta,\varphi)|^{2}\mathrm{sin}\theta d\theta d\varphi\end{aligned}
 $$
-![image-20240510171715624](https://notes.sjtu.edu.cn/uploads/upload_173306de5debfc00a34cebcbfb5c6055.png)
+**例题** 证明水平方位角的那部分波函数 $\psi$
+$$
+\psi(\varphi)=\frac{1}{\sqrt{\pi}} \cos \varphi
+$$
+是归一化的。对一个处于这个态的粒子角动量的 $z$ 分量进行测量，可能会得到哪些值？得到每个值的概率是多少？粒子在这个态的 $\left\langle L_z\right\rangle$ 是多少？
 $$
 \begin{aligned}
 \psi(\varphi)&=\sum_{m}C_m \sqrt{\frac{1}{2\pi}}e^{im\varphi}\\
@@ -736,7 +753,7 @@ $$
 \langle L_z\rangle=\frac{1}{2}(\hbar)+\frac{1}{2}(-\hbar)=0
 $$
 
-![image-20240510172417428](https://notes.sjtu.edu.cn/uploads/upload_4bfdc6df74bf91d9ca9711a1652cb080.png)
+**例题** 求粒子处在 $Y_{lm}(\theta,\varphi)$ 时的角动量的 $x$ 和 $y$ 分量及平方的期待值。
 
 > $$
 > \Delta L_x\cdot \Delta L_y \ge \frac{1}{2}|\langle[L_x,L_y]\rangle|=\frac{m\hbar}{2}
@@ -761,8 +778,14 @@ $$
 \end{aligned}
 $$
 根据对称性，可得 $\langle L_x^2\rangle$ 和 $\langle L_y^2\rangle$.
-
-![image-20240510173429622](https://notes.sjtu.edu.cn/uploads/upload_32b71175415a55b9c41ff5199fd3f435.png)
+$$
+\left\langle L_x^2\right\rangle+\left\langle L_y^2\right\rangle+\left\langle L_z^2\right\rangle=\left\langle S^2\right\rangle=l(l+1)\hbar^2\\
+\left\langle L_z^2\right\rangle=m^2\hbar^2
+$$
+可得：
+$$
+\left\langle L_x^2\right\rangle=\left\langle L_y^2\right\rangle=\frac{l(l+1)-m^2}{2}\hbar^2
+$$
 
 ## 氢原子
 
@@ -926,3 +949,545 @@ $$
    E=\left\langle V\right\rangle+\left\langle T\right\rangle
    $$
    可得 $\left\langle V\right\rangle=-2\left\langle T\right\rangle$. 和经典物理类似。
+
+## 态与算符的矩阵表示
+
+### 狄拉克符号
+
+**波函数在不同表象中的表示**
+
+- $\psi(x)$ 是波函数在 **位置** 表象中的表示；
+- $C(p)$ 是波函数在 **动量** 表象中的表示；
+- $\Psi=\sum_n c_n \psi_n$，其中 $\psi_n$ 是属于 **能量** $E_n$ 的定态波函数，则 $c_1\cdots c_n\cdots$ 称为波函数在 **能量** 表象中的表示。
+- 对于厄密算符 $\hat F$ 来说，设 $u_n$ 是属于厄密算符 $\hat F$ 的本征值 $\lambda_n$ 的本征波函数，则称 $c_1,\cdots,c_n\cdots$ 称为波函数在 $F$ 表象中的表示。
+
+**狄拉克符号表示态矢**
+
+根据态叠加原理，由于波函数的叠加性，称波函数为态矢，用狄拉克符号表示态矢，独立于表象
+
+- $\psi \to |\psi \rangle$ 称为右矢；波函数 $\to$ 态矢。
+- $\psi^*\to \langle \psi |$ 称为左矢；波函数的复数共轭 $\to$ 态矢。
+- 常用量子数表示态矢。
+
+态矢的运算也符合 <u>交换律、结合律、分配律</u>。
+
+**内积** 表示为：
+$$
+\langle \psi_1|\psi_2\rangle =\int \psi_1^*\psi_2 \mathrm d x
+$$
+因此：
+
+- 态矢归一化可以表示为 $\langle\psi|\psi \rangle=1$；
+
+- 两个态矢相互正交可以表示为 $\langle\psi|\phi\rangle=0$.
+
+- 基矢 $\{|\psi_n\rangle,n=1,2,\cdots\}$ 的正交归一完备性可以表示为：
+  $$
+  \langle \psi_m | \psi_n \rangle =\delta_{mn}\\
+  \sum_n |\psi_n \rangle\langle \psi_n |=I
+  $$
+
+- 若 $|\Psi\rangle=\sum_n c_n |\psi_n \rangle$，则：
+  $$
+  \langle \psi_i|\Psi\rangle=\sum_n c_n \langle \psi_i | \psi_n \rangle =c_i\\
+  \Rightarrow \boxed{c_n=\langle \psi_n | \Psi\rangle}
+  $$
+
+- $|\Psi\rangle$ 态下测量 $A$ 的期待值（算符 $A$ 的期待值）
+  $$
+  \boxed{\left\langle A\right\rangle=\langle \Psi | \hat A| \Psi\rangle}
+  $$
+
+**算符的定义与薛定谔方程**
+$$
+\hat A |u\rangle = |v\rangle\quad \hat A|u\rangle=\lambda|u\rangle\\
+\hat H|n\rangle=E_n |n\rangle(定态)\\
+\hat H|\psi(t)\rangle=i\hbar \frac{\partial}{\partial t}|\psi(t)\rangle(含时)
+$$
+**狄拉克符号表示态矢的外积**
+$$
+(|u\rangle\langle v|)|\psi\rangle=|u\rangle\langle v|\psi\rangle=(\langle v|\psi\rangle) |u\rangle
+$$
+作用在任意右矢 $|\psi\rangle$ 的结果是右矢，所以 $|u\rangle\langle v|$ 是算符。总结：
+
+- $\langle u|v\rangle$ 是常数；
+- $\langle u| \hat A| v\rangle$ 是常数；
+- $|u\rangle\langle v|$ 是算符。
+
+**例题** 若 $\left\{|\psi_n \rangle,n=1,2,\cdots\right\}$ 是正交归一完备的基矢。求证 $\sum_n |\psi_n\rangle\langle \psi_n|=I$.
+$$
+\begin{aligned}
+\sum_n |\psi_n \rangle \langle \psi_n|\psi\rangle&=\sum_n \langle \psi_n|\psi\rangle|\psi_n \rangle =\psi\\
+\end{aligned}
+$$
+**例题** 对于任何两个代表不同状态的态矢量 $|\psi\rangle$ 及 $|\varphi\rangle$（未归一化），试证明下列 Schwarz 不等式：
+$$
+|\langle \psi|\varphi\rangle| ^2 < \langle \psi|\psi \rang\lang\varphi|\varphi\rang
+$$
+
+等于证明：
+$$
+\langle \varphi |\psi\rangle\langle \psi|\varphi\rangle <\langle \psi|\psi \rang\lang\varphi|\varphi\rang
+$$
+证明：令$\langle\psi\mid\psi\rangle=a(>0),\langle\varphi\mid\varphi\rangle=b(>0),\langle\psi\mid\varphi\rangle=c$,并令
+$$
+|\chi\rangle=|\varphi\rangle-\frac{c}{a}|\psi\rangle
+$$
+由于 $\psi,\varphi$ 代表不同状态，所以 $|\chi\rangle\neq0,\langle\chi|\chi\rangle>0$,即
+$$
+\langle\chi\mid\chi\rangle\:=\:(\langle\varphi|-\frac{c^{*}}{a}\langle\psi|)(|\varphi\rangle-\frac{c}{a}|\psi\rangle)=b-\frac{c^{*}c}{a}>0
+$$
+所以 $c^{*}c$，亦即 $|\langle\psi\mid\varphi\rangle|^2<\langle\psi\mid\psi\rangle\langle\varphi\mid\varphi\rangle $.
+
+### 波函数的矩阵表示
+
+**右矢的矩阵表示**
+
+力学量完全集 $F$ 所有共同本征函数 $|u_n\rangle$ 构成一个完备正交的基矢，这样任何一个态矢 $|\psi\rang$ 都可以展开为：
+$$
+|\psi\rang=\sum_n c_n |u_n \rang
+$$
+用 $c_n=\lang u_n | \psi \rang$ 描述体系状态。
+$$
+|\psi\rangle=\begin{pmatrix}c_1\\c_2\\\vdots\end{pmatrix}
+$$
+
+$$
+\langle\psi_{1}|\psi_{2}\rangle=\sum_{m}c_{m}^{*}d_{m}
+$$
+
+各基矢 $|u_n\rangle$ 在自身表象中的矩阵形式为：
+$$
+|u_1\rangle=\begin{pmatrix}1\\0\\\vdots\end{pmatrix},|u_2\rangle=\begin{pmatrix}0\\1\\0\\\vdots\end{pmatrix},\quad\cdots,|u_n\rangle=\begin{pmatrix}0\\\vdots\\1\\0\\\vdots\end{pmatrix}
+$$
+$c_n$ 是态矢量 $|\psi \rangle$ 在各基矢方向的分量，如同坐标分量。
+$$
+|\psi\rangle=\begin{pmatrix}c_1\\c_2\\\vdots\end{pmatrix}=c_1|u_1\rangle+\cdots+c_n|u_n\rangle+\cdots\\c_{n}=\langle u_{n}|\psi\rangle 
+$$
+**左矢和内积的矩阵表示**
+
+左矢的矩阵表示：$c_n^*$ 排成一个行向量来表示
+$$
+\Psi^*(x)=\sum_n c_n^* u_n^* (x)\Rightarrow \\
+\langle \psi|=(c_1^*,c_2^*,\cdots)
+$$
+矩阵的运算规则满足波函数的叠加性。
+
+内积的矩阵表示：相当于做矩阵乘法。
+
+可以证明
+$$
+\langle \psi |\varphi\rangle=\langle \varphi|\psi \rangle ^*
+$$
+![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover464_20240524154210.jpg?e=1716560956&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:z0yblhcHuAVSPtTZLLTK0X2-ZRg=)
+$$
+|\psi_1\rangle=\begin{pmatrix}1\\0\\\vdots\end{pmatrix},|\psi_2\rangle=\begin{pmatrix}0\\1\\0\\\vdots\end{pmatrix},|\Psi(x,t)\rangle=\begin{pmatrix}e^{-iE_2/h}/\sqrt{2}\\e^{-iE_1/h}/\sqrt{2}\\0\\\vdots\end{pmatrix}\\,
+|\Psi^*(x,t)\rangle=\begin{pmatrix}e^{iE_2/h}/\sqrt{2}&e^{iE_1/h}/\sqrt{2}&0&\cdots\end{pmatrix}
+$$
+
+**光子偏振态矢**
+
+### 算符的矩阵表示
+
+对于一个算符 $\hat A$ 来说， 其可以用矩阵描述，其矩阵元素为：
+$$
+A_{mn}=\int u_m^* \hat A u_n\mathrm d a=\boxed{\langle u_m | \hat A| u_n\rangle}
+$$
+
+$$
+\hat A\to\begin{pmatrix}A_{11}&A_{12}&&\cdots\\\vdots&A_{22}&&\\&&&\ddots\end{pmatrix}
+$$
+
+**共轭算符及其矩阵表示**
+
+定义算符 $\hat A$ 的共轭算符 $\hat A^\dagger$，$\hat A$ 与 $\hat A^\dagger$ 互为共轭。
+$$
+\int u^* \hat A v\mathrm d x=\int(\hat A^\dagger u)^*v\mathrm d x\\
+\int u^*\hat{A}^\dagger v\mathrm dx=\int(\hat{A}u)^*v\mathrm dx
+$$
+共轭算符 $\hat A^\dagger$ 矩阵是 $\hat  A$ 矩阵的 **转置+复数共轭**，矩阵元 $A_{mn}^\dagger$（第 $m$ 行，第 $n$ 列）
+$$
+\begin{aligned}&A_{mn}^{\dagger}=\langle u_{m}|\hat{A}^{\dagger}|u_{n}\rangle=\int u_{m}^{*}\hat{A}^{\dagger}u_{n}dx=\left(\int(\hat{A}^{\dagger}u_{n})^{*}u_{m}dx\right)^{*}\\&=\left(\int u_{n}{}^{*}\hat{A}u_{m}dx\right)^{*}=\left\langle u_{n}|\hat{A}|u_{m}\right\rangle^{*}=A_{nm}^{*}\end{aligned}
+$$
+**共轭算符的运算法则**
+$$
+\begin{aligned}
+&\left(\hat{A}^{\dagger}\right)^{\dagger}=\hat{A} \\
+&\left(\hat{A}|u\rangle\right)^{\dagger}=\langle u|\hat{A}^{\dagger} \\
+&\left(\lambda\hat{A}\right)^{\dagger}=\lambda^{*}\hat{A}^{\dagger} \\
+&(\hat{A}+\hat{B})^{\dagger}=\hat{A}^{\dagger}+B^{\dagger} \\
+&(\hat{A}\hat{B})^{\dagger}=B^{\dagger}\hat{A}^{\dagger}
+\end{aligned}
+$$
+**厄密算符的矩阵表示**
+$$
+A 是厄密矩阵 \Leftrightarrow A^\dagger = A \Leftrightarrow A_{mn}=A^*_{nm}
+$$
+
+
+**例题** 证明假如相应于可观测量 $A$ 的算符 $\hat A$ 是厄密算符，则 $\langle A^2\rangle \ge 0$.
+$$
+\begin{aligned}
+\langle A^2\rangle &=\langle \psi|A^2 |\psi\rangle\\
+&\overset{A|\psi\rangle :=u}=\langle \psi |A|u\rangle
+\\
+&= \langle \psi|A^\dagger | u\rangle\\
+&=(A|\psi\rangle)^*|u\rangle\\
+&=\langle u|u\rangle\ge 0
+\end{aligned}
+$$
+**算符期待值的矩阵表示**
+
+> 左矢是右矢的转置+共轭
+
+$$
+\begin{aligned}&|\Psi\rangle=\begin{pmatrix}c_{1}\\c_{2}\\\vdots\end{pmatrix},\quad\langle\Psi|=(c_{1}^{*}\quad c_{2}^{*}\quad\cdots)\\&\langle A\rangle=(c_{1}^{*}\quad c_{2}^{*}\quad\cdots)\begin{pmatrix}A_{11}&A_{12}&\cdots\\\vdots&A_{22}&\\&&\ddots\end{pmatrix}\begin{pmatrix}c_{1}\\c_{2}\\\vdots\end{pmatrix}\end{aligned}
+$$
+
+**本征方程的矩阵表示**
+$$
+\begin{pmatrix}A_{11}&A_{12}&\cdots\\&A_{22}&\\&&...\end{pmatrix}\begin{pmatrix}c_1\\c_2\\\vdots\\\vdots\end{pmatrix}=\lambda\begin{pmatrix}c_1\\c_2\\\vdots\\\vdots\end{pmatrix}
+$$
+求解 $\lambda$：
+$$
+\begin{vmatrix}A_{11}-\lambda&A_{12}&...\\&A_{22}-\lambda&\\&&...\end{vmatrix}=0
+$$
+**定态薛定谔方程的矩阵表示**
+$$
+\begin{pmatrix}H_{11}&&H_{12}&&\cdots\\&&H_{22}&&\\&&&...\end{pmatrix}\begin{pmatrix}c_1\\c_2\\\vdots\\\vdots\end{pmatrix}=E\begin{pmatrix}c_1\\c_2\\\vdots\\\vdots\end{pmatrix}
+$$
+$E$ 为 $H$ 矩阵的特征值。
+
+**含时薛定谔方程的矩阵表示**
+$$
+\begin{pmatrix}H_{11}&H_{12}&...\\&H_{22}&\\&&...\end{pmatrix}\begin{pmatrix}c_1(t)\\c_2(t)\\\vdots\\\vdots\end{pmatrix}=i\hbar\frac{\partial}{\partial t}\begin{pmatrix}c_1(t)\\c_2(t)\\\vdots\\\vdots\end{pmatrix}
+$$
+初始条件：已知 $$\Psi(0)=\begin{pmatrix}c_{1}(0)\\c_{2}(0)\\\vdots\\\vdots\end{pmatrix}$$.
+
+**例题** 设 $|u\rangle,|v\rangle$ 为态矢，$\langle u | u\rangle$ 即 $\langle v|v\rangle$ 有限，证明：
+$$
+\operatorname{Tr}|u\rangle\langle v|=\langle v|u\rangle
+$$
+
+$$
+\operatorname{Tr}|u\rangle\langle v|=\sum_{n} \langle u_n | u\rangle \langle v|u_n\rangle=\sum_{n} \langle v\overbrace{|u_n\rangle\langle u_n |}^{\sum = I} u\rangle \\
+=\langle v|u\rangle
+$$
+
+![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover445_20240524154215.jpg?e=1716563609&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:LY5sU475lK2eUXSszkSNiNdXtqY=)
+
+![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover1260_20240524154215.jpg?e=1716563609&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:D9v1c6W8WAA-lzTcTPV-wUkL1xY=)
+
+**例题** 设相应于一个例子的物理量的算符 $\hat A$ 只有两个本征函数 $\phi_1(x)$ 和 $\phi_2(x)$，他们的本征值分别为 $a_1$ 和 $a_2$，两者不等，粒子的任一一个态都可以表示为：
+$$
+\psi=c_1 \phi_1(x)+c_2 \phi_2(x)
+$$
+算符 $\hat B$ 定义为：
+$$
+\hat B\psi=c_2\phi_1(x)+c_1\phi_2(x)
+$$
+
+1. 证明算符 $\hat B$ 是厄密算符。
+   $$
+   \begin{pmatrix}
+   B_{11}&B_{12}\\
+   B_{21}&B_{22}
+   \end{pmatrix}\begin{pmatrix}
+   c_1\\
+   c_2
+   \end{pmatrix}=\begin{pmatrix}
+   c_2\\
+   c_1
+   \end{pmatrix}
+   $$
+
+   $$
+   B=\begin{pmatrix}
+   0&1\\
+   1&0
+   \end{pmatrix}
+   $$
+
+2. 求算符 $\hat B$ 的本征值以及相应的归一本征函数。
+   $$
+   \lambda^2-1=0\Rightarrow \lambda=\pm 1
+   $$
+   归一本征函数：
+   $$
+   u_{1}=\frac{1}{\sqrt{2}}\begin{pmatrix}
+   1\\1
+   \end{pmatrix}\quad u_{-1}=\frac{1}{\sqrt{2}}\begin{pmatrix}
+   1\\-1
+   \end{pmatrix}
+   $$
+
+3. 若粒子处于态 $\psi=\frac{1}{\sqrt{3}}\phi_1(x)+\frac{1-i}{\sqrt{3}} \phi_2(x)$，求在该态下测量 $B$ 的期待值。
+   $$
+   \langle B\rangle=\begin{pmatrix}
+   \frac{1}{\sqrt{3}}&\frac{1+i}{\sqrt{3}}
+   \end{pmatrix}\begin{pmatrix}
+   0&1\\
+   1&0
+   \end{pmatrix}\begin{pmatrix}
+   \frac{1}{\sqrt{3}}\\\frac{1-i}{\sqrt{3}}
+   \end{pmatrix}=\frac{2}{3}
+   $$
+
+## 自旋
+
+### SG 实验
+
+银原子束通过一个不均匀磁场后分裂为两条，第一次验证角动量方向的量子化。根据量子力学，银原子基态，$n=1,l=0,L=L_z=0$，银原子束不会分裂。但是实验中银原子分裂成两条。
+
+### 自旋角动量
+
+**反常塞曼效应**：分裂为 $2(2l+1)$ 条。
+
+**自旋是微观效应的固有属性**，不能用宏观的自旋对应。否则电子自转的速度将大于光速。
+
+**自旋角动量**，用 $\vec S$ 表示，$S_i(i=x,y,z)$ 分别代表它的是三个分量。
+
+自旋具有轨道角动量的量纲 [J$\cdot$s]，自旋的分量具有和 <u>轨道角动量</u> 相同的对易关系：
+$$
+[\hat S_{i},\hat S_j]=i\hbar \varepsilon _{ijk} \hat S_k\\
+[\hat S_x,\hat S_y]=i\hbar \hat S_{z}\\
+[\hat S_y,\hat S_z]=i\hbar \hat S_{x}\\
+[\hat S_{z},\hat S_{x}]=i\hbar \hat S_{y}\\
+[\hat S^2,\hat S_{i}]=0
+$$
+
+- 由于 $\hat S^2$ 与 $\hat S_z$ 相互对易，它们具有共同的本征态；
+
+- $\hat S^2$ 的本征值由 **自旋量子数 $\boldsymbol s$** 决定，本征值为 $s(s+1)\hbar^2$；自旋量子数 $s$ 可取不小于 $0$ 的整数和半整数：$s=0,\frac{1}{2},1,\frac{3}{2},\cdots$.
+
+- $\hat S_{z}$ 的本征值由**自旋磁量子数 $\boldsymbol{m_s}$** 决定，本征值为 $m_s\hbar$。自旋磁量子数 $m_s$ 可取整数或半整数；自旋量子数 $s$ 给定，则：$m_s=s,s-1,\cdots,-s+1,-s$ 共 $2s+1$ 种取法。
+
+- $\hat S^2$ 与 $\hat S_{z}$ 的共同的本征态 $\chi_{m_s}$ 用两个量子数 $s$ 和 $m_s$ 来表征：
+  $$
+  \chi_{m_s}=|s,m_s\rangle
+  $$
+
+> 注：若定义 $S_{\pm}=S_{x}\pm iS_{y}$，则：
+> $$
+> S_{z}\chi=\lambda \hbar \chi\\
+> S_{z}S_{\pm }\chi=(\lambda\pm 1)\hbar \chi
+> $$
+
+S-G 实验测量 $S_z$ 有两个测量可能值 $\pm\frac{1}{2}\hbar$.
+
+电子的自旋量子数：$s=\displaystyle \frac{1}{2}$；电子的自旋磁量子数 $m_s=\pm \displaystyle \frac{1}{2}$.
+
+电子自旋 $(S^2,S_{z})$ 的共同本征态：
+$$
+\chi_{1/2}=|1/2,1/2\rangle\doteq |\uparrow\rangle=|1\rangle\\
+\chi_{-1/2}=|1/2,-1/2\rangle\doteq |\downarrow \rangle=|2\rangle
+$$
+
+可得，
+$$
+\begin{cases}\hat{S}^{2}\chi_{\frac{1}{2}}=\frac{1}{2}\biggl(\frac{1}{2}+1\biggr)\hbar^{2}\chi_{\frac{1}{2}}\\\hat{S}_{z}\chi_{\frac{1}{2}}=\frac{1}{2}\hbar\chi_{\frac{1}{2}}\end{cases} \quad \begin{cases}\hat{S}^2\chi_{-\frac{1}{2}}=\frac{3}{4}\hbar^2\chi_{-\frac{1}{2}}\\\hat{S}_z\chi_{-\frac{1}{2}}=-\frac{1}{2}\hbar\chi_{-\frac{1}{2}}\end{cases}
+$$
+
+- 正交：$\langle \uparrow |\downarrow \rangle=0$；
+
+- 归一：$\langle \uparrow |\uparrow \rangle=\langle \downarrow |\downarrow \rangle=1$；
+
+- 完备：$|\uparrow \rangle\langle \uparrow|+|\downarrow \rangle\langle \downarrow |=I$；
+
+- 矩阵表示：
+
+  - $S^2$ 在 $(S^2,S_z)$ 表象的矩阵表示：
+    $$
+    S^2=\begin{pmatrix}\left\langle1|S^2|1\right\rangle&\left\langle1|S^2|2\right\rangle\\\left\langle2|S^2|1\right\rangle&\left\langle2|S^2|2\right\rangle\end{pmatrix}=\frac{3}{4}\hbar \begin{pmatrix}
+    1&0\\0&1
+    \end{pmatrix}
+    $$
+
+  - $S_z$ 在 $(S^2,S_z)$ 表象的矩阵表示：
+    $$
+    S_z=\frac{1}{2}\hbar \begin{pmatrix}
+    1&0\\0&{-1}
+    \end{pmatrix}
+    $$
+
+为了简化计算，引入 **无量纲的泡利自旋算符** $\hat{\vec \sigma}$，定义为：
+$$
+\hat{\vec S}=\frac{\hbar}{2}\hat{\vec \sigma}
+$$
+
+> 注：也可得关系 $\left\langle S_i\right\rangle=\displaystyle \frac{\hbar}{2} \left\langle\sigma_i\right\rangle$.
+
+可以证明泡利自旋算符的对易关系：
+$$
+[\hat S_{i},\hat S_j]=i\hbar \varepsilon _{ijk} \hat S_k\\
+\Rightarrow \frac{\hbar^2}{4}[\hat{\vec \sigma_i},\hat{\vec \sigma_j}]=i\hbar \varepsilon_{ijk}\frac{\hbar}{2}\hat {\vec {\sigma_k}}\\
+\Rightarrow [\hat{\vec \sigma_i},\hat{\vec \sigma_j}]=2i\varepsilon_{ijk}\hat {\vec {\sigma_k}}
+$$
+**泡利矩阵** 在 $(S^2,S_{z})$ 表象的矩阵表示：
+$$
+\sigma_x=\begin{pmatrix}
+0&1\\1&0
+\end{pmatrix}\quad \sigma_y=\begin{pmatrix}
+0&-i\\i&0
+\end{pmatrix}\quad \sigma_z=\begin{pmatrix}
+1&0\\0&-1
+\end{pmatrix}
+$$
+可以说明：
+$$
+\begin{aligned}&\hat{\sigma}^{2}=\hat{\sigma}_{x}^{2}+\hat{\sigma}_{y}^{2}+\hat{\sigma}_{z}^{2}=3\begin{pmatrix}1&0\\0&1\end{pmatrix}=3I\\&\hat{\sigma}_{x}^{2}=\hat{\sigma}_{y}^{2}=\hat{\sigma}_{z}^{2}=I=\begin{pmatrix}1&0\\0&1\end{pmatrix}\end{aligned}
+$$
+**例题** 证明泡利算符具有反对易关系 $$\{\hat{A},\hat{B}\}\equiv\hat{A}\hat{B}+\hat{B}\hat{A}$$。
+$$
+[\hat{\vec \sigma_i},\hat{\vec \sigma_j}]=2i\varepsilon_{ijk}\hat {\vec {\sigma_k}}\\
+[\hat{\vec \sigma_j},\hat{\vec \sigma_i}]=2i\varepsilon_{jik}\hat {\vec {\sigma_k}}
+$$
+因为 $\varepsilon_{ijk}+\varepsilon_{jik}=0$，所以反对易。
+
+**例题**
+
+1. 在 $(S^2,S_z)$ 表象中求解 $\hat S_x$ 的本征值与本征态。
+
+   先列出关于 $\sigma_x$ 的久期方程。可得：
+
+   - 当 $\lambda=1$ 时，$\hat S_x$ 本征态为 $\frac1{\sqrt{2}}\binom11$.
+   - 当 $\lambda=-1$ 时，$\hat S_x$ 本征态为 $$\frac{1}{\sqrt{2}}\binom{1}{-1}$$.
+
+2. 求在 $$\chi_{1/2}=\binom10$$ 态下测量 $S_x$ 的期待值。
+   $$
+   \begin{gathered}
+   \langle S_{x}\rangle  =\frac{\hbar}{2}\langle\sigma_{x}\rangle=\frac{\hbar}{2}\langle\chi_{\frac{1}{2}}\mid\sigma_{x}\mid\chi_{\frac{1}{2}}\rangle  \\
+   =\frac{\hbar}{2}(0\quad1)\begin{pmatrix}0&1\\1&0
+   \end{pmatrix}\binom{1}{0} \\
+   =\frac{\hbar}{2}(0\quad1)\binom{1}{0}=0 
+   \end{gathered}
+   $$
+
+### 电子波函数
+
+考虑到自旋，电子波函数可以表示成
+$$
+\boxed{\Phi=\begin{pmatrix}
+\psi_1(\vec r,t)\\
+\psi_2(\vec r,t)
+\end{pmatrix}}
+$$
+
+> 其中 $\psi_1(\vec r,t)$ 表示 $t$ 时刻找到电子 $S_z=\hbar/2$ 并且处于 $\vec r$ 点单位体积内的概率幅；$\psi_2$ 同理。
+
+归一化：
+$$
+\int (|\psi_1|^2+|\psi_2|^2)\mathrm d ^3 r=1
+$$
+**位置概率密度** $\omega(\vec r,t)$：
+$$
+\omega(\vec r,t)=|\psi_1|^2+|\psi_2|^2
+$$
+引入自旋后，任一自旋算符的函数 $\hat G$ 在 $S_z$ 表象表示为 $2\times 2$ 矩阵：
+$$
+G=\begin{pmatrix}
+G_{11}&G_{12}\\
+G_{21}&G_{22}
+\end{pmatrix}
+$$
+算符 $\hat G$ 在 $\Phi$ 态中对坐标和自旋同时求平均的期待值是：
+$$
+\Phi^{+}\hat{G}\Phi=(\psi_{1}^{*}\quad\psi_{2}^{*})\begin{pmatrix}G_{11}&G_{12}\\G_{21}&G_{22}\end{pmatrix}\begin{pmatrix}\psi_{1}\\\psi_{2}\end{pmatrix}
+$$
+如果自旋和轨道运动相互作用较小，则：
+$$
+\psi(\vec r,S_z,t)=\psi(\vec r,t)\chi(S_z)
+$$
+其中 $\chi(S_z)$ 称为自旋波函数：
+$$
+\chi(S_z)=c_1\chi_{\frac{1}{2}}+c_2\chi_{-\frac{1}{2}}=\binom{c_1}{c_2}
+$$
+
+**习题 1-38**
+
+1. 求解电子自旋 $S_x,S_y,S_z$ 的本征矢；
+   $$
+   \mid\uparrow\rangle_z=\binom{1}{0},\mid\downarrow\rangle_z=\binom{0}{1}
+   $$
+
+   $$
+   \mid\rightarrow\rangle_{x}=\frac{1}{\sqrt{2}}\binom{1}{1},\mid\leftarrow\rangle_{x}=\frac{1}{\sqrt{2}}\binom{1}{-1}
+   $$
+
+   $$
+   |+\rangle_y=\frac{1}{\sqrt{2}}\binom{1}{i}\quad|-\rangle_y=\frac{1}{\sqrt{2}}\binom{1}{-i}
+   $$
+
+2. 并以 $S_y$ 的本征矢为基矢将 $S_x$ 的本征矢展开；
+   $$
+   \mid\to\rangle_x=\alpha_{+}|+\rangle_y+\beta_{+}|-\rangle_y
+   $$
+
+   $$
+   \alpha_{+}=\langle +\mid\to\rangle=\frac{1-i}{2}\\
+   \beta_{-}=\langle -\mid\gets\rangle=\frac{1-i}{2}
+   $$
+
+3. 在 $S_x$ 的本征态下测量 $S_y$ 的可能值有哪些？对应的概率是多少？平均值是什么？
+
+   本征值为 $\frac{\hbar}{2}$ 概率为 $|\alpha_{+}|^2=1/2$，本征值为 $-\frac{\hbar}{2}$ 概率也为 $1/2$.
+
+   平均值为零。
+
+**习题 1-37**
+
+设电子自旋的 $z$ 分量是 $\hbar/2$，求沿着与 $z$ 轴成 $\theta$ 角的 $z'$ 轴方向，自旋的分量等于 $\hbar/2$ 或 $-\hbar/2$ 的概率。
+
+电子自旋的状态可以表示为：
+$$
+\psi=\mid \uparrow \rangle_{z}=\binom 10
+$$
+通过分解：
+$$
+S_{\theta}=\vec{S}\cdot\vec{e}_{\theta}=S_{_x}\cos\theta\cos\varphi+S_{_y}\cos\theta\sin\varphi+S_{_z}\cos\theta
+$$
+并求本征态和本征值，可得
+$$
+\mid+\rangle_{\theta}=\begin{pmatrix}\cos\frac{\theta}{2}e^{-i\varphi/2}\\\sin\frac{\theta}{2}e^{i\varphi/2}\end{pmatrix}\quad \mid-\rangle_\theta=\begin{pmatrix}-\sin\frac{\theta}{2}e^{-i\varphi/2}\\\cos\frac{\theta}{2}e^{i\varphi/2}\end{pmatrix}
+$$
+通过求解分解系数，可得
+
+- 自旋分量等于 $\hbar/2$ 的概率 $|\alpha|^2=\cos^2 \theta/2$.
+- 自旋分量等于 $-\hbar/2$ 的概率 $|\beta|^2=\sin^2 \theta/2$.
+
+> 注：这个概率有点像偏振光的分解
+
+**例题** 电子处于态 $|\psi\rangle$，表示态矢的量子数分别为：轨道量子数和轨道磁量子数
+$$
+|\psi\rangle=\frac{1}{\sqrt{6}}|0,0,\uparrow\rangle+\frac{1}{\sqrt{3}}|1,0,\uparrow\rangle+\frac{1}{\sqrt{2}}|1,1,\downarrow\rangle=\begin{pmatrix}\frac{1}{\sqrt{6}}Y_{00}+\frac{1}{\sqrt{3}}Y_{10}\\\frac{1}{\sqrt{2}}Y_{11}\end{pmatrix}
+$$
+问测量 $L^2,L_z,S_z$ 的可能值？相应的概率和期待值？
+
+利用：
+
+- $L^2$ 的本征值为 $l(l+1)\hbar^2$.
+- $L_z$ 的本征值为 $m\hbar$.
+- $S_z$ 的本征值为 $\pm \frac{1}{2}\hbar$.
+
+|       | 可能值                                             | 相应的概率                              | 期待值                             |
+| ----- | -------------------------------------------------- | --------------------------------------- | ---------------------------------- |
+| $L^2$ | $0,2\hbar^2$                                       | $\displaystyle \frac{1}{6},\frac{5}{6}$ | $\displaystyle \frac{3}{5}\hbar^2$ |
+| $L_z$ | $0,\hbar$                                          | $\displaystyle \frac{1}{2},\frac{1}{2}$ | $\displaystyle \frac{1}{2}\hbar$   |
+| $S_z$ | $\displaystyle \frac{1}{2}\hbar,-\frac{1}{2}\hbar$ | $\displaystyle \frac{1}{2},\frac{1}{2}$ | $0$                                |
+
+### 原子光谱的精细结构
+
+**电子的角动量**
+$$
+\vec J=\vec L+\vec S
+$$
+其中 $j=l\pm \frac{1}{2}$.
+
+### 多电子原子的壳层结构
+
+主量子数相同的电子属于同一壳层。$n$ 相同，不同的 $l$ 组成分壳层，对于 $n=1,2,3,\cdots$ 的壳层分别用 $K,L,M,N,O,\cdots$ 来表示。
+
+**泡利不相容原理**：<u>不可能有两个或两个以上的电子处在同一量子状态，即不可能具有相同的四个量子数</u>，这称为泡利不相容原理。
+
+## 全同粒子体系
+
