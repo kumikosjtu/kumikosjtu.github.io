@@ -1079,7 +1079,7 @@ $$
 $$
 \langle \psi |\varphi\rangle=\langle \varphi|\psi \rangle ^*
 $$
-![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover464_20240524154210.jpg?e=1716560956&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:z0yblhcHuAVSPtTZLLTK0X2-ZRg=)
+![image-20240604205201307](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240604205201307.png)
 $$
 |\psi_1\rangle=\begin{pmatrix}1\\0\\\vdots\end{pmatrix},|\psi_2\rangle=\begin{pmatrix}0\\1\\0\\\vdots\end{pmatrix},|\Psi(x,t)\rangle=\begin{pmatrix}e^{-iE_2/h}/\sqrt{2}\\e^{-iE_1/h}/\sqrt{2}\\0\\\vdots\end{pmatrix}\\,
 |\Psi^*(x,t)\rangle=\begin{pmatrix}e^{iE_2/h}/\sqrt{2}&e^{iE_1/h}/\sqrt{2}&0&\cdots\end{pmatrix}
@@ -1174,9 +1174,11 @@ $$
 =\langle v|u\rangle
 $$
 
-![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover445_20240524154215.jpg?e=1716563609&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:LY5sU475lK2eUXSszkSNiNdXtqY=)
+![](https://notes.sjtu.edu.cn/uploads/upload_4f896254f1632dd0cf879e7c1f74e9ef.png)
 
-![img](https://rain-private-qn.yuketang.cn/slide/3332056/cover1260_20240524154215.jpg?e=1716563609&token=IAM-gs8ue1pDIGwtR1CR0Zjdagg7Q2tn5G_1BqTmhmqa:D9v1c6W8WAA-lzTcTPV-wUkL1xY=)
+![img](https://notes.sjtu.edu.cn/uploads/upload_9910ac7709eaec54b75f08c82cf5d605.png)
+
+
 
 **例题** 设相应于一个例子的物理量的算符 $\hat A$ 只有两个本征函数 $\phi_1(x)$ 和 $\phi_2(x)$，他们的本征值分别为 $a_1$ 和 $a_2$，两者不等，粒子的任一一个态都可以表示为：
 $$
