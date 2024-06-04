@@ -213,6 +213,14 @@ $$
 $$
 只有当入射波长 $𝜆_0$ 与 $𝜆_𝑐$可比拟时，康普顿效应才显著，因此要用 X 射线才能观察到康普顿散射，用可见光观察不到康普顿散射。$\theta$ 越大，效果越明显。
 
+**例题** 康普顿散射中，波长为 $\lambda_0$ 的 X 射线经物体散射后，沿与入射方向成 $\pi/2$ 角方向散射。已知康普顿波长为 $\lambda_c$，那么散射光的波长为多少？频率的改变 $\Delta \nu$？电子反冲动能？
+$$
+\Delta \lambda= 2\lambda_c \sin^2 \frac{\theta}{2}=\lambda_c
+$$
+因此散射光波长为 $\lambda_c+\lambda_0$，频率的改变为 $\Delta \nu =\displaystyle \frac{c}{\lambda_0+\lambda_c}-\frac{c}{\lambda_0}$.
+
+电子反冲动能 $E_k=h|\Delta \nu|$.（能量守恒）
+
 ## 玻尔理论
 
 ### 20 世纪初的原子模型
@@ -267,7 +275,7 @@ $$
 E_{n}=-\frac{e^{2}}{8\pi\epsilon_{0}r_{n}}=-\frac{e^{2}}{8\pi\epsilon_{0}n^{2}a_{0}}=\frac{E_{1}}{n^{2}}
 $$
 
-- 不同的定态对应于不同的分立的能量 $E_1,E_2,\cdots$。能量最低的称为基态，较高的称为第一激发态，第二激发态，等等。
+- 不同的定态对应于不同的分立的能量 $E_1,E_2,\cdots$。能量最低的称为基态 $(n=1)$，较高的称为第一激发态，第二激发态（$n=2,3\cdots$），等等。
 
 - 氢原子能级 $E_n < 0$，处于束缚态
 
@@ -275,6 +283,12 @@ $$
   $$
   E_{1}=-\frac{e^{2}}{8\pi\epsilon_{0}a_{0}}=-13.6\mathrm{~eV}
   $$
+
+**类氢原子**
+$$
+E_1'=Z^2 E_1
+$$
+其中 $Z$ 为原子核电荷数。
 
 **玻尔理论验证里德伯常数**
 $$
@@ -294,6 +308,10 @@ $$
 f_n = \frac{2R c}{n^3}=\nu_n
 $$
 
+**例题** 氢原子在 $n=5$ 轨道上的轨道角动量与在第一激发态 ($n=2$) 的轨道角动量之比为 $\underline{5/2}$，动能之比为 $\underline{4/25}$，能量之比为 $\underline{4/25}$.
+
+注：角动量正比于 $n$，能量关系有 $E=-V+K,V=2K$，和 $n^2$ 成反比。
+
 ## 习题
 
 ### 例题 21-1
@@ -307,12 +325,6 @@ $$
 \sigma T_1^4 S+\sigma T_3^4 S-2\sigma T_2^4 S=0\\
 \sigma T_2^4 S+\sigma T_3^4S-2\sigma T_4^4 S=0
 $$
-
-### 例题 21-2
-
-![image-20240526204111483](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204111483.png)
-
-注意单色辐出度的量纲。
 
 ### 例题 21-3
 
@@ -328,23 +340,3 @@ $$
 U=\frac{Ne}{4\pi\varepsilon_0R}
 $$
 可以解出 $U$.
-
-### 例题 21-7
-
-![image-20240526204900880](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204900880.png)
-
-![image-20240526204915368](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526204915368.png)
-
-### 习题 21.8
-
-波长为 0.1nm 的 X 射线在石墨上发生康普顿散射，如在 $\displaystyle \theta=\frac{\pi}{2}$ 处观察到散射光，试求：
-
-1. 散射光的波长 $\lambda'$；
-   $$
-   \Delta \lambda=2\frac{h}{m_e c}\sin^2 \frac{\theta}{2}=\frac{h}{m_e c}
-   $$
-   电子的康普顿波长为 $2.4\mu m$.
-
-2. 反冲电子的动能和运动方向。
-
-   能量守恒算。

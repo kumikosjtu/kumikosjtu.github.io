@@ -90,6 +90,20 @@ $$
 \Rightarrow\langle A\rangle=\langle A\rangle^{*} 
 \end{gathered}
 $$
+**例题** $x\hat p_x$ 算符是否是厄密算符？
+
+法一：不可能同时确定 $x,\hat p_x$，因此不是可观测量，不是厄密算符。
+
+法二：根据定义，
+$$
+\int \psi^*(x\hat p_x)\varphi\mathrm d x=\int \psi^* x(\hat p_x \varphi)\mathrm d x=\int(x\psi)^*\hat p_x \varphi\mathrm d x
+$$
+因为 $\hat p_x$ 是厄密算符，所以可得
+$$
+\int \psi^*(x\hat p_x \varphi)\mathrm d x=\int (\hat p_x x\varphi)^*\psi\mathrm d x
+$$
+但是 $x\hat p_x\not=\hat p_x x$，所以不是厄密算符。
+
 厄密算符 $\hat A$ 的本征方程：
 $$
 \hat Au=\lambda u
@@ -394,7 +408,7 @@ $$
 
 **例题**：求对易关系 $[x,\hat T]$.
 
-因为 $\hat T=\frac{\hat p^2}{2m}$，所以
+因为 $\displaystyle \hat T=\frac{\hat p^2}{2m}$，所以利用 $[\hat x,\hat p^2]=2i\hbar \hat p$.
 $$
 [x,\hat T]=\frac{i\hbar}{m}\hat p=\frac{\hbar^2}{m}\frac{\partial}{\partial x}
 $$
@@ -633,6 +647,12 @@ $$
 >
 > **求证**：$[\hat L_y,x]=-i\hbar z$. 类似计算即可。
 
+总结：
+$$
+[\hat{L}_{i},\hat{L}_{j}]=i\hbar\epsilon_{ijk}\hat{L}_{k}\\
+[\hat L_i,\hat p_j]=i\hbar \epsilon_{ijk} \hat p_k\\
+[\hat L_i, j]=i\hbar \epsilon_{ijk} k
+$$
 **轨道角动量平方的对易关系**
 
 轨道角动量平方与其分量彼此对易,  轨道角动量平方与角动量的某一个分量 **具有共同本征函数**
@@ -702,6 +722,8 @@ $$
 >
 > - 角动量的大小是量子化的，只能取 $\sqrt{l(l+1)}\hbar$；
 > - 角动量的方向是量子化的，只能取分立的允许值 $\displaystyle \cos \theta =\frac{m}{\sqrt{l(l+1)}}$.
+>
+> ![](https://notes.sjtu.edu.cn/uploads/upload_cc9779e50874672688ee89b71b569911.png)
 
 定义 **连带勒让德函数** 为 $P_l^m$.
 
@@ -881,7 +903,7 @@ $$
 
 径向分布：找到电子出现在 $[r,r+\mathrm d r]$ 中的概率 $\mathrm d P$，可得：
 $$
-\mathrm d P=|\psi_{nlm}|^2 r^2\mathrm d r \int \mathrm d \Omega=r^2 |\psi_{nlm}|^2
+\mathrm d P=|\psi_{nlm}|^2 r^2\mathrm d r \int \mathrm d \Omega=\boxed{r^2 |\psi_{nlm}|^2}
 $$
 ![image-20240517165219934](https://notes.sjtu.edu.cn/uploads/upload_bc5ec37caf358925cb9cb7f69fb359a0.png)
 
@@ -949,6 +971,46 @@ $$
    E=\left\langle V\right\rangle+\left\langle T\right\rangle
    $$
    可得 $\left\langle V\right\rangle=-2\left\langle T\right\rangle$. 和经典物理类似。
+
+7. 氢原子处在基态
+   $$
+   \Phi(r,\theta,\varphi)=\frac{1}{\sqrt{\pi a_0^3}} e^{-r/a_0}
+   $$
+
+   1. 求 $r$ 的平均值。
+      $$
+      \begin{aligned}
+      \left\langle r\right\rangle&= \int 
+      |\Phi|^2 \cdot r \cdot 4\pi r^2\mathrm d r\\
+      &= 4\pi \frac{1}{\pi a_0^3} \int e^{-2r/a_0} r^3\mathrm d r\\
+      &= \frac{3}{2}a_0
+      \end{aligned}
+      $$
+      利用：
+      $$
+      \int_0^{\infin} x^n e^{-ax}\mathrm d x=\frac{n!}{a^{n+1}}
+      $$
+
+   2. 势能 $\displaystyle -\frac{e^2}{r}$ 的平均值。
+      $$
+      \left\langle V\right\rangle=-\frac{e^2}{a_0}
+      $$
+
+   3. 径向概率分布：
+      $$
+      \rho(r)\mathrm d r=|\Phi|^2 4\pi r^2\mathrm d r
+      $$
+
+      $$
+      \rho(r)=\frac{4}{a_0^3}e^{-2r/a_0} r^2
+      $$
+
+   4. 最可几半径：
+      $$
+      \frac{\mathrm d \rho(r)}{\mathrm d r}=0\Rightarrow r=a_0
+      $$
+
+   5. 动能的平均值：可以利用能量关系。
 
 ## 态与算符的矩阵表示
 
