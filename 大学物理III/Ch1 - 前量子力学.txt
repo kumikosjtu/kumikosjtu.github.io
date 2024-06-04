@@ -318,7 +318,7 @@ $$
 
 真空中有四块完全相同且彼此接近的金属板平行放置，表面涂黑（可看作绝对黑体）。最外侧两块板的热力学温度为 $T_1$ 和 $T_4$，且 $T_1>T_4$，当到达热平衡时，求第二和第三块板的热力学温度 $T_2$ 和 $T_3$.
 
-<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240526203752467.png" alt="image-20240526203752467" style="zoom:50%;" />
+<img src="https://notes.sjtu.edu.cn/uploads/upload_e8d4aa2ca82e13717b2df0971e3b1ee7.png" style="zoom:50%;" />
 
 达到热平衡时，有：
 $$
