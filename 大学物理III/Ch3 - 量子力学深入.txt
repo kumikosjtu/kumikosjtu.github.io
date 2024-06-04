@@ -1079,7 +1079,7 @@ $$
 $$
 \langle \psi |\varphi\rangle=\langle \varphi|\psi \rangle ^*
 $$
-![image-20240604205201307](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240604205201307.png)
+![img](https://notes.sjtu.edu.cn/uploads/upload_11dbe8fda5518110037c4113a6b3c2b8.png)
 $$
 |\psi_1\rangle=\begin{pmatrix}1\\0\\\vdots\end{pmatrix},|\psi_2\rangle=\begin{pmatrix}0\\1\\0\\\vdots\end{pmatrix},|\Psi(x,t)\rangle=\begin{pmatrix}e^{-iE_2/h}/\sqrt{2}\\e^{-iE_1/h}/\sqrt{2}\\0\\\vdots\end{pmatrix}\\,
 |\Psi^*(x,t)\rangle=\begin{pmatrix}e^{iE_2/h}/\sqrt{2}&e^{iE_1/h}/\sqrt{2}&0&\cdots\end{pmatrix}
