@@ -1,0 +1,506 @@
+### 1
+
+已知一维运动粒子得波函数
+$$
+\psi(x)=\begin{cases}
+Axe^{-\lambda x},& x\ge 0\\
+0,& x<0
+\end{cases}
+$$
+式中 $\lambda>0$，试求
+
+1. 归一化常数 $A$ 和归一化函数；
+   $$
+   \int_{0}^{\infin} \psi(x)^2 = A^2\int_0^{\infin} x^2 e^{-2\lambda x}\mathrm d x
+   $$
+   利用
+   $$
+   \int_{0}^{\infin} x^n e^{-ax}=\frac{n!}{a^{n+1}}
+   $$
+
+   > 这个积分是从 Gamma 函数来的。
+
+   $$
+   \int_{0}^{\infin} x^2 e^{-2\lambda x}=\frac{2}{(2\lambda)^3}=\frac{1}{4\lambda^3}
+   $$
+
+   因此 $A=2\lambda^{3/2}$.
+   $$
+   \psi(x)=\begin{cases}
+   2\lambda^{3/2}xe^{-\lambda x},& x\ge 0\\
+   0,& x<0
+   \end{cases}
+   $$
+
+2. 该粒子的概率密度；
+   $$
+   \rho(x)=|\psi(x)|^2 = 4\lambda^3 x^2 e^{-2\lambda x},x\ge 0
+   $$
+
+3. 在何处找到粒子概率最大：
+   $$
+   \frac{\mathrm d \rho(x)}{\mathrm d x}=4\lambda^3(2xe^{-2\lambda x}-2\lambda x^2 e^{-2\lambda x})=0
+   $$
+   可得，当 $\displaystyle x=\frac{1}{\lambda}$ 时概率最大。
+
+### 2
+
+氢原子某吸收谱线的波长 $\lambda=434.05 \mathrm{~nm}$，谱线宽度为 $10^{-12}\mathrm{~nm}$，计算原子在激发态上的平均寿命。
+
+光子动量的不确定度：
+$$
+p=\frac{h}{\lambda}\Rightarrow\Delta p=\frac{h}{\lambda^2} \Delta \lambda
+$$
+位置的不确定度：
+$$
+\Delta x=\frac{h}{\Delta p}=\frac{\lambda^2}{\Delta \lambda}
+$$
+原子在激发态上的平均寿命为：
+$$
+\Delta t=\frac{\Delta x}{c}=\frac{\lambda^2}{c\Delta \lambda}
+$$
+
+### 3
+
+一维无限深势阱中有 10 个电子，电子质量为 $m$，势阱宽度为 $l$。忽略电子间的相互作用，试应用量子物理的基本原理计算系统的总能量和最高能量态的电子能量。
+
+基态能量：
+$$
+E_1=\frac{\pi^2 \hbar^2}{2mL^2}=\frac{h^2}{8mL^2}
+$$
+
+$$
+E_n=n^2E_1
+$$
+
+每个能态会有两个自旋方向不同的电子。
+$$
+E_{总}=\sum_{i=1}^5 2E_n=\frac{55h^2}{4mL^2}
+$$
+最高能态为 $n=5$，对应能量为：
+$$
+E_5=\frac{25h^2}{8mL^2}
+$$
+
+### 4
+
+一个 CO 分子，它的两个原子沿着它们的连线相对于质心作一维振动，已知结合键的劲度系数 $k=187 \mathrm{~N/m}$，C 和 O 的质量分别为 $m_C=1.99\times 10^{-26}\mathrm{~kg}$，$m_O=2.66\times 10^{-26}\mathrm{~kg}$。试计算：
+
+1. 相对振动的频率；
+   $$
+   \nu=\frac{\sqrt{km}}{2\pi},m=\frac{m_O+m_C}{m_Om_C}
+   $$
+
+2. 相邻两个振动能级的间距。
+   $$
+   E=\left(n+\frac{1}{2}\right)\hbar \omega
+   $$
+
+   $$
+   \Delta E=\hbar \omega=h\nu
+   $$
+
+### 5
+
+由一维势垒中薛定谔方程的解及德布罗意波的特点，可知势函数为 $\displaystyle \frac{1}{2}kx^2$ 的谐振子 $n=2$ 能级所对应的概率分布图为（E）
+
+![](https://notes.sjtu.edu.cn/uploads/upload_d88aa8dfa57bd16c007bdce2a0d36b9f.png)
+
+- 由解的特点，粒子会出现在经典物理不允许的范围内（势能>能量）所以排除 A,B,C.
+- 粒子更倾向于分布在平衡点附近，因此答案为 E.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7675b3a0d50230204557be8fe3380242.png" alt="image-20240419163450253" style="zoom:50%;" />
+
+### 6
+
+已知氢原子的基态波函数为 $\displaystyle $$\displaystyle \sqrt{\frac1{\pi a_0^3}}e^{-\frac r{a_0}}$，写出基态电子位于半径为 $r$ 的球内的概率的积分式。
+$$
+\psi_{100}=R_{10}(r)Y_{00}(\theta,\varphi)\\
+\Rightarrow R_{10}(r)=2\sqrt{\frac{1}{a_0^3}}e^{-\frac{r}{a_0}}
+$$
+因此概率为：
+$$
+P=\int_{0}^r r^2 R_{10}(r)^2\mathrm d r=\frac{4}{a_0^3}\int_{0}^r r^2 e^{-\frac{2r}{a_0}}\mathrm d r
+$$
+
+### 7
+
+在经典力学中沿径矢 $\vec r$ 方向动量的分量为 $p_r=\vec p\cdot \vec r/r$ 或 $p_r=\vec r\cdot \vec p/r$，但在量子力学中 $\vec p$ 与 $\vec r$ 不对易，以上两表达式不等价。故在量子力学中，$p_r$ 的定义取它们的平均：
+$$
+\vec p_r=\frac{1}{2}\left(\vec p\cdot \frac{\vec r}{r}+\frac{\vec r}{r}\cdot \vec p\right)
+$$
+证明：
+
+1. $\vec p_r$ 是厄密算符。
+   $$
+   \vec p_r ^\dagger = \frac{1}{2}\left(\vec p  \cdot \hat r+\hat r\cdot \vec p\right)^\dagger\\
+   =\frac{1}{2}(\hat r^\dagger\cdot \vec p^\dagger+\vec p^\dagger\cdot \hat r^\dagger)\\
+   =\frac{1}{2}(\hat r\cdot \vec p+\vec p\cdot \hat r)=\vec p_r
+   $$
+
+2. $$
+   \vec p_r=-i\hbar \left(\frac{\partial }{\partial r}+\frac{1}{r}\right)
+   $$
+
+   因为动量算符定义为：
+   $$
+   \vec p=-i\hbar \nabla
+   $$
+   定义单位向量 $\hat r$，所以等价于证明：
+   $$
+   -i\hbar\frac{1}{2}\left(\nabla \cdot \hat r+\hat r \cdot \nabla \right)=-i\hbar\left(\frac{\partial }{\partial r}+\frac{1}{r}\right)
+   $$
+   即：
+   $$
+   \nabla \cdot \hat r+\hat r \cdot \nabla=2\frac{\partial}{\partial r}+\frac{2}{r}
+   $$
+   使用试探函数 $\varphi$ 作用，可得
+   $$
+   \begin{aligned}
+   (\nabla \cdot \hat r+\hat r \cdot \nabla)\varphi&= \nabla \cdot (\hat r \varphi)+\hat r \cdot \nabla\varphi\\
+   &=(\nabla \hat r)\varphi+(\hat r\nabla) \varphi
+   +\hat r \nabla \varphi\\
+   &= (\nabla \vec r)\varphi+2(\hat r \nabla \varphi)
+   \end{aligned}
+   $$
+   考虑到 $\nabla \cdot \hat r$ 实则计算散度，
+   $$
+   \frac{\partial }{\partial x}\left(\hat r_{x}\right)=\frac{\partial }{\partial x}\left(\frac{x}{r}\right)=\frac{1}{r}-\frac{x^2}{r^3}
+   $$
+
+   $$
+   \nabla \cdot \hat r=\frac{3}{r}-\frac{r^2}{r^3}=\frac{2}{r}
+   $$
+
+   再考虑 $\vec r \nabla \varphi$ 是对 $r$ 方向求导，所以
+   $$
+   (\nabla \cdot \hat r+\hat r \cdot \nabla)\varphi=\frac{2}{r}\varphi+2\frac{\partial}{\partial r}\varphi
+   $$
+   得证！
+
+3. $$
+   [\hat p_r,r]=-i\hbar
+   $$
+
+   $$
+   \begin{aligned}
+   \mathrm [\hat p_r, r]\varphi&=\hat p_r r\varphi-r\hat p_r \varphi\\
+   &=-i\hbar\left(\frac{\partial }{\partial r}r+1\right)\varphi+i\hbar\left(r\frac{\partial }{\partial r}+1\right)\varphi\\
+   &= -i\hbar\left(\frac{\partial}{\partial r}(r\varphi)-r\frac{\partial}{\partial r}\varphi\right)\\
+   &= -i\hbar \left(\varphi+r\frac{\partial}{\partial r}\varphi-r\frac{\partial}{\partial r}\varphi\right)\\
+   &=-i\hbar \varphi
+   \end{aligned}
+   $$
+
+   对易关系得证。
+
+4. $\hat p_r^2=\displaystyle -\hbar^2 \frac{1}{r}\frac{\partial^2}{\partial r^2}r$.
+   $$
+   \begin{aligned}
+   &-i\hbar\left(\frac{\partial }{\partial r}+\frac{1}{r}\right)\left[-i\hbar\left(\frac{\partial }{\partial r}+\frac{1}{r}\right)\right]\\&=-\hbar^2\left(\frac{\partial }{\partial r}+\frac{1}{r}\right)\left(\frac{\partial }{\partial r}+\frac{1}{r}\right)\\
+   &\overset{\varphi}=-\hbar\left(\frac{\partial^2}{\partial r^2}\varphi+\frac{1}{r}\frac{\partial}{\partial r}\varphi+\frac{\partial}{\partial r}\left(\frac{1}{r} \varphi\right)+\frac{1}{r^2}\varphi\right)\\
+   &=-\hbar^2 \left(\frac{\partial^2}{\partial r^2}\varphi+\frac{2}{r}\frac{\partial}{\partial r}\varphi\right)
+   \end{aligned}
+   $$
+
+   $$
+   \frac{1}{r}\frac{\partial ^2}{\partial r^2}(r\varphi)\\
+   =\frac{1}{r}\frac{\partial}{\partial r}\left(\varphi+r\frac{\partial}{\partial r}\varphi\right)\\
+   =\frac{1}{r}\left(\frac{\partial}{\partial r}\varphi+\frac{\partial}{\partial r}\varphi+r\frac{\partial^2}{\partial r^2}\varphi\right)
+   $$
+
+   两者形式相同，得证。
+
+### 8
+
+试证明
+$$
+\left[\vec l,\frac{1}{r}\right]=0
+$$
+和
+$$
+[\vec l,\hat p^2]=0
+$$
+
+### 9
+
+证明：
+$$
+\hat r\cdot \hat l=\hat l\cdot \hat r = 0
+$$
+和
+$$
+\hat p\cdot \hat l=\hat l\cdot \hat p = 0
+$$
+
+### 10
+
+求氢原子基态 $r$ 的最可几值。
+
+径向波函数：
+$$
+R_{10}(r)=2\sqrt{\frac{1}{a_0^3}}e^{-\frac{r}{a_0}}
+$$
+
+$$
+\frac{\mathrm d (r^2 R_{10}^2(r))}{\mathrm d r}= 0\\
+\Rightarrow 2re^{-\frac{2r}{a_0}}-\frac{2}{a_0}r^2 e^{-\frac{2r}{a_0}}=0\\
+\Rightarrow r=a_0
+$$
+
+因此最可几半径为 $a_0$.
+
+### 11
+
+求解处于 $n=2,l=1,m=1$ 状态下的氢原子的概率流 $\boldsymbol J$.
+$$
+J=-\frac{i\hbar}{2m}\left(\psi^* \nabla \psi-\psi \nabla \psi^*\right)
+$$
+
+$$
+\psi_{211}=R_{21}Y_{11}=-\frac{1}{2\sqrt{6}a^{3/2}}\frac{r}{a}e^{-r/2a}\cdot \sqrt{\frac{3}{8\pi}} \sin \theta e^{i\varphi}
+$$
+
+### 12
+
+解：
+
+类氢原子有一个电子围绕着一个原子核(核子数为$Z$)做运动($Z=1$是氢原子，$Z=2$是氦离子，$Z=3$是理离子等).求出这些类氢原子的能量$E_n(Z)$、玻尔半径$a(Z)$、类氢原子的能级图(能量相对于$Z$).(答案中用一个乘子乘以氢原子的相应结果表示. )
+$$E_n(Z)=-Z^2\frac{13.6\text{ eV}}{n^2}$$
+$$a(Z)=\frac{a_0}Z$$
+
+### 13
+
+两个质量为 $m$ 的粒子固定在一个质量忽略不计的长度为 $a$ 的刚性杆两端。这个体系可以在二维空间绕杆中心自由旋转（杆的中心是固定的）
+
+1. 证明这个刚性转子所允许的能量量值是
+   $$
+   E_n=\frac{\hbar^2 n(n+1)}{ma^2},\quad n=0,1,2,\cdots
+   $$
+   考虑到经典力学中刚性转子的能量表示如下：
+   $$
+   E=\frac{1}{2}I^2 \omega=\frac{L^2}{2I}
+   $$
+   而转动惯量为：
+   $$
+   I=2m\left(\frac{a}{2}\right)^2 = m\frac{a^2}{2}
+   $$
+   因此，
+   $$
+   E=\frac{L^2}{ma^2}
+   $$
+   因为 $L^2$ 所允许的取值为 $\hbar^2n(n+1)$，所以，
+   $$
+   E_n=\frac{\hbar^2 n(n+1)}{ma^2},\quad n=0,1,2,\cdots
+   $$
+
+2. 这个体系归一化的波函数是什么？第二能级的简并度是多少？
+
+   可知，$Y_{nm}(\theta,\varphi)$ 是体系的本征函数。
+
+   第二能级的简并度，考虑 $n=2$ 时，$m$ 取值为 $-2,-1,0,1,2$，所以简并度为 5.
+
+### 14
+
+考虑可观测量 $A=x^2$ 和 $B=L_z$.
+
+1. 对 $\sigma_A\sigma_B$ 构造测不准原理。
+   $$
+   \sigma_A\sigma_B\ge \frac{1}{2}|\left\langle [A,B]\right\rangle|
+   $$
+   考虑计算对易关系：
+   $$
+   \begin{aligned}
+   \mathrm [x^2,L_z]&=x[x,L_z]+[x,L_z]x\\
+   &=x(-i\hbar y)+(-i\hbar y)x\\
+   &=-2i\hbar xy
+   \end{aligned}
+   $$
+   因此，
+   $$
+   \sigma_A\sigma_B\ge \hbar \left\langle xy\right\rangle
+   $$
+
+2. 对氢原子态 $\Psi_{nlm}$ 计算 $\sigma_B$.
+
+   因为 $L_z$ 确定为 $m\hbar$，所以 $\sigma_B=0$.
+
+3. 在这一态中关于 $\left\langle xy\right\rangle$ 你能得到什么结论？
+
+   因为 $\sigma_A\not=\infin$，所以 $\left\langle xy\right\rangle=0$.
+
+### 15
+
+> 感觉题目有点问题，先不写了
+
+在氢原子中电子处在自旋和位置的结合态
+$$
+R_{21}\left(\frac{1}{\sqrt{3}}Y_{10}\chi_{z}^{+}+\frac{2}{\sqrt{3}}\chi_{z}^-\right)
+$$
+
+1. 求测 $L^2,L_z,S^2,S_z$ 的可能值和对应几率。
+
+   - $L^2$：本征值 $l(l+1)\hbar^2$.
+
+     可能值为 $2\hbar^2$，对应几率为 $1$.
+
+   - $L_z$：本征值为 $$
+
+### 16
+
+考虑由正交归一基 $|1\rangle,|2\rangle,|3\rangle$ 构成的三维矢量空间。右矢 $|\alpha\rangle,|\beta\rangle$ 由下式给定：
+$$
+|\alpha\rangle=i|1\rangle-2|2\rangle-i|3\rangle\\
+|\beta\rangle=i|1\rangle+2|3\rangle
+$$
+
+> 可得
+> $$
+> \langle\alpha |=-i\langle 1|-2\langle 2|+i\langle 3|\\
+> \langle \beta |=-i\langle 1|+2\langle 3|
+> $$
+
+1. 求出 $\langle \alpha|\beta\rangle$ 和 $\langle \beta|\alpha\rangle$，并证实 $\langle \beta|\alpha\rangle=\langle \alpha|\beta\rangle^*$.
+   $$
+   \langle \alpha|\beta\rangle=1+2i\\
+   \langle \beta|\alpha\rangle = 1-2i
+   $$
+   因此 $\langle \beta|\alpha\rangle=\langle \alpha|\beta\rangle^*$.
+
+2. 在这个基中，求出算符 $\hat A=|\alpha\rangle\langle \beta|$ 的 9 个矩阵元，并写出矩阵 $A$。它是厄密矩阵吗？
+   $$
+   A_{ij}=\langle i|\alpha\rangle \langle \beta  |j\rangle
+   $$
+   不是厄密矩阵。
+
+### 17
+
+一个两能级体系的哈密顿算符为
+$$
+\hat H=\epsilon(|1\rangle\langle1|-|2\rangle\langle2|+|1\rangle\langle2|+|2\rangle\langle1|)
+$$
+这里 $|1\rangle,|2\rangle$ 是正交归一基，求出 $\hat H$ 的本征值和本征矢量，相应于这个基表示 $\hat H$ 的矩阵是什么？
+$$
+H_{ij}=\langle i|\epsilon(|1\rangle\langle1|-|2\rangle\langle2|+|1\rangle\langle2|+|2\rangle\langle1|)|j\rangle
+$$
+
+$$
+H=\begin{pmatrix}
+\epsilon&\epsilon\\
+\epsilon&-\epsilon
+\end{pmatrix}
+$$
+
+本征值：
+$$
+(\epsilon-\lambda)(-\epsilon-\lambda)-\epsilon^2\\
+=\lambda^2-2\epsilon^2\\
+\Rightarrow \lambda=\pm \sqrt{2}\epsilon
+$$
+本征矢量
+$$
+\frac{1}{\sqrt{4-2\sqrt{2}}}\begin{pmatrix}
+1\\\sqrt{2}-1
+\end{pmatrix}\quad \frac{1}{\sqrt{4+2\sqrt{2}}}\begin{pmatrix}
+1\\
+-\sqrt{2}-1
+\end{pmatrix}
+$$
+
+### 18
+
+已知角量子数 $l=1$ 的角动量 $\vec L$ 的三个分量 $L_x,L_y,L_z$ 的本征矢为
+$$
+\begin{aligned}&\begin{cases}\mid x+\rangle=\frac{1}{2}\begin{pmatrix}1\\\sqrt{2}\\1\end{pmatrix},\\\mid x0\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\-1\end{pmatrix},\\\mid x-\rangle=\frac{1}{2}\begin{pmatrix}1\\-\sqrt{2}\\1\end{pmatrix}.\end{cases}\quad\begin{cases}\mid y+\rangle=\frac{1}{2}\begin{pmatrix}1\\i\sqrt{2}\\-1\end{pmatrix},\\\mid y0\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\1\end{pmatrix},\\\mid y-\rangle=\frac{1}{2}\begin{pmatrix}1\\-i\sqrt{2}\\-1\end{pmatrix}.\end{cases}\quad\begin{cases}\mid z+\rangle=\frac{1}{2}\begin{pmatrix}1\\0\\0\end{pmatrix},\\\mid z0\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}0\\1\\0\end{pmatrix},\\\mid z-\rangle=\begin{pmatrix}0\\0\\1\end{pmatrix}.\end{cases}\end{aligned}
+$$
+试以 $|x\pm\rangle,|x0\rangle$ 为基矢将 $|y\pm\rangle,|y0\rangle$ 展开，在 $|y\pm\rangle,|y0\rangle$ 中测量 $L_z$ 分量可能获得哪些值，它们各自的概率是多少？平均值是多少？
+
+列方程求解：
+$$
+\frac{1}{2}=\frac{1}{2}\alpha+\frac{1}{\sqrt2}\beta+\frac{1}{2}\gamma\\
+\frac{1}{2}i\sqrt2=\frac{\sqrt{2}}{2}\alpha-\frac{\sqrt{2}}{2}\gamma\\
+-\frac{1}{2}=\frac{1}{2}\alpha-\frac{1}{\sqrt 2}\beta+\frac{1}{2}\gamma
+$$
+
+$$
+\beta=\frac{1}{\sqrt2},\alpha=\frac{i}{2},\gamma=\frac{i}{2}
+$$
+
+因为 $|y-\rangle=\langle y+|$，所以系数依次求共轭即可。
+
+可得：
+$$
+\begin{aligned}&\mid y+\rangle=\frac i2\mid x+\rangle+\frac1{\sqrt2}\mid x0\rangle-\frac i2\mid x-\rangle\\&\mid y0\rangle=\frac1{\sqrt2}\mid x+\rangle+\frac1{\sqrt2}\mid x-\rangle\\&\mid y-\rangle=-\frac i2\mid x+\rangle+\frac1{\sqrt2}\mid x0\rangle+\frac i2\mid x-\rangle\end{aligned}
+$$
+因此，
+
+|              | $L_z$ 的可能值   | 概率          | 期待值 $\left\langle L_x\right\rangle$ |
+| ------------ | ---------------- | ------------- | -------------------------------------- |
+| $|y+\rangle$ | $+\hbar,0,\hbar$ | $1/4,1/2,1/4$ | $0$                                    |
+| $|y0\rangle$ | $\hbar,-\hbar$   | $1/2,1/2$     | $0$                                    |
+| $|y-\rangle$ | $+\hbar,0,\hbar$ | $1/4,1/2,1/4$ | $0$                                    |
+
+### 19
+
+某个三能级体系的哈密顿的矩阵表示为
+$$
+H=\begin{pmatrix}a&0&b\\0&c&0\\b&0&a\end{pmatrix}
+$$
+其中 $a,b,c$ 都是实数。
+
+1. 如果体系的初始态是
+   $$
+   |\Psi(0)\rangle=\begin{pmatrix}
+   0\\1\\0
+   \end{pmatrix}
+   $$
+   求 $|\Psi(t)\rangle$.
+
+   先求解 $H$ 的本征值和本征函数。
+   $$
+   (a-\lambda)^2(c-\lambda)-b^2(c-\lambda)=0\\
+   (a+b-\lambda)(a-b-\lambda)(c-\lambda)=0
+   $$
+
+   $$
+   \lambda_{1}=a+b,\lambda_{2}=a-b,\lambda_3=c
+   $$
+
+   本征函数：
+   $$
+   |\psi_1\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}
+   1\\0\\-1
+   \end{pmatrix}\quad |\psi_2\rangle=\frac{1}{\sqrt{2}} \begin{pmatrix}1\\
+   0\\1
+   \end{pmatrix}\\
+   |\psi_3\rangle=\begin{pmatrix}0\\1\\0\end{pmatrix}
+   $$
+   因为 $|\Psi(0)\rangle$ 为本征函数，所以，
+   $$
+   |\Psi(t)\rangle=|\Psi(0)\rangle e^{-\frac{i}{\hbar}ct}
+   $$
+
+   $$
+   |\Psi(t)\rangle=\begin{pmatrix}
+   0\\
+   e^{-ict/\hbar}\\
+   0
+   \end{pmatrix}
+   $$
+
+2. 如果初始态是
+   $$
+   |\Psi(0)\rangle=\begin{pmatrix}
+   1\\0\\0
+   \end{pmatrix}
+   $$
+   求 $|\Psi(t)\rangle$.
+   $$
+   |\Psi(0)\rangle=\frac{1}{\sqrt{2}}|\psi_1\rangle+\frac{1}{\sqrt{2}}|\psi_2\rangle\\
+   =\begin{pmatrix}
+   e^{-iat/\hbar} \cos \frac{b}{\hbar} t\\
+   0\\
+   -ie^{-iat/\hbar}\sin \frac{b}{\hbar}t
+   \end{pmatrix}
+   $$
+   
