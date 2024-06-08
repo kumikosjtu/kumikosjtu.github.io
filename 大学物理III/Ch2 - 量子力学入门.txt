@@ -545,7 +545,7 @@ $$
 - $\psi_2(x=a)=\psi_3(x=3)$，波函数连续。
 - $\psi_2'(x=a)=\psi_3'(x=a)$.
 
-### 谐振子
+### 一维谐振子
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_330211f665fe87930c052c5113a63038.png" alt="image-20240419160304257" style="zoom:50%;" />
 
@@ -661,6 +661,104 @@ $$
 
 和经典物理中的结论一样，$\left\langle T\right\rangle=\left\langle U\right\rangle=\frac{1}{2}\left\langle E\right\rangle$.
 
+**例题**
+
+> 定义：升降算符
+>
+> 已知某个算符 $\hat Q$，若能找到另一个算符 $\hat Q_{+}$，使得 $[\hat Q,\hat Q_{+}]=h\hat Q_{+}$ 成立（$h$ 是大于零的实数），这个算符就是 $\hat Q$ 对应的升算符。
+>
+> 同理，若有 $\hat Q_{-}$ 使得 $[\hat Q,\hat Q_{-}]=-h\hat Q_{-}$ 成立，这个算符就是对应的降算符。
+>
+> **对易关系定义的升降算符，作用于算符 $\hat Q$，相当于将 $Q$ 对应的本征值变为更大/更小**
+>
+> 证明如下：
+> $$
+> \begin{aligned}
+> \hat{Q}(\hat Q_{\pm}\psi)&=[\hat Q,\hat Q_{\pm}]\psi+\hat Q_{\pm}\hat Q\psi\\
+> &=\pm h\hat Q_{\pm}\psi+\lambda \hat Q_{\pm}\psi\\
+> &=(\lambda\pm h)(\hat Q_{\pm}\psi)
+> \end{aligned}
+> $$
+
+一维谐振子的升降算符。升降算符 $a_{\pm}$ 定义为：
+$$
+a_{\pm}=\sqrt \frac{m\omega}{2\hbar} \left(x\mp \frac{i}{m\omega}p\right)
+$$
+升降算符的详细推导：
+$$
+H=\frac{p^2}{2m}+V=\frac{1}{2m}[p^2+(m\omega x)^2]
+$$
+令：
+$$
+A^2=\frac{m\omega^2}{2},B^2=\frac{1}{2m}
+$$
+形式上，$H=A^2 x^2+B^2 p^2$，因为 $A,B$ 都是算符，所以有：
+$$
+(Ax+\mathrm iBp)(Ax-\mathrm i Bp)=H-\mathrm i AB[x,p]=H+\hbar AB
+$$
+再计算 $[Ax+iBp,Ax-iBp]$，通过上式容易得到是 $2\hbar AB$.
+
+通过对易关系证明 $Ax\pm \mathrm iBp$ 是 $H$ 的升降算符
+$$
+[H,Ax\pm \mathrm i Bp]\\
+=[(Ax+\mathrm i Bp)(Ax-\mathrm iBp)-\hbar AB,Ax\pm \mathrm i Bp]\\
+=[(Ax+\mathrm iBp)(Ax-\mathrm iBp),Ax\pm\mathrm iBp]\\
+=(Ax+iBp)[Ax-iBp,Ax\pm iBp]\\+[Ax+iBp,Ax\pm iBp](Ax-iBp)\\
+=\mp 2\hbar AB(Ax\pm iBp)\\
+=\mp \omega \hbar(Ax\pm i Bp)
+$$
+因此，$Ax+iBp$ 作用于哈密顿算符，可以使本征值 $-\omega \hbar$，$Ax-iBp$ 作用于哈密顿算符，可以使本征值 $+\omega \hbar$. 通过一定的归一化，我们可以定义归一化的升降算符 $a_{+},a_{-}$，它们是厄密的，并且共轭
+
+对于 $\psi_{n+1}=a_{+}\psi_n/A$，考虑求归一化系数 $A$.
+$$
+\begin{aligned}
+A^{2}& \equiv\langle\psi_n|a_+^*a_+|\psi_n\rangle   \\
+&=\int(a_+\psi_n)^*(a_+\psi_n)\mathrm{d}x=\int(a_+^*a_+\psi_n)^*(\psi_n)\mathrm{d}x \\
+&=\int(a_-a_+\psi_n)^*(\psi_n)\mathrm{d}x,
+\end{aligned}
+$$
+考虑到 $\omega \hbar a_{-}a_{+}=H+\omega\hbar/2$（上面推导了）所以
+$$
+a_-a_+\psi_n=H\psi_n/(\omega\boldsymbol{\hbar})+\psi_n/2=(n+1)\psi_n
+$$
+
+$$
+A^2=(n+1)\int\psi_n^*\psi_n\mathrm{d}x=n+1\quad A=\sqrt{n+1}.
+$$
+
+所以 $\psi_{n+1}=a_{+}\psi_n/\sqrt{n+1}$.
+
+考虑到将位置算符和动量算符用升降算符表示：
+$$
+a_{\pm}=\sqrt \frac{m\omega}{2\hbar} \left(x\mp \frac{i}{m\omega}p\right),\alpha:=\sqrt \frac{m\omega}{\hbar}
+$$
+
+$$
+\hat x=\frac{\sqrt{2}}{\alpha}(a_{+}+a_{-})
+$$
+
+$$
+\hat x\psi_n=\frac{1}{\alpha} \sqrt \frac{n}{2} \psi_{n-1}+\frac{1}{\alpha} \sqrt \frac{n+1}{2}\psi_{n+1}
+$$
+
+$$
+\hat p\psi_{n}=-i\hbar \alpha \left(\sqrt \frac{n+1}{2}\psi_{n+1}-\sqrt\frac{n}{2}\psi_{n-1}\right)
+$$
+
+**例题** 求一维谐振子的坐标、动量算符及哈密顿算符在能量表象中的矩阵表示。
+
+1. 坐标算符 $\hat x$.
+
+   利用公式：
+   $$
+   x\psi_n = \frac{1}{\alpha}\sqrt\frac{n}{2}\psi_{n-1}+\frac{1}{\alpha}\sqrt \frac{n+1}{2}\psi_{n+1}
+   $$
+   得：
+   $$
+   x_{mn}=\int \psi_{m}^* x\psi_n \mathrm d x=\frac{1}{2}\left[\sqrt \frac{n+1}{2}\delta_{m,n+1}+\sqrt\frac{n}{2}\delta_{m,n-1}\right]
+   $$
+   
+
 ### 一维方势垒
 
 设 $\displaystyle V(x)=\begin{cases}V_0, & 0<x<a\\0,&x<0,x>a\end{cases}$.
@@ -677,7 +775,7 @@ $$
    $$
    \begin{aligned}&\frac{d^{2}\psi}{dx^{2}}+\frac{2mE}{\hbar^{2}}\psi=0\quad x<0,x>a\\&\frac{d^{2}\psi}{dx^{2}}+\frac{2m}{\hbar^{2}}(E-V_{0})\psi=0\quad0<x<a\end{aligned}
    $$
-   设：$\displaystyle k^2=\frac{2mE}{\hbar^2},k'^2=\frac{2m(V_0-E)}{\hbar^2}$，则：
+   设：$\boxed{\displaystyle k^2=\frac{2mE}{\hbar^2},k'^2=\frac{2m(V_0-E)}{\hbar^2}}$，则：
    $$
    \frac{d^{2}\psi}{dx^{2}}+k^{2}\psi=0\quad x<0,x>a\\\frac{d^{2}\psi}{dx^{2}}-k^{\prime2}\psi=0\quad0<x<a
    $$
@@ -689,7 +787,7 @@ $$
    - $e^{ikx}$：左到右，入射波或者透射波；
    - $e^{-ikx}$：右到左，反射波。
 
-   从物理条件考虑，$C'=0$. 代表 $>a$ 的部分没有反射波。
+   从物理条件考虑，$C'=0$. 代表 $>a$ 的部分 <u>没有反射波</u>。
 
    **波函数及其导数的连续性条件**：
 
@@ -699,82 +797,33 @@ $$
 
      $k'(Be^{k'a}-B'e^{-k'a})=ikCe^{ika}$.
 
-   因此
-   $$
-   \begin{aligned}
-   & B=\frac{C}{2}\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a} \\
-   & B^{\prime}=\frac{C}{2}\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
-   \end{aligned}
-   $$
-
-   由(1), (2)
-   $$
-   \begin{aligned}
-   & A=\frac{1}{2}\left[\left(1+\frac{k^{\prime}}{i k}\right) B+\left(1-\frac{k^{\prime}}{i k}\right) B^{\prime}\right] \\
-   & A^{\prime}=\frac{1}{2}\left[\left(1-\frac{k^{\prime}}{i k}\right) B+\left(1+\frac{k^{\prime}}{i k}\right) B^{\prime}\right]
-   \end{aligned}
-   $$
-
-   所以
-   $$
-   A=\frac{C}{4}\left(1+\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a}+\frac{C}{4}\left(1-\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
-   $$
-
-   $$
-   \Longrightarrow C=\frac{2 i k k^{\prime} e^{-i k a}}{\left(k^2-k^{\prime 2}\right) \sinh k^{\prime} a+2 i k k^{\prime} \cosh k^{\prime} a} A
-   又
-   $$
-
-   $$
-   A^{\prime}=\frac{C}{4}\left(1-\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{\left(i k-k^{\prime}\right) a}+\frac{C}{4}\left(1+\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{\left(i k+k^{\prime}\right) a}
-   $$
-
-   所以
-   $$
-   \begin{aligned}
-   & \frac{A^{\prime}}{A}=\frac{\left(1-\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{-k^{\prime} a}+\left(1+\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{k^{\prime} a}}{\left(1+\frac{k^{\prime}}{i k}\right)\left(1+\frac{i k}{k^{\prime}}\right) e^{-k^{\prime} a}+\left(1-\frac{k^{\prime}}{i k}\right)\left(1-\frac{i k}{k^{\prime}}\right) e^{k^{\prime} a}} \\
-   & =\frac{\left(k^2+k^{\prime 2}\right) \sinh k^{\prime} a}{\left(k^2-k^{\prime 2}\right) \sinh k^{\prime} a+2 i k k^{\prime} \cosh k^{\prime} a}
-   \end{aligned}
-   $$
-   透射系数
-   $$
-   \quad T=\frac{|C|^2}{|A|^2}=\frac{4 k^2 k^{\prime 2}}{\left(k^2-k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2} \cosh ^2 k^{\prime} a}
-   $$
-   但 $\cosh ^2 x-\sinh ^2 x=1$
-   因此
+   可以解得透射系数 $T$ 和反射系数 $R$，
    $$
    T=\frac{|C|^2}{|A|^2}=\frac{4 k^2 k^{\prime 2}}{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2}}
    $$
-
+   
    $$
    R=\frac{\left|A^{\prime}\right|^2}{|A|^2}=\frac{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a}{\left(k^2+k^{\prime 2}\right)^2 \sinh ^2 k^{\prime} a+4 k^2 k^{\prime 2}}
    $$
-
+   
    显然
    $$
    \boxed{T+R=1}
    $$
-
+   
    -----------
 
-   当 $k^{\prime} a\gg 1$ 时, $\displaystyle \sinh k^{\prime} a=\frac{e^{k^{\prime} a}-e^{-k^{\prime} a}}{2} \approx \frac{1}{2} e^{k^{\prime} a}$
-   $$
-   \begin{gathered}
-   \sinh ^2 k^{\prime} a \approx \frac{1}{4} e^{2 k^{\prime} a} \\
-   D \sim \frac{16 E}{V_0}\left(1-\frac{E}{V_0}\right) e^{-2 k^{\prime} a} \sim D_0 \exp \left[-\frac{2}{\hbar} \sqrt{2 m\left(V_0-E\right)} a\right]
-   \end{gathered}
-   $$
-
+   当 $k^{\prime} a\gg 1$ 时, $D\sim D_0 \exp \left[-\frac{2}{\hbar} \sqrt{2 m\left(V_0-E\right)} a\right]$，可得，
    - 势垒越高, 宽度越宽, 穿透几率越小, 但总有一定几率穿透, 这一现象称为量子隧道效应
    - 另外, 量子隧道效应中穿透几率 $D$ 对势垒的宽度的变化很敏感
-
+   
 2. $E>V_0$，完全一样处理, 只是把 $k^{\prime} \rightarrow i k^{\prime}$
 
 $$
 k^{\prime 2}=\frac{2 m}{\hbar^2}\left(E-V_0\right)
 $$
 
-结果为 $\displaystyle T=\frac{4 k^2 k^{\prime 2}}{\left(k^2-k^{\prime 2}\right)^2 \sin ^2 k^{\prime} a+4 k^2 k^{\prime 2}}$或
+可得透射系数和反射系数如下：
 $$
 \begin{gathered}
 T=\frac{1}{1+\frac{1}{4} \frac{V_0^2}{E\left(E-V_0\right)} \sin ^2 k^{\prime} a} \\
@@ -782,9 +831,26 @@ R=\frac{\left(k^2-k^{\prime 2}\right)^2 \sin ^2 k^{\prime} a}{\left(k^2-k^{\prim
 \boxed{T+R=1}
 \end{gathered}
 $$
-当 $k^{\prime} a=n \pi, \quad(n=1,2, \cdots)$，令 $\displaystyle k^{\prime}=\frac{2 \pi}{\lambda}$, 则当 $\displaystyle a=n \frac{\lambda}{2}$ 时, $T=1$，即当势垒宽度为半波长整数倍时，发生共振透射。这与光学中情况类似。
+当 $k^{\prime} a=n \pi, \quad(n=1,2, \cdots)$，令 $\displaystyle k^{\prime}=\frac{2 \pi}{\lambda}$, 则当 $\displaystyle a=n \frac{\lambda}{2}$ 时, $T=1$，即当势垒宽度为半波长整数倍时，发生 **共振透射**。这与光学中情况类似。
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_b31a8e732677ed6e3c8a2e1b4151b864.png" alt="image-20240422215519499" style="zoom:33%;" />
+
+> **总结**：一维方势垒
+>
+> - 对于不同的区域，列出薛定谔方程，求出系数：
+>   $$
+>   k=\frac{2mE_i}{\hbar}
+>   $$
+>
+> - 待定系数求解。最后的区域没有反射波，反射波系数为零。
+>
+> - 通过波函数及其导数的连续性条件，可得系数满足的方程。
+>
+> - 通过概率流密度公式：
+>   $$
+>   j=\frac{\hbar}{m}|A|^2 k\propto |A|^2k
+>   $$
+>   求得透射系数和反射系数。
 
 **例题** 粒子在势能为 $$U(x)=\begin{cases}0,&x<0\\U_0,&x>0\end{cases}$$ 的场中运动，$0<E<U_0$ 时入射波、反射波和透射波的波函数分别为 $e^{+ik_1x}$，$0.8e^{+ik_1x}$ 和 $0.6e^{+ik_1x}$。其概率流密度分别为？透射系数为？反射系数为？
 

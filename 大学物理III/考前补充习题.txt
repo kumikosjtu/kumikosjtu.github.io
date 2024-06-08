@@ -221,6 +221,7 @@ $$
 $$
 [\vec l,\hat p^2]=0
 $$
+考虑到 $$
 
 ### 9
 
@@ -503,4 +504,3 @@ $$
    -ie^{-iat/\hbar}\sin \frac{b}{\hbar}t
    \end{pmatrix}
    $$
-   

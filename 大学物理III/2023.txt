@@ -1,0 +1,408 @@
+# 2023 大学物理 III 期末
+
+## 一、填空题（20 分）
+
+### 1
+
+从某金属产生光电效应的红限频率为 $\nu_0$，当用频率 $\nu$（$\nu > \nu_0$）的单色光照射该金属时，从金属中逸出光电子（质量 $m$）的德布罗意物质波波长为 $\underline{\sqrt{\frac{h}{2m(\nu-\nu_0)}}}$。（不考虑相对论效应）
+
+光电子的动能为：
+$$
+E_k=h\nu - h\nu_0
+$$
+光电子的动量为：
+$$
+p=\sqrt{2mE_k}
+$$
+光电子的德布罗意物质波波长为：
+$$
+\lambda=\frac{h}{p}=\frac{h}{\sqrt{2mE_k}}=\frac{h}{\sqrt{2m(h\nu-h\nu_0)}}=\sqrt{\frac{h}{2m(\nu-\nu_0)}}
+$$
+
+### 2
+
+已知太阳的平均半径为 $R$，日地距离为 $l$（$R\ll l$）。实验测得太阳垂直辐射到地球大气层外表面单位面积的功率为 $P$，把太阳当做黑体，则太阳表面的温度 $T=\underline{\sqrt[4] \frac{Pl^2}{\sigma R^2}}$，太阳辐射的峰值波长 $\lambda_m=\underline{b\sqrt[4] \frac{\sigma R^2}{Pl^2}}$。（$b,\sigma$ 分别为维恩常量和斯忒潘常量）
+
+辐射的总功率为：
+$$
+P_{总}=4\pi l^2 P
+$$
+黑体辐射单位面积上的功率为：
+$$
+P_{太阳}=\frac{4\pi l^2 P}{4\pi R^2}=\frac{Pl^2}{R^2}=\sigma T^4
+$$
+因此，
+$$
+T=\sqrt[4] \frac{Pl^2}{\sigma R^2}
+$$
+峰值波长为：
+$$
+\lambda_m=\frac{b}{T}=b\sqrt[4] \frac{\sigma R^2}{Pl^2}
+$$
+
+### 3
+
+已知氢原子从能级 $n=2$ 跃迁到能级 $n=1$ 发射的谱线波长为 $\lambda_0$，则氢原子从能级 $n=6$ 直接跃迁到能级 $n=3$ 发射的谱线波长为 $\underline{9\lambda_0}$。
+
+可知有能量关系：
+$$
+\frac{hc}{\lambda_0}=\frac{-E_0}{2^2}+E_0\\
+\frac{hc}{\lambda}=\frac{-E_0}{6^2}+\frac{E_0}{3^2}
+$$
+推出 $\lambda=9\lambda_0$.
+
+### 4
+
+在康普顿效应实验中，若散射光波长是入射光波长的 $n$ 倍，则散射光光子能量 $\varepsilon$ 与反冲电子动能 $E_k$ 波长之比 $\varepsilon/E_k=\underline{\frac{1}{n-1}}$.
+
+根据能量守恒，设入射光子能量为 $\varepsilon'=n\varepsilon$，则：
+$$
+\varepsilon'=\varepsilon+E_k\Rightarrow \frac{\varepsilon}{E_k}=\frac{1}{n-1}
+$$
+
+### 5
+
+按照量子力学理论，当氢原子中的电子处于 $n=3,l=1,m_l=1,m_s=-1/2$ 的状态时，它的轨道角动量 $L$ 大小为 $\underline{\sqrt 2\hbar^2}$，轨道角动量在外磁场的投影为 $\underline{\hbar}$，自旋角动量在外磁场方向的投影为 $\underline{-\hbar/2}$（用 $\hbar$ 表示）。（只有结果分）
+$$
+L=\sqrt{l(l+1)}\hbar^2=\sqrt 2\hbar^2\\
+L_z=m\hbar=\hbar\\
+S_z=m_s \hbar=-\hbar/2
+$$
+
+### 6
+
+宽度相同的无限深势阱与有限深势阱进行比较，无限深势阱基态能量比有限深势阱基态能量 <u>高</u>。（只有结果分）
+
+### 7
+
+设一维运动粒子的坐标和动量分别为 $x$ 和 $\hat p$，则 $[\hat p,e^{icx}]=\underline{c\hbar e^{icx}}$。如果 $p_0$ 是 $\hat p$ 的本征值，相应的本征函数是 $\psi_0(x)$。则 $e^{icx}\psi_0(x)$ 也是 $\hat p$ 的本征函数，对应的本征值为 $\underline{p_0+c\hbar}$。
+
+考虑计算：
+$$
+\begin{aligned}
+\mathrm [\hat p,F(x)]\psi&=-i\hbar \frac{\partial}{\partial x}(F(x)\psi)+F(x)i\hbar \frac{\partial}{\partial x}\psi\\
+&=-i\hbar \left(\frac{\partial}{\partial x}F(x)\right)\psi
+\end{aligned}
+$$
+因此，
+$$
+[\hat p,F(x)]=-i\hbar \left(\frac{\partial}{\partial x}F(x)\right)
+$$
+
+$$
+[\hat p,e^{icx}]=c\hbar e^{icx}
+$$
+
+如果：
+$$
+\hat p \psi_0=p_0 \psi_0
+$$
+则：
+$$
+\begin{aligned}
+\hat p\left(e^{icx} \psi_0\right)&=\hat p(e^{icx})\psi_0 +e^{icx}\hat p(\psi_0) \\
+&= c\hbar e^{icx}\psi_0+p_0 e^{icx}\psi_0\\
+&= (p_0+c\hbar) \psi_0
+\end{aligned}
+$$
+因此本征值为 $p_0+c\hbar$.
+
+> 注：若 $[\hat Q,\hat Q_{+}]=\hbar\hat Q_{+}$ 成立，则算符 $\hat Q_{+}$ 是 $\hat Q$ 对应的升降算符。
+>
+> 若 $\hat Q$ 本征值为 $\lambda$，则 $\hat Q\hat Q_{+}$ 的本征值为 $\lambda+\lambda$. 
+>
+> 本题中，$\hat p_{+}=e^{ix}$，有 $[\hat p,e^{ix}]=\hbar e^{ix}$，同理，$\hat p_{-}=e^{ix}$.
+
+## 二、计算与证明题（80 分）
+
+### 1
+
+质量为 $m$ 的粒子在一维势场 $V(x)=\begin{cases}0,&0\le x\le a\\\infin,&x<a \mathrm{~or~}x<0\end{cases}$ 中运动，其波函数为 $\displaystyle \psi(x)=Ae^{i\frac{\pi x}{a}}+Be^{-i\frac{3\pi x}{a}}$（$i$ 为虚数单位）（*题目意思应该是 $0\le x\le a$ 时的波函数*），求常数 $A,B$ 的值，使得该波函数满足边界条件及归一化条件。
+
+边界条件：
+$$
+\psi(0)=\psi(a)=0
+$$
+
+$$
+\psi(0)=A+B=0,\psi(a)=-(A+B)=0
+$$
+
+归一化条件：分别求归一化常数：
+$$
+\int_0^a \psi^* \psi \mathrm d x=1
+$$
+
+$$
+\int_0^a A^2+B^2+2AB\cos (-2\pi x/a)=1\\
+\Rightarrow A^2+B^2=\frac{1}{a}
+$$
+
+$$
+A=\pm \frac{1}{\sqrt{2a}},B=\mp\frac{1}{\sqrt{2a}}
+$$
+
+### 2
+
+设一粒子沿 $x$ 方向运动，其波函数为 $\displaystyle \Psi(x)=\frac{C}{1+ix}$（$i$ 为虚数单位），
+
+1. 由归一化条件定出常数 $C$；
+   $$
+   \int_{-\infin}^{\infin} \Psi^*\Psi\mathrm d x=C^2 \int_{-\infin}^{\infin} \frac{1}{1+x^2}\mathrm d x=C^2\pi =1
+   $$
+
+   $$
+   C=\frac{1}{\sqrt{\pi}}
+   $$
+
+2. 求出此粒子按坐标的概率密度分布；
+   $$
+   \rho=\Psi^*\Psi=\frac{1}{\pi(1+x^2)}
+   $$
+
+3. 在何处概率密度最大？
+
+   需要分母最小时 $\rho$ 最大，即 $x=0$ 处。
+
+### 3
+
+设体系的哈密顿量 $\hat H$ 同力学量 $\hat A$ 满足反对易关系 $\hat H\hat A+\hat A\hat H=0$。设 $\psi$ 是哈密顿量 $\hat H$ 的本征值为 $E(\not=0)$ 的本征函数，
+
+1. 证明 $\hat A\psi$ 是 $\hat H$ 的本征值为 $-E$ 的本征函数。
+   $$
+   \hat H\hat A \psi+\hat A\hat H\psi =0
+   $$
+
+   $$
+   \hat H \hat A\psi=-E\hat A\psi
+   $$
+
+   因此 $\hat A\psi$ 是 $\hat H$ 的本征值为 $-E$ 的本征函数。
+
+2. 求 $\hat A$ 在态 $\psi$ 上的平均值。
+
+   观察到：
+   $$
+   \langle \psi |\hat H\hat A|\psi\rangle=E^*\langle\psi |\hat A|\psi\rangle\\
+   \langle \psi |\hat A\hat H|\psi\rangle = E\langle\psi |\hat A|\psi \rangle
+   $$
+   因为
+   $$
+   \langle \psi |\hat H\hat A+\hat A\hat H|\psi\rangle=0,E^*=E\not=0
+   $$
+   所以 $\langle\psi |\hat A|\psi \rangle=0$.
+
+   > 或者使用积分的方法，利用 $\hat H$ 的厄密性也是可以的。
+
+### 4
+
+证明空间反演算符 $\hat P$（$\hat P\psi (x)=\psi(-x)$）是厄密算符。
+$$
+\begin{aligned}
+\int_{-\infin}^{+\infin} \psi^* \hat P\psi\mathrm d x&=\int_{-\infin}^{+\infin}\psi^*(x)\psi(-x)\mathrm d x\\
+&=-\int_{+\infin}^{-\infin}\psi^*(-x)\psi(x)\mathrm d x\\
+&=\int_{-\infin}^{+\infin}\psi^*(-x)\psi(x)\mathrm d x\\
+&=\int_{-\infin}^{+\infin} (\hat P\psi(x))^*\psi(x)\mathrm d x
+\end{aligned}
+$$
+因此是厄密算符。
+
+### 5
+
+频率为 $\omega$ 的一维谐振子 $t=0$ 时的波函数为：
+$$
+\psi(x,0)=A[\Phi_0(x)+3i\Phi_1(x)+2\Phi_2(x)]
+$$
+（$i$ 为虚数单位），$A$ 为特定常数，$\Phi_n(x)$ 为谐振子能量本征函数，求
+
+1. $t$ 时刻的归一化波函数；
+
+   $t=0$ 时刻进行归一化：
+   $$
+   |A|^2+|3iA|^2+|2A|^2=1\Rightarrow A=\frac{1}{\sqrt{14}}
+   $$
+   对于第 $n$ 个本征函数，能量本征值为：
+   $$
+   E_n=\frac{2n+1}{2}\hbar \omega
+   $$
+   波函数演化为：
+   $$
+   \psi(x,t)=\frac{1}{\sqrt{14}}\left[\Phi_0(x)e^{- \frac{1}{2}i \omega t}+3i\Phi_1(x)e^{-\frac{3}{2}i\omega t}+2\Phi_2(x)e^{-\frac{5}{2}i \omega t}\right]
+   $$
+
+2. $t$ 时刻测量能量为 $3\hbar \omega/2$ 的概率；
+   $$
+   p=\left|\frac{3i}{\sqrt{14}}e^{-\frac{3}{2}i\omega t}\right|^2=\frac{9}{14}
+   $$
+
+3. $t$ 时刻体系的平均能量。
+   $$
+   \overline{E}=\frac{1}{14}E_1+\frac{9}{14}E_2+\frac{4}{14}E_3=\frac{12}{7}\hbar \omega
+   $$
+
+### 6
+
+已知角动量算符的三个分量 $\hat L_x,\hat L_y,\hat L_z$ 满足对易关系：
+$$
+[\hat L_x,\hat L_y]=i\hbar \hat L_z,[\hat L_y,\hat L_z]=i\hbar \hat L_x,[\hat L_z,\hat L_x]=i\hbar \hat L_y
+$$
+定义 $\hat L^2=\hat L_x^2+\hat L_y^2+\hat L_z^2$，$\hat L_{\pm}=\hat L_x \pm i\hat L_y$.
+
+1. 求对易关系 $[\hat L^2,\hat L_{\pm}],[\hat L_z,\hat L_{\pm}],[\hat L_{+},\hat L_{-}]$.
+
+   因为 $\hat L^2$ 与 $\hat L_x,\hat L_y,\hat L_z$ 都对易，所以：
+   $$
+   \begin{aligned}
+   \left[\hat L^2,\hat L_{\pm}\right]&= [\hat L^2,\hat L_x]\pm i[\hat L^2,\hat L_y]\\
+   &= 0
+   \end{aligned}
+   $$
+   而
+   $$
+   \begin{aligned}
+   \left[\hat L_z,\hat L_{\pm}\right]&= [\hat L_z,\hat L_x]\pm i[\hat L_z,\hat L_y]\\
+   &= i\hbar \hat L_y\mp \hbar \hat L_x\\
+   &=\hbar (i\hat L_y\mp \hat L_x)=\pm \hbar \hat L_{\pm}
+   \end{aligned}
+   $$
+   而
+   $$
+   \begin{aligned}
+   \left[\hat L_{+},\hat L_{-}\right]&= [\hat L_x+i \hat L_y,\hat L_x-i\hat L_y]\\
+   &= [\hat L_x,\hat L_x]+[\hat L_y,\hat L_y]+i[\hat L_y,\hat L_x]-i[\hat L_x,\hat L_y]\\
+   &= -2i[\hat L_x,\hat L_y]\\
+   &= 2\hbar \hat L_z
+   \end{aligned}
+   $$
+
+2. $\hat L^2$ 和 $\hat L_z$ 的共同本征函数为球谐函数 $Y_{lm}$，其中 $l$ 和 $m$ 是相应的量子数，证明 $\hat L_{\pm}Y_{lm}$ 也是 $\hat L^2$ 和 $\hat L_z$ 的共同本征函数，并求出相应的本征值。
+
+   因为：
+   $$
+   [\hat L^2,\hat L_{\pm}]Y_{lm}=0\\
+   \hat L^2 \hat L_{\pm}Y_{lm}-\hat L_{\pm}\hat L^2 Y_{lm}=0\\
+   \hat L^2 \hat L_{\pm}Y_{lm}-\hat L_{\pm} \sqrt{l(l+1)}\hbar^2 Y_{lm}\\
+   \hat L^2 \hat L_{\pm}Y_{lm}=\sqrt{l(l+1)}\hbar^2\hat L_{\pm}Y_{lm}
+   $$
+   所以 $\hat L_{\pm} Y_{lm}$ 是 $\hat L^2$ 的本征函数，本征值为 $\sqrt{l(l+1)}\hbar^2$.
+
+   同理
+   $$
+   [\hat L_z,\hat L_{\pm}]Y_{lm}=\pm \hbar \hat L_{\pm}Y_{lm}\\
+   \hat L_z \hat L_{\pm} Y_{lm}-\hat L_{\pm}\hat L_z Y_{lm}=\pm \hbar \hat L_{\pm}Y_{lm}\\
+   \hat L_z\hat L_{\pm}Y_{lm}=(m\hbar\pm\hbar)\hat L_{\pm}Y_{lm}
+   $$
+   所以 $\hat L_{\pm} Y_{lm}$ 是 $\hat L_z$ 的本征函数，本征值为 $(m\pm 1)\hbar$.
+
+> 注：$\hat L_{\pm}$ 为升降算符。
+
+### 7
+
+> gwh的小测题目还是，直接 copy 过来了
+
+质量为 $m$ 的粒子在一维势场$V(x)=\begin{cases}0,&0\leq x\leq L\\\infty,&x>L\text{或}x<0&\end{cases}$中运动，粒子能量本征
+
+值 $E_n=\frac{n^2\pi^2\hbar^2}{2mL^2},(n=1,2,\cdots)$，能量本征函数
+
+$$\left.\psi_n=\left\{\begin{array}{ll}\sqrt{\frac{2}{L}}\sin\frac{n\pi x}{L},&0\leq x\leq L\\0,&x>L\text{或}x<0\end{array}\right.\right..$$
+
+设 $t=0$ 时粒子归一化波函数为 $\psi=\begin{cases}Ax(L-x),&0\leq x\leq L\\0,&x>L\text{或}x<0\end{cases}$
+
+其中 $A,L$ 已知，求：
+
+1. 粒子在 $\psi(x,0)$ 态上能量平均值 $\left\langle E\right\rangle$.
+   $$
+   \begin{aligned}
+   \left\langle E\right\rangle=&\int_0^L \psi ^* \left(-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2}\psi\right)\mathrm d x\\
+   =&\frac{A^2 \hbar^2}{m} \int_0^L x(L-x)\mathrm d x\\
+   =& \frac{A^2 \hbar^2}{m} \frac{L^3}{6}
+   \end{aligned}
+   $$
+
+2. 粒子在 $\psi(x,0)$ 态上动量的平均值 $\left\langle p_x\right\rangle,\left\langle x\right\rangle$.
+   $$
+   \begin{aligned}
+   \left\langle p_x\right\rangle=&\int_0^L \psi ^* \left(-i\hbar \frac{\partial}{\partial x}\psi\right)\mathrm d x\\
+   =&A^2 i\hbar\int_0^L x(L-x) (2x-L)\mathrm d x\\
+   =&0
+   \end{aligned}
+   $$
+   
+   $$
+   \begin{aligned}
+   \left\langle x\right\rangle&=\int_{0}^L \psi^*x\psi\mathrm d x\\
+   &=A^2\int_{0}^L x^2(L-x)^2x\mathrm d x\\
+   &=\frac{1}{60}A^2 L^6
+   \end{aligned}
+   $$
+   
+3. $t=0$ 时刻动量的方均根偏差 $\Delta p_x=\sqrt{\left\langle \hat p_x^2\right\rangle-\left\langle\hat p_x\right\rangle^2}$.
+   $$
+   \Delta p_x=\sqrt{\left\langle \hat p_x^2\right\rangle-\left\langle\hat p_x\right\rangle^2}\\
+   \begin{aligned}
+   \left\langle \hat p_x^2\right\rangle =& \int_0^L \psi ^* \left(-\hbar^2 \frac{\partial^2}{\partial x^2}\psi\right)\mathrm d x\\
+   =&2A^2 \hbar^2 \int_0^L x(L-x)\mathrm d x\\
+   =&\frac{A^2\hbar^2 L^3}{3}
+   \end{aligned}\\
+   \Delta p_x=A\hbar \sqrt \frac{L^3}{3}
+   $$
+
+### 8
+
+氢原子能量本征函数为 $\psi_{nlm_l}$，能量本征值为 $E_n$，这里 $n$ 为主量子数，$l$ 为角量子数，$m_l$ 为磁量子数。在 $t=0$ 时，氢原子的波函数为
+$$
+\psi(\vec r,0)=\frac{1}{\sqrt{10}}(2\psi_{100}+\psi_{210}+\sqrt{2}\psi_{211}+\sqrt{3}\psi_{21-1})
+$$
+不考虑自旋。
+
+1. 写出任意时刻 $t$ 体系的波函数 $\psi(\vec r,t)$；
+   $$
+   \psi(\vec r,t)=\frac{2}{\sqrt{10}}\psi_{100}e^{-\frac{i}{\hbar}E_1t}+\frac{1}{\sqrt{10}}\psi_{210}e^{-\frac{i}{\hbar}E_2t}\\+\frac{\sqrt{2}}{\sqrt{10}}\psi_{211}e^{-\frac{i}{\hbar}E_2t}+\frac{\sqrt{3}}{\sqrt{10}} \psi_{21-1}e^{-\frac{i}{\hbar}E_{2}t}
+   $$
+
+2. 求任意时刻 $t$ 体系处于 $l=1,m_l=1$ 态的概率；
+
+   为 $|\sqrt{2}/\sqrt{10}|^2=1/5$.
+
+3. 求任意时刻 $t$ 体系处于 $m_l=0$ 态的概率；
+
+   为 $|2/\sqrt{10}|^2+|1/\sqrt{10}|^2=1/2$.
+
+4. 求任意时刻 $t$ 体系的平均能量，角动量平方算符的平均值及角动量 $z$ 分量算符的平均值。
+
+   平均能量：$\displaystyle \frac{2}{5}E_1+\frac{3}{5}E_2$；
+
+   角动量平方算符的平均值：$\displaystyle \frac{3}{5}\cdot 2\hbar^2=\frac{6}{5}\hbar^2$.
+
+   角动量 $z$ 分量算符的平均值：$\displaystyle \frac{1}{5}\hbar-\frac{3}{10}\hbar=-\frac{1}{10}\hbar$.
+
+### 9
+
+中子 $n$ 和反中子 $\overline{n}$ 的质量都是 $m$，它们的态 $|n\rangle$ 和 $|\overline{n}\rangle$ 可以看成是一自由哈密顿量的简并态，即 $\hat H_0|n\rangle=mc^2|n\rangle, \hat H_0 |\overline{n}\rangle=mc^2 |\overline{n}\rangle$，$|n\rangle,|\overline{n}\rangle$ 满足正交归一条件。设有某种相互作用可以使中子和反中子相互转变，即 $\hat H'|n\rangle=\alpha |\overline{n}\rangle,\hat H'|\overline{n}\rangle=\alpha |n\rangle$，$\alpha$ 是实数，由此可确定该双态系统总哈密顿量 $\hat H=\hat H_0+\hat H'$ 在基 $|n\rangle,|\overline{n}\rangle$ 中的矩阵表示为 $\begin{bmatrix}mc^2&\alpha\\ \alpha & mc^2\end{bmatrix}$。求 $t=0$ 时刻的一个中子在 $t$ 时刻变成反中子的概率。
+
+矩阵的本征值分别为 $mc^2\pm \alpha$，分别对应本征函数
+$$
+\psi_1=\frac{1}{\sqrt{2}}(|n\rangle+|\overline{n}\rangle)\\
+\psi_{2}=\frac{1}{\sqrt{2}}(|n\rangle-|\overline{n}\rangle)
+$$
+在 $t=0$ 时刻，
+$$
+\psi=1|n\rangle+0|\overline{n}\rangle=\frac{1}{\sqrt{2}}\psi_1+\frac{1}{\sqrt{2}}\psi_2
+$$
+在 $t$ 时刻，
+$$
+\psi=\frac{1}{\sqrt{2}}\psi_1e^{-\frac{i}{\hbar}(mc^2+\alpha)t}+\frac{1}{\sqrt{2}}\psi_2 e^{-\frac{i}{h}(mc^2-\alpha) t}
+$$
+$|\overline{n}\rangle$ 前的系数为：
+$$
+\overline{c}=\frac{1}{2}e^{-\frac{i}{\hbar}(mc^2+\alpha)t}-\frac{1}{2}e^{-\frac{i}{\hbar}(mc^2-\alpha)t}\\
+=\frac{1}{2}e^{-\frac{i}{\hbar}mc^2 t}(e^{-\frac{i}{\hbar}\alpha t}-e^{\frac{i}{\hbar}\alpha t})\\
+=ie^{-\frac{i}{\hbar}mc^2 t} \sin \frac{\alpha}{\hbar} t
+$$
+因此概率为：
+$$
+|\overline{c}|^2=\sin^2 \frac{\alpha}{\hbar} t
+$$
+
+
+
