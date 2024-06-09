@@ -679,6 +679,47 @@ $$
 > &=(\lambda\pm h)(\hat Q_{\pm}\psi)
 > \end{aligned}
 > $$
+> **产生算符和消灭算符**
+>
+> 已知厄密共轭算符 $\hat a,\hat a^\dagger$ 满足下列对易式：
+> $$
+> [\hat a,\hat a^\dagger]=\hat I
+> $$
+> 则算符 $\hat N=\hat a^\dagger\hat a$ 与它们的对易关系是：
+> $$
+> \begin{cases}
+> [\hat N,\hat a]=-\hat a\\
+> [\hat N,\hat a^\dagger]=\hat a^\dagger
+> \end{cases}
+> $$
+> 设算符 $\hat N$ 有个本征值为 $n$，相应的本征矢为 $|n\rangle$，则
+> $$
+> \begin{cases}
+> \hat N\hat a|n\rangle=(n-1)\hat a|n\rangle,\\
+> \hat N\hat a^\dagger|n\rangle=(n+1)\hat a^\dagger|n\rangle
+> \end{cases}
+> $$
+> 理解为：
+> $$
+> \begin{cases}
+> \hat N{\color{blue}\hat a|n\rangle}=(n-1){\color{blue}\hat a|n\rangle},\\
+> \hat N{\color{blue}\hat a^\dagger|n\rangle}=(n+1)\hat {\color{blue}a^\dagger|n\rangle}
+> \end{cases}
+> $$
+> 因此，
+> $$
+> \begin{cases}
+> \hat a|n\rangle \propto |n-1\rangle\\
+> \hat a^\dagger|n\rangle \propto |n+1\rangle
+> \end{cases}
+> $$
+> 归一化为：
+> $$
+> \begin{cases}
+> |n\rangle=\frac{\hat a^{\dagger n}}{\sqrt{n!}}|0\rangle\\
+> \langle n|=\langle 0|\frac{\hat a^{ n}}{\sqrt{n!}}
+> \end{cases}
+> $$
 
 一维谐振子的升降算符。升降算符 $a_{\pm}$ 定义为：
 $$

@@ -1412,6 +1412,10 @@ $$
 \Rightarrow \frac{\hbar^2}{4}[\hat{\vec \sigma_i},\hat{\vec \sigma_j}]=i\hbar \varepsilon_{ijk}\frac{\hbar}{2}\hat {\vec {\sigma_k}}\\
 \Rightarrow [\hat{\vec \sigma_i},\hat{\vec \sigma_j}]=2i\varepsilon_{ijk}\hat {\vec {\sigma_k}}
 $$
+> 注：因为 $\sigma_{i}\sigma_j-\sigma_{j}\sigma_{i}=2i\sigma_z$，且 $\sigma_x\sigma_y+\sigma_y\sigma_x=0$，所以 $\sigma_x\sigma_y=i\sigma_z$。
+>
+> 或者 $\sigma_{i}\sigma_j=i\epsilon_{ijk}\sigma_k$.
+
 **泡利矩阵** 在 $(S^2,S_{z})$ 表象的矩阵表示：
 $$
 \sigma_x=\begin{pmatrix}

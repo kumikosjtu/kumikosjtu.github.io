@@ -213,15 +213,32 @@ $$
 
 ### 8
 
-试证明
+试证明 $\left[\vec l,\frac{1}{r}\right]=0$ 和 $[\vec l,\hat p^2]=0$.
+
+考虑到 $\hat l=\hat r\times \hat p=-i\hbar \vec r \times \nabla$，有：
 $$
-\left[\vec l,\frac{1}{r}\right]=0
+\left[-i\hbar \vec r\times \nabla ,\frac{1}{r}\right]\psi\\
+=-i\hbar\left(\vec r\times \nabla \left(\frac{1}{r}\psi\right)-\frac{1}{r}(\vec r\times \nabla \psi)\right)\\
+=-i\hbar\left(\vec r\times \left(\nabla \left(\frac{1}{r}\right)\psi+\frac{1}{r} \nabla\psi\right)-\frac{1}{r}(\vec r\times \nabla \psi)\right)\\
+=-i\hbar \left(\vec r\times \left(\frac{\vec r}{r^3}\psi+\frac{1}{r} \nabla\psi\right)-\frac{1}{r}(\vec r\times \nabla \psi)\right)\\
+=-i\hbar\left(\frac{1}{r}\vec r\times \nabla \psi-\frac{1}{r}\vec r\times \nabla \psi\right)=0
 $$
-和
+因此第一个式子得证，
+
+对于第二个式子，只需证明 $\sum_{i}[\hat l_{i},\hat p^2]=0$ 即可，举例 $i=x$，有
 $$
-[\vec l,\hat p^2]=0
+[yp_z-zp_y,p_x^2]=0
 $$
-考虑到 $$
+
+$$
+[yp_z-zp_y,p_y^2]=[yp_z,p_y^2]-[zp_y,p_y^2]=[y,p_y^2]p_z
+$$
+
+$$
+[yp_z-zp_y,p_z^2]=[yp_z,p_z^2]-[zp_y,p_z^2]=-[z,p_z^2]p_y
+$$
+
+由于具有轮换对称性，$i=x,y,z$ 加起来为零。
 
 ### 9
 
@@ -233,6 +250,15 @@ $$
 $$
 \hat p\cdot \hat l=\hat l\cdot \hat p = 0
 $$
+
+1. 由轮换对称性（去掉了 $-i\hbar$）
+   $$
+   \hat r\cdot \hat l=xy\frac{\partial}{\partial z}-xz\frac{\partial}{\partial z}\\
+   +yz\frac{\partial}{\partial x}-xy\frac{\partial}{\partial z}\\
+   +xz\frac{\partial}{\partial y}-zy\frac{\partial}{\partial x}=0
+   $$
+
+2. 和上面同理。
 
 ### 10
 
@@ -267,8 +293,13 @@ $$
 解：
 
 类氢原子有一个电子围绕着一个原子核(核子数为$Z$)做运动($Z=1$是氢原子，$Z=2$是氦离子，$Z=3$是理离子等).求出这些类氢原子的能量$E_n(Z)$、玻尔半径$a(Z)$、类氢原子的能级图(能量相对于$Z$).(答案中用一个乘子乘以氢原子的相应结果表示. )
-$$E_n(Z)=-Z^2\frac{13.6\text{ eV}}{n^2}$$
-$$a(Z)=\frac{a_0}Z$$
+$$
+E_n(Z)=-Z^2\frac{13.6\text{ eV}}{n^2}
+$$
+
+$$
+a(Z)=\frac{a_0}Z
+$$
 
 ### 13
 
@@ -341,11 +372,6 @@ $$
 
 1. 求测 $L^2,L_z,S^2,S_z$ 的可能值和对应几率。
 
-   - $L^2$：本征值 $l(l+1)\hbar^2$.
-
-     可能值为 $2\hbar^2$，对应几率为 $1$.
-
-   - $L_z$：本征值为 $$
 
 ### 16
 
@@ -504,3 +530,56 @@ $$
    -ie^{-iat/\hbar}\sin \frac{b}{\hbar}t
    \end{pmatrix}
    $$
+
+### 20
+
+一个粒子自身的动量与位置变量之间不对易，但是不同粒子之间的变量是对易的。故对于两个粒子 $1$ 和 $2$ 来说，有
+$$
+[\hat p_i,\hat x_j]=-i\hbar \delta_{ij}
+$$
+试证明算符 $\hat x_1-\hat x_2$ 和 $\hat p_1+\hat p_2$ 是对易的。
+$$
+\begin{aligned}
+\mathrm [\hat x_1-\hat x_2,\hat p_1+\hat p_2]&=i\hbar -i\hbar=0
+\end{aligned}
+$$
+
+### 21
+
+试论证，在 $p$ 表象中，
+$$
+\boldsymbol r\to \vec{\boldsymbol r}=i\hbar \nabla_p
+$$
+同理有：
+$$
+[\hat p,F(r)]=-i\hbar \nabla F(r)\\
+[\hat r,F(p)]=i\hbar \nabla_p F(p)
+$$
+
+### 22
+
+处在一般有心立场中粒子的哈密顿算符为：
+$$
+\hat H=\frac{\hat p^2}{2m}+V(r)
+$$
+其中第一项为粒子的动能，第二项是它在有心立场中的势能。试证明：轨道角动量 $\hat l$ 与此哈密顿算符对易，从而是个守恒量。
+
+因为 $V(r)\propto 1/r$
+$$
+[\hat H,\hat l]=\frac{1}{2m}[\hat p^2,\hat l]+[\alpha \cdot 1/r,\hat l]=0
+$$
+
+### 23
+
+位移算符
+$$
+e^{-a\frac{\partial}{\partial x}}\psi(x)=\psi(x+a)
+$$
+时间演化算符
+$$
+e^{-\frac{it}{\hbar}\hat H}
+$$
+当存在本征值 $E$，时间演化算符为
+$$
+e^{-\frac{it}{\hbar}E}
+$$

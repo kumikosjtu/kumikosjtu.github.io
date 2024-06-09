@@ -1,5 +1,7 @@
 # Signals and Systems
 
+[TOC]
+
 ## Ch1 Signals and Systems
 
 **Power and Energy of signals**
@@ -267,6 +269,22 @@ $$
 ## Ch5 - Application of Fourier Transform
 
 **Sampling Theorem**
+
+对于连续时间信号 $x(t)$，若用冲激串 $\displaystyle p(t)=\sum_{n=-\infin}^{+\infin} \delta(t-nT)$ 对其进行采样，则在时域内有 $x_p(t)=x(t)\cdot p(t)$；在频域内，有
+$$
+X_p(j\omega)=\frac{1}{T}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
+$$
+
+> 证明：
+> $$
+> P(j\omega)=\sum_{n=-\infin}^{+\infin}e^{-j\omega nT}\overset{why?}=\frac{2\pi}{T} \sum_{k=-\infin}^{+\infin} \delta(\omega-k\omega_s)
+> $$
+>
+> $$
+> X_p(j\omega)=\frac{1}{2\pi} X(j\omega )* P(j\omega)=\frac{1}{T}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
+> $$
+>
+> 
 
 **The Modulation Property**（经过低通滤波，幅值为二）
 
