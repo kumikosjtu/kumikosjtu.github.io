@@ -1,0 +1,471 @@
+## 选择题
+
+### 1
+
+$x(t-3)\delta(t+2)=\underline{x(-5)\delta(t+2)}$.
+
+### 2
+
+频率响应为 $H(j\omega)=e^{-2j\omega}$ 的因果 LTI 系统的单位阶跃响应为 $\underline{u(t-2)}$.
+
+### 3
+
+下面信号中，属于非周期信号的是：
+
+- [ ] $x(t)=e^{-j5t}$. 是周期信号；
+
+- [ ] $x[n]=\cos (n^2\pi/8)$.
+
+  >$(n+T)^2\pi/8-n^2 \pi/8=2k\pi$.
+  >
+  >$(2n+T)T\pi/8=2k\pi$. 
+  >
+  >令 $T=16$，可得 $2(2n+16)\pi$. 因此是周期信号。
+
+- [ ] $X(\omega)=\sum_{n=0}^{+\infin} 0.5^n e^{-j\omega n}$.
+
+  > 属于非周期信号。
+
+- [ ] $x(t)=\displaystyle \sum_{n=-\infin}^{+\infin} e^{-|t-2n|}$.
+
+  > 观察到：
+  > $$
+  > x(t+2)=\sum_{n=-\infin}^{\infin} e^{-|t+2-2n|}=\sum_{n=-\infin}^{\infin} e^{-|t-2(n-1)|}=x(t)
+  > $$
+  > 因此周期为 2.
+
+### 4
+
+以下关于 Fourier 分析的论述中不正确的是：
+
+- [x] 离散时间序列的 Fourier 变换结果一定是以 $2\pi$ 为周期的（正确）
+
+- [ ] 不满足绝对可积条件的信号的 Fourier 变换一定不存在。（错误，比如 $u(t)$）
+
+- [ ] 在均方误差最小的准则下，傅里叶级数是对周期信号的最佳近似（正确，能量最小）
+
+- [ ] 持续时间时有限的信号，频域上占据的频谱宽度必定是无限的。（正确，例如 Gate 函数）
+
+### 5
+
+以下关于拉氏变换 $F(s)$ 的极点位于 $s$ 平面的位置与对应函数 $f(t)$ 的关系的叙述中，正确的是：
+
+- [ ] 当 $F(s)$ 仅有的两个极点关于 $j\omega$ 轴对称时，则 $f(t)$ 也是偶函数；
+
+  > 错误，两个极点不一定都是实数，举例 $s_{1,2}=1\pm i$，
+  > $$
+  > f_t=\left(e^{(1+i)t}+e^{(1-i)t}\right)u(t)=2e^{t}\cos t\cdot u(t)
+  > $$
+
+- [ ] 若 $f(t)$ 为实函数，则 $F(s)$ 的所有极点一定都位于实轴上；
+
+  > 错误，可能关于实轴对称，例如 $\sin t$.
+
+- [ ] 当 $F(s)$ 的一阶极点越远离实轴，则 $f(t)$ 对应的振幅增长越快；
+
+- [ ] 当 $F(s)$ 的一阶极点实部越大，则 $f(t)$ 对应的振幅振荡频率越高。
+
+  > 对于极点 $\sigma+j\omega$，$\sigma$ 越大，振幅增长越快，$\omega$ 越大，振荡频率越高。
+
+### 6
+
+已知 LTI 系统 $\displaystyle \frac{\mathrm d y(t)}{\mathrm d t}+y(t)=x(t)$，则对所有的 $t$，当 $x(t)=e^{2t}$ 时，$y(t)=$（）。
+
+- [ ] $e^{2t}$
+- [ ] $\displaystyle \frac{1}{2}e^{2t}$
+- [x] $\displaystyle \frac{1}{3}e^{2t}$
+- [ ] 以上都不对
+
+### 7
+
+若 $x[n]u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} X(z)$，则 $nx[n]u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} $（）
+
+- [x] $\displaystyle -z\frac{\mathrm d X(z)}{\mathrm d z}$;
+- [ ] $z\displaystyle \frac{\mathrm d X(z)}{\mathrm d z}$;
+- [ ] $X(-z)$;
+- [ ] $\displaystyle X\left(\frac{1}{z}\right)$.
+
+$$
+X(z)=\sum_{n=0}^{+\infin}x[n]z^{-n}
+$$
+
+$$
+-\frac{\mathrm d X(z)}{\mathrm d z}=\sum_{n=0}^{+\infin} nx[n]z^{-(n+1)}
+$$
+
+$$
+\boxed{-z\frac{\mathrm d X(z)}{\mathrm d z}}=\sum_{n=0}^{+\infin} nx[n]z^{-n}
+$$
+
+### 8
+
+若某基波周期为 1 的周期信号 $x(t)$ 的傅里叶级数系数为 $\displaystyle a_k=\begin{cases}1,&k=\pm1\\0,&else.\end{cases}$，则 $x(t)$ 为：
+$$
+x(t)=\sum_{k=-\infin}^{+\infin} a_k e^{jk\omega t}=e^{-j\omega t}+e^{j\omega t}=2\cos (\omega t)
+$$
+因为基波周期为 $1$，所以 $2\pi/\omega=1$，因此 $\omega=2\pi$.
+
+### 9
+
+已知序列 $x[n]$ 傅里叶变换 $X(e^{j\omega})=[\cos (\omega)]^2$，则 $x[n]$ 为
+$$
+\cos^2\omega=\frac{1+\cos 2\omega}{2}
+$$
+因此：
+$$
+x[n]=\frac{1}{2}\delta[n]+\frac{1}{4}\delta[n+2]+\frac{1}{4}\delta[n-2]
+$$
+### 10
+
+信号 $x(t)=tu(t-1)$ 的拉普拉斯变换为
+
+- [x] $\displaystyle \frac{1}{s^2}e^{-s}+\frac{1}{s}e^{-s}$
+- [ ] $\displaystyle \frac{1}{s^2}e^{-s}-\frac{1}{s}e^{-s}$
+- [ ] $\displaystyle \frac{1}{s^2}e^{-s}$
+- [ ] $\displaystyle\frac{1}{s}e^{-s}$
+
+可知先求时域平移的拉普拉斯变换：
+$$
+(t+1)u(t)=tu(t)+u(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{1}{s^2}+\frac{1}{s}
+$$
+然后再 $t\to t-1$ 即可。
+
+### 11
+
+设 $f(t)$ 为一带限信号，其最高频率为 $\omega_m$。信号 $g(t)=f(t)\cdot f(2t)$。如果对 $g(t)$ 进行采样，则不发生混叠时的最低采样频率 $\omega_s=$?
+
+可知：
+$$
+G(j\omega) = \frac{1}{2\pi} F(j\omega) *F(2j\omega)
+$$
+最高频率为 $\omega_m'=3\omega_m$，而 $\omega_s=2\omega_m'=6\omega_m$.
+
+### 12
+
+记某<u>因果</u> <u>稳定</u> LTI 系统的系统函数为 $H(s)$。若 $H(s)$ 为有理式，则 $H(s)$ 的 ROC 应为?
+
+- [x] $\operatorname{Re}\{s\} >\sigma_0$，其中 $\sigma_0<0$
+
+包含 $j\omega$ 轴，且为右边信号。
+
+### 13
+
+$X(j\omega)=2\displaystyle \cos \left(4\omega+\frac{\pi}{3}\right)$ 的反傅里叶变换为?
+$$
+e^{j(4\omega+\pi/3)}+e^{-j(4\omega+\pi/3)}
+$$
+反傅里叶变换为：
+$$
+\delta(t+4)e^{j\pi/3}+\delta(t-4)e^{-j\pi/3}
+$$
+### 14
+
+$x(n) \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} X(z)$，$y(n)\overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} Y(z)$，则 $\displaystyle \sum_{k=-\infin}^{+\infin} x(k)y(k-n)$ 的 Z 变换为？
+$$
+\sum_{k=-\infin}^{+\infin}x[k]y[-(n-k)]=x(n)*y(-n) \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}}
+
+\boxed{ X(z)Y(z^{-1})}
+$$
+
+### 15
+
+![image-20240512222919884](C:\Users\Steven Meng\AppData\Roaming\Typora\typora-user-images\image-20240512222919884.png)
+
+### 16
+
+一般地，连续时间因果LTI系统的框图表示中不使用（微分器）
+
+可能会使得函数不再连续。
+
+### 17
+
+![image-20240512223300769](C:\Users\Steven Meng\AppData\Roaming\Typora\typora-user-images\image-20240512223300769.png)
+
+首先，先时域平移 $T/2$，然后再取反。
+$$
+\frac{1}{1-e^{-sT}} \to \frac{e^{-sT/2}}{1-e^{-sT}}\to \frac{-e^{sT/2}}{1-e^{-sT}}
+$$
+然后相加：
+$$
+\frac{1}{1-e^{-sT}}+\frac{-e^{sT/2}}{1-e^{-sT}}=\frac{1}{1+e^{-sT/2}}
+$$
+### 18
+
+已知系统输入 $x(\cdot)$ 和输出 $y(\cdot)$。下面叙述正确的是：
+
+A. $\displaystyle y(t)=\begin{cases}0,&x(t)<0\\x(t)+x(t-2),&x(t)\ge 0\end{cases}$ 描述的是线性时不变系统。
+
+错误，不是线性的。
+
+B. $y(t)=\displaystyle \int_{-\infin}^{2t} x(\tau)\mathrm d \tau$ 描述的是非因果和时不变系统。
+
+因果性的理解：$y(t)$ 不会用到 $x(t)$ 在 $t$ 之前的信息，因此系统不是因果的。
+
+时不变系统：
+$$
+y(t)=\displaystyle \int_{-\infin}^{2t} x(\tau)\mathrm d \tau\\
+\displaystyle \int_{-\infin}^{2t} x(\tau+t_0)\mathrm d \tau=\int_{-\infin}^{2t+t_0}x(\tau')\mathrm d \tau'=y(t+t_0/2)
+$$
+不是时不变系统。
+
+C. $y[n]=x[n]-x[1-n]$ 描述的是时变和非因果系统。
+$$
+y[n+n_0]=x[n+n_0]-x[1-n-n_0]\\
+\not=x[n+n_0]-x[1-n+n_0]
+$$
+因此描述的是时变系统。
+
+$y[-1]$ 用到了 $x[-1]$ 和 $x[2]$ 的信息，因此不是因果系统。
+
+D. $y(t)=2x(t)-1$ 描述的是线性稳定系统。
+
+不是线性的，因为：
+$$
+2\alpha x_1(t)-1+2\beta x_2(t)-1\not=2(\alpha x_1(t)+\beta x_2(t))-1
+$$
+是稳定系统。
+
+### 19
+
+序列 $x[n]$ 的 DTFT 存在，且已知 $x[n]$ 的 z 变换表达式为 $\displaystyle X(z)=\frac{-2.5z}{z^2-1.5z-1}$，则下列 $x[n]$ 的表达式正确的是（）
+
+- [ ] $x[n]=(-0.5)^n u[n]+2^n u[n]$;
+- [ ] $x[n]=(-0.5)^n u[-n-1]-2^n u[-n-1]$.
+- [ ] $x[n]=(-0.5)^n u[-n-1]+2^n u[n]$.
+- [x] $x[n]=(-0.5)^n u[n]-2^{n} u[-n-1]$.
+
+既可以从 DTFT 存在 $\Rightarrow $ 系统稳定，$\displaystyle \sum_{n=-\infin}^{\infin} x[n]<\infin$ 考虑；
+
+也可以从 DTFT 存在 $\Rightarrow$ ROC 包含单位圆，为 $0.5<|r|<2$.
+
+### 20
+
+某周期方波信号在一个基波周期 $T$ 内可以表示为 $\displaystyle x(t)=\begin{cases}1,&|t|<\tau\\0,&\tau<|t|<T/2\end{cases}$，下列叙述中错误的是：
+
+- [ ] 傅里叶级数的系数具有 $Sa(n\pi\tau/T)$ 的包络形状；
+
+- [ ] 随着周期 $T$ 的增加，两个相邻傅里叶级数的间隔变近了；
+
+- [x] 随着占空比 $\tau$ 的增加，傅里叶级数系数的第一个过零点更加远离原点。（可以看做原函数拉伸，则傅里叶级数收缩，靠近原点）
+
+- [ ] 随着 $n$ 的增加，傅里叶级数的系数逐渐趋于 0。
+
+## 大题
+
+### 21
+
+求如下两个信号的卷积积分：
+$$
+f_1(t)=(1+t)[u(t)-u(t-1)]\\
+f_2(t)=u(t-1)-u(t-2)
+$$
+令
+$$
+f(t)=f_1(t) * f_2(t)
+$$
+则：
+$$
+f(t)=\int_{1}^{2} f_1(t-\tau)f_2(\tau)\mathrm d \tau\\
+=\int_{t-2}^{t-1} f_1(u)\mathrm d u
+$$
+当 $t<1$，$f(t)=0$.
+
+当 $1\le t<2$，
+$$
+f(t)=\int_{0}^{t-1} (1+u)\mathrm d u=\frac{t^2}{2}-\frac{1}{2}
+$$
+当 $2\le t <3$，
+$$
+f(t)=\int_{t-2}^1 (1+u)\mathrm d u=-\frac{t^2}{2}+t+\frac{3}{2}
+$$
+当 $t\ge 3$，$f(t)=0$.
+
+### 22
+
+某稳定的连续时间LTI系统的频率响应为 $\displaystyle H(j\omega)=\frac{1-e^{-(j\omega+1)}}{j\omega+1}$，求其单位阶跃响应 $s(t)$.
+$$
+Y(s)=\frac{1-e^{-(s+1)}}{s+1}\frac{1}{s}\\
+=\left(\frac{1}{s}-\frac{1}{s+1}\right)(1-e^{-(s+1)})
+$$
+注意到：
+$$
+\frac{1}{s} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ u(t)
+$$
+
+$$
+\frac{1}{s}-e^{-s}\frac{1}{s}\overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ u(t)-u(t-1)
+$$
+
+$$
+\frac{1-e^{-(s+1)}}{s+1}\overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ e^{-t}(u(t)-u(t-1))
+$$
+
+$$
+\frac{1}{s}(1-e^{-(s+1)}) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ u(t)-e^{-1}u(t-1)
+$$
+
+$$
+Y(s) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+u(t)(1-e^{-t})-u(t-1)(e^{-1}-e^{-t})
+$$
+
+### 23
+
+一周期实信号 $f(t)$ 只含有基波分量和 3 次谐波分量，且有 $|\boldsymbol F_1|=2,|\boldsymbol F_3|=1,\phi_1=-\pi/2,\phi_3=\pi/2$.
+
+1. 画出该信号的指数形式的幅度频谱和相位频谱；
+
+2. 写出三角形式的傅里叶级数。
+   $$
+   f(t)=2|\boldsymbol F_1| \cos (\omega_0 t-\pi/2)+2|\boldsymbol F_3|\cos (3\omega_0t+\pi/2)
+   $$
+
+3. 判断信号的对称性；
+
+   为奇信号，反对称。
+
+4. 求信号的平均功率。
+
+   由 Parseval's relation，可得：
+   $$
+   \underbrace{\frac{1}{T}\int_T\left|x(t)\right|^2dt}_{\text{average power}} = \sum _ { k = - \infty }^{\infty}\underbrace{\left|a_k\right|^2}_{\text{kth harmonic average}}=2(4+1)=10
+   $$
+
+### 24
+
+LSI离散时间系统的系统函数为：$\displaystyle H(z)=\frac{z^2-3z}{z^2-3z+2}$.
+
+1. 画出 $H(z)$ 的零极点图，写出相应系统的差分方程。
+
+   <img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141429441.png" alt="image-20240513141429441" style="zoom: 50%;" />
+   $$
+   H(z)=\frac{1-3z^{-1}}{1-3z^{-1}+2z^{-2}}
+   $$
+
+   $$
+   (1-3z^{-1})X(z)=(1-3z^{-1}+2z^{-2})Y(z)
+   $$
+
+   $$
+   x[n]-3x[n-1]=y[n]-3y[n-1]+2y[n-2]
+   $$
+
+2. 求系统所有可能的单位样值响应 $h(n)$，分别指出系统是否稳定，是否因果，为什么？
+   $$
+   \frac{H(z)}{z}=\frac{z-3}{z^2-3z+2}=\frac{A}{z-2}+\frac{B}{z-1}
+   $$
+
+   $$
+   A=(z-2)\frac{H(z)}{z}|_{z=2}=-1\\
+   B=(z-1)\frac{H(z)}{z}|_{z=1}=2
+   $$
+
+   $$
+   H(z)=\frac{-z}{z-2}+\frac{2z}{z-1}
+   $$
+
+   - ROC: $0<|z|<1$，
+     $$
+     h(n)=2^n u(-n-1)-2u(-n-1)
+     $$
+     不稳定，不是因果。
+
+   - ROC: $1<|z|<2$，
+     $$
+     h(n)=2^n u(-n-1)+2u(n)
+     $$
+     不稳定，不是因果。
+
+   - ROC: $|z|>2$，
+     $$
+     h(n)=-2^nu(n)+2u(n)
+     $$
+     不稳定，是因果。
+
+3. 已知激励 $x(n)=(-1)^n \varepsilon(n)$ 时，全响应 $\displaystyle y[n]=\left[2+\frac{4}{3}2^n +\frac{2}{3}(-1)^n\right]\varepsilon (n)$，求系统的起始状态 $y(-1),y(-2)$.
+
+   直接通过递推式求解：
+   $$
+   x[n]-3x[n-1]=y[n]-3y[n-1]+2y[n-2]
+   $$
+
+   $$
+   x[0]-3x[-1]=y[0]-3y[-1]+2y[-2]\\
+   \Rightarrow 6-3y[-1]+2y[-2]=1
+   $$
+
+   $$
+   x[1]-3x[0]=y[1]-3y[0]+2y[-1]\\
+   \Rightarrow 2y[-1]-8=-4
+   $$
+
+   $$
+   y[-1]=2,y[-2]=\frac{1}{2}
+   $$
+
+### 25
+
+如图2(a)所示通信子系统，若输入信号 $x(t)$ 的频谱如图2(b)所示，试求该子系统的输入 $s(t)$ 及其频谱 $S(\omega)$.
+
+<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141750843.png" alt="image-20240513141750843" style="zoom:50%;" />
+
+![image-20240513141759044](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141759044.png)
+
+输出 $4\le \omega\le 6$ 的带通滤波器。
+
+### 26
+
+某二阶LTI因果稳定系统，其系统函数 $H(s)$ 为有理函数，$h(t)$ 为系统的单位冲激响应。以下四点是关于系统的信息：1.当系统的输入为 $e(t)=\varepsilon(t)$ 时，其稳态响应为 $-1/3$. 2.当系统的输入为 $e(t)=e^t \varepsilon(t)$ 时，其输入 $r(t)$ 绝对可积 3.设 $\displaystyle f(t)=\frac{\mathrm d ^2 h(t)}{\mathrm d t^2}+5\frac{\mathrm d h(t)}{\mathrm d t}+6h(t)$，其拉氏变换 $F(s)$ 的收敛域为 $-\infin<\operatorname{Re}\{s\} <+\infin$. 4.$H(s)$ 有且仅有一个零点。
+
+试求：
+
+1. 系统函数 $H(s)$ 并确定其收敛域；
+   $$
+   F(s)=s^2H(s)+5sH(s)+6H(s)=(s+2)(s+3)H(s)
+   $$
+   而且因为 $H(s)$ 有且仅有一个零点，可以设：
+   $$
+   H(s)=A\frac{s-s_0}{(s+2)(s+3)}
+   $$
+   当输入 $e(t)=e^{t}\varepsilon(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}} \frac{1}{s-1}$，输出绝对可积
+   $$
+   R(s)=A\frac{s-s_0}{(s+2)(s+3)(s-1)}
+   $$
+   因为系统是稳定系统+因果系统(因果卷积因果)，所以零点必须位于左半平面，因此 $s_0=1$.
+
+   当输入 $e(t)=\varepsilon(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}} \frac{1}{s}$，输出为：
+   $$
+   V(s)=A\frac{s-1}{s(s+2)(s+3)}
+   $$
+   根据 Final-value theorem，
+
+   1. 函数是两个因果函数的卷积，因此也是因果。
+   2. 函数的稳态响应存在。
+
+   因此：
+   $$
+   \lim_{t\to \infin}v(t)=\lim_{s\to 0}sV(s)
+   $$
+
+   $$
+   \lim_{t\to \infin} v(t)=A\lim_{s\to 0}\frac{s-1}{(s+2)(s+3)}=-\frac{A}{6}
+   $$
+
+   $$
+   A=2
+   $$
+
+   综上：
+   $$
+   H(s)=2\frac{s-1}{(s+2)(s+3)}
+   $$
+   因为系统稳定，所以 $0$ 在收敛域中，收敛域为 $-2<\operatorname{Re}\{s\} $.
+
+2. 画出直接形式的系统框图。
+
+   展开为
