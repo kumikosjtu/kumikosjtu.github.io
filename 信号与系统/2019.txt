@@ -137,9 +137,12 @@ $$
 
 可知：
 $$
-G(j\omega) = \frac{1}{2\pi} F(j\omega) *F(2j\omega)
+G(j\omega) = \frac{1}{2\pi} F(j\omega) *\frac{1}{2}F(j\omega/2)
 $$
-最高频率为 $\omega_m'=3\omega_m$，而 $\omega_s=2\omega_m'=6\omega_m$.
+- $F(j\omega)$ 最高频率为 $\omega_m$；
+- $F(j\omega/2)$ 最高频率为 $2\omega_m$；
+
+两者卷积最高频率为 $3\omega_m$，最高频率 $\omega_s=2\cdot 3\omega_m=6\omega_m$.
 
 ### 12
 

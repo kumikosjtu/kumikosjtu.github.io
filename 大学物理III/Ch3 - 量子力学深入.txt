@@ -202,7 +202,7 @@ $$
 \frac{\mathrm d ^2\psi}{\mathrm d x^2}+k^2\psi=0
 $$
 
-对于一个相同的 $E$，$\psi$ 可以取 $e^{ikx}$ 或者 $e^{ikx}$，都是本征函数，简并度 $g=2$.
+对于一个相同的 $E$，$\psi$ 可以取 $e^{ikx}$ 或者 $e^{-ikx}$，都是本征函数，简并度 $g=2$.
 
 **例题** 质量为 $m$ 的粒子在一维势场 $V(x)=\begin{cases}0,&0\leq x\leq a\\\infty,&x>a\text{或}x<0\end{cases}$ 中运动，
 $$
