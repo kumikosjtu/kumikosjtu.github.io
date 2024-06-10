@@ -1,0 +1,686 @@
+# 2021-2022 2
+
+## 选择题
+
+### 1
+
+有一连续系统，输入为 $e(t)$，输出为 $r(t)$，$T[e(t)]$ 表示系统对 $e(t)$ 的响应，$r(t)=T[e(t)]=3e(2t)$，请判断系统的性质。
+
+- [x] 线性时变；
+- [ ] 线性时不变；
+- [ ] 非线性时变；
+- [ ] 非线性时不变。
+
+验证线性：
+
+- $e(t)\to ke(t) \Rightarrow r(t)=kr(t)$.
+- $e_1(t)\to 3e_1(2t),e_2(t)\to 3e_2(2t)$, $e_1(t)+e_2(t)\to 3(e_1(2t)+e_2(2t))$.
+
+因此是线性系统。
+
+验证时不变：
+- $e(t)\to e(t-t_0)\Rightarrow 3e(2t)\to 3e(2t-t_0)\not =3e(2t-2t_0)$.
+
+因此是时变系统。
+
+### 2
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4d58ce255c47f4c5ca55981fcf5abba8.png" style="zoom:50%;" />
+
+### 3
+
+已知时域实信号 $x(t)$ 的 <u>单边拉氏变换</u> 为 $X(s)$，下列说法中不正确的是（）。
+
+- [ ] 若 $X(s)$ 的收敛域包括虚轴，则 $x(t)$ 存在傅里叶变换；
+
+- [ ] 若 $x(t)$ 为时域有限信号，则 $X(s)$ 的收敛域为整个 $s$ 平面；
+
+- [x] 若 $X(s)$ 的收敛域是某个右半平面，则 $x(t)$ 为因果信号；
+
+  单边拉普拉斯变换的收敛域总是某个右半平面，无法判断是否为因果。
+
+- [ ] $\mathrm d x(t)/\mathrm d t$ 存在拉氏变换，且其收敛域可能比 $X(s)$ 的收敛域更大。
+
+  因为
+  $$
+  \frac{\mathrm d x(t)}{\mathrm d t} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+   s \mathcal X(s)-x(0^-)
+  $$
+  可能消除 $\mathcal X(s)$ 在 $s=0$ 的极点，收敛域增大。
+  
+  例如 $x(t)=u(t)$ 时，$\mathrm d x(t)/\mathrm d t=\delta(t)$，单边拉氏变换由 $1/s$ 变为 $1$.
+
+### 4
+
+下面关于连续时间信号 $x(t)$ 的叙述中，正确的个数为（）。
+
+1. 若 $x(t)$ 是周期的，则 $x(2t)$ 也是周期的；
+2. 若 $x(2t)$ 是周期的，则 $x(t)$ 也是周期的；
+3. 若 $x(t)$ 是周期的，则 $x(t/2)$ 也是周期的；
+4. 若 $x(t/2)$ 是周期的，则 $x(t)$ 也是周期的。
+
+- [ ] 1
+- [ ] 2
+- [ ] 3
+- [x] 4
+
+### 5
+
+$\underbrace{a^n u[n]}_{x[n]}*\underbrace{2^n (u[n+1]-u[n-1])}_{y[n]}=?$.
+
+- [ ] $a^{n+1}u[n+1]+a^n u[n]$
+- [x] $\frac{1}{2}a^{n+1}u(n+1)+a^n u[n]$
+- [ ] $(\frac{1}{2}a^{n+1}+a^n)u[n]$
+- [ ] $\frac{1}{2}a^{n+1}u[n+1]$
+
+$$
+\begin{aligned}
+z[n]&=x[n+1]y[-1]+x[n]y[0]\\
+&=\frac{1}{2}a^{n+1}u[n+1]+a^n u[n]
+\end{aligned}
+$$
+
+### 6
+
+已知实信号 $x(t)$ 的傅里叶变换 $X(j\omega)=R(j\omega)+jI(j\omega)$，则信号 $y(t)=x(t)+x(-t)$ 的傅里叶变换 $Y(j\omega)$ 等于
+
+- [ ] $R(j\omega)$
+- [x] $2R(j\omega)$
+- [ ] $2R(2j\omega)$
+- [ ] $R(j\frac{\omega}{2})$
+
+$$
+x(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} X(j\omega)\\
+x(-t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} X(-j\omega)
+$$
+
+因为是实信号，所以 $X(j\omega)=X^*(-j\omega)$.
+$$
+Y(j\omega)=X(j\omega)+X^*(j\omega)=2R(j\omega)
+$$
+
+### 7
+
+试求函数 $f(t)=4u(t+1)\delta(t-1)$ 值为（）。
+
+- [ ] 0
+- [ ] 4
+- [x] $4\delta(t-1)$
+- [ ] 以上结果均不正确
+
+只有在 $t=1$ 时有值，即 $4\delta(t-1)$.
+
+### 8
+
+对 $f(t)=\operatorname{Sa}^2(2\pi t)$ 进行采样，则采样频率 $f_s$ 最小为（）时，不会产生频谱混叠。
+
+- [ ] 2
+- [x] 4
+- [ ] 6
+- [ ] 8
+
+$$
+\omega_{\max}=2\times 2\pi =4\pi \Rightarrow \omega_s=8\pi
+$$
+
+$$
+f_s=\omega_s/2\pi=4
+$$
+
+### 9
+
+序列 $x[n]$ 的 Z 变换为 $\displaystyle  \frac{z^2+z}{(z-1)(z^2-z+1)},|z|>1$，则 $x[n]=$（）。
+
+- [ ] $\left[2+2\cos (\frac{\pi}{3} n)\right]u[n]$
+- [ ] $\left[2+2\sin(\frac{\pi}{3} n)\right]u[n]$
+- [x] $\left[2-2\cos (\frac{\pi}{3} n)\right]u[n]$
+- [ ] $\left[2-2\sin (\frac{\pi}{3} n)\right]u[n]$
+
+$$
+\begin{aligned}
+\frac{1}{z}X(z)&= \frac{z+1}{(z-1)(z^2-z+1)}\\
+&=\frac{K_1}{z-1}+\frac{K_2}{z-\frac{1}{2}-\frac{\sqrt{3}}{2}j}+\frac{K_2^*}{z-\frac{1}{2}+\frac{\sqrt{3}}{2}j}
+\end{aligned}
+$$
+
+$$
+K_1=\left.\frac{z+1}{z^2-z+1}\right|_{z=1}=2
+$$
+
+$$
+K_2=K_3=-1
+$$
+
+$$
+X(z)=2\frac{z}{z-1}-\frac{z}{z-\frac{1}{2}-\frac{\sqrt{3}}{2}j}-\frac{z}{z-\frac{1}{2}+\frac{\sqrt{3}}{2}j}
+$$
+
+$$
+x[n]=2(1)^n u[n]-e^{n\pi/3}u[n]-e^{-n\pi/3}u[n]\\
+=\left[2-2\cos \left(\frac{\pi}{3}n\right)\right]u[n]
+$$
+
+通过初值定理验证：
+$$
+x[0]=\lim_{z\to \infin}\frac{z^2+z}{(z-1)(z^2-z+1)}=0
+$$
+因此只能选 C.
+
+### 10
+
+已知 $x(t)$ 的频谱 $\displaystyle X(j\omega)=\begin{cases}2,&|\omega|\le1\\0,&|\omega|>1\end{cases}$，$y(t)=x(t)*\sin(4t)$，$y(t)$ 的傅里叶变换为 $Y(j\omega)$，则在 $\omega=4$ 处 $Y(j\omega)$ 的值为（）。
+
+- [ ] 1
+- [ ] $j$
+- [x] $-j$
+- [ ] $j\pi$
+
+$$
+Y(j\omega)=X(j\omega)\cdot \frac{1}{2j}(\delta(\omega-4)-\delta(\omega+4))
+$$
+
+$$
+Y(j4)=\frac{1}{j}=-j
+$$
+
+### 11
+
+下列哪个零点、极点分布图表示的系统是高通滤波器（）。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_5fdd85a42f57c2e8d55cd7ea4e302f56.png)
+
+只要关注 $\omega\to\infin$ 时的表现即可：
+
+A. $\infin/(\infin \cdot \infin)=0$;
+
+B. $\infin\cdot \infin/(\infin \cdot \infin)=1$.
+
+C. 和 A 类似，同理。
+
+D. $1/(\infin\cdot \infin)=0$.
+
+因此只有 B 是高通滤波器。
+
+### 12
+
+某一系统如下图 2 所示，其中 $h_1(t)=\delta(t-1),h_2(t)=e^{-3t}u(t)$，则系统总的冲激响应 $h(t)$ 为（）。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_1ffa2cb6dce726c34ba75830ba2792db.png)
+
+- [x] $e^{-3(t-1)}u(t-1)+e^{-3(t-2)}u(t-2)$;
+- [ ] $e^{-3(t-1)}\delta(t-1)+e^{-3(t-2)}\delta(t-2)$;
+- [ ] $e^{-3}u(t-1)+e^{-6}u(t-2)$;
+- [ ] $e^{-3}\delta(t-1)+e^{-6}\delta(t-2)$.
+
+假如送入 $e(t)=\delta(t)$，则求和之后可以得到 $\delta(t-1)+\delta(t-2)$，和 $e^{-3t}u(t)$ 卷积可得：
+$$
+e^{-3(t-1)}u(t-1)+e^{-3(t-2)}u(t-2)
+$$
+
+### 13
+
+序列 $x[n]=\displaystyle \sum_{i=0}^n (-1)^i$ 的单边 z 变换为（）。
+
+- [ ] $\displaystyle \frac{z^2}{(z+1)^2},|z|>1$;
+- [ ] $\displaystyle \frac{z^2+1}{(z+1)(z-1)},|z|>1$;
+- [ ] $\displaystyle \frac{z^2+1}{(z+1)^2},|z|>1$;
+- [x] $\displaystyle \frac{z^2}{(z+1)(z-1)},|z|>1$.
+
+单边 Z 变换的表达式：
+$$
+\mathcal X(z)=\sum_{n=0}^{\infin} \sum_{i=0}^n (-1)^i z^{-n}\\
+=\sum_{n=0}^{\infin} z^{-2n}=\frac{1}{1-z^{-2}}=\frac{z^2}{z^2-1}
+$$
+
+### 14
+
+若 $x[n]=x[-n]$，则下列结论中正确的是（）
+
+- [ ] $X(z)=X(-z)$;
+- [ ] $X(z)=X^*(z^{-1})$;
+- [ ] $X(z)=X^*(z)$;
+- [x] $X(z)=X(z^{-1})$.
+
+因为：
+$$
+X(z)=\sum_{n=-\infin}^{\infin} x[n]z^{-n}
+$$
+所以：
+$$
+X(z^{-1})=\sum_{n=-\infin}^{\infin} x[n]z^n=\sum_{n=-\infin}^\infin x[-n] z^{-n}=X(z)
+$$
+
+------
+
+若是实信号，$x[n]=x^*[n]$，则：
+$$
+X^*(z)=\sum_{n=-\infin}^{\infin} x^*[n](z^*)^{-n}=X(z^*)
+$$
+
+### 15
+
+$\displaystyle x[n]=\frac{1}{2}(u[n]-u[n-4])$ 的傅里叶变换为（）。
+
+- [x] $e^{-j1.5\omega}(\cos 1.5\omega+\cos 0.5\omega)$;
+- [ ] $\frac{1}{2}e^{-j1.5\omega}(\cos 1.5\omega+\cos 0.5\omega)$;
+- [ ] $je^{-j1.5\omega}(\sin 1.5\omega+\sin 0.5\omega)$;
+- [ ] $\frac{1}{2}je^{-j1.5\omega}(\sin 1.5\omega-\sin 0.5\omega)$.
+
+$$
+x[n]=\begin{cases}
+\frac{1}{2},&0\le n\le 3\\
+0,&else
+\end{cases}
+$$
+
+$$
+\begin{aligned}
+X(e^{j\omega})&=\frac{1}{2}e^{0}+\frac{1}{2}e^{-j\omega}+\frac{1}{2}e^{-j2\omega}+\frac{1}{2}e^{-j3\omega}\\
+&=\frac{1}{2}e^{-j1.5\omega}(2\cos 1.5\omega+2\cos 0.5\omega)\\
+&= e^{-j1.5\omega}(\cos 1.5\omega+\cos 0.5\omega)
+\end{aligned}
+$$
+
+## 计算题
+
+### 1
+
+计算下列积分：
+
+1. $\displaystyle \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t$.
+
+   因为：
+   $$
+   \sin t=\frac{1}{2j} (e^{j t}-e^{-jt})
+   $$
+   可得：
+   $$
+   \begin{aligned}
+   \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t&= \frac{1}{2j}\int_{-\infin}^{\infin} \frac{e^{jt}}{t}-\frac{e^{-jt}}{t}\mathrm d t
+   \end{aligned}
+   $$
+   设
+   $$
+   X(j\omega)=\mathcal F\left\{1/t\right\}=-j\pi \operatorname{sgn} (\omega)
+   $$
+   则：
+   $$
+   \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t=\frac{1}{2j}(X(-j)-X(j))=\pi
+   $$
+
+   > 另外，利用傅里叶变换的性质，$F(0)=\displaystyle \int_{-\infin}^{\infin} f(t)\mathrm d t$.
+   > $$
+   > \frac{\sin t}{t} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \pi \operatorname{Gate}(1)
+   > $$
+
+2. $\displaystyle \int_{-\infin}^{\infin} \left(\frac{\sin t}{t}\right)^2\mathrm d t$.
+
+   利用 Parseval's theorem，因为：
+   $$
+   \begin{cases}
+   \pi, &|\omega|\le 1\\
+   0, &else
+   \end{cases} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{\sin t}{t}
+   $$
+   
+   $$
+   \int_{-\infin}^{+\infin} \left|\frac{\sin t}{t}\right|^2\mathrm d t=\frac{1}{2\pi}\int_{-1}^{1} |\pi|^2\mathrm d \omega=\pi
+   $$
+
+### 2
+
+设 $x[n]=\begin{cases}1,&0\le n\le 7\\0,&8\le n \le 9\end{cases}$ 是一个基波周期 $N=10$ 的周期信号，傅里叶级数系数为 $a_k$，同时令 $g[n]=x[n]-x[n-1]$.
+
+1. 求 $g[n]$ 的傅里叶级数系数。
+
+   可得：
+   $$
+   g[n]=\begin{cases}-1,&n=8\\1,& n=0\\0,&else.\end{cases}
+   $$
+   因此傅里叶级数 $b_k$ 可以计算为：
+   $$
+   b_k=\frac{1}{10}\sum_{n=\left\langle N\right\rangle} g[n] e^{-jk\omega_0 n},k=\left\langle N\right\rangle\\
+   =-\frac{1}{10}e^{-8jk\omega_0 }+\frac{1}{10}
+   $$
+
+2. 利用 $g[n]$ 的傅里叶级数系数系数和傅里叶级数性质求 $a_k(k\not=0)$.
+   $$
+   g[n]=\sum_{k=\left\langle N\right\rangle} a_ke^{jk(2\pi/N)n}-a_k e^{jk(2\pi/N) (n-1)}\\
+   =\sum_{k=\left\langle N\right\rangle}a_k(1-e^{-jk(2\pi/N)}) e^{jk(2\pi/N) n}
+   $$
+   因此傅里叶级数系数为：
+   $$
+   b_k=a_k(1-e^{-jk(2\pi/N)})
+   $$
+   有：
+   $$
+   a_k=\frac{1}{10}\frac{1-e^{-8jk\omega_0}}{1-e^{-jk\omega_0}}
+   $$
+
+### 3
+
+描述某个连续时间 LTI 系统的微分方程为：
+$$
+y''(t)-5y'(t)+6y(t)=f(t)-4f'(t),t>0
+$$
+输入激励信号为 $f(t)=e^{-t} \varepsilon(t)$，初始状态为 $y(0^-)=1,y'(0^-)=3$.
+
+求该系统的零输入响应 $y_z(t)$、零状态响应 $y_f(t)$ 和完全响应 $y(t)$.
+
+零输入响应：令 $f(t)=0$，可得：
+$$
+(s^2 Y(s)-sy(0^-)-y'(0^-))\\-5(sY(s)-y(0^-))+6Y(s)=0
+$$
+因此：
+$$
+(s^2-5s+6)Y(s)=sy(0^-)+y'(0^-)-5y(0^-)=s-12
+$$
+
+$$
+Y(s)=\frac{s-12}{s^2-5s+6}=\frac{A}{s-3}+\frac{B}{s-2}
+$$
+
+$$
+A=(s-3)Y(s)|_{s=3}=-9\\
+B=(s-2)Y(s)|_{s=2}=10
+$$
+
+$$
+Y(s)=\frac{-9}{s-3}+\frac{10}{s-2}
+$$
+
+$$
+y_z(t)=-9e^{3t}u(t)+10e^{2t}u(t)
+$$
+
+零状态响应：令 $f(0^-)=f'(0^-)=0$，可得：
+$$
+(s^2-5s+6)Y(s)=(1-4s)\cdot \frac{1}{s+1}
+$$
+
+$$
+Y(s)=\frac{1-4s}{(s+1)(s-2)(s-3)}
+$$
+
+$$
+Y(s)=\frac{A}{s+1}+\frac{B}{s-2}+\frac{C}{s-3}
+$$
+
+$$
+A=(s+1)Y(s)|_{s=-1}=\frac{5}{12}\\
+B=(s-2)Y(s)|_{s=2}=\frac{7}{3}\\
+C=(s-3)Y(s)|_{s=3}=\frac{-11}{4}
+$$
+
+$$
+y_f(t)=\left(\frac{5}{12}e^{-t}+\frac{7}{3}e^{2t}-\frac{11}{4}e^{3t}\right)u(t)
+$$
+
+完全响应：
+$$
+y(t)=y_z(t)+y_f(t)=\left(\frac{25}{4}e^{3t}+\frac{37}{3}e^{2t}+\frac{5}{12}e^{-t}\right)u(t)
+$$
+
+### 4
+
+因果 LTI 系统的频率响应为 $\displaystyle H(j\omega)=\frac{1-j\omega}{1+j\omega}$，求：
+
+1. 系统的阶跃响应；
+   $$
+   H(s)=\frac{1-s}{1+s}
+   $$
+
+   $$
+   X(s)=\frac{1}{s}
+   $$
+
+   $$
+   Y(s)=\frac{1-s}{(1+s)s}=\frac{1}{s}-\frac{2}{1+s}
+   $$
+
+   $$
+   y(t)=(1-2e^{-t})u(t)
+   $$
+
+2. 输入 $e(t)=e^{-2t}u(t)$ 时的零状态响应；
+
+   输入：
+   $$
+   E(s)=\frac{1}{s+2}
+   $$
+   零状态响应为：
+   $$
+   Y(s)=\frac{1-s}{(1+s)(s+2)}=\frac{2}{1+s}-\frac{3}{2+s}
+   $$
+   即：
+   $$
+   y_f(t)=(2e^{-t}-3e^{-2t})u(t)
+   $$
+
+3. 输入 $e(t)=\cos t$ 时的 <u>稳态响应</u>。
+
+   输入：
+   $$
+   E(s)=\frac{s}{s^2+1}
+   $$
+   输出：
+   $$
+   Y(s)=\frac{1-s}{1+s}E(s)=\frac{(1-s)s}{(1+s)(s^2+1)}
+   $$
+   由 Final-value theorem，可得：
+   $$
+   \lim_{t\to \infin} x(t)=\lim_{s\to 0} sX(s)=-1
+   $$
+
+### 5
+
+一个 LSI 系统的输入和输出满足：$-6y[n-1]+y[n]+y[n+1]=x[n]$.
+
+1. 试求该系统的系统函数，并画出其零、极点图；
+
+   Z 变换：
+   $$
+   -6z^{-1}Y(z)+Y(z)+zY(z)=X(z)
+   $$
+
+   $$
+   H(z)=\frac{1}{z+1-6z^{-1}}=\frac{z}{z^2+z-6}
+   $$
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_d586216b1fdc011dea696a656c829b50.png" style="zoom:50%;" />
+   $$
+   \frac{H(z)}{z}=\frac{1}{z-2}+\frac{1}{z+3}
+   $$
+
+2. 若已知系统稳定，求单位样值响应 $h[n]$；
+
+   因为系统稳定，则单位圆在 ROC 中，则：
+   $$
+   h[n]=-2^{n}u[-n-1]-(-3)^n u[-n-1]\\
+   =-(2^n+(-3)^n)u[-n-1]
+   $$
+
+3. 若已知 $y[n]$ 为一右边序列，起始状态为 $y[-1]=1,y[0]=0$，且 $x[n]=24u[n]$，求解此差分方程。
+
+   （不用零状态响应+零输入响应，直接算）
+   $$
+   -6y[n-1]+y[n]+y[n+1]=24,n\ge 0
+   $$
+
+   $$
+   -6y[n-1]+3y[n]-2y[n]+y[n+1]=24,n\ge 0
+   $$
+
+   令 $y[n+1]-2y[n]=z[n]$，则：
+   $$
+   3z[n-1]+z[n]=24
+   $$
+
+   $$
+   3z[n-1]-18=-(z[n]-6)\\
+   z[n]-6=-3(z[n-1]-6)
+   $$
+
+   可知：
+   $$
+   z[-1]=y[0]-2y[-1]=-2
+   $$
+
+   $$
+   z[n]-6=(-3)^{n+1}(z[-1]-6)=-8(-3)^{n+1}
+   $$
+
+   $$
+   z[n]=6-8(-3)^{n+1}
+   $$
+
+   $$
+   y[n+1]-2y[n]=6-8(-3)^{n+1}
+   $$
+
+   $$
+   2y[n]-4y[n-1]=6\cdot 2^1-8(-3)^{n}\cdot 2^1
+   $$
+
+   $$
+   4y[n-1]-8y[n-2]=6\cdot 2^2-8(-3)^{n-1}\cdot 2^2
+   $$
+
+   $$
+   y[n+1]-2^{n+1}y[0]=6(2^{n+1}-1)-8(-3)^{n+1} \frac{(-\frac{2}{3})^{n+1}-1}{-\frac{2}{3}-1}
+   $$
+
+   $$
+   y[n+1]=6(2^{n+1}-1)+\frac{24}{5}(2^{n+1}-(-3)^{n+1})
+   $$
+
+   $$
+   y[n+1]=\frac{54}{5}2^{n+1}-\frac{24}{5}(-3)^{n+1}-6
+   $$
+
+   $$
+   y[n]=\frac{54}{5}2^n-\frac{24}{5}(-3)^n-6
+   $$
+
+   另外也可以待定系数：
+   $$
+   y[n]=A2^n+B(-3)^n+C
+   $$
+   代入：
+
+   - $y[-1],y[0]$;
+   - 递推式
+
+   即可求解。
+
+### 6
+
+已知时域信号如图所示，分别求图3(a)信号的傅里叶变换，和图3(b)信号的拉普拉斯变换。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_7c0bea0d0a80296657dc0c77f4e72d8b.png)
+
+对于图 3(a)，可知是下面的函数自身和自身的卷积：
+$$
+g(t)=\begin{cases}
+\sqrt \frac{2E}{T}, & -\frac{T}{4}\le t\le \frac{T}{4}\\
+0,&else
+\end{cases}.
+$$
+
+$$
+G(j\omega)=\sqrt \frac{2E}{T}\frac{2\sin (\omega T/4)}{T/4}
+$$
+
+$$
+F(j\omega)=\frac{2E}{T}\frac{4\sin ^2 (\omega T/4)}{T^2/16}=\frac{128 E\sin^2 (\omega T/4)}{T^3}
+$$
+
+对于图 3(b)，可以写为：
+$$
+tu(t)-(t-1)u(t-1)-u(t-3)
+$$
+因为
+$$
+tu(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{1}{s^2}\\
+ u(t)\overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{1}{s}
+$$
+可知：
+$$
+F(s)=\frac{1}{s^2}-\frac{1}{s^2}e^{-s}-\frac{1}{s}e^{-3s}
+$$
+
+### 7
+
+已知连续因果 LTI 系统如图所示，其中 $\displaystyle H_1(s)=\frac{1}{s+1},H_2(s)=\frac{1}{s},\alpha=2,\beta=3$，试求：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_de71b6ee5522d749ffd0335d6f9bde9e.png" style="zoom: 67%;" />
+
+1. 系统函数 $H(s)$.
+
+   设第一个部分的输出为 $Y_1(s)$，可得：
+   $$
+   H_1(s)[X(s)-\alpha Y_1(s)]=Y_1(s)
+   $$
+
+   $$
+   Y_1(s)=\frac{H_1(s)}{1+\alpha H_1(s)} X(s)\\
+   =\frac{1}{s+3}X(s)
+   $$
+
+   再考虑第二个部分，可得：
+   $$
+   Y(s)=Y_1(s)+\frac{H_2(s)}{1+\beta H_2(s)} Y_1(s)\\
+   =Y_1(s)+\frac{1}{s+4}Y_1(s)=\frac{s+5}{s+4}Y_1(s)
+   $$
+   总的系统函数：
+   $$
+   H(s)=\frac{s+5}{(s+3)(s+4)}
+   $$
+
+2. 冲激响应 $h(t)$.
+
+   设：
+   $$
+   H(s)=\frac{A}{s+3}+\frac{B}{s+4}
+   $$
+   则：
+   $$
+   A=(s+3)H(s)|_{s=-3}=2\\
+   B=(s+4)H(s)|_{s=-4}=-1
+   $$
+   因此：
+   $$
+   H(s)=\frac{2}{s+3}-\frac{1}{s+4}
+   $$
+   冲激响应：
+   $$
+   h(t)=2e^{-3t}u(t)-e^{-4t}u(t)
+   $$
+
+3. 判断系统的稳定性。
+
+   需要
+   $$
+   \int_{-\infin}^{+\infin} |h(t)|\mathrm d t<\infin
+   $$
+   因为：
+   $$
+   \int_{-\infin}^{+\infin} |h(t)|\mathrm d t<\int_{0}^{\infin} |2e^{-3t}|\mathrm d t+\int_0^{\infin} |-e^{-4t}|\mathrm d t<\infin
+   $$
+   所以稳定。
+
+4. 画出系统直接型框图。类似于
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_8b6ed4acdf19c9291323cee7570d5307.png)
+
+$$
+H(s)=\frac{s+5}{s^2+7s+12}=\frac{s^{-1}+5s^{-2}}{1+7s^{-1}+12s^{-2}}
+$$
+
+$$
+Y(s)=(s^{-1}+5s^{-2})\overbrace{\frac{X(s)}{1+7s^{-1}+12s^{-2}}}^{W(s)}\\
+W(s)=X(s)-7s^{-1}W(s)-12s^{-2}W(s)
+$$
+

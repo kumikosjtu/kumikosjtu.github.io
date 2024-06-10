@@ -1,0 +1,537 @@
+# 某年试卷
+
+[TOC]
+
+## 一、选择题
+
+### 1
+
+以下论述中不正确的是（）
+
+- [ ] 周期信号不一定存在傅里叶级数
+
+> 正确，如果区间内不是绝对可积，则不存在傅里叶级数
+
+- [ ] 非周期信号不能用傅里叶级数表示
+
+> 正确，只能用傅里叶变换表示
+
+- [x] 若 $x(t)$ 的傅里叶变换为 $X(j\omega)$，则 $x(-t)-x(t)$ 的傅里叶变换为实数
+
+> 错误，$x(-t)$ 的傅里叶变换为 $X(-j\omega)$，$X(-j\omega)-X(j\omega)$ 不一定为实数。例如，当 $x(t)$ 为实函数时，$X(-j\omega)=X(j\omega)^*$。此时 $X(-j\omega)-X(j\omega)$ 为纯虚数。
+
+- [ ] $x(t)$ 的傅里叶变换为 $X(j\omega)$，则 $t\cdot x(-t)$ 的傅里叶变换为 $\displaystyle j\cdot \frac{\mathrm d X(-j\omega)}{\mathrm d \omega}$.
+
+> $$
+> x(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} X(j\omega)\\
+> tx(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} j\frac{\mathrm d X(j\omega)}{\mathrm d \omega}\\
+> -tx(-t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} j\frac{\mathrm d X(-j\omega)}{\mathrm d (-\omega)}=-j\frac{\mathrm d X(-j\omega)}{\mathrm d \omega}\\
+> tx(-t)  \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} j\frac{\mathrm d X(-j\omega)}{\mathrm d \omega}
+> $$
+
+### 2
+
+信号 $x(t)=e^{t}u(-t)$ 的拉氏变换及收敛域为（）
+
+- [x] $\displaystyle X(s)=\frac{1}{1-s},\operatorname{Re}\{s\} <1$
+- [ ] $\displaystyle X(s)=\frac{1}{1-s},\operatorname{Re}\{s\} >1$
+- [ ] $\displaystyle X(s)=\frac{1}{s-1},\operatorname{Re}\{s\} <1$
+- [ ] $\displaystyle X(s)=\frac{1}{s-1},\operatorname{Re}\{s\} >1$
+
+### 3
+
+上述因果信号的拉氏变换中，不存在傅里叶变换的信号为（）
+
+- [ ] $\displaystyle \frac{1}{s^2+s+1}$
+- [ ] $1$
+- [ ] $\displaystyle \frac{s-1}{s+1}$
+- [x] $\displaystyle \frac{s+1}{s-1}$
+
+看 ROC.
+
+### 4
+
+已知 $f(t)$ 的傅里叶变换为 $F(j\omega)$，则 $\displaystyle \frac{\mathrm d f(2-2t)}{\mathrm d t}$ 的傅里叶变换为（）
+
+- [ ] $\displaystyle \frac{j\omega}{2}\cdot F\left(-j\frac{\omega}{2}\right)e^{2j}$.
+- [ ] $\displaystyle \frac{\omega}{2}\cdot e^{(\omega+0.5\pi)j}\cdot F\left(-j\frac{\omega}{2}\right)$.
+- [ ] $\displaystyle -\frac{j\omega}{2}\cdot e^{j\omega}\cdot F\left(-j\frac{\omega}{2}\right)$.
+- [x] 以上都不对
+
+可知，
+$$
+\frac{\mathrm d x(t)}{\mathrm d t}=j\omega X(j\omega)
+$$
+
+$$
+\frac{\mathrm d x(-2t)}{\mathrm d (-2t)}=\frac{1}{2}\cdot \left(-\frac{j\omega}{2}\right)\cdot  X\left(-\frac{j\omega}{2}\right)
+$$
+
+$$
+\frac{\mathrm d x(-2t)}{\mathrm d t}=\frac{j\omega}{2}\cdot  X\left(-\frac{j\omega}{2}\right)
+$$
+
+$$
+\frac{\mathrm d x(2-2t)}{\mathrm d t}=\frac{j\omega}{2}X\left(-\frac{j\omega}{2}\right)e^{-j\omega}
+$$
+
+### 5
+
+以下哪个信号是周期信号？（）
+
+- [ ] $x[n]=u[n]+u[-n]$.
+
+  > 不是
+
+- [ ] $x[n]=e^{j3n/7}$.
+
+  > 周期：$2\pi/(3/7)$ 不为整数也不是有理数。因此不是周期。
+
+- [x] $x[n]=e^{j5\pi n/9}-e^{j4\pi n/5}$.
+
+  > 周期取 $9\times 5\times 2$ 即可。
+
+- [ ] $x(t)=e^{(1+j)t}$.
+
+  > 为 $e^{t}\cdot e^{jt}$，不为周期信号，研究幅值即可。
+
+### 6
+
+若线性时不变系统的频率和相位响应特性如下图所示，则下列四个信号中，通过该系统后不发生失真的信号个数为（）
+$$
+x_1(t)=\cos (2t)+\sin (3t)\\
+x_2(t)=\cos (2t)\cdot \sin (3t)\\
+x_3(t)=\delta(t)\\
+x_4(t)=1
+$$
+![](https://notes.sjtu.edu.cn/uploads/upload_68c023012d1241f67a58fa471350629a.png)
+
+- [ ] 0 个
+- [ ] 1 个
+- [x] 2 个
+- [ ] 3 个
+
+1. $x_1(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} 2\pi \left(\frac{1}{2}\delta(\omega-2)+\frac{1}{2}\delta(\omega+2)+\frac{1}{2j}\delta(\omega-3)-\frac{1}{2j}\delta(\omega+3)\right)$.
+
+   不失真。
+
+2. $x_2(t)$ 最大频率为 $5$，发生失真（无法还原 5）。
+
+3. $\delta(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} 1$. 发生失真。
+
+4. $1 \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} 2\pi \delta(\omega)$. 不发生失真。
+
+### 7
+
+对于系统 $\displaystyle y(t)=\int_{-\infin}^{t} e^{-(t-\tau)}x(\tau)\mathrm d \tau$，以下哪种说法是正确的？（）
+
+- [ ] 是一个因果系统，不是一个稳定系统。
+- [ ] 不是一个因果系统，是一个稳定系统。
+- [x] 是一个因果系统，是一个稳定系统。
+- [ ] 不是一个因果系统，不是一个稳定系统。
+
+考虑到 $h(t)=e^{-t}u(t)$，
+$$
+y(t)=x(t)*h(t)
+$$
+
+$$
+\int_{-\infin}^{+\infin} |h(t)|\mathrm d t<\infin\\
+h(t)=0,t<0
+$$
+
+因此是因果系统。
+
+### 8
+
+求离散卷积：$y(n)=a^n u(n)*3^n [u(n)-u(n-1)]$.
+
+- [ ] $a^n u(n-1)$;
+- [ ] $3^n a^n u(n)$;
+- [x] $a^n u(n)$;
+- [ ] $n$ 取任何值卷积和都为无穷大，故无解.
+
+$$
+y(n)=\sum_{k=-\infin}^{\infin} a^k u(k) \cdot 3^{n-k}[u(n-k)-u(n-k-1)]\\
+\overset{n=k}=a^n u(n)\cdot 1
+$$
+
+### 9
+
+设 $x[n]$ 是一个周期为 $N$ 的实周期信号，其傅里叶级数为 $a_k$。以下哪个说法是正确的？
+
+- [x] 若 $N$ 为偶数，那么在 $a_k$ 的一个周期内必然有两个傅里叶系数是实数；
+- [ ] 若 $N$ 为偶数，那么在 $a_k$ 的一个周期内必然有三个傅里叶系数是实数；
+- [ ] 若 $N$ 为奇数，那么在 $a_k$ 的一个周期内必然有两个傅里叶系数是实数；
+- [ ] 若 $N$ 为奇数，那么在 $a_k$ 的一个周期内必然有三个傅里叶系数是实数。
+
+$$
+a_k=\frac{1}{N}\sum_{n=\left\langle N\right\rangle}x[n]e^{-j\omega kn}
+$$
+
+首先，$k=0$ 时是实数。
+$$
+a_{N/2}=\frac{1}{N}\sum_{n=\left\langle N\right\rangle}x[n]e^{-j\pi n}=\frac{1}{N}\sum_{n=\left\langle N\right\rangle} x[n](-1)^n
+$$
+也可以从单位圆上的 $e^{-j\omega kn}$ 的角度来考虑。
+
+### 10
+
+对于一个线性时不变系统，输入信号和输出信号的 Z 变换分别为 $\displaystyle X(z)=\frac{1}{1+z^{-2}+z^{-4}}$ 和 $\displaystyle Y(z)=\frac{1}{2}+\frac{1}{4}z^{-1}$，则系统的冲激响应为（）
+
+- [ ] $\displaystyle h[0]=\frac{1}{4},h[1]=\frac{1}{2},h[2]=\frac{1}{4},h[3]=\frac{1}{2},h[4]=\frac{1}{4},h[5]=\frac{1}{2}$.
+- [x] $\displaystyle h[0]=\frac{1}{2},h[1]=\frac{1}{4},h[2]=\frac{1}{2},h[3]=\frac{1}{4},h[4]=\frac{1}{2},h[5]=\frac{1}{4}$.
+- [ ] $\displaystyle h[0]=\frac{1}{2},h[1]=1,h[2]=\frac{1}{2},h[3]=1,h[4]=\frac{1}{2},h[5]=1$.
+- [ ] $\displaystyle h[0]=\frac{1}{8},h[1]=\frac{1}{4},h[2]=\frac{1}{8},h[3]=\frac{1}{4},h[4]=\frac{1}{8},h[5]=\frac{1}{4}$.
+
+$$
+H(z)=\frac{Y(z)}{X(z)}=\left(\frac{1}{2}+\frac{1}{4}z^{-1}\right)(1+z^{-2}+z^{-4})\\
+=\frac{1}{2}+\frac{1}{4}z^{-1}+\frac{1}{2}z^{-2}+\frac{1}{4}z^{-3}+\frac{1}{2}z^{-4}+\frac{1}{4}z^{-5}
+$$
+
+## 二、计算题
+
+### 1
+
+计算下列积分：
+
+1. $\displaystyle \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t$.
+
+   因为：
+   $$
+   \sin t=\frac{1}{2j} (e^{j t}-e^{-jt})
+   $$
+   可得：
+   $$
+   \begin{aligned}
+   \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t&= \frac{1}{2j}\int_{-\infin}^{\infin} \frac{e^{jt}}{t}-\frac{e^{-jt}}{t}\mathrm d t
+   \end{aligned}
+   $$
+   设
+   $$
+   X(j\omega)=\mathcal F\left\{1/t\right\}=-j\pi \operatorname{sgn} (\omega)
+   $$
+   则：
+   $$
+   \int_{-\infin}^{\infin} \frac{\sin t}{t}\mathrm d t=\frac{1}{2j}(X(-j)-X(j))=\pi
+   $$
+
+   > 另外，利用傅里叶变换的性质，$F(0)=\displaystyle \int_{-\infin}^{\infin} f(t)\mathrm d t$.
+   > $$
+   > \frac{\sin t}{t} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \pi \operatorname{Gate}(1)
+   > $$
+
+2. $\displaystyle \int_{-\infin}^{\infin} \left(\frac{\sin t}{t}\right)^2\mathrm d t$.
+
+   利用 Parseval's theorem，因为：
+   $$
+   \begin{cases}
+   \pi, &|\omega|\le 1\\
+   0, &else
+   \end{cases} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{\sin t}{t}
+   $$
+
+   $$
+   \int_{-\infin}^{+\infin} \left|\frac{\sin t}{t}\right|^2\mathrm d t=\frac{1}{2\pi}\int_{-1}^{1} |\pi|^2\mathrm d \omega=\pi
+   $$
+
+### 2
+
+请计算 $\displaystyle x[n]=\sum_{k=0}^\infin a^{k}\delta[n-3k]$ 的 Z 变换。
+$$
+x[n]=\begin{cases}
+a^{k},&n=3k(k\ge 0)\\
+0,&n\not=3k(k\ge 0) 或 n<0
+\end{cases}
+$$
+
+$$
+\begin{aligned}
+X(z)&=\sum_{n=-\infin}^{\infin} x[n]z^{-n}\\
+&=\sum_{k=0}^{\infin} a^{3k} z^{-3k}\\
+&=\frac{1}{1-a^3z^{-3}}\\
+&=\frac{z^3}{z^3-a^3}
+\end{aligned}
+$$
+
+ROC: $|z|>|\sqrt[3]\alpha|$，因为系统因果。
+
+### 3
+
+一个因果线性时不变系统的输入 $x(t)$ 和输出 $y(t)$ 的关系由下列方程给出：
+$$
+\frac{\mathrm d y(t)}{\mathrm d t}+5y(t)=\int_{-\infin}^{+\infin} x(\tau)z(t-\tau)\mathrm d \tau-2x(t)
+$$
+其中 $z(t)=e^{-2t}u(t)+\delta(t)$，求该系统的单位冲激响应。
+
+设 $x(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} X(j\omega)$，$y(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} Y(j\omega)$，$z(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} Z(j\omega)$.
+$$
+Z(j\omega)=\frac{1}{j\omega+2}+1
+$$
+
+$$
+j\omega Y(j\omega)+5Y(j\omega)=X(j\omega)Z(j\omega)-2X(j\omega)
+$$
+
+$$
+\frac{Y(j\omega)}{X(j\omega)}=\frac{Z(j\omega)-2}{j\omega+5}=-\frac{j\omega+1}{(j\omega+2)(j\omega+5)}\\
+=\frac{1/3}{j\omega+2}+\frac{-4/3}{j\omega+5}
+$$
+
+因此，
+$$
+h(t)=\left[\frac{1}{3}e^{-2t}-\frac{4}{3}e^{-5t}\right]\cdot u(t)
+$$
+
+### 4
+
+若某 LTI 系统的单位样值响应为 $h[n]$，系统函数为 $H(z)$，且已知下述 5 个条件：
+
+1. $h[n]$ 为实序列，且为右边序列；
+2. $h[0]=2$；
+3. $H(z)$ 在原点 $z=0$ 有一个二阶零点；
+4. $H(z)$ 有两个极点，其中一个位于 $|z|=0.5$ 圆周上的某个非实数位置；
+5. 当系统输入 $x[n]=\cos \pi n,-\infin<n<+\infin$ 时，系统响应 $y[n]=4\times (-1)^n$；
+
+问：
+
+1. 试确定该系统的系统函数，并判断系统的因果性和稳定性；
+
+   因为为实序列，所以极点可以设为 $0.5e^{j\theta}$ 和 $0.5 e^{-j\theta}$，它们共轭。
+
+   当系统输入 $x[n]=\cos \pi n=(-1)^n$，响应 $y[n]=4x[n]$.
+
+   设：
+   $$
+   H(z)=\frac{Az^2}{(z-0.5e^{j\theta})(z-0.5e^{-j\theta})}\\
+   $$
+   因为 $h[0]=2$，所以 $\lim_{z\to \infin} H(z)=2$，因此 $A=2$.
+
+   因为 $(-1)^n$ 为系统的特征函数，所以幅值 $4$ 等于 $H(-1)$，即：
+   $$
+   H(-1)=\frac{2}{(-1-0.5e^{j\theta})(-1-0.5e^{-j\theta})}\\=\frac{2}{(0.5\cos \theta+1)^2+(0.5\sin\theta)^2}=4
+   $$
+   因此，
+   $$
+   \cos \theta=-\frac{3}{4},\sin \theta=\frac{\sqrt{7}}{4}
+   $$
+
+   $$
+   H(z)=\frac{2z^2}{z^2+\frac{3}{4}z+\frac{1}{4}}
+   $$
+
+   ROC: 因为系统为因果系统，所以 $|z|>0.5$，因为包含单位圆，所以稳定。
+
+2. 求当系统输入 $x[n]=\displaystyle \cos \frac{\pi}{2}n\cdot u[n]$ 时产生的稳态输出。
+
+   输入 $x[n]=A\sin (n\omega)\cdot u[n]$.
+
+   其稳态输出为 $y[n]=A|H(e^{j\omega})|\sin (n\omega+\varphi)$. 若 $H(e^{j\omega})=|H(e^{j\omega})|\ang \varphi$.
+   $$
+   H(e^{j\pi/2})=\frac{2e^{j\pi}}{e^{j\pi}+\frac{3}{4}e^{j\pi/2}+\frac{1}{4}}=\frac{-2}{\frac{3}{4}j-\frac{3}{4}}=\frac{4}{3}\sqrt{2} e^{j\frac{\pi}{4}}
+   $$
+
+   $$
+   y[n]=\frac{4}{3}\sqrt2\cos \left(\frac{\pi}{2}n+\frac{\pi}{4}\right)
+   $$
+
+   或者考虑到，$x[n]=\frac{1}{2}\left(e^{jn\pi/2}+e^{-jn\pi/2}\right)$.
+
+   系统输入 $(e^{j\pi/2})^n$，输出 $\displaystyle \frac{4}{3}\sqrt{2} e^{j\pi/4}(e^{j\pi/2})^n$.
+
+   输入 $(e^{-j\pi/2})^n$，输出 $\displaystyle \frac{4}{3}\sqrt{2}e^{-j\pi/4}(e^{-j\pi/2})^n$.
+
+   因此，输入 $x[n]$，输出
+   $$
+   \frac{1}{2}\left(\frac{4}{3}\sqrt2 e^{j(n\pi/2+\pi/4)}+\frac{4}{3}\sqrt2 e^{-j(n\pi/2+\pi/4)}\right)\\=\frac{4}{3}\sqrt2\cos \left(\frac{\pi}{2}n+\frac{\pi}{4}\right)
+   $$
+   
+
+### 5
+
+如下图，矩形信号的幅值为 $\pm 1$，图示的矩形脉冲周期信号，频率为 1MHz，占空比为 50%;
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_bd947b2d381292ab6a9672d0408bb8d0.png" style="zoom:50%;" />
+
+1. 求该信号的傅里叶变换；
+
+   一个周期内（0-1$\mu s$）中，傅里叶系数为：
+   $$
+   a_k=\frac{1}{T}\int_{-0.5\mu s}^{0.5\mu s}x(t)e^{-jk\omega_0 t}\mathrm d t=\frac{1}{T}\int_{0}^{0.5\mu s}-2j\sin (k\omega_0 t)\mathrm d t\\
+   =\frac{2j}{k\omega_0 T}(\cos (k\omega_0 t))|_{0}^{0.5\mu s}\\
+   =\frac{j}{k\pi}(\cos k\pi-1)=\frac{j}{k\pi}((-1)^k-1)
+   $$
+
+   $$
+   X(j\omega)=\sum_{k=-\infin}^{\infin} 2\pi a_k \delta(\omega-k\omega_0)
+   $$
+
+   $$
+   X(j\omega)=\sum_{k=-\infin}^{\infin}\frac{2j}{k}((-1)^{k}-1)\delta(\omega-k\omega_0)
+   $$
+
+   其中 $\omega_0=2\pi/T$.
+
+2. 该矩形脉冲信号经过理想低通滤波器后，得到频率为 1MHz 的正弦波信号，求该低通滤波器的频率最高可以是多大？
+
+   只有当 $\omega=k\omega_0$ 时，$X(j\omega)$ 不为零。
+
+   - $k=1$ 时，$\omega=\omega_0$，$X(j\omega)$ 存在值；
+   - $k=2$ 时，$\omega=2\omega_0$，$X(j\omega)=0$；
+   - $k=3$ 时，$\omega=3\omega_0$，$X(j\omega)$ 存在值。
+
+   因此低通滤波器的频率上限为 $3\omega_0/2\pi=3 \mathrm{~MHz}$.
+
+3. 图中的理想低通滤波器在实时信号处理系统中是物理可实现的吗？为什么？
+
+   不能实现，不是因果系统。
+
+### 6
+
+某线性时不变系统的系统函数为 $\displaystyle H(s)=\frac{s}{(s+1)(s+2)}$，且系统稳定。求：
+
+1. 画出该系统的零极点图和收敛域，说明该系统是否为因果系统？
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_7dfdf539746ecfd823c6848f6dfe8fc2.png" style="zoom:50%;" />
+
+   因为稳定且包含 $\infin$，所以为因果系统。
+
+2. 求该系统的冲激响应；
+   $$
+   H(s)=\frac{A}{s+1}+\frac{B}{s+2}\\
+   =\frac{-1}{s+1}+\frac{2}{s+2}
+   $$
+
+   $$
+   h(t)=-e^{-t}u(t)+2e^{-2t}u(t)
+   $$
+
+   
+
+3. 画出该系统的幅度-频率响应曲线，判断其滤波器特性（低通、高通或带通）
+
+   幅频曲线自己画。是带通的。
+
+### 7
+
+描述线性时不变因果系统的微分方程为：
+$$
+y''(t)+2y'(t)+2y(t)=x'(t)+x(t)
+$$
+
+1. 写出该系统的系统函数和冲激响应；
+
+   系统的系统函数为：
+   $$
+   s^2Y(s)+2sY(s)+2Y(s)=sX(s)+X(s)
+   $$
+
+   $$
+   H(s)=\frac{s+1}{s^2+2s+2}=\frac{s+1}{(s+1)^2+1}
+   $$
+
+   因为
+   $$
+   \frac{s}{s^2+1} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    \cos t\cdot u(t)\quad \operatorname{Re}\{s\} >0
+   $$
+
+   $$
+   \frac{s+1}{(s+1)^2+1}\overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    e^{-t}\cos t\cdot u(t)\quad  \operatorname{Re}\{s\}  >-1
+   $$
+
+   因此，冲激响应为：
+   $$
+   e^{-t}\cos t\cdot u(t)\quad \operatorname{Re}\{s\} >-1
+   $$
+
+2. 当输入信号为 $x(t)=e^{-2t}u(t)$ 时，系统的初值为 $y(0)=1,y'(0)=2$，求该系统的完全响应；
+
+   输入 $\displaystyle X(s)=\frac{1}{s+2}$. 
+
+   系统的零状态响应：
+   $$
+   Y(s)=\frac{1}{s+2}\cdot \frac{s+1}{(s+1)^2+1}
+   $$
+   设：
+   $$
+   Y(s)=\frac{A}{s+2}+\frac{Bs+C}{(s+1)^2+1}
+   $$
+   通过解方程，可得
+   $$
+   Y(s)=\frac{-1/2}{s+2}+\frac{\frac{1}{2}s+1}{(s+1)^2+1}\\
+   =\frac{-1/2}{s+2}+\frac{1}{2}\frac{s+1}{(s+1)^2+1}+\frac{1}{2}\frac{1}{(s+1)^2+1}
+   $$
+   因此，
+   $$
+   Y(s) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    -\frac{1}
+   {2}e^{-2t}u(t)+\frac{1}{2}e^{-t}\cos t\cdot u(t)+\frac{1}{2}e^{-t}\sin t\cdot u(t)
+   $$
+   系统的零输入响应：假设为 $Ae^{-(1+j)t}u(t)+Be^{-(1-j)t}u(t)$，有
+   $$
+   A+B=1\\
+   -(1+j)A-(1-j)B=2
+   $$
+
+   $$
+   A=\frac{1}{2}+\frac{3}{2}j\quad B=\frac{1}{2}-\frac{3}{2}j
+   $$
+
+   因此，
+   $$
+   y_{zir}=\left(\frac{1}{2}+\frac{3}{2}j\right)e^{-(1+j)t}u(t)+\left(\frac{1}{2}-\frac{3}{2}j\right)e^{-(1-j)t}u(t)
+   $$
+
+   $$
+   y_{zir}=\cos t e^{-t} u(t)+3\sin t e^{-t}u(t)
+   $$
+
+   因此，
+   $$
+   y(t)=-\frac{1}{2}e^{-2t}u(t)+\frac{3}{2}\cos te^{-t}u(t)+\frac{7}{2}\sin te^{-t}u(t)
+   $$
+
+3. 画出系统的框图实现。
+
+   提示：Laplace 变换只能用 $1/s$ 积分器。先引入 $s^{-1}$，即：
+   $$
+   Y(s)=\frac{s^{-1}+s^{-2}}{1+2s^{-1}+2s^{-2}} X(s)
+   $$
+   令 $\displaystyle W(s)=\frac{X(s)}{1+2s^{-1}+2s^{-2}}$，推出 $W(s)$ 满足：
+   $$
+   W(s)=X(s)-2s^{-1}W(s)-2s^{-2}W(s)
+   $$
+
+### 8
+
+图中为一采样系统，其中 $p(t)=\displaystyle \sum_{k=-\infin}^{+\infin} \delta(t-kT)$，$T$ 为采样周期，$x(t),x_p(t),x(n)$ 的频谱分别为 $X(j\Omega),X_p(j\Omega),X(e^{j\omega})$。
+
+> 注：本题中 $\Omega$ 表示模拟角频率；$\omega$ 代表数字角频率。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_5298f1055f590c3b22a96d68a2ce4685.png)
+
+1. 已知 $T=5\times 10^{-3}\mathrm{~s}$，$X(j\Omega)$ 的形状如右图所示，试分别画出 $X_p(j\Omega),X(e^{j\omega})$.
+   $$
+   \omega=\frac{2\pi}{T}=400\pi=2\omega_{m}
+   $$
+
+   > 刚好不会重叠，自己画呗。
+
+2. 求 $\displaystyle \int_{-\infin}^{+\infin} |x(t)|^2\mathrm d t$.
+
+   根据 Parsevel's theorem，
+   $$
+   \int_{-\infin}^{+\infin} |x(t)|^2\mathrm d t=\frac{1}{2\pi}\int_{-\infin}^{+\infin} |X(j\omega)|^2\mathrm d \omega=\frac{200}{3}
+   $$
+
+3. 使 $T\displaystyle \sum_{n=-\infin}^{+\infin} x[n]=\int_{-\infin}^{+\infin} x(t)\mathrm d t$ 成立，试确定采样周期 $T$ 需满足的关系。
+
+   注意到 
+   $$
+   \int_{-\infin}^{+\infin} x(t)\mathrm d t=X(j0)
+   $$
+   在 0 处无混叠即可，$\omega=200\pi$.
+
+   

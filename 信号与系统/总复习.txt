@@ -198,6 +198,15 @@ $$
 | Convolution Property          | $h(t)*x(t)$                                            | $H(j\omega)X(j\omega)$                                       |
 | Multiplication Property       | $h(t)x(t)$                                             | $\displaystyle \frac{1}{2\pi}H(j\omega)*X(j\omega)\\{\color{grey}Y(f)=H(f)*X(f)}$ |
 
+**Example**
+$$
+\frac{\mathrm d }{\mathrm d t} f(at +b) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{j\omega}{|a|} F\left(\frac{j\omega}{a}\right) e^{j\omega b/a}
+$$
+**FT of CT Periodic Signal**
+$$
+x(t)=\sum_{k=-\infin}^{+\infin}a_k e^{jk\omega_0 t}\\
+X(j\omega)=\sum_{k=-\infin}^{+\infin} 2\pi a_k\delta(\omega-k\omega_0)
+$$
 **Parseval's Relation**
 $$
 \int_{-\infin}^{\infin} |x(t)|^2 \mathrm d t = \frac{1}{2\pi} \int_{-\infin}^{\infin} |X(j\omega)|^2 \mathrm d \omega = \int_{-\infin}^{\infin} |X(f)|^2 \mathrm d f
@@ -266,26 +275,37 @@ $$
 | Periodic    | Discrete         |
 | Aperiodic   | Continuous       |
 
+> 注，可以通过形象的例子加深理解。
+>
+> 1. $1 \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} 2\pi \delta(\omega)$.
+> 2. $\delta(t-t_0) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} e^{-j\omega t_0}$.
+> 3. FT of CT Periodic Signal
+> 4. Gate function or delta function.
+
 ## Ch5 - Application of Fourier Transform
 
 **Sampling Theorem**
 
 对于连续时间信号 $x(t)$，若用冲激串 $\displaystyle p(t)=\sum_{n=-\infin}^{+\infin} \delta(t-nT)$ 对其进行采样，则在时域内有 $x_p(t)=x(t)\cdot p(t)$；在频域内，有
 $$
-X_p(j\omega)=\frac{1}{T}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
+X_p(j\omega)={\color{red}\frac{1}{T}}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
 $$
 
 > 证明：
 > $$
-> P(j\omega)=\sum_{n=-\infin}^{+\infin}e^{-j\omega nT}\overset{why?}=\frac{2\pi}{T} \sum_{k=-\infin}^{+\infin} \delta(\omega-k\omega_s)
+> p(t)\overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{2\pi}{T} \sum_{k=-\infin}^{+\infin} \delta(\omega-k\omega_s)
 > $$
->
+> why? 周期信号的傅里叶变换。
 > $$
 > X_p(j\omega)=\frac{1}{2\pi} X(j\omega )* P(j\omega)=\frac{1}{T}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
 > $$
->
-> 
 
+结论：采样所得信号 $x_p(t)$ 的频谱函数 $X_p(j\omega)$ 是由无穷多个平移了的、同时幅度上有 $1/T$ 的尺度变换的 $X(j\omega)$ 叠加构成的。通过增益为 $T$ 的低通滤波器，截止频率大于 $\omega_m$ 但是小于 $\omega_s-\omega_m$ 的低通滤波器，即可还原 $x(t)$.
+
+若将连续信号离散化，则有结论：
+$$
+Y_{p}(j\omega)=Y_d(e^{j\Omega})|_{\Omega=\omega T}
+$$
 **The Modulation Property**（经过低通滤波，幅值为二）
 
 **Ideal Filters**
