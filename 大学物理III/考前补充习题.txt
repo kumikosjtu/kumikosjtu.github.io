@@ -88,7 +88,7 @@ $$
 
 1. 相对振动的频率；
    $$
-   \nu=\frac{\sqrt{km}}{2\pi},m=\frac{m_O+m_C}{m_Om_C}
+   \nu=\frac{1}{2\pi}\sqrt{\frac{k}{\mu}},\mu=\frac{m_Om_C}{m_O+m_C}
    $$
 
 2. 相邻两个振动能级的间距。
@@ -97,7 +97,7 @@ $$
    $$
 
    $$
-   \Delta E=\hbar \omega=h\nu
+   \Delta E=\hbar \omega=\frac{h}{2\pi} \frac{2\pi}{T}=h\nu
    $$
 
 ### 5
@@ -288,6 +288,19 @@ $$
 \psi_{211}=R_{21}Y_{11}=-\frac{1}{2\sqrt{6}a^{3/2}}\frac{r}{a}e^{-r/2a}\cdot \sqrt{\frac{3}{8\pi}} \sin \theta e^{i\varphi}
 $$
 
+GWH 老师课上的结论：
+$$
+j_{\varphi}=-\frac{\hbar}{m r\sin \theta} |\psi_{nlm}|^2
+$$
+
+$$
+j_\varphi=\frac{\hbar}{64\pi ma_0^5}re^{-r/a_0} \sin \theta
+$$
+
+$$
+\boldsymbol J=j_{\varphi}\hat \varphi
+$$
+
 ### 12
 
 解：
@@ -363,14 +376,29 @@ $$
 
 ### 15
 
-> 感觉题目有点问题，先不写了
-
 在氢原子中电子处在自旋和位置的结合态
 $$
-R_{21}\left(\frac{1}{\sqrt{3}}Y_{10}\chi_{z}^{+}+\frac{2}{\sqrt{3}}\chi_{z}^-\right)
+R_{21}\left(\frac{1}{\sqrt{3}}Y_{10}\chi_{z}^{+}+\sqrt \frac{2}{{3}}Y_{11}\chi_{z}^-\right)
 $$
 
 1. 求测 $L^2,L_z,S^2,S_z$ 的可能值和对应几率。
+
+   | 可观测量 | 值                                 | 概率                                    |
+   | -------- | ---------------------------------- | --------------------------------------- |
+   | $L^2$    | $2\hbar^2$                         | $1$                                     |
+   | $L_z$    | $0,\hbar$                          | $\displaystyle \frac{1}{3},\frac{2}{3}$ |
+   | $S^2$    | $\frac{3}{4}\hbar^2$               | $1$                                     |
+   | $S_z$    | $\frac{\hbar}{2},-\frac{\hbar}{2}$ | $1/3,2/3$                               |
+
+2. 如果测量这个粒子的位置，在 $r,\theta,\phi$ 处找到电子的几率是多少？
+   $$
+   \rho=|R_{21}|^2 \left(\frac{1}{3}|Y_{10}|^2+\frac{2}{3}|Y_{11}|^2\right)
+   $$
+
+3. 如果测得沿 $z$ 方向的自旋分量 $S_z$，和距原点的位置，发现粒子在半径 $r$ 处并且 <u>自旋向上</u> 的概率密度是多少？
+   $$
+   \rho=\frac{1}{3}|R_{21}|^2
+   $$
 
 
 ### 16
@@ -558,11 +586,11 @@ $$
 
 ### 22
 
-处在一般有心立场中粒子的哈密顿算符为：
+处在一般有心力场中粒子的哈密顿算符为：
 $$
 \hat H=\frac{\hat p^2}{2m}+V(r)
 $$
-其中第一项为粒子的动能，第二项是它在有心立场中的势能。试证明：轨道角动量 $\hat l$ 与此哈密顿算符对易，从而是个守恒量。
+其中第一项为粒子的动能，第二项是它在有心力场中的势能。试证明：轨道角动量 $\hat l$ 与此哈密顿算符对易，从而是个守恒量。
 
 因为 $V(r)\propto 1/r$
 $$
@@ -571,15 +599,55 @@ $$
 
 ### 23
 
-位移算符
+某个三能级体系的哈密顿的矩阵表示为
 $$
-e^{-a\frac{\partial}{\partial x}}\psi(x)=\psi(x+a)
+H=\hbar \omega \begin{pmatrix}1&0&0\\0&2&0\\0&0&2\end{pmatrix}
 $$
-时间演化算符
+另外两个可观测量 $A$ 和 $B$ 的矩阵表示为
 $$
-e^{-\frac{it}{\hbar}\hat H}
+A=\lambda\begin{pmatrix}0&1&0\\1&0&0\\0&0&2\end{pmatrix}\quad B=\mu\begin{pmatrix}2&0&0\\0&0&1\\0&1&0\end{pmatrix}
 $$
-当存在本征值 $E$，时间演化算符为
-$$
-e^{-\frac{it}{\hbar}E}
-$$
+
+1. 求 $H,A,B$ 的本征值和归一化的本征函数。
+   $$
+   E_1=\hbar\omega,E_2=2\hbar\omega,E_3=2\hbar\omega\\
+   |E_1\rangle=\begin{pmatrix}1\\0\\0\end{pmatrix},\quad|E_2\rangle=\begin{pmatrix}0\\1\\0\end{pmatrix},\quad|E_3\rangle=\begin{pmatrix}0\\0\\1\end{pmatrix}
+   $$
+
+   $$
+   A_1=2\lambda,A_2=\lambda,A_3=-\lambda\\
+   |a_1\rangle=\begin{pmatrix}0\\0\\1\end{pmatrix},\quad|a_2\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix},\quad|a_3\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}
+   $$
+
+   $$
+   B_1=2\mu,B_2=\mu,B_3=-\mu\\
+   |b_1\rangle=\begin{pmatrix}1\\0\\0\end{pmatrix},\quad|b_2\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix},\quad|b_3\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\0\end{pmatrix}
+   $$
+
+2. 假设体系初始态为
+   $$
+   \psi(0)=\begin{pmatrix}
+   c_1\\c_2\\c_3
+   \end{pmatrix}
+   $$
+   其中 $|c_1|^2+|c_2|^2+|c_3|^2=1$，求 $H,A,B$ 的期望值（在 $t=0$ 时刻）
+   $$
+   \left\langle\psi |H|\psi\right\rangle=\cdots
+   $$
+   自己算罢，派蒙跪……
+
+3. $\psi(t)$ 是什么？如果你测量这个态能量（在 $t$ 时刻），可能得到什么值，它们的几率是多少？对 $A,B$ 回答同样问题。
+
+   对于 $A$ 来说，
+   $$
+   \psi(0)=c_3|a_1\rangle+\frac{\sqrt2}{2}(c_1+c_2)|a_2\rangle+\frac{\sqrt{2}}{2}(c_1-c_2)|a_3\rangle
+   $$
+   测得 $2\lambda$ 概率为 $|c_3|^2$，
+
+   测得 $\lambda$ 概率为
+   $$
+   \left|\frac{\sqrt{2}}{2}(c_1+c_2)e^{-\frac{i}{\hbar}Et}\right|^2=\cdots
+   $$
+   测得 $-\lambda$ 概率为……
+
+   

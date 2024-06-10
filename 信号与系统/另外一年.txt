@@ -1,0 +1,150 @@
+# 另外一年
+
+## 一、选择题
+
+### 1
+
+下列哪个系统不属于因果系统（）
+
+- [x] $y[n]=x[n]-x[n+1]$.
+- [ ] 累加器 $\displaystyle y[n]=\sum_{k=-\infin}^n x[k]$.
+- [ ] 一 LTI 系统，其 $h(t)=e^{-2t}u(t)$.
+- [ ] LTI 系统的 $H(s)$ 为有理表达式，ROC: $\sigma>-1$.
+
+### 2
+
+信号 $\displaystyle x[n]=\cos \left(\frac{\pi}{2}n\right)+e^{j \frac{4\pi}{5}n}$，其基波周期为（）
+
+- [x] 20
+- [ ] 10
+- [ ] 30
+- [ ] 5
+
+第一项周期为 $4$，第二项周期为 $5$，因此为最小公倍数 20.
+
+### 3
+
+设 $x[n]=\delta[n]+2\delta[n-1]-\delta[n-3]$ 和 $h[n]=2\delta[n+1]+2\delta[n-1]$，$y[n]=x[n]*h[n]$，求 $y[0]=$（）。
+
+- [ ] 0
+- [x] 4
+- [ ] $\delta[n]$
+- [ ] $\infin$
+
+$$
+y[0]=2\times 2=4
+$$
+
+### 4
+
+已知一离散 LTI 系统的脉冲响应 $h[n]=\delta[n]+2\delta[n-1]-3\delta[n-2]$，则该系统的单位阶跃响应 $S[n]$ 等于（）
+
+- [x] $\delta[n]+3\delta[n-1]$.
+
+### 5
+
+信号 $\displaystyle \frac{\mathrm d }{\mathrm d t}\{u(-2-t)+u(t-2)\}$ 的傅里叶变换是（）
+
+- [x] $2j\sin 2\omega$
+- [ ] $2\pi \delta(\omega)$
+- [ ] $-2j\sin 2\omega$
+- [ ] $\displaystyle -\frac{e^{j2\omega}}{j\omega}$.
+
+信号为
+$$
+\delta(t-2)-\delta(t+2)
+$$
+傅里叶变换为
+$$
+e^{j2\omega}-e^{-j2\omega}=2j\sin 2\omega
+$$
+
+### 6
+
+已知 $x(t)$ 的频谱函数 $\displaystyle X(j\omega)=\begin{cases}1,&|\omega|\le 2\mathrm{~rad/s}\\0,&|\omega|\ge 2\mathrm{~rad/s}\end{cases}$，设 $f(t)=x(t)\cos 2t$，对信号 $f(t)$ 进行均匀采样的奈奎斯特频率为（）
+
+- [x] $\mathrm{8~rad/s}$.
+
+## 二、大题
+
+### 3
+
+考虑一因果 LTI 系统，其系统函数 $\displaystyle H(s)=\frac{s+3}{s+2}$，画出系统方框图。
+
+
+
+### 4
+
+系统如图所示
+
+![img](https://notes.sjtu.edu.cn/uploads/upload_58260d29a50c874135dfb74aaa5998ee.png)
+
+1. 写出系统函数 $H(s)$，并求出系统冲激响应 $h(t)$；
+   $$
+   H(s)=\frac{1}{s}(1-e^{-s})
+   $$
+
+   $$
+   h(t)=u(t)-u(t-1)
+   $$
+
+2. 若在该系统前面级联一个理想冲激串采样，即：使用 $p(t)=\displaystyle \sum_{n=-\infin}^{\infin} \delta(t-n)$ 对 $x(t)$ 采样，设 $x(t)=\displaystyle \cos \frac{\pi}{2}t$，画出 $y(t)$ 的波形。
+
+### 简答题
+
+$\displaystyle y(t)=e^{-t}x(0)+f(t)\frac{\mathrm d f(t)}{\mathrm d t}$ 其中 $x(0)$ 是初始状态，$f(t)$ 为激励，$y(t)$ 为全响应，试回答系统是线性 or 非线性。
+
+非线性。
+
+$y'(t)+\sin t\cdot y(t)=f(t)$ 试判断该微分方程表示的系统是线性的还是非线性的，是时变的还是非时变的？
+
+线性的，时变的
+$$
+y(t) \to y'(t)+\sin t\cdot y(t)\\
+y(t+t_0) \to y'(t)+\sin t\cdot y(t+t_0)\not= f(t+t_0)
+$$
+已知有限频带信号 $f(t)$ 的最高频率为 $100\mathrm{~Hz}$，若对 $f(2t)*f(3t)$ 进行时域取样，求最小取样频率 $f_s=?$
+$$
+f(2t)*f(3t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{1}{2\pi} \frac{1}{2}F(j\omega/2)\frac{1}{3}F(j\omega/3)
+$$
+因为 $F(j\omega)$ 最高频率为 $100\mathrm{~Hz}$，所以 $F(j\omega/2)$ 最高频率为 $200\mathrm{~Hz}$.
+
+最小取样频率 $f_s=400\mathrm{~Hz}$.
+
+简述无失真传输的理想条件：系统的幅频特性为一常数，而相频特性曲线为通过原点的直线。
+
+求 $\displaystyle \int_{-\infin}^{\infin} e^{-2t}[\delta'(t)+\delta(t)]\mathrm d t$ 的值。
+$$
+\int_{-\infin}^{\infin} e^{-2t} \delta(t)\mathrm d t=1
+$$
+
+$$
+\int_{-\infin}^{\infin} e^{-2t} \delta'(t)\mathrm d t\\
+=\left[e^{-2t}\delta(t)\right]|_{-\infin}^{+\infin} - \int_{-\infin}^{\infin} -2\delta(t)e^{-2t}\mathrm d t\\
+=2
+$$
+
+因此值为 $3$.
+
+求象函数 $\displaystyle F(s)=\frac{2s+3}{(s+1)^2}$ 的初值 $f(0_+)$ 和终值 $f(\infin)$.
+$$
+f(0_+)=\lim_{s\to \infin} sF(s)=2\\
+f(\infin)=\lim_{s\to 0} sF(s)=0
+$$
+若 LTI 离散系统的阶跃响应为 $g(k)$，求其单位序列（冲激）响应。其中 $g(k)=\left(\frac{1}{2}\right)^k u(k)$.
+$$
+h(k)=g(k)-g(k-1)
+$$
+已知函数 $f(t)$ 的单边拉普拉斯变换为 $\displaystyle F(s)=\frac{s}{s+1}$，求函数 $y(t)=3e^{-2t}f(3t)$ 的单边拉普拉斯变换。
+$$
+3f(3t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{s/3}{s/3+1}=\frac{s}{s+3}
+$$
+
+$$
+e^{-2t} \cdot 3f(3t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{s+2}{s+5}
+$$
+
+
+

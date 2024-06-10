@@ -356,6 +356,23 @@ $$
 $$
 \boxed{\langle E\rangle=\int_{-\infin}^{\infin} \psi^* \hat H \psi \mathrm d x}
 $$
+**时间演化算符**
+$$
+e^{-\frac{it}{\hbar}\hat H}
+$$
+当存在本征值 $E$，时间演化算符为
+$$
+e^{-\frac{it}{\hbar}E}
+$$
+**位移算符**
+$$
+e^{-a\frac{\partial}{\partial x}}
+$$
+作用于 $\psi(x)$ 后，可得（用泰勒展开）
+$$
+e^{-a\frac{\partial}{\partial x}}\psi(x)=\psi(x+a)
+$$
+
 ## 一维定态问题
 
 ### 无限深势阱

@@ -168,7 +168,7 @@ $$
 
 ### 10
 
-已知 $x(t)$ 的频谱 $\displaystyle X(j\omega)=\begin{cases}2,&|\omega|\le1\\0,&|\omega|>1\end{cases}$，$y(t)=x(t)*\sin(4t)$，$y(t)$ 的傅里叶变换为 $Y(j\omega)$，则在 $\omega=4$ 处 $Y(j\omega)$ 的值为（）。
+已知 $x(t)$ 的频谱 $\displaystyle X(j\omega)=\begin{cases}2,&|\omega|\le1\\0,&|\omega|>1\end{cases}$，$y(t)=x(t)\cdot \sin(4t)$，$y(t)$ 的傅里叶变换为 $Y(j\omega)$，则在 $\omega=4$ 处 $Y(j\omega)$ 的值为（）。
 
 - [ ] 1
 - [ ] $j$
@@ -176,11 +176,13 @@ $$
 - [ ] $j\pi$
 
 $$
-Y(j\omega)=X(j\omega)\cdot \frac{1}{2j}(\delta(\omega-4)-\delta(\omega+4))
+Y(j\omega)=\frac{1}{2\pi}X(j\omega)*(-j(\pi \delta(\omega-4)-\pi\delta(\omega+4))) \\
+=\frac{j}{2}X(j\omega)*(\delta(\omega+4)-\delta(\omega-4))\\
+=\frac{j}{2}\left[X(j(\omega+4))-X(j(\omega-4))\right]
 $$
 
 $$
-Y(j4)=\frac{1}{j}=-j
+Y(j4)=-j
 $$
 
 ### 11
@@ -373,25 +375,23 @@ $$
 $$
 因此：
 $$
-(s^2-5s+6)Y(s)=sy(0^-)+y'(0^-)-5y(0^-)=s-12
+(s^2-5s+6)Y(s)=sy(0^-)+y'(0^-)-5y(0^-)=s-2
 $$
 
 $$
-Y(s)=\frac{s-12}{s^2-5s+6}=\frac{A}{s-3}+\frac{B}{s-2}
+Y(s)=\frac{s-2}{s^2-5s+6}=\frac{1}{s-3}
 $$
 
 $$
-A=(s-3)Y(s)|_{s=3}=-9\\
-B=(s-2)Y(s)|_{s=2}=10
+y_z(t)=e^{3t}u(t)
 $$
 
-$$
-Y(s)=\frac{-9}{s-3}+\frac{10}{s-2}
-$$
-
-$$
-y_z(t)=-9e^{3t}u(t)+10e^{2t}u(t)
-$$
+> 也可以通过待定系数的方法求解：$y_{z}(t)=Ae^{3t}u(t)+Be^{2t}u(t)$.
+>
+> - $A+B=1$；
+> - $3A+2B=3$；
+>
+> 推出 $A=1,B=0$.
 
 零状态响应：令 $f(0^-)=f'(0^-)=0$，可得：
 $$
@@ -418,7 +418,7 @@ $$
 
 完全响应：
 $$
-y(t)=y_z(t)+y_f(t)=\left(\frac{25}{4}e^{3t}+\frac{37}{3}e^{2t}+\frac{5}{12}e^{-t}\right)u(t)
+y(t)=y_z(t)+y_f(t)=\left(\frac{5}{12}e^{-t}+\frac{7}{3}e^{2t}-\frac{7}{4}e^{3t}\right)u(t)
 $$
 
 ### 4

@@ -323,8 +323,10 @@ $$
 达到热平衡时，有：
 $$
 \sigma T_1^4 S+\sigma T_3^4 S-2\sigma T_2^4 S=0\\
-\sigma T_2^4 S+\sigma T_3^4S-2\sigma T_4^4 S=0
+\sigma T_2^4 S+\sigma T_4^4S-2\sigma T_3^4 S=0
 $$
+
+求解方程即可。
 
 ### 例题 21-3
 
