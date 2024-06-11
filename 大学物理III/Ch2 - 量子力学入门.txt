@@ -572,7 +572,7 @@ $$
 $$
 定态薛定谔方程：
 $$
-\hat H \psi(x)=\left(-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+\frac{1}{2}m\omega^2x^2\right)\psi(x)=E\psi(x)
+\boxed{\left(-\frac{\hbar^2}{2m}\frac{\mathrm d ^2}{\mathrm d x^2}+\frac{1}{2}m\omega^2x^2\right)\psi(x)=E\psi(x)}
 $$
 引入无量纲量 
 $$
@@ -636,8 +636,8 @@ c_{j+2}=\frac{2j-(\lambda-1)}{(j+2)(j+1)}c_{j},\quad j=0,1,2,\cdots
 $$
 当 $\lambda=2n(n=0,1,2,\cdots)$ 时，系数 $c_{n+2},c_{n+4},c_{n+6},\cdots$ 都为零。（分类 $n$ 奇偶性）
 
-- $n$ 为偶数时，$u_1(\xi)$ 截断为多项式；波函数偶宇称。
-- $n$ 为奇数时，$u_2(\xi)$ 截断为多项式。波函数奇宇称。
+- $n$ 为偶数时，$u_1(\xi)$ 截断为多项式；波函数 **偶宇称**。
+- $n$ 为奇数时，$u_2(\xi)$ 截断为多项式。波函数 **奇宇称**。
 
 而能量 $\boxed{\displaystyle E=\frac{1}{2}\lambda \hbar \omega=\left(n+\frac{1}{2}\right)\hbar \omega}$. 可得：
 $$
@@ -656,8 +656,9 @@ $$
 
 满足的性质：
 
-- 正交归一化 $\int_{-\infty}^{\infty}H_{n}(\xi)H_{m}(\xi)e^{-\xi^{2}}d\xi=\sqrt{\pi}2^{n}n!\delta_{mn}$.
-- 能量本征函数满足 $\int_{-\infty}^{\infty}\psi_{n}^{*}(\xi)\psi_{m}(\xi)dx=\delta_{mn}$.
+- 正交归一化 $\displaystyle \int_{-\infty}^{\infty}H_{n}(\xi)H_{m}(\xi)e^{-\xi^{2}}d\xi=\sqrt{\pi}2^{n}n!\delta_{mn}$.
+- 能量本征函数满足 $\displaystyle \int_{-\infty}^{\infty}\psi_{n}^{*}(\xi)\psi_{m}(\xi)dx=\delta_{mn}$.
+- 当 $x$ 较大时，存在渐进行为 $\displaystyle \psi\approx e^{-\alpha^2 x^2/2},\alpha=\sqrt{\frac{m\omega}{\hbar}}$.
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_7675b3a0d50230204557be8fe3380242.png" alt="image-20240419163450253" style="zoom:50%;" />
 
@@ -816,6 +817,26 @@ $$
    x_{mn}=\int \psi_{m}^* x\psi_n \mathrm d x=\frac{1}{2}\left[\sqrt \frac{n+1}{2}\delta_{m,n+1}+\sqrt\frac{n}{2}\delta_{m,n-1}\right]
    $$
    
+
+**例题**
+
+求二维各向同性谐振子的薛定谔方程和能量本征值、能量本征函数。
+$$
+\left[\frac{\hat p_{x}^2+\hat p_{y}^2}{2m}+U(x,y)\right]\psi(x,y)=E\psi(x,y)
+$$
+
+$$
+\left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial y^2}+\frac{1}{2}m\omega^2(x^2+y^2)\right]\psi(x,y)=E\psi(x,y)
+$$
+
+能量本征值：
+$$
+E_n=(n+1)\hbar\omega\quad g_n=n+1
+$$
+能量本征函数：
+$$
+\Psi_{n}(x,y)=\psi_{nx}(x)\psi_{ny}(y)\quad n=n_x+n_y
+$$
 
 ### 一维方势垒
 
