@@ -469,7 +469,7 @@ $$
    $$
    由 Final-value theorem，可得：
    $$
-   \lim_{t\to \infin} x(t)=\lim_{s\to 0} sX(s)=-1
+   \lim_{t\to \infin} y(t)=\lim_{s\to 0} sY(s)=0
    $$
 
 ### 5
