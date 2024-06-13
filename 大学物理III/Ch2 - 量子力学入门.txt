@@ -357,8 +357,22 @@ $$
 \boxed{\langle E\rangle=\int_{-\infin}^{\infin} \psi^* \hat H \psi \mathrm d x}
 $$
 **时间演化算符**
+
+描写体系状态的波函数 $\Psi$ 随时间变化的规律满足薛定谔方程：
 $$
-e^{-\frac{it}{\hbar}\hat H}
+i\hbar \frac{\partial \Psi}{\partial t}=\hat H\Psi(t)
+$$
+求时间演化算符 $\hat U(t)$，使得
+$$
+\Psi(t)=\hat U(t)\Psi(0)
+$$
+因此，有；
+$$
+i\hbar \frac{\partial \hat U(t)}{\partial t}\Psi(0)=\hat H\hat U(t)\Psi(0)
+$$
+满足
+$$
+\hat U(t)=e^{-\frac{i}{\hbar }t\hat H}
 $$
 当存在本征值 $E$，时间演化算符为
 $$

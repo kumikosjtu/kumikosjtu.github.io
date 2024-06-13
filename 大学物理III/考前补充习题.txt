@@ -160,7 +160,7 @@ $$
    (\nabla \cdot \hat r+\hat r \cdot \nabla)\varphi&= \nabla \cdot (\hat r \varphi)+\hat r \cdot \nabla\varphi\\
    &=(\nabla \hat r)\varphi+(\hat r\nabla) \varphi
    +\hat r \nabla \varphi\\
-   &= (\nabla \vec r)\varphi+2(\hat r \nabla \varphi)
+   &= (\nabla \hat r)\varphi+2(\hat r \nabla \varphi)
    \end{aligned}
    $$
    考虑到 $\nabla \cdot \hat r$ 实则计算散度，
@@ -172,7 +172,7 @@ $$
    \nabla \cdot \hat r=\frac{3}{r}-\frac{r^2}{r^3}=\frac{2}{r}
    $$
 
-   再考虑 $\vec r \nabla \varphi$ 是对 $r$ 方向求导，所以
+   再考虑 $\hat r\nabla \varphi$ 是对 $r$ 方向求导，所以
    $$
    (\nabla \cdot \hat r+\hat r \cdot \nabla)\varphi=\frac{2}{r}\varphi+2\frac{\partial}{\partial r}\varphi
    $$
@@ -673,3 +673,37 @@ $$
 E_n=\left(2n+1+\frac{1}{2}\right)\hbar \omega\\=\left(2n+\frac{3}{2}\right)\hbar \omega
 $$
 基态能量 $E_0=3\hbar\omega/2$，第一激发态 $E_1=7\hbar \omega/2$.
+
+### 26
+
+一个粒子处在自旋态
+$$
+\chi=A\binom{3i}{4}
+$$
+
+1. 求出归一化常数 $A$.
+   $$
+   A=\frac{1}{5}
+   $$
+
+2. 求出 $S_x,S_y,S_z$ 的期待值。
+   $$
+   \left\langle S_x\right\rangle=\frac{\hbar}{2}\left\langle\chi|\sigma_x|\chi\right\rangle=0\\
+   \left\langle S_y\right\rangle=-\frac{12}{25}\hbar\\
+   \left\langle S_z\right\rangle=-\frac{7}{50}\hbar
+   $$
+
+3. 求不确定度。
+   $$
+   \left\langle S_x^2\right\rangle=\left\langle S_y^2\right\rangle=\left\langle S_z^2\right\rangle=\frac{\hbar^2}{4}
+   $$
+
+   $$
+   \sigma_{S_x}=\sqrt{\left\langle S_x^2\right\rangle-\left\langle S_x\right\rangle^2}=\cdots
+   $$
+
+4. 验证不确定度关系。
+   $$
+   \sigma_{S_x}\cdot \sigma_{S_y} \ge \frac{1}{2}|\left\langle[S_x,S_y]\right\rangle|=\frac{\hbar}{2}|\left\langle S_z\right\rangle|
+   $$
+   

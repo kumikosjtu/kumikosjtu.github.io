@@ -180,6 +180,14 @@ $$
 
 ## Part 2. (60%)
 
+### 1
+
+系统的微分方程 $\displaystyle \frac{\mathrm d ^2 y(t)}{\mathrm d t^2}+2\frac{\mathrm d y(t)}{\mathrm d t}+5y(t)=5u(t)$，$y(0^-)=1,\displaystyle \frac{\mathrm d y(0^-)}{\mathrm d t}=1$.
+
+1. 求解微分方程。
+
+   
+
 ### 3
 
 离散时间信号系统的传递函数为 $H(z)=\frac{1}{z^2-\frac{1}{6}z-\frac{1}{3}}$，已知系统是稳定的。
@@ -270,5 +278,38 @@ $$
 
 有一因果线性时不变系统，其输入和输出的方框图如下，
 
+![image-20240613144045060](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240613144045060.png)
+
 1. 求关联 $y(n)$ 和 $x(n)$ 的差分方程；
+
+   设中间量为 $w(n)$，则
+   $$
+   W(z)=X(z)+\frac{2}{3}W(z)z^{-1}-\frac{1}{9}W(z)z^{-2}
+   $$
+
+   $$
+   W(z)=\frac{X(z)}{1-\frac{2}{3}z^{-1}+\frac{1}{9}z^{-2}}
+   $$
+
+   $$
+   Y(z)=W(z)(1-6z^{-1}+8z^{-2})
+   $$
+
+   $$
+   \frac{Y(z)}{X(z)}=\frac{1-6z^{-1}+8z^{-2}}{1-\frac{2}{3}z^{-1}+\frac{1}{9}z^{-2}}
+   $$
+
+   $$
+   y[n]-\frac{2}{3}y[n+1]+\frac{1}{9}y[n+2]=x[n]-6x[n+1]+8x[n+2]
+   $$
+
 2. 若系统为零状态，$x(n)=\delta(n)$，求出 $y(n)$ 的表达式和 $y(4)$ 的值。
+
+   输入 $x[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} 1$.
+
+   此时，
+   $$
+   Y(z)=\frac{1-6z^{-1}+8z^{-2}}{1-\frac{2}{3}z^{-1}+\frac{1}{9}z^{-2}}
+   $$
+   
+

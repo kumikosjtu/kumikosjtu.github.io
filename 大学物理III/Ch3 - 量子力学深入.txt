@@ -949,7 +949,7 @@ $$
    $$
    通过：
    $$
-   \int_0^{\infin} r^2R_{10}\mathrm d r=1
+   \int_0^{\infin} r^2|R_{10}|^2\mathrm d r=1
    $$
 
 5. 处于基态的氢原子在多大半径出现的概率最大：$\mathrm d (r^2R_{10})/\mathrm d r=0$.
