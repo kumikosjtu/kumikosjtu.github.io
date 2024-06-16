@@ -1,0 +1,361 @@
+## 连续时间傅里叶变换
+
+### 1
+
+求 $x(t)=\operatorname{sgn}(t^2-4)$ 的傅里叶变换 $X(\omega)$.
+
+利用：
+$$
+x(t)=1-2[u(t+2)-u(t-2)]
+$$
+常见傅里叶变换对：$u(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \pi \delta(\omega)+\frac{1}{j\omega}$.
+$$
+X(\omega)=2\pi \delta(\omega)-2\left[\frac{1}{j\omega}e^{j2\omega}-\frac{1}{j\omega}e^{-j2\omega}\right]\\
+=2\pi \delta(\omega)-8 \operatorname{Sa}(2\omega)
+$$
+
+> 启发门函数可以用 $u(t)$ 推导：
+> $$
+> u(t+T)-u(t-T)=\left(e^{j\omega T}-e^{-j\omega T}\right)\frac{1}{j\omega}=\frac{2\sin (\omega T)}{\omega}
+> $$
+
+### 2
+
+求 $\displaystyle f(t)=\frac{1}{1+t^2}$ 的傅里叶变换 $F(\omega)$.
+$$
+e^{-|t|} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{2}{1+\omega^2}
+$$
+
+$$
+\frac{2}{1+t^2} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} 2\pi e^{-|\omega|}
+$$
+
+$$
+\frac{1}{1+t^2} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \pi e^{-|\omega|}
+$$
+
+### 3
+
+求 $\displaystyle \int_{-\infin}^{\infin} \frac{\sin (a\omega)}{\omega}\mathrm d \omega$，即求抽样函数下的面积
+
+注意到
+$$
+X(0)=\int_{-\infin}^{\infin} x(t)\mathrm d t\\
+x(0)=\frac{1}{2\pi}\int_{-\infin}^{\infin} X(\omega)\mathrm d \omega
+$$
+因为
+$$
+\frac{\sin (a\omega)}{\omega} \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{1}{2}\operatorname{Gate}(a)
+$$
+所以
+$$
+\int_{-\infin}^{\infin} X(\omega)\mathrm d \omega=\frac{1}{2}\cdot 2\pi=\pi
+$$
+
+### 4
+
+求 $f(t)=(1-2t)x(1-2t)$ 的傅里叶变换
+$$
+tx(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} j \frac{\mathrm d }{\mathrm d \omega} X(j\omega)
+$$
+
+$$
+(-2t)x(-2t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}}\frac{1}{2}j\frac{\mathrm d }{\mathrm d (-\omega/2)} X\left(-j\frac{\omega}{2}\right)\\
+=-j\frac{\mathrm d }{\mathrm d \omega} X\left(-j\frac{\omega}{2}\right)
+$$
+
+$$
+(1-2t)x(1-2t)\overset{\mathcal F}{\operatorname*{\longleftrightarrow}}-j\frac{\mathrm d }{\mathrm d \omega} X\left(-j\frac{\omega}{2}\right)e^{-j\omega/2}
+$$
+
+### 5
+
+![](https://notes.sjtu.edu.cn/uploads/upload_e9274d0adeebce7b98fa32f9992274f9.png)
+
+### 6
+
+![img](https://notes.sjtu.edu.cn/uploads/upload_268bfff4c05ca07151192bd4af07986a.png)
+
+### 7
+
+利用 FT 的卷积性质证明 FT 的时域积分性质
+$$
+\int_{-\infin}^{t} x(\tau)\mathrm d \tau=x(t)*u(t)
+$$
+
+$$
+x(t)*u(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} X(\omega)\left[\frac{1}{j\omega}+\pi \delta(\omega)\right]\\
+=\frac{X(\omega)}{j\omega}+\pi X(0)\delta(\omega)
+$$
+
+### 8
+
+求卷积：
+$$
+\frac{\sin \omega_1 t}{\pi t} * \frac{\sin \omega_2 t}{\pi t}
+$$
+相当于
+$$
+ \frac{1}{2}\operatorname{Gate}(\omega_1)\cdot \frac{1}{2} \operatorname{Gate}(\omega_2)
+$$
+
+### 9
+
+求积分
+$$
+\int_{-\infin}^{\infin} \frac{\sin \omega_1 t}{\pi t}\cdot \frac{\sin \omega_2 t}{\pi t}\mathrm d t
+$$
+设
+$$
+f(t)=\frac{\sin \omega_1 t}{\pi t}\cdot \frac{\sin \omega_2 t}{\pi t}
+$$
+则
+$$
+\int_{-\infin}^{\infin} f(t)\mathrm d t=F(0)\\
+=\frac{1}{2\pi}\cdot \mathcal F^{-1}\left\{\frac{\sin \omega_1 t}{\pi t}\right\}*\mathcal F^{-1}\left\{\frac{\sin \omega_2 t}{\pi t}\right\}
+$$
+
+$$
+F(0)=\left(\frac{1}{2\pi}\right)\underbrace{2\cdot \min\{\omega_1,\omega_2\}}_{乘起来=1的长度}\\
+=\frac{\min\{\omega_1,\omega_2\}}{\pi}
+$$
+
+### 10（梳状函数）
+
+求周期为 $T_1$ 的单位冲激周期函数 $\delta_T(t)$ 的傅里叶变换。
+
+先求以原点为周期的 $2N+1$ 个冲激，可得
+$$
+X_N(\omega)=\sum_{n=-N}^{N}e^{-jn\omega T_1}
+$$
+可得
+$$
+X_N(\omega)=\frac{\sin [\omega(2N+1)T_1/2]}{\sin (\omega T_1/2)}
+$$
+![](https://notes.sjtu.edu.cn/uploads/upload_ca891b3176b05f76fa28d30a0ae875ea.png)
+
+- 最高点位置：$\displaystyle \omega=\frac{2n\pi}{T_1}$；
+
+- 频谱峰值：$X_N(\omega)_{\max}=2N+1$；
+
+- 频谱零点位置：$\displaystyle \omega=\frac{2n\pi}{(2N+1)T_1}$；
+
+极限操作：$\displaystyle X_{T}(\omega)=\lim_{N\to \infin} X_{N}(\omega)$. 随着 $N$ 增大，峰值 $2N+1$ 增大，最后变为 $\delta$ 函数，可知前面系数为 $\omega_1=2\pi/T_1$，即
+$$
+X_T(\omega)=\omega_1 \delta_{\omega_1}(\omega)
+$$
+
+### 11（周期方波）
+
+求周期 $T_1$，脉宽 $\tau$，高 $E$ 的周期矩形脉冲序列的傅里叶变换。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_dfff13f3b417c8dbbbd24ffabdd7ac7b.png)
+
+考虑利用时域卷积定理：
+$$
+x(t)=x_0(t)*\delta_{T_1}(t)\quad X(\omega)=X_0(\omega)\cdot \omega_1 \delta_{\omega_1}(\omega)
+$$
+应用 $\delta$ 函数的抽样性质：$X(\omega)=X_0(n\omega_1)\cdot \omega_1 \delta_{\omega_1}(\omega)$.
+$$
+X_0(\omega)=E\cdot 2 \frac{\tau}{2}\operatorname{Sa}\left(\omega \frac{\tau}{2}\right)
+$$
+
+$$
+X(\omega)=\sum_{n=-\infin}^{\infin} E\tau \operatorname{Sa}\left(n\omega_1 \frac{\tau}{2}\right)\omega_1\delta(\omega-n\omega_1)
+$$
+
+### 12
+
+已知输入 $e(t)=\cos \pi t+\sin 3\pi t$，求该信号经过下列各 LTI 系统后的输出 $r(t)$.
+
+> 主要利用画图+输入正弦信号输出幅值变化相位变化的正弦信号分析。
+
+1. $h_1(t)=\displaystyle \frac{\sin 2\pi t}{\pi t}$；
+
+   $H(j\omega)=\operatorname{Gate}(2\pi)$，此时输出 $\cos \pi t$.
+
+2. $\displaystyle h_2(t)=\frac{(\sin 2\pi t)(\sin 4\pi t)}{\pi t^2}$；
+
+   画出 $\displaystyle  H(j\omega)=\frac{1}{2}\operatorname{Gate}(2\pi)*\operatorname{Gate}(4\pi)$.
+
+   可知 $H(j3\pi/2)=3\pi/2$，$H(j\pi)=2\pi$，因此输出 $2\pi \cos \pi t+3\pi/2 \sin 3\pi t$.
+
+3. $\displaystyle h_3(t)=\frac{(\sin 2\pi t)(\cos 4\pi t)}{\pi t}$.
+   $$
+   h_3(t)=\frac{1}{2}\frac{\sin 6\pi t-\sin 2\pi t}{\pi t}
+   $$
+   画出 $\displaystyle H(j\omega)=\frac{1}{2}(\operatorname{Gate}(6\pi)-\operatorname{Gate}(2\pi))$，可知 $H(j\pi)=0$，$H(j3\pi)=\displaystyle \frac{1}{2}$.
+
+   因此输出 $\displaystyle \frac{1}{2}\sin 3\pi t$.
+
+## 离散时间傅里叶变换
+
+### 1
+
+求 $x[n]=a^n \cdot \cos \omega_0 n\cdot u[n]$ 的傅里叶变换，$|a|<1$.
+$$
+x[n]=x_1[n]\cdot \frac{1}{2}\left(e^{j\omega_0 n}+e^{-j\omega_0 n}\right)
+$$
+
+$$
+X(e^{j\omega})=\frac{1}{2}\left[\frac{1}{1-ae^{-j(\omega-\omega_0)}}+\frac{1}{1-ae^{-j(\omega+\omega_0)}}\right]
+$$
+
+### 2
+
+已知 LTI 系统 S 是因果稳定的，当输入为 $\displaystyle \left(\frac{4}{5}\right)^n u[n]$ 时，输出为 $\displaystyle n\left(\frac{4}{5}\right)^n u[n]$.
+
+1. 求系统的频率响应 $H(e^{j\omega})$.
+   $$
+   \displaystyle n\left(\frac{4}{5}\right)^n u[n] \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} j\frac{\mathrm d }{\mathrm d \omega}\left(\frac{1}{1-\frac{4}{5}e^{-j\omega}}\right)
+   $$
+
+   $$
+   H(e^{j\omega})=Y(e^{j\omega})/X(e^{j\omega})
+   $$
+
+2. 求描述 S 的微分方程。
+
+## 采样与采样定理
+
+### 1
+
+如图所示系统和 $H(j\omega)$，输入信号 $f(t)=\cos \Omega t$，$\displaystyle \delta_{T_s}(t)=\sum_{m=-\infin}^{\infin} \delta(t-mT_s)$，有 $\displaystyle \omega_s=\frac{2\pi}{T_s}=\frac{\Omega}{10.01}$，其输出信号 $\displaystyle y(t)=\cos \frac{\Omega}{A}t$，求 $A$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_40f5af86d1c13d43c303cb2483b6d443.png" style="zoom:50%;" />
+
+输入
+$$
+\frac{1}{2}\left(e^{j\Omega t}+e^{-j\Omega t}\right)
+$$
+经过 $\delta_{T_s}$，可得和 $\omega_s \delta_{\omega_s}(\omega)$ 的卷积 $/2\pi$。能经过滤波器，需要最高频率小于 $\omega_s/2$.
+
+考察 $\Omega-k\omega_s$，需要 $k=10$ 时转变为 $0.01\omega_s$，恰好小于 $\omega_s/2$.
+
+因此，$A=10.01/0.01=1001$.
+
+> 考察混叠的内容 
+
+### 2
+
+若有一实值且为奇函数的周期信号 $f(t)$，其傅里叶级数表示式为
+$$
+f(t)=\sum_{n=1}^5 \left(\frac{1}{2}\right)^n \sin (n\pi t)
+$$
+现有 $y(t)$ 代表对 $f(t)$ 进行理想采样的结果，采样周期为 $T=0.2$，现问：
+
+1. 会发生混叠吗？
+
+   最高频率为 $5\pi$，采样周期为 $T=0.2$，$\omega_s=2\pi/T=10\pi=2\omega_m$，刚好不会发生混叠？
+
+   观察到临界点出现了冲激函数，所以需要进一步讨论，画一下发现发生了混叠。
+
+2. 如果 $y(t)$ 通过一个截止频率为 $\pi/T$，通带增益为 $T$ 的理想低通滤波器，求输出信号的傅里叶级数表示。
+
+   截止频率 $5\pi$，滤掉了 $n=5$ 的部分。
+   $$
+   g(t)=\sum_{n=1}^4 \left(\frac{1}{2}\right)^n \sin (n\pi t)
+   $$
+
+### 3
+
+考虑信号 $\displaystyle x(t)=\sum_{k=-\infin}^{+\infin} \frac{\sin (k\pi/4)}{k\pi/4}\delta(t-k\pi/4)$.
+
+1. 求满足 $\displaystyle x(t)=\frac{\sin t}{\pi t}g(t)$ 的 $g(t)$.
+
+2. 给出一个周期内的 $X(j\omega)$.
+
+   角速度：$\omega_1=2\pi/(\pi/4)=8$.
+
+   相乘性质：$\frac{1}{2\pi} A* B$.
+
+## 拉普拉斯变换
+
+### 1
+
+求拉氏变换
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3bad9909d247607c7613a0ad9e5912a4.png" style="zoom: 25%;" />
+$$
+e^{-t}u(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+ \frac{1}{s+1}
+$$
+
+$$
+e^{-t}(u(t)-u(t-1)-u(t-1)+u(t-2)+u(t-2)-\cdots)
+$$
+
+$$
+\frac{1}{s-1}(1-2e^{-s}+2e^{-2s}-2e^{-3s}\cdots)
+$$
+
+$$
+2\frac{1}{s-1}\frac{1}{1+e^{-s}}-\frac{1}{s-1}
+$$
+
+$$
+\frac{1}{s-1}\left(\frac{1-e^{-s}}{1+e^{-s}}\right)
+$$
+
+### 2
+
+已知某因果线性非时变系统可用二阶常系数微分方程描述，且：
+
+1. 若激励为 $x(t)=1$，则响应为 $y(t)=-1$；
+2. 系统函数 $H(s)$ 在有限的 s 平面内有一极点 $s=-1$ 和零点 $s=1$；
+3. 系统单位冲激响应 $h(t)$ 的初始值为 $2$，且不含冲激项。
+
+题目
+
+1. 设系统为
+   $$
+   H(s)=A\frac{s-s_1}{(s-s_2)(s-s_3)}
+   $$
+   （因为不含冲激项）
+
+   由条件 1. 可得 $H(s=0)=-1$，因此 $-As_1/(s_2s_3)=-1$.
+
+   由条件 3.
+   $$
+   h(0^{-})=\lim_{s\to \infin} sH(s)=A\Rightarrow A=2
+   $$
+   由条件 2. 可得 $s_1=1$，$s_2=-1$.（不妨）因此 $s_3=-2$.
+
+   因此，
+   $$
+   H(s)=\frac{2(s-1)}{(s+1)(s+2)}
+   $$
+
+2. 若 $y(0^-)=1,y'(0^-)=2$，当激励 $x(t)=e^{-3t}u(t)$ 时，系统的初值是否有跳变？
+
+   就要看零状态响应的初值是否为零。
+   $$
+   Y(s)=H(s)X(s)=\frac{2(s-1)}{(s+1)(s+2)(s+3)}
+   $$
+   因为
+   $$
+   y(0^-)=\lim_{s\to \infin} sY(s)=0
+   $$
+   所以 $y(0^-)$ 无跳变。
+
+   因为
+   $$
+   y'(t) \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    \frac{2s(s-1)}{(s+1)(s+2)(s+3)}
+   $$
+
+   $$
+   y'(0^-)=\lim_{s\to \infin} sY'(s)=2
+   $$
+
+   所以 $y'(0^-)$ 跳变为 $2$.
+
+### 3
+
+关于信号 $x(t)$ 及其拉普拉斯变换 $X(s)$ 满足如下条件：
+
+- $x(t)$ 为实值的偶信号；
+- 在有限的 $s$ 平面内，$X(s)$ 有四个极点而没有零点；
+- $X(s)$ 有一个极点在 $s=\displaystyle \frac{1}{2}e^{j\pi/4}$.
+- $\displaystyle \int_{-\infin}^{+\infin} x(t)\mathrm d t=4$.
+

@@ -155,6 +155,8 @@ $$
 
 对于特征函数，输入 $x(t)=e^{j\omega t}$，输出 $y(t)=H(j\omega)e^{j\omega t}$.
 
+若输入 $x(t)=\sin \omega t$，则输出 $y(t)=|H(j\omega)|\sin(\omega t+\varphi(\omega))$.
+
 ### CT
 
 **Analysis FT equation**:
@@ -174,10 +176,11 @@ $$
 | Gate Function         | $$\begin{cases}1, & |t|\le T\\0, & else\end{cases}$$         | $\displaystyle \frac{2\sin (\omega T)}{\omega}=2T\operatorname{Sa}(\omega T)$ | Analysis        |
 | Ideal low pass filter | $\displaystyle \frac{\sin Wt}{\pi t}=t\operatorname{Sa}(Wt)/\pi$ | $\begin{cases}1,&|\omega|\le W\\0,&else\end{cases} $         | Synthesis       |
 | Single-side Exp       | $e^{-\alpha t}u(t)$                                          | $\displaystyle \frac{1}{a+j\omega}$                          | Analysis        |
+| Double-side Exp       | $e^{-\alpha|t|}$                                             | $\displaystyle \frac{2\alpha}{\alpha^2+\omega^2}$            |                 |
 | Sign Function         | $\operatorname{sgn}(t)$                                      | $\displaystyle \frac{2}{j\omega}$                            | Single-side Exp |
 | Step Function         | $u(t)$                                                       | $\displaystyle \pi \delta(\omega)+\frac{1}{j\omega}$         | Sign            |
-| Cosine Function       | $\cos (\omega_0 t)$                                          | $\pi\delta(\omega-\omega_0)+\pi\delta(\omega+\omega_0)$      | Impulse         |
-| Sine Function         | $\sin (\omega_0t)$                                           | $-j(\pi\delta(\omega-\omega_0)-\pi\delta(\omega+\omega_0))$  | Impulse         |
+| Cosine Function       | $\cos (\omega_0 t)$                                          | $\pi[\delta(\omega+\omega_0)+\delta(\omega-\omega_0)]$       | Impulse         |
+| Sine Function         | $\sin (\omega_0t)$                                           | $j\pi[\delta(\omega+\omega_0)-\delta(\omega-\omega_0)]$      | Impulse         |
 | *Triangle* Function   | $$\begin{cases}1-|t|/T, & |t|\le T\\0, & else\end{cases}$$   | $\displaystyle \frac{4 \sin^2 (\omega T/2)}{\omega^2T}=T\operatorname{Sa}^2(\omega T/2)$ | Gate            |
 
 **Properties of CTFT**
@@ -204,9 +207,23 @@ $$
 $$
 **FT of CT Periodic Signal**
 $$
-x(t)=\sum_{k=-\infin}^{+\infin}a_k e^{jk\omega_0 t}\\
-X(j\omega)=\sum_{k=-\infin}^{+\infin} 2\pi a_k\delta(\omega-k\omega_0)
+x(t)=\sum_{k=-\infin}^{+\infin}a_k e^{jk\omega_0 t} \overset{\mathcal F}\Rightarrow \\
+X(j\omega)=2\pi\sum_{k=-\infin}^{+\infin}  a_k\delta(\omega-k\omega_0)
 $$
+- 谱线位置：$\omega=k\omega_0$；周期信号的 $X_{T}(\omega)$ 只存在于 $\omega=k\omega_0$ 处。
+- 谱线幅度：$2\pi a_k$（离散谱）
+
+特殊函数：
+
+- 梳状函数：$X_T(j\omega)=\omega_1 \delta_{\omega_1}(\omega)$.
+
+- 周期方波：周期 $T_1$，脉宽 $\tau$，高 $E$.
+  $$
+  X(j\omega)=\sum_{n=-\infin}^{\infin} E\tau \operatorname{Sa}\left(n\omega_1 \frac{\tau}{2}\right)\omega_1\delta(\omega-n\omega_1)
+  $$
+
+
+
 **Parseval's Relation**
 $$
 \int_{-\infin}^{\infin} |x(t)|^2 \mathrm d t = \frac{1}{2\pi} \int_{-\infin}^{\infin} |X(j\omega)|^2 \mathrm d \omega = \int_{-\infin}^{\infin} |X(f)|^2 \mathrm d f
@@ -284,34 +301,60 @@ $$
 
 ## Ch5 - Application of Fourier Transform
 
+**无失真传输条件**
+$$
+H(j\omega)=Ke^{-j\omega t_0 }\Rightarrow h(t) =K'\delta(t-t_0)
+$$
+
+- 幅频特性为一常数。
+
+- 相频特性为一条过原点的负斜率直线。
+
+- Group delay：
+  $$
+  \tau_g=-\frac{\mathrm d \varphi(\omega)}{\mathrm d \omega}
+  $$
+  无相位失真时，$\tau_g(\omega)$ 为常数。
+
 **Sampling Theorem**
 
 对于连续时间信号 $x(t)$，若用冲激串 $\displaystyle p(t)=\sum_{n=-\infin}^{+\infin} \delta(t-nT)$ 对其进行采样，则在时域内有 $x_p(t)=x(t)\cdot p(t)$；在频域内，有
 $$
+P(j\omega)=\omega_s \sum_{n=-\infin}^{+\infin} \delta(\omega-k\omega_s)
+$$
+
+$$
+X_p(j\omega)=\frac{1}{2\pi} X(j\omega) * P(j\omega)
+$$
+
+$$
 X_p(j\omega)={\color{red}\frac{1}{T}}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
 $$
 
-> 证明：
-> $$
-> p(t)\overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{2\pi}{T} \sum_{k=-\infin}^{+\infin} \delta(\omega-k\omega_s)
-> $$
-> why? 周期信号的傅里叶变换。
-> $$
-> X_p(j\omega)=\frac{1}{2\pi} X(j\omega )* P(j\omega)=\frac{1}{T}\sum_{k=-\infin}^{+\infin} X(j(\omega-k\omega_s))
-> $$
+> 结论：采样所得信号 $x_p(t)$ 的频谱函数 $X_p(j\omega)$ 是由无穷多个平移了的、同时幅度上有 $1/T$ 的尺度变换的 $X(j\omega)$ 叠加构成的。通过增益为 $T$ 的低通滤波器，截止频率大于 $\omega_m$ 但是小于 $\omega_s-\omega_m$ 的低通滤波器，即可还原 $x(t)$.
 
-结论：采样所得信号 $x_p(t)$ 的频谱函数 $X_p(j\omega)$ 是由无穷多个平移了的、同时幅度上有 $1/T$ 的尺度变换的 $X(j\omega)$ 叠加构成的。通过增益为 $T$ 的低通滤波器，截止频率大于 $\omega_m$ 但是小于 $\omega_s-\omega_m$ 的低通滤波器，即可还原 $x(t)$.
-
-若将连续信号离散化，则有结论：
-$$
-Y_{p}(j\omega)=Y_d(e^{j\Omega})|_{\Omega=\omega T}
-$$
 **The Modulation Property**（经过低通滤波，幅值为二）
+
+画图表示
+
+
+
+
+
+
+
+
+
+
+
+
 
 **Ideal Filters**
 
 - Lowpass, Highpass(1-low).
 - Bandpass(low-low), Bandstop(1-bandpass).
+
+![](https://notes.sjtu.edu.cn/uploads/upload_50f2c81574f5dc4a4f2a0f0a2391f751.png)
 
 **Practical Filters**
 

@@ -99,6 +99,16 @@ $$
 
 写出下图所示方框图所示系统的微分方程，求出传递函数 $H(s)$.
 
+<img src="https://notes.sjtu.edu.cn/uploads/upload_41ed2fec0f9ce80deb15651188ff6120.png" style="zoom:50%;" />
+$$
+H(s)=\frac{b_0 s^{-2}+b_1 s^{-1}}{1+a_1 s^{-1}+a_0 s^{-2}}\\
+=\frac{b_1 + b_0 s}{s^2+a_1s+a_0}
+$$
+
+$$
+y''(t)+a_1 y'(t)+a_0 y(t)=b_1 x(t)+b_0 x'(t)
+$$
+
 ### 1.8
 
 求出 $\displaystyle F(\omega)=\frac{4\sin \omega/2\sin 3\omega/2}{\omega^2}$ 的傅里叶反变换 $f(t)$.
@@ -165,7 +175,7 @@ $$
 
 3. 求出在下列时刻的全响应 $y(0),y(3)$.
    $$
-   y(0)=2.0\quad y(3)=39
+   y(0)=2\quad y(3)=39
    $$
 
 ### 2.2
@@ -195,7 +205,7 @@ $$
    H(z)=\frac{z^{-1}}{1-z^{-1}+\frac{1}{2}z^{-2}}=\frac{z}{z^2-z+\frac{1}{2}}\\
    =\frac{z}{(z-\frac{1}{2}+\frac{1}{2}i)(z-\frac{1}{2}-\frac{1}{2}i)}
    $$
-   ![image-20240603111110203](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240603111110203.png)
+   ![](https://notes.sjtu.edu.cn/uploads/upload_ea0a4a9a88d3eb21a57d976dc99beb7f.png)
 
    ROC: $|z|>1/2$.
 
@@ -222,7 +232,34 @@ $$
    $$
    H(j\omega)=(1-\operatorname{Gate(\omega_c)})e^{-j\omega t_0}
    $$
-   前者的
+   傅里叶变换为
+   $$
+   \delta(t-t_0)-\frac{\sin \omega_c (t-t_0)}{\pi (t-t_0)}
+   $$
 
-2. 当激励为 $f(t)=2e^{-t}u(t)$
+2. 当激励为 $f(t)=2e^{-t}u(t)$，若要求输出信号 $y(t)$ 的能量为 $f(t)$ 的 $50\%$，试确定 $\omega_c$ 的值。
 
+   输入
+   $$
+   F(j\omega)=\frac{2}{j\omega+1}
+   $$
+   能量
+   $$
+   E_{0}=\int_{\omega=-\infin}^{\infin} \left|\frac{2}{j\omega+1}\right|^2\mathrm d \omega\\
+   =4\int_{-\infin}^{\infin} \frac{1}{\omega^2+1}\mathrm d \omega=4\pi
+   $$
+   输出信号（此时 ）
+   $$
+   E_1=\int_{\omega>\omega_c,\omega<-\omega_c}\left|\frac{2}{j\omega+1}\right|^2\mathrm d \omega
+   $$
+   因为
+   $$
+   \int_{c}^{\infin} \frac{1}{\omega^2+1}=\arctan \omega |^{\infin}_{c}=\frac{\pi}{4}\Rightarrow c=1
+   $$
+   因此，$\omega_c=1$ 恰好可使能量为一半。
+
+### 2.5
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5be1ede7b8a70d85d4807e25b2317f04.png" style="zoom:50%;" />
+
+为 $4<|\omega|<6$ 的带通滤波器。
