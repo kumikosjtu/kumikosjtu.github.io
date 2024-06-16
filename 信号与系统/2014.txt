@@ -1,0 +1,176 @@
+# 2014 年
+
+## 一
+
+一个线性时不变系统可用微分方程 $\displaystyle \frac{\mathrm d ^2 y(t)}{\mathrm d t^2}+7\frac{\mathrm d y(t)}{\mathrm d t}+12y(t)=x(t)$ 描述，若 $\displaystyle x(t)=e^{-5t}u(t),y(0^-)=1,\frac{\mathrm d y(0^-)}{\mathrm d t}=-2$，求系统的输出。指出系统的零输入响应 $y_{zp}(t)$ 和零状态响应 $y_{zs}(t)$.
+
+## 二
+
+画方块图的题。
+
+## 三
+
+求信号 $x(t)=u(t+1)-u(t-3)$ 和信号 $\displaystyle h(t)=\begin{cases}1-t&,0\le t\le 1\\0,&t<0,t>1\end{cases}$ 的卷积 $y(t)=x(t)*h(t)$.
+
+考虑卷积 $u(t)$ 和 $h(t)$，即
+$$
+f(t)=u(t)*h(t)=\int_{-\infin}^{t}h(t)\mathrm d t=\begin{cases}
+0,&t\le 0\\
+t-\frac{t^2}{2},&0<t<1\\
+\frac{1}{2},&t\ge 1
+\end{cases}
+$$
+则
+$$
+y(t)=f(t+1)-f(t-3)
+$$
+
+$$
+y(t)=\begin{cases}
+0,&t\le -1\\
+(t+1)-\frac{(t+1)^2}{2},&-1<t\le 0\\
+\frac{1}{2},&0<t\le 3\\
+\frac{1}{2}-(t-3)-\frac{(t-3)^2}{2},&3<t\le 4\\
+0,&t>4
+\end{cases}
+$$
+
+
+
+## 四
+
+一个因果线性时不变系统可用二阶常系数线性微分方程描述。已知
+
+1. 系统函数 $H(s)$ 的一个极点位于 $s=-2$，一个零点位于 $s=1$；
+2. 对于所有时间 $t$，当输入为 $1$ 时，系统的输出为 $-1$；
+3. 系统单位冲激响应的初值为 $h(0^+)=2$。
+
+求该系统的系统函数 $H(s)$ 和描述该系统的微分方程。
+
+因为系统为因果系统，所以分母阶次高于分子，可以设为
+$$
+H(s)=A\frac{s-1}{(s+2)(s-s_0)}
+$$
+输入 $1$ 等价于输入 $e^{0t}$，系统的输出为 $-1$，因此
+$$
+A\frac{-1}{2\cdot(-s_0)}=-1
+$$
+ 根据初值定理和连续性，
+$$
+h(0^+)=\lim_{s\to \infin} sH(s)=A=2
+$$
+因此，解得 $s_0=-1$.
+
+系统函数为
+$$
+H(s)=2\frac{s-1}{(s+2)(s+1)}=\frac{2s-2}{s^2+3s+2}
+$$
+
+
+描述系统的微分方程为
+$$
+2x'(t)-2x(t)=y''(t)+3y'(t)+2y(t)
+$$
+
+## 五
+
+### 1
+
+计算连续时间信号 $x(t)=2[u(t+1)-u(t-1)]$ 的总能量 $E_{\infin}$.
+$$
+E_{\infin}=\int_{-1}^1 4\mathrm d t=8
+$$
+
+### 2
+
+计算离散时间信号 $x(t)=2e^{j10\pi n}+e^{j(4\pi n-1)}$ 的周期 $N$.
+$$
+N=1 即可
+$$
+
+### 3
+
+证明系统 $y[n]=nx[n]$ 是线性时变系统。
+
+**线性**：$\alpha x_1[n]+\beta x_2[n] \to \alpha y_1[n]+\beta y_2[n]$.
+
+**时变**：$x[n-n_0]\to nx[n-n_0]\not = y[n-n_0]$.
+
+### 4
+
+已知线性时不变系统的单位冲激响应式 $h[n]=\delta[n+1]+2\delta[n]+3\delta[n-1]$，若系统的输入为 $x[n]=u[n]-u[n-4]$，求系统的输出 $y[n]$.
+$$
+y[n]=x[n]*h[n]=2\delta[n]+3\delta[n-1]
+$$
+
+### 5
+
+已知周期信号 $x(t)=\displaystyle \sum_{n=-\infin}^{\infin} w(t-2n)$，其中 $\displaystyle w(t)=\begin{cases}t,&0\le t<1\\0,&1\le t<2\end{cases}$，求信号 $x(t)$ 的傅里叶系数 $X[k]$.
+
+信号的周期为 $2$，
+$$
+X[k]=\frac{1}{T}\int_{0}^2 w(t)e^{-jk\omega_0 t}\mathrm d t\\
+=\frac{1}{2}\int_{0}^1 te^{-jk\pi t}\mathrm d t=\frac{1-e^{-jk\pi}}{2jk\pi}
+$$
+
+### 6
+
+画图题
+
+### 7
+
+求信号 $\displaystyle x(t)=\left[\left(\frac{1}{2}\right)^{-n}u[-n]\right]*\left[2(n+1)\left(\frac{1}{3}\right)^n u[n]\right]$ 的 z 变换。
+$$
+\left(\frac{1}{2}\right)^n u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} \frac{z}{z-\frac{1}{2}},|z|>|1/2|
+$$
+
+$$
+\left(\frac{1}{2}\right)^{-n}u[-n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} \frac{z^{-1}}{z^{-1}-\frac{1}{2}}=\frac{2}{2-z},|z|<2
+$$
+
+$$
+n\left(\frac{1}{3}\right)^n u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}}\frac{\frac{1}{3}z}{\left(z-\frac{1}{3}\right)^2},|z|>\frac{1}{3}
+$$
+
+$$
+\left(\frac{1}{3}\right)^n u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}}\frac{z}{z-\frac{1}{3}},|z|>\frac{1}{3}
+$$
+
+$$
+2(n+1)\left(\frac{1}{3}\right)^n u[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} \frac{2z^2}{\left(z-\frac{1}{3}\right)^2},|z|>\frac{1}{3}
+$$
+
+结果：
+$$
+\frac{2}{2-z}\frac{2z^2}{\left(z-\frac{1}{3}\right)^2},\frac{1}{3}<|z|<2
+$$
+
+### 8
+
+已知一个线性时不变系统的单位冲激响应是 $\displaystyle h(t)=\frac{\sin 3t-\sin t}{\pi t}$。若输入为 $x(t)=1+0.5\cos (2t)+0.25\cos (4t)$，求系统的输出 $y(t)$.
+
+可知 $H(j\omega)$ 是 $1<|\omega|<3$ 的带通滤波器。系统输出 $y(t)$ 为 $0.5\cos (2t)$.
+
+### 9
+
+一个线性时不变系统的频率响应是 $\displaystyle H(j\omega)=\frac{j\omega+4}{(j\omega+2)(j\omega+3)}$。求这个系统的单位冲激响应 $h(t)$.
+$$
+H(j\omega)=\frac{2}{j\omega+2}+\frac{-1}{j\omega+3}
+$$
+
+$$
+h(t)=2e^{-2t}u(t)-e^{-3t}u(t)
+$$
+
+### 10
+
+已知信号 $\displaystyle x(t)=\frac{\sin (100\pi t)}{t}$，对信号 $\displaystyle y(t)=\frac{\mathrm d x(t)}{\mathrm d t}+x^2(t)$ 进行抽样，得到 $y(t)$ 的样本 $y(nT)$，其中 $T$ 为抽样周期（或抽样间隔）。当 $T$ 满足什么条件时才能从 $y(nT)$ 恢复出 $y(t)$？为什么？
+$$
+x(t) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \pi \operatorname{Gate}(100\pi)
+$$
+
+$$
+y(t) 最大频率为 200\pi
+$$
+
+需要 $\omega_s\ge 400\pi$，即 $T<0.005$，才能恢复。
