@@ -359,3 +359,5 @@ $$
 - $X(s)$ 有一个极点在 $s=\displaystyle \frac{1}{2}e^{j\pi/4}$.
 - $\displaystyle \int_{-\infin}^{+\infin} x(t)\mathrm d t=4$.
 
+### 4
+
