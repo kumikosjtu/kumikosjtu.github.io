@@ -352,7 +352,7 @@ LSI离散时间系统的系统函数为：$\displaystyle H(z)=\frac{z^2-3z}{z^2-
 
 1. 画出 $H(z)$ 的零极点图，写出相应系统的差分方程。
 
-   <img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141429441.png" alt="image-20240513141429441" style="zoom: 50%;" />
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_67c30e920bca765e4d70a7d377689caa.png" style="zoom:50%;" />
    $$
    H(z)=\frac{1-3z^{-1}}{1-3z^{-1}+2z^{-2}}
    $$
@@ -422,9 +422,9 @@ LSI离散时间系统的系统函数为：$\displaystyle H(z)=\frac{z^2-3z}{z^2-
 
 如图2(a)所示通信子系统，若输入信号 $x(t)$ 的频谱如图2(b)所示，试求该子系统的输入 $s(t)$ 及其频谱 $S(\omega)$.
 
-<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141750843.png" alt="image-20240513141750843" style="zoom:50%;" />
+<img src="https://notes.sjtu.edu.cn/uploads/upload_28dea90859796d8a54f834029e483e54.png" style="zoom:50%;" />
 
-![image-20240513141759044](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240513141759044.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_bbb2169cd8f551c52932f9a1b830b791.png)
 
 输出 $4\le \omega\le 6$ 的带通滤波器。
 
