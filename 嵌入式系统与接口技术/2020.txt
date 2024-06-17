@@ -380,3 +380,224 @@ NOR闪存在需要快速读取和高可靠性的应用中具有重要作用，�
 - [ ] 8086 采用2 级指令流水，所以，当8086 执行程序时，EU 中总是有 2 条指令在同时执行。
 - [ ] 8086 系统中的偶存储体芯片的数据线是与数据总线中的高8 位相连的。
 - [ ] 8086 系统中，数据段和堆栈段不允许有重叠。 （Ch2-P38）
+
+## 三、分析填空题
+
+假设 8086 的系统时钟频率 5Mhz，某同学设计了一个延时 1ms 延时子程序如下。 
+
+```asm
+Delay1ms PROC Near 
+MOV CX，______ ;忽略本指令的执行时间 
+L1： LOOP L1 ; 本指令需 1 个系统时钟周期 
+ RET 
+Delay1ms ENDP
+```
+
+1. Delay1ms 子程序中空格（1）中应填入：（ ）H （精确到0.1ms） 
+
+   因为时钟频率 5MHz，所以 1ms 执行 $5\times 10^6 \times 10^{-3}$ 个指令，相当于 $5000$ 个。填入 1388H.
+
+2. 该同学还设计了 Delay10ms 的 10ms 延时子程序如下，但调试发现 Delay10ms 的实际延时不是 10ms。 
+
+   ```asm
+   Delay10ms PROC Near 
+   MOV CX，10 ; 忽略本指令的执行时间 
+   Again: CALL Delay1ms ; 本指令需1 个系统时钟周期 
+    LOOP AGAIN ; 本指令需1 个系统时钟周期 
+    RET 
+   Delay10ms ENDP 
+   ```
+
+   试问：`Delay10ms` 实际延时约为（）ms.
+
+   注意到 `CALL Delay1ms` 后，CX 寄存器的值为 0，此时再执行 LOOP，则 CX 变为 65535，反复循环，因此程序死循环。
+
+3. 如果要保证Delay10ms 延时10ms， 需要修改Delay1ms 子程序。请在下面的空白处填写正确的Delay1ms 子程序代码。 
+
+   只要暂存 CX 的值即可。
+
+   ```asm
+   Delay1ms PROC Near 
+    PUSH CX；或MOV 寄存器，CX；或MOV [内存地址]，CX 
+   MOV CX， (1) ;忽略本指令的执行时间 
+   L1： LOOP L1 ; 本指令需1 个系统时钟周期 
+    POP CX；或MOV CX，寄存器；或MOV CX，[内存地址] 
+    RET 
+   Delay1ms ENDP 
+   ```
+
+## 四、综合题
+
+### 一
+
+请阅读最小模式下8086CPU 与存储器的连线图，其中D0~D15 为总线驱动后的数据总线，A0~A19为锁存后的地址总线，回答下述问题。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_63ea91aa3f5379da06fb9c93dad37cc0.png" style="zoom:50%;" />
+
+1. 图中右下角标示的接线端A 应与8086CPU 引脚（$\overline{\mathrm{WR}}$）相连；接线端B 应与8086CPU 引脚（$\overline{\mathrm{RD}}$）相连。
+
+   可以参考课件上的Proteus电路图
+
+2. 图中存储器芯片6264的容量为（8）kB。两片6264的存储器寻址范围为（20000）H~（23FFF）H。芯片U1 的存储器地址均为（偶）（选择：奇、偶、奇偶混合）地址。 
+
+   容量：$2^{13}\mathrm{~Byte}=8\mathrm{~kB}$.
+
+   两片 6264 的存储器寻址范围：
+
+   | A19~16 | A15~12 | A11~8 | A7~4 | A3~0 |
+   | ------ | ------ | ----- | ---- | ---- |
+   | 0010   | 00XX   | XXXX  | XXXX | XXXX |
+
+   因此寻址范围为 20000~23FFF.
+
+3. 下述程序完成的功能为：芯片U1 中的单元全部写入00H，芯片U2 中的单元全部写入0FFH。试完善程序。
+
+   ```asm
+   MOV AX, (2000)H ; 段基地址
+   MOV DS, AX 
+   MOV AX, (0FF00)H ; 偶地址：00，奇地址：FF
+   MOV CX, (2000)H ; 写入 4000H/2 个
+   MOV BX, 0000H 
+   NEXT: MOV [BX], AX 
+   ADD BX, 02H ; 一次写入两个
+   LOOP NEXT 
+   HERE: JMP HERE 
+   ```
+
+### 二
+
+如图所示为8086CPU、8255A、8253A 等芯片构成的接口电路，试根据电路连线图回答问题。（20分，每空1 分） 
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_917da8239c6e759177ccaed7770a73a7.png" style="zoom:50%;" />
+
+1. 设定8255A 的端口均工作于方式0。试根据硬件电路完善下述8255A 初始化程序。 
+
+   ```asm
+   P8255PA EQU 201H ;定义端口A 地址 
+   P8255PB EQU 203H ;定义端口B 地址 
+   P8255PC EQU 205H ;定义端口C 地址 
+   P8255CS EQU 207H ;定义控制端口地址 
+   P8255CW EQU 10000001B ;定义方式控制字
+   MOV DX, P8255CS 
+   MOV AL, P8255CW 
+   OUT DX, AL 
+   ```
+
+   8255 的控制字：在 Ch5-P37
+
+   判断输入输出：A口高4位和低4位都是输出；B口高4位是输出；C口低4位是输入，高4位是输出。C 口用于输入输出数据，因此处在工作方式0.
+
+   控制字：
+
+   | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 1    |
+   | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
+2. 现要求完成如下功能：8253A 的三个计数器分别输出100kHz、10Hz、0.1Hz 的方波。试完善硬件连接和软件编程。
+
+   硬件电路连线：应将8253A 的CLK1 与8253A 的第（10 或OUT1）号引脚相连，将8253A 的CLK2与8253A 的第（13 或OUT2 ）号引脚相连。
+
+   功能程序： 
+
+   ```asm
+   P8253T0 EQU (210)H ;定义计数器0 端口地址 
+   P8253T1 EQU (212)H ;定义计数器1 端口地址 
+   P8253T2 EQU (214)H ;定义计数器2 端口地址 
+   P8253CS EQU (216)H ;定义控制端口地址 
+   ```
+
+   ```asm
+   MOV DX, (P8253CS) ;使能计数器0 
+   MOV AL, ( )B 
+   OUT DX, AL 
+   ```
+
+   Ch5-P61 8253 的控制字。
+
+   | SC1  | SC2  | RW1  | RW2  | M2   | M1   | M0   | BCD  |
+   | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+   | 0    | 0    | 0    | 0    | X    | 1    | 1    | 1    |
+
+   ```ASM
+   MOV AL, 00010110B 
+   MOV DX, P8253CS 
+   OUT DX, AL 
+   ;控制计数器0，只写低八位，工作方式3，二进制计数
+   MOV AL, (10)
+   MOV DX, P8253T0 
+   OUT DX, AL 
+   ```
+
+    参考答案：10 或0AH 
+
+   ```asm
+   MOV AL, 01110110B
+   ;控制计数器1，先写低八位，再写高八位，工作于方式3，二进制计数
+   MOV DX, P8253CS 
+   OUT DX, AL 
+   MOV AX, (10000)
+   
+   MOV DX, P8253T1 
+   OUT DX, AL 
+   MOV AL, AH 
+   OUT DX, AL 
+   ```
+
+   参考答案：10000 或2710H 
+
+   ```asm
+   MOV AL, 10010110B 
+   ;控制计数器2，写低八位，工作于方式3，二进制计数
+   MOV DX, P8253CS 
+   OUT DX, AL 
+   MOV AL, 100 
+   MOV DX, P8253T2 
+   OUT DX, AL 
+   ```
+
+3. 现要求完成如下功能：向打印机端口（PRINTER PORT）输出字符串'Hi, Have a good day!'供打印机打印。字符串存放于数据段中变量String 开始的单元。打印机接口的握手信号分别为忙信号（BUSY）、选通信号（$\overline{\mathrm{STROBE}}$）。当CPU 输出完打印数据后，CPU 需向打印机送一个 $\overline{\mathrm{STROBE}}$ 脉冲，启动打印机开始打印；在打印过程中状态信号BUSY=1，CPU 需等待BUSY 变为0 后再发送新的打印数据，其工作时序如图所示。试完善下述程序。 
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_9a47cd84bbe53ef6eb5532f8add33ecd.png)
+
+   ```asm
+   .MODEL SMALL 
+   .8086 
+   .stack 100H 
+   .data 
+   String DB 'Hi, Have a good day!' 
+   .code 
+   .startup 
+   ;初始化8255 
+   MOV DX, P8255CS 
+   MOV AL, P8255CW 
+   OUT DX, AL 
+   
+   MOV AL, (00001101)B ; PC6 端口初始状态置为1
+   ;P38 C 口位控制字，选通信号置于高位
+   OUT DX, AL 
+   
+   MOV CX, 19 ; 19 个字符
+   MOV BX, OFFSET (String)
+   
+   NEXT: MOV DX，P8255PC 
+   IN AL, DX 
+   AND AL, 08H ; 读入 BUSY 状态（3口）
+   ; 08H=00001000，对应 PC3
+   JNZ NEXT ; 若 BUSY 状态为1，则跳过
+   MOV AL, [BX] ; 取字符
+   MOV DX, P8255PA
+   OUT DX, AL ; A口输出字符
+   MOV DX, P8255PC 
+   MOV AL, (00001100)B ; STROBE 置 0，选择 PC6
+   OUT DX, AL 
+   NOP 
+   NOP 
+   MOV AL, (00001101)B ; 再次使 STROBE 置 1
+   OUT DX, AL 
+   INC (BX)
+   LOOP NEXT 
+   
+   HLT 
+   ```
+
+   参考 Ch5-P42 打印一批字符的程序段，Ch5-P38 C口的位控制字。
+
