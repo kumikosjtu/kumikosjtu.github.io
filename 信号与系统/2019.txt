@@ -1,3 +1,5 @@
+# 2019
+
 ## 选择题
 
 ### 1
@@ -173,7 +175,12 @@ $$
 
 ### 15
 
-![image-20240512222919884](C:\Users\Steven Meng\AppData\Roaming\Typora\typora-user-images\image-20240512222919884.png)
+已知 $\displaystyle x[n]=\begin{cases}a^n ,&0\le n \le N-1\\0, &\mathrm{otherwise}\end{cases}$，其中 $a>0$，则 $X(z)$ 的收敛域包括（）
+
+- [ ] $|z|>a$
+- [ ] 全部 $z$.
+- [x] 除 $z=0$ 外的全部 $z$
+- [ ] 除 $z=a$ 外的全部 $z$
 
 ### 16
 
@@ -183,7 +190,7 @@ $$
 
 ### 17
 
-![image-20240512223300769](C:\Users\Steven Meng\AppData\Roaming\Typora\typora-user-images\image-20240512223300769.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_08121b4209e18bdde8734ca4278cced9.png)
 
 首先，先时域平移 $T/2$，然后再取反。
 $$

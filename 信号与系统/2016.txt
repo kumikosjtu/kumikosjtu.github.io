@@ -43,11 +43,11 @@ $$
    $$
 
    $$
-   Y(s)=\frac{1}{s+1} e^{3s} X(s)
+   Y(s)=\frac{1}{s+1} e^{-3s} X(s)
    $$
 
    $$
-   H(s)=\frac{e^{3s}}{s+1}
+   H(s)=\frac{e^{-3s}}{s+1}
    $$
 
 2. 判断系统是否为因果系统。
@@ -103,8 +103,6 @@ $$
 E=\frac{1}{2\pi} \int_{-\infin}^{+\infin} |X(j\omega)|^2 \mathrm d \omega=\frac{10}{\pi}
 $$
 
-
-
 ### 5
 
 信号 $y(t)=x_1(t)x_2(t)$，现对 $y(t)$ 作冲激串采样，以得到
@@ -129,6 +127,15 @@ $$
 ### 6
 
 请叙述并证明 Z 变换的时域卷积定理。
+
+时域卷积定理：
+$$
+x_1[n]*x_2[n] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} X_1(z)X_2(z)
+$$
+
+$$
+\sum_{n=-\infin}^{\infin} z^{-n}\sum_{k=-\infin}^{\infin} x_1[k]x_2[n-k]\\=\sum_{k=-\infin}^\infin z^{-k}x_1[k]\sum_{(n-k)=-\infin}^{\infin} z^{-(n-k)}x_2[n-k]
+$$
 
 ### 7
 
@@ -185,16 +192,69 @@ $$
 系统的微分方程 $\displaystyle \frac{\mathrm d ^2 y(t)}{\mathrm d t^2}+2\frac{\mathrm d y(t)}{\mathrm d t}+5y(t)=5u(t)$，$y(0^-)=1,\displaystyle \frac{\mathrm d y(0^-)}{\mathrm d t}=1$.
 
 1. 求解微分方程。
+   $$
+   Y(s)=\frac{5}{s(s^2+2s+5)}=\frac{-s-2}{s^2+2s+5}+\frac{1}{s}
+   $$
 
-   
+   $$
+   \frac{2}{(s+1)^2+2^2} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    e^{-t}\sin 2t \cdot u(t)\\
+    \frac{s+1}{(s+1)^2+2^2} \overset{\mathcal L}{\operatorname*{\longleftrightarrow}}
+    e^{-t}\cos 2t \cdot u(t)
+   $$
+
+   $$
+   y_{zsr}=\left(-\frac{1}{2}\sin 2t-\cos 2t\right) e^{-t}\cdot u(t)+u(t)
+   $$
+
+   $$
+   y_{zir}=(\sin 2t+\cos 2t)e^{-t}u(t)
+   $$
+
+   $$
+   y(t)=\frac{1}{2}\sin 2t \cdot e^{-t} u(t)+u(t)
+   $$
+
+2. 用积分单元，比例放大单元和求和单元画出实现系统的方框图（直接型）
+
+3. 求出系统的单位冲激响应 $h(t)$.
+
+### 2
+
+![](https://notes.sjtu.edu.cn/uploads/upload_5a5804656be1cd20f2a04eaf168fcec1.png)
 
 ### 3
 
 离散时间信号系统的传递函数为 $H(z)=\frac{1}{z^2-\frac{1}{6}z-\frac{1}{3}}$，已知系统是稳定的。
 
 1. 写出 $H(z)$ 的收敛域；
+   $$
+   H(z)=\frac{6}{6z^2-z-2}=\frac{6}{(3z-2)(2z+1)}
+   $$
+   极点为 $2/3$ 和 $-1/2$，因为系统是稳定的，所以收敛域为 $|z|>2/3$.
+
 2. 求单位冲激响应 $h(n)$，
+   $$
+   \frac{H(z)}{z}=\frac{6}{z(3z-2)(2z+1)}\\
+   =\frac{A}{z}+\frac{B}{3z-2}+\frac{C}{2z+1}
+   $$
+
+   $$
+   A=-3,B=\frac{27}{7},C=\frac{24}{7}
+   $$
+
+   $$
+   \frac{H(z)}{z}=\frac{-3}{z}+\frac{9/7}{z-\frac{2}{3}}+\frac{12/7}{z+\frac{1}{2}}
+   $$
+
+   $$
+   h(n)=-3\delta(n)+\frac{9}{7}\left(\frac{2}{3}\right)^n u(n)+\frac{12}{7}\left(-\frac{1}{2}\right)^n u(n)
+   $$
+
 3. 求出 $h(n)$ 的离散时间傅里叶变换。
+   $$
+   H(e^{j\omega})=\frac{1}{e^{2j\omega}-\frac{1}{6}e^{j\omega}-\frac{1}{3}}
+   $$
 
 ### 4
 
@@ -278,7 +338,7 @@ $$
 
 有一因果线性时不变系统，其输入和输出的方框图如下，
 
-![image-20240613144045060](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240613144045060.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_4c7f9de049422897b31e7aeff76edf11.png)
 
 1. 求关联 $y(n)$ 和 $x(n)$ 的差分方程；
 
@@ -310,6 +370,21 @@ $$
    此时，
    $$
    Y(z)=\frac{1-6z^{-1}+8z^{-2}}{1-\frac{2}{3}z^{-1}+\frac{1}{9}z^{-2}}
+   $$
+   
+   $$
+   \frac{Y(z)}{z}=\frac{z^2-6z+8}{z(z^2-\frac{2}{3}z+\frac{1}{9})}\\
+   =\frac{A}{z}+\frac{B}{z-\frac{1}{3}}+\frac{C}{(z-\frac{1}{3})^2}\\
+   =\frac{72}{z}+\frac{-71}{z-\frac{1}{3}}+\frac{55/3}{(z-\frac{1}{3})^2}
+   $$
+   
+   $$
+   y(n)=72\delta(n)-71 \left(\frac{1}{3}\right)^n u[n]+55n\left(\frac{1}{3}\right)^nu[n]
+   $$
+   
+   收敛域 $|z|>1/3$,
+   $$
+   y(4)=\frac{149}{81}
    $$
    
 

@@ -68,7 +68,7 @@ $$
 $$
 所以：
 $$
-f(t)\overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \sum_{k=0}^{\infin}e^{-j\omega kT}=\frac{1}{1-e^{j\omega T}}
+f(t)\overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \sum_{k=0}^{\infin}e^{-j\omega kT}=\frac{1}{1-e^{-j\omega T}}
 $$
 
 ### 1.5
