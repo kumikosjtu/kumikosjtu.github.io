@@ -659,6 +659,29 @@ SARSA 流程：</p>
 <li><span class="arithmatex">\(\pi\)</span> 收敛则算法结束。</li>
 </ol>
 <p><strong>多步 TD</strong></p>
+<p>$$
+Q_{\pi}(s_t,a_t)\gets (1-\alpha)Q_{\pi}(s_t,a_t)+\alpha \left(\sum_{i=0}^{m-1}\gamma^i r_{t+i}+\gamma^mQ_{\pi}(s_{t+m},a_{t+m})\right)
+$$
+若 <span class="arithmatex">\(m\)</span> 很大，则变为蒙特卡洛算法</p>
+<p><strong>Q-learning</strong>
+$$
+Q^<em>(s_t,a_t)\gets (1-\alpha ) Q^</em>(s_t,a_t) +\alpha \left(r_{t}(s_t,a_t,s_{t+1})+\gamma \max_aQ^*(s_{t+1},a)\right)
+$$
+（接下来采取的是最好的策略）</p>
+<p><strong>Behaviour Policy 和 Target Policy</strong></p>
+<p><strong><span class="arithmatex">\(\boldsymbol {Q_{\pi}}\)</span> 和 <span class="arithmatex">\(\boldsymbol{Q^*}\)</span> 的参数化表达</strong></p>
+<p>将 <span class="arithmatex">\(Q\)</span> 表达为
+$$
+Q(s,a)=\sum_{i=1}^N w_i f_i(s,a)
+$$
+得到观测 <span class="arithmatex">\(q\)</span>，希望尽可能接近当前观测 <span class="arithmatex">\(q\)</span>
+$$
+W\gets W+\alpha (q-Q(s,a)) \underbrace{\nabla Q(s,a;W)}<em>{=f_i(s,a)}
+$$
+即
+$$
+w_i \gets w_i+\alpha \left(q-\sum</em>{i=1}^N w_i f_i(s,a)\right)f_i(s,a)
+$$</p>
 
 
 
