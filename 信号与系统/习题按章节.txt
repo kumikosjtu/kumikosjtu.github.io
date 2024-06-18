@@ -188,6 +188,61 @@ $$
 
    因此输出 $\displaystyle \frac{1}{2}\sin 3\pi t$.
 
+### 13
+
+![image-20240618111439227](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240618111439227.png)
+
+注：这个是 $\displaystyle -2 \frac{\mathrm d }{\mathrm d t}$.
+
+### 14
+
+一个称为低通微分器的连续时间滤波器的频率响应如图所示，试对以下每个输入信号 $x(t)$，求输出信号 $y(t)$.
+
+1. $x(t)=\cos (2\pi t+\theta)$.
+   $$
+   X(j\omega)=\frac{1}{2}(\delta(\omega-2\pi) e^{j\theta}+\delta(\omega+2\pi)e^{-j\theta})
+   $$
+
+![](https://notes.sjtu.edu.cn/uploads/upload_57dd504046a1d3ad64be1b1a46893220.png)
+
+幅频特性：$\times 2/3$,
+
+相频特性：$\theta \to \theta+\frac{\pi}{2}$.
+
+因此为
+$$
+y(t)=\frac{2}{3}\cos (2\pi t+\theta+\pi/2)
+$$
+
+### 15
+
+因果 LTI 系统的输出 $y(t)$ 与其输入 $x(t)$ 由下面微分方程联系：
+$$
+\frac{\mathrm d y(t)}{\mathrm d t}+2y(t)=x(t)
+$$
+
+1. 求频率响应
+   $$
+   H(j\omega)=\frac{1}{2+j\omega}
+   $$
+
+2. 求群时延
+   $$
+   H(j\omega)=\frac{2-j\omega}{4+\omega^2} \Rightarrow \varphi(\omega)=-\arctan \frac{\omega}{2}\\
+   \tau(\omega)=-\frac{\mathrm d \varphi(\omega)}{\mathrm d \omega}=\frac{2}{4+\omega^2}
+   $$
+
+3. 若 $x(t)=e^{-t}u(t)$，求输出的傅里叶变换 $Y(j\omega)$。
+   $$
+   Y(j\omega)=\frac{1}{(2+j\omega)(1+j\omega)}
+   $$
+
+   $$
+   e^{-t}u(t)-e^{-2t}u(t)
+   $$
+
+
+
 ## 离散时间傅里叶变换
 
 ### 1
@@ -268,6 +323,52 @@ $$
    角速度：$\omega_1=2\pi/(\pi/4)=8$.
 
    相乘性质：$\frac{1}{2\pi} A* B$.
+
+### 4
+
+下列是个离散时间信号的傅里叶变换，求相应于每一变换的信号。
+$$
+X(e^{j\omega})=\sum_{k=-\infin}^{\infin}(-1)^k \delta\left(\omega-\frac{\pi}{2}k\right)
+$$
+熟悉周期信号的 Fourier 变换
+$$
+X(e^{j\omega})=2\pi\sum_{k=-\infin}^{+\infin} a_k \delta(\omega-k\omega_0)
+$$
+可得
+$$
+a_k=\frac{(-1)^k}{2\pi} \quad \omega_0= \frac{\pi}{2}\quad N=\frac{2\pi}{\omega_0}=4
+$$
+
+$$
+x[n]=\sum_{\left\langle N\right\rangle} a_k e^{jk\omega_0 n}\\
+=\frac{1}{2\pi} \left(1-e^{j\frac{\pi}{2}n}+e^{j\pi n}-e^{j\frac{3}{2}\pi n}\right)
+$$
+
+### 5
+
+设 $x(t)$ 为一实值信号，且有 $X(j\omega)=0,|\omega|>1000\pi$，设 $y(t)=e^{j\omega_c t}x(t)$，试回答下列问题：
+
+1. 对 $\omega_c$ 应该加什么限制，才能保证 $x(t)$ 可以从 $y(t)$ 中恢复出来？（没有必要施加限制）
+
+2. 对 $\omega_c$ 应该加什么限制，才能保证 $x(t)$ 可以从 $\operatorname{Re}\{y(t)\} $ 中恢复出来。
+
+   相当于
+   $$
+   \operatorname{Re}\{y(t)\}=\cos \omega_c t \cdot x(t) 
+   $$
+   为了防止发生混叠，需要 $|\omega_c| \ge 1000\pi$.
+
+### 6
+
+画一下这个调制系统的输出
+
+![](https://notes.sjtu.edu.cn/uploads/upload_5888f7364bbd80375b7b57f99f280616.png)
+
+怎么恢复（乘以 $\sin \omega_c t$，经过截止频率为 $\omega_c$ 的滤波器）
+
+### 7
+
+![](https://notes.sjtu.edu.cn/uploads/upload_f68d4dfc781d517a89d9902536a951ce.png)
 
 ## 拉普拉斯变换
 
@@ -359,6 +460,120 @@ $$
 - $X(s)$ 有一个极点在 $s=\displaystyle \frac{1}{2}e^{j\pi/4}$.
 - $\displaystyle \int_{-\infin}^{+\infin} x(t)\mathrm d t=4$.
 
+## Z 变换
+
+### 1
+
+求出下列每个序列的 Z 变换，画出零极点图，指出收敛域，并指出序列的傅里叶变换是否存在。
+
+1. $\delta[n+5] \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} n^5$
+
+### 2
+
+关于 Z 变换为 $X(z)$ 的一个离散时间信号 $x[n]$ 给出下面 5 条事实：
+
+1. $x[n]$ 是实且为右边序列；
+2. $X(z)$ 只有两个极点；
+3. $X(z)$ 在原点有二阶零点；
+4. $X(z)$ 有一个极点在 $\displaystyle z=\frac{1}{2}e^{j\pi/3}$；
+5. $X(1)=8/3$。
+
+试求 $X(z)$ 并给出它的收敛域。
+
+可以将 $X(z)$ 设为
+$$
+X(z)=\frac{Az^2}{\left(z-\frac{1}{2}e^{j\pi/3}\right)\left(z-\frac{1}{2}e^{-j\pi/3}\right)}
+$$
+因为 $X(1)=8/3$，所以 $A=2$.
+
+### 3
+
+已知一信号 $X(s)$ 有两个单极点 $p_1$ 和 $p_2$，均位于 $s$ 平面的左半平面，该信号幅频特性为 $|X(j\omega)|=1$，相频特性不为常数，对 $x(t)$ 进行均匀采样，得到离散信号 $x[n]$，求 $x[n]$ 的 z 变换 $X(z)$.
+
+> 通过 Laplace 变换求 Z 变换：需要转换到时域的形式
+
+可知两个零点分别为 $-p_1$ 和 $-p_2$，因此信号可以设为
+$$
+X(s)=\frac{(s+p_1)(s+p_2)}{(s-p_1)(s-p_2)}
+$$
+使用部分分式分解，可得 
+$$
+x(t)=\delta(t)+\frac{2p_1(p_1+p_2)}{p_1-p_2}e^{p_1t} u(t)-\frac{2p_2(p_1+p_2)}{p_1-p_2}e^{p_2t}u(t)
+$$
+转换到离散信号，有
+$$
+x[n]=\delta[n]+\frac{2p_1(p_1+p_2)}{p_1-p_2} e^{p_1 t}u[n]-\frac{2p_2(p_1+p_2)}{p_1-p_2} e^{p_2 t} u[n]
+$$
+即：
+$$
+X(z)=1+\frac{2p_1(p_1+p_2)}{1-e^{p_1}z^{-1}}-\frac{2p_2(p_1+p_2)}{1-e^{p_2}z^{-1}}
+$$
+
 ### 4
 
-给定系统的微分方程
+LSI 系统起始条件都为零，当输入 $x_1(n)=(1/6)^n u(n)$ 时，系统零状态响应 $y_1(n)=[a(1/2)^n +10(1/3)^n] u(n)$；当输入 $x_2(n)=(-1)^n$，系统稳态响应 $y_2(n)=\frac{7}{4}(-1)^n$.
+
+1. 计算 $H(z)$，根据不同的收敛域，讨论系统的因果性和稳定性。
+   $$
+   H(z)=\frac{a\left(1-\frac{1}{6}z^{-1}\right)}{1-\frac{1}{2}z^{-1}}+\frac{10\left(1-\frac{1}{6}z^{-1}\right)}{1-\frac{1}{3}z^{-1}}
+   $$
+   考虑到 $H(-1)=7/4$，可得
+   $$
+   \frac{7}{9}a+\frac{35}{4}=\frac{7}{4}
+   $$
+   因此 $a=-9$. 分类讨论稳定性。
+
+2. 满足什么条件时 $H(e^{j\omega})$ 存在，并计算 $H(e^{j\omega})$。（需要 $|z|>\frac{1}{2}$）
+
+3. 画出直接型方框图。
+
+### 5
+
+某离散时间 LSI 因果系统由下列差分方程描述：$y[n]+ay[n-1]+by[n-2]=x[n]+cx[n-1]+dx[n-2]$，其中 $a,b,c,d$ 均为待定常数。该系统具有以下特征：
+
+1. 系统函数 $H(z)$ 在原点 $z=0$ 处有一个二阶零点；
+2. $H(z)$ 有一个极点在 $z=\displaystyle\frac{1}{2}$ 处；
+3. $H(z)$ 的 $z=1$ 时值等于 $8/3$.
+
+求
+
+1. 系统函数 $H(z)$ 并确定待定常数 $a,b,c,d$.
+   $$
+   H(z)=\frac{z^2+cz+d}{z^2+az+b}=\frac{z^2}{\left(z-\frac{1}{2}\right)(z-z_0)}
+   $$
+   可知 $z_0=1/4$.
+
+2. 画出零、极点图，说明系统的稳定性。
+
+3. 求出单位样值响应 $h(t)$；
+
+4. 画出系统框图。
+
+### 6
+
+> 几何解法
+
+$$
+H(z)=\frac{1-z^{-1}}{1-\frac{5}{4}z^{-1}-\frac{3}{2}z^{-2}}
+$$
+
+1. 求系统对应的后向差分方程，并在 Z 平面上画出零极点；（改写为 z 的负幂次）（求零、极点时，改写为正幂次更方便）
+
+2. 当 $x[n]=u[n]$ 时，对所有的 $n,y[n]$ 都有界，给出 $y[n]$ 的表达式。（为双边序列）
+   $$
+   \frac{8}{11}\frac{z}{z-2}+\frac{3}{11} \frac{z}{z+\frac{3}{4}}
+   $$
+
+   $$
+   y[n]=-\frac{8}{11}2^n u[-n-1]+\frac{3}{11} \left(-\frac{3}{4}\right)^n u[n]
+   $$
+
+3. 有 $x[n]=\cos (\Omega n)$ 对所有的 $n$ 都满足 $y[n]=A\cos (\Omega n+\theta)$，其中 $A$ 为正常数。当 $\Omega=\frac{\pi}{2}$ 时，求 $A$.
+   $$
+   A=\left|H(e^{j\pi/2})\right|,\theta=\left|\arg H(e^{j\pi/2})\right|
+   $$
+   直接使用作图求解：
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_f47f4bdd10302da76965b619f64844ea.png)
+
+   等于红线的乘积/蓝线的乘积。
