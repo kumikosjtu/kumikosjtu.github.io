@@ -633,31 +633,21 @@ $$
    再考虑第二个部分，可得：
    $$
    Y(s)=Y_1(s)+\frac{H_2(s)}{1+\beta H_2(s)} Y_1(s)\\
-   =Y_1(s)+\frac{1}{s+4}Y_1(s)=\frac{s+5}{s+4}Y_1(s)
+   =Y_1(s)+\frac{1}{s+3}Y_1(s)=\frac{s+4}{s+3}Y_1(s)
    $$
    总的系统函数：
    $$
-   H(s)=\frac{s+5}{(s+3)(s+4)}
+   H(s)=\frac{s+4}{(s+3)^2}
    $$
 
 2. 冲激响应 $h(t)$.
-
-   设：
    $$
-   H(s)=\frac{A}{s+3}+\frac{B}{s+4}
-   $$
-   则：
-   $$
-   A=(s+3)H(s)|_{s=-3}=2\\
-   B=(s+4)H(s)|_{s=-4}=-1
-   $$
-   因此：
-   $$
-   H(s)=\frac{2}{s+3}-\frac{1}{s+4}
+   H(s)=\frac{1}{(s+3)^2}+\frac{1}{s+3}
    $$
    冲激响应：
    $$
-   h(t)=2e^{-3t}u(t)-e^{-4t}u(t)
+   h(t)=te^{-3t}\cdot u(t)+e^{-3t}\cdot u(t)\\
+   =(t+1)e^{-3t} u(t)\quad \operatorname{Re}\{s\}  >-3
    $$
 
 3. 判断系统的稳定性。
@@ -666,22 +656,11 @@ $$
    $$
    \int_{-\infin}^{+\infin} |h(t)|\mathrm d t<\infin
    $$
-   因为：
+   利用 $t+1<e^{t}$，可得
    $$
-   \int_{-\infin}^{+\infin} |h(t)|\mathrm d t<\int_{0}^{\infin} |2e^{-3t}|\mathrm d t+\int_0^{\infin} |-e^{-4t}|\mathrm d t<\infin
+   \int_{-\infin}^{+\infin} |(t+1)e^{-3t}u(t)|\mathrm d t<\int_{-\infin}^{+\infin}|e^{-2t}u(t)|\mathrm d t
    $$
    所以稳定。
 
-4. 画出系统直接型框图。类似于
-
-   ![](https://notes.sjtu.edu.cn/uploads/upload_8b6ed4acdf19c9291323cee7570d5307.png)
-
-$$
-H(s)=\frac{s+5}{s^2+7s+12}=\frac{s^{-1}+5s^{-2}}{1+7s^{-1}+12s^{-2}}
-$$
-
-$$
-Y(s)=(s^{-1}+5s^{-2})\overbrace{\frac{X(s)}{1+7s^{-1}+12s^{-2}}}^{W(s)}\\
-W(s)=X(s)-7s^{-1}W(s)-12s^{-2}W(s)
-$$
+4. 画出系统直接型框图。
 

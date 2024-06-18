@@ -548,6 +548,110 @@
 
 <h1 id="au3323">AU3323 人工智能基础</h1>
 <h2 id="ch1-basic-search">Ch1 Basic Search</h2>
+<p><strong>Uninformed</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Fringe</th>
+<th>Completeness</th>
+<th>Optimality</th>
+<th>Time</th>
+<th>Space</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BFS</td>
+<td></td>
+<td>FIFO</td>
+<td>Yes</td>
+<td>Yes (cost = 1)</td>
+<td><span class="arithmatex">\(O(b^d)\)</span></td>
+<td><span class="arithmatex">\(O(b^d)\)</span></td>
+</tr>
+<tr>
+<td>UCS</td>
+<td>相当于 Dijkstra</td>
+<td>优先扩展累计代价和较小的</td>
+<td>Yes</td>
+<td>Yes (BFS 的扩展)</td>
+<td><span class="arithmatex">\(O(b^{1+[C^*/\varepsilon]})\)</span></td>
+<td><span class="arithmatex">\(O(b^{1+[C^*/\varepsilon]})\)</span></td>
+</tr>
+<tr>
+<td>DFS</td>
+<td></td>
+<td>LIFO</td>
+<td>Yes (Avoid Duplication)</td>
+<td>No</td>
+<td><span class="arithmatex">\(O(b^m)\)</span></td>
+<td><span class="arithmatex">\(O(bm)\)</span></td>
+</tr>
+<tr>
+<td>IDS</td>
+<td>用限制深度的 DFS</td>
+<td>=DFS</td>
+<td>Yes</td>
+<td>Yes (cost = 1)</td>
+<td><span class="arithmatex">\(O(b^d)\)</span></td>
+<td><span class="arithmatex">\(O(bd)\)</span></td>
+</tr>
+<tr>
+<td>ILS</td>
+<td>用限制累计 cost 的UCS</td>
+<td>=UCS</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>=UCS</td>
+<td><span class="arithmatex">\(O(b[C^*/\varepsilon])\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Informed</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Fringe</th>
+<th>Completeness</th>
+<th>Optimality</th>
+<th>Time</th>
+<th>Space</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GBFS</td>
+<td>只使用 <span class="arithmatex">\(h(n)\)</span></td>
+<td>按 <span class="arithmatex">\(f(n)=h(n)\)</span>  排序</td>
+<td>Yes</td>
+<td>No</td>
+<td><span class="arithmatex">\(O(b^m)\)</span> worst</td>
+<td><span class="arithmatex">\(O(b^m)\)</span></td>
+</tr>
+<tr>
+<td>Beam Search</td>
+<td>Top K 进行扩展</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A*</td>
+<td>UCS+GBFS</td>
+<td>按照 <span class="arithmatex">\(f(n)=h(n)+g(n)\)</span> 排序</td>
+<td>Yes</td>
+<td>Yes(Admissble <span class="arithmatex">\(h(n)\)</span>)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="ch2-game">Ch2 Game</h2>
 <h2 id="ch3-csp">Ch3 CSP</h2>
 <h2 id="ch4-mdp">Ch4 MDP</h2>
@@ -573,13 +677,13 @@ $$</p>
 V_\pi(s_t)=\mathbb E_{A_t}[Q_\pi(s_t,A_t)]
 \]</div>
 <blockquote>
-<p><span class="arithmatex">\(V\)</span> 为当前状态下的折扣回报期望</p>
+<p><span class="arithmatex">\(V\)</span> 为当前状态下的折扣回报的期望</p>
 </blockquote>
 <div class="arithmatex">\[
 V^*(s_t)=\max_a Q^*(s_t,a)
 \]</div>
 <blockquote>
-<p><span class="arithmatex">\(V^*\)</span> 为当前状态下采取最好动作的折扣回报。</p>
+<p><span class="arithmatex">\(V^*\)</span> 为当前状态下采取最好策略的折扣回报。</p>
 </blockquote>
 <p><strong>Bellman Equation</strong>
 $$
@@ -674,7 +778,7 @@ $$
 $$
 Q(s,a)=\sum_{i=1}^N w_i f_i(s,a)
 $$
-得到观测 <span class="arithmatex">\(q\)</span>，希望尽可能接近当前观测 <span class="arithmatex">\(q\)</span>
+得到观测 <span class="arithmatex">\(q\)</span>，希望尽可能接近当前观测 <span class="arithmatex">\(q\)</span>，用梯度下降更新（链式求导可得）
 $$
 W\gets W+\alpha (q-Q(s,a)) \underbrace{\nabla Q(s,a;W)}<em>{=f_i(s,a)}
 $$
