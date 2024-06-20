@@ -182,7 +182,7 @@ Y(j\omega)=\frac{1}{2\pi}X(j\omega)*(-j(\pi \delta(\omega-4)-\pi\delta(\omega+4)
 $$
 
 $$
-Y(j4)=-j
+Y(j4)=-\frac{j}{2}X(j0)=-j
 $$
 
 ### 11
@@ -589,11 +589,11 @@ g(t)=\begin{cases}
 $$
 
 $$
-G(j\omega)=\sqrt \frac{2E}{T}\frac{2\sin (\omega T/4)}{T/4}
+G(j\omega)=\sqrt \frac{2E}{T}\frac{2\sin (\omega T/4)}{\omega}
 $$
 
 $$
-F(j\omega)=G(j\omega)^2=\frac{2E}{T}\frac{4\sin ^2 (\omega T/4)}{T^2/16}=\frac{128 E\sin^2 (\omega T/4)}{T^3}
+F(j\omega)=G(j\omega)^2=\frac{2E}{T}\frac{4\sin ^2 (\omega T/4)}{\omega^2}=\frac{8E \sin ^2 (\omega T/4)}{\omega^2 T}
 $$
 
 对于图 3(b)，可以写为：

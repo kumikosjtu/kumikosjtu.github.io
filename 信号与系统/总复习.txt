@@ -201,6 +201,12 @@ $$
 | Convolution Property          | $h(t)*x(t)$                                            | $H(j\omega)X(j\omega)$                                       |
 | Multiplication Property       | $h(t)x(t)$                                             | $\displaystyle \frac{1}{2\pi}H(j\omega)*X(j\omega)\\{\color{grey}Y(f)=H(f)*X(f)}$ |
 
+> Notes:
+>
+> - $x(t)$ is real signal $\Rightarrow X(j\omega)=X^*(-j\omega)$.
+> - $x(t)$ real and even $\Rightarrow X(-j\omega)=X(j\omega)\Rightarrow X(j\omega)=X^*(j\omega)\Rightarrow$ $X(j\omega)$ real.
+> - $x(t)$ real and odd $\Rightarrow X(-j\omega)=-X(j\omega)\Rightarrow X(j\omega)=-X^*(j\omega)\Rightarrow$ $\operatorname{Re}\{X(j\omega)\}=0$.
+
 **Example**
 $$
 \frac{\mathrm d }{\mathrm d t} f(at +b) \overset{\mathcal F}{\operatorname*{\longleftrightarrow}} \frac{j\omega}{|a|} F\left(\frac{j\omega}{a}\right) e^{j\omega b/a}

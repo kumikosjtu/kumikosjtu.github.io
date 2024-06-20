@@ -68,7 +68,7 @@ a_k=\frac{1}{2}\int_{-1}^1 e^{-t} e^{-jk\pi t}\mathrm d t
 $$
 
 $$
-a_k=\frac{j}{1+jk\pi} \sin (1+jk\pi t)
+a_k=\frac{1}{2(1+jk\pi)}\left(e^{1+jk\pi}-e^{-1-jk\pi}\right)
 $$
 
 ### 4
