@@ -1,0 +1,646 @@
+[TOC]
+
+# 滤波器总结
+
+**滤波器的表征**
+
+- <u>差分方程</u>：$\displaystyle y(n)=\sum_{k=0}^M b_k x(n-k)-\sum_{k=1}^N a_k y(n-k)$.
+
+- 系统函数：
+  $$
+  \begin{cases}
+  \displaystyle H(z)=\frac{\sum_{k=0}^M b_k z^{-k}}{1+\sum_{k=1}^N a_k z^{-k}}& 有递归结构,\mathrm{IIR}\\
+  H(z)=\sum_{k=0}^{M} b_k z^{-k} & 无递归结构,\mathrm{FIR}
+  \end{cases}
+  $$
+
+## 1. 滤波器结构
+
+### 1.1 IIR 滤波器结构
+
+全极点型/零极点型。
+
+- **直接 I 型**，需要 $N+M$ 个延时单元。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_698ac483d3d2f5f54496e95bacdb78a9.png" alt="image-20241215155852796" style="zoom:30%;" />
+
+- **直接 II 型（典范型）**，需要 $N$ 个延时单元。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_fd498c33cd352b7a57375754d3b653c1.png" alt="image-20241215160328236" style="zoom:50%;" />
+
+- **级联型结构**，分解为一阶、二阶基本节，注意提取常数 $G$.
+  $$
+  H(z)=G\prod_{k} H_k(z)
+  $$
+
+  $$
+  H_k(z)=\frac{1+\beta_{1k}z^{-1}}{1+\alpha_{1k}z^{-1}}\\H_k(z)=\frac{1+\beta_{1k}z^{-1}+\beta_{2k}z^{-2}}{1+\alpha_{1k}z^{-1}+\alpha_{2k}z^{-2}}
+  $$
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_cda4005e26c3200161834989b422a991.png" alt="image-20241215160507791" style="zoom:50%;" />
+
+- **并联型结构**，使用分式展开，展开为
+  $$
+  H(z)=\sum_{k=1}^K H_k(z)+\sum_{k=0}^{M-N} C_k z^{-k}
+  $$
+
+  $$
+  H_k(z)=\frac{B_{0k}+B_{1k}z^{-1}}{1+A_{1k}z^{-1}+A_{2k}z^{-2}}
+  $$
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_f2073dd184866862467317bf18f63eaa.png" alt="image-20241215160857295" style="zoom:50%;" />
+
+- **转置型结构**，所有支路方向翻转，但支路增益不变，输入输出交换位置。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_896ba6a36cbac64efa92b604ad5fe9b4.png" alt="image-20241215161208141" style="zoom:50%;" />
+
+  > 证明：
+  > $$
+  > \frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^M b_k z^{-k}}{1+\sum_{k=1}^N a_k z^{-k}}
+  > $$
+  >
+  > $$
+  > \frac{X(z)}{Y(z)}=\frac{1+\sum_{k=1}^N a_k z^{-k}}{\sum_{k=0}^M b_k z^{-k}}
+  > $$
+
+### 1.2 FIR 滤波器结构
+
+- **直接型(横截型、卷积型)结构**
+  $$
+  \begin{aligned}
+  y(n)&= \sum_{k=0}^M b_k x(n-k)\\
+  &=\sum_{m=0}^{N-1} \underbrace{b_m}_{h(m)} x(n-m)
+  \end{aligned}
+  $$
+  ![image-20241215161402884](https://notes.sjtu.edu.cn/uploads/upload_d1cc9591257eca856f0243ba434f60fa.png)
+
+- **级联型结构**
+  $$
+  H(z)=\sum_{k=0}^M b_k z^{-k} = \prod_{k=1}^k (\beta_{0k}+\beta_{1k}z^{-1}+\beta_{2k}z^{-2})
+  $$
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_6cdd9f7865a3d3d509515fa078e29da5.png" alt="image-20241128171436294" style="zoom:50%;" />
+
+- **频率抽样型结构**
+  $$
+  H(z)=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1} \frac{H(e^{j\frac{2\pi}{N}k})}{1-e^{j\frac{2\pi}{N}k}z^{-1}}
+  $$
+  可以看成一个 FIR 系统级联一个 $N$ 个 IIR 子网络并联形成的 IIR 系统。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_739f5e596b008b4eec84cc2be8301cce.png" alt="image-20241215161939644" style="zoom:50%;" />
+
+- **快速卷积结构** 是直接型结构的快速型实现。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_a514b0a8ac42e66632694bc94b6f675c.png" alt="image-20241215162158771" style="zoom:50%;" />
+
+- **线性相位 FIR 滤波器结构** 
+
+  <u>分奇偶对称性讨论</u>，当单位抽样响应 $h(n),0\le n\le N-1$ 为实数且满足
+
+  - 偶对称性：$h(n)=h(N-1-n),0\le n\le N-1$ 或者；
+  - 奇对称性：$h(n)=-h(N-1-n),0\le n\le N-1$.
+
+  则系统频率响应是严格线性的。
+
+  <u>分长度 $N$ 奇偶性讨论</u>， 具有不同的实现方式，可以减少一半乘法次数。
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_4e2b5f196db8e6e730a568c17fd026c2.png" alt="image-20241215162425399" style="zoom:50%;" />
+
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_2d92b1839507e9375e4430e6e4df6a97.png" alt="image-20241215162443901" style="zoom:50%;" />
+
+### 1.3 数字滤波器频率响应
+
+> 当输入复指数序列 $x(n)=e^{j\omega n}$，则有：
+> $$
+> \begin{aligned}
+> y(n)&=\sum_{m=-\infin}^{+\infin} h(m) x(n-m)\\
+> &=\sum_{m=-\infin}^{+\infin} h(m) e^{j\omega(n-m)}\\
+> &=e^{j\omega n}\sum_{n=-\infin}^{+\infin} h(m) e^{-j\omega n}\\
+> &= e^{j\omega n} H(e^{j\omega})=x(n)H(e^{j\omega})
+> \end{aligned}
+> $$
+> 因此称复指数序列 $e^{j\omega n}$ 是系统的特征序列。
+
+$$
+H(e^{j\omega})=|H(e^{j\omega})| e^{j\beta(e^{j\omega})}
+$$
+
+**群延迟响应**
+$$
+\tau(e^{j\omega})=-\frac{\mathrm d }{\mathrm d \omega} \beta(e^{j\omega})
+$$
+
+### 1.4 全通滤波器
+
+全通滤波器的定义：
+$$
+|H_{ap}(e^{j\omega})|=C
+$$
+$N$ 阶全通滤波器：
+$$
+H_{ap}(z)=\frac{d_N + d_{N-1}z^{-1}+\cdots+d_1 z^{-N+1}+z^{-N}}{1+d_1 z^{-1}+\cdots+d_{N-1} z^{-N+1}+d_N z^{-N}}
+$$
+**零极点分布特点**：
+
+- 极点在单位圆内；
+- 零点在单位圆外；
+- 以单位圆镜像分布，即极点 $a$ 推出零点 $(a^*)^{-1}$.
+
+**系数特点**：
+
+- 各系数均为实数（为了满足 $d_k=d_k^*$ 即共轭对称关系）；
+- 分子、分母各系数相同但排序相反。
+
+**相频特性**：
+$$
+\frac{\mathrm d \beta_{ap}(\omega)}{\mathrm d \omega}<0
+$$
+因为 $\beta_{ap}(0)=0$，结合上述结论可得 $\beta_{ap}(\omega)<0,0\le \omega \le \pi$.
+
+同时可得全通系统的群延迟 $\displaystyle \tau_{ap}(\omega)=-\frac{\mathrm d \beta_{ap}(\omega)}{\mathrm d \omega}$ 为正。
+
+### 1.5 最小相位系统
+
+> 看零点来辨别。如果系统有极点在单位圆外，则不是三种系统。
+
+**最小相位系统 $\boldsymbol{H_{\min}(z)}$** 系统函数全部极点在单位圆内，全部零点也在单位圆内的因果稳定滤波器；最小相位系统的逆系统也是最小相位系统，因为只是调换了零点极点。
+
+**最大相位系统 $\boldsymbol{H_{\max}(z)}$** 系统函数全部极点在单位圆内，全部零点在单位圆外的因果稳定滤波器；
+
+**混合相位系统 $\boldsymbol{H_{\operatorname{mix}}(z)}$** 系统函数全部极点在单位圆内，在单位圆内外均有零点的因果稳定滤波器；
+
+**三种系统的关系**：通过串联全通系统转换。
+
+![image-20241215165655498](https://notes.sjtu.edu.cn/uploads/upload_2403f33da06c70fc964be9735c68202a.png)
+
+这一系列的最小相位系统、混合相位系统、最大相位系统的幅值响应相同，而相角响应依次滞后。
+
+- **最小相位滞后性**：因为新串联全通系统，相当于减小相位 $\beta(\omega)$，因此：
+  $$
+  \beta_{\min}(\omega)>\beta_{\operatorname{mix}}(\omega)>\beta_{\max}(\omega)
+  $$
+
+- **最小群延时性**：同理，
+  $$
+  \tau_{\min}(\omega)<\tau_{\operatorname{mix}}(\omega)<\tau_{\max}(\omega)
+  $$
+
+- **最小能量延迟性**：
+
+  局部能量越大，能量延迟越小，局部能量定义为
+  $$
+  E(n_0)=\sum_{n=0}^{n_0 }h^2(n)
+  $$
+  因为最小相位系统的延迟最小，所以局部能量最大。
+  $$
+  \sum_{n=0}^{n_0 }|h_{\min}(n)|^2>\sum_{n=0}^{n_0 }|h_{\operatorname{mix}}(n)|^2>\sum_{n=0}^{n_0 }|h_{\max}(n)|^2
+  $$
+
+- 
+
+**利用最小相位系统的逆系统补偿失真**
+
+对于系统 $H(z)$，希望其幅度响应为 1，设计 $H_c(z)$ 进行补偿。
+
+- 当 $H(z)$ 是最小相位系统，
+  $$
+  H_c(z)=\frac{1}{H(z)}
+  $$
+  可以完全补偿幅度响应和相位响应。
+
+- 当 $H(z)$ 不是最小相位系统，可以分解为 $H_{\min}(z)H_{ap}(z)$.
+  $$
+  H_c(z)=\frac{1}{H_{\min}(z)}
+  $$
+   可以完全补偿幅度响应，但是无法完全补偿相位响应。
+
+### 1.6 梳状滤波器
+
+**梳状滤波器结构**
+$$
+H(z)=1-z^{-N}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_28cc939cef22e33a1dd60750b9e6a452.png" alt="image-20241215170850876" style="zoom:50%;" />
+
+保留需要的频率为 $\displaystyle \frac{(2k+1)\pi}{N}$ 信号，滤除其它频率信号。
+
+对梳状滤波器的改进：**梳状陷波器**
+$$
+\displaystyle H(z)=\frac{1-z^{-N}}{1-(r^{-1}z)^N}\quad r\approx 1
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6bbe91cffa512b93667fdebe6888e387.png" alt="image-20241215171719623" style="zoom:50%;" />
+
+考虑当输入信号频率为 $\displaystyle \frac{2\pi}{N}$，此时和一个零点重合，输出为零。
+
+当输入信号频率为 $\displaystyle\frac{2\pi}{N}+\beta$，其中 $\beta$ 很小，则可以看成一个双 $90^\circ$ 的等腰三角形，得到 $AZ_1P_1$ 是一个等腰直角三角形，输出幅度：
+$$
+A\left(\frac{2\pi}{N}+\beta\right)=\frac{AZ_1\cdot AZ_2}{AP_1\cdot AP_2}
+$$
+其中 $AZ_2\approx AP_2$，$AZ_1=\beta,AP_1=\sqrt{2}\beta$，因此输出 $1/\sqrt{2}$. 比修正之前性能好，可以精确地滤除频率为 $2k\pi/N$ 的信号.
+
+![img](https://notes.sjtu.edu.cn/uploads/upload_fa2de5c1bb6e2f20f7a66c54a7522d2c.png)
+
+## 2. IIR 滤波器设计
+
+### 2.1 理想滤波器频谱图
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_a42ff99e0a673d23c9b75d59f60cde92.png" alt="image-20241215172413183" style="zoom:50%;" />
+
+### 2.2 滤波器指标
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_89821c12187e7a059a8a9c3a22ed23d4.png" alt="image-20241215172531100" style="zoom:50%;" />
+
+- $\omega_p$：通带截止数字频率，通带内 $1-\delta_1 \le |H(e^{j\omega})|\le 1$
+- $\omega_{st}$：阻带截止数字频率，阻带内 $|H(e^{j\omega})|\le \delta_2$.
+- $R_p$：通带允许的最大衰减 $=-20\lg (1-\delta_1)$
+- $A_{st}$：阻带允许的最大衰减 $=-20\lg(\delta_2)$
+
+### 2.3 模拟巴特沃斯低通滤波器
+
+$$
+|H_a(j\Omega)|=\frac{1}{\sqrt{1+\left(\frac{\Omega}{\Omega_c}\right)^{2N}}}
+$$
+
+- $N$：滤波器阶数；
+- $\Omega_c$：3dB 频率。
+
+选取截止频率为 $\Omega_c=0.5\pi$，绘图如下：
+
+![untitled](https://notes.sjtu.edu.cn/uploads/upload_9b45ecf3d4ce34ebd4aaa011e6fb52cf.png)
+
+- $\Omega=0$ 时，$|H_a(j0)|=1$ 无衰减
+- $\Omega=\Omega_c$ 时，$|H_a(j\Omega_c)|=1/\sqrt{2}$，对应 $R_c=3\mathrm{~dB}$ 通带最大衰减。因为对于不同的 $N$，$R_c$ 不变，因此有 3dB 不变性。
+- 通带 $0\le \Omega \le \Omega_c$ 内，最平幅度特性。因为 $|H_a(j\Omega_c)|^2$ 在 $\Omega=0$ 处的前 $2N-1$ 阶导数为零。
+
+**归一化的巴特沃斯滤波器**
+$$
+|H_{an}(j\Omega)|=\frac{1}{\sqrt{1+\Omega^{2N}}}
+$$
+一般可以通过查表法来获取归一化巴特沃斯滤波器的系统函数，然后 <u>去归一化</u>：
+$$
+H_a(s)=H_{an}\left(\frac{s}{\Omega_c}\right)
+$$
+**$\boldsymbol{N,\Omega_c}$ 参数设计**
+
+首先，根据图像定性分析：
+
+- $N$ 越大，滤波器越接近理想滤波器；
+- 但是 $N$ 越大，滤波器越难以实现；
+- 因此，我们需要首先找出最小符合要求的 $N$，然后根据 $N$ 来选择 $\Omega_c$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_ed15a886d73ffd0070a93f13d9361744.png" alt="image-20241215190117015" style="zoom:50%;" />
+
+定义：
+
+- $\Omega_p$：通带截止频率
+- $\Omega_{st}$：阻带截止频率
+
+根据图中关系，可以算出：
+
+- $R_p\ge-20\lg |H_a(j\Omega_p)|$ 衰减最大值
+- $A_{st}\le -20\lg |H_a(j\Omega_{st})|$ 衰减最小值
+
+重写表达式为：
+$$
+-20\lg |H_a(j\Omega_p)|=\underbrace{10 \lg \left(1+\left(\frac{\Omega_p}{\Omega_c}\right)^{2N}\right)\le R_p}_{\Rightarrow (\Omega_p/\Omega_c)^{2N}\le 10^{0.1R_p}-1}\\
+-20\lg |H_a(j\Omega_p)|=\underbrace{10 \lg \left(1+\left(\frac{\Omega_{st}}{\Omega_c}\right)^{2N}\right)\ge A_s}_{\Rightarrow(\Omega_{st}/\Omega_c)^{2N}\ge 10^{0.1A_s}-1}
+$$
+即：
+$$
+\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\le \left(\frac{\Omega_{st}}{\Omega_p}\right)^{2N}
+$$
+因此
+$$
+\boxed{N\ge \lg \left.\left(\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\right)\right/2\lg (\Omega_{st}/\Omega_p)}
+$$
+为了确定 $\Omega_c$，我们可以利用不等式：
+$$
+(\Omega_{st}/\Omega_c)^{2N}\le 10^{0.1R_p}-1\Rightarrow \Omega_c \ge \underbrace{\boxed{\Omega_{p}/\sqrt[2N]{10^{0.1R_p}-1}}}_{\doteq\Omega_{cp}}
+$$
+一般取 $\Omega_{c}=\Omega_{cp}$.
+
+> 到这一步我们就可以 <u>设计模拟低通滤波器</u>，其步骤为：
+>
+> 1. 确定指标 $\Omega_{s},\Omega_{p},A_s,R_p$;
+> 2. 根据指标确定巴特沃斯滤波器参数 $N,\Omega_{c}$;
+> 3. 根据滤波器阶数确定归一化巴特沃斯滤波器的系统函数;
+> 4. 去归一化.
+
+### 2.4 频带转换
+
+**频带变换** 可以将 <u>归一化模拟低通滤波器</u>（$\overline{\Omega_p}=1$）转换为 <u>模拟低通、高通、带通、带阻滤波器</u>。
+
+**频带变换的实现**：设计变换函数 $G$，满足：
+$$
+H_{an}(\overline{s}) \overset{\overline{s}=G(s)}{\operatorname*{\longleftrightarrow}}H_a(s)\\
+H_{an}(j\overline{\Omega}) \overset{j\overline{\Omega}=G(j\Omega)}{\operatorname*{\longleftrightarrow}}H_a(j\Omega)\\
+$$
+**频带变换函数** 要求：
+
+- $G$ 函数是有理函数；
+- 变换不能改变稳定性；
+- 纯虚数条件，即 $G(虚数)=虚数$.
+
+令带宽和中心频率表示为
+
+- $B_p=\Omega_{p1}-\Omega_{p2}$，$\Omega_{p0}=\sqrt{\Omega_{p1}\Omega_{p2}}$.
+- $B_{s}=\Omega_{st1}-\Omega_{st2}$，$\Omega_{st0}=\sqrt{\Omega_{st1}\Omega_{st2}}$.
+
+| 类型                                 | $s$ 变换                                                     | $\Omega$ 变换                                                |
+| ------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 截止频率 $\Omega_p$ 低通             | $\displaystyle \overline{s}=\frac{s}{\Omega_p}$              | $\displaystyle \overline \Omega= \frac{\Omega}{\Omega_p}$    |
+| 截止频率 $\Omega_p$ 低通             | $\displaystyle \overline s=\frac{\Omega_p}{s}$               | $\displaystyle \overline{\Omega}=-\frac{\Omega_p}{\Omega}$   |
+| $\Omega_{p1}\sim \Omega_{p1}$ 带通   | $\displaystyle \overline{s}=\frac{s^2+\Omega_{p0}^2}{B_p s}$ | $\displaystyle\overline{\Omega}=\frac{\Omega^2-\Omega_{p0}^2}{B_{p}\Omega}$ |
+| $\Omega_{st1}\sim \Omega_{st2}$ 带阻 | $\displaystyle \overline{s}=\frac{\overline{\Omega}_{st}B_{s}s}{s^2+\Omega_{st0}^2}$ | $\displaystyle \overline{\Omega}=\frac{\overline{\Omega}_{st}B_{s}\Omega}{\Omega_{st0}^2-\Omega^2}$ |
+
+**带通滤波器 $\boldsymbol{\overline\Omega_{st}}$ 的确定**
+
+因为带通滤波器的 $\Omega_{p1},\Omega_{p2}$ 均可以映射到 $\overline{\Omega}_p=1$，所以只需确定 ${\overline\Omega_{st}}$ 即可。
+
+<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20241215193513227.png" style="zoom:40%;" />
+
+计算对应的 $\overline{\Omega}_{st1,2}$ 如下：
+$$
+\overline{\Omega}_{st1}=G(\Omega_{st1}),\overline{\Omega}_{st2}=G(\Omega_{st2})
+$$
+然后 $\overline{\Omega}_{st}$ 取 $\min\left\{\left|\overline{\Omega}_{st1}\right|,\left|\overline{\Omega}_{st2}\right|\right\}$.
+
+注意点：
+
+- 需要取绝对值，因为分别对应正的频率和负的频率；
+- 当更小的阻带截止频率满足时，更大的阻带截止频率一定满足，所以取比较小的一个。
+
+**带阻滤波器 $\boldsymbol{\overline{\Omega}_{st}}$ 的确定**
+
+频带映射函数中存在未知数 $\overline{\Omega}_{st}$，可以通过带阻滤波器 $\Omega_{p1},\Omega_{p2}$ 映射到 $\overline{\Omega}_p=1$ 来确定 $\overline{\Omega}_{st}$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5fbbdffbae4881325b2dcbcf5a6c15e2.png" alt="image-20241215194151099" style="zoom:50%;" />
+$$
+\overline{\Omega}_{p1}=G(\Omega_{p1}),\overline{\Omega}_{p2}=G(\Omega_{p2})
+$$
+
+$$
+\overline{\Omega}_p={\color{red}\max}\left\{\left|\overline{\Omega}_{p1}\right|,\left|\overline{\Omega}_{p2}\right|\right\}=1=\frac{1}{\overline{\Omega}_{st}}\overline{\Omega}_{st}
+$$
+
+> 到这里我们可以 <u>设计模拟高通/带通/带阻滤波器</u>，步骤如下：
+>
+> 1. 确定模拟指标；
+> 2. 确定归一化低通滤波器所需满足的指标 $\overline{\Omega}_p,\overline{\Omega}_{st}$.
+>    1. 高通：直接利用公式 $\displaystyle \overline{\Omega}=-\frac{\Omega_p}{\Omega}$.
+>    2. 带通：参上；
+>    3. 带阻：参上.
+> 3. 根据指标 $\overline{\Omega}_p,\overline{\Omega}_{st}$ 确定原型巴特沃斯滤波器参数 $N,\overline \Omega_{c}$;
+> 4. 通过查表法确定 $H_{an}(\overline s)$;
+> 5. 去归一化 $H_a(\overline{s})=H_{an}(\overline{s}/\overline{\Omega_c})$;
+> 6. 通过变换函数进行频带变换.
+
+### 2.5 模数映射
+
+模数映射：从 $s$ 域映射到 $z$ 域，牵扯到抽样时间 $T$.
+
+- 冲激不变法：单位冲激响应 $h_a(t)\Rightarrow h(n)$;
+- 双线性法：系统函数 $H(s)\Rightarrow H(z)$.
+
+#### 2.5.1 冲激不变法
+
+![image-20241215201441818](https://notes.sjtu.edu.cn/uploads/upload_9b814a6141be34a7b7ad48058391e759.png)
+$$
+H_a(s)=\sum_{k=1}^N \frac{A_k T}{s-s_k}\Rightarrow H(z)=\sum_{k=1}^N \frac{A_k T}{1-e^{s_k T}z^{-1}}
+$$
+
+- 由极点关系可以推出 $s,z$ 关系：$z=e^{sT}$;
+- 由采样的关系可以推出频率关系：$\omega=\Omega T$.
+
+存在 <u>混叠失真问题</u>，因为 $s$ 平面和 $z$ 平面并非一一对应，极点对应，而零点不对应。模拟滤波器的频率响应带限于 $\displaystyle \frac{\Omega_s}{2}=\frac{\pi}{T}$ 内，无混叠失真。不能用于高通滤波器和带阻滤波器。
+
+#### 2.5.2 双线性变换法
+
+![image-20241217231545986](https://notes.sjtu.edu.cn/uploads/upload_d68fbb5c2632e1464ea6d73b34d37bf0.png)
+
+使用 $\displaystyle \Omega=\tan \left(\frac{\Omega_1 T}{2}\right)$ 将整个 $\sigma+j\Omega$ 平面映射到 $\sigma+j\Omega_1$ 平面，其中 $\Omega_1$ 取值 $-\pi/T,\pi/T$.
+$$
+\boxed{s=\frac{1-z^{-1}}{1+z^{-1}}}\quad \boxed{z=\frac{1+s}{1-s}}
+$$
+如果引入线性变换常数 $c=2/T$，则有如下关系：
+$$
+\boxed{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}\quad \boxed{z=\frac{T/2+s}{T/2-s}}\quad \boxed{\Omega=\frac{2}{T}\tan \left(\frac{\omega}{2}\right)}
+$$
+因为幅频响应存在畸变，所以需要将数字指标 $\omega$ 变换为模拟指标 $\Omega$，才能设计滤波器。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_912df5cc738d25b2355dc6ce0356a6c6.png" alt="image-20241217232335367" style="zoom:40%;" />
+
+> 到这里我们可以 <u>设计数字高通/带通/带阻滤波器</u>，步骤如下：
+>
+> 1. 确定模拟指标；通过 $\omega=\Omega T$ 确定对应的数字指标，再通过频率预畸 $\displaystyle \Omega'=\frac{2}{T}\tan \frac{\omega}{2}$ 变换回模拟滤波器需要的指标。
+> 2. 确定归一化低通滤波器所需满足的指标 $\overline{\Omega}_p,\overline{\Omega}_{st}$.
+> 3. 根据指标 $\overline{\Omega}_p,\overline{\Omega}_{st}$ 确定原型巴特沃斯滤波器参数 $N,\overline \Omega_{c}$;
+> 4. 通过查表法确定 $H_{an}(\overline s)$;
+> 5. 去归一化 $H_a(\overline{s})=H_{an}(\overline{s}/\overline{\Omega_c})$;
+> 6. 通过变换函数进行频带变换.
+> 7. 双线性变换法 $\displaystyle H(z)=H(s)|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}$.
+
+### 2.6 模数直接变换
+
+之前需要两步：双线性变换法+频带变换，现在可以合并成一步，直接使用模数直接变换。
+
+**模拟低通到数字低通**
+
+- 变换关系：$\boxed{\displaystyle s=\frac{1-z^{-1}}{1+z^{-1}},z=\frac{1+s}{1-s}}$.
+- 频率间关系：$\boxed{\Omega=\tan\left(\omega/2\right)}$.
+- 通带截止频率间关系：$\Omega_p=\tan\left(\omega_p/2\right)$
+
+**模拟低通到数字高通**
+
+相当于 $z\gets -z$.
+
+- 变换关系：$\boxed{\displaystyle s=\frac{1+z^{-1}}{1-z^{-1}}}$.
+- 频率间关系：$\boxed{\Omega=\cot(\omega/2)}$.
+- 截止频率关系：$\Omega_p=\cot(\omega_p/2)$.
+
+**模拟低通到数字带通**
+
+中心频率设为 $\omega_0$，希望原来 $\Omega=0$ 点映射到 $\omega_0$ 点，并且符合 $\omega_{p1},\omega_{p2}$ 的条件。
+
+- 中心频率表达式：$\displaystyle \cos \omega_0 =\frac{\sin (\omega_{p2}+\omega_{p1})}{\sin \omega_{p2}+\sin \omega_{p1}}$.
+
+- 变换关系：$\displaystyle \boxed{s=\frac{1-2z^{-1}\cos \omega_0+z^{-2}}{1-z^{-2}}}$.
+
+- 频率间关系：$\boxed{\Omega=\frac{\cos \omega_0 -\cos \omega}{\sin \omega}}$.
+
+- 截止频率间关系：
+  $$
+  \Omega_p=\frac{\cos \omega_0-\cos \omega_{p2}}{\sin \omega_{p2}}\\
+  -\Omega_p=\frac{\cos \omega_0-\cos \omega_{p1}}{\sin \omega_{p1}}
+  $$
+  取约束更强的。
+
+**模拟低通到数字带阻**
+
+- 中心频率表达式：$\displaystyle \cos \omega_0 =\frac{\sin (\omega_{st2}+\omega_{st1})}{\sin \omega_{st2}+\sin \omega_{st1}}$.
+- 变换关系：$\displaystyle \boxed{s=\frac{1-z^{-2}}{1-2z^{-1}\cos \omega_0+z^{-2}}}$（取倒数）
+- 频率间关系：$\boxed{\Omega=\frac{\sin \omega}{-\cos \omega_0 +\cos \omega}}$.
+- 截止频率间关系。
+
+> 到这里我们可以 <u>更加快速地设计数字高通/带通/带阻滤波器</u>，步骤如下：
+>
+> 1. 确定模拟指标；通过 $\omega=\Omega T$ 确定对应的数字指标.
+> 2. 确定中心频率 $\omega$，进行频率预畸，直接将所需的数字指标变换到模拟指标，并且计算出 ${\Omega}_p,{\Omega}_{st}$.
+> 3. 根据指标 ${\Omega}_p,{\Omega}_{st}$ 确定原型巴特沃斯滤波器参数 $N,\Omega_{c}$;
+> 4. 通过查表法确定 $H_{an}(s)$;
+> 5. 去归一化 $H_a({s})=H_{an}({s}/{\Omega_c})$;
+> 6. 进行模数直接变换。
+
+## 3. FIR 滤波器设计
+
+### 3.1 线性相位 FIR 滤波器
+
+当单位抽样响应 $h(n),0\le n\le N-1$ 为 <u>实数</u> 且满足
+
+- 偶对称性：$h(n)=h(N-1-n),0\le n\le N-1$ 或者；
+- 奇对称性：$h(n)=-h(N-1-n),0\le n\le N-1$.
+
+则系统频率响应是严格线性的，也就是 $\arg H(e^{j\omega})=\alpha \omega$.
+
+**偶对称线性相位证明**
+
+代入 $h(n)=h(N-1-n),0\le n\le N-1$ 的条件，
+$$
+\begin{aligned}
+H(z)&=\sum_{n=0}^{N-1}h(n)z^{-n}\\
+&=\sum_{n=0}^{N-1} h(N-1-n) z^{-n}\\
+&=z^{-(N-1)} \sum_{n=0}^{N-1}h(N-1-n)z^{N-1-n}\\
+&=z^{-(N-1)} H(z^{-1})
+\end{aligned}
+$$
+代入 $H(z)=z^{-(N-1)}H(z^{-1})$，可得
+$$
+\begin{aligned}
+H(z)&=\frac{1}{2}\left(H(z)+z^{-(N-1)} H(z^{-1})\right)\\
+&=\frac{1}{2}\sum_{n=0}^{N-1} h(n) \left(z^{-n}+z^{-(N-1)} z^{n}\right)\\
+&=\frac{1}{2}z^{-\frac{N-1}{2}}\sum_{n=0}^{N-1} h(n)\left(z^{\frac{N-1}{2}-n}+z^{-\left(\frac{N-1}{2}-n\right)}\right)
+\end{aligned}
+$$
+代入 $z=e^{j\omega}$.
+$$
+H(e^{j\omega})= e^{\underbrace{-\frac{N-1}{2}\omega}_{\theta(\omega)}j} \underbrace{\sum_{n=0}^{N-1} h(n) \cos \left(\left(\frac{N-1}{2}-n\right)\omega\right)}_{H(\omega)}
+$$
+因此相位函数 $\theta(\omega)$ 是 $\omega$ 的线性函数，$\displaystyle \tau(\omega)=-\frac{\mathrm d \theta}{\mathrm d \omega}=\boxed{\frac{N-1}{2}}$.
+
+**奇对称线性相位证明**
+
+代入 $h(n)=-h(N-1-n),0\le n\le N-1$ 的条件，可得
+$$
+H(e^{j\omega})=je^{-j\frac{N-1}{2}\omega}\underbrace{\sum_{n=0}^{N-1} h(n) \sin \left(\left(\frac{N-1}{2}-n\right)\omega\right)}_{H(\omega)}
+$$
+
+$$
+\theta(\omega)=\frac{\pi}{2}-\frac{N-1}{2}\omega 
+$$
+
+相位函数 $\theta(\omega)$ 是 $\omega$ 的线性函数，$\displaystyle \tau(\omega)=-\frac{\mathrm d \theta}{\mathrm d \omega}=\boxed{\frac{N-1}{2}}$.
+
+**零点的分布** 对于线性相位 FIR 滤波器，
+
+因为 FIR 滤波器系统函数的系数为实数，所以 $z$ 零点推出 $z^*$ 也是零点，也就是。
+$$
+H(z)=\sum_{n=0}^{N-1} h(n)z^{-n}=0\\
+H(z^*)=\sum_{n=0}^{N-1} h(n)(z^*)^{-n}=(H(z))^*=0
+$$
+因为线性相位的性质，
+$$
+\begin{aligned}
+H(z^{-1})&=\sum_{n=0}^{N-1}h(n)z^{n}\\
+&=\pm\sum_{n=0}^{N-1}h(N-1-n)z^n\\
+&=\pm z^{(N-1)}\sum_{n=0}^{N-1} h(N-1-n) z^{-(N-1-n)}\\
+&=\pm z^{N-1}H(z)=0
+\end{aligned}
+$$
+因此 $z$ 零点推出 $z^{-1}$ 也是零点。
+
+### 3.2 窗函数法 FIR 滤波器设计
+
+1. 给定要求的理想频率响应 $H_d(e^{j\omega})$ (desired)，一般是低通、高通、带通、带阻。
+
+2. 我们利用 IDTFT 求得理想滤波器的系数 $h_d(n)$
+   $$
+   h_d(n)=\frac{1}{2\pi} \int_{-\pi}^{\pi} H_d(e^{j\omega}) e^{j\omega n}\mathrm d \omega
+   $$
+   一般取 $N$ 为奇数，令 $\tau=(N-1)/2$，对于低通滤波器，
+   $$
+   \begin{aligned}
+   h_d^{lp}(n)
+   &=\begin{cases}
+   \frac{\sin(\omega_c(n-\tau))}{\pi(n-\tau)},&n\not=\tau\\
+   \omega_c/\pi,&n=\tau
+   \end{cases}\\
+   \end{aligned}
+   $$
+   当 $\omega_c=\pi$ 时，低通滤波器变为全通滤波器：
+   $$
+   h_{d}^{ap}(n)=\begin{cases}
+   1,&n=\tau\\
+   0,&n\not=\tau
+   \end{cases}
+   $$
+   因此，高通滤波器直接利用线性性做减法可得：
+   $$
+   h_d^{hp}(n)=\begin{cases}
+   -\frac{\sin(\omega_c(n-\tau))}{\pi(n-\tau)},&n\not=\tau\\
+   1-\omega_c/\pi,&n=\tau
+   \end{cases}
+   $$
+   带通滤波器利用两个低通做减法：
+   $$
+   h_d^{bp}(n)=
+   \begin{cases}
+   \frac{\sin[\omega_2(n-\tau)]-\sin[\omega_1(n-\tau)]}{\pi(n-\tau)},&n\not=\tau\\
+   (\omega_2-\omega_1)/\pi,&n=\tau
+   \end{cases}
+   $$
+   带阻利用全通减带通：
+   $$
+   h_d^{bs}(n)=
+   \begin{cases}
+   -\frac{\sin[\omega_2(n-\tau)]-\sin[\omega_1(n-\tau)]}{\pi(n-\tau)},&n\not=\tau\\
+   1-(\omega_2-\omega_1)/\pi ,&n=\tau
+   \end{cases}
+   $$
+
+3. 因为 $h_d$ 是无限时长的，所以需要用有限时长的窗函数 $w(n)$ 截断，也就是：
+   $$
+   h(n)=h_d(n)\cdot w(n)
+   $$
+   并且 $h(n)$ 在 $0\le n\le N-1$ 之外的范围都为零。
+
+4. 求出加窗后的实际频率响应 $H(e^{j\omega})$.
+   $$
+   \begin{aligned}
+   H(e^{j\omega})=&\frac{1}{2\pi} [H_d(e^{j\omega})* W(e^{j\omega})]\\
+   H(f)=&H_d(f)*W(f)
+   \end{aligned}
+   $$
+   因为是卷积关系，所以产生的肩峰过渡带宽度 $\Delta \omega$ 取决于 $W(e^{j\omega})$ 宽度。肩峰过渡带的中心为对应理想滤波器的边界。
+
+> 综上，设计 **FIR 滤波器** 步骤为：
+>
+> 1. 给定设计指标 $\omega_p,\omega_{st},R_p,A_s$.
+>
+>    计算中心频率：
+>    $$
+>    \omega_c=(\omega_p+\omega_{st})/2\\
+>    \omega_{1}=(\omega_{p1}+\omega_{st1})/2\\
+>    \omega_{2}=(\omega_{p2}+\omega_{st2})/2
+>    $$
+>
+> 2. 选择窗类型和长度点数 $N$.
+>
+>    1. 窗类型由阻带最小衰减 $A_s$ 决定；
+>    2. 窗长度点数由过渡带宽 $\Delta \omega$ 决定。
+>       - 对于低通高通，$\Delta\omega=|\omega_{st}-\omega_p|$.
+>       - 对于带通带阻，$\Delta \omega=\min\{|\omega_{st1}-\omega_{p1}|,|\omega_{st2}-\omega_{p2}|\}$.
+>
+>    决定窗函数 $w(n)$.
+>
+> 3. 求取 $h(n)=h_d(n)\cdot w(n)$.
+>
+> 4. 检验 $H(e^{j\omega})$ 是否满足性能要求

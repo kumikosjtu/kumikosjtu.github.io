@@ -1,0 +1,359 @@
+# 3. DFT, DFS, FFT 总结
+
+## 3.1 信号与空间
+
+**向量集合 $\mathbb V$**：可以定义加法、标量乘法、满足交换律、结合律、分配律、存在加法零元、加法逆元、乘法单位元。
+
+**向量的内积** 定义为：
+$$
+\left\langle\cdot,\cdot \right\rangle: \ \mathbb V \times \mathbb V \to \mathbb F
+$$
+内积用于测量向量间的相似性。如果内积为零，则称向量是正交的。
+
+内积满足的特性：分配性、共轭对称性、标度性、正定性、正交性。
+
+- $\R^n$ 空间中的内积：$\displaystyle \sum_{n=0}^{N-1} x_ny_n$.
+- $\C^N$ 空间中的内积：$\displaystyle \sum_{n=0}^{N-1} x_n^*y_n$.
+- $L_2([-1,1])$ 空间中的内积：$\displaystyle \int_{-1}^{1} x(t)y(t)\mathrm d t$.
+
+**信号空间** 有限支持序列和周期性序列可以定义在 $\C^N$ 空间中：
+$$
+\bold x=[x_0, x_1,\cdots,x_{N-1}]^\top
+$$
+有限支持序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=0}^{N-1} x_n^*y_n$
+
+无限长度序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=-\infin}^{\infin} x_n^*y_n$
+
+要求序列是平方可加的。
+
+**基向量** 找到一个向量集合 $\{\bold w^{(k)}\}$，包含最少的向量数，使得其他任意向量空间中的向量都可以写成这些向量的线性组合。
+
+也就是满足以下条件，
+$$
+\bold x=\sum_{k=0}^{K-1} \alpha_k \bold w^{(k)},\quad \alpha_k\in \C
+$$
+基系数 $\alpha_k$ 是唯一的。并且基向量之间线性无关。
+
+- 正交基向量的性质：$\left\langle \bold w^{(k)},\bold w^{(n)}\right\rangle=0$ 当 $k\not= n$.
+
+- 归一化正交基向量的性质：$\left\langle \bold w^{(k)},\bold w^{(n)}\right\rangle=\delta[n-k]$.
+
+  当基向量归一化的时候，基系数计算简单，
+  $$
+  \alpha_k=\left\langle\bold w^{(k)},x\right\rangle
+  $$
+
+$[-1,1]$ 区间的傅里叶基函数：
+$$
+\frac{1}{\sqrt{2}},\cos \pi t,\sin \pi t,\cos 2\pi t,\sin 2\pi t,\cdots
+$$
+利用傅里叶基函数可以近似非连续函数，例如 $h(t)=\operatorname{sgn}(t)$，使用：
+$$
+\hat h(t)=\sum_{k=0}^{N} \frac{1}{2k+1} \sin[(2k+1)\pi t]
+$$
+近似。满足均方收敛的条件，但是非一致收敛。
+
+## 3.2 DFT
+
+**DFT 在信号空间中的表征** 由时域基转换到了频域基：
+$$
+w^t_k[n]=\delta[n-k]
+\\
+w^f_k[n]=e^{j\frac{2\pi}{N}kn}
+$$
+可以证明是正交的，但是没有进行归一化.
+
+DFT 公式：
+$$
+[\bold X]_k=\left\langle \bold w^{(k)},\bold x\right\rangle\Rightarrow \bold X=\bold W_N\bold x
+$$
+IDFT 公式：
+$$
+\bold x=\frac{1}{N}\bold W_N^H \bold X
+$$
+**DFT 公式和 IDFT 公式**
+$$
+X[k]=\sum_{n=0}^{N-1}x[n]e^{-j\frac{2\pi}{N}kn},\quad k=0,1,\cdots,N-1\\
+x[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{j\frac{2\pi}{N}kn},\quad n=0,1,\cdots,N-1
+$$
+**DFT 示例：余弦序列**
+
+当相位为零，
+$$
+x[n]=3\cos\left(\frac{2\pi \cdot 4n}{64}\right),\quad x[n]\in \C^{64}
+$$
+
+$$
+\omega=\frac{2\pi\cdot k}{N}
+$$
+
+$$
+x[n]=\frac{3}{2}(w_4[n]+w_{60}[n])
+$$
+
+$$
+X[k]=\left\langle w_k[n],x[n]\right\rangle=96(\delta[k-4]+\delta[k-60])
+$$
+
+![image-20241222060209637](https://notes.sjtu.edu.cn/uploads/upload_8102b651593a97c3fbfab2b12bd82ed6.png)
+
+注意，$w_k[n]$ 未进行归一化。
+
+当相位不为零，
+$$
+x[n]=3\cos\left(\frac{2\pi \cdot 4n}{64}+\frac{\pi}{3}\right),\quad x[n]\in \C^{64}
+$$
+
+$$
+x[n]=\frac{3}{2}(e^{j\pi/3}w_4[n]+e^{-j\pi/3}w_{60}[n])
+$$
+
+$$
+X[k]=\left\langle w_k[n],x[n]\right\rangle=96 e^{j\pi/3}\delta[k-4]+96e^{-j\pi/3}\delta[k-60]
+$$
+
+![image-20241222060219507](https://notes.sjtu.edu.cn/uploads/upload_683d95959c3538fcca9c5929ba25c102.png)
+
+幅值不变，相角发生了变化。
+
+**DFT 示例：矩形窗信号** $M$ 宽 $N$ 长的矩形信号。
+$$
+X[k]=\frac{\sin \left(\frac{\pi}{N}Mk\right)}{\sin\left(\frac{\pi}{N}k\right)}e^{-j\frac{\pi}{N}(M-1)k}
+$$
+根据定义，$X[0]=M$，并且如果 $Mk/N$ 是整数，则 $X[k]=0$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6b16a1a43db8d1a9afb072d9fa6c86ff.png" alt="image-20241222060540750" style="zoom:50%;" />
+
+## 3.3 DFS
+
+$$
+\tilde{X}(k)=\operatorname{DFS}\{{\tilde{x}}(n)\}=\sum_{n=0}^{N-1} {\tilde{x}}(n) e^{-j\frac{2\pi}{N} nk}=\sum_{n=0}^{N-1} {\tilde{x}}(n)W_{N}^{nk}\\
+\tilde{x}(n)=\operatorname{IDFS}\{\tilde{X}(k)\}=\frac{1}{N}\sum_{k=0}^{N-1} \tilde{X}(k) e^{j\frac{2\pi}{N} nk} = \frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}(k) W_{N}^{-nk}
+$$
+
+**圆周位移**
+$$
+\tilde{x}[n-M]R_{N}[n]=x[\operatorname{mod}(n-m,N)]
+$$
+
+## 3.4 DFT 性质
+
+- **周期序列的移位**：
+  $$
+  \operatorname{DFT}\{x[(n+m)_{N}]\}=W_{N}^{-mk} X(k)=e^{j\frac{2\pi}{N}mk} X(k)
+  $$
+  幅度不变，相角位移。
+  $$
+  \operatorname{IDFT}\{X[(k+m)_{N}]\}=e^{-j\frac{2\pi}{N}mn} x[n]
+  $$
+
+- **圆周翻转特性**：
+  $$
+  \operatorname{DFT}\{x[(-n)_{N}]\}=X[(-k)_N]\\
+  \operatorname{DFT}\{x^*[(-n)_N]\}=X^*[(k)_N]
+  $$
+
+- **圆周共轭对称/反对称序列** 的分解：
+
+  - 圆周共轭对称序列：$x_{ep}[n]=x_{ep}^*[(-n)_N]$（全为实数且对称的序列是圆周共轭对称序列）
+  - 圆周共轭反对称序列：$x_{op}[n]=-x_{op}^*[(-n)_N]$.
+
+  $$
+  x[n]=x_{ep}[n]+x_{op}[n]
+  $$
+
+  $$
+  \begin{cases}
+  x_{ep}[n]=\frac{1}{2}(x[n]+x^*[(-n)_N])\\
+  x_{op}[n]=\frac{1}{2}(x[n]-x^*[(-n)_N])
+  \end{cases}
+  $$
+
+  对于时域和频域，一方分解为实部+虚部，另一方分解为对称+反对称，互相对应。
+
+  如果时域只有实部部分，则对应频域只有对称部分，满足：
+  $$
+  X[k]=X^*[(-k)_N]
+  $$
+  ![image-20241222124432293](https://notes.sjtu.edu.cn/uploads/upload_1d0617b7665c5b2f6d6544f98c978a65.png)
+
+  利用圆周共轭对称性可以 <u>减少实序列 DFT 的计算量</u>。
+
+  例如构造：
+  $$
+  x[n]=x_1[n]+jx_2[n]
+  $$
+  其中 $x_{1,2}[n]$ 为实数序列，则
+  $$
+  X_{ep}[k]=\operatorname{DFT}\{x_1[n]\},\\X_{op}[k]=\operatorname{DFT}\{jx_2[n]\}\Rightarrow \operatorname{DFT}\{x_2[n]\}=\frac{1}{j} X_{op}[k]
+  $$
+  可以用一次复数序列的 DFT 来求得两个实数序列的 DFT.
+
+  利用 $N$ 点复序列的 DFT，计算 $2N$ 点实序列 $x[n]$ 的 DFT：首先，我们构造 $x_1,x_2$.
+  $$
+  x[n]=\begin{cases}
+  x_1[k],&n=2k\\x_2[k],&n=2k+1
+  \end{cases}
+  $$
+  令 $y[n]=x_1[n]+jx_2[n]$ 利用：
+  $$
+  \begin{cases}
+  \operatorname{DFT}\{x_1[n]\}=Y_{ep}[k]=(Y[k]+Y^*[(-k)_N])/2\\
+  \operatorname{DFT}\{x_2[n]\}=-jY_{op}[k]=-j(Y[k]-Y^*[(-k)_N])/2
+  \end{cases}
+  $$
+  计算得到 $X_1[k]$ 和 $X_2[k]$. 根据 DFT 定义，
+  $$
+  \begin{aligned}
+  X[k]&=\sum_{n\mathrm{~even}} x_1[n] W_{2N}^{nk}+\sum_{n\mathrm{~odd}} x_2[n] W_{2N}^{nk}\\
+  &=\sum_{n\mathrm{~even}} x_1[n] W_{N}^{\frac{n}{2}k}+W_{2N}^{k}\sum_{n\mathrm{~odd}} x_2[n] W_{N}^{\frac{n-1}{2}k}\\
+  &=X_1[k]+W_{2N}^k X_2[k],\quad k=0,1,\cdots,N-1
+  \end{aligned}
+  $$
+
+  $$
+  X[k+N]=X_1[k]+W_{2N}^{k+N}X_2[k]\\
+  =X_1[k]-W_{2N}^{k} X_2[k],\quad k =0,1,\cdots,N-1
+  $$
+
+- **圆周卷积和** 定义：
+  $$
+  y[n]=\sum_{m=0}^{L-1} x_1[m]x_2[(n-m)_L]
+  $$
+
+  $$
+  Y[k]=X_1[k]X_2[k]
+  $$
+
+  若 $x_1[n]$ 和 $x_2[n]$ 均补值到 $L$ 点，计算 $y[n]=x_1[n]x_2[n]$，可得
+  $$
+  Y[k]=\frac{1}{L}X_1[k]*_L X_2[k]
+  $$
+  <u>线性卷积和和圆周卷积和的关系</u>：两个有限长序列补零拓展后的线性卷积和以 $L$ 为周期进行延拓后，所得周期序列的主值序列，即为此两序列的 $L$ 点圆周卷积和
+
+## 3.5 傅里叶变换的各种可能形式
+
+![image-20241222140919335](https://notes.sjtu.edu.cn/uploads/upload_97f25030a0786282347afaa1c780f077.png)
+
+![image-20241222175647537](https://notes.sjtu.edu.cn/uploads/upload_d26150c4ae625b67abfbb08b9703bac9.png)
+
+![image-20241222175655404](https://notes.sjtu.edu.cn/uploads/upload_8ea4d5f2c48a58aeeb4ab472404903b7.png)
+
+![image-20241222175705437](https://notes.sjtu.edu.cn/uploads/upload_7a898c92daca1fc6ccdaa7bc1b161f1e.png)
+
+## 3.6 频域采样定理
+
+给定 $x[n]\in l_2(\Z)$（有限支持/无限序列），计算其 DTFT $X(e^{j\omega})\in L_2(\R)$，表达式为：
+$$
+X(e^{j\omega})=\sum_{n=-\infin}^{\infin} x[n] e^{-j\omega n}
+$$
+进行频域采样，采样 $N$ 点：
+$$
+\tilde{X}[k]=X(e^{j\omega})|_{\omega=2\pi k/N}=\sum_{n=-\infin}^{\infin} x[n]  W_{N}^{kn}
+$$
+进行 IDFS 还原：
+$$
+\tilde{x}[n]=\frac{1}{N}\sum_{n=-\infin}^{\infin} \tilde{X}[k] W_{N}^{-kn}
+$$
+关心 $x[n]$ 与 $\tilde{x}[n]$ 的关系。展开可得：
+$$
+\begin{aligned}\tilde{x}[n]&=\frac{1}{N}\sum_{n=-\infin}^{\infin} \tilde{X}[k]e^{jk\frac{2\pi}{N}n}\\
+&=\frac{1}{N}\sum_{n=-\infin}^{\infin}
+\left(\sum_{m=-\infin}^\infin x[m]W_N^{km}\right) W^{-kn}_{N}\\
+&=\sum_{m=-\infin}^{\infin} x[m] \left(\frac{1}{N}\sum_{k=0}^{N-1}W_{N}^{k(m-n)}\right)
+\end{aligned}
+$$
+因为只有 $m-n$ 是 $N$ 的倍数的时候后面一项等于一，否则等于零，
+$$
+\tilde{x}[n]=\sum_{r=-\infin}^{\infin}x[n+rN]
+$$
+研究 $\tilde{x}[n]$ 与 $x[n]$ 的关系：$\tilde{x}[n]$ 是 $x[n]$ 的周期延拓，延拓周期是 $N$;
+
+1. 当 $x[n]$ 是无限长序列，则延拓过程中一定出现混叠，$\tilde{x}[n]\not=x[n]$.
+2. 当 $x[n]$ 是有限支持序列，<u>有限支持区域长度</u>为 $M$.
+   - $N\ge M$，周期延拓无混叠；
+   - $N<M$，周期延拓有混叠。
+
+**频域采样定理**：
+
+频域采样点数为 $N$，有限支持区域长度为 $M$（有值区间 $0\sim M-1$），只有当 $N\ge M$，由 $\tilde{X}[k]$ 的 IDFS 得到的时域序列 $\tilde{x}[n]$，满足
+$$
+\tilde{x}[n]R_N[n]=x[n]R_N[n]
+$$
+即可由频域采样 $\tilde{X}[k]$ 不失真地恢复出原信号 $x[n]$，否则产生时域混叠现象。
+
+**插值重构**：
+$$
+\begin{aligned}
+X(z)&=\sum_{n=0}^{N-1} x(n)z^{-n}\\
+&=\sum_{n=0}^{N-1}\left[\frac{1}{N}\sum_{k=0}^{N-1} X(k)W_{N}^{-nk}\right]z^{-n}\\
+&=\frac{1}{N}\sum_{k=0}^{N-1}X(k)\left[\sum_{n=0}^{N-1} W_{N}^{-nk}z^{-n}\right]\\
+&=\frac{1}{N}\sum_{k=0}^{N-1} X(k) \frac{1-W_{N}^{-Nk}z^{-N}}{1-W_{N}^{-k} z^{-1}}\\
+&=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1}\frac{X(k)}{1-W_{N}^{-k} z^{-1}}\\
+&=\sum_{k=0}^{N-1}X(k)\Phi_k(z)
+\end{aligned}
+$$
+插值函数：
+$$
+\Phi_{k}(z)=\frac{z^{N}-1}{Nz^{N-1}(z-W_{N}^{-k})}
+$$
+
+## 3.7 非周期连续时间信号谱分析
+
+### 3.7.1 时域采样
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_2af1314cf183ce2e4463b75e075f97f8.png" alt="image-20241222205352969" style="zoom:50%;" />
+
+**时域采样定理**：要求采样频率 $f_s\ge 2f_h$，其中 $f_h$ 是带限信号的最高频率。可以适当增加采样频率，有助于减小后面的混叠失真，取 $f_s=(3\sim 6)f_h$. 如果不是带限信号，需要加入防混叠滤波器。
+
+当抽样频率不符合要求时，会产生 <u>频谱的混叠失真</u>。
+
+### 3.7.2 时域截断
+
+![image-20241222205415996](https://notes.sjtu.edu.cn/uploads/upload_c3de30430d3d583cccac34d106696f39.png)
+
+可以看成原信号乘以窗函数：
+$$
+d[n]=\begin{cases}1,&0\le n\le N-1\\
+0,& \mathrm{else}.
+\end{cases}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4f3e8bf548b86327f950c9df5a6cd795.png" alt="image-20241222205935922" style="zoom:50%;" />
+
+选择不同种类的窗函数，可以增大主旁瓣幅度比，从而减少谱间干扰。增加窗长 $N$，可以减小主瓣宽度，从而减少频谱泄露的程度。
+
+![image-20241222215613087](https://notes.sjtu.edu.cn/uploads/upload_7cef631f432ae5eca71642a90f07eb5f.png)
+
+### 3.7.3 周期延拓
+
+![image-20241222205425303](https://notes.sjtu.edu.cn/uploads/upload_9a55b05602559bf411b2400337365a0d.png)
+
+采样点数 $M\ge N$，取 $M=N$. 
+
+![image-20241222213459480](https://notes.sjtu.edu.cn/uploads/upload_491d6d2a7a5b1909da994f55f10aef2c.png)
+
+可得频率分辨率为：
+$$
+\boxed{F_0=\frac{1}{T_0}=\frac{1}{NT}=\frac{f_s}{N}}
+$$
+频率分辨率越小，分辨接近频率信号的能力越强。
+
+提高分辨率的方法：
+
+- 增加有效数据长度 $T_0$. 若此时 $f_s$ 不变，抽样点数增加.
+- 用补零点的方式不能增加 $N$ 值，不能提高分辨率。
+
+DFT 频谱间隔为 $f_s/N$，得到的是连续频谱的等间隔的 $N$ 点抽样值，而这 $N$ 点抽样值中的任意相邻两点之间的频率点上的频谱值是不知道的，就好像是通过一个栅栏的缝隙观看一个镜像一样。
+
+**减小栅栏效应**
+
+- 在数据长度 $T_0$ 不变的情况下，增加 $f_s$，抽样点数 $N$ 增多；
+- 如果 $T_0$ 不变，时域有效抽样点数也不变，则可在有效 $N$ 点数据后补零值；
+- 在 $f_s$ 不变的情况下增加 $T_0$.
+
+### 3.7.4 计算 DFT
+
+![image-20241222205436389](https://notes.sjtu.edu.cn/uploads/upload_76e9ee12e1a0727ff4f58f51e1a3162f.png)
+
+## 3.8 FFT
+
