@@ -1,0 +1,469 @@
+# Robotics 复习
+
+## Introduction
+
+> Key:
+>
+> - Understanding the history of robots and their development
+> - Definitions and components of industrial robots;
+> - Key concepts, including the configuration of robotic arms, degrees of freedom, and types of joints;
+> - The concept of workspace and the characteristics of 
+>   robots with various mechanical configurations.
+
+**机器人技术** 是研究感知与行为之间的智能联系的科学
+
+- 行为: <u>机械系统</u>(运动 & 操作)
+- 感知: <u>感知系统</u>(本体感知 & 异体感知)
+- 联系: <u>控制系统</u>
+
+**（工业）机器人的定义**：A robot is a re-programmable multifunctional manipulator designed to move material, parts, tools, or specialized devices through variable programmed motions for the performance of a variety of tasks.
+
+机器人是一种可重新编程的多功能机械手，旨在通过可变的编程运动来移动材料，零件，工具或专用设备，以执行各种任务。
+
+**工业机器人的组成**
+
+- Manipulator 机械手
+
+  - Mechanical components 机械零部件
+
+    - Links：连杆
+
+    - Joint：关节 Prismatic / Revolute
+
+      一般的结构：Link 0 - Joint 1 - Link 1 - Joint 2 - Link2 - ...
+
+    - **Degree of freedom (DoF) 定义**: 用来表征机器人空间独立运动参数数目。<u>理想情况下</u>，每个关节都有1个自由度
+
+  - Mechanical configurations 机械构型
+
+    - Cartesian (or Rectangular) 笛卡尔（直角坐标）型
+
+      所有三个关节都是平移关节（PPP）
+
+      <img src="https://notes.sjtu.edu.cn/uploads/upload_0f5bbf8e6a85ef611282ec49553324e6.png" alt="image-20241119210940653" style="zoom:50%;" />
+
+    - Cylindrical 圆柱坐标型（RPP）
+
+      <img src="https://notes.sjtu.edu.cn/uploads/upload_2f4b5a9c467d072628e55f7ae75c21b2.png" alt="image-20241119210926733" style="zoom:50%;" />
+
+    - Spherical (or Polar) 球形（RRP）
+
+      <img src="https://notes.sjtu.edu.cn/uploads/upload_f84e9f4b4bebbf94bd598238c3be9b4a.png" alt="image-20241119210911743" style="zoom:50%;" />
+
+    - Jointed (or Revolute) 关节型
+
+    - Anthropomorphic 仿人型（最常见的）
+
+      ![image-20241119210848514](https://notes.sjtu.edu.cn/uploads/upload_f789896364b065a8770e57fe09a0e05c.png)
+
+    - SCARA 选择顺应性装配机器手臂 （RRP）
+
+      <img src="https://notes.sjtu.edu.cn/uploads/upload_acbd8b0d99e7b65f53676953bdc1c628.png" alt="image-20241119210830722" style="zoom:50%;" />
+
+- Actuator 执行器
+
+- Sensors 传感器
+
+- Control system 控制系统
+
+**机器人工作空间（Workspace）** 工作空间是末端执行器可达到的空间范围.
+
+**机器人手臂和手腕** 手臂和手腕都具有三个自由度，通常都为旋转关节，机器人可以将手臂定位在三维空间中的任意点，机器人的手腕用于为末端执行器提供最终方向。
+
+## Robot Kinematics
+
+> Key:
+>
+> - Definitions of forward and inverse kinematics;
+> - Definition and establishment of homogeneous transformation matrix;
+> - Coordinate transformations in space;
+> - The Denavit-Hartenberg (D-H) notation;
+> - Forward kinematics based on D-H representation;
+> - Methods for solving inverse kinematics;
+> - The Jacobian matrix.
+
+### 正运动学
+
+**正运动学 (Forward Kinematics) 定义**：给定关节 (Joint) 变量 $\boldsymbol \theta$，确定末端执行器（End Effector）的 <u>位置和方向</u>：
+$$
+\boxed{\boldsymbol x=f(\boldsymbol \theta)}
+$$
+*旋转矩阵的定义*：表示坐标系的方向，将 $x,y,z$ 轴的方向（归一化）分别作为列向量列出，就得到了坐标系的 $3\times 3$ 旋转矩阵，旋转矩阵是一个正交矩阵。
+
+**齐次变换矩阵 (Homogeneous Transformation Matrix) 定义**：$4\times 4$ 满秩矩阵。$R$ 表示旋转，$\boldsymbol p$ 表示平移，齐次变换矩阵表示从 B 坐标系变换到 A 坐标系，同时表示 **目标对象的位置和方向**。
+$$
+^AT_B = \left.\left(\begin{array}{cc}^AR_B&\boldsymbol {p}\\0_{1\times3}&1\end{array}\right.\right)
+$$
+
+齐次变换矩阵用于 <u>齐次坐标变换</u>：
+$$
+\begin{pmatrix}
+^A\vec r\\1
+\end{pmatrix}=^AT_B\begin{pmatrix}
+^B\vec r\\1
+\end{pmatrix}
+$$
+齐次变换矩阵用于 <u>表示坐标系之间的关系</u>：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_f190d832bf9d3f9b7f2520694c34956e.png" alt="image-20241021224816580" style="zoom:50%;" />
+$$
+^AT_B=\begin{pmatrix}0&1&0&0\\-1&0&0&5\\0&0&1&0\\0&0&0&1\end{pmatrix}
+$$
+**齐次变换矩阵的计算方法**：先旋转，再平移。
+
+**DH 表示法（Denavit-Hartenberg notation）的定义** 下述连杆坐标系的确定方法称为 DH 表示法：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_f6ffc3d85898f55db50ec0a03c3237fd.png" alt="image-20241021225109731" style="zoom:50%;" />
+
+**建系要点**：
+
+- $z_{i-1}$：沿关节 $i-1$ 的中心轴（旋转关节沿着旋转轴方向，也就是和旋转方向垂直，平动关节沿平动方向）
+- $x_{i-1}$：沿中心轴 $i-1$ 和 $i$ 的公垂线，并指向 $i$ 轴；
+- $y_{i-1}$：使用 $z_{i-1},x_{i-1}$ 和右手螺旋法则确定；
+- $O_{i-1}$：中心轴 $i-1$ 与公垂线的交点。
+
+**运动学参数**：
+
+- 连杆长度 $a_{i-1}$：沿 $x_{i-1},z_{i-1}$ 到 $z_i$ 的距离。
+- 连杆偏转角 $\alpha_{i-1}$：$z_{i-1}$ 和 $z_i$ 相对于 $x_{i-1}$ 的夹角，使用右手螺旋定则；
+- 关节偏移量 $d_i$：沿 $z_i$ 方向上，$x_{i-1}$ 到 $x_i$ 的距离。
+- 关节角度 $\theta_i$：相对于 $z_i$，$x_{i-1}$ 和 $x_i$ 之间的夹角。
+
+**齐次变换矩阵的计算**
+$$
+\begin{aligned}
+^{i-1}T_i&=Rot_{x}(\alpha_{i-1})D_{x}(a_{i-1})Rot_{z}(\theta_{i})D_{z}(d_{i})\\
+&=\begin{pmatrix}1&0&0&0\\0&c_{\alpha_{i-1}}&-s_{\alpha_{i-1}}&0\\0&s_{\alpha_{i-1}}&c_{\alpha_{i-1}}&0\\0&0&0&1\end{pmatrix}\begin{pmatrix}1&0&0&a_{i-1}\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}\\&\quad \quad \begin{pmatrix}c_{\theta_i}&-s_{\theta_i}&0&0\\s_{\theta_i}&c_{\theta_i}&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&d_i\\0&0&0&1\end{pmatrix}
+\end{aligned}
+$$
+**基于 DH 表示法的机械臂运动学**
+$$
+^0T_n=^0T_1 ^1 T_2 ^2 T_3 \cdots ^{n-1}T_n
+$$
+
+### 逆运动学
+
+**逆运动学 (Inverse Kinematics) 定义**：给定末端执行器的位置和方向，求解机器人机械手对应的关节变量：
+$$
+\boxed{\boldsymbol \theta=f^{-1}(\boldsymbol  x)}
+$$
+逆运动学挑战：方程非线性，因此系统的闭环解不总是存在。多解性。
+
+**工作空间 (Workspace) 定义**：末端执行器所能到达的空间，如果目标属于工作空间，则存在逆运动学解。
+
+**可达工作空间（reachable workspace）定义**：机器人在至少一个方向上可达的空间
+
+**灵巧工作空间（dexterous workspace）定义**：末端执行器可以任意定位的空间
+
+**逆运动学求解方法**
+
+- **闭环解（解析解）**
+
+  计算速度快（适合于实时控制）、可以得到所有解、但是通常很难或不可能执行。
+
+  几何法/代数法
+
+- **数值解**
+
+  数值迭代法求解、由于迭代次数未知、只能求得一组解、精度不高，相对于闭环解存在局限性，但是适用于所有机器人
+
+  可以建模为一个优化问题迭代求解：
+  $$
+  \arg \min_{\theta}\sum_{i} [f_i(\theta)-C_i]^2
+  $$
+
+  - $f_i(\theta)$：基于当前迭代周期内关节角计算得到的位置；
+  - $C_i$：指定目标位置
+
+  **Gauss-Newton 法求解**
+
+  1. 初始化关节角 $\theta^0$；
+
+  2. 更新关节角 $\theta^{k+1}=\theta^k +\Delta \theta^k$.
+
+     通过将函数做一阶展开，$\Delta \theta^k$ 也可以通过优化问题求解。
+     $$
+     \begin{aligned}
+     &\arg \min_{\Delta \theta^k}\sum_{i} \left(f_i(\theta^k+\Delta \theta^k)-c_i\right)^2\\
+     =&\arg\min_{\Delta \theta^k} \sum_i \left(f_i(\theta^k)+\frac{\partial f_i}{\partial \theta^k}\Delta \theta^k-c_i\right)^2
+     \end{aligned}
+     $$
+     令每项等于零，等价于解线性方程组：
+     $$
+     \underbrace{\begin{pmatrix}
+     \frac{\partial f_1}{\partial \theta_1}&\frac{\partial f_1}{\partial \theta_2}&\cdots&\frac{\partial f_1}{\partial \theta_N}\\
+     \frac{\partial f_2}{\partial \theta_1}&\frac{\partial f_2}{\partial \theta_2}&\cdots&\frac{\partial f_2}{\partial \theta_N}\\
+     \vdots&\vdots&\ddots&\vdots\\
+     
+     \frac{\partial f_M}{\partial \theta_1}&\frac{\partial f_M}{\partial \theta_2}&\cdots&\frac{\partial f_M}{\partial \theta_N}\\
+     \end{pmatrix}}_{=J}
+     
+     \underbrace{\begin{pmatrix}
+     \Delta\theta_1\\\Delta\theta_2\\\vdots\\\Delta\theta_M
+     \end{pmatrix}}_{=\Delta \theta}
+     =\underbrace{\begin{pmatrix}
+     c_1-f_1(\theta)\\
+     c_2-f_2(\theta)\\
+     \vdots\\
+     c_M-f_M(\theta)
+     \end{pmatrix}}_{=b}
+     $$
+
+     > $N$: 关节的数量，$M$：末端执行器的自由度。
+
+     求解线性方程组即可得到需要更新的 $\Delta \theta^k$.
+
+     （Jacobian 的运用）
+
+### 雅可比矩阵
+
+**雅可比矩阵（Jacobian）定义**：雅可比矩阵构建了
+
+- 关节速度（广义坐标求导）与末端执行器速度的映射关系
+- 关节力矩与作用在末端执行器上的力的映射关系
+
+通过正运动学微分计算（利用链式求导法则），可得：
+$$
+\boxed{\dot{ \boldsymbol x}=\begin{bmatrix}\boldsymbol v\\\boldsymbol \omega\end{bmatrix}=J(\boldsymbol \theta)\dot{\boldsymbol \theta}}
+$$
+**雅可比矩阵的计算**
+$$
+J(\boldsymbol{\theta})=\begin{pmatrix}\frac{\partial \boldsymbol p(\boldsymbol \theta)}{\partial \boldsymbol \theta}\\B(\boldsymbol \theta)\end{pmatrix}=\begin{pmatrix}\frac{\partial\boldsymbol{p}(\boldsymbol{\theta})}{\partial\theta_1}&\frac{\partial\boldsymbol{p}(\boldsymbol{\theta})}{\partial\theta_2}&...&\frac{\partial\boldsymbol{p}(\boldsymbol{\theta})}{\partial\theta_n}\\{\xi_1}^0\boldsymbol{z}_1&{\xi_2}^0\boldsymbol{z}_2&...&{\xi_n}^0\boldsymbol{z}_n\end{pmatrix}
+$$
+$\xi_i$：第 $i$ 个关节是平动关节的话等于 0，是转动关节的话等于 1.
+
+$\boldsymbol z_i$：如果是转动关节，第 $i$ 个关节轴朝向向量的归一化向量。转动关节对末端执行器的角速度贡献为 $\boldsymbol z_i \dot \theta_i$.
+
+因此，雅可比矩阵有如此形式。
+
+**雅可比矩阵的奇异性**
+
+给定末端执行器的速度 $\dot{\boldsymbol x}$，一定能计算关节速度 $\dot{\boldsymbol \theta}$ 吗？
+
+**当 $\boldsymbol{n=m}$**，如果 $J^{-1}(\boldsymbol \theta)$ 存在，则 $\dot{\boldsymbol \theta}=J^{-1}(\boldsymbol \theta)\dot{\boldsymbol x}$，如果 $J^{-1}(\boldsymbol \theta)$ 不存在，则无法计算，此时机械臂的构型为奇异构型。
+
+奇异构型与机械臂当前的关节角度 $\boldsymbol \theta$ 有关。如图，关节 1 施加 $\omega/(l_1+l_2)$ 的角速度同关节 2 施加 $\omega/l_2$ 的角速度，对末端执行器的速度影响相同。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_a090cb32c46a44b817cc1e6cb77b8e8d.png" alt="image-20241119222030133" style="zoom:50%;" />
+
+**当 $\boldsymbol{n>m}$**，机械臂为 <u>冗余系统</u>。$\dot{\boldsymbol \theta}=J^{-1}(\boldsymbol \theta)\dot{\boldsymbol x}$ 的解为
+$$
+\dot{\boldsymbol \theta}=J^+(\boldsymbol \theta)\dot {\boldsymbol x}+(I-J^+(\boldsymbol \theta)J(\boldsymbol \theta))\boldsymbol k
+$$
+
+- $J^+(\boldsymbol \theta)$：矩阵的伪逆，定义为 $J^\top (\boldsymbol \theta)(J(\boldsymbol \theta)J^\top (\boldsymbol \theta))^{-1}$;
+- $(I-J^+(\boldsymbol \theta)J(\boldsymbol \theta))\boldsymbol k$：$J(\boldsymbol \theta)$ 零空间中的向量，其中 $\boldsymbol k$ 是任意向量。根据定义可以证明这个向量处于零空间中。
+
+**等效力（力平衡）**结论 <u>在动力学中有运用</u>
+$$
+\boxed{\boldsymbol \tau=J^\top(\boldsymbol \theta)\boldsymbol f}
+$$
+
+## Robot Sensors and Actuators
+
+> Key:
+>
+> - Sensor Classification: Examples and Functions;
+> - Principles of force sensors and distance sensors; 
+> - Common types of robotic actuators and their respective advantages and disadvantages;
+> - Various methods of motion transmission.
+
+**传感器（Sensors）定义**：传感器是用于感知和测量机器人及周围环境的几何和物理特性的设备。
+
+**传感器分类（Classification）**
+
+- 内部传感器：位置传感器，速度传感器，加速度传感器，电机扭矩传感器等
+- 外部传感器：相机、范围传感器、接触和接近传感器、力传感器等。
+
+**力传感器（Force Sensors）原理**
+
+通过测量弹性元件的挠度/形变（deflection）来测量
+$$
+\varepsilon=\frac{\Delta l}{l}
+$$
+最常使用的元件：应变片（Strain Gauges）将形变转化为阻抗的变化。
+
+使用惠斯通电桥电路检测应变计的电阻变化 。
+
+**距离传感器（Range/Distance Sensors）原理**
+
+- 三角测量（Triangulation）：使用信号传播路径形成的三角形来计算距离
+
+- 飞行时间（Time-of-flight）：使用信号的飞行时间来测量距离
+  $$
+  D=vt
+  $$
+  $D$：往返距离，$v$：波传播速度，$t$：经过时间。
+
+**机器人执行器（Actuator）分类**
+
+- 电动执行器（Electrical actuators）
+
+  步进电动机，直流电动机，交流电动机和伺服电动机
+
+  - 好处：小尺寸;易于控制，控制精度高;反应快;清洁
+  - 缺点：与液压执行器相比，输出功率低
+
+- 液压执行器（Hydraulic actuators）
+
+  通过使用油，水等的压力来驱动机器人关节。
+
+  - 好处：大功率输出
+  - 坏处：难以控制->精度低、反应慢、大尺寸、脏
+
+- 气动执行器（Pneumatic actuators）
+
+  结构类似于液压执行器，用气压驱动气缸
+
+  - 好处：干净又小、便宜
+  - 坏处：难以精确控制位置
+
+  主要用于机器人手抓的打开控制。
+
+- 其他 (SMA, heat等)
+
+**运动传递（Motion Transmission）**将运动从一种类型转移到另一种类型、改变方向、改变运动速度、提供动力
+
+- **齿轮**：**正齿轮**:改变旋转速度。直齿齿轮是最常见的齿轮类型。它们可以连接平行的轴。**小齿轮和蜗轮**：将旋转方向更改90度；提供大扭矩。**锥齿轮**：改变各个轴的旋转轴，通常为90°。
+
+  齿轮比：
+  $$
+  齿轮比=\frac{被驱动齿轮齿数}{驱动齿轮齿数}
+  $$
+  转速比与齿轮比的关系，扭矩与齿轮比的关系。
+
+- **皮带传动**：借助轴上的皮带轮连接皮带，从而在轴之间传递动力。皮带传动简单，安静且经济。
+
+## Robot Dynamics
+
+> Key:
+>
+> - Concepts of Robot Dynamics;
+> - Dynamics: Newton-Euler equations, Lagrangian equations;
+> - Definitions of conservative and non-conservative forces, generalized coordinate vectors, and generalized forces.
+
+**机器人动力学（Robot Dynamics）定义** 研究机器人运动与作用在机器人上的力/力矩之间的关系。
+
+**保守力与非保守力（Conservative and Non-conservative Forces）定义** 与势能相关的力称为保守力。与势能无关的力称为非保守力，非保守力所做的功等于总能量的变化。
+
+**广义坐标向量（Generalized Coordinate Vectors）**
+
+一组参数，用于表示系统空间姿态（位置和方向）。广义坐标向量 $\boldsymbol q$ 的维数称为系统的自由度.
+
+**广义力（Generalized Force）**
+$$
+\delta W=\sum \boldsymbol{f}_i^\top  \delta\boldsymbol{ r}_i=\sum \tau_i \delta \theta_i + \boldsymbol f^\top \delta \boldsymbol x
+$$
+
+$$
+\boldsymbol F=\left(\frac{\partial}{\partial \dot{\boldsymbol q}} \delta W\right)^\top=\begin{bmatrix}
+\tau_1\\\tau_2\\\vdots\\\tau_n
+\end{bmatrix}+J^\top(\boldsymbol q)\boldsymbol f
+$$
+
+**拉格朗日方程（Lagrangian equations）**：
+
+定义 $L=K-U$，$\tau$ 为关节扭矩(对应平动关节)/驱动力(对应转动关节)，$\boldsymbol f$ 为在末端执行器施加的外力。
+$$
+\boxed{\frac{\mathrm d}{\mathrm d t}\frac{\partial L}{\partial \dot{\boldsymbol q}}-\frac{\partial L}{\partial \boldsymbol q}=\boldsymbol F=\begin{bmatrix}
+\tau_1\\\tau_2\\\vdots\\\tau_n
+\end{bmatrix}+J^\top(\boldsymbol q)\boldsymbol f}
+$$
+**机器人动力学的结构**
+$$
+\boldsymbol H(\boldsymbol q)\ddot {\boldsymbol q}+\left(\frac{1}{2}\dot {\boldsymbol H}(\boldsymbol q)+\boldsymbol S(\boldsymbol q,\dot{\boldsymbol q})\right)\dot{\boldsymbol q}+\boldsymbol G(\boldsymbol q)=\boldsymbol \tau
+$$
+
+- $\boldsymbol H(\boldsymbol q)$ 是对称正定矩阵；$\displaystyle \frac{1}{2}\boldsymbol q^\top \boldsymbol H(\boldsymbol q)\boldsymbol q$ 是动能项 $\ge 0$;
+
+- $\boldsymbol S(\boldsymbol q,\dot {\boldsymbol q})$ 是斜对称矩阵，也就是说：
+  $$
+  \boldsymbol x^\top \boldsymbol S(\boldsymbol q, \dot{\boldsymbol q})\boldsymbol x=0,\forall \boldsymbol x\in\R^n
+  $$
+
+## Robot Control
+
+> Key:
+>- Common Control Problem Classifications;
+>
+>- Methods for eliminating offset errors in PD controllers;
+>- Control methods for addressing uncertainties in robotic dynamics and external disturbances.
+
+**机器人控制（Robot Control）定义**：是设计适当的输入以使机器人尽可能精确地执行任务或动作的问题。
+
+**Classifications**
+
+- 位置控制：将机器人控制到所需位置
+  - 期望位置是一个常数向量
+  - 期望的速度和加速度为零
+  - 分为关节空间和笛卡尔空间的位置控制
+- 轨迹控制：控制机器人遵循所需的几何路径或随时间变化的轨迹
+- 力控制：控制机器人向环境或其他物体施加所需的力
+- 混合位置/力控制：控制机器人的位置和力
+
+**控制方法（Control Method）**
+
+- **开环控制**：不使用反馈信息直接从运动命令计算运动输入。误差大，无鲁棒性。
+- **闭环控制**：根据指令和传感器反馈来控制机器人。高准确率，鲁棒。
+
+**PD Feedback Control**
+
+控制目标：使关节空间中的坐标 $\boldsymbol q$ 收敛到期望为止 $\boldsymbol q_d$. 控制量 $\boldsymbol u$ 为力矩
+$$
+\boldsymbol u=-\boldsymbol A\Delta \boldsymbol q-\boldsymbol B\dot{\boldsymbol q}
+$$
+
+- $\Delta {\boldsymbol q}$：$\boldsymbol q-\boldsymbol q_d$ 为位置误差；
+- $\boldsymbol A$：位置增益矩阵；
+- $\boldsymbol B$：速度增益矩阵。
+
+闭环动力学：
+$$
+\boldsymbol H(\boldsymbol q)\ddot {\boldsymbol q}+\left(\frac{1}{2}\dot {\boldsymbol H}(\boldsymbol q)+\boldsymbol S(\boldsymbol q,\dot{\boldsymbol q})\right)+\boldsymbol G(\boldsymbol q)=\boldsymbol \tau_i\\
+=\boldsymbol u=-\boldsymbol A\Delta \boldsymbol q-\boldsymbol B\dot{\boldsymbol q}
+$$
+平衡点（当 $\ddot{\boldsymbol q}$ 和 $\dot {\boldsymbol q}$ 均为零时） $\boxed{\Delta \boldsymbol q_e=-\boldsymbol A^{-1}\boldsymbol G(\boldsymbol q)}$，不能移动到目标位置，存在 **偏移误差（offset error）**.
+
+平衡点的稳定性：可以证明平衡点稳定性，但是无法证明位置误差为零。
+
+**Eliminating Offset Errors**
+
+- 从减小 $\boldsymbol G$ 考虑，设计机器人使其重力项为零，或者在线补偿重力
+- 从增大 $|\boldsymbol A|$ 考虑，高增益控制（high-gain control）具有齿轮比的减速机构可实现高增益控制
+
+**重力补偿**
+
+采用控制律 $\boldsymbol u=-\boldsymbol A\Delta \boldsymbol q-\boldsymbol B\dot{\boldsymbol q}+\boldsymbol G(\boldsymbol q)$，可得
+$$
+\boldsymbol H(\boldsymbol q)\ddot {\boldsymbol q}+\left(\frac{1}{2}\dot {\boldsymbol H}(\boldsymbol q)+\boldsymbol S(\boldsymbol q,\dot{\boldsymbol q})\right)+\boldsymbol G(\boldsymbol q)=\boldsymbol \tau_i\\
+=\boldsymbol u=-\boldsymbol A\Delta \boldsymbol q-\boldsymbol B\dot{\boldsymbol q}+\boldsymbol G(\boldsymbol q)
+$$
+平衡点：$\Delta \boldsymbol q=0,\dot {\boldsymbol q}=0$.
+
+**PID 反馈控制**
+$$
+\boldsymbol u=-\boldsymbol K_1\Delta \boldsymbol q-\boldsymbol K_2\dot{\boldsymbol q}-\boldsymbol K_3 \int_0^ t \Delta \boldsymbol q\mathrm d t
+$$
+通过引入I反馈，可以消除PD反馈控制中的偏移误差
+
+但是PID控制器仅给出局部渐近稳定性。证明步骤很复杂
+
+**机器人动力学的不确定性（Uncertainties）**
+
+- 摩擦力：关节处的摩擦；与环境接触时接触点的摩擦
+- 传动机构的齿隙
+- 模型误差：运动学参数误差，物理参数误差（例如质心，惯性矩等）。
+- 感知误差：位置，速度，力等的测量误差
+- 外部干扰(external)：工作环境的干扰。
+
+**应对不确定性（Addressing Uncertainties）**
+
+- <u>鲁棒控制</u>：根据模型或误差或干扰范围设计控制器
+- <u>自适应控制</u>：通过测量不确定性或干扰来在线调整其控制律或控制参数
+  - 模型参考自适应控制系统（ Model Reference Adaptive Control System, MARCS）：控制机器人使其行为轨迹与参考模型一致。
+  - 自校正自适应调节器（ Self-Tuning Adaptive Regulator, STR）：基于 在线参考模型参数的自适应调节器。
+  - 基于模型的自适应控制：通过在线估计机器人的物理参数来控制机 器人运动
+- <u>学习控制</u>：通过以往的操作和经验改进控制律
+  - 迭代学习：通过迭代尝试改进控制器
+  - 基于神经网络（或其他推理机制）的学习：使用神经网络算法等学 习控制器。
+- 其他智能控制方法

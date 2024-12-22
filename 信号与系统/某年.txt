@@ -521,7 +521,7 @@ $$
 
 2. 求 $\displaystyle \int_{-\infin}^{+\infin} |x(t)|^2\mathrm d t$.
 
-   根据 Parsevel's theorem，
+   根据 Parseval's theorem，
    $$
    \int_{-\infin}^{+\infin} |x(t)|^2\mathrm d t=\frac{1}{2\pi}\int_{-\infin}^{+\infin} |X(j\omega)|^2\mathrm d \omega=\frac{200}{3}
    $$
