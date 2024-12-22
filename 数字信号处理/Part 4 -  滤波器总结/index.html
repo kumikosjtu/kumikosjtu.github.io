@@ -1,0 +1,1677 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Part%203%20-%20DFT%2C%20DFS%2C%20FFT%20%E6%80%BB%E7%BB%93/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.2.7">
+    
+    
+      
+        <title>Part 4 滤波器总结 - SJTU课程学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.046329b4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SJTU课程学习笔记" class="md-header__button md-logo" aria-label="SJTU课程学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SJTU课程学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part 4    滤波器总结
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SJTU课程学习笔记" class="md-nav__button md-logo" aria-label="SJTU课程学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SJTU课程学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kumiko 学习笔记小站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3323 人工智能基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ICE2501 信号与系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86I/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1251 大学物理I
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86II/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1252 大学物理II
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86III/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1253 大学物理III
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EST2506 嵌入式系统与接口技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3303 数字信号处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3307 机器人学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MATH1207 概率统计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EST2502 模拟电子技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CS2501 离散数学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E4%B8%8E%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU4303 线性规划与非线性规划
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3302 自动控制原理A
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" checked>
+        
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数字信号处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            数字信号处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2022%20DSP%20%E9%A2%98%E7%9B%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022 题目
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Part%203%20-%20DFT%2C%20DFS%2C%20FFT%20%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. DFT, DFS, FFT 总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part 4    滤波器总结
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part 4    滤波器总结
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 滤波器结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 滤波器结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-iir" class="md-nav__link">
+    1.1 IIR 滤波器结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-fir" class="md-nav__link">
+    1.2 FIR 滤波器结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 数字滤波器频率响应
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 全通滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 最小相位系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    1.6 梳状滤波器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-iir" class="md-nav__link">
+    2. IIR 滤波器设计
+  </a>
+  
+    <nav class="md-nav" aria-label="2. IIR 滤波器设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 理想滤波器频谱图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 滤波器指标
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 模拟巴特沃斯低通滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 频带转换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 模数映射
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 模数映射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    2.5.1 冲激不变法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252" class="md-nav__link">
+    2.5.2 双线性变换法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    2.6 模数直接变换
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fir" class="md-nav__link">
+    3. FIR 滤波器设计
+  </a>
+  
+    <nav class="md-nav" aria-label="3. FIR 滤波器设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-fir" class="md-nav__link">
+    3.1 线性相位 FIR 滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-fir" class="md-nav__link">
+    3.2 窗函数法 FIR 滤波器设计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 滤波器结构
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 滤波器结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-iir" class="md-nav__link">
+    1.1 IIR 滤波器结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-fir" class="md-nav__link">
+    1.2 FIR 滤波器结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 数字滤波器频率响应
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 全通滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 最小相位系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    1.6 梳状滤波器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-iir" class="md-nav__link">
+    2. IIR 滤波器设计
+  </a>
+  
+    <nav class="md-nav" aria-label="2. IIR 滤波器设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 理想滤波器频谱图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 滤波器指标
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 模拟巴特沃斯低通滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 频带转换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 模数映射
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 模数映射">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    2.5.1 冲激不变法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252" class="md-nav__link">
+    2.5.2 双线性变换法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    2.6 模数直接变换
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fir" class="md-nav__link">
+    3. FIR 滤波器设计
+  </a>
+  
+    <nav class="md-nav" aria-label="3. FIR 滤波器设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-fir" class="md-nav__link">
+    3.1 线性相位 FIR 滤波器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-fir" class="md-nav__link">
+    3.2 窗函数法 FIR 滤波器设计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div class="toc">
+<ul>
+<li><a href="#_1">滤波器总结</a><ul>
+<li><a href="#1">1. 滤波器结构</a><ul>
+<li><a href="#11-iir">1.1 IIR 滤波器结构</a></li>
+<li><a href="#12-fir">1.2 FIR 滤波器结构</a></li>
+<li><a href="#13">1.3 数字滤波器频率响应</a></li>
+<li><a href="#14">1.4 全通滤波器</a></li>
+<li><a href="#15">1.5 最小相位系统</a></li>
+<li><a href="#16">1.6 梳状滤波器</a></li>
+</ul>
+</li>
+<li><a href="#2-iir">2. IIR 滤波器设计</a><ul>
+<li><a href="#21">2.1 理想滤波器频谱图</a></li>
+<li><a href="#22">2.2 滤波器指标</a></li>
+<li><a href="#23">2.3 模拟巴特沃斯低通滤波器</a></li>
+<li><a href="#24">2.4 频带转换</a></li>
+<li><a href="#25">2.5 模数映射</a><ul>
+<li><a href="#251">2.5.1 冲激不变法</a></li>
+<li><a href="#252">2.5.2 双线性变换法</a></li>
+</ul>
+</li>
+<li><a href="#26">2.6 模数直接变换</a></li>
+</ul>
+</li>
+<li><a href="#3-fir">3. FIR 滤波器设计</a><ul>
+<li><a href="#31-fir">3.1 线性相位 FIR 滤波器</a></li>
+<li><a href="#32-fir">3.2 窗函数法 FIR 滤波器设计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="_1">滤波器总结</h1>
+<p><strong>滤波器的表征</strong></p>
+<ul>
+<li>
+<p><u>差分方程</u>：<span class="arithmatex">\(\displaystyle y(n)=\sum_{k=0}^M b_k x(n-k)-\sum_{k=1}^N a_k y(n-k)\)</span>.</p>
+</li>
+<li>
+<p>系统函数：
+  $$
+  \begin{cases}
+  \displaystyle H(z)=\frac{\sum_{k=0}^M b_k z^{-k}}{1+\sum_{k=1}^N a_k z^{-k}}&amp; 有递归结构,\mathrm{IIR}\
+  H(z)=\sum_{k=0}^{M} b_k z^{-k} &amp; 无递归结构,\mathrm{FIR}
+  \end{cases}
+  $$</p>
+</li>
+</ul>
+<h2 id="1">1. 滤波器结构</h2>
+<h3 id="11-iir">1.1 IIR 滤波器结构</h3>
+<p>全极点型/零极点型。</p>
+<ul>
+<li><strong>直接 I 型</strong>，需要 <span class="arithmatex">\(N+M\)</span> 个延时单元。</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_698ac483d3d2f5f54496e95bacdb78a9.png" alt="image-20241215155852796" style="zoom:30%;" /></p>
+<ul>
+<li><strong>直接 II 型（典范型）</strong>，需要 <span class="arithmatex">\(N\)</span> 个延时单元。</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_fd498c33cd352b7a57375754d3b653c1.png" alt="image-20241215160328236" style="zoom:50%;" /></p>
+<ul>
+<li><strong>级联型结构</strong>，分解为一阶、二阶基本节，注意提取常数 <span class="arithmatex">\(G\)</span>.
+  $$
+  H(z)=G\prod_{k} H_k(z)
+  $$</li>
+</ul>
+<p>$$
+  H_k(z)=\frac{1+\beta_{1k}z^{-1}}{1+\alpha_{1k}z^{-1}}\H_k(z)=\frac{1+\beta_{1k}z^{-1}+\beta_{2k}z^{-2}}{1+\alpha_{1k}z^{-1}+\alpha_{2k}z^{-2}}
+  $$</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_cda4005e26c3200161834989b422a991.png" alt="image-20241215160507791" style="zoom:50%;" /></p>
+<ul>
+<li><strong>并联型结构</strong>，使用分式展开，展开为
+  $$
+  H(z)=\sum_{k=1}^K H_k(z)+\sum_{k=0}^{M-N} C_k z^{-k}
+  $$</li>
+</ul>
+<p>$$
+  H_k(z)=\frac{B_{0k}+B_{1k}z^{-1}}{1+A_{1k}z^{-1}+A_{2k}z^{-2}}
+  $$</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_f2073dd184866862467317bf18f63eaa.png" alt="image-20241215160857295" style="zoom:50%;" /></p>
+<ul>
+<li><strong>转置型结构</strong>，所有支路方向翻转，但支路增益不变，输入输出交换位置。</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_896ba6a36cbac64efa92b604ad5fe9b4.png" alt="image-20241215161208141" style="zoom:50%;" /></p>
+<blockquote>
+<p>证明：
+$$
+\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^M b_k z^{-k}}{1+\sum_{k=1}^N a_k z^{-k}}
+$$</p>
+<div class="arithmatex">\[
+\frac{X(z)}{Y(z)}=\frac{1+\sum_{k=1}^N a_k z^{-k}}{\sum_{k=0}^M b_k z^{-k}}
+\]</div>
+</blockquote>
+<h3 id="12-fir">1.2 FIR 滤波器结构</h3>
+<ul>
+<li>
+<p><strong>直接型(横截型、卷积型)结构</strong>
+  $$
+  \begin{aligned}
+  y(n)&amp;= \sum_{k=0}^M b_k x(n-k)\
+  &amp;=\sum_{m=0}^{N-1} \underbrace{b_m}_{h(m)} x(n-m)
+  \end{aligned}
+  $$
+  <img alt="image-20241215161402884" src="https://notes.sjtu.edu.cn/uploads/upload_d1cc9591257eca856f0243ba434f60fa.png" /></p>
+</li>
+<li>
+<p><strong>级联型结构</strong>
+  $$
+  H(z)=\sum_{k=0}^M b_k z^{-k} = \prod_{k=1}^k (\beta_{0k}+\beta_{1k}z^{-1}+\beta_{2k}z^{-2})
+  $$
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_6cdd9f7865a3d3d509515fa078e29da5.png" alt="image-20241128171436294" style="zoom:50%;" /></p>
+</li>
+<li>
+<p><strong>频率抽样型结构</strong>
+  $$
+  H(z)=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1} \frac{H(e^{j\frac{2\pi}{N}k})}{1-e^{j\frac{2\pi}{N}k}z^{-1}}
+  $$
+  可以看成一个 FIR 系统级联一个 <span class="arithmatex">\(N\)</span> 个 IIR 子网络并联形成的 IIR 系统。</p>
+</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_739f5e596b008b4eec84cc2be8301cce.png" alt="image-20241215161939644" style="zoom:50%;" /></p>
+<ul>
+<li><strong>快速卷积结构</strong> 是直接型结构的快速型实现。</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_a514b0a8ac42e66632694bc94b6f675c.png" alt="image-20241215162158771" style="zoom:50%;" /></p>
+<ul>
+<li><strong>线性相位 FIR 滤波器结构</strong> </li>
+</ul>
+<p><u>分奇偶对称性讨论</u>，当单位抽样响应 <span class="arithmatex">\(h(n),0\le n\le N-1\)</span> 为实数且满足</p>
+<ul>
+<li>偶对称性：<span class="arithmatex">\(h(n)=h(N-1-n),0\le n\le N-1\)</span> 或者；</li>
+<li>奇对称性：<span class="arithmatex">\(h(n)=-h(N-1-n),0\le n\le N-1\)</span>.</li>
+</ul>
+<p>则系统频率响应是严格线性的。</p>
+<p><u>分长度 <span class="arithmatex">\(N\)</span> 奇偶性讨论</u>， 具有不同的实现方式，可以减少一半乘法次数。</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_4e2b5f196db8e6e730a568c17fd026c2.png" alt="image-20241215162425399" style="zoom:50%;" /></p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_2d92b1839507e9375e4430e6e4df6a97.png" alt="image-20241215162443901" style="zoom:50%;" /></p>
+<h3 id="13">1.3 数字滤波器频率响应</h3>
+<blockquote>
+<p>当输入复指数序列 <span class="arithmatex">\(x(n)=e^{j\omega n}\)</span>，则有：
+$$
+\begin{aligned}
+y(n)&amp;=\sum_{m=-\infin}^{+\infin} h(m) x(n-m)\
+&amp;=\sum_{m=-\infin}^{+\infin} h(m) e^{j\omega(n-m)}\
+&amp;=e^{j\omega n}\sum_{n=-\infin}^{+\infin} h(m) e^{-j\omega n}\
+&amp;= e^{j\omega n} H(e^{j\omega})=x(n)H(e^{j\omega})
+\end{aligned}
+$$
+因此称复指数序列 <span class="arithmatex">\(e^{j\omega n}\)</span> 是系统的特征序列。</p>
+</blockquote>
+<div class="arithmatex">\[
+H(e^{j\omega})=|H(e^{j\omega})| e^{j\beta(e^{j\omega})}
+\]</div>
+<p><strong>群延迟响应</strong>
+$$
+\tau(e^{j\omega})=-\frac{\mathrm d }{\mathrm d \omega} \beta(e^{j\omega})
+$$</p>
+<h3 id="14">1.4 全通滤波器</h3>
+<p>全通滤波器的定义：
+$$
+|H_{ap}(e^{j\omega})|=C
+$$
+<span class="arithmatex">\(N\)</span> 阶全通滤波器：
+$$
+H_{ap}(z)=\frac{d_N + d_{N-1}z^{-1}+\cdots+d_1 z^{-N+1}+z^{-N}}{1+d_1 z^{-1}+\cdots+d_{N-1} z^{-N+1}+d_N z^{-N}}
+$$
+<strong>零极点分布特点</strong>：</p>
+<ul>
+<li>极点在单位圆内；</li>
+<li>零点在单位圆外；</li>
+<li>以单位圆镜像分布，即极点 <span class="arithmatex">\(a\)</span> 推出零点 <span class="arithmatex">\((a^*)^{-1}\)</span>.</li>
+</ul>
+<p><strong>系数特点</strong>：</p>
+<ul>
+<li>各系数均为实数（为了满足 <span class="arithmatex">\(d_k=d_k^*\)</span> 即共轭对称关系）；</li>
+<li>分子、分母各系数相同但排序相反。</li>
+</ul>
+<p><strong>相频特性</strong>：
+$$
+\frac{\mathrm d \beta_{ap}(\omega)}{\mathrm d \omega}&lt;0
+$$
+因为 <span class="arithmatex">\(\beta_{ap}(0)=0\)</span>，结合上述结论可得 <span class="arithmatex">\(\beta_{ap}(\omega)&lt;0,0\le \omega \le \pi\)</span>.</p>
+<p>同时可得全通系统的群延迟 <span class="arithmatex">\(\displaystyle \tau_{ap}(\omega)=-\frac{\mathrm d \beta_{ap}(\omega)}{\mathrm d \omega}\)</span> 为正。</p>
+<h3 id="15">1.5 最小相位系统</h3>
+<blockquote>
+<p>看零点来辨别。如果系统有极点在单位圆外，则不是三种系统。</p>
+</blockquote>
+<p><strong>最小相位系统 <span class="arithmatex">\(\boldsymbol{H_{\min}(z)}\)</span></strong> 系统函数全部极点在单位圆内，全部零点也在单位圆内的因果稳定滤波器；最小相位系统的逆系统也是最小相位系统，因为只是调换了零点极点。</p>
+<p><strong>最大相位系统 <span class="arithmatex">\(\boldsymbol{H_{\max}(z)}\)</span></strong> 系统函数全部极点在单位圆内，全部零点在单位圆外的因果稳定滤波器；</p>
+<p><strong>混合相位系统 <span class="arithmatex">\(\boldsymbol{H_{\operatorname{mix}}(z)}\)</span></strong> 系统函数全部极点在单位圆内，在单位圆内外均有零点的因果稳定滤波器；</p>
+<p><strong>三种系统的关系</strong>：通过串联全通系统转换。</p>
+<p><img alt="image-20241215165655498" src="https://notes.sjtu.edu.cn/uploads/upload_2403f33da06c70fc964be9735c68202a.png" /></p>
+<p>这一系列的最小相位系统、混合相位系统、最大相位系统的幅值响应相同，而相角响应依次滞后。</p>
+<ul>
+<li>
+<p><strong>最小相位滞后性</strong>：因为新串联全通系统，相当于减小相位 <span class="arithmatex">\(\beta(\omega)\)</span>，因此：
+  $$
+  \beta_{\min}(\omega)&gt;\beta_{\operatorname{mix}}(\omega)&gt;\beta_{\max}(\omega)
+  $$</p>
+</li>
+<li>
+<p><strong>最小群延时性</strong>：同理，
+  $$
+  \tau_{\min}(\omega)&lt;\tau_{\operatorname{mix}}(\omega)&lt;\tau_{\max}(\omega)
+  $$</p>
+</li>
+<li>
+<p><strong>最小能量延迟性</strong>：</p>
+</li>
+</ul>
+<p>局部能量越大，能量延迟越小，局部能量定义为
+  $$
+  E(n_0)=\sum_{n=0}^{n_0 }h^2(n)
+  $$
+  因为最小相位系统的延迟最小，所以局部能量最大。
+  $$
+  \sum_{n=0}^{n_0 }|h_{\min}(n)|^2&gt;\sum_{n=0}^{n_0 }|h_{\operatorname{mix}}(n)|^2&gt;\sum_{n=0}^{n_0 }|h_{\max}(n)|^2
+  $$</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>利用最小相位系统的逆系统补偿失真</strong></p>
+<p>对于系统 <span class="arithmatex">\(H(z)\)</span>，希望其幅度响应为 1，设计 <span class="arithmatex">\(H_c(z)\)</span> 进行补偿。</p>
+<ul>
+<li>
+<p>当 <span class="arithmatex">\(H(z)\)</span> 是最小相位系统，
+  $$
+  H_c(z)=\frac{1}{H(z)}
+  $$
+  可以完全补偿幅度响应和相位响应。</p>
+</li>
+<li>
+<p>当 <span class="arithmatex">\(H(z)\)</span> 不是最小相位系统，可以分解为 <span class="arithmatex">\(H_{\min}(z)H_{ap}(z)\)</span>.
+  $$
+  H_c(z)=\frac{1}{H_{\min}(z)}
+  $$
+   可以完全补偿幅度响应，但是无法完全补偿相位响应。</p>
+</li>
+</ul>
+<h3 id="16">1.6 梳状滤波器</h3>
+<p><strong>梳状滤波器结构</strong>
+$$
+H(z)=1-z^{-N}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_28cc939cef22e33a1dd60750b9e6a452.png" alt="image-20241215170850876" style="zoom:50%;" /></p>
+<p>保留需要的频率为 <span class="arithmatex">\(\displaystyle \frac{(2k+1)\pi}{N}\)</span> 信号，滤除其它频率信号。</p>
+<p>对梳状滤波器的改进：<strong>梳状陷波器</strong>
+$$
+\displaystyle H(z)=\frac{1-z^{-N}}{1-(r^{-1}z)^N}\quad r\approx 1
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6bbe91cffa512b93667fdebe6888e387.png" alt="image-20241215171719623" style="zoom:50%;" /></p>
+<p>考虑当输入信号频率为 <span class="arithmatex">\(\displaystyle \frac{2\pi}{N}\)</span>，此时和一个零点重合，输出为零。</p>
+<p>当输入信号频率为 <span class="arithmatex">\(\displaystyle\frac{2\pi}{N}+\beta\)</span>，其中 <span class="arithmatex">\(\beta\)</span> 很小，则可以看成一个双 <span class="arithmatex">\(90^\circ\)</span> 的等腰三角形，得到 <span class="arithmatex">\(AZ_1P_1\)</span> 是一个等腰直角三角形，输出幅度：
+$$
+A\left(\frac{2\pi}{N}+\beta\right)=\frac{AZ_1\cdot AZ_2}{AP_1\cdot AP_2}
+$$
+其中 <span class="arithmatex">\(AZ_2\approx AP_2\)</span>，<span class="arithmatex">\(AZ_1=\beta,AP_1=\sqrt{2}\beta\)</span>，因此输出 <span class="arithmatex">\(1/\sqrt{2}\)</span>. 比修正之前性能好，可以精确地滤除频率为 <span class="arithmatex">\(2k\pi/N\)</span> 的信号.</p>
+<p><img alt="img" src="https://notes.sjtu.edu.cn/uploads/upload_fa2de5c1bb6e2f20f7a66c54a7522d2c.png" /></p>
+<h2 id="2-iir">2. IIR 滤波器设计</h2>
+<h3 id="21">2.1 理想滤波器频谱图</h3>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_a42ff99e0a673d23c9b75d59f60cde92.png" alt="image-20241215172413183" style="zoom:50%;" /></p>
+<h3 id="22">2.2 滤波器指标</h3>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_89821c12187e7a059a8a9c3a22ed23d4.png" alt="image-20241215172531100" style="zoom:50%;" /></p>
+<ul>
+<li><span class="arithmatex">\(\omega_p\)</span>：通带截止数字频率，通带内 <span class="arithmatex">\(1-\delta_1 \le |H(e^{j\omega})|\le 1\)</span></li>
+<li><span class="arithmatex">\(\omega_{st}\)</span>：阻带截止数字频率，阻带内 <span class="arithmatex">\(|H(e^{j\omega})|\le \delta_2\)</span>.</li>
+<li><span class="arithmatex">\(R_p\)</span>：通带允许的最大衰减 <span class="arithmatex">\(=-20\lg (1-\delta_1)\)</span></li>
+<li><span class="arithmatex">\(A_{st}\)</span>：阻带允许的最大衰减 <span class="arithmatex">\(=-20\lg(\delta_2)\)</span></li>
+</ul>
+<h3 id="23">2.3 模拟巴特沃斯低通滤波器</h3>
+<div class="arithmatex">\[
+|H_a(j\Omega)|=\frac{1}{\sqrt{1+\left(\frac{\Omega}{\Omega_c}\right)^{2N}}}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(N\)</span>：滤波器阶数；</li>
+<li><span class="arithmatex">\(\Omega_c\)</span>：3dB 频率。</li>
+</ul>
+<p>选取截止频率为 <span class="arithmatex">\(\Omega_c=0.5\pi\)</span>，绘图如下：</p>
+<p><img alt="untitled" src="https://notes.sjtu.edu.cn/uploads/upload_9b45ecf3d4ce34ebd4aaa011e6fb52cf.png" /></p>
+<ul>
+<li><span class="arithmatex">\(\Omega=0\)</span> 时，<span class="arithmatex">\(|H_a(j0)|=1\)</span> 无衰减</li>
+<li><span class="arithmatex">\(\Omega=\Omega_c\)</span> 时，<span class="arithmatex">\(|H_a(j\Omega_c)|=1/\sqrt{2}\)</span>，对应 <span class="arithmatex">\(R_c=3\mathrm{~dB}\)</span> 通带最大衰减。因为对于不同的 <span class="arithmatex">\(N\)</span>，<span class="arithmatex">\(R_c\)</span> 不变，因此有 3dB 不变性。</li>
+<li>通带 <span class="arithmatex">\(0\le \Omega \le \Omega_c\)</span> 内，最平幅度特性。因为 <span class="arithmatex">\(|H_a(j\Omega_c)|^2\)</span> 在 <span class="arithmatex">\(\Omega=0\)</span> 处的前 <span class="arithmatex">\(2N-1\)</span> 阶导数为零。</li>
+</ul>
+<p><strong>归一化的巴特沃斯滤波器</strong>
+$$
+|H_{an}(j\Omega)|=\frac{1}{\sqrt{1+\Omega^{2N}}}
+$$
+一般可以通过查表法来获取归一化巴特沃斯滤波器的系统函数，然后 <u>去归一化</u>：
+$$
+H_a(s)=H_{an}\left(\frac{s}{\Omega_c}\right)
+$$
+<strong><span class="arithmatex">\(\boldsymbol{N,\Omega_c}\)</span> 参数设计</strong></p>
+<p>首先，根据图像定性分析：</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span> 越大，滤波器越接近理想滤波器；</li>
+<li>但是 <span class="arithmatex">\(N\)</span> 越大，滤波器越难以实现；</li>
+<li>因此，我们需要首先找出最小符合要求的 <span class="arithmatex">\(N\)</span>，然后根据 <span class="arithmatex">\(N\)</span> 来选择 <span class="arithmatex">\(\Omega_c\)</span>.</li>
+</ul>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_ed15a886d73ffd0070a93f13d9361744.png" alt="image-20241215190117015" style="zoom:50%;" /></p>
+<p>定义：</p>
+<ul>
+<li><span class="arithmatex">\(\Omega_p\)</span>：通带截止频率</li>
+<li><span class="arithmatex">\(\Omega_{st}\)</span>：阻带截止频率</li>
+</ul>
+<p>根据图中关系，可以算出：</p>
+<ul>
+<li><span class="arithmatex">\(R_p\ge-20\lg |H_a(j\Omega_p)|\)</span> 衰减最大值</li>
+<li><span class="arithmatex">\(A_{st}\le -20\lg |H_a(j\Omega_{st})|\)</span> 衰减最小值</li>
+</ul>
+<p>重写表达式为：
+$$
+-20\lg |H_a(j\Omega_p)|=\underbrace{10 \lg \left(1+\left(\frac{\Omega_p}{\Omega_c}\right)^{2N}\right)\le R_p}<em>{\Rightarrow (\Omega_p/\Omega_c)^{2N}\le 10^{0.1R_p}-1}\
+-20\lg |H_a(j\Omega_p)|=\underbrace{10 \lg \left(1+\left(\frac{\Omega</em>{st}}{\Omega_c}\right)^{2N}\right)\ge A_s}<em>{\Rightarrow(\Omega</em>{st}/\Omega_c)^{2N}\ge 10^{0.1A_s}-1}
+$$
+即：
+$$
+\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\le \left(\frac{\Omega_{st}}{\Omega_p}\right)^{2N}
+$$
+因此
+$$
+\boxed{N\ge \lg \left.\left(\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\right)\right/2\lg (\Omega_{st}/\Omega_p)}
+$$
+为了确定 <span class="arithmatex">\(\Omega_c\)</span>，我们可以利用不等式：
+$$
+(\Omega_{st}/\Omega_c)^{2N}\le 10^{0.1R_p}-1\Rightarrow \Omega_c \ge \underbrace{\boxed{\Omega_{p}/\sqrt[2N]{10^{0.1R_p}-1}}}<em>{\doteq\Omega</em>{cp}}
+$$
+一般取 <span class="arithmatex">\(\Omega_{c}=\Omega_{cp}\)</span>.</p>
+<blockquote>
+<p>到这一步我们就可以 <u>设计模拟低通滤波器</u>，其步骤为：</p>
+<ol>
+<li>确定指标 <span class="arithmatex">\(\Omega_{s},\Omega_{p},A_s,R_p\)</span>;</li>
+<li>根据指标确定巴特沃斯滤波器参数 <span class="arithmatex">\(N,\Omega_{c}\)</span>;</li>
+<li>根据滤波器阶数确定归一化巴特沃斯滤波器的系统函数;</li>
+<li>去归一化.</li>
+</ol>
+</blockquote>
+<h3 id="24">2.4 频带转换</h3>
+<p><strong>频带变换</strong> 可以将 <u>归一化模拟低通滤波器</u>（<span class="arithmatex">\(\overline{\Omega_p}=1\)</span>）转换为 <u>模拟低通、高通、带通、带阻滤波器</u>。</p>
+<p><strong>频带变换的实现</strong>：设计变换函数 <span class="arithmatex">\(G\)</span>，满足：
+$$
+H_{an}(\overline{s}) \overset{\overline{s}=G(s)}{\operatorname<em>{\longleftrightarrow}}H_a(s)\
+H_{an}(j\overline{\Omega}) \overset{j\overline{\Omega}=G(j\Omega)}{\operatorname</em>{\longleftrightarrow}}H_a(j\Omega)\
+$$
+<strong>频带变换函数</strong> 要求：</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> 函数是有理函数；</li>
+<li>变换不能改变稳定性；</li>
+<li>纯虚数条件，即 <span class="arithmatex">\(G(虚数)=虚数\)</span>.</li>
+</ul>
+<p>令带宽和中心频率表示为</p>
+<ul>
+<li><span class="arithmatex">\(B_p=\Omega_{p1}-\Omega_{p2}\)</span>，<span class="arithmatex">\(\Omega_{p0}=\sqrt{\Omega_{p1}\Omega_{p2}}\)</span>.</li>
+<li><span class="arithmatex">\(B_{s}=\Omega_{st1}-\Omega_{st2}\)</span>，<span class="arithmatex">\(\Omega_{st0}=\sqrt{\Omega_{st1}\Omega_{st2}}\)</span>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th><span class="arithmatex">\(s\)</span> 变换</th>
+<th><span class="arithmatex">\(\Omega\)</span> 变换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>截止频率 <span class="arithmatex">\(\Omega_p\)</span> 低通</td>
+<td><span class="arithmatex">\(\displaystyle \overline{s}=\frac{s}{\Omega_p}\)</span></td>
+<td><span class="arithmatex">\(\displaystyle \overline \Omega= \frac{\Omega}{\Omega_p}\)</span></td>
+</tr>
+<tr>
+<td>截止频率 <span class="arithmatex">\(\Omega_p\)</span> 低通</td>
+<td><span class="arithmatex">\(\displaystyle \overline s=\frac{\Omega_p}{s}\)</span></td>
+<td><span class="arithmatex">\(\displaystyle \overline{\Omega}=-\frac{\Omega_p}{\Omega}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Omega_{p1}\sim \Omega_{p1}\)</span> 带通</td>
+<td><span class="arithmatex">\(\displaystyle \overline{s}=\frac{s^2+\Omega_{p0}^2}{B_p s}\)</span></td>
+<td><span class="arithmatex">\(\displaystyle\overline{\Omega}=\frac{\Omega^2-\Omega_{p0}^2}{B_{p}\Omega}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Omega_{st1}\sim \Omega_{st2}\)</span> 带阻</td>
+<td><span class="arithmatex">\(\displaystyle \overline{s}=\frac{\overline{\Omega}_{st}B_{s}s}{s^2+\Omega_{st0}^2}\)</span></td>
+<td><span class="arithmatex">\(\displaystyle \overline{\Omega}=\frac{\overline{\Omega}_{st}B_{s}\Omega}{\Omega_{st0}^2-\Omega^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>带通滤波器 <span class="arithmatex">\(\boldsymbol{\overline\Omega_{st}}\)</span> 的确定</strong></p>
+<p>因为带通滤波器的 <span class="arithmatex">\(\Omega_{p1},\Omega_{p2}\)</span> 均可以映射到 <span class="arithmatex">\(\overline{\Omega}_p=1\)</span>，所以只需确定 <span class="arithmatex">\({\overline\Omega_{st}}\)</span> 即可。</p>
+<p><img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20241215193513227.png" style="zoom:40%;" /></p>
+<p>计算对应的 <span class="arithmatex">\(\overline{\Omega}_{st1,2}\)</span> 如下：
+$$
+\overline{\Omega}<em>{st1}=G(\Omega</em>{st1}),\overline{\Omega}<em>{st2}=G(\Omega</em>{st2})
+$$
+然后 <span class="arithmatex">\(\overline{\Omega}_{st}\)</span> 取 <span class="arithmatex">\(\min\left\{\left|\overline{\Omega}_{st1}\right|,\left|\overline{\Omega}_{st2}\right|\right\}\)</span>.</p>
+<p>注意点：</p>
+<ul>
+<li>需要取绝对值，因为分别对应正的频率和负的频率；</li>
+<li>当更小的阻带截止频率满足时，更大的阻带截止频率一定满足，所以取比较小的一个。</li>
+</ul>
+<p><strong>带阻滤波器 <span class="arithmatex">\(\boldsymbol{\overline{\Omega}_{st}}\)</span> 的确定</strong></p>
+<p>频带映射函数中存在未知数 <span class="arithmatex">\(\overline{\Omega}_{st}\)</span>，可以通过带阻滤波器 <span class="arithmatex">\(\Omega_{p1},\Omega_{p2}\)</span> 映射到 <span class="arithmatex">\(\overline{\Omega}_p=1\)</span> 来确定 <span class="arithmatex">\(\overline{\Omega}_{st}\)</span>.</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_5fbbdffbae4881325b2dcbcf5a6c15e2.png" alt="image-20241215194151099" style="zoom:50%;" />
+$$
+\overline{\Omega}<em>{p1}=G(\Omega</em>{p1}),\overline{\Omega}<em>{p2}=G(\Omega</em>{p2})
+$$</p>
+<div class="arithmatex">\[
+\overline{\Omega}_p={\color{red}\max}\left\{\left|\overline{\Omega}_{p1}\right|,\left|\overline{\Omega}_{p2}\right|\right\}=1=\frac{1}{\overline{\Omega}_{st}}\overline{\Omega}_{st}
+\]</div>
+<blockquote>
+<p>到这里我们可以 <u>设计模拟高通/带通/带阻滤波器</u>，步骤如下：</p>
+<ol>
+<li>确定模拟指标；</li>
+<li>确定归一化低通滤波器所需满足的指标 <span class="arithmatex">\(\overline{\Omega}_p,\overline{\Omega}_{st}\)</span>.</li>
+<li>高通：直接利用公式 <span class="arithmatex">\(\displaystyle \overline{\Omega}=-\frac{\Omega_p}{\Omega}\)</span>.</li>
+<li>带通：参上；</li>
+<li>带阻：参上.</li>
+<li>根据指标 <span class="arithmatex">\(\overline{\Omega}_p,\overline{\Omega}_{st}\)</span> 确定原型巴特沃斯滤波器参数 <span class="arithmatex">\(N,\overline \Omega_{c}\)</span>;</li>
+<li>通过查表法确定 <span class="arithmatex">\(H_{an}(\overline s)\)</span>;</li>
+<li>去归一化 <span class="arithmatex">\(H_a(\overline{s})=H_{an}(\overline{s}/\overline{\Omega_c})\)</span>;</li>
+<li>通过变换函数进行频带变换.</li>
+</ol>
+</blockquote>
+<h3 id="25">2.5 模数映射</h3>
+<p>模数映射：从 <span class="arithmatex">\(s\)</span> 域映射到 <span class="arithmatex">\(z\)</span> 域，牵扯到抽样时间 <span class="arithmatex">\(T\)</span>.</p>
+<ul>
+<li>冲激不变法：单位冲激响应 <span class="arithmatex">\(h_a(t)\Rightarrow h(n)\)</span>;</li>
+<li>双线性法：系统函数 <span class="arithmatex">\(H(s)\Rightarrow H(z)\)</span>.</li>
+</ul>
+<h4 id="251">2.5.1 冲激不变法</h4>
+<p><img alt="image-20241215201441818" src="https://notes.sjtu.edu.cn/uploads/upload_9b814a6141be34a7b7ad48058391e759.png" />
+$$
+H_a(s)=\sum_{k=1}^N \frac{A_k T}{s-s_k}\Rightarrow H(z)=\sum_{k=1}^N \frac{A_k T}{1-e^{s_k T}z^{-1}}
+$$</p>
+<ul>
+<li>由极点关系可以推出 <span class="arithmatex">\(s,z\)</span> 关系：<span class="arithmatex">\(z=e^{sT}\)</span>;</li>
+<li>由采样的关系可以推出频率关系：<span class="arithmatex">\(\omega=\Omega T\)</span>.</li>
+</ul>
+<p>存在 <u>混叠失真问题</u>，因为 <span class="arithmatex">\(s\)</span> 平面和 <span class="arithmatex">\(z\)</span> 平面并非一一对应，极点对应，而零点不对应。模拟滤波器的频率响应带限于 <span class="arithmatex">\(\displaystyle \frac{\Omega_s}{2}=\frac{\pi}{T}\)</span> 内，无混叠失真。不能用于高通滤波器和带阻滤波器。</p>
+<h4 id="252">2.5.2 双线性变换法</h4>
+<p><img alt="image-20241217231545986" src="https://notes.sjtu.edu.cn/uploads/upload_d68fbb5c2632e1464ea6d73b34d37bf0.png" /></p>
+<p>使用 <span class="arithmatex">\(\displaystyle \Omega=\tan \left(\frac{\Omega_1 T}{2}\right)\)</span> 将整个 <span class="arithmatex">\(\sigma+j\Omega\)</span> 平面映射到 <span class="arithmatex">\(\sigma+j\Omega_1\)</span> 平面，其中 <span class="arithmatex">\(\Omega_1\)</span> 取值 <span class="arithmatex">\(-\pi/T,\pi/T\)</span>.
+$$
+\boxed{s=\frac{1-z^{-1}}{1+z^{-1}}}\quad \boxed{z=\frac{1+s}{1-s}}
+$$
+如果引入线性变换常数 <span class="arithmatex">\(c=2/T\)</span>，则有如下关系：
+$$
+\boxed{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}\quad \boxed{z=\frac{T/2+s}{T/2-s}}\quad \boxed{\Omega=\frac{2}{T}\tan \left(\frac{\omega}{2}\right)}
+$$
+因为幅频响应存在畸变，所以需要将数字指标 <span class="arithmatex">\(\omega\)</span> 变换为模拟指标 <span class="arithmatex">\(\Omega\)</span>，才能设计滤波器。</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_912df5cc738d25b2355dc6ce0356a6c6.png" alt="image-20241217232335367" style="zoom:40%;" /></p>
+<blockquote>
+<p>到这里我们可以 <u>设计数字高通/带通/带阻滤波器</u>，步骤如下：</p>
+<ol>
+<li>确定模拟指标；通过 <span class="arithmatex">\(\omega=\Omega T\)</span> 确定对应的数字指标，再通过频率预畸 <span class="arithmatex">\(\displaystyle \Omega'=\frac{2}{T}\tan \frac{\omega}{2}\)</span> 变换回模拟滤波器需要的指标。</li>
+<li>确定归一化低通滤波器所需满足的指标 <span class="arithmatex">\(\overline{\Omega}_p,\overline{\Omega}_{st}\)</span>.</li>
+<li>根据指标 <span class="arithmatex">\(\overline{\Omega}_p,\overline{\Omega}_{st}\)</span> 确定原型巴特沃斯滤波器参数 <span class="arithmatex">\(N,\overline \Omega_{c}\)</span>;</li>
+<li>通过查表法确定 <span class="arithmatex">\(H_{an}(\overline s)\)</span>;</li>
+<li>去归一化 <span class="arithmatex">\(H_a(\overline{s})=H_{an}(\overline{s}/\overline{\Omega_c})\)</span>;</li>
+<li>通过变换函数进行频带变换.</li>
+<li>双线性变换法 <span class="arithmatex">\(\displaystyle H(z)=H(s)|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}\)</span>.</li>
+</ol>
+</blockquote>
+<h3 id="26">2.6 模数直接变换</h3>
+<p>之前需要两步：双线性变换法+频带变换，现在可以合并成一步，直接使用模数直接变换。</p>
+<p><strong>模拟低通到数字低通</strong></p>
+<ul>
+<li>变换关系：<span class="arithmatex">\(\boxed{\displaystyle s=\frac{1-z^{-1}}{1+z^{-1}},z=\frac{1+s}{1-s}}\)</span>.</li>
+<li>频率间关系：<span class="arithmatex">\(\boxed{\Omega=\tan\left(\omega/2\right)}\)</span>.</li>
+<li>通带截止频率间关系：<span class="arithmatex">\(\Omega_p=\tan\left(\omega_p/2\right)\)</span></li>
+</ul>
+<p><strong>模拟低通到数字高通</strong></p>
+<p>相当于 <span class="arithmatex">\(z\gets -z\)</span>.</p>
+<ul>
+<li>变换关系：<span class="arithmatex">\(\boxed{\displaystyle s=\frac{1+z^{-1}}{1-z^{-1}}}\)</span>.</li>
+<li>频率间关系：<span class="arithmatex">\(\boxed{\Omega=\cot(\omega/2)}\)</span>.</li>
+<li>截止频率关系：<span class="arithmatex">\(\Omega_p=\cot(\omega_p/2)\)</span>.</li>
+</ul>
+<p><strong>模拟低通到数字带通</strong></p>
+<p>中心频率设为 <span class="arithmatex">\(\omega_0\)</span>，希望原来 <span class="arithmatex">\(\Omega=0\)</span> 点映射到 <span class="arithmatex">\(\omega_0\)</span> 点，并且符合 <span class="arithmatex">\(\omega_{p1},\omega_{p2}\)</span> 的条件。</p>
+<ul>
+<li>
+<p>中心频率表达式：<span class="arithmatex">\(\displaystyle \cos \omega_0 =\frac{\sin (\omega_{p2}+\omega_{p1})}{\sin \omega_{p2}+\sin \omega_{p1}}\)</span>.</p>
+</li>
+<li>
+<p>变换关系：<span class="arithmatex">\(\displaystyle \boxed{s=\frac{1-2z^{-1}\cos \omega_0+z^{-2}}{1-z^{-2}}}\)</span>.</p>
+</li>
+<li>
+<p>频率间关系：<span class="arithmatex">\(\boxed{\Omega=\frac{\cos \omega_0 -\cos \omega}{\sin \omega}}\)</span>.</p>
+</li>
+<li>
+<p>截止频率间关系：
+  $$
+  \Omega_p=\frac{\cos \omega_0-\cos \omega_{p2}}{\sin \omega_{p2}}\
+  -\Omega_p=\frac{\cos \omega_0-\cos \omega_{p1}}{\sin \omega_{p1}}
+  $$
+  取约束更强的。</p>
+</li>
+</ul>
+<p><strong>模拟低通到数字带阻</strong></p>
+<ul>
+<li>中心频率表达式：<span class="arithmatex">\(\displaystyle \cos \omega_0 =\frac{\sin (\omega_{st2}+\omega_{st1})}{\sin \omega_{st2}+\sin \omega_{st1}}\)</span>.</li>
+<li>变换关系：<span class="arithmatex">\(\displaystyle \boxed{s=\frac{1-z^{-2}}{1-2z^{-1}\cos \omega_0+z^{-2}}}\)</span>（取倒数）</li>
+<li>频率间关系：<span class="arithmatex">\(\boxed{\Omega=\frac{\sin \omega}{-\cos \omega_0 +\cos \omega}}\)</span>.</li>
+<li>截止频率间关系。</li>
+</ul>
+<blockquote>
+<p>到这里我们可以 <u>更加快速地设计数字高通/带通/带阻滤波器</u>，步骤如下：</p>
+<ol>
+<li>确定模拟指标；通过 <span class="arithmatex">\(\omega=\Omega T\)</span> 确定对应的数字指标.</li>
+<li>确定中心频率 <span class="arithmatex">\(\omega\)</span>，进行频率预畸，直接将所需的数字指标变换到模拟指标，并且计算出 <span class="arithmatex">\({\Omega}_p,{\Omega}_{st}\)</span>.</li>
+<li>根据指标 <span class="arithmatex">\({\Omega}_p,{\Omega}_{st}\)</span> 确定原型巴特沃斯滤波器参数 <span class="arithmatex">\(N,\Omega_{c}\)</span>;</li>
+<li>通过查表法确定 <span class="arithmatex">\(H_{an}(s)\)</span>;</li>
+<li>去归一化 <span class="arithmatex">\(H_a({s})=H_{an}({s}/{\Omega_c})\)</span>;</li>
+<li>进行模数直接变换。</li>
+</ol>
+</blockquote>
+<h2 id="3-fir">3. FIR 滤波器设计</h2>
+<h3 id="31-fir">3.1 线性相位 FIR 滤波器</h3>
+<p>当单位抽样响应 <span class="arithmatex">\(h(n),0\le n\le N-1\)</span> 为 <u>实数</u> 且满足</p>
+<ul>
+<li>偶对称性：<span class="arithmatex">\(h(n)=h(N-1-n),0\le n\le N-1\)</span> 或者；</li>
+<li>奇对称性：<span class="arithmatex">\(h(n)=-h(N-1-n),0\le n\le N-1\)</span>.</li>
+</ul>
+<p>则系统频率响应是严格线性的，也就是 <span class="arithmatex">\(\arg H(e^{j\omega})=\alpha \omega\)</span>.</p>
+<p><strong>偶对称线性相位证明</strong></p>
+<p>代入 <span class="arithmatex">\(h(n)=h(N-1-n),0\le n\le N-1\)</span> 的条件，
+$$
+\begin{aligned}
+H(z)&amp;=\sum_{n=0}^{N-1}h(n)z^{-n}\
+&amp;=\sum_{n=0}^{N-1} h(N-1-n) z^{-n}\
+&amp;=z^{-(N-1)} \sum_{n=0}^{N-1}h(N-1-n)z^{N-1-n}\
+&amp;=z^{-(N-1)} H(z^{-1})
+\end{aligned}
+$$
+代入 <span class="arithmatex">\(H(z)=z^{-(N-1)}H(z^{-1})\)</span>，可得
+$$
+\begin{aligned}
+H(z)&amp;=\frac{1}{2}\left(H(z)+z^{-(N-1)} H(z^{-1})\right)\
+&amp;=\frac{1}{2}\sum_{n=0}^{N-1} h(n) \left(z^{-n}+z^{-(N-1)} z^{n}\right)\
+&amp;=\frac{1}{2}z^{-\frac{N-1}{2}}\sum_{n=0}^{N-1} h(n)\left(z^{\frac{N-1}{2}-n}+z^{-\left(\frac{N-1}{2}-n\right)}\right)
+\end{aligned}
+$$
+代入 <span class="arithmatex">\(z=e^{j\omega}\)</span>.
+$$
+H(e^{j\omega})= e^{\underbrace{-\frac{N-1}{2}\omega}<em>{\theta(\omega)}j} \underbrace{\sum</em>{n=0}^{N-1} h(n) \cos \left(\left(\frac{N-1}{2}-n\right)\omega\right)}_{H(\omega)}
+$$
+因此相位函数 <span class="arithmatex">\(\theta(\omega)\)</span> 是 <span class="arithmatex">\(\omega\)</span> 的线性函数，<span class="arithmatex">\(\displaystyle \tau(\omega)=-\frac{\mathrm d \theta}{\mathrm d \omega}=\boxed{\frac{N-1}{2}}\)</span>.</p>
+<p><strong>奇对称线性相位证明</strong></p>
+<p>代入 <span class="arithmatex">\(h(n)=-h(N-1-n),0\le n\le N-1\)</span> 的条件，可得
+$$
+H(e^{j\omega})=je^{-j\frac{N-1}{2}\omega}\underbrace{\sum_{n=0}^{N-1} h(n) \sin \left(\left(\frac{N-1}{2}-n\right)\omega\right)}_{H(\omega)}
+$$</p>
+<div class="arithmatex">\[
+\theta(\omega)=\frac{\pi}{2}-\frac{N-1}{2}\omega 
+\]</div>
+<p>相位函数 <span class="arithmatex">\(\theta(\omega)\)</span> 是 <span class="arithmatex">\(\omega\)</span> 的线性函数，<span class="arithmatex">\(\displaystyle \tau(\omega)=-\frac{\mathrm d \theta}{\mathrm d \omega}=\boxed{\frac{N-1}{2}}\)</span>.</p>
+<p><strong>零点的分布</strong> 对于线性相位 FIR 滤波器，</p>
+<p>因为 FIR 滤波器系统函数的系数为实数，所以 <span class="arithmatex">\(z\)</span> 零点推出 <span class="arithmatex">\(z^*\)</span> 也是零点，也就是。
+$$
+H(z)=\sum_{n=0}^{N-1} h(n)z^{-n}=0\
+H(z^<em>)=\sum_{n=0}^{N-1} h(n)(z^</em>)^{-n}=(H(z))^*=0
+$$
+因为线性相位的性质，
+$$
+\begin{aligned}
+H(z^{-1})&amp;=\sum_{n=0}^{N-1}h(n)z^{n}\
+&amp;=\pm\sum_{n=0}^{N-1}h(N-1-n)z^n\
+&amp;=\pm z^{(N-1)}\sum_{n=0}^{N-1} h(N-1-n) z^{-(N-1-n)}\
+&amp;=\pm z^{N-1}H(z)=0
+\end{aligned}
+$$
+因此 <span class="arithmatex">\(z\)</span> 零点推出 <span class="arithmatex">\(z^{-1}\)</span> 也是零点。</p>
+<h3 id="32-fir">3.2 窗函数法 FIR 滤波器设计</h3>
+<ol>
+<li>
+<p>给定要求的理想频率响应 <span class="arithmatex">\(H_d(e^{j\omega})\)</span> (desired)，一般是低通、高通、带通、带阻。</p>
+</li>
+<li>
+<p>我们利用 IDTFT 求得理想滤波器的系数 <span class="arithmatex">\(h_d(n)\)</span>
+   $$
+   h_d(n)=\frac{1}{2\pi} \int_{-\pi}^{\pi} H_d(e^{j\omega}) e^{j\omega n}\mathrm d \omega
+   $$
+   一般取 <span class="arithmatex">\(N\)</span> 为奇数，令 <span class="arithmatex">\(\tau=(N-1)/2\)</span>，对于低通滤波器，
+   $$
+   \begin{aligned}
+   h_d^{lp}(n)
+   &amp;=\begin{cases}
+   \frac{\sin(\omega_c(n-\tau))}{\pi(n-\tau)},&amp;n\not=\tau\
+   \omega_c/\pi,&amp;n=\tau
+   \end{cases}\
+   \end{aligned}
+   $$
+   当 <span class="arithmatex">\(\omega_c=\pi\)</span> 时，低通滤波器变为全通滤波器：
+   $$
+   h_{d}^{ap}(n)=\begin{cases}
+   1,&amp;n=\tau\
+   0,&amp;n\not=\tau
+   \end{cases}
+   $$
+   因此，高通滤波器直接利用线性性做减法可得：
+   $$
+   h_d^{hp}(n)=\begin{cases}
+   -\frac{\sin(\omega_c(n-\tau))}{\pi(n-\tau)},&amp;n\not=\tau\
+   1-\omega_c/\pi,&amp;n=\tau
+   \end{cases}
+   $$
+   带通滤波器利用两个低通做减法：
+   $$
+   h_d^{bp}(n)=
+   \begin{cases}
+   \frac{\sin[\omega_2(n-\tau)]-\sin[\omega_1(n-\tau)]}{\pi(n-\tau)},&amp;n\not=\tau\
+   (\omega_2-\omega_1)/\pi,&amp;n=\tau
+   \end{cases}
+   $$
+   带阻利用全通减带通：
+   $$
+   h_d^{bs}(n)=
+   \begin{cases}
+   -\frac{\sin[\omega_2(n-\tau)]-\sin[\omega_1(n-\tau)]}{\pi(n-\tau)},&amp;n\not=\tau\
+   1-(\omega_2-\omega_1)/\pi ,&amp;n=\tau
+   \end{cases}
+   $$</p>
+</li>
+<li>
+<p>因为 <span class="arithmatex">\(h_d\)</span> 是无限时长的，所以需要用有限时长的窗函数 <span class="arithmatex">\(w(n)\)</span> 截断，也就是：
+   $$
+   h(n)=h_d(n)\cdot w(n)
+   $$
+   并且 <span class="arithmatex">\(h(n)\)</span> 在 <span class="arithmatex">\(0\le n\le N-1\)</span> 之外的范围都为零。</p>
+</li>
+<li>
+<p>求出加窗后的实际频率响应 <span class="arithmatex">\(H(e^{j\omega})\)</span>.
+   $$
+   \begin{aligned}
+   H(e^{j\omega})=&amp;\frac{1}{2\pi} [H_d(e^{j\omega})<em> W(e^{j\omega})]\
+   H(f)=&amp;H_d(f)</em>W(f)
+   \end{aligned}
+   $$
+   因为是卷积关系，所以产生的肩峰过渡带宽度 <span class="arithmatex">\(\Delta \omega\)</span> 取决于 <span class="arithmatex">\(W(e^{j\omega})\)</span> 宽度。肩峰过渡带的中心为对应理想滤波器的边界。</p>
+</li>
+</ol>
+<blockquote>
+<p>综上，设计 <strong>FIR 滤波器</strong> 步骤为：</p>
+<ol>
+<li>给定设计指标 <span class="arithmatex">\(\omega_p,\omega_{st},R_p,A_s\)</span>.</li>
+</ol>
+<p>计算中心频率：
+   $$
+   \omega_c=(\omega_p+\omega_{st})/2\
+   \omega_{1}=(\omega_{p1}+\omega_{st1})/2\
+   \omega_{2}=(\omega_{p2}+\omega_{st2})/2
+   $$</p>
+<ol>
+<li>
+<p>选择窗类型和长度点数 <span class="arithmatex">\(N\)</span>.</p>
+</li>
+<li>
+<p>窗类型由阻带最小衰减 <span class="arithmatex">\(A_s\)</span> 决定；</p>
+</li>
+<li>窗长度点数由过渡带宽 <span class="arithmatex">\(\Delta \omega\)</span> 决定。<ul>
+<li>对于低通高通，<span class="arithmatex">\(\Delta\omega=|\omega_{st}-\omega_p|\)</span>.</li>
+<li>对于带通带阻，<span class="arithmatex">\(\Delta \omega=\min\{|\omega_{st1}-\omega_{p1}|,|\omega_{st2}-\omega_{p2}|\}\)</span>.</li>
+</ul>
+</li>
+</ol>
+<p>决定窗函数 <span class="arithmatex">\(w(n)\)</span>.</p>
+<ol>
+<li>
+<p>求取 <span class="arithmatex">\(h(n)=h_d(n)\cdot w(n)\)</span>.</p>
+</li>
+<li>
+<p>检验 <span class="arithmatex">\(H(e^{j\omega})\)</span> 是否满足性能要求</p>
+</li>
+</ol>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

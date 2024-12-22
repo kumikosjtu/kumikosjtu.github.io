@@ -1,0 +1,1170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2022%20DSP%20%E9%A2%98%E7%9B%AE/">
+      
+      
+        <link rel="next" href="../Part%204%20-%20%20%E6%BB%A4%E6%B3%A2%E5%99%A8%E6%80%BB%E7%BB%93/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.2.7">
+    
+    
+      
+        <title>3. DFT, DFS, FFT 总结 - SJTU课程学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.046329b4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-dft-dfs-fft" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SJTU课程学习笔记" class="md-header__button md-logo" aria-label="SJTU课程学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SJTU课程学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. DFT, DFS, FFT 总结
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SJTU课程学习笔记" class="md-nav__button md-logo" aria-label="SJTU课程学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SJTU课程学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kumiko 学习笔记小站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3323 人工智能基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ICE2501 信号与系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86I/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1251 大学物理I
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86II/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1252 大学物理II
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86III/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHY1253 大学物理III
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EST2506 嵌入式系统与接口技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3303 数字信号处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3307 机器人学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MATH1207 概率统计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EST2502 模拟电子技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CS2501 离散数学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E4%B8%8E%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU4303 线性规划与非线性规划
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AU3302 自动控制原理A
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" checked>
+        
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数字信号处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            数字信号处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2022%20DSP%20%E9%A2%98%E7%9B%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022 题目
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3. DFT, DFS, FFT 总结
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    3. DFT, DFS, FFT 总结
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 信号与空间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-dft" class="md-nav__link">
+    3.2 DFT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-dfs" class="md-nav__link">
+    3.3 DFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-dft" class="md-nav__link">
+    3.4 DFT 性质
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 傅里叶变换的各种可能形式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    3.6 频域采样定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 非周期连续时间信号谱分析
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 非周期连续时间信号谱分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371" class="md-nav__link">
+    3.7.1 时域采样
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372" class="md-nav__link">
+    3.7.2 时域截断
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#373" class="md-nav__link">
+    3.7.3 周期延拓
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#374-dft" class="md-nav__link">
+    3.7.4 计算 DFT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-fft" class="md-nav__link">
+    3.8 FFT
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Part%204%20-%20%20%E6%BB%A4%E6%B3%A2%E5%99%A8%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 4    滤波器总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 信号与空间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-dft" class="md-nav__link">
+    3.2 DFT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-dfs" class="md-nav__link">
+    3.3 DFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-dft" class="md-nav__link">
+    3.4 DFT 性质
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 傅里叶变换的各种可能形式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    3.6 频域采样定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 非周期连续时间信号谱分析
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 非周期连续时间信号谱分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371" class="md-nav__link">
+    3.7.1 时域采样
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372" class="md-nav__link">
+    3.7.2 时域截断
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#373" class="md-nav__link">
+    3.7.3 周期延拓
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#374-dft" class="md-nav__link">
+    3.7.4 计算 DFT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-fft" class="md-nav__link">
+    3.8 FFT
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="3-dft-dfs-fft">3. DFT, DFS, FFT 总结</h1>
+<h2 id="31">3.1 信号与空间</h2>
+<p><strong>向量集合 <span class="arithmatex">\(\mathbb V\)</span></strong>：可以定义加法、标量乘法、满足交换律、结合律、分配律、存在加法零元、加法逆元、乘法单位元。</p>
+<p><strong>向量的内积</strong> 定义为：
+$$
+\left\langle\cdot,\cdot \right\rangle: \ \mathbb V \times \mathbb V \to \mathbb F
+$$
+内积用于测量向量间的相似性。如果内积为零，则称向量是正交的。</p>
+<p>内积满足的特性：分配性、共轭对称性、标度性、正定性、正交性。</p>
+<ul>
+<li><span class="arithmatex">\(\R^n\)</span> 空间中的内积：<span class="arithmatex">\(\displaystyle \sum_{n=0}^{N-1} x_ny_n\)</span>.</li>
+<li><span class="arithmatex">\(\C^N\)</span> 空间中的内积：<span class="arithmatex">\(\displaystyle \sum_{n=0}^{N-1} x_n^*y_n\)</span>.</li>
+<li><span class="arithmatex">\(L_2([-1,1])\)</span> 空间中的内积：<span class="arithmatex">\(\displaystyle \int_{-1}^{1} x(t)y(t)\mathrm d t\)</span>.</li>
+</ul>
+<p><strong>信号空间</strong> 有限支持序列和周期性序列可以定义在 <span class="arithmatex">\(\C^N\)</span> 空间中：
+$$
+\bold x=[x_0, x_1,\cdots,x_{N-1}]^\top
+$$
+有限支持序列的内积：<span class="arithmatex">\(\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=0}^{N-1} x_n^*y_n\)</span></p>
+<p>无限长度序列的内积：<span class="arithmatex">\(\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=-\infin}^{\infin} x_n^*y_n\)</span></p>
+<p>要求序列是平方可加的。</p>
+<p><strong>基向量</strong> 找到一个向量集合 <span class="arithmatex">\(\{\bold w^{(k)}\}\)</span>，包含最少的向量数，使得其他任意向量空间中的向量都可以写成这些向量的线性组合。</p>
+<p>也就是满足以下条件，
+$$
+\bold x=\sum_{k=0}^{K-1} \alpha_k \bold w^{(k)},\quad \alpha_k\in \C
+$$
+基系数 <span class="arithmatex">\(\alpha_k\)</span> 是唯一的。并且基向量之间线性无关。</p>
+<ul>
+<li>
+<p>正交基向量的性质：<span class="arithmatex">\(\left\langle \bold w^{(k)},\bold w^{(n)}\right\rangle=0\)</span> 当 <span class="arithmatex">\(k\not= n\)</span>.</p>
+</li>
+<li>
+<p>归一化正交基向量的性质：<span class="arithmatex">\(\left\langle \bold w^{(k)},\bold w^{(n)}\right\rangle=\delta[n-k]\)</span>.</p>
+</li>
+</ul>
+<p>当基向量归一化的时候，基系数计算简单，
+  $$
+  \alpha_k=\left\langle\bold w^{(k)},x\right\rangle
+  $$</p>
+<p><span class="arithmatex">\([-1,1]\)</span> 区间的傅里叶基函数：
+$$
+\frac{1}{\sqrt{2}},\cos \pi t,\sin \pi t,\cos 2\pi t,\sin 2\pi t,\cdots
+$$
+利用傅里叶基函数可以近似非连续函数，例如 <span class="arithmatex">\(h(t)=\operatorname{sgn}(t)\)</span>，使用：
+$$
+\hat h(t)=\sum_{k=0}^{N} \frac{1}{2k+1} \sin[(2k+1)\pi t]
+$$
+近似。满足均方收敛的条件，但是非一致收敛。</p>
+<h2 id="32-dft">3.2 DFT</h2>
+<p><strong>DFT 在信号空间中的表征</strong> 由时域基转换到了频域基：
+$$
+w^t_k[n]=\delta[n-k]
+\
+w^f_k[n]=e^{j\frac{2\pi}{N}kn}
+$$
+可以证明是正交的，但是没有进行归一化.</p>
+<p>DFT 公式：
+$$
+[\bold X]<em>k=\left\langle \bold w^{(k)},\bold x\right\rangle\Rightarrow \bold X=\bold W_N\bold x
+$$
+IDFT 公式：
+$$
+\bold x=\frac{1}{N}\bold W_N^H \bold X
+$$
+<strong>DFT 公式和 IDFT 公式</strong>
+$$
+X[k]=\sum</em>{n=0}^{N-1}x[n]e^{-j\frac{2\pi}{N}kn},\quad k=0,1,\cdots,N-1\
+x[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{j\frac{2\pi}{N}kn},\quad n=0,1,\cdots,N-1
+$$
+<strong>DFT 示例：余弦序列</strong></p>
+<p>当相位为零，
+$$
+x[n]=3\cos\left(\frac{2\pi \cdot 4n}{64}\right),\quad x[n]\in \C^{64}
+$$</p>
+<div class="arithmatex">\[
+\omega=\frac{2\pi\cdot k}{N}
+\]</div>
+<div class="arithmatex">\[
+x[n]=\frac{3}{2}(w_4[n]+w_{60}[n])
+\]</div>
+<div class="arithmatex">\[
+X[k]=\left\langle w_k[n],x[n]\right\rangle=96(\delta[k-4]+\delta[k-60])
+\]</div>
+<p><img alt="image-20241222060209637" src="https://notes.sjtu.edu.cn/uploads/upload_8102b651593a97c3fbfab2b12bd82ed6.png" /></p>
+<p>注意，<span class="arithmatex">\(w_k[n]\)</span> 未进行归一化。</p>
+<p>当相位不为零，
+$$
+x[n]=3\cos\left(\frac{2\pi \cdot 4n}{64}+\frac{\pi}{3}\right),\quad x[n]\in \C^{64}
+$$</p>
+<div class="arithmatex">\[
+x[n]=\frac{3}{2}(e^{j\pi/3}w_4[n]+e^{-j\pi/3}w_{60}[n])
+\]</div>
+<div class="arithmatex">\[
+X[k]=\left\langle w_k[n],x[n]\right\rangle=96 e^{j\pi/3}\delta[k-4]+96e^{-j\pi/3}\delta[k-60]
+\]</div>
+<p><img alt="image-20241222060219507" src="https://notes.sjtu.edu.cn/uploads/upload_683d95959c3538fcca9c5929ba25c102.png" /></p>
+<p>幅值不变，相角发生了变化。</p>
+<p><strong>DFT 示例：矩形窗信号</strong> <span class="arithmatex">\(M\)</span> 宽 <span class="arithmatex">\(N\)</span> 长的矩形信号。
+$$
+X[k]=\frac{\sin \left(\frac{\pi}{N}Mk\right)}{\sin\left(\frac{\pi}{N}k\right)}e^{-j\frac{\pi}{N}(M-1)k}
+$$
+根据定义，<span class="arithmatex">\(X[0]=M\)</span>，并且如果 <span class="arithmatex">\(Mk/N\)</span> 是整数，则 <span class="arithmatex">\(X[k]=0\)</span>.</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_6b16a1a43db8d1a9afb072d9fa6c86ff.png" alt="image-20241222060540750" style="zoom:50%;" /></p>
+<h2 id="33-dfs">3.3 DFS</h2>
+<div class="arithmatex">\[
+\tilde{X}(k)=\operatorname{DFS}\{{\tilde{x}}(n)\}=\sum_{n=0}^{N-1} {\tilde{x}}(n) e^{-j\frac{2\pi}{N} nk}=\sum_{n=0}^{N-1} {\tilde{x}}(n)W_{N}^{nk}\\
+\tilde{x}(n)=\operatorname{IDFS}\{\tilde{X}(k)\}=\frac{1}{N}\sum_{k=0}^{N-1} \tilde{X}(k) e^{j\frac{2\pi}{N} nk} = \frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}(k) W_{N}^{-nk}
+\]</div>
+<p><strong>圆周位移</strong>
+$$
+\tilde{x}[n-M]R_{N}[n]=x[\operatorname{mod}(n-m,N)]
+$$</p>
+<h2 id="34-dft">3.4 DFT 性质</h2>
+<ul>
+<li>
+<p><strong>周期序列的移位</strong>：
+  $$
+  \operatorname{DFT}{x[(n+m)<em>{N}]}=W</em>{N}^{-mk} X(k)=e^{j\frac{2\pi}{N}mk} X(k)
+  $$
+  幅度不变，相角位移。
+  $$
+  \operatorname{IDFT}{X[(k+m)_{N}]}=e^{-j\frac{2\pi}{N}mn} x[n]
+  $$</p>
+</li>
+<li>
+<p><strong>圆周翻转特性</strong>：
+  $$
+  \operatorname{DFT}{x[(-n)_{N}]}=X[(-k)_N]\
+  \operatorname{DFT}{x^<em>[(-n)_N]}=X^</em>[(k)_N]
+  $$</p>
+</li>
+<li>
+<p><strong>圆周共轭对称/反对称序列</strong> 的分解：</p>
+</li>
+<li>
+<p>圆周共轭对称序列：<span class="arithmatex">\(x_{ep}[n]=x_{ep}^*[(-n)_N]\)</span>（全为实数且对称的序列是圆周共轭对称序列）</p>
+</li>
+<li>圆周共轭反对称序列：<span class="arithmatex">\(x_{op}[n]=-x_{op}^*[(-n)_N]\)</span>.</li>
+</ul>
+<p>$$
+  x[n]=x_{ep}[n]+x_{op}[n]
+  $$</p>
+<p>$$
+  \begin{cases}
+  x_{ep}[n]=\frac{1}{2}(x[n]+x^<em>[(-n)<em>N])\
+  x</em>{op}[n]=\frac{1}{2}(x[n]-x^</em>[(-n)_N])
+  \end{cases}
+  $$</p>
+<p>对于时域和频域，一方分解为实部+虚部，另一方分解为对称+反对称，互相对应。</p>
+<p>如果时域只有实部部分，则对应频域只有对称部分，满足：
+  $$
+  X[k]=X^*[(-k)_N]
+  $$
+  <img alt="image-20241222124432293" src="https://notes.sjtu.edu.cn/uploads/upload_1d0617b7665c5b2f6d6544f98c978a65.png" /></p>
+<p>利用圆周共轭对称性可以 <u>减少实序列 DFT 的计算量</u>。</p>
+<p>例如构造：
+  $$
+  x[n]=x_1[n]+jx_2[n]
+  $$
+  其中 <span class="arithmatex">\(x_{1,2}[n]\)</span> 为实数序列，则
+  $$
+  X_{ep}[k]=\operatorname{DFT}{x_1[n]},\X_{op}[k]=\operatorname{DFT}{jx_2[n]}\Rightarrow \operatorname{DFT}{x_2[n]}=\frac{1}{j} X_{op}[k]
+  $$
+  可以用一次复数序列的 DFT 来求得两个实数序列的 DFT.</p>
+<p>利用 <span class="arithmatex">\(N\)</span> 点复序列的 DFT，计算 <span class="arithmatex">\(2N\)</span> 点实序列 <span class="arithmatex">\(x[n]\)</span> 的 DFT：首先，我们构造 <span class="arithmatex">\(x_1,x_2\)</span>.
+  $$
+  x[n]=\begin{cases}
+  x_1[k],&amp;n=2k\x_2[k],&amp;n=2k+1
+  \end{cases}
+  $$
+  令 <span class="arithmatex">\(y[n]=x_1[n]+jx_2[n]\)</span> 利用：
+  $$
+  \begin{cases}
+  \operatorname{DFT}{x_1[n]}=Y_{ep}[k]=(Y[k]+Y^<em>[(-k)<em>N])/2\
+  \operatorname{DFT}{x_2[n]}=-jY</em>{op}[k]=-j(Y[k]-Y^</em>[(-k)<em>N])/2
+  \end{cases}
+  $$
+  计算得到 <span class="arithmatex">\(X_1[k]\)</span> 和 <span class="arithmatex">\(X_2[k]\)</span>. 根据 DFT 定义，
+  $$
+  \begin{aligned}
+  X[k]&amp;=\sum</em>{n\mathrm{~even}} x_1[n] W_{2N}^{nk}+\sum_{n\mathrm{~odd}} x_2[n] W_{2N}^{nk}\
+  &amp;=\sum_{n\mathrm{~even}} x_1[n] W_{N}^{\frac{n}{2}k}+W_{2N}^{k}\sum_{n\mathrm{~odd}} x_2[n] W_{N}^{\frac{n-1}{2}k}\
+  &amp;=X_1[k]+W_{2N}^k X_2[k],\quad k=0,1,\cdots,N-1
+  \end{aligned}
+  $$</p>
+<p>$$
+  X[k+N]=X_1[k]+W_{2N}^{k+N}X_2[k]\
+  =X_1[k]-W_{2N}^{k} X_2[k],\quad k =0,1,\cdots,N-1
+  $$</p>
+<ul>
+<li><strong>圆周卷积和</strong> 定义：
+  $$
+  y[n]=\sum_{m=0}^{L-1} x_1[m]x_2[(n-m)_L]
+  $$</li>
+</ul>
+<p>$$
+  Y[k]=X_1[k]X_2[k]
+  $$</p>
+<p>若 <span class="arithmatex">\(x_1[n]\)</span> 和 <span class="arithmatex">\(x_2[n]\)</span> 均补值到 <span class="arithmatex">\(L\)</span> 点，计算 <span class="arithmatex">\(y[n]=x_1[n]x_2[n]\)</span>，可得
+  $$
+  Y[k]=\frac{1}{L}X_1[k]*_L X_2[k]
+  $$
+  <u>线性卷积和和圆周卷积和的关系</u>：两个有限长序列补零拓展后的线性卷积和以 <span class="arithmatex">\(L\)</span> 为周期进行延拓后，所得周期序列的主值序列，即为此两序列的 <span class="arithmatex">\(L\)</span> 点圆周卷积和</p>
+<h2 id="35">3.5 傅里叶变换的各种可能形式</h2>
+<p><img alt="image-20241222140919335" src="https://notes.sjtu.edu.cn/uploads/upload_97f25030a0786282347afaa1c780f077.png" /></p>
+<p><img alt="image-20241222175647537" src="https://notes.sjtu.edu.cn/uploads/upload_d26150c4ae625b67abfbb08b9703bac9.png" /></p>
+<p><img alt="image-20241222175655404" src="https://notes.sjtu.edu.cn/uploads/upload_8ea4d5f2c48a58aeeb4ab472404903b7.png" /></p>
+<p><img alt="image-20241222175705437" src="https://notes.sjtu.edu.cn/uploads/upload_7a898c92daca1fc6ccdaa7bc1b161f1e.png" /></p>
+<h2 id="36">3.6 频域采样定理</h2>
+<p>给定 <span class="arithmatex">\(x[n]\in l_2(\Z)\)</span>（有限支持/无限序列），计算其 DTFT <span class="arithmatex">\(X(e^{j\omega})\in L_2(\R)\)</span>，表达式为：
+$$
+X(e^{j\omega})=\sum_{n=-\infin}^{\infin} x[n] e^{-j\omega n}
+$$
+进行频域采样，采样 <span class="arithmatex">\(N\)</span> 点：
+$$
+\tilde{X}[k]=X(e^{j\omega})|<em>{\omega=2\pi k/N}=\sum</em>{n=-\infin}^{\infin} x[n]  W_{N}^{kn}
+$$
+进行 IDFS 还原：
+$$
+\tilde{x}[n]=\frac{1}{N}\sum_{n=-\infin}^{\infin} \tilde{X}[k] W_{N}^{-kn}
+$$
+关心 <span class="arithmatex">\(x[n]\)</span> 与 <span class="arithmatex">\(\tilde{x}[n]\)</span> 的关系。展开可得：
+$$
+\begin{aligned}\tilde{x}[n]&amp;=\frac{1}{N}\sum_{n=-\infin}^{\infin} \tilde{X}[k]e^{jk\frac{2\pi}{N}n}\
+&amp;=\frac{1}{N}\sum_{n=-\infin}^{\infin}
+\left(\sum_{m=-\infin}^\infin x[m]W_N^{km}\right) W^{-kn}<em>{N}\
+&amp;=\sum</em>{m=-\infin}^{\infin} x[m] \left(\frac{1}{N}\sum_{k=0}^{N-1}W_{N}^{k(m-n)}\right)
+\end{aligned}
+$$
+因为只有 <span class="arithmatex">\(m-n\)</span> 是 <span class="arithmatex">\(N\)</span> 的倍数的时候后面一项等于一，否则等于零，
+$$
+\tilde{x}[n]=\sum_{r=-\infin}^{\infin}x[n+rN]
+$$
+研究 <span class="arithmatex">\(\tilde{x}[n]\)</span> 与 <span class="arithmatex">\(x[n]\)</span> 的关系：<span class="arithmatex">\(\tilde{x}[n]\)</span> 是 <span class="arithmatex">\(x[n]\)</span> 的周期延拓，延拓周期是 <span class="arithmatex">\(N\)</span>;</p>
+<ol>
+<li>当 <span class="arithmatex">\(x[n]\)</span> 是无限长序列，则延拓过程中一定出现混叠，<span class="arithmatex">\(\tilde{x}[n]\not=x[n]\)</span>.</li>
+<li>当 <span class="arithmatex">\(x[n]\)</span> 是有限支持序列，<u>有限支持区域长度</u>为 <span class="arithmatex">\(M\)</span>.</li>
+<li><span class="arithmatex">\(N\ge M\)</span>，周期延拓无混叠；</li>
+<li><span class="arithmatex">\(N&lt;M\)</span>，周期延拓有混叠。</li>
+</ol>
+<p><strong>频域采样定理</strong>：</p>
+<p>频域采样点数为 <span class="arithmatex">\(N\)</span>，有限支持区域长度为 <span class="arithmatex">\(M\)</span>（有值区间 <span class="arithmatex">\(0\sim M-1\)</span>），只有当 <span class="arithmatex">\(N\ge M\)</span>，由 <span class="arithmatex">\(\tilde{X}[k]\)</span> 的 IDFS 得到的时域序列 <span class="arithmatex">\(\tilde{x}[n]\)</span>，满足
+$$
+\tilde{x}[n]R_N[n]=x[n]R_N[n]
+$$
+即可由频域采样 <span class="arithmatex">\(\tilde{X}[k]\)</span> 不失真地恢复出原信号 <span class="arithmatex">\(x[n]\)</span>，否则产生时域混叠现象。</p>
+<p><strong>插值重构</strong>：
+$$
+\begin{aligned}
+X(z)&amp;=\sum_{n=0}^{N-1} x(n)z^{-n}\
+&amp;=\sum_{n=0}^{N-1}\left[\frac{1}{N}\sum_{k=0}^{N-1} X(k)W_{N}^{-nk}\right]z^{-n}\
+&amp;=\frac{1}{N}\sum_{k=0}^{N-1}X(k)\left[\sum_{n=0}^{N-1} W_{N}^{-nk}z^{-n}\right]\
+&amp;=\frac{1}{N}\sum_{k=0}^{N-1} X(k) \frac{1-W_{N}^{-Nk}z^{-N}}{1-W_{N}^{-k} z^{-1}}\
+&amp;=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1}\frac{X(k)}{1-W_{N}^{-k} z^{-1}}\
+&amp;=\sum_{k=0}^{N-1}X(k)\Phi_k(z)
+\end{aligned}
+$$
+插值函数：
+$$
+\Phi_{k}(z)=\frac{z^{N}-1}{Nz^{N-1}(z-W_{N}^{-k})}
+$$</p>
+<h2 id="37">3.7 非周期连续时间信号谱分析</h2>
+<h3 id="371">3.7.1 时域采样</h3>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_2af1314cf183ce2e4463b75e075f97f8.png" alt="image-20241222205352969" style="zoom:50%;" /></p>
+<p><strong>时域采样定理</strong>：要求采样频率 <span class="arithmatex">\(f_s\ge 2f_h\)</span>，其中 <span class="arithmatex">\(f_h\)</span> 是带限信号的最高频率。可以适当增加采样频率，有助于减小后面的混叠失真，取 <span class="arithmatex">\(f_s=(3\sim 6)f_h\)</span>. 如果不是带限信号，需要加入防混叠滤波器。</p>
+<p>当抽样频率不符合要求时，会产生 <u>频谱的混叠失真</u>。</p>
+<h3 id="372">3.7.2 时域截断</h3>
+<p><img alt="image-20241222205415996" src="https://notes.sjtu.edu.cn/uploads/upload_c3de30430d3d583cccac34d106696f39.png" /></p>
+<p>可以看成原信号乘以窗函数：
+$$
+d[n]=\begin{cases}1,&amp;0\le n\le N-1\
+0,&amp; \mathrm{else}.
+\end{cases}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4f3e8bf548b86327f950c9df5a6cd795.png" alt="image-20241222205935922" style="zoom:50%;" /></p>
+<p>选择不同种类的窗函数，可以增大主旁瓣幅度比，从而减少谱间干扰。增加窗长 <span class="arithmatex">\(N\)</span>，可以减小主瓣宽度，从而减少频谱泄露的程度。</p>
+<p><img alt="image-20241222215613087" src="https://notes.sjtu.edu.cn/uploads/upload_7cef631f432ae5eca71642a90f07eb5f.png" /></p>
+<h3 id="373">3.7.3 周期延拓</h3>
+<p><img alt="image-20241222205425303" src="https://notes.sjtu.edu.cn/uploads/upload_9a55b05602559bf411b2400337365a0d.png" /></p>
+<p>采样点数 <span class="arithmatex">\(M\ge N\)</span>，取 <span class="arithmatex">\(M=N\)</span>. </p>
+<p><img alt="image-20241222213459480" src="https://notes.sjtu.edu.cn/uploads/upload_491d6d2a7a5b1909da994f55f10aef2c.png" /></p>
+<p>可得频率分辨率为：
+$$
+\boxed{F_0=\frac{1}{T_0}=\frac{1}{NT}=\frac{f_s}{N}}
+$$
+频率分辨率越小，分辨接近频率信号的能力越强。</p>
+<p>提高分辨率的方法：</p>
+<ul>
+<li>增加有效数据长度 <span class="arithmatex">\(T_0\)</span>. 若此时 <span class="arithmatex">\(f_s\)</span> 不变，抽样点数增加.</li>
+<li>用补零点的方式不能增加 <span class="arithmatex">\(N\)</span> 值，不能提高分辨率。</li>
+</ul>
+<p>DFT 频谱间隔为 <span class="arithmatex">\(f_s/N\)</span>，得到的是连续频谱的等间隔的 <span class="arithmatex">\(N\)</span> 点抽样值，而这 <span class="arithmatex">\(N\)</span> 点抽样值中的任意相邻两点之间的频率点上的频谱值是不知道的，就好像是通过一个栅栏的缝隙观看一个镜像一样。</p>
+<p><strong>减小栅栏效应</strong></p>
+<ul>
+<li>在数据长度 <span class="arithmatex">\(T_0\)</span> 不变的情况下，增加 <span class="arithmatex">\(f_s\)</span>，抽样点数 <span class="arithmatex">\(N\)</span> 增多；</li>
+<li>如果 <span class="arithmatex">\(T_0\)</span> 不变，时域有效抽样点数也不变，则可在有效 <span class="arithmatex">\(N\)</span> 点数据后补零值；</li>
+<li>在 <span class="arithmatex">\(f_s\)</span> 不变的情况下增加 <span class="arithmatex">\(T_0\)</span>.</li>
+</ul>
+<h3 id="374-dft">3.7.4 计算 DFT</h3>
+<p><img alt="image-20241222205436389" src="https://notes.sjtu.edu.cn/uploads/upload_76e9ee12e1a0727ff4f58f51e1a3162f.png" /></p>
+<h2 id="38-fft">3.8 FFT</h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,143 @@
+# 2. 插值与采样总结
+
+## 2.1 插值
+
+**带限信号**：如果存在频率 $f_h$ 使得：
+$$
+X(f)=0,\quad |f|>f_h/2
+$$
+则称为带限信号.
+
+**带限信号的时域和频域表达**
+$$
+\varphi(t)=\operatorname{sinc}\left(\frac{t}{T}\right)\quad \operatorname{sinc}(t)=\frac{\sin(\pi t)}{\pi t}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_f8b45de3e32765a300375c89243023db.png" alt="image-20241221201742325" style="zoom:50%;" />
+$$
+\Phi(f)=\frac{1}{f_s} \operatorname{rect}\left(\frac{f}{f_s}\right)
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_05ef79b1d2e5609c91d043f913cab8f2.png" alt="image-20241221201835688" style="zoom:50%;" />
+
+**插值的定义** 求取 $x[n]$ 到 $x(t)$ 的映射，满足：
+$$
+x(nT)=x[n]
+$$
+**插值函数的要求**：平滑、无限可微。例如信号 $\operatorname{rect}\left(\frac{t}{T/2}\right)$ 不能成为插值函数，因为不符合平滑的条件。
+
+**sinc 函数的特点**：
+
+- 关于 $t=0$ 是对称的，所有零点在 $nT,n\not=0$.
+- 平方可积但是不是绝对可积；
+- 无限可微的平滑函数。
+
+**sinc 插值的数学形式**
+$$
+x(t)=\sum_{n=-\infin}^{\infin } x[n] \operatorname{sinc}\left(\frac{t-nT}{T}\right)
+$$
+计算 $x(t)$ 的傅里叶变换，由线性性：
+$$
+\begin{aligned}
+X(f)&=\sum_{n=-\infin}^{\infin } x[n] \mathcal F\left\{\operatorname{sinc}\left(\frac{t-nT}{T}\right)\right\}\\
+&=\sum_{n=-\infin}^{\infin } x[n] \mathcal F\left\{\varphi(t-nT)\right\}\\
+&=\sum_{n=-\infin}^{\infin } x[n] \Phi(f) e^{-j2\pi fnT}\\
+&=\frac{1}{f_s}\sum_{n=-\infin}^{\infin} x[n]  \operatorname{rect}\left(\frac{f}{f_s}\right) e^{-j2\pi fnT}\\
+&=T\operatorname{rect}\left(\frac{f}{f_s}\right)\underbrace{\sum_{n=-\infin}^{\infin} x[n]   e^{-j2\pi (f/f_s)n}}_{X(e^{j2\pi f/f_s})}\\
+&=\begin{cases}
+TX(e^{j2\pi f/f_s}),&\mathrm{for~}|f|\le f_s/2\\
+0,&\mathrm{otherwise}
+\end{cases}
+\end{aligned}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_6c4bf626f5bcade7d70d4b7f27393897.png" alt="image-20241221204004067" style="zoom:50%;" />
+
+- 采样间隔 $T$ 越大，频率 $f_s$ 越小，信号的幅值越大，带宽 $f_s/2$ 越小；
+- 采样间隔 $T$ 越小，频率 $f_s$ 越大，信号的幅值越小，带宽 $f_s/2$ 越大。
+
+**sinc 插值的另外一种解释**：使得 $x[n]$ 的序列值以 $T$ 为间隔，即构造模拟信号：
+$$
+\hat x_a(t)=\begin{cases}
+x[n]&t=nT\\
+0&t\not=nT
+\end{cases}
+$$
+并且让 $\hat x_a(t)$ 通过带宽为 $f_s$ 的理想低通滤波器。
+
+证明两种做法是等价的，对 $\hat x_a(t)$ 做傅里叶变换：
+$$
+\begin{aligned}
+\hat X_a(f)&=\int_{-\infin}^{\infin} x_a(t)e^{-j2\pi ft}\mathrm d f\\
+&=\sum_{n=-\infin}^{\infin} x[n]e^{-j2\pi f/f_sn}\\
+&=X(e^{j2\pi f/f_s})
+\end{aligned}
+$$
+然后，
+$$
+X(f)=\hat X_a(f)\cdot \Phi(f)=\begin{cases}
+TX(e^{j2\pi f/f_s}),&\mathrm{for~}|f|\le f_s/2\\
+0,&\mathrm{otherwise}
+\end{cases}
+$$
+
+## 2.2 采样
+
+**模拟信号的理想采样**
+$$
+\delta_T(t)=\sum_{m=-\infin}^{\infin} \delta(t-mT)\\
+\hat x_a(t)=x_a(t)\delta_T(t)
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3a46edd235a8fc5d9184572fa856e225.png" alt="image-20241221221631033" style="zoom:50%;" />
+
+采样周期：$T$；采样频率：$f_s=1/T$；采样角频率：$\Omega_s=2\pi f_s$.
+
+因为 $\delta_T(t)$ 是周期信号，其频谱是离散的，可以表示为：
+$$
+\delta_T(t)=\sum_{k=-\infin}^{\infin} a_k e^{jk\Omega_s t}
+$$
+
+$$
+a_k=\frac{1}{T}\int_{-T/2}^{T/2} \delta_T(t)e^{-jk\Omega_s t}\mathrm d t=\frac{1}{T}\int_{-T/2}^{T/2} \delta(t)\mathrm d t=\frac{1}{T}\\\Rightarrow \delta_T(t)=\frac{1}{T}\sum_{k=-\infin}^{\infin} a_k e^{jk\Omega_s t}
+$$
+
+$$
+\Delta_T(j\Omega)=\frac{2\pi}{T}\sum_{k=-\infin}^{\infin} \delta(\Omega-k\Omega_s)
+$$
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_e5933b6c7e2365d725e5d6a07fc3a81d.png" alt="image-20241221222248301" style="zoom:50%;" />
+$$
+\hat X_a(j\Omega)=\frac{1}{2\pi} \Delta_T(j\Omega)*X_a(j\Omega)
+$$
+理想采样信号的频谱是模拟信号频谱的周期延拓，延拓周期是 $\Omega_s$，延拓的缩放比例为 $1/T$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_1654b7fd399870e0e5454a2035752da7.png" alt="image-20241221222347800" style="zoom:50%;" />
+
+**奈奎斯特采样定理** 若 $x_a(t)$ 为 <u>带限信号</u>，要想抽样后的信号能够不失真地还原出原信号，则要求
+$$
+f_s\ge 2f_h
+$$
+或者等价于 $\Omega_c \le 2 \Omega_s$.
+
+当带限信号出现冲激线状频谱（如正弦信号），当 $f_s=2f_h$ 时，会产生混叠（画图可以发现出现相互抵消的情况），因此要求 $f_s>2f_h$.
+
+![image-20241221223126176](https://notes.sjtu.edu.cn/uploads/upload_cc00518929f8aaf2ea822ad9546b1c55.png)
+
+若 $x_a(t)$ <u>不是带限信号</u>，也不能对 $x_a(t)$ 进行直接采样，否则频谱中超出带限的部分会混叠到 $[-f_s/2,f_s/2]$ 的区间，需要首先通过截止频率为 $f_s/2$ 的防混叠滤波器，然后进行频率为 $f_s$ 的采样。
+
+![image-20241221224056455](https://notes.sjtu.edu.cn/uploads/upload_dd5266af638fd28342b4ab553d46e815.png)
+
+**正弦信号的采样** 画频谱图分析
+
+**能否可以区分采样频率和采样信号**
+
+- 两个不同频率的模拟正弦信号，使用相同频率采样，可能得到相同序列；
+- 同一个模拟正弦信号，使用不同频率采样，也有可能得到相同序列。
+
+**带通采样**
+
+![image-20241221230324294](https://notes.sjtu.edu.cn/uploads/upload_ec2664e2fcef22b516b9cefcd8993819.png)
+
+信号单边带宽 $B=2f_0$，对信号上下端分别延伸，产生保护带，满足
+$$
+(k-1)B_0\le f_l,f_h\le kB_0
+$$
+使用 $f_s=2B_0$ 采样。
+
