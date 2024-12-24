@@ -20,19 +20,19 @@ $$
 $$
 \bold x=[x_0, x_1,\cdots,x_{N-1}]^\top
 $$
-有限支持序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=0}^{N-1} x_n^*y_n$
+- 有限支持序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=0}^{N-1} x_n^*y_n$
 
-无限长度序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=-\infin}^{\infin} x_n^*y_n$
+- 无限长度序列的内积：$\displaystyle \left\langle\bold x,\bold y\right\rangle=\displaystyle \sum_{n=-\infin}^{\infin} x_n^*y_n$
 
 要求序列是平方可加的。
 
-**基向量** 找到一个向量集合 $\{\bold w^{(k)}\}$，包含最少的向量数，使得其他任意向量空间中的向量都可以写成这些向量的线性组合。
+**基向量** 在向量空间 $\mathbb H$，找到一个向量集合 $\{\bold w^{(k)}\}$，包含最少的向量数，使得其他任意向量空间中的向量都可以写成这些向量的线性组合。
 
 也就是满足以下条件，
 $$
 \bold x=\sum_{k=0}^{K-1} \alpha_k \bold w^{(k)},\quad \alpha_k\in \C
 $$
-基系数 $\alpha_k$ 是唯一的。并且基向量之间线性无关。
+使得基系数 $\alpha_k$ 是唯一的。并且基向量之间线性无关。
 
 - 正交基向量的性质：$\left\langle \bold w^{(k)},\bold w^{(n)}\right\rangle=0$ 当 $k\not= n$.
 
@@ -40,10 +40,11 @@ $$
 
   当基向量归一化的时候，基系数计算简单，
   $$
-  \alpha_k=\left\langle\bold w^{(k)},x\right\rangle
+  \alpha_k=\left\langle\bold w^{(k)},\bold x\right\rangle
   $$
+  但是当正交基未归一化时，不能直接使用这个方法计算。
 
-$[-1,1]$ 区间的傅里叶基函数：
+例如，$[-1,1]$ 区间的傅里叶基函数：
 $$
 \frac{1}{\sqrt{2}},\cos \pi t,\sin \pi t,\cos 2\pi t,\sin 2\pi t,\cdots
 $$
@@ -51,18 +52,18 @@ $$
 $$
 \hat h(t)=\sum_{k=0}^{N} \frac{1}{2k+1} \sin[(2k+1)\pi t]
 $$
-近似。满足均方收敛的条件，但是非一致收敛。
+近似。近似的结果满足均方收敛的条件，但是非一致收敛。
 
 ## 3.2 DFT
 
 **DFT 在信号空间中的表征** 由时域基转换到了频域基：
 $$
-w^t_k[n]=\delta[n-k]
-\\
-w^f_k[n]=e^{j\frac{2\pi}{N}kn}
+[\bold w^{(k)}]_{n}=e^{j\frac{2\pi}{N}kn}
 $$
-可以证明是正交的，但是没有进行归一化.
-
+可以证明是正交的，但是没有进行归一化. DFT 矩阵：
+$$
+\bold W_{N}=[\bold w^{(0)},\cdots,\bold w^{(n-1)}]^H
+$$
 DFT 公式：
 $$
 [\bold X]_k=\left\langle \bold w^{(k)},\bold x\right\rangle\Rightarrow \bold X=\bold W_N\bold x
@@ -73,8 +74,8 @@ $$
 $$
 **DFT 公式和 IDFT 公式**
 $$
-X[k]=\sum_{n=0}^{N-1}x[n]e^{-j\frac{2\pi}{N}kn},\quad k=0,1,\cdots,N-1\\
-x[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{j\frac{2\pi}{N}kn},\quad n=0,1,\cdots,N-1
+\boxed{X[k]=\sum_{n=0}^{N-1}x[n]e^{-j\frac{2\pi}{N}kn},\quad k=0,1,\cdots,N-1}\\
+\boxed{x[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{j\frac{2\pi}{N}kn},\quad n=0,1,\cdots,N-1}
 $$
 **DFT 示例：余弦序列**
 
@@ -123,6 +124,8 @@ $$
 根据定义，$X[0]=M$，并且如果 $Mk/N$ 是整数，则 $X[k]=0$.
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_6b16a1a43db8d1a9afb072d9fa6c86ff.png" alt="image-20241222060540750" style="zoom:50%;" />
+
+
 
 ## 3.3 DFS
 
@@ -231,6 +234,20 @@ $$
   $$
   <u>线性卷积和和圆周卷积和的关系</u>：两个有限长序列补零拓展后的线性卷积和以 $L$ 为周期进行延拓后，所得周期序列的主值序列，即为此两序列的 $L$ 点圆周卷积和
 
+> 例如，计算 $x(n)=\{3,2,0,2\}$ 和 $h(n)=\{4,-2,1,-1\}$ 的圆周卷积和，可以使用比较简便的方法：
+>
+> | $x(n)$       | 3    | 2    | 0    | 2    | $y(n)$ |
+> | ------------ | ---- | ---- | ---- | ---- | ------ |
+> | $h((-n)_4)$  | 4    | -1   | 1    | -2   | 6      |
+> | $h((1-n)_4)$ | -2   | 4    | -1   | 1    | 4      |
+> | $h((2-n)_4)$ | 1    | -2   | 4    | -1   | -3     |
+> | $h((3-n)_4)$ | -1   | 1    | -2   | 4    | 7      |
+>
+> 可得：
+> $$
+> y(n)=\{6,4,-3,7\}
+> $$
+
 ## 3.5 傅里叶变换的各种可能形式
 
 ![image-20241222140919335](https://notes.sjtu.edu.cn/uploads/upload_97f25030a0786282347afaa1c780f077.png)
@@ -267,12 +284,14 @@ $$
 $$
 \tilde{x}[n]=\sum_{r=-\infin}^{\infin}x[n+rN]
 $$
-研究 $\tilde{x}[n]$ 与 $x[n]$ 的关系：$\tilde{x}[n]$ 是 $x[n]$ 的周期延拓，延拓周期是 $N$;
+研究 $\tilde{x}[n]$ 与 $x[n]$ 的关系：**$\boldsymbol{\tilde{x}[n]}$ 是 $\boldsymbol{x[n]}$ 的周期延拓，延拓周期是 $N$**.
 
-1. 当 $x[n]$ 是无限长序列，则延拓过程中一定出现混叠，$\tilde{x}[n]\not=x[n]$.
+<u>研究周期延拓造成的混叠现象</u>：
+
+1. 当 $x[n]$ 是无限长序列，则延拓过程中一定出现混叠，$\tilde{x}[n]\not=x[n]$. 频域抽样次数 $N$ 越大，失真越小。
 2. 当 $x[n]$ 是有限支持序列，<u>有限支持区域长度</u>为 $M$.
-   - $N\ge M$，周期延拓无混叠；
-   - $N<M$，周期延拓有混叠。
+   - $N\ge M$，周期延拓无混叠，可以由 $\tilde{x}[n]$ 恢复 $x[n]$；
+   - $N<M$，周期延拓有混叠，不可以由 $\tilde x[n]$ 恢复 $x[n]$.
 
 **频域采样定理**：
 
@@ -282,7 +301,9 @@ $$
 $$
 即可由频域采样 $\tilde{X}[k]$ 不失真地恢复出原信号 $x[n]$，否则产生时域混叠现象。
 
-**插值重构**：
+> 由此可得，频域抽样产生时域的周期延拓，而时域抽样产生频域的周期延拓。
+
+**频域插值重构**：使用采样点 $X(k)|_{z=e^{j2\pi \frac{k}{N}}}$ 重构 $X(z)$.
 $$
 \begin{aligned}
 X(z)&=\sum_{n=0}^{N-1} x(n)z^{-n}\\
@@ -296,6 +317,21 @@ $$
 插值函数：
 $$
 \Phi_{k}(z)=\frac{z^{N}-1}{Nz^{N-1}(z-W_{N}^{-k})}
+$$
+
+$$
+\Phi(z)|_{z=W_{N}^{-r}}=\delta(r-k)
+$$
+
+插值函数零点：$z=W_{N}^{-r},r=0,1,2,\cdots,k-1,k+1,\cdots,N-1$.
+
+代入 $z=e^{j\omega}$ 进入 $\Phi_k(z)$ 可得
+$$
+\Phi(\omega)=\frac{1}{N}\frac{\sin(\omega N/2)}{\sin(\omega/2)}e^{-j(N-1)\omega/2}
+$$
+重写 $X(z)$ 表达式为：
+$$
+\Phi(z)=\sum_{k=0}^{N-1} X(k) \Phi(\omega-2\pi k/N)
 $$
 
 ## 3.7 非周期连续时间信号谱分析

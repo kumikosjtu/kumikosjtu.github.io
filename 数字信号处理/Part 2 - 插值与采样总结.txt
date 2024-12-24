@@ -2,13 +2,9 @@
 
 ## 2.1 插值
 
-**带限信号**：如果存在频率 $f_h$ 使得：
-$$
-X(f)=0,\quad |f|>f_h/2
-$$
-则称为带限信号.
+**带限信号**：如果存在频率 $f_h$ 使得 $X(f)=0,|f|>f_h/2$ 则称  $X(f)$ 为带限信号.
 
-**带限信号的时域和频域表达**
+**低通滤波器的时域和频域表达**
 $$
 \varphi(t)=\operatorname{sinc}\left(\frac{t}{T}\right)\quad \operatorname{sinc}(t)=\frac{\sin(\pi t)}{\pi t}
 $$
@@ -22,7 +18,7 @@ $$
 $$
 x(nT)=x[n]
 $$
-**插值函数的要求**：平滑、无限可微。例如信号 $\operatorname{rect}\left(\frac{t}{T/2}\right)$ 不能成为插值函数，因为不符合平滑的条件。
+**插值函数的要求**：需要满足 $x(nT)=x[n]$ 并且保证 $x(t)$ 平滑、无限可微。例如信号 $\operatorname{rect}\left(\frac{t}{T/2}\right)$ 不能成为插值函数，因为不符合平滑的条件。
 
 **sinc 函数的特点**：
 
@@ -116,7 +112,7 @@ f_s\ge 2f_h
 $$
 或者等价于 $\Omega_c \le 2 \Omega_s$.
 
-当带限信号出现冲激线状频谱（如正弦信号），当 $f_s=2f_h$ 时，会产生混叠（画图可以发现出现相互抵消的情况），因此要求 $f_s>2f_h$.
+当带限信号出现冲激线状频谱（如正弦信号），当 $f_s=2f_h$ 时，会产生混叠（画图可以发现出现相互抵消的情况），若最高频率对应正弦信号，则要求 $f_s>2f_h$.
 
 ![image-20241221223126176](https://notes.sjtu.edu.cn/uploads/upload_cc00518929f8aaf2ea822ad9546b1c55.png)
 
