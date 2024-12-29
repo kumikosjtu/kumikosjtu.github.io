@@ -1,0 +1,257 @@
+# 2022 DSP A 类题目
+
+## 一、选择题
+
+### 1
+
+设系统 $\displaystyle y[n]=T(x[n])=100\sin \left(\frac{2n+3}{2}\pi\right)x[n]$，则下列说法正确的是（）
+
+- [ ] 该系统不是线性的；
+- [x] 该系统是时变的；
+- [ ] 该系统不是因果的；
+- [ ] 该系统不是稳定的。
+
+$$
+\sin \left(\frac{2n+3}{2}\pi\right)=(-1)^{n+1}
+$$
+
+- 因为 $T(\alpha x_1[n]+\beta x_2[n])=\alpha y_1[n]+\beta y_2[n]$，所以是线性的；
+- 因为 $T(x[n+n_0])=100(-1)^{n+n_0+1}x[n+n_0]\not=y[n+n_0]$ 所以是时变的；
+- 因为 $y[n]$ 没有用到 $\le n$ 的信息，所以是因果的；
+- 有界输入 $x[n]$ 产生有界输出 $y[n]$，所以是稳定的。
+
+### 2
+
+已知序列 $x[n]=2^nu[n]$，则其 Z 变换和收敛域是（）
+
+- [x] $\displaystyle X(z)=\frac{1}{1-2z^{-1}},|z|>2$;
+- [ ] $\displaystyle X(z)=\frac{1}{1-2z^{-1}},|z|<2$;
+- [ ] $\displaystyle X(z)=\frac{1}{1+2z^{-1}},|z|>2$;
+- [ ] $\displaystyle X(z)=\frac{1}{1+2z^{-1}},|z|<2$.
+
+$$
+X(z)=\sum_{n=-\infin}^{\infin} x[n]z^{-n}=\frac{1}{1-2z^{-1}}
+$$
+
+收敛域：$|z|>2$.
+
+### 3
+
+共轭反对称序列的傅里叶变换是（）
+
+- [ ] 实函数；
+- [x] 纯虚函数；
+- [ ] 共轭对称函数；
+- [ ] 共轭反对称函数.
+
+### 4
+
+周期为 $N$ 的信号 $\tilde{x}[n]$ 经过 DFS 处理，对 DFS 的输出在做 DFS 处理，以此类推，当输出结果是 $N^2 \tilde{x}[n]$ 时，所做 DFS 处理的总次数是（）
+
+- [ ] 2
+- [ ] 3
+- [x] 4
+- [ ] 5
+
+$$
+\tilde{X}_1[k]=\sum_{n=0}^{N-1} \tilde{x}[n] W_{N}^{nk}
+$$
+
+$$
+\begin{aligned}
+\tilde{X}_2[n]&=\sum_{m=0}^{N-1} \tilde{X}_1[m]W_{N}^{mn}\\
+&=\sum_{m=0}^{N-1}\tilde{X}_1[(-m)_N]W_{N}^{-mn}\\
+&=N \tilde{x}[(-n)_N]
+\end{aligned}
+$$
+
+继续此步骤，
+$$
+\tilde{X}_3[n]=\operatorname{DFS}\{\tilde{X}_2[n]\}\\
+\tilde{X}_4[n]=\operatorname{DFS}\{\tilde{X}_3[n]\}=N^2\tilde{x}[n]
+$$
+
+### 5
+
+最小相位系统与全通系统级联后的系统（）
+
+- [ ] 一定是最小相位系统；
+- [ ] 一定是最大相位系统；
+- [x] 幅度响应一定与最小相位系统相同；
+- [ ] 相位响应一定与最小相位系统相同。
+
+### 6
+
+频率为 $2\pi \times 800\mathrm{~rad/s}$ 的连续时间正弦信号，以采样周期 $1/1000\mathrm{~s}$ 采样，得到的离散时间正弦信号的频率是（）
+
+- [ ] $0.4\pi \mathrm{~rad}$.
+- [ ] $1.6\pi \mathrm{~rad}$.
+- [x] $0.2\mathrm{~Hz}$.
+- [ ] $0.8\pi \mathrm{~rad}$.
+
+$$
+x_a(t)=\sin(2\pi \times 800 t) \Rightarrow x[n]=x_a(nT)=\sin\left(2\pi \times \frac{4}{5}n\right)
+$$
+
+$$
+N=5 \Rightarrow f=\frac{1}{N}=0.2\mathrm{~Hz}
+$$
+
+### 7
+
+已知 $x[n]$ 的傅里叶变换是 $X(e^{j\omega})$，则 $x_d[n]=x[2n]$ 的傅里叶变换是（）
+
+- [ ] $X_d(e^{j\omega})=[X(e^{j\omega})+X(e^{j(\omega-\pi)})]/2$;
+- [x] $X_d(e^{j\omega})=[X(e^{j\omega/2})+X(e^{j(\omega-2\pi)/2})]/2$;
+- [ ] $X_d(e^{j\omega})=[X(e^{j\omega2})+X(e^{j(\omega-2\pi)2})]/2$;
+- [ ] $X_d(e^{j\omega})=X(e^{j2\omega})$.
+
+$$
+X(e^{j\omega})=\sum_{n=-\infin}^{\infin} x[n]e^{-j\omega n}
+$$
+
+$$
+\begin{aligned}
+X_d(e^{j\omega})&=\sum_{n=-\infin}^{\infin} x[2n] e^{-j\omega n}
+\end{aligned}
+$$
+
+选项中，
+$$
+X(e^{j\omega/2}) =\sum_{n=-\infin}^{\infin} x[n]e^{-j\omega n/2}
+$$
+
+$$
+X(e^{j(\omega-2\pi)/2})= \sum_{n=-\infin}^{\infin} (-1)^nx[n]e^{-j\omega n/2}
+$$
+
+$$
+\begin{aligned}
+\text[X(e^{j\omega/2})+X(e^{j(\omega-2\pi)/2})]/2&=\sum_{n=-\infin}^{\infin} [1+(-1)^n]/2x[n]e^{-j\omega n/2}\\
+&=\sum_{n=-\infin}^{\infin}[n=2k]x[n]e^{-j\omega n/2}\\
+&=\sum_{k=-\infin}^{\infin} x[2k]e^{-j\omega k}=X_d(e^{j\omega})
+\end{aligned}
+$$
+
+> 拓展，如果是 $x_d[n]=x[3n]$ 的话，应该是：
+> $$
+> X_d(e^{j\omega})=[X(e^{j\omega/3})+X(e^{j(\omega-2\pi)/3})+X(e^{j(\omega-4\pi)/3})]/3
+> $$
+
+### 8
+
+关于 DFT 正变换的定义错误的是（）
+
+- [ ] 时域信号 $x[n]$ 和频域信号 $X[k]$ 都是因果有限长信号；
+- [ ] 求和项数可以小于 $x[n]$ 的长度；
+- [ ] DFT 点数，求和项数和频域取样点数三者一致；
+- [x] N 点 DFT 中的 $X[N/2]$ 是对傅里叶变换在 $\omega=\pi$ 处的取样。（错误，$N$ 需要是偶数）
+
+### 9
+
+两个长度为 $N$ 的实序列 $x_1[n]$ 和 $x_2[n]$，其 N 点 DFT 分别为 $X_1[k]$ 和 $X_2[k]$，令 $X_1[k]+jX_2[k],k=0,1,\cdots,N-1$. 利用快速算法得到 $Y[k]$ 的 $N$ 点反变换 $y[n]$，则 $x_1[n]$ 和 $x_2[n]$ 的获得方法是（）
+
+- [ ] $x_1[n]=\operatorname{Re}\{y[n]\} $, $x_2[n]=\operatorname{Im}\{y[n]\} $.
+- [ ] $x_1[n]=\operatorname{Re}\{y[n]\}$, $x_2[n]=j\operatorname{Im}\{y[n]\} $.
+- [ ] $\displaystyle x_1[n]=\frac{y[n]+y^*[N-n]}{2}$, $\displaystyle x_2[n]=\frac{y[n]-y^*[N-n]}{2}$.
+- [x] $\displaystyle x_1[n]=\frac{y[n]+y^*[N-n]}{2}$, $\displaystyle x_2[n]=\frac{y[n]-y^*[N-n]}{2j}$.
+
+频域中的实数分量和虚数分量分别对应时域中的共轭对称分量和共轭反对称分量，也就是：
+$$
+y[n]=\operatorname{IDFT}\{X_1[k]+jX_2[k]\}\\
+\displaystyle x_1[n]=\operatorname{IDFT}\{X_1[k]\}=\frac{y[n]+y^*[N-n]}{2}\\\displaystyle x_2[n]=\frac{1}{j}\operatorname{IDFT}\{jX_2[k]\}=\frac{y[n]-y^*[N-n]}{2j}
+$$
+
+
+### 10
+
+关于级联型和并联型错误的说法是（）
+
+- [ ] 为了使每个子系统的系数全部为实数，所以采用 2 阶子系统而不是 1 阶子系统
+- [ ] 级联型每个子系统的零点和极点就是整个系统的零点和极点；
+- [x] 并联型每个子系统的零点和极点就是整个系统的零点和极点；
+- [ ] 如果采用了有复数系统的子系统，则乘法和加法次数比直接型更多。
+
+## 二、填空题
+
+### 1
+
+序列 $\displaystyle x[n]=\sum_{k=0}^{\infin} \delta[n-2k]$ 的 Z 变换及其 ROC 是 $\underline{\displaystyle \frac{1}{1-z^{-2}},|z|>1}$.
+$$
+X(z)=\sum_{k=0}^{\infin} z^{-2k}=\frac{1}{1-z^{-2}},|z|>1
+$$
+
+### 2
+
+设序列 $x[n]$ 的 Z 变换是 $\displaystyle X(z)=\frac{16}{1-\frac{1}{4}z^{-1}}+\frac{1}{1-5z^{-1}}$，收敛域包括单位圆，则其 $x[0]$ 的值为 $\underline{17}$.
+$$
+x[0]=\lim_{z\to \infin} X(z)=\frac{16}{1}+\frac{1}{1}=17
+$$
+
+### 3
+
+已知序列 $x[n]=\{10,20,30,40,50\},n=0,1,2,3,4$，则 $\displaystyle \int_{-\pi}^{\pi} X(e^{j\omega})\mathrm d \omega=\underline{20\pi}$.
+$$
+x[n]=\frac{1}{2\pi} \int_{-\infin}^{\infin} X(e^{j\omega})e^{j\omega n}\mathrm d \omega\\
+x[0]=\frac{1}{2\pi} \int_{-\infin}^{\infin} X(e^{j\omega})\mathrm d \omega=10\Rightarrow \int_{-\infin}^{\infin} X(e^{j\omega})\mathrm d \omega=20\pi
+$$
+
+### 4
+
+周期为 8 的实序列的 DFS 的主周期的前 5 点是 $\{1+j.1+2j,1+3j,1+4j,1+5j\}$，则后 3 点是 $\underline{}$.
+
+实序列 DFS 满足 $\tilde{X}[k]=\tilde{X}^*[(-k)_N]$，后三点是 $1-4j,1-3j,1-2j$.
+
+### 5
+
+设因果 LTI 系统的差分方程式 $\displaystyle y[n]-\frac{1}{20}y[n-2]=x[n-2]-\frac{1}{20} x[n]$，已知输入信号的能量是 $\displaystyle \sum_{n=0}^{N-1} |x[n]|^2=20$，则输出信号的能量 $\displaystyle \sum_{n=-\infin}^{\infin}|y[n]|^2=\underline{20}$.
+
+离散 Parseval 定理：
+$$
+\sum_{n=-\infin}^{+\infin}|x[n]|^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}|X(e^{j\omega})|^2\mathrm d \omega
+$$
+因为
+$$
+\frac{Y(e^{j\omega})}{X(e^{j\omega})}=\frac{z^{-2}-\frac{1}{20}}{1-\frac{1}{20}z^{-2}}=H(e^{j\omega})
+$$
+是全通滤波器，所以：
+$$
+\sum_{n=-\infin}^{+\infin}|x[n]|^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}|X(e^{j\omega})|^2\mathrm d \omega\\
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}|X(e^{j\omega})H(e^{j\omega})|^2\mathrm d \omega=\sum_{n=-\infin}^{+\infin}|y[n]|^2
+$$
+
+### 6
+
+要求重构的连续时间信号与离散时间信号之间满足 $\displaystyle x_c(t)=\sum_{n=-\infin}^{\infin} x[n] \frac{\sin[\pi(t-nT)/T]}{\pi(t-nT)/T}$，则理想重构低通滤波器的截止频率是 $\underline{1/2T}$.
+$$
+\begin{aligned}
+X_c(j\Omega)&=\sum_{n=-\infin}^{\infin} x[n] \Phi(j\Omega) e^{-j2\pi fnT}
+\end{aligned}
+$$
+
+$$
+\Phi(j\Omega)=T\operatorname{rect}\left(\frac{\Omega}{\Omega_s}\right)
+$$
+
+截止频率：$f_s/2=1/2T$.
+
+### 7
+
+$X[k]$ 是序列 $x[n]=n+1,0\le n\le 4$ 的 5 点 DFT，则 $\displaystyle \sum_{k=0}^4 |X[k]|^2=\underline{275}$.
+
+由 Parseval 定理：
+$$
+\displaystyle \sum_{k=0}^4 |X[k]|^2=N\sum_{k=0}^{4} |x[n]|^2=275
+$$
+
+### 8
+
+32 点 DIT-FFT 输入倒位序的基 2FFT 算法信号流图中，排在 $x[1]$ 后面的是 $\underline{17}$.
+
+```
+00001
+10000
+10001
+10001
+```
+

@@ -198,39 +198,34 @@ $$
 $$
 H(z)=\frac{1+3z^{-1}+(\alpha+\beta)z^{-2}+2z^{-3}}{2+(\alpha-\beta) z^{-1}+3z^{-2}+z^{-3}}
 $$
-则 $\alpha$ 和 $\beta$ 应该满足的条件是 $\underline{}$.
+则 $\alpha$ 和 $\beta$ 应该满足的条件是 $\underline{\beta=0,\alpha\in[3,4]}$.
 
 首先，$\alpha$ 是实数，$\beta$ 等于零。可以写为：
 $$
 H(z)=\frac{1+3z^{-1}+\alpha z^{-2}+2z^{-3}}{2+\alpha z^{-1}+3z^{-2}+z^{-3}}
 $$
-系统函数可以看为一阶系统和二阶系统的级联，也就是：
+分母代入双线性变换
 $$
-\frac{z^{-1}-a}{1-az^{-1}}\cdot \frac{z^{-1}-b^*}{1-bz^{-1}}\cdot \frac{z^{-1}-b}{1-b^*z^{-1}}
+D'(s)=2\left(\frac{1+s}{1-s}\right)^3+\alpha\left(\frac{1+s}{1-s}\right)^2+3\frac{1+s}{1-s}+1
 $$
 分子为：
 $$
-z^{-3}-(a+b+b^*)z^{-2}+(bb^*+a(b+b^*))z^{-1}-abb^*
+D(s)=(\alpha-4)s^3+(\alpha-6)s^2-\alpha s-\alpha-6
 $$
+列出劳斯表：
 
-$$
-\begin{cases}
-a+b+b^*=-2\alpha\\
-bb^*+a(b+b^*)=6\\
-abb^*=-2
-\end{cases}
-$$
+| 3    | $\alpha-4$                    | $-\alpha$   |
+| ---- | ----------------------------- | ----------- |
+| 2    | $\alpha-6$                    | $-\alpha-6$ |
+| 1    | $\frac{8\alpha-24}{\alpha-6}$ |             |
+| 0    | $-\alpha-6$                   |             |
 
-因为要求所有零点 $a,b,b^*$ 在单位圆外，因此 $1<|b|^2<2$，设为 $t$，有：
-$$
-a=-\frac{2}{t}\\
-b+b^*=\frac{6-bb^*}{a}=\frac{t(6-t)}{-2}\\
-|b+b^*|\le 2\sqrt{t}
-$$
+要求首列元素不变号，
 
-$$
-a+b+b^*=-\frac{2}{t}+\frac{t(6-t)}{-2}
-$$
+1. 全是正数，要求 $\alpha\ge 6$，$\alpha\le -6$，矛盾；
+2. 全是负数，要求 $\alpha\le 4,\alpha \ge 3$.
+
+因此，$3\le \alpha\le 4$.
 
 ### 14
 

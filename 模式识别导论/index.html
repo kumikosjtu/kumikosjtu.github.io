@@ -391,6 +391,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AU3305 模式识别导论
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -400,6 +411,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1-linear-regression" class="md-nav__link">
+    Ch1 - Linear Regression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2-linear-classification" class="md-nav__link">
+    Ch2 - Linear Classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3-svm" class="md-nav__link">
+    Ch3 - SVM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4-unsupervised-learning" class="md-nav__link">
+    Ch4 - Unsupervised Learning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch5-ensemble-learning" class="md-nav__link">
+    Ch5 - Ensemble Learning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -501,6 +566,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1-linear-regression" class="md-nav__link">
+    Ch1 - Linear Regression
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2-linear-classification" class="md-nav__link">
+    Ch2 - Linear Classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3-svm" class="md-nav__link">
+    Ch3 - SVM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4-unsupervised-learning" class="md-nav__link">
+    Ch4 - Unsupervised Learning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch5-ensemble-learning" class="md-nav__link">
+    Ch5 - Ensemble Learning
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -515,27 +623,35 @@
 
 
 <h1 id="au3305">AU3305 模式识别导论</h1>
-<p>先留一些重点挖坑待填：</p>
-<ul>
-<li>Ch1 - Linear Regression.</li>
-<li>MAP, MLE 的区别；使用 MAP, MLE 解释损失函数。</li>
-<li>Huber Loss, Iterative soft thresholding algorithm.</li>
-<li>Truncated <span class="arithmatex">\(L_2\)</span> norm 和对应的迭代算法</li>
-<li>Ch2 - Linear Classification</li>
-<li>Fisher Discrimination</li>
-<li>Logistic Regression</li>
-<li>Ch3 - SVM</li>
-<li>SVM 的概念；</li>
-<li>SVM 拉格朗日对偶问题，KKT 条件，由对偶问题的解得到分隔函数；</li>
-<li>Kernel Trick.</li>
-<li>Ch4 - Unsupervised Learning</li>
-<li>PCA 和特征值问题；PCA 的过程；</li>
-<li>Kernel PCA.</li>
-<li>CCA;</li>
-<li>EM Algorithm (记忆迭代式和其代表的含义)</li>
-<li>Ch5 - Ensemble Learning</li>
-<li>AdaBoost 和用前向分步算法解释 AdaBoost.</li>
-</ul>
+<p>前三章，我们主要讨论线性模型，或者使用核函数 <span class="arithmatex">\(\Phi(x):\R^n \to \R^d\)</span> 将 <span class="arithmatex">\(x\)</span> 的维度转换：
+$$
+f(x)=w^\top x \mathrm{~or~} f(x)=w^\top \Phi(x)
+$$
+我们在 Ch1 主要讨论拟合的问题，包括怎么评判拟合的好坏（损失函数 <span class="arithmatex">\(L(r_i)=L(w^\top x_i-t-i)\)</span>，从 MAP/MLE 的角度看待损失函数），拟合的求解方法以及如何防止过拟合（Ridge / Lasso / 迭代求解方法），<u>我们讨论了 Huber, Truncated <span class="arithmatex">\(L_2\)</span> norm 和对应的上界函数，以及利用上界函数迭代求解的方法。</u></p>
+<p>我们在 Ch2 主要讨论分类的问题，包括 Fisher 决策（最大化样本中心的间隔，使用两类样本方差进行归一化），逻辑回归（使用 MLE 写出优化目标 <span class="arithmatex">\(J(w)\)</span>），二元交叉熵损失（BCE loss，和逻辑回归的关系）</p>
+<p>在 Ch3，我们讨论 SVM 问题，不仅要求分类正确，而且需要最大化软间隔。SVM 问题主要 <u>关注拉格朗日量，KKT 条件，互补松弛条件的推导，写出对偶问题的形式，分隔函数的形式</u>。观察到分隔函数和对偶问题都可以用内积 <span class="arithmatex">\(\phi(x_i)^\top \phi(x_j)\)</span> 表示，可以用核函数 <span class="arithmatex">\(K(u,v)=\phi(u)^\top \phi(v)\)</span> 替代，从而将 <span class="arithmatex">\(x\)</span> 的维度映射到高维甚至无穷维，使得在低维线性不可分的样本高维可分，我们重点关注 <u>怎么从 <span class="arithmatex">\(K(u,v)\)</span> 推导 <span class="arithmatex">\(\phi(u)\)</span></u>。</p>
+<p>在 Ch4，我们讨论无监督学习问题，例如 PCA, Kernel PCA, CCA 和 EM 算法。对于 PCA，我们从对投影点方差的无偏估计得到了 PCA 的优化目标，并且发现 PCA 矩阵的最大特征值对应的特征向量投影后方差最大，对于多次投影的问题，要求投影之间的相关系数为零，选择次大的特征值对应的特征向量。对于 EM 算法，主要记忆其迭代式。</p>
+<p>在 Ch5，我们讨论集成学习问题，也就是由多个简单分类器（弱分类器）得到强分类器的问题。重点讨论了 AdaBoost 问题，使用前向分步算法对其进行了理论解释。<u>需要记忆 AdaBoost 的流程。</u></p>
+<p>在 Ch6，我们讨论决策规则问题，包括最小错误率贝叶斯决策问题，最小风险贝叶斯决策问题和 Neyman-Pearson 决策问题。</p>
+<h3 id="ch1-linear-regression">Ch1 - Linear Regression</h3>
+<p>Key:</p>
+<p>MAP, MLE 的区别；使用 MAP, MLE 解释损失函数。</p>
+<p>Huber Loss, Iterative soft thresholding algorithm.</p>
+<p>Truncated <span class="arithmatex">\(L_2\)</span> norm 和对应的迭代算法</p>
+<h3 id="ch2-linear-classification">Ch2 - Linear Classification</h3>
+<p>Fisher Discrimination</p>
+<p>Logistic Regression</p>
+<h3 id="ch3-svm">Ch3 - SVM</h3>
+<p>SVM 的概念；</p>
+<p>SVM 拉格朗日对偶问题，KKT 条件，由对偶问题的解得到分隔函数；</p>
+<p>Kernel Trick.</p>
+<h3 id="ch4-unsupervised-learning">Ch4 - Unsupervised Learning</h3>
+<p>PCA 和特征值问题；PCA 的过程；</p>
+<p>Kernel PCA.</p>
+<p>CCA;</p>
+<p>EM Algorithm (记忆迭代式和其代表的含义)</p>
+<h3 id="ch5-ensemble-learning">Ch5 - Ensemble Learning</h3>
+<p>AdaBoost 和用前向分步算法解释 AdaBoost.</p>
 
 
 
