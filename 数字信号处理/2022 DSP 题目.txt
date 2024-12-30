@@ -164,9 +164,9 @@ $$
 
 ### 11
 
-一个线性相位 FIR 滤波器的三个零点分别为 $-1,0.5,1+\sqrt{2}j$，则该滤波器的最低阶数是（<u>7</u>），最少群延时是（<u>-3</u>）。假设该滤波器的频率响应为 $H(e^{j0})=0.5$，则其系统函数的表达式为
+一个线性相位 FIR 滤波器的三个零点分别为 $-1,0.5,1+\sqrt{2}j$，则该滤波器的最低阶数是（$7$），最少群延时是（$\underline{-3}$）。假设该滤波器的频率响应为 $H(e^{j0})=0.5$，则其系统函数的表达式为
 $$
-0.5\frac{1-3.9z^{-1}+6.02z^{-2}-2.72z^{-3}-5.76z^{-4}+5.54z^{-5}-1.98z^{-6}+0.36z^{-7}}{0.36-1.98z^{-1}+5.54z^{-2}-5.76z^{-3}-2.72z^{-4}+6.02z^{-5}-3.9z^{-6}+z^{-7}}
+\underline{H(z)=-\frac{25}{72}(z^7-3.9z^6+6.02z^{5}-2.72z^{4}-5.76z^{3}+5.54z^{2}-1.98z+0.36)}
 $$
 由三个零点可以推出：
 $$
@@ -178,19 +178,17 @@ $$
 $$
 因此最低 7 个零点，最低阶数 $N=7$，最少群延时：
 $$
-\tau=-\frac{N-1}{2}=-3
+\tau=\frac{N-1}{2}=3
 $$
-常数项为 $0.5$，其分子可以写成：
-$$
-(z+1)(z-0.5)(z-2)(z-1-\sqrt{2}j)(z-1+\sqrt{2}j)\\
-\left(z-\frac{1}{5}-\frac{\sqrt{2}}{5}j\right)\left(z-\frac{1}{5}+\frac{\sqrt{2}}{5}j\right)=\\
-z^7-3.9z^6+6.02z^{5}-2.72z^{4}-5.76z^{3}+5.54z^{2}-1.98z+0.36
-$$
-系统函数的表达式见上。
-
 ### 12
 
-一个线性时不变系统的 $H(z)=(1+1.2z^{-1})/(1+0.1z^{-1}-0.06z^{-2})$，其差分方程为，该系统为 IIR 系统，画出并联型结构图（以一阶基本节表示）。
+一个线性时不变系统的 $H(z)=(1+1.2z^{-1})/(1+0.1z^{-1}-0.06z^{-2})$，其差分方程为，该系统为 <u>IIR 系统</u>，画出并联型结构图（以一阶基本节表示）。
+
+分解为：
+$$
+H(z)=\frac{-1.8}{1+0.3z^{-1}}+\frac{2.8}{1-0.2z^{-1}}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_05bbc82182bb0420fdda195272f4a36a.png" style="zoom:50%;" />
 
 ### 13
 
@@ -285,7 +283,7 @@ $$
 
 ### 17
 
-已知长度分别为 3 和 4 的两个序列，$x_1(n)=\{\underline{1},2,-1\}$ 和 $x_2(n)=\{\underline{-1},3,2,1\}$，则其线性卷积 $y_1(n)=x_1(n)*x_2(n)$ 的结果为 $\underline{\{\underline{-1},1,9,2,0,-1\}}$，长度为 $\underline{6}$；其圆周卷积 $L=6$ 时的结果为 $y_2(n)=$
+已知长度分别为 3 和 4 的两个序列，$x_1(n)=\{\underline{1},2,-1\}$ 和 $x_2(n)=\{\underline{-1},3,2,1\}$，则其线性卷积 $y_1(n)=x_1(n)*x_2(n)$ 的结果为 $\underline{\{\underline{-1},1,9,2,0,-1\}}$，长度为 $\underline{6}$；其圆周卷积 $L=6$ 时的结果为 $y_2(n)=\{\underline{-1},1,9,2,0,-1\}$
 $$
 y_1(n)=\{\underline{-1},1,9,2,0,-1\}
 $$
@@ -388,6 +386,65 @@ $$
 
 设计带阻 IIR 数字滤波器，抽样频率 $f_s=20\mathrm{~kHz}$，下通带截止频率为 $f_{p1}=2\mathrm{~kHz}$，上通带截止频率为 $f_{p2}=7\mathrm{~kHz}$，$R_p=2\mathrm{~dB}$，阻带下截止频率为 $f_{st1}=3\mathrm{~kHz}$，阻带上截止频率为 $f_{st2}=4\mathrm{~kHz},A_s=20\mathrm{~dB}$.
 
+> 查附录可知，带阻滤波器数模直接变换的公式：
+> $$
+> s=\frac{1-z^{-2}}{1-2z^{-1}\cos \omega_0 +z^{-2}}
+> $$
+>
+> $$
+> \cos (\omega_0)=\left.\cos \left(\frac{\omega_{st1}+\omega_{st2}}{2}\right)\right/\cos \left(\frac{\omega_{st2}- \omega_{st1}}{2}\right)
+> $$
+>
+> $$
+> \Omega=\frac{\sin \omega}{\cos \omega-\cos \omega_0}\\
+> \Omega_{st}=\frac{\sin \omega_{st1}}{\cos \omega_{st1}-\cos \omega_0}
+> $$
+
+1. 得到模拟指标：
+   $$
+   \Omega_{p1}=2\pi \times 2000\mathrm{~rad/s},\Omega_{p2}=2\pi \times 7000\mathrm{~rad/s},R_p=2\mathrm{~dB}\\
+   \Omega_{st2}=2\pi \times 3000\mathrm{~rad/s},\Omega_{st1}=2\pi \times 4000\mathrm{~rad/s},A_s=20\mathrm{~dB}
+   $$
+   <u>得到数字指标</u>：
+   $$
+   \omega_{p1}=0.2\pi,\omega_{p2}=0.7\pi,\omega_{st1}=0.3\pi,\omega_{st2}=0.4\pi
+   $$
+
+2. 计算 <u>中心频率</u> $\cos \omega_0$：
+   $$
+   \cos (\omega_0)=\left.\cos \left(\frac{\omega_{st1}+\omega_{st2}}{2}\right)\right/\cos \left(\frac{\omega_{st2}- \omega_{st1}}{2}\right)=0.4596
+   $$
+
+3. <u>频率预畸</u>，计算 $\Omega_{st}$:
+   $$
+   \Omega_{st}=\frac{\sin \omega_{st1}}{\cos \omega_{st1}-\cos \omega_0}=\left|\frac{\sin \omega_{st2}}{\cos \omega_{st2}-\cos \omega_0}\right|=6.3138
+   $$
+   计算 $\Omega_{p}$:
+   $$
+   \Omega_{p1}=\frac{\sin \omega_{p1}}{\cos \omega_{p1}-\cos \omega_0}=1.6822\\
+   \Omega_{p2}=\frac{\sin \omega_{p2}}{\cos \omega_{p2}-\cos \omega_0}=-0.7724
+   $$
+   取约束最大的 $\Omega_p=\max\{|\Omega_{p1}|,|\Omega_{p2}|\}=1.6822$.
+
+4. 设计巴特沃斯低通模拟滤波器：
+   $$
+   N\ge \lg \left(\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\right)/2\lg (\Omega_{st}/\Omega_p)=1.9401
+   $$
+   取 $N=2$，$\Omega_c=\Omega_p/\sqrt[2N]{10^{0.1R_p}-1}=1.9236$.
+
+5. 查表得到 $H_{an}(s)$.
+
+6. 滤波器去归一化 $H_{a}(s)=H_{an}(s/\Omega_c)$.
+
+7. 设计带阻数字滤波器：
+   $$
+   H_{bs}(z)=H_a(s)|_{s=\frac{1-z^{-2}}{1-2z^{-1}\cos \omega_0 +z^{-2}}}
+   $$
+
+使用 Matlab 作图验证如下：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_b2149394ba3e2193b70eeb5a9dfd15bd.jpg)
+
 ### 22
 
 有一个正弦信号为 $x(t)=\cos (2\pi 100 t)+\cos (2\pi 400 t)$，以 900Hz 采样得到序列 $x(n)$。用 64 点矩形窗截取 $x(n)$ 得到信号 $y(n)$，用 64 点 DFT 计算 $y(n)$ 的幅频特性 $|Y(k)|$.
@@ -443,3 +500,81 @@ $$
    也可以直接令矩形窗的长度为 72 并且进行 72 点 DFT，提升频谱分辨率，来达到目的
 
    ![image-20241220165828125](https://notes.sjtu.edu.cn/uploads/upload_b9ba1578ac12833ad6dd00932b980e1c.png)
+
+## 四、附录
+
+带阻滤波器作图代码：
+
+```matlab
+% MATLAB code to design a Butterworth bandstop filter based on theoretical steps
+
+% Specifications
+fs = 20000;              % Sampling frequency in Hz
+fp1 = 2000;              % Lower passband cutoff frequency in Hz
+fp2 = 7000;              % Upper passband cutoff frequency in Hz
+fst1 = 3000;             % Lower stopband cutoff frequency in Hz
+fst2 = 4000;             % Upper stopband cutoff frequency in Hz
+Rp = 2;                  % Passband ripple in dB
+As = 20;                 % Stopband attenuation in dB
+
+% Step 1: Calculate digital frequencies (normalized to pi)
+wp1 = 0.2 * pi;
+wp2 = 0.7 * pi;
+wst1 = 0.3 * pi;
+wst2 = 0.4 * pi;
+
+% Step 2: Compute cos(omega_0)
+omega_0 = (wst1 + wst2) / 2;
+omega_bw = (wst2 - wst1) / 2;
+cos_omega0 = cos(omega_0) / cos(omega_bw);
+
+% Step 3: Frequency pre-warping to obtain analog frequencies
+Omegast = sin(wst1) / (cos(wst1) - cos_omega0); % Stopband edge frequency
+Omegap1 = sin(wp1) / (cos(wp1) - cos_omega0);
+Omegap2 = sin(wp2) / (cos(wp2) - cos_omega0);
+Omegap = max(abs([Omegap1, Omegap2])); % Max constraint
+
+% Step 4: Calculate the Butterworth filter order and cutoff frequency
+N = ceil(log10((10^(0.1 * As) - 1) / (10^(0.1 * Rp) - 1)) / (2 * log10(Omegast / Omegap)));
+Omegac = Omegap / ((10^(0.1 * Rp) - 1)^(1 / (2 * N)));
+
+
+% Step 5: Analog prototype transfer function
+[b_a, a_a] = butter(N, Omegac, 's');
+
+% Step 6: Perform direct s-to-z transformation for bandstop
+syms s z
+s_to_z = (1 - z^(-2)) / (1 - 2 * z^(-1) * cos(omega_0) + z^(-2));
+H_a_s = poly2sym(b_a, s) / poly2sym(a_a, s); % Analog transfer function
+H_bs_z = subs(H_a_s, s, s_to_z); % Substitute s with s_to_z
+
+% Step 7: Convert symbolic transfer function to numerical coefficients
+[b_d_sym, a_d_sym] = numden(H_bs_z); % Get numerator and denominator
+b_d = sym2poly(b_d_sym); % Convert numerator to polynomial coefficients
+a_d = sym2poly(a_d_sym); % Convert denominator to polynomial coefficients
+
+% Frequency response of the digital filter
+[H, W] = freqz(b_d, a_d, 1024);
+
+% Plot the magnitude response
+figure;
+plot(W / pi, 20*log10(abs(H)));
+grid on;
+title('Magnitude Response of the Butterworth Bandstop Filter (Direct Transform)');
+xlabel('Normalized Frequency (\omega / \pi)');
+ylabel('Magnitude (dB)');
+ylim([-100, 5]);
+hold on;
+
+
+% Mark specific frequencies and their gains
+frequencies = [wp1, wp2, wst1, wst2] / pi;
+gains = 20 * log10(abs(freqz(b_d, a_d, frequencies * pi)));
+
+plot(frequencies, gains, 'ro', 'MarkerSize', 8, 'LineWidth', 1.5);
+for i = 1:length(frequencies)
+    text(frequencies(i), gains(i), sprintf('(%.2fπ, %.2f dB)', frequencies(i), gains(i)), 'VerticalAlignment', 'bottom');
+end
+
+```
+

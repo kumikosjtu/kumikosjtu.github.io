@@ -490,17 +490,23 @@ $$
 
 - 截止频率间关系：
   $$
-  \Omega_p=\frac{\cos \omega_0-\cos \omega_{p2}}{\sin \omega_{p2}}\\
-  -\Omega_p=\frac{\cos \omega_0-\cos \omega_{p1}}{\sin \omega_{p1}}
+  \Omega_{p/st}=\frac{\cos \omega_0-\cos \omega_{p/st}}{\sin \omega_{p/st}}
   $$
-  取约束更强的。
+  $\Omega_{p}$ 通过 $\omega_{p1},\omega_{p2}$ 算都是一样的，通过 $\omega_{st1},\omega_{st2}$ 计算 $\Omega_{st}$，取约束更强的，即绝对值更小的 $\Omega_{st}$。
 
 **模拟低通到数字带阻**
 
 - 中心频率表达式：$\displaystyle \cos \omega_0 =\frac{\sin (\omega_{st2}+\omega_{st1})}{\sin \omega_{st2}+\sin \omega_{st1}}$.
+
 - 变换关系：$\displaystyle \boxed{s=\frac{1-z^{-2}}{1-2z^{-1}\cos \omega_0+z^{-2}}}$（取倒数）
+
 - 频率间关系：$\boxed{\Omega=\frac{\sin \omega}{-\cos \omega_0 +\cos \omega}}$.
-- 截止频率间关系。
+
+- 截止频率间关系：
+  $$
+  \Omega_{p/st}=\frac{\sin \omega_{p/st}}{-\cos \omega_0+\cos \omega_{p/st}}
+  $$
+  $\Omega_{st}$ 通过 $\omega_{st1},\omega_{st2}$ 算都是一样的，通过 $\omega_{p1},\omega_{p2}$ 计算 $\Omega_{p}$，取约束更强的，即绝对值更大的 $\Omega_{p}$。
 
 > 到这里我们可以 <u>更加快速地设计数字高通/带通/带阻滤波器</u>，步骤如下：
 >
