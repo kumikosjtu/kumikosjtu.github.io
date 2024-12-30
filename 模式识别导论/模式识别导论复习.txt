@@ -1,0 +1,727 @@
+# 模式识别导论复习
+
+## Ch1 - 线性回归
+
+### LASSO 问题
+
+**LASSO 问题**：Least absolute shrinkage and selection operator.
+$$
+\min_w \gamma \sum_{j=1}^n |w_j|+\frac{1}{2}\sum_{i=1}^m (w^\top x_i-y_i)^2
+$$
+给定连续可导的 Huber loss，当 $a \to 0$ 近似一范数，
+$$
+h(x)=\begin{cases}
+\frac{1}{2a}x^2,&|x|\le a\\
+|x|-\frac{a}{2},&|x|>a
+\end{cases}
+$$
+考虑 $\displaystyle g(x,u)=\frac{1}{2a}(x-u)^2+|u|$，我们有：
+$$
+\min_u g(x,u)=h(x)
+$$
+
+> 证明考虑分类讨论 $u^*=0,u^*<0,u^*>0$，
+>
+> - $u^*>0$，则 $-\frac{1}{a}(x-u^*)+1=0$ 推出 $x=u^*+a>a$，此时极值 $x-\frac{a}{2}$.
+> - $u^*=0$，则 $-\frac{1}{a}(x-u^*)+C=0$ 推出 $x\in[-a,a]$，此时极值 $\frac{1}{2a}x^2$.
+> - $u^*<0$，则 $-\frac{1}{a}(x-u^*)-1=0$ 推出 $x=u^*-a<-a$，此时极值 $-x-\frac{a}{2}$.
+>
+> 并且得到
+> $$
+> u^*=S_{a}(x) \doteq \begin{cases}
+> x-a,&x>a\\
+> 0,&|x|\le a\\
+> x+a,&x<-a
+> \end{cases}
+> $$
+> 也就是，
+> $$
+> g(x,S_a(x))=h(x)
+> $$
+
+LASSO 问题可以写为矩阵表示的形式：
+$$
+\min_w \underbrace{\gamma ||w||_1+\frac{1}{2}(Xw-Y)^\top (Xw-Y)}_{=E(w)}
+$$
+构建：
+$$
+\tilde{E}(w)=\gamma \sum h(w_i)+\frac{1}{2}(Xw-Y)^\top (Xw-Y)
+$$
+$\tilde{E}(w)$ 满足当 $a\to 0$ 时，$\tilde{E}(w)\to E(w)$.
+
+再构建：
+$$
+E(w,u)=\gamma\sum g(u_i,w_i)+\frac{1}{2}(Xw-Y)^\top (Xw-Y)
+$$
+满足 $E(w,u)\ge \tilde{E}(w)$，且 $E(w,u^*)=\tilde{E}(w)$.
+
+展开 $E(w,u)$ 得到
+$$
+E(w,u)=\gamma \sum_{j=1}^n \left[\frac{1}{2a}(w_j-u_j)^2+|u_j|\right]+\frac{1}{2}(Xw-Y)^\top (Xw-Y)
+$$
+使用交替优化求解的想法。在第 $k$ 次迭代算出 $u^k,w^k$.
+
+在第 $k+1$ 次迭代，$u$ 只和第一项有关，即
+$$
+\left.\frac{\partial E(w^{k},u)}{\partial u}\right|_{u=u^{k+1}}=0\Rightarrow \boxed{u^{k+1}=S_a(w^{k})}
+$$
+$w$ 只和平方项有关，
+$$
+\left.\frac{\partial E(w,u^{k})}{\partial u}\right|_{w=w^{k+1}}=0\\\Rightarrow \frac{\gamma}{a}(w^{k+1}-u^k)+X^\top (Xw^{k+1}-Y)=0\\
+\Rightarrow \left(\frac{\gamma}{a}+X^\top X\right)w^{k+1}=\frac{\gamma}{a}u^k+X^\top Y\\
+\Rightarrow \boxed{w^{k+1}=\left(\frac{\gamma}{a}I+X^\top X\right)^{-1}\left(X^\top Y+\frac{\gamma}{a} u^{k+1}\right)}
+$$
+
+> <u>解释稀疏性</u>，当 $a\to 0$ 时，主要是主对角线元素起作用，
+> $$
+> w^{k+1}\to\frac{a}{\gamma}I\left(X^\top Y+\frac{\gamma}{a} u^{k+1}\right)=u^{k+1}
+> $$
+> 而  $u^{k+1}=S_a(w^{k})$ 每次都是在向 $0$ 靠近。
+
+### 0 范数问题
+
+零范数问题：
+$$
+\min_w \gamma \sum_{j=1}^n |w_j|_0+\frac{1}{2}\sum_{i=1}^m (w^\top x_i-y_i)^2
+$$
+构造 Truncated $L_2$ norm（截断 2 范数），当 $a\to 0$ 时，近似零范数。
+$$
+T(x)=\begin{cases}
+\frac{1}{a^2}x^2 ,&|x|\le a\\
+1,&|x|>a
+\end{cases}
+$$
+构造 $\displaystyle g(x,u)=\frac{1}{a^2}(x-u)^2+|u|_0$.
+
+> 分类讨论极值点 $u^*=0,u^*\not=0$，可得：
+>
+> - $u^*=0$，因为 $|u|_0$ 在 $u=0$ 点不可导，暂时设导数为 $C$ 则 $\frac{2}{a^2}(x-u^*)+C=0$，$x$ 是未知数，此时
+>   $$
+>   g(x,u^*)=\frac{1}{a^2}x^2\doteq g_1(x)
+>   $$
+>
+> - $u^*\not=0$，则 $\frac{2}{a^2}(x-u^*)=0$ 推出 $x=u^*$，代入 $g(x,u^*)$ 可得等于 $1\doteq g_2(x)$. 
+>
+> 当 $|x|\le a$ 时，$g_1(x)\le g_2(x)$，当 $|x|>a$ 时，$g_1(x)>g_2(x)$. 因此
+> $$
+> T(x)=\begin{cases}
+> g_2(x)=\frac{1}{a^2}x^2 & |x|\le a\ (u^*=0)\\
+> g_1(x)=1& |x|>a\ (u^*=x)
+> \end{cases}
+> $$
+> 结论是：
+> $$
+> u^*=H_{a}(x) \doteq \begin{cases}
+> x,&x>a\\
+> 0,&|x|\le a\\
+> x,&x<-a
+> \end{cases}
+> $$
+
+交替迭代求解思路类似，这里给出结论：
+$$
+u_i^{k+1}=H_{a}(w_i^{k})\\
+w^{k+1}=\left(\frac{2\gamma}{a^2}I+X^\top X\right)^\top \left(X^\top Y+\frac{2\gamma}{a^2}u^{k+1}\right)
+$$
+
+## Ch2 - 线性分类
+
+### Fisher Discrimination
+
+正负样本中心：
+$$
+\overline{x_+}=\frac{1}{n_+} \sum_{i:y_i=1} w^\top x_i\\
+\overline{x_-}=\frac{1}{n_-} \sum_{i:y_i=-1} w^\top x_i
+$$
+投影后正负样本中心之间距离：
+$$
+w^\top (\overline{x_+}-\overline{x_-})
+$$
+正负样本类间方差：
+$$
+S_{+}^2=\sum_{i:y_i=1} (w^\top x_i-w^\top \overline{x_+})\\
+S_{-}^2=\sum_{i:y_i=-1} (w^\top x_i-w^\top \overline{x_-})^2
+$$
+使用类间方差标准化中心距离：
+$$
+\max_{w}\frac{(w^\top (\overline{x_+}-\overline{x_-}))^2}{S_{+}^2+S_{-}^2}
+$$
+使用矩阵简化：
+
+- $\Gamma_B=(\overline{x_+}-\overline{x_-})(\overline{x_+}-\overline{x_-})^\top$.
+- $\Gamma_+=\sum_{i:y_i=1}(x_i-\overline{x_+})(x_i-\overline{x_+})^\top$.
+- $\Gamma_-=\sum_{i:y_i=-1}(x_i-\overline{x_-})(x_i-\overline{x_-})^\top$.
+
+那么问题等价于：
+$$
+\max_w F(w)=\frac{w^\top \Gamma_B w}{w^\top (\Gamma _++\Gamma_-)w}\doteq \frac{w^\top \Gamma_B w}{w^\top \Gamma_I w}
+$$
+对分母做尺度的约束，
+$$
+\min_w -w^\top \Gamma_B w,\ s.t. \ w^\top \Gamma_Iw=1
+$$
+等价于广义特征值问题：
+$$
+\Gamma_B w=\lambda \Gamma_I w
+$$
+**方法一** 令 $v=\Gamma_B^{1/2} w$，
+$$
+\Gamma_B^{1/2} v=\lambda \Gamma_I \Gamma_B^{-1/2}v\\
+\Gamma_B^{1/2}\Gamma_I^{-1}\Gamma_B^{1/2}v=\lambda v
+$$
+转换为求 $\Gamma_B^{1/2}\Gamma_I^{-1}\Gamma_B^{1/2}$ 最大特征值。
+
+**方法二** 展开可得：
+$$
+(\overline{x_+}-\overline{x_-})\underbrace{(\overline{x_+}-\overline{x_-})^\top w}_{\alpha}=\lambda \Gamma_I w
+$$
+那么，$w\propto \Gamma_I^{-1}(\overline{x_+}-\overline{x_-})$.
+
+### Logistic Regression
+
+希望把分类结果 $w^\top x$ 映射到一个属于 $(0,1)$ 的概率值 $\rho$，我们可以采用
+$$
+\ln \frac{\rho}{1-\rho} =w^\top x\\
+\Rightarrow \rho=\frac{1}{1+\exp(-w^\top x)}
+$$
+给定一个投影向量 $w$，则出现样本 $(x,y)$ 的概率可以写为：
+$$
+p(x)=\rho^y(1-\rho)^{1-y}
+$$
+做极大似然估计，出现全体样本 $(x_i,y_i)$ 的对数概率可以写为：
+$$
+\begin{aligned}
+J(w)&=\log \prod_{i} p(x_i)\\
+&=\sum_i \log p(x_i)\\
+&=\sum_i y\log \rho+(1-y)\log (1-\rho)\\
+&=\sum_i y_i \log (\rho(w^\top x_i))+(1-y_i)\log (1-\rho(w^\top x_i))\\
+&=\sum_i y_i(\log (\rho(w^\top x_i))-\log (1-\rho(w^\top x_i)))+\log(1-\rho(w^\top x_i))\\
+&\quad\quad\quad {\color{grey}\because \frac{\rho}{1-\rho}=e^{w^\top x_i},1-\rho=
+\frac{1}{1+e^{w^\top x_i}}}\\
+&=\sum_i y_i(w^\top x_i)-\log (1+\exp(w^\top x_i))
+\end{aligned}
+$$
+因此，我们希望最大化 $J(w)$，求出对应的 $w$，可以使用 <u>梯度下降</u> 的方法。
+
+### BCE Loss
+
+- 分布的熵：$H_p=-\sum p(x)\log p(x)$.
+
+- 分布的交叉熵：$H_{pq}=-\sum p(x)\log q(x)$.
+
+- KL 散度：$D_{KL}(p||q)=H_{pq}-H_p$.
+
+- 当 $p$ 是 ground-truth 分布（训练集），$H_p$ 是常数，$q$ 是模型计算出来的结果，且只存在两个分类，转换为二分类交叉熵损失：
+  $$
+  L=-[y\log \hat y+(1-y)\log (1-\hat y)]
+  $$
+  逻辑回归相当于对每个样本的二分类交叉熵损失求和，需要最小化这个损失和。
+
+## Ch3 - SVM
+
+### SVM 模型
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_e3f723afef1bc42c5a9949c9b9160d62.png" alt="image-20241229102442566" style="zoom:33%;" />
+
+<u>最大化间隔的分类器</u>：
+$$
+\max_{w,b} \frac{2}{||w||_2}.
+\\s.t. y_i(w^\top x_i+b)\ge 1
+$$
+如果样本线性不可分，则问题不可解。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5014f39fc65c15ba4ce13fd177268539.png" alt="image-20241229102530605" style="zoom:33%;" />
+
+<u>允许部分误分类的软间隔分类器</u>：
+$$
+\min_{w,b}\frac{1}{2}||w||_2^2+C\sum_i \rho_i\\
+s.t. y_i(w^\top x_i+b)\ge 1-\rho_i\\
+\rho_i\ge 0
+$$
+其中 $\rho_i$ 越大，误分类的程度越大。
+
+### SVM 对偶问题
+
+将原问题约束条件写成 $\le0$ 的形式：
+$$
+\min_{w,b}\frac{1}{2}||w||_2^2+C\sum_i \rho_i\\
+s.t. 1-\rho_i-y_i(w^\top x_i+b) \le 0\\
+-\rho_i\le 0
+$$
+分配拉格朗日变量 $\alpha_i,\beta_i$，写出拉格朗日项：
+$$
+L(w,b,\rho;\alpha,\beta)=\frac{1}{2}||w||_2^2 +C\sum _i \rho_i\\
++\sum_i \alpha_i(1-\rho_i - y_i(w^\top x_i+b))-\sum_i \rho_i \beta_i
+$$
+写出 KKT 条件，包含四个部分：
+
+- Stationarity Condition:
+  $$
+  \left.\frac{\partial L(w)}{\partial w}\right|_{w=w^*}=w-\sum_i \alpha_i y_i x_i=0\\
+  \left.\frac{\partial L(b)}{\partial b}\right|_{b=b^*}=-\sum_i \alpha_i y_i=0\\
+  \left.\frac{\partial L(\rho)}{\partial \rho}\right|_{\rho=\rho^*}=C-\alpha_i-\beta_i=0
+  $$
+
+- Primal Feasibility Condition:
+  $$
+  \begin{cases}
+  1-\rho_i-y_i(w^\top x_i+b) \le 0\\
+  -\rho_i\le 0
+  \end{cases}
+  $$
+
+- Dual Feasibility Condition:
+  $$
+  \alpha_i\ge 0,\beta_i\ge 0
+  $$
+  结合 $C-\alpha_i-\beta_i=0$ 可得 $0\le \alpha_i\le C$.
+  
+- Complementary Slackness Condition:
+  $$
+  \begin{cases}
+  \alpha_i(1-\rho_i-y_i(w^\top x_i+b)) = 0\\
+  -\beta_i\rho_i= 0
+  \end{cases}
+  $$
+  
+
+重组拉格朗日函数，并且代入 KKT 条件可得：
+$$
+L=\frac{1}{2}||w||_2^2+\underbrace{\sum_i \rho_i(C-\alpha_i-\beta_i)}_{代入KKT条件=0}\\+\sum_i \alpha_i-\underbrace{\sum_i \alpha_iy_iw^\top x_i}_{=w^\top w=||w||^2}-\underbrace{b\sum \alpha_i y_i}_{代入KKT条件=0}
+$$
+
+$$
+L=-\frac{1}{2}||w||^2+\sum_i \alpha_i
+$$
+
+其中，
+$$
+\begin{aligned}
+\frac{1}{2}||w||^2 &= \frac{1}{2}\sum_i y_i \alpha_i x_i^\top \sum_j y_j \alpha_j x_j\\
+&=\frac{1}{2}\sum_i \sum_j \alpha_iy_i x_i^\top x_j y_j \alpha_j
+\end{aligned}
+$$
+因此对偶问题可以表示为：
+$$
+\max_\alpha-\frac{1}{2}\sum_i\sum_j \alpha_i y_i x_i^\top x_j y_j \alpha_j+\sum_i \alpha_i\\
+s.t. \sum_i \alpha_iy_i=0,0\le \alpha_i \le C
+$$
+
+### 通过对偶问题得到原问题参数
+
+分别求出 $w,b$ 的形式：
+$$
+w=\sum_{i} y_i \alpha_i x_i=\sum_{i,\alpha_i\not=0} y_i \alpha_i x_i
+$$
+根据 $0\le \alpha_i \le C,\alpha_i+\beta_i=C$ 以及互补松弛条件：
+$$
+\begin{cases}
+(1-\rho_i -y_i(w^\top x_i+b))\alpha_i=0\\
+\rho_i \beta_i=0
+\end{cases}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_22969d2d960b60204bd5031ae50eb0fd.png" alt="image-20241205215709611" style="zoom:30%;" />
+
+**当 $\boldsymbol{\alpha_i=0}$ 时**，$\beta_i=C$ 推出 $\rho_i=0$，再代入
+$$
+1-\rho_i-y_i(w^\top x_i+b)\le 0 \Rightarrow y_i(w^\top x_i+b)\ge 1
+$$
+
+对应 $x_i$ 完全分类正确。$y_i=1$ 时处于 1 区，$y_i=-1$ 时处于 $4$ 区。
+
+**当 $\boldsymbol{\alpha_i >0}$ 时**，$(1-\rho_i - y_i(w^\top x_i+b))=0$，$x_i$ 成为支持向量：
+
+- **当 $\boldsymbol{0<\alpha_i<C}$ 时**，$\beta_i>0$，$\rho_i=0$.
+
+  此时 $y_i(w^\top x_i+b)=1-\rho_i=1$，对应 $x_i$ 分类正确，$y_i=1$ 时处于 1,2 区的交接处，$y_i=-1$ 时处于 3,4 区的交界处。
+
+- **当 $\boldsymbol{\alpha_i=C}$ 时**，$\beta_i=C-\alpha_i=0$，$\rho_i\ge0$.
+
+  此时因为 $y_i(w^\top x_i+b)\le 1$，样本可能分类错误。
+
+对于 $\alpha_i\not=0(0<\alpha_i\le C)$ 的向量，$x_i$ 属于 **支持向量 (SV)**。 选择支持向量中 <u>满足 $0<\alpha_i<C$ 的</u>（为了避免选到分类错误的样本使得模型过拟合），此时 $y_i(w^\top x_i+b)=1$，因为 $y_i\in \{1,-1\}$，所以 $w^\top x_i+b=y_i$，
+$$
+\begin{aligned}
+b_i&=y_i-w^\top x_i\\
+&=y_i-\sum_{j:\alpha_j\not=0} y_j \alpha_j x_j^\top x_i\\
+&=y_i-\sum_{x_j \in \mathrm{SV}} y_j \alpha_j x_j^\top x_i
+\end{aligned}
+$$
+最终选择的 $b$ 是所有的 $b_i$ 取平均：
+$$
+\begin{aligned}
+f(x)&=w^\top x+b\\
+&=\sum_{x_i\in \mathrm{SV}} y_i \alpha_i x_i^\top x+\frac{1}{n}\sum_{k\in \{k|0<\alpha_k<C\}}\left(y_k -\sum_{x_{j} \in \mathrm{SV}} y_j \alpha_j x_j^\top x_k\right)
+\end{aligned}
+$$
+$n$：满足 $0<\alpha_i<C$ 的向量的个数。
+
+### Kernel Trick
+
+使用非线性映射函数 $x\to \phi(x)$，从低维 $n$ 映射到高维 $d\gg n$.
+
+SVM 分隔函数和对偶问题都可以用内积的形式表示：
+$$
+f(x)=\sum_{x_i \in \mathrm{SV}} y_i \alpha_i \boxed{\phi^\top(x_i)\phi(x)} +b
+$$
+
+$$
+\min_{\alpha}\sum_i \sum_j \alpha_i y_i \boxed{\phi(x_i)^\top \phi(x_j)}y_j \alpha_j -\sum_i \alpha_i\\
+s.t. \sum_i \alpha_i y_i=0,0\le \alpha_i\le C
+$$
+
+因此可以令核函数 $K(u,v)=\phi(u)^\top \phi(v)$.
+
+例如 $K(u,v)=(u^\top v+1)^2$，可以看成：
+$$
+\begin{aligned}
+K(u,v)&=(u^\top v+1)^2=(u_1v_1+u_2v_2+1)^2\\
+&=u_1^2v_1^2+u_2^2v_2^2+1+2u_1v_1u_2v_2+2u_1v_1+2u_2v_2\\
+&=\underbrace{\begin{pmatrix}
+u_1^2&u_2^2&1&\sqrt{2}u_1u_2&\sqrt{2}u_1&\sqrt{2}u_2
+\end{pmatrix}}_{\phi(u)^\top}\\
+&\quad\quad \underbrace{\begin{pmatrix}v_1^2&v_2^2&1&\sqrt{2}v_1v_2 &\sqrt{2}v_1&\sqrt{2}v_2\end{pmatrix}^\top}_{\phi(v)}\\
+&=\phi(u)^\top\phi(v)
+\end{aligned}
+$$
+从二维映射到六维。
+
+### 高斯核函数推导
+
+**RBF(Radial Basis Function) Kernel / Gaussian Kernel**
+$$
+K(u,v)=\exp\left(-\frac{||u-v||_2^2}{2\sigma^2}\right)
+$$
+
+$$
+\begin{aligned}
+K(u,v)&=\exp\left(-\frac{||u-v||_2^2}{2\sigma^2}\right)\\
+&=\exp\left(-\frac{||u||^2_2}{2\sigma^2}\right)\exp\left(\frac{uv}{\sigma^2}\right)\exp\left(-\frac{||v||^2_2}{2\sigma^2}\right)
+\end{aligned}
+$$
+关键怎么展开 $\exp\left(\frac{uv}{\sigma^2}\right)$.
+$$
+\begin{aligned}
+\exp\left(\frac{uv}{\sigma^2}\right)&= \sum_{n=0}^{\infin} \frac{1}{n!} \left(\frac{uv}{\sigma^2}\right)^n\\
+&=1+\sum_{n=1}^{\infin} \frac{1}{\sqrt{n!}}\frac{u^n}{\sigma^n} \frac{1}{\sqrt{n!}} \frac{v^n}{\sigma^n}\\
+&=\underbrace{\begin{pmatrix}
+1&\frac{u}{\sigma}&\frac{1}{\sqrt{2!}}\left(\frac{u}{\sigma}\right)^2&\frac{1}{\sqrt{3!}} \left(\frac{u}{\sigma}\right)^3 & \cdots &\frac{1}{\sqrt{n!}} \left(\frac{u}{\sigma}\right)^n &\cdots
+\end{pmatrix}}_{\tilde\phi(u)^\top}\\
+&\quad\quad \underbrace{\begin{pmatrix}
+1&\frac{v}{\sigma}&\frac{1}{\sqrt{2!}}\left(\frac{v}{\sigma}\right)^2&\frac{1}{\sqrt{3!}} \left(\frac{v}{\sigma}\right)^3 & \cdots &\frac{1}{\sqrt{n!}} \left(\frac{v}{\sigma}\right)^n &\cdots
+\end{pmatrix}^\top}_{\tilde\phi(v)}\\
+&=\tilde\phi(u)^\top\tilde\phi(v)
+\end{aligned}
+$$
+则：
+$$
+\boxed{\phi(u)\doteq \exp\left(-\frac{||u||^2_2}{2\sigma^2}\right)\tilde\phi(u)}
+$$
+
+## Ch4 - 无监督学习
+
+### PCA
+
+设 $n$ 为样本点维数，$m$ 为样本点个数，$X$ 为 $n\times m$ 的矩阵，PCA 问题
+$$
+\max_{w^\top w=1} w^\top C w\quad \displaystyle C=\frac{1}{m-1} XX^\top
+$$
+
+- $w^\top w=1$ 对投影向量做出了尺度归一化的要求；
+- $C$ 是 $n\times n$ 的矩阵，与 $m$ 无关。
+- 需要对 $X$ 做去均值化的操作，也就是 $\overline{X}=\overline{Y}=0$.
+
+对 PCA 进行理论解释，因为样本方差的无偏估计为：
+$$
+\begin{aligned}
+S^2&=\frac{1}{m-1} \operatorname{cov} (Y)\\&=\frac{1}{m-1} \left(\mathbb E\{Y^\top Y\}-\overline{Y}^2\right)\\
+&=\frac{1}{m-1} w^\top XX^\top w
+\end{aligned}
+$$
+因此 PCA 问题就是要求投影后向量 $w^\top X$ 的方差尽量大。$C$ 的最大特征值对应的特征向量就是所求 $w$.
+
+### PCA 过程
+
+将 $x_i$ 从 $n$ 维降到 $k$ 维，要求每维之间不相关也就是协方差为零。
+
+1. 去均值化 $x_i-\overline{x}$;
+
+2. $\displaystyle C=\frac{1}{m-1} XX^\top \in \R^{n\times n}$.
+
+3. $Cw=\lambda w$ 得到特征值 $\lambda_1>\lambda_2>\cdots>\lambda_n$.
+
+4. 取 Top $k$ 特征值和特征向量（模长为一）：
+   $$
+   \lambda_1,\lambda_2,\cdots,\lambda_k\\
+   w_1,w_2,\cdots,w_k
+   $$
+   满足 $w_i^\top w_j\not=0 \iff i=j$.
+
+5. $y_i=[w_1^\top x_i,w_2^\top x_i,\cdots,w_k^\top x_i]$.
+
+   满足 $\operatorname{cov}(w_i^\top X,w_i^\top X)=\lambda_i$，并且 $\operatorname{cov}(w_i^\top X,w_j^\top X)=0$.
+
+   因此 $\operatorname{cov}(Y)$ 是对角阵 $\operatorname{diag}\{\lambda_i\}$。
+
+![转录组PCA](https://notes.sjtu.edu.cn/uploads/upload_44c1edb9a6a93b8db1aa79c88eceabb8.png)
+
+### CCA
+
+$x_a,x_b$ 是对同一个对象的不同观测（可能维度不同），<u>希望 $x_a,x_b$ 有高度的相关性，也就是投影结果 $y_a,y_b$ 相关系数尽量大。</u>
+
+假设 $x_a\in \R^m,x_b \in \R^{n}$，对样本做零均值化，投影后 $y_a=w_a^\top x_a,y_b=w_b^\top x_b$，其中 $y_a,y_b\in \R$.
+
+计算其相关系数：
+$$
+\begin{aligned}
+\rho&=\frac{\operatorname{cov}(y_a,y_b)}{\sqrt{\operatorname{cov}(y_a)}\sqrt{\operatorname{cov}(y_b)}}\\
+&=\frac{\mathbb E\{y_ay_b\}}{\sqrt{\mathbb E\{y_a^2\}\mathbb E\left\{y_b^2\right\}}}\\
+&=\frac{\mathbb E\{w_a^\top x_a w_b^\top x_b\}}{\sqrt{\mathbb E\{w_a^\top x_a w_a^\top x_a\}\mathbb E\{w_b^\top x_b w_b^\top x_b\}}}
+\end{aligned}
+$$
+设协方差矩阵为 $C_{ab}=\mathbb E(x_ax_b^\top),C_{aa}=\mathbb  E(x_ax_a^\top),C_{bb}=\mathbb E(x_bx_b^\top)$.
+
+优化问题变为：
+$$
+\max_{w_a,w_b} \frac{w_a^\top C_{ab} w_b}{\sqrt{w_a^\top C_{aa}w_a}\sqrt{w_b^\top C_{bb}w_b}}
+$$
+做尺度一致性的变化（类似于 Fisher Discriminant 的做法）：
+$$
+\max w_a^\top C_{ab} w_b\\
+s.t. w_a^\top C_{aa} w_a=1,w_b^\top C_{bb}w_b=1
+$$
+写出拉格朗日项：
+$$
+L(w_a,w_b;\lambda_a,\lambda_b)\\
+=w_a^\top C_{ab} w_b-\frac{\lambda_a}{2}(w^\top_a C_{aa} w_a-1)-\frac{\lambda_b}{2}(w_b^\top C_{bb}w_b-1)
+$$
+对 $w_a$ 和 $w_b$ 分别求导：
+$$
+\begin{cases}
+\frac{\partial L}{\partial w_a}=C_{ab}w_b-\lambda_a C_{aa}w_a=0\\
+\frac{\partial L}{\partial w_b}=C_{ba} w_a-\lambda_b C_{bb}w_b=0
+\end{cases}
+$$
+可得 $\lambda_a=\lambda_b$，也就是：
+$$
+\begin{cases}
+C_{ab}w_b=\lambda C_{aa}w_a\\
+C_{ba}w_a=\lambda C_{bb}w_b
+\end{cases}
+$$
+因此，
+$$
+w_b=\lambda C_{ab}^{-1} C_{aa}w_a\\
+C_{ba}w_a=\lambda^2 C_{bb} C_{ab}^{-1} C_{aa} w_a\\
+w_a=\lambda^2 C_{ba}^{-1}C_{bb}C_{ab}^{-1} C_{aa}w_a\\
+C_{aa}^{-1}C_{ab} C_{bb}^{-1} C_{ba} w_a=\lambda^2 w_a
+$$
+矩阵 $C_{aa}^{-1}C_{ab} C_{bb}^{-1} C_{ba}$ 最大特征值对应的特征向量就是 $w_a$.
+
+### EM 算法
+
+高斯分布表达式：
+$$
+\textit{N}(x; \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d\det(\Sigma)}}\exp\left[-\frac{1}{2}(x-\mu)^\top\Sigma^{-1}(x-\mu)\right]
+$$
+高斯混合模型：
+$$
+p(x| \Theta) = \sum_{k} \alpha_k N(x;\mu_k,\sigma_k)\\
+\begin{cases}
+\alpha_k>0\\
+\sum_k \alpha_k=1
+\end{cases}
+$$
+使用极大似然估计求解：
+$$
+\Theta=\arg\max_{\Theta}  \underbrace{\ln \left(\prod_i p(x_i| \Theta)\right)}_{L(x|\Theta)}\\
+L(x|\Theta)=\sum_i \ln \left(\sum_{k} \alpha_k N(x_i |\mu_k,\sigma_k)\right)
+$$
+$\ln$ 里面有求和符号，不好直接做，需要利用琴生不等式化简，具体推导过程省略，我们可以直观地来理解 EM 迭代求解的过程：
+
+1. 迭代获得 $\Theta^t$ 的值；
+
+2. **Expectation Step** 根据 $\Theta^t$ 计算得到 $\omega_{i,k}^t$.
+   $$
+   \boxed{\omega_{i,k}^t =\frac{\alpha_k^t N(x_i^t|\mu_k^t,\sigma_k^t)}{\sum_k \alpha_k^t N(x_i|\mu_k^t,\sigma_k^t)}}
+   $$
+   $\alpha_k^t$：第 $k$ 类高斯分布的先验概率。
+
+   $\omega_{i,k}^t$: <u>第 $i$ 个样本属于第 $k$ 个高斯分布的概率</u>。
+
+   保证 $\sum_{k=1}^K \omega_{i,k}^t=1$，也就是一个样本一定属于某一类。
+
+3. **Maximization Step**
+
+   1. $\alpha_k$ 的更新：
+      $$
+      \boxed{\alpha_{k}^{t+1}=\frac{\sum_i \omega_{i,k}^t}{N}}
+      $$
+      可以理解为频率估计概率。
+
+   2. $\mu_k$ 的更新，$\sigma_k^2$ 的更新：
+      $$
+      \boxed{\mu_{k}^{t+1}=\frac{\sum_{i} \omega_{i,k}^t x_i}{\sum_i \omega_{i,k}^t}}\quad \boxed{(\sigma_k^2)^{t+1}=\frac{\sum_i \omega^t_{i,k}(x_i-\mu_{k}^{t+1})^2}{\sum_i\omega^t_{i,k}}}
+      $$
+      可以理解为加权求和。
+
+      > 注：对于高维问题只有一点不同，这里的乘法改成协方差矩阵。
+      > $$
+      > (\Sigma_{k})^{t+1} = \frac{\sum_{i} \omega_{i,k} (x_i-\mu_{k}^{t+1})(x_i-\mu_{k}^{t+1})^\top}{\sum_i \omega_{i,k}}
+      > $$
+
+**初始化方法**
+
+- $\alpha_k$ 选择相同的 $=1/N$；
+- $\mu_k$ 使用聚类算法选择；
+- $\sigma_k^2$ 使用聚类簇方差。
+
+## Ch5 - 集成学习
+
+### AdaBoost
+
+![img](https://notes.sjtu.edu.cn/uploads/upload_893015539b04f5390ad7e6b752ca9e5a.png)
+
+**AdaBoost 流程**：给定二分类的训练数据集，
+
+> 输入：训练集 $T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_{N},y_{N})\}$，其中 $x_i \in \mathcal X\subseteq \R^n,y_i \in \mathcal Y=\{-1,1\}$.
+>
+> 输出：最终分类器 $G(x)$.
+
+1. 初始化训练数据的权值分布，代表 <u>训练数据的重要程度</u>：
+   $$
+   D_1=\{w_{1i}\},\quad w_{1i}=\frac{1}{N}.
+   $$
+
+2. 对于 $m=1,2\cdots,M$（迭代序数）
+
+   1. 基本分类器 $G_{m}(x):\mathcal X \to \{-1,+1\}$，计算 $G_{m}(x)$ 在训练数据集上的分类误差率；
+      $$
+      e_m=P(G_m(x_i)\not=y_i)=\sum_{i=1}^N w_{mi} I(G_m(x_i)\not= y_i)
+      $$
+      若分类错误 $I(G_{m}(x_i)\not=y_i)$，则为 1，再利用 $w_{mi}$ 做加权求和。
+
+      <u>选择分类误差率最小的一个 $G_m(x)$.</u>
+
+   2. 计算 $G_{m}(x)$ 的系数；
+      $$
+      \boxed{\alpha_{m} =\frac{1}{2} \log \frac{1-e_{m}}{e_{m}}}
+      $$
+
+   3. 更新训练数据集的权值分布。
+      $$
+      \boxed{w_{m+1,i}=\begin{cases}
+      \frac{w_{mi}}{Z_{m}}e^{-\alpha_m},&G_{m}(x_i)=y_i\\
+      \frac{w_{mi}}{Z_m} e^{\alpha_m},&G_m(x_i)\not=y_i
+      \end{cases}}
+      $$
+
+      $$
+      Z_{m}=\sum_{i=1}^{N} w_{mi} \exp(-\alpha_{m}y_i G_{m}(x_i))
+      $$
+
+      |                       | 分类正确 | 分类错误 |
+      | --------------------- | -------- | -------- |
+      | 强分类器 $\alpha_m>0$ | 权值降低 | 权值提升 |
+      | 弱分类器 $\alpha_m<0$ | 权值提升 | 权值降低 |
+
+   4. 构建 $G(x)=\operatorname{sign}\left(\sum_{m=1}^{M} \alpha_{m} G_{m}(x)\right)$.
+
+## Ch6 - 决策规则
+
+### 贝叶斯决策
+
+基础为贝叶斯公式：
+$$
+p(\omega|x)=\frac{p(x|\omega)p(\omega)}{p(x)}
+$$
+其中 $p(\omega)$ 为先验概率，$p(x|\omega)$ 为样本 $x$ 在 $\omega$ 类中的概率分布。
+
+考虑二分类问题，$x$ 分为 $\omega_1$ 类还是 $\omega_2$ 类，即计算：
+$$
+p(\omega_1|x)\lessgtr p(\omega_2|x)
+$$
+
+$$
+p(x|\omega_1)p(\omega_1)\lessgtr p(x|\omega_2)p(\omega_2)
+$$
+
+定义决策函数为 $d_i(x)=p(x|\omega_i) p(\omega_i)$，则判断的类别 $k$：
+$$
+k=\arg\max_k d_k(x)
+$$
+等价于最大化分类正确率。
+
+> 决策面为 $p(x|\omega_1)p(\omega_1)=p(x|\omega_2)p(\omega_2)$，考试题会问高斯分布下的决策面是什么样子的。
+
+### 最小风险贝叶斯决策
+
+例如对于诊断病情的情景，设 $\omega_1$ 代表无病，$\omega_2$ 代表有病，显然将有病诊断为无病损失更大，设损失矩阵 $L$:
+$$
+L=\begin{pmatrix}0&1\\5&0
+\end{pmatrix}
+$$
+对角线元素 $L_{11},L_{22}$ 代表分类没有损失，$L_{12}=1,L_{21}=5$ 表示把有病的判断为没病的损失更大。
+
+对于实际属于 $\omega_j$ 类的 $x$ 定义决策函数为：
+$$
+r_j(x)=\sum_{i=1}^{M} L_{ij} p(\omega_i | x)=\sum_{i=1}^{M}L_{ij} \frac{p(x|\omega_i)p(\omega_i)}{p(x)}
+$$
+最小化分类失误：
+$$
+k=\arg\min_{k} r_k(x)
+$$
+当 $L_{ij}=1-\delta_{ij}$，转换为普通的贝叶斯决策问题。
+$$
+r_{j}(x)=\sum_{i=1}^{M} p(\omega_i|x)-p(x|\omega_j)p(\omega_j)=p(x)-d_j(x)
+$$
+因为对于同一个样本 $x$ 概率 $p(x)$ 不变，即 $r_j(x)$ 取最小等价于取决策函数 $d_j(x)$ 最大。
+
+### Neyman-Pearson 决策
+
+两类错误率的定义：第一类错误率 $\varepsilon_1$ 代表实际是 $\omega_1$ 类判断为 $\omega_2$ 类，第二类错误率 $\varepsilon_2$ 代表实际是 $\omega_2$ 类判断为 $\omega_1$ 类。
+
+NP 决策是在保证一类错误率为定值的前提下，使另一类错误率最小的两类决策问题。例如使 $\varepsilon_2=\varepsilon_0$ 的条件下，使得 $\varepsilon_1$ 最小的决策。 
+
+举例子叮咚鸡：
+
+|      | 没病 $\omega_1$ | 有病 $\omega_2$               |
+| ---- | --------------- | ----------------------------- |
+| 阴性 |                 | $\varepsilon_2=\varepsilon_0$ |
+| 阳性 | $\varepsilon_1$ |                               |
+
+将有病的病人判断为阴性影响更严重，比如我们希望 $99.99\%$ 的有病病人都能够判断为阳性，而此时假阳性概率 $\varepsilon_1$ 希望控制最小，这就是 NP 决策的问题。我们再用图形直观地说明这个问题：
+
+使用抗体浓度作为是否为阳性的依据，两类病人的抗体浓度分别服从正态分布。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_d2d7e1db8b8418cd0b41de5e70ad1df0.png" alt="image-20241228225305437" style="zoom:50%;" />
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_68563de332ed0a78243d1942ea188471.png" alt="image-20241228225135697" style="zoom:50%;" />
+
+如果想要降低第二类错误率（橙色区域），则必须移动分类依据 $t$（在高维的情况是分类平面），移动之后就会提高第一类错误率，两类错误率是此消彼长的关系，因此必然存在一个使得 $\varepsilon_2=\varepsilon_0$ 而 $\varepsilon_1$ 最小的 $t$.
+
+求解 NP 决策问题，我们可以使用拉格朗日法：
+$$
+\mathcal L=\varepsilon_1+\lambda(\varepsilon_2-\varepsilon_0)
+$$
+![image-20241228230143451](https://notes.sjtu.edu.cn/uploads/upload_a612a72c44486efaac33913cd5680d3d.png)
+$$
+\begin{aligned}
+\mathcal L=&\int_{R_2} p(x|\omega_1)\mathrm d x+\lambda\int_{R_1} p(x|\omega_2)\mathrm d x-\lambda \varepsilon_0\\
+=&1-\int_{R_1} p(x|\omega_1)\mathrm d x+\lambda \int_{R_1}p(x|\omega_2)\mathrm d x-\lambda\varepsilon_0\\
+=&(1-\lambda\varepsilon_0)+\int_{R_1} [\lambda p(x|\omega_2)-p(x|\omega_1)]\mathrm d x
+\end{aligned}
+$$
+代入拉格朗日极值条件：
+$$
+\begin{aligned}
+\frac{\partial \mathcal L}{\partial t}=&\lambda p(t|\omega_2)-p(t|\omega_1)=0
+\end{aligned}
+$$
+分界面 $x=t$ 满足：$\displaystyle \frac{p(x|\omega_2)}{p(x|\omega_1)}=\lambda$.
+
+- 当 $x<t$ 满足：$\displaystyle \frac{p(x|\omega_2)}{p(x|\omega_1)}<\lambda$，此时分类到 $\omega_1$.
+
+- 当 $x>t$ 满足：$\displaystyle \frac{p(x|\omega_2)}{p(x|\omega_1)}>\lambda$，此时分类到 $\omega_2$.
+
+将 $\lambda$ 未知值代入 $\varepsilon_2=\varepsilon_0=\displaystyle \int_{R_1} p(x|\omega_2)\mathrm d x$，可以解得 $\lambda$.
