@@ -430,3 +430,113 @@ DFT 频谱间隔为 $f_s/N$，得到的是连续频谱的等间隔的 $N$ 点抽
 
 ## 3.8 FFT
 
+### 3.8.1 DIT（时间抽取）算法
+
+1. 奇偶分组：
+   $$
+   x_1=\{x[0],x[2],x[4],\cdots,x[N-2]\}\\
+   x_2=\{x[1],x[3],x[5],\cdots,x[N-1]\}
+   $$
+   分别计算 DFT $X_1[k],X_2[k]$,
+
+2. 序列 $x$ 的 DFT 可以表示为：
+   $$
+   \begin{aligned}
+   X[k]&=\sum_{n=0}^{N-1}x[n]W_{N}^{nk}\\
+   &=\sum_{n=0}^{N/2-1}x[2n]W_{N}^{2nk}+\sum_{n=0}^{N/2-1}x[2n+1]W_{N}^{(2n+1)k}\\
+   &=X_1[k]+W_{N}^{k} X_2[k]
+   \end{aligned}
+   $$
+   前一半和后一半的输出：
+   $$
+   \begin{cases}
+   X[k]=X_1[k]+W_{N}^k X_2[k]\\
+   X[N/2+k]=X_1[k]-W_{N}^{k} X_2[k]
+   \end{cases}
+   $$
+
+3. 基本蝶形运算：
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_dbcfcb118ff7768d644a24666521d019.png)
+
+4. 绘制信号流图 $N=8$.
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_c87770d268e6350db0064c3af3d19ff0.png)
+
+   因为是时间抽取，所以 $x(0\sim 7)$ 按二进制倒序排列。然后依次每层运用基本蝶形运算，需要注意每层中因为对应的 $N$ 不同，需要将 $k$ 乘以相应的倍数。
+
+### 3.8.2 DIF（频率抽取）算法
+
+1. 对 DFT 表达式进行变换：
+   $$
+   \begin{aligned}
+   X[k]&=\sum_{n=0}^{N} x(n)W_{N}^{nk}\\
+   &=\sum_{n=0}^{N/2-1} x(n)W_{N}^{nk}+x(n+N/2)W_{N}^{(n+N/2)k}\\
+   &=\sum_{n=0}^{N/2-1} \left(x(n)+(-1)^{k} x\left(n+N/2\right)\right)W_{N}^{nk}
+   \end{aligned}
+   $$
+
+2. 因为 $X[k]$ 的表达式和 $k$ 的奇偶性相关，所以有必要按照奇偶分组。
+
+   当 $k=2r$，代入表达式，得到：
+   $$
+   X_1[r]=X[2r]=\operatorname{DFT}\{x(n)+x(n+N/2)\}
+   $$
+   当 $k=2r+1$，代入表达式，得到：
+   $$
+   X_2[r]=X[2r+1]=\operatorname{DFT}\{(x(n)-x(n+N/2))W_{N}^n\}
+   $$
+
+3. 基本蝶形运算：
+
+   ![image-20250102212249574](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20250102212249574.png)
+
+4. 绘制信号流图 $N=8$.
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_a8e5b770818ef0186298b5fa73ddff09.png)
+
+### 3.8.3 运算次数统计
+
+- 运算图层数：$\log_2 N$.
+- 每层 $N/2$ 个蝶形运算，蝶形运算总数为 $N/2\log _2 N$.
+- 每个蝶形运算对应两个复数加法（减法），总数为 $N\log_2N$.
+- 每个蝶形运算对应一个复数乘法，总数为 $N/2\log_2 N$. 如果不算乘以 $\pm1,\pm j$，需要对应减去。
+- 总的计算复杂度为 $N\log_2N$.
+
+### 3.8.4 矩阵分解视角
+
+**DIT 算法**
+
+![](https://notes.sjtu.edu.cn/uploads/upload_e15ca01bc4354d386630d7fe73b69360.png)
+$$
+W_8=\begin{pmatrix}
+I_4&I_4\\
+I_4&-I_4
+\end{pmatrix}\begin{pmatrix}
+I_4&0_4\\
+0_4&\Lambda_4
+\end{pmatrix}\begin{pmatrix}
+W_4&0_4\\
+0_4&W_4
+\end{pmatrix}D_8
+$$
+从蝶形图的角度也可以得到：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_ea0027aa09c0db745cb610e30212cba6.png)
+
+**DIF 算法**
+
+![](https://notes.sjtu.edu.cn/uploads/upload_cceef8b3541a225524433dfb0b4818a2.png)
+$$
+W_8=D^\top_8\begin{pmatrix}
+W_4&0_4\\
+0_4&W_4
+\end{pmatrix}\begin{pmatrix}
+I_4&0_4\\
+0_4&\Lambda_4
+\end{pmatrix}\begin{pmatrix}
+I_4&I_4\\
+I_4&-I_4
+\end{pmatrix}
+$$
+对称阵转置后也相等，证明 DIT 和 DIF 是等价的。

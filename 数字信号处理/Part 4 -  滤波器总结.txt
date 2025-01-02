@@ -26,7 +26,7 @@
 
 - **直接 II 型（典范型）**，需要 $N$ 个延时单元。
 
-  <img src="https://notes.sjtu.edu.cn/uploads/upload_fd498c33cd352b7a57375754d3b653c1.png" alt="image-20241215160328236" style="zoom:50%;" />
+  <img src="https://notes.sjtu.edu.cn/uploads/upload_fe0ec32d44b275316945069c0d2bf9a5.png" style="zoom: 25%;" />
 
 - **级联型结构**，分解为一阶、二阶基本节，注意提取常数 $G$.
   $$

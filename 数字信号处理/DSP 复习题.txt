@@ -1,0 +1,486 @@
+# DSP 2022 试题
+
+## 一、选择题
+
+### 1
+
+序列 $\displaystyle x[n]=0.3 \sin \left(0.3\pi n-\frac{10\pi}{3}\right)$ 的周期是：
+
+- [ ] 3
+- [ ] 10
+- [x] 20
+- [ ] 30
+
+周期：$0.3\pi(n+N)=0.3n+2k\pi$，取 $N=20$.
+
+### 2
+
+设系统的输入 $x[n]$ 和输出 $y[n]$ 满足关系 $y[n]=\sin \left(\frac{2n+1}{2}\pi\right)x[n]$，则下列说法错误的是（<u>B</u>）
+
+- [ ] 该系统是线性系统
+- [x] 该系统是时不变系统
+- [ ] 该系统是因果系统
+- [ ] 该系统是稳定系统
+
+化简 $\sin \left(\frac{2n+1}{2}\pi\right)$ 为 $(-1)^{n+1}$。
+
+- 线性系统：
+  $$
+  x_1[n] \to (-1)^{n+1}x_1[n]\\
+  x_2[n] \to (-1)^{n+1}x_2[n]
+  $$
+
+  $$
+  (\alpha x_1[n]+\beta x_2[n]) \to (-1)^{n+1}(\alpha x_1[n]+\beta x_2[n])
+  $$
+
+- 时不变系统：
+  $$
+  x[n]\to (-1)^{n+1}x[n]\\
+  x[n+n_0]\to (-1)^{n+1}x[n+n_0]\not=(-1)^{n+n_0+1}x[n+n_0]
+  $$
+
+- 因果系统：$y[n]$ 没有用到 $x[n]$ 在 $n$ 之前的信息，因此是因果系统；
+
+- 稳定系统：$x[n]$ 有界推出 $y[n]$ 有界。
+
+### 3
+
+序列 $x[n]=-10^n u[-n-1]$ 的 Z 变换和收敛域是（<u>A</u>）
+
+- [x] $\displaystyle X(z)=\frac{1}{1-10z^{-1}},|z|<10$;
+
+- [ ] $\displaystyle X(z)=\frac{1}{1+10z^{-1}},|z|<10$;
+
+- [ ] $\displaystyle X(z)=\frac{1}{1-10 z^{-1}},|z|>10$;
+
+- [ ] $\displaystyle X(z)=\frac{1}{1+10z^{-1}},|z|>10$.
+
+$$
+X(z)=\sum_{n=-\infin}^{+\infin} x[n]z^{-n}\\
+=\sum_{n=-\infin}^{-1} -10^n z^{-n}=-\sum_{m=1}^{\infin}(10z^{-1})^{-m}\\
+=-\frac{(10z^{-1})^{-1}}{1-(10 z^{-1})^{-1}}=\frac{1}{1-10z^{-1}}
+$$
+收敛域：$|z|<10$，$|10z^{-1}|>1$.
+
+### 4
+
+已知因果序列 $y[n]=x[n]*u[n]$，且有 $\displaystyle\lim_{n\to \infin} y[n]=0$，设 $x[n]$ 的 Z 变换为 $X(z)$，则可以断定（）
+
+- [ ] $X(z)$ 在 $z=0$ 处有极点；
+
+- [ ] $X(z)$ 在 $z=1$ 处有极点；
+
+- [ ] $X(z)$ 在 $z=0$ 处有零点；
+
+- [x] $X(z)$ 在 $z=1$ 处有零点。
+
+通过 $y[n]=x[n]*u[n]$ 可知，
+$$
+y[n]=\sum_{m=0}^{n} x[m]
+$$
+因此，
+$$
+\lim_{n\to \infin} y[n]=\lim_{n\to\infin} \sum_{m=0}^{n} x[m]z^{-m}=X(z=1)=0
+$$
+因此，$X(z)$ 在 $z=1$ 处有零点。
+
+### 5
+
+下列说法正确的是：
+
+- [ ] 序列绝对可和是傅里叶变换存在的充要条件;
+
+- [ ] 序列平方可和是傅里叶变换存在的充要条件;
+
+- [x] 序列的傅里叶变换是单位圆上的 Z 变换;
+
+- [ ] 序列的 Z 变换收敛是傅里叶变换存在的充分条件.
+
+
+$$
+X(e^{j\omega})=X(z)|_{z=e^{j\omega}}
+$$
+序列的 Z 变换收敛，但是在单位圆之外的区域收敛，此时傅里叶变换不存在。
+
+### 6
+
+设广义线性相位系统的单位脉冲响应 $h[n]=\delta[n]-\delta[n-3]$，则其系统函数 $H(z)$ 具有零点（<u>B</u>）
+
+- [ ] $z=-1$
+
+- [x] $z=1$
+
+- [ ] $z=\pm 1$
+
+- [ ] $z=j$
+$$
+H(z)=1-z^{-3}
+$$
+
+### 7
+
+若连续时间信号为 $x_c(t)=\cos (\Omega_0 t),-\infin<t < \infin$，用采样率 3000Hz 对其采样得到序列 $x[n]=\cos\left(\frac{\pi}{3}n\right),-\infin<n<\infin$，则 $\Omega_0$ 可能的取值为：
+
+- [ ] $6000\pi$;
+
+- [x] $7000\pi$;
+
+- [ ] $8000\pi$;
+
+- [ ] 以上答案都不对
+
+采样点 $t_s=\frac{\Omega_0 n}{f_0}$，需要满足：
+$$
+\frac{\pi}{3}=\frac{\Omega_0}{f_0}+2k\pi
+$$
+因此 $\Omega_0$ 可以取 $7000\pi$.
+
+### 8
+
+以下说法错误的是（）
+
+- [ ] 采样率按整数因子 100 降低，抽选后信号的傅里叶变换仍然以 $2\pi$ 为周期;
+
+- [x] 采样率按整数因子 100 降低，信号的幅度变成了抽选前的 100 倍，频率降低为 1/100;
+
+- [ ] 采样率按整数因子 100 升高，采样周期从 $T$ 减小到了 $T'=T/100$;
+
+- [ ] 采样率按整数因子 100 升高，为了消除高频镜像频谱，可以构造截止频率是 $\pi/100$，增益是 100 的 <u>低通反镜像离散时间滤波器</u>.
+
+解释：假设原信号最高频率为 $\Omega_h$，原采样频率为 $\Omega_s$，则临界不失真采样条件为：
+$$
+\frac{\Omega_h}{\Omega_s}2\pi=\pi
+$$
+现采样频率为 $100\Omega_s$，现在
+$$
+\frac{\Omega_h}{\Omega_s}2\pi = \frac{\pi}{100}
+$$
+但是采样可能采样到比 $\pi/100$ 高频的信号，因此需要构造低通滤波器过滤高频信号。
+
+### 9
+
+以下说法正确的是（）
+
+- [ ] 序列的虚部的 DFT 是周期共轭对称的;
+
+- [ ] 序列的实部的 DFT 是该序列 DFT 的周期共轭反对称分量;
+
+- [x] 周期序列的实部的 DFS 是该周期序列 DFS 的共轭对称分量;
+
+- [ ] 任意实周期序列的 DFS 一定是共轭反对称序列.
+
+![image-20241222124432293](https://notes.sjtu.edu.cn/uploads/upload_1d0617b7665c5b2f6d6544f98c978a65.png)
+
+序列的虚部的 DFT 对应周期共轭反对称分量，实部 DFT 对应周期共轭对称分量。
+
+### 10
+
+下图所示信号流图需要几次实数乘法，几次实数加法，几次延迟？
+
+![](https://notes.sjtu.edu.cn/uploads/upload_5cc31188f87f802ac126f328bd8a23fd.png)
+
+1, 2, 2（乘以负一不算实数乘法）
+
+## 二、填空题
+
+### 1
+
+线性常系数方程为 $\displaystyle y[n]-y[n-1]+\frac{1}{2}y[n-2]=x[n]$，设输入是 $x[n]=\delta[n]$，初始条件是 $y[n]=0,n<0$，则 $y[2]=\underline{0.5}$.
+$$
+y[0]-y[-1]+\frac{1}{2}y[-2]=x[0]=1\Rightarrow y[0]=1
+$$
+
+$$
+y[1]-y[0]+\frac{1}{2}y[-1]=x[1]=0\Rightarrow y[1]=1
+$$
+
+$$
+y[2]-y[1]+\frac{1}{2}y[0]=x[2]=0\Rightarrow y[2]=\frac{1}{2}
+$$
+
+### 2
+
+$X(z)=(1-2z)(1+3z^{-1})(1-z^{-1})$ 的反变换为 $x[n]=\underline{-2\delta[n+1]-3\delta[n]+8\delta[n-1]-3\delta[n-2]}$.
+
+### 3
+
+$\displaystyle X(e^{j\omega})=\frac{1}{1-8e^{-j\omega3}}$ 的反变换为 $x[n]=\underline{}$.
+$$
+X(z)=\frac{1}{1-8z^{-3}}=1+8z^{-3}+64z^{-6}\cdots
+$$
+
+$$
+x[n]=\begin{cases}
+8^{k} &n=3k;\\
+0,&\mathrm{else.}
+\end{cases}
+$$
+
+### 4
+
+频率为 $\omega_0$ 的复指数序列 $x[n]=e^{j\omega_0 n},-\infin<n<\infin$，经过频率响应为 $H(e^{j\omega})$ 的 LTI 系统，则输出信号 $y[n]=\underline{H(e^{j\omega_0}) e^{j\omega_0 n}}$.
+
+因为 $e^{j\omega_0 n}$ 是 LTI 系统的特征序列，则
+$$
+y[n]=H(e^{j\omega_0}) e^{j\omega_0 n}
+$$
+
+> $$
+> x[n]=\sum_ka_kz_k^n\longrightarrow y[n]=\sum_kH(z_k)a_kz_k^n
+> $$
+
+### 5
+
+对采样率为 32 kHz 的音乐信号按下图实现采样率按非整数因子变化后，系统变成采样率为 48 kHz 的信号，则低通滤波器的截止频率取为 $\underline{\pi/3}$.
+
+![image-20241212111820550](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20241212111820550.png)
+
+- $L$ 取为 $3$，原来 $T=1/32k$，经过 $T/L=1/96k$.
+- $M$ 取为 $2$，原来 $T/L=1/96k$，经过 $TM/L=1/48k$.
+
+![](https://notes.sjtu.edu.cn/uploads/upload_c722e6fefc08608e50a97f27fdcfe60f.png)
+
+低通滤波器：$\pi/I=\pi/3$.
+
+### 6
+
+已知实序列 $x[n]$ 的 8 点 DFT $X[k]$ 的前 5 点为 $\{1,2+3j,4+5j,6+7j,7\}$，则 $x_1[n]=x[n]e^{j\pi n/2}$ 的 8 点 DFT $X_1[k]=\underline{}$.
+
+根据实序列的 DFT 是周期共轭对称的，所以
+$$
+X[k]=\{1,2+3j,4+5j,6+7j,7,6-7j,4-5j,2-3j\}
+$$
+
+$$
+e^{j\pi n/2}=e^{j2\pi n/4}=W_{N}^{-(N/4)n}
+$$
+
+$$
+\begin{aligned}
+X_1[k]&=\sum_{n=0}^{N-1} x_1[n]W_{N}^{kn}\\
+&=\sum_{n=0}^{N-1} x[n] W_{N}^{kn-(N/4)n}\\
+\end{aligned}\Rightarrow X_1[k+N/4]=X[k]
+$$
+
+因此，
+$$
+X_1[k]=\{4-5j,2-3j,1,2+3j,4+5j,6+7j,7,6-7j\}
+$$
+
+### 7
+
+利用频域抽选基 2FFT 算法计算 32 点 DFT，需要蝶形运算的个数为 $\underline{80}$.
+
+$\log_232=5$ 层，每层 $32/2=16$ 个，一共 80 个。
+
+### 8
+
+对于 $N=16$ 的 FFT，输出倒位序排列，排在输出 $X[2]$ 后面的是 $\underline{X[10]}$.
+$$
+2\Rightarrow 0010\Rightarrow 0100\Rightarrow 4\\
+4+1\Rightarrow 0101\Rightarrow 1010\Rightarrow 10
+$$
+
+### 9
+
+需要设计通带截止频率为 $\displaystyle \frac{\pi}{8}$ 弧度的离散时间滤波器，采用脉冲响应不变法，设 $T_d=1\mathrm{~ms}$，则原型连续时间滤波器的通带截止频率为 $\underline{62.5\mathrm{~Hz}}$.
+
+频率关系：
+$$
+\omega=\Omega T
+$$
+
+$$
+\Omega=\frac{\pi}{8}/T_d,f=\frac{\Omega}{2\pi}=62.5\mathrm{~Hz}
+$$
+
+### 10
+
+设 IIR 系统具有有理系统函数 $\displaystyle H(z)=\frac{\sum_{k=0}^6 b_k z^{-k}}{1-\sum_{k=1}^5 a_k z^{-k}}$，其中 $a_k,b_k$ 是有理数，如果采用直接 II 型结构实现则需要的延迟数目是 $\underline{6}$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_fe0ec32d44b275316945069c0d2bf9a5.png" style="zoom: 25%;" />
+
+需要的延时个数：$\max(6,5)=6$.
+
+## 三、简答题
+
+1. 简述离散时间系统的因果性和稳定性；
+
+   输出变化不会发生在输入变化之前的系统称为因果系统 
+
+   对任意的有界输入都产生有界输出的系统称为稳定系统 
+
+2. 简述奈奎斯特采样定理；
+
+   若 $x_a(t)$ 是一个带限信号，最高频率为 $\Omega_h$，则 $x_a(t)$ 能由它的样本 $x[n]=x_a(nT),n=0,\pm1,\pm2\cdots$ 完全不失真地重构的条件是 $\Omega_s=2\pi /T\ge 2\Omega_h$. 其中 $2\Omega_h$ 又被称为奈奎斯特率。
+
+3. 画出时域抽选基2FFT算法过程中的基本蝶形运算信号流图；
+
+4. 用直接II型结构实现以下系统函数：
+   $$
+   H(z)=\frac{1-2z^{-1}-3z^{-2}-4z^{-3}}{5+6z^{-1}+7z^{-2}+8z^{-3}}
+   $$
+
+   > 只需写成 $\displaystyle H(z)=\frac{\sum_{k=0}^N b_k z^{-k}}{1-\sum_{k=0}^M a_k z^{-k}}$ 的结构即可。
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_5c5682cbdad392177925529be7f892a4.png)
+
+## 四、解答题
+
+### 1
+
+设序列 $x[n]=n+1,0\le n\le 3$，序列 $h[n]=n-1,0\le n\le 3$，序列 $x[n]$ 和序列 $h[n]$ 的 4 点循环卷积 $y[n]=x[n]④h[n]$，计算 $y[0]$ 和 $y[1]$ 的值。
+$$
+x[n]=\{\underline{1},2,3,4\}\quad h[n]=\{\underline{-1},0,1,2\}
+$$
+
+$$
+y[0]=x[0]h[0]+x[1]h[3]+x[2]h[2]+x[3]h[1]\\
+=-1+4+3=6
+$$
+
+$$
+y[1]=x[1]h[0]+x[2]h[3]+x[3]h[2]+x[0]h[1]\\
+=-2+6+4=8
+$$
+
+### 2
+
+已知周期序列 $\displaystyle \tilde{x}[n]=\sum_{k=0}^4 \cos (0.2\pi kn)$.
+
+1. 写出 $\tilde{x}[n]$ 的周期.
+   $$
+   \tilde{x}[n]=\displaystyle \sum_{k=0}^4 \cos \left(\frac{2\pi}{10}kn\right)
+   $$
+
+   $$
+   \tilde{x}[n+N]=\tilde{x}[n]
+   $$
+
+   $$
+   N=10
+   $$
+
+2. 写出 $\tilde{x}[n]$ 的离散傅里叶级数 $\tilde{X}[k]$ 在区间 $0\le k\le N-1$ 的值。
+
+   利用线性性可以拆分为 5 个序列：
+   $$
+   \tilde{x}_k=\cos\left(\frac{2\pi}{10}kn\right)
+   $$
+   根据 $\displaystyle \cos\left(\frac{2\pi}{10}kn\right)=\frac{1}{2}\left(\exp\left(j\frac{2\pi}{10}kn\right) +\exp\left(-j\frac{2\pi}{10}kn\right)\right)$.
+   $$
+   \cos\left(\frac{2\pi}{10}kn\right)=\frac{1}{2}W_{10}^{-kn}+\frac{1}{2}W_{10}^{kn}=\frac{1}{2}W_{10}^{(N-k)n}+\frac{1}{2}W_{10}^{kn}
+   $$
+   根据 IDFT 公式，
+   $$
+   \tilde{x}[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k]e^{j\frac{2\pi}{N}kn}=\frac{1}{N}\sum_{k=0}^{N-1}X[k]W_{N}^{-kn}
+   $$
+
+   $$
+   X_0=\{10,0,0,0,0,0,0,0,0,0\}\\
+   X_1=\{0,5,0,0,0,0,0,0,0,5\}\\
+   X_2=\{0,0,5,0,0,0,0,0,5,0\}\\
+   X_3=\{0,0,0,5,0,0,0,5,0,0\}\\
+   X_4=\{0,0,0,0,5,0,5,0,0,0\}\\
+   $$
+
+   根据线性性，
+   $$
+   X=\{10,5,5,5,5,0,5,5,5,5\}
+   $$
+
+### 3
+
+考虑如下图所示系统，已知 $x_c(t)$ 带限到 10kHz，离散时间系统是一个 $\displaystyle \frac{\pi}{16}\mathrm{~rad/s}$ 的理想低通滤波器。
+
+![](https://notes.sjtu.edu.cn/uploads/upload_9ee7488b4147e44fea6cde17edb91bb7.png)
+
+1. 为了避免在 C/D 转换中发生混叠，$T$ 的最大取值时多少？
+
+   根据 Nyquist 采样定律，
+   $$
+   f_s\ge 2f_h=20\mathrm{~kHz}
+   $$
+
+   $$
+   T_{\max}= \frac{1}{20000}\mathrm{~s}
+   $$
+
+2. 若 $\displaystyle \frac{1}{T}=32\mathrm{~kHz}$，等效连续时间滤波器的截止频率是多少？
+
+   经过理想低通滤波器的最小周期：
+   $$
+   N_{\min}=\frac{2\pi}{\pi/16}=32
+   $$
+   采样前对应的周期为：
+   $$
+   T'=TN_{\min}=1\mathrm{~ms}
+   $$
+   因此截止频率为 $1\mathrm{~kHz}$.
+
+3. 要想使等效连续时间滤波器的截止频率是 5kHz，则 $T$ 的取值是多少？
+   $$
+   T'=TN_{\min}=0.2\mathrm{~ms}
+   $$
+
+   $$
+   T=160\mathrm{~kHz}
+   $$
+
+### 4
+
+设序列 $x_1[n]=\{1,5,5,1\},x_2[n]=\{1,0,5,0,5,0,1,0\}$.
+
+1. 利用频域抽选基 2FFT 算法计算 $x_1[n]$ 的 4 点 DFT $X_1[k](k=0,1,2,3)$，并画出信号流图。
+2. 利用 $X_1[k]$ 计算 $x_2[n]$ 的 8 点 DFT $X_2[k](0\le k\le 7)$.
+
+$$
+x_2[n]=\begin{cases}
+x_1[m],&n=2m;\\
+0,&n=2m+1
+\end{cases}
+$$
+
+$$
+\begin{aligned}
+X_2[k]&=\sum_{n=0}^{2N-1} x_2[n] W_{2N}^{nk}\\
+&=\sum_{n=0}^{N} x_2[2n] W_{2N}^{2nk}\\
+&=\sum_{n=0}^{N} x_1[n] W_{N}^{nk}=X_1[k\pmod 4]
+\end{aligned}
+$$
+
+
+
+### 5
+
+已知连续时间巴特沃斯滤波器的幅度平方函数为 $\displaystyle |H_c(j\Omega)|^2=\frac{1}{1+(\Omega/\Omega_c)^{2N}}$，其中 $N$ 为滤波器阶数，$\Omega_c$ 为常数。设取样间隔为 $T_d$.
+
+1. 采用脉冲响应不变法设计一个离散时间滤波器，给出离散时间滤波器的 3dB 截止频率和幅度平方函数（忽略频响混叠）；
+   $$
+   \boxed{\Omega=\omega/T_d}
+   $$
+
+   $$
+   |H(e^{j\omega})|^2 \approx |H_c(j\Omega)|_{\Omega=\omega/T_d}^2 = \frac{1}{1+[\omega/(\Omega_c T_d)]^{2N}}
+   $$
+
+   令 $|H(e^{j\omega})|^2=1/2$，得到 3dB 截止频率 $\Omega_c T_d$.
+
+2. 采用双线性变换法设计一个离散时间滤波器，给出离散时间滤波器的 3dB 截止频率和幅度平方函数。
+   $$
+   \boxed{\Omega=\frac{2}{T_d}\tan \frac{\omega}{2}}
+   $$
+   令 $|H(e^{j\omega})|^2=1/2$，得到 3dB 截止频率 $\displaystyle 2\arctan \left(\frac{T_d}{2}\Omega_c\right)$.
+
+### 6
+
+已知 FIR 滤波器的系统函数为 $\displaystyle H(z)=\frac{1}{7}+\frac{2}{7}z^{-1}+\frac{3}{7}z^{-2}-\frac{3}{7}z^{-4}-\frac{2}{7}z^{-5}-\frac{1}{7}z^{-6}$.
+
+1. 判断该滤波器是否具有广义线性相位；（具有）
+
+2. 写出 $H(z)$ 任意两个零点（$z=1,z=-1$）
+
+3. 画出线性相位结构图。
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_a48d4dfb3a8e75b4e412c3f78f68d303.png)
