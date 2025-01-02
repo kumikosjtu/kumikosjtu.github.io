@@ -489,7 +489,7 @@ DFT 频谱间隔为 $f_s/N$，得到的是连续频谱的等间隔的 $N$ 点抽
 
 3. 基本蝶形运算：
 
-   ![image-20250102212249574](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20250102212249574.png)
+   ![](https://notes.sjtu.edu.cn/uploads/upload_fe927f5f0117c10d0fb9e73dca2c69ba.png)
 
 4. 绘制信号流图 $N=8$.
 
