@@ -1,0 +1,130 @@
+# Digital Signal Processing (A) 2022
+
+## 1. Fill-in-the-blanks
+
+### 1
+
+The system function of an LTI system is $H(z)=(1+1.2z^{-1})/(1+0.1z^{-1}-0.06z^{-2})$ and thus its difference equation is $\underline{y[n]+0.1y[n-1]-0.06y[n-2]=x[n]+1.2x[n-1]}$. It is an <u>IIR</u> system. Please plot the parallel realization of the system in the following area.
+$$
+H(z)=\frac{-1.8}{1+0.3z^{-1}}+\frac{2.8}{1-0.2z^{-1}}
+$$
+![](https://notes.sjtu.edu.cn/uploads/upload_b29626799141eac4a84ee105b5559424.png)
+
+### 2
+
+Given two sequences $x_1(n)=\{1,2,-1\}$ and $x_2(n)=\{-1,3,2,1\}$, the linear convolution between them is $\underline{\{\underline{-1},1,9,2,0,-1\}}$ and the circular convolution $L=6$ is $\{\underline{-1},1,9,2,0,-1\}$.
+
+### 3
+
+Which of the following statements are correct?
+
+- [ ] $y(n)=3x(n)+2$ is a linear system. (增量线性系统 )
+- [ ] $y(n)=nx(2n)$ is a time-invariant system. (不是时不变系统)
+- [ ] $y(n)=3^n u(n)$ is a stable and causal system. (不稳定)
+- [x] $y(n)=\delta(n+4)$ is a stable system. (是稳定系统)
+
+### 4
+
+The system function of a causal LTI system is $H(z)=(3-4z^{-1})/(1-3.5z^{-1}+1.5z^{-2})$ and thus the ROC of $H(z)$ is $\underline{|z|>3}$.
+
+零点为 $z=3,z=0.5$. 因为因果所以 ROC 必须包含 $\infin$，也就是 $|z|>3$,
+
+### 5
+
+Supposing that the system function of an analog low-pass filter is $H_a(s)$, we convert it to a digital filter using the relation $\displaystyle H(z)=H_a(s)|_{s=\frac{z+1}{z-1}}$ and thus the digital filter is <u>high-pass</u>.
+
+### 6
+
+The sequence $x(n)$ with period $N$ and its discrete Fourier transform is $X(k)$. Hence, the discrete Fourier transform of $x(n+l)$ can be expressed in terms of $X(k)$ as $\underline{X(k)W_N^{-lk}}$.
+
+利用：
+$$
+X(k)=\sum_{n=0}^{N-1} x(n) W_{N}^{nk}
+$$
+可得：
+$$
+\sum_{n=0}^{N-1} x(n+l) W_{N}^{nk}=W_{N}^{-lk} X(k)
+$$
+
+### 7
+
+Which of the following statements are correct?
+
+- [x] The convolution of two minimum-phase sequence is always a minimum-phase sequence.（时域卷积对应频域点乘，零点和极点都位于单位圆内，正确）
+- [ ] For a non-causal and stable system, when all zeros are outside the unit circle, the system is a minimum-phase system.（错误）
+- [x] If the impulse response function of a lowpass filter is $h(n)$, $(-1)^n h(n)$ is the impulse response function of a high-pass filter.（正确，相当于 $z\to -z$）
+- [ ] Using a window to truncate a sequence induces frequency leakage.（错误，也有可能没有频谱泄露）
+- [ ] It is easy for window method to determine the cutoff frequency exactly in design of an FIR filter.（错误）
+- [ ] When we design a digital filter, all poles should be placed outside the unit circle.（希望稳定，错误）
+
+### 8
+
+We use an all-pass filter to stabilize a system with two unstable poles $z=\frac{1}{r}e^{\pm j\theta},r<1$, and thus the system function of the all-pass filter should be written as $\underline{H_{ap}(z)=\frac{z^{-1}-re^{-j\theta}}{1-re^{j\theta}z^{-1}}\cdot \frac{z^{-1}-re^{j\theta}}{1-r^{-j\theta}z^{-1}}}$.
+
+全通滤波器极点位于单位圆内，零点位于单位圆外，零极点可以对消，设计全通滤波器：
+$$
+H_{ap}(z)=K\frac{z^{-1}-a^*}{1-az^{-1}}\cdot \frac{z^{-1}-a}{1-a^*z^{-1}}
+$$
+零点为 $(a^*)^{-1}$ 和 $a^{-1}$. 对应 $z=\frac{1}{r}e^{\pm j\theta}$，取 $a=re^{j\theta}$.
+
+因此可以设计全通滤波器：
+$$
+H_{ap}(z)=\frac{z^{-1}-re^{-j\theta}}{1-re^{j\theta}z^{-1}}\cdot \frac{z^{-1}-re^{j\theta}}{1-r^{-j\theta}z^{-1}}
+$$
+
+### 9
+
+A discrete-time sinusoid is periodic only if its frequency $f$ is a <u>rational</u> number.
+
+### 10
+
+If we sample $x_1(t)=\cos (2\pi(10)t)$ and $x_2(t)=\cos (2\pi(50)t)$ at a rate 40Hz, the sampled sequences are written as $x_1(n)=\underline{\cos(2\pi(0.25)n)}$ and $x_2(n)=\underline{\cos(2\pi(1.25)n)}$. We say they are 相同？. The sampling frequency should be increased to <u>100</u>Hz at least such that we can reconstruct the signal $x_2(t)$ from the samples.
+
+## 2. Calculation and Design
+
+### 11
+
+Determine the coefficients of a linear-phase FIR filter
+$$
+y(n)=b_0 x(n)+b_1x(n-1) +b_2(n-2)
+$$
+such that
+
+1. It rejects completely a frequency component at $\omega_0=2\pi/3$;
+2. Its frequency response is normalized so that $H(0)=1$;
+
+Also, compute and sketch the magnitude and phase response of the filter.
+$$
+Y(z)=b_0 X(z)+b_1 z^{-1} X(z)+b_2 z^{-2} X(z)
+$$
+
+$$
+H(z)=\frac{Y(z)}{X(z)}=b_0+b_1z^{-1}+b_2 z^{-2}
+$$
+
+满足条件 1. 也就是
+$$
+H(e^{j\omega_0})=0\\
+\Rightarrow b_0+b_1 e^{-j\omega_0}+b_2 e^{-j2\omega_0}=0
+$$
+满足 $b_0=b_1=b_2$.
+
+满足条件 2. 也就是
+$$
+H(0)=b_0=1
+$$
+因此 $b_0=b_1=b_2=1$，$H(z)=1+z^{-1}+z^{-2}$. 特点：线性相位，零点为 $e^{\pm j\omega_0}$，并且线性相位，群延时为 $\tau=\frac{N-1}{2}=1$.
+
+![](https://notes.sjtu.edu.cn/uploads/upload_9fcd8b648ed6045a9eb71f43c56d10c3.png)
+
+系统 $H(z)=1+z^{-1}+z^{-2}$. 线性相位系统 $N=3$.
+$$
+\theta(\omega)=-\frac{N-1}{2}\omega\\
+\Rightarrow \theta(\omega)=-\omega
+$$
+
+$$
+\theta(0)=\arg H(e^{j0})=\arg 3=0\\
+\theta(\pi)=\arg H(e^{j\pi})=\arg 1=0\not=-\pi
+$$
+

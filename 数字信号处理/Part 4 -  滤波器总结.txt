@@ -135,6 +135,17 @@ $$
 $$
 |H_{ap}(e^{j\omega})|=C
 $$
+1 阶全通滤波器（要求 $a$ 为实数，且极点 $z=a$ 在单位圆内）
+$$
+H_{ap}(z)=K\frac{z^{-1}-a}{1-az^{-1}}
+$$
+2 阶全通滤波器（要求极点 $a,a^*$ 在单位圆内，即 $a=re^{j\theta},0<r<1$）
+$$
+\begin{aligned}
+H_{ap}(z)&=K\frac{z^{-1}-a^*}{1-az^{-1}}\cdot \frac{z^{-1}-a}{1-a^*z^{-1}}\\
+&=K\frac{z^{-2}-2r\cos \theta z^{-1}+r^2}{1-2r\cos \theta z^{-1}+z^{-2}r^2}
+\end{aligned}
+$$
 $N$ 阶全通滤波器：
 $$
 H_{ap}(z)=\frac{d_N + d_{N-1}z^{-1}+\cdots+d_1 z^{-N+1}+z^{-N}}{1+d_1 z^{-1}+\cdots+d_{N-1} z^{-N+1}+d_N z^{-N}}

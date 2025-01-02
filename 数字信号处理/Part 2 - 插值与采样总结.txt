@@ -114,8 +114,6 @@ $$
 
 当带限信号出现冲激线状频谱（如正弦信号），当 $f_s=2f_h$ 时，会产生混叠（画图可以发现出现相互抵消的情况），若最高频率对应正弦信号，则要求 $f_s>2f_h$.
 
-![image-20241221223126176](https://notes.sjtu.edu.cn/uploads/upload_cc00518929f8aaf2ea822ad9546b1c55.png)
-
 若 $x_a(t)$ <u>不是带限信号</u>，也不能对 $x_a(t)$ 进行直接采样，否则频谱中超出带限的部分会混叠到 $[-f_s/2,f_s/2]$ 的区间，需要首先通过截止频率为 $f_s/2$ 的防混叠滤波器，然后进行频率为 $f_s$ 的采样。
 
 ![image-20241221224056455](https://notes.sjtu.edu.cn/uploads/upload_dd5266af638fd28342b4ab553d46e815.png)
@@ -136,4 +134,37 @@ $$
 (k-1)B_0\le f_l,f_h\le kB_0
 $$
 使用 $f_s=2B_0$ 采样。
+
+## 2.3 插值采样综合题目
+
+![image-20241221223126176](https://notes.sjtu.edu.cn/uploads/upload_cc00518929f8aaf2ea822ad9546b1c55.png)
+
+采样等价于两步：
+
+- 第一步连续时间信号 $x_a(t)$ 点乘抽样序列 $\delta_T(t)$，在频域上等价为进行周期为 $\Omega_s$ 的延拓，并且幅值变为原来 $1/T_s$.
+- 第二步取 $x[n]=\hat x_a(nT)=x_a(nT)$，等价为取 $-\Omega_s/2\sim \Omega_s/2$ 的部分，频谱 $\Omega_s/2$ 点映射到 $\pi$.
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_3879b7e884b9a9c3696b134e77417dfa.png" style="zoom:23%;" />
+
+插值等价为两步：
+
+- 第一步构造序列 $\displaystyle \hat x_a(t)=\begin{cases}
+  x[n]&t=nT\\
+  0&t\not=nT
+  \end{cases}$，在频域上等价为频谱 $\pi$ 点映射到 $\Omega_s/2$，并且进行周期为 $\Omega_{s}$ 的延拓.
+- 第二部使得序列通过截止频率为 $\Omega_s/2$ 的低通滤波器，其增益为 $1/f_s=T_s$.
+
+两步可以表示为：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_5f0ee34e3141a69fad944b1ab33b8738.png" style="zoom:25%;" />
+
+**<u>例题</u>**：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_76725aab05098f778d0fc9d9529eaa31.png)
+
+**<u>例题</u>**：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_10080a30d2afb55b112d13eedaaf3fd8.png)
+
+![](https://notes.sjtu.edu.cn/uploads/upload_6acaaa466be9a3aebc62c18be8ea8355.png)
 
