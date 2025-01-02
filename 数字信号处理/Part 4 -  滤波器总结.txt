@@ -382,7 +382,7 @@ $$
 
 因为带通滤波器的 $\Omega_{p1},\Omega_{p2}$ 均可以映射到 $\overline{\Omega}_p=1$，所以只需确定 ${\overline\Omega_{st}}$ 即可。
 
-<img src="C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20241215193513227.png" style="zoom:40%;" />
+<img src="https://notes.sjtu.edu.cn/uploads/upload_d9ae28ff481ae43ac441d3d0a7b2d4d6.png" style="zoom:33%;" />
 
 计算对应的 $\overline{\Omega}_{st1,2}$ 如下：
 $$
