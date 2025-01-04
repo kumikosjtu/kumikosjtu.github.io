@@ -1,0 +1,136 @@
+# 时域分析
+
+## 1
+
+已知控制系统方框图如下图所示，试求：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_7e8c29be1d9c1064440206b2b1c9c68f.png)
+
+1. 根据下面方块图画出信号流图；
+2. 根据梅逊公式求 $C(s)/R(s)$ 和 $C(s)/N(s)$.
+3. 求同时存在输入 $R(s)$ 和扰动 $N(s)$ 时的 $E(s)$ 表达式。
+
+## 2
+
+控制系统结构如图所示，要求：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_bdec43dc3a50204ec3fc0ff86d26295a.png)
+
+1. 计算 $K_p$ 和 $K_h$ 的值，使得最大超调量等于 16%，调整时间等于 1 秒（$\Delta=\pm 2\%$）
+
+   系统函数为：
+   $$
+   \frac{C(s)}{R(s)}=\frac{4K_p}{s^2+(4K_h+1)s+4K_p}
+   $$
+
+   $$
+   \begin{cases}
+   \omega_n=2\sqrt{K_p}\\
+   \zeta=\frac{4K_h+1}{4\sqrt{K_p}}
+   \end{cases}
+   $$
+
+   $$
+   \begin{cases}
+   t_s=\frac{4}{\zeta \omega_n}=1\Rightarrow \zeta\omega_n=4\\
+   \delta\%=e^{-\frac{\zeta \pi}{\sqrt{1-\zeta^2}}} \times 100\% \Rightarrow \zeta=0.5
+   \end{cases}
+   $$
+
+   解得：
+   $$
+   \begin{cases}
+   K_h=\frac{7}{4}\\
+   K_p=16
+   \end{cases}
+   $$
+
+2. 计算系统的速度误差系数 $K_v$，以及在输入信号 $r(t)=2tu(t)$ 下的稳态误差；
+
+   开环系统为：
+   $$
+   G(s)=\frac{4K_p}{s(s+(4K_h+1))}
+   $$
+   稳态速度误差系数：
+   $$
+   K_v=\lim_{s \to 0} s G(s)=\frac{4K_p}{4K_h+1}
+   $$
+   当输入信号 $r(t)=2tu(t)$，稳态误差为：
+   $$
+   \frac{2}{K_v}=\frac{8K_h+2}{4K_p}
+   $$
+
+3. 计算当 $K_p=50$，且闭环极点全部位于 $s=-2$ 垂直线左侧时参数 $K_h$ 取值范围。
+
+   系统函数为：
+   $$
+   \frac{C(s)}{R(s)}=\frac{200}{s^2+(4K_h+1)s+200}
+   $$
+   替换 $s\to s-2$，若原系统闭环极点为 $s_p$ 全部位于 $s=-2$ 左侧，则新系统闭环极点变为 $s_p+2$ 全部位于 $s=0$ 左侧，也就是系统稳定。解得 $K_h>4/3$.
+
+## 3
+
+已知控制系统结构图如下图所示，试求：
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_f8b2d517489036f43be138368f3d6a60.png" style="zoom:50%;" />
+
+1. 绘制系统的信号流图；
+2. 利用梅逊公式求系统输入到输出的传递函数 $C(s)/R(s)$.
+3. 求扰动输入到误差的传递函数 $E(s)/N(s)$.
+
+## 4
+
+已知系统如下图所示，试求：
+
+![](https://notes.sjtu.edu.cn/uploads/upload_1bf12145cb80ce43cb13b4fa6fdb3fc3.png)
+
+1. 当 $K=1,T=0.2$，输入为 $r(t)=1-2t(t>0)$ 时，计算闭环系统的稳态误差；
+   $$
+   G(s)=\frac{10}{s(0.2s+1)}
+   $$
+
+   $$
+   K_v=\lim_{s\to 0} sG(s)=10\\
+   K_p=\lim_{s\to 0} G(s)=\infin
+   $$
+
+   稳态误差为 $-0.2$.
+
+2. 求当 $K=10$ 时，确定使闭环系统阻尼比为 $0.707$ 的参数 $T$ 的值；当输入为阶跃信号时，计算系统的最大超调量，过渡过程时间（误差带取 $2\%$）
+   $$
+   G(s)=\frac{100}{s(Ts+1)}\quad \Phi(s)=\frac{100/T}{s^2+s/T+100/T}
+   $$
+
+   $$
+   \begin{cases}
+   \omega_n=\sqrt{100/T}\\
+   2\zeta\omega_n=1/T
+   \end{cases}\Rightarrow \omega_n=100\sqrt{2},T=\frac{1}{200}
+   $$
+
+   系统的最大超调量为：
+   $$
+   e^{-\frac{\zeta}{\sqrt{1-\zeta^2}}\pi}\times 100\%=4.32\%
+   $$
+   过渡时间：
+   $$
+   \frac{4}{\zeta\omega_n}=0.04\mathrm{~s}
+   $$
+   ![](https://notes.sjtu.edu.cn/uploads/upload_3f8ce4d6bfa471469bb887598521fc16.png)
+
+3. 当 $K>0$，要求系统闭环极点实部均小于 $-1$ 时，试求满足条件的参数 $K$ 和 $T$ 的范围。
+   $$
+   G(s)H(s)=\frac{10K}{s(Ts+1)}\\
+   \Phi(s)=\frac{10K}{Ts^2+s+10K}
+   $$
+   代入 $s\gets s-1$，得到：
+   $$
+   \Phi'(s)=\frac{10K}{Ts^2+(1-2T)s+10K+T-1}
+   $$
+   因为 $T,1-2T$ 不可能同时 $<0$，因此要求：
+   $$
+   \begin{cases}
+   T>0\\1-2T>0\Rightarrow T<1/2\\
+   10K+T-1>0\Rightarrow K>(1-T)/10
+   \end{cases}
+   $$
