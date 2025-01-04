@@ -1,4 +1,4 @@
-# 2022 DSP A 类题目
+# 2022 DSP for ICE3301
 
 ## 一、选择题
 
@@ -255,3 +255,92 @@ $$
 10001
 ```
 
+### 9
+
+已知连续时间滤波器的 20dB 截止频率为 $2\pi \times 100\mathrm{~rad/s}$，采用脉冲响应不变法转换成离散时间滤波器，要求其 20dB 截止频率为 $0.5\pi \mathrm{~rad}$，则 $T_d$ 应该取值 $\underline{2.5}$ ms.
+
+根据脉冲响应不变法的公式：
+$$
+\omega=\Omega T_d
+$$
+得到 $0.5\pi=2\pi \times 100 T_d$，$T_d=2.5 \mathrm{~ms}$.
+
+### 10
+
+下图所示的信号流图表示的系统函数：
+$$
+H(z)=\underline{\left(1-\frac{1}{3}z^{-1}\right)\frac{1-2z^{-1}-3z^{-2}}{1+8z^{-1}+\frac{1}{4}z^{-1}}}
+$$
+![](https://notes.sjtu.edu.cn/uploads/upload_dc66d992a0d87828f05c297bdc3d7fa1.png)
+
+> 注意：转置型结构。我们可以翻转所有支路方向，交换输入输出位置，在草稿纸上画一下。
+
+## 三、简答题
+
+### 1
+
+FIR 滤波器的单位脉冲响应 $h[n]$ 在满足什么条件时，该滤波器具有广义线性相位？
+
+系数全为实数且满足奇对称条件：$h[n]=-h[N-1-n]$ 或者偶对称条件：$h[n]=h[N-1-n]$. ($0\le n\le N-1$)
+
+### 2
+
+已知长度为 5 的序列 $x[n]$ 的 5 点 DFT $X_1[k]$ 和 10 点 DFT $X_2[k]$，是否可以利用 $X_1[k]$ 和 $X_2[k]$ 分别得到无失真的连续的傅里叶变换函数 $X(e^{j\omega})$？请说明理由。
+
+可以恢复，根据频域采样定理，$N\ge M$ 时周期延拓无混叠。
+
+### 3
+
+利用脉冲响应不变法由连续时间滤波器设计离散时间 IIR 滤波器，能保持原连续时间滤波器的什么性质？
+
+稳定性。低频段对应。
+
+### 4
+
+典范性结构的特点是什么？用典范性结构实现以下系统函数
+$$
+H(z)=\frac{1-2z^{-1}-3z^{-2}}{4+6z^{-2}}
+$$
+特点是：
+
+- 使用最少的延时单元；
+- 对频率响应的控制作用不敏感；
+- 零极点对系数量化敏感。
+
+$$
+H(z)=\frac{1/4-1/2z^{-1}-3/4z^{-2}}{1+3/2z^{-2}}
+$$
+
+# 四、计算题证明题
+
+### 5
+
+考虑如下图所示系统，输入信号 $x_c(t)$ 的傅里叶变换 $X_c(j\Omega)=0,|\Omega|\ge \Omega_N$，离散时间系统的频率响应为 $\displaystyle H(e^{j\omega})=\begin{cases}1,|\omega|<\omega_c\\0,\mathrm{else}\end{cases}$.
+
+![](https://notes.sjtu.edu.cn/uploads/upload_2a0605d3007a31e6d83e1d677c88d72f.png)
+
+1. 要使 $y_c(t)=x_c(t)$，确定采样周期 $T$ 的最大取值；
+
+   根据奈奎斯特采样定理，$\Omega_s=2\pi/T>2\Omega_N$.
+
+   得出 $T<\pi/\Omega_N$.
+
+   采样后 $\Omega_N$ 映射到 $\Omega_NT$，要使采样后最高频率不超过 $\omega_c$，要求：
+   $$
+   \Omega_NT <\omega_c
+   $$
+   得到 $T<\omega_c/\Omega_N$. 考虑到 $\omega_c <\pi$，因此第二个条件约束更强，也就是 $T$ 最大取值为 $\omega_c/\Omega_N$.
+
+2. 要使等效连续时间滤波器对 $x_c(t)$ 而言是理想低通滤波器，即截止频率低于 $\Omega_N$，确定 $T$ 的取值范围；
+
+   需要 $\omega_c/\Omega_N<T<\pi/\Omega_N$.
+
+3. 已知采样频率 $1/T=20\mathrm{~kHz}$，且等效连续时间滤波器是截止频率为 $3\mathrm{~kHz}$ 的理想低通滤波器，确定 $\omega_c$ 以及 $\Omega_N$ 的取值范围。
+
+   离散时间滤波器的 $\omega_c=\Omega_cT=0.15$. 因为，
+   $$
+   \frac{\omega_c}{\Omega_N}<T<\frac{\pi}{\Omega_N}
+   $$
+   得到，$3\mathrm{~kHz}\le\Omega_N<62.8\mathrm{~kHz}$.
+
+   

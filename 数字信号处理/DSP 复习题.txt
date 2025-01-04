@@ -234,7 +234,7 @@ $$
 
 对采样率为 32 kHz 的音乐信号按下图实现采样率按非整数因子变化后，系统变成采样率为 48 kHz 的信号，则低通滤波器的截止频率取为 $\underline{\pi/3}$.
 
-![image-20241212111820550](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20241212111820550.png)
+![](https://notes.sjtu.edu.cn/uploads/upload_e64ab47c0f7d0cb01c464c15a0173d99.png)
 
 - $L$ 取为 $3$，原来 $T=1/32k$，经过 $T/L=1/96k$.
 - $M$ 取为 $2$，原来 $T/L=1/96k$，经过 $TM/L=1/48k$.
