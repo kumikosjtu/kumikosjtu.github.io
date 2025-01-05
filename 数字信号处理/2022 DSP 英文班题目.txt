@@ -117,14 +117,67 @@ $$
 
 ![](https://notes.sjtu.edu.cn/uploads/upload_9fcd8b648ed6045a9eb71f43c56d10c3.png)
 
-系统 $H(z)=1+z^{-1}+z^{-2}$. 线性相位系统 $N=3$.
-$$
-\theta(\omega)=-\frac{N-1}{2}\omega\\
-\Rightarrow \theta(\omega)=-\omega
-$$
+### 12
 
-$$
-\theta(0)=\arg H(e^{j0})=\arg 3=0\\
-\theta(\pi)=\arg H(e^{j\pi})=\arg 1=0\not=-\pi
-$$
+Given the following signal graph for an FFT algorithm
+
+![](https://notes.sjtu.edu.cn/uploads/upload_795943157b8fe909aca1ce895f234d07.png)
+
+1. The graph represents a decimation-in-<u>time</u> algorithm.
+
+2. Complete the graph with arrowed lines and coefficients.
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_52c35c38c9a113ea8f56274cdab0c205.png)
+
+3. Using the above graph, compute the 4-point DFT of the sequence $x(n)=\delta(n)+\delta(n-1)$.
+   $$
+   X(k)=\sum_{n=0}^{3} x(n)W_{4}^{nk}
+   $$
+
+   - $X(0)=x(0)+x(1)=2$.
+   - $X(1)=x(0)+x(1)W_{4}^1=x(0)+jx(1)=1+j$.
+   - $X(2)=x(0)+x(1)W_{4}^2=x(0)-x(1)=0$.
+   - $X(3)=x(0)+x(1)W_{4}^3=1-j$.
+
+### 13
+
+Use Butterworth filter with impulse invariance to design a low-pass filter with
+
+- Passband edge frequency: $0.2\pi$
+
+  Passband attenuation: $1\mathrm{~dB}$
+
+- Stopband edge frequency: $0.3\pi$
+
+  Stopband attenuation: $10\mathrm{~dB}$
+
+The sampling interval is $T=1\mathrm{~s}$.
+
+根据 $\omega=\Omega T$ 可得 $\Omega_p=0.2\pi,\Omega_{st}=0.3\pi$，因为低通滤波器频带位于 $[-\pi/T,\pi/T]$ 之间，所以没有混叠。
+
+计算巴特沃斯滤波器阶数和中心频率：
+
+- $N\ge \lg \left.\left(\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\right)\right/2\lg (\Omega_{st}/\Omega_p)$. 得到 $4.38$ 取 $N=5$.
+- $\Omega_c=\Omega_p/\sqrt[2N]{10^{0.1R_p}-1}=0.719$.
+
+确定归一化巴特沃斯滤波器 $H_{an}(s)$，去归一化得到 $H_{a}(s/\Omega_c)$.
+
+使用冲激响应不变法，设计数字滤波器。
+
+### 14
+
+1. Derive the decimation-in-time FFT algorithm with $N=4$ and plot its signal flow graph.
+   $$
+   \begin{aligned}
+   X[k]&=\sum_{n=0}^{N-1} x[n] W_{N}^{nk}\\
+   &=\sum_{m=0}^{N/2-1} (x[2m] W_{N}^{2mk}+x[2m+1]W_{N}^{2mk+k})\\
+   &=X_1[k]+W_{N}^{k} X_1[k]
+   \end{aligned}
+   $$
+
+   $$
+   X[k+N/2]=X_1[k]-W_{N}^{k} X_1[k]
+   $$
+
+   ![](https://notes.sjtu.edu.cn/uploads/upload_247d8e9dd5ccf07e4444d58429dfb95b.png)
 
