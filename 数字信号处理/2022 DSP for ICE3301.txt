@@ -183,10 +183,20 @@ $$
 
 ### 2
 
-设序列 $x[n]$ 的 Z 变换是 $\displaystyle X(z)=\frac{16}{1-\frac{1}{4}z^{-1}}+\frac{1}{1-5z^{-1}}$，收敛域包括单位圆，则其 $x[0]$ 的值为 $\underline{17}$.
+设序列 $x[n]$ 的 Z 变换是 $\displaystyle X(z)=\frac{16}{1-\frac{1}{4}z^{-1}}+\frac{1}{1-5z^{-1}}$，收敛域包括单位圆，则其 $x[0]$ 的值为 $\underline{16}$.
+
+Z 变换的收敛域为 $1/4<|z|<5$.
 $$
-x[0]=\lim_{z\to \infin} X(z)=\frac{16}{1}+\frac{1}{1}=17
+\frac{16}{1-\frac{1}{4}z^{-1}} \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} 16\cdot \left(\frac{1}{4}\right)^n u(n)
 $$
+
+$$
+\frac{1}{1-5z^{-1}} \overset{\mathcal Z}{\operatorname*{\longleftrightarrow}} -5^n u(-n-1)
+$$
+
+因此 $x[0]$ 的值为 $16\cdot \left(1/4\right)^0=16$.
+
+> 注意初值定理必须在序列因果的条件下使用，而本题收敛域不包括 $+\infin$ 因此不是因果的。
 
 ### 3
 
@@ -198,9 +208,11 @@ $$
 
 ### 4
 
-周期为 8 的实序列的 DFS 的主周期的前 5 点是 $\{1+j.1+2j,1+3j,1+4j,1+5j\}$，则后 3 点是 $\underline{}$.
+周期为 8 的实序列的 DFS 的主周期的前 5 点是 $\{1+j,1+2j,1+3j,1+4j,1+5j\}$，则后 3 点是 $\underline{}$.
 
 实序列 DFS 满足 $\tilde{X}[k]=\tilde{X}^*[(-k)_N]$，后三点是 $1-4j,1-3j,1-2j$.
+
+> 注：此题似乎有问题，$X[0],X[4]$ 都应该是实数。
 
 ### 5
 
