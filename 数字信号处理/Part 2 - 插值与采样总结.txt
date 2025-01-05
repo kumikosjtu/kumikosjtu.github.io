@@ -118,8 +118,6 @@ $$
 
 ![image-20241221224056455](https://notes.sjtu.edu.cn/uploads/upload_dd5266af638fd28342b4ab553d46e815.png)
 
-**正弦信号的采样** 画频谱图分析
-
 **能否可以区分采样频率和采样信号**
 
 - 两个不同频率的模拟正弦信号，使用相同频率采样，可能得到相同序列；
@@ -144,6 +142,8 @@ $$
 - 第一步连续时间信号 $x_a(t)$ 点乘抽样序列 $\delta_T(t)$，在频域上等价为进行周期为 $\Omega_s$ 的延拓，并且幅值变为原来 $1/T_s$.
 - 第二步取 $x[n]=\hat x_a(nT)=x_a(nT)$，等价为取 $-\Omega_s/2\sim \Omega_s/2$ 的部分，频谱 $\Omega_s/2$ 点映射到 $\pi$.
 
+**从频谱图上分析，可以简单记忆为 $\boldsymbol{[-\pi/T,\pi/T]}$ 的部分扩大 $T$ 倍到达 $\boldsymbol{[-\pi,\pi]}$，并且幅值相应缩小 $\boldsymbol T$.**
+
 <img src="https://notes.sjtu.edu.cn/uploads/upload_3879b7e884b9a9c3696b134e77417dfa.png" style="zoom:23%;" />
 
 插值等价为两步：
@@ -154,7 +154,7 @@ $$
   \end{cases}$，在频域上等价为频谱 $\pi$ 点映射到 $\Omega_s/2$，并且进行周期为 $\Omega_{s}$ 的延拓.
 - 第二部使得序列通过截止频率为 $\Omega_s/2$ 的低通滤波器，其增益为 $1/f_s=T_s$.
 
-两步可以表示为：
+**从频谱图上分析，可以简单记忆为 $\boldsymbol{[-\pi,\pi]}$ 的部分缩小 $T$ 倍到达 $\boldsymbol{[-\pi/T,\pi/T]}$，并且幅值相应扩大 $\boldsymbol T$.**
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_5f0ee34e3141a69fad944b1ab33b8738.png" style="zoom:25%;" />
 

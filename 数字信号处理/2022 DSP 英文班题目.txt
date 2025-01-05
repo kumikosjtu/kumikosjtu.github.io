@@ -69,7 +69,8 @@ $$
 
 因此可以设计全通滤波器：
 $$
-H_{ap}(z)=\frac{z^{-1}-re^{-j\theta}}{1-re^{j\theta}z^{-1}}\cdot \frac{z^{-1}-re^{j\theta}}{1-r^{-j\theta}z^{-1}}
+H_{ap}(z)=\frac{z^{-1}-re^{-j\theta}}{1-re^{j\theta}z^{-1}}\cdot \frac{z^{-1}-re^{j\theta}}{1-r^{-j\theta}z^{-1}}\\=
+\frac{z^{-2}-2r\cos \theta z^{-1}+r^2}{1-2r\cos \theta z^{-1}+r^2 z^{-2}}
 $$
 
 ### 9
@@ -127,7 +128,7 @@ Given the following signal graph for an FFT algorithm
 
 2. Complete the graph with arrowed lines and coefficients.
 
-   ![](https://notes.sjtu.edu.cn/uploads/upload_52c35c38c9a113ea8f56274cdab0c205.png)
+   ![](https://notes.sjtu.edu.cn/uploads/upload_149dfb97ed6f6055a20d57ecb5eb1a22.png)
 
 3. Using the above graph, compute the 4-point DFT of the sequence $x(n)=\delta(n)+\delta(n-1)$.
    $$
@@ -171,13 +172,68 @@ The sampling interval is $T=1\mathrm{~s}$.
    \begin{aligned}
    X[k]&=\sum_{n=0}^{N-1} x[n] W_{N}^{nk}\\
    &=\sum_{m=0}^{N/2-1} (x[2m] W_{N}^{2mk}+x[2m+1]W_{N}^{2mk+k})\\
-   &=X_1[k]+W_{N}^{k} X_1[k]
+   &=X_1[k]+W_{N}^{k} X_2[k]
    \end{aligned}
    $$
 
    $$
-   X[k+N/2]=X_1[k]-W_{N}^{k} X_1[k]
+   X[k+N/2]=X_1[k]-W_{N}^{k} X_2[k]
    $$
 
-   ![](https://notes.sjtu.edu.cn/uploads/upload_247d8e9dd5ccf07e4444d58429dfb95b.png)
+   ![](https://notes.sjtu.edu.cn/uploads/upload_149dfb97ed6f6055a20d57ecb5eb1a22.png)
 
+2. Using the results in (1), plot the signal flow graph for the IFFT with $N=4$.
+
+   直接调换 $X,x$ 顺序，并且把 $W_{N}^{k}$ 改成 $W_{N}^{-k}$.
+
+3. Given the DFT for a 8-point sequence $x(n)$ is $X(k)=\{11,3,-5,3,3,3,-5,3\}$, use the result in (2) to calculate the sequence $x(2n)$.
+
+   - 前一半有：
+     $$
+     X[k]=X_1[k]+W_N^k X_2[k]
+     $$
+
+   - 后一半有：
+     $$
+     X[k+N/2]=X_1[k]-W_{N}^k X_2[k]
+     $$
+
+   因此，$X_1[k]=(X[k]+X[k+N/2])/2$
+   $$
+   X_1[k]=\{7,3,-5,3\}
+   $$
+   计算其 IDFT 为：
+   $$
+   \{2,3,-1,3\}
+   $$
+
+### 15
+
+Given the lowpass-to-bandpass transform in the analog domain is
+$$
+\overline{s}=\overline{\Omega}_p \frac{s^2+\Omega_{p2}\Omega_{p1}}{(\Omega_{p2}-\Omega_{p1})s}
+$$
+where $\overline{\Omega}_p$ is the passband edge frequency for the lowpass filter and $\Omega_{p1}$ and $\Omega_{p1}$ are the two passband edge frequencies for the bandpass filter, please derive the lowpass-to-bandpass transformation in the digital domain using bilinear transformation.
+
+代入双线性变换（取 $T=2$）：
+$$
+s=\frac{1-z^{-1}}{1+z^{-1}},\Omega=\tan\left(\frac{\omega}{2}\right)
+$$
+一般取归一化低通滤波器，$\overline{\Omega_p}=1$，令 $\Omega_{p0}=\sqrt{\Omega_{p1}\Omega_{p2}}$，$B_p=\Omega_{p2}-\Omega_{p1}$.
+$$
+\begin{aligned}
+\overline{s}&=\frac{s^2+\Omega_{p0}^2}{B_ps}\\
+&=\frac{(1-z^{-1})^2+\Omega_{p0}^2(1+z^{-1})^2}{B_p(1-z^{-2})}\\
+&=\frac{1+\Omega_{p0}^2}{B_p}\frac{1-z^{-2}+2\frac{\Omega_{p0}^2-1}{\Omega_{p0}^2+1}z^{-1}}{1-z^{-2}}
+\end{aligned}
+$$
+根据，
+$$
+\frac{\Omega_{p0}^2-1}{\Omega_{p0}^2+1}=\frac{\tan \left(\frac{\omega_1}{2}\right)\tan \left(\frac{\omega_2}{2}\right)-1}{\tan \left(\frac{\omega_1}{2}\right)\tan \left(\frac{\omega_2}{2}\right)+1}=\frac{\cos \left(\frac{\omega_1+\omega_2}{2}\right)}{\cos \left(\frac{\omega_1-\omega_2}{2}\right)}\doteq \cos \omega_0
+$$
+
+$$
+\frac{1+\Omega_{p0}^2}{B_p}=\cot \left(\frac{\omega_2-\omega_1}{2}\right)
+$$
+
+带进去化简即可. 再代入 $z=e^{j\omega}$ 可以得到频率间的关系。

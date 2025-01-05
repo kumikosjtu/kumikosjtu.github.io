@@ -143,9 +143,15 @@ $$
 关于 DFT 正变换的定义错误的是（）
 
 - [ ] 时域信号 $x[n]$ 和频域信号 $X[k]$ 都是因果有限长信号；
-- [ ] 求和项数可以小于 $x[n]$ 的长度；
+
+- [x] 求和项数可以小于 $x[n]$ 的长度；
+
 - [ ] DFT 点数，求和项数和频域取样点数三者一致；
-- [x] N 点 DFT 中的 $X[N/2]$ 是对傅里叶变换在 $\omega=\pi$ 处的取样。（错误，$N$ 需要是偶数）
+
+- [ ] N 点 DFT 中的 $X[N/2]$ 是对傅里叶变换在 $\omega=\pi$ 处的取样。
+  $$
+  X[N/2]=X(e^{j\omega})|_{\omega=\frac{2\pi \cdot N/2}{N}}=X(e^{j\pi})
+  $$
 
 ### 9
 
@@ -281,7 +287,7 @@ $$
 
 下图所示的信号流图表示的系统函数：
 $$
-H(z)=\underline{\left(1-\frac{1}{3}z^{-1}\right)\frac{1-2z^{-1}-3z^{-2}}{1+8z^{-1}+\frac{1}{4}z^{-1}}}
+H(z)=\underline{\left(1-\frac{1}{3}z^{-1}\right)\frac{1-2z^{-1}+3z^{-2}}{1+8z^{-1}-\frac{1}{4}z^{-2}}}
 $$
 ![](https://notes.sjtu.edu.cn/uploads/upload_dc66d992a0d87828f05c297bdc3d7fa1.png)
 

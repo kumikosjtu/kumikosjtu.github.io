@@ -1,0 +1,106 @@
+# 滤波器设计题目
+
+## IIR
+
+记忆公式：
+$$
+N\ge \lg \left.\left(\frac{10^{0.1A_s}-1}{10^{0.1R_p}-1}\right)\right/2\lg (\Omega_{st}/\Omega_p)
+$$
+其实很简单，两个分式分子总是更大，不能让结果变成一个负的。
+$$
+\Omega_c\ge \Omega_{p}/\sqrt[2N]{10^{0.1R_p}-1}
+$$
+只使用通带的参数计算即可。
+
+### 模拟
+
+设计一个巴特沃斯型模拟低通滤波器，要求其通带截止频率 $f_p=20\mathrm{~Hz}$，其通带最大衰减为 $R_p=2\mathrm{~dB}$，阻带截止频率为 $f_{st}=40\mathrm{~Hz}$，阻带最小衰减为 $A_s=20\mathrm{~dB}$.
+
+1. 确定 $\Omega_p,\Omega_{st}$.
+2. 确定 $N,\Omega_c$.
+3. 确定 $H_{an}(s)$，去归一化得到 $H_a(s)$.
+
+------
+
+| 类型                                 | $s$ 变换                                                     | $\Omega$ 变换                                                |
+| ------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 截止频率 $\Omega_p$ 低通             | $\displaystyle \overline{s}=\frac{s}{\Omega_p}$              | $\displaystyle \overline \Omega= \frac{\Omega}{\Omega_p}$    |
+| 截止频率 $\Omega_p$ 高通             | $\displaystyle \overline s=\frac{\Omega_p}{s}$               | $\displaystyle \overline{\Omega}=-\frac{\Omega_p}{\Omega}$   |
+| $\Omega_{p1}\sim \Omega_{p1}$ 带通   | $\displaystyle \overline{s}=\frac{s^2+\Omega_{p0}^2}{B_p s}$ | $\displaystyle\overline{\Omega}=\frac{\Omega^2-\Omega_{p0}^2}{B_{p}\Omega}$ |
+| $\Omega_{st1}\sim \Omega_{st2}$ 带阻 | $\displaystyle \overline{s}=\frac{\overline{\Omega}_{st}B_{s}s}{s^2+\Omega_{st0}^2}$ | $\displaystyle \overline{\Omega}=\frac{\overline{\Omega}_{st}B_{s}\Omega}{\Omega_{st0}^2-\Omega^2}$ |
+
+设计一个巴特沃斯型模拟高通滤波器，要求其阻带截止频率 $f_{st}=30\mathrm{~Hz}$，阻带最小衰减 $A_s=25\mathrm{~dB}$，通带截止频率 $f_p=50\mathrm{~Hz}$，通带最大衰减 $R_p=1\mathrm{~dB}$.
+
+1. 确定 $\Omega_{p},\Omega_{st}$.
+2. 通过频带变换得到低通滤波器指标 $\overline \Omega_p,\overline \Omega_{st}$.
+3. 确定 $N,\Omega_c$，得到去归一化的 $H_a(s)$.
+4. 通过变换函数进行频带变换。
+
+----------
+
+设计一个模拟带通滤波器，要求其通带上下截止频率分别为 $f_{p2}=200\mathrm{~Hz},f_{p1}=100\mathrm{~Hz}$，上下阻带截止频率分别为 $f_{st2}=250\mathrm{~Hz},f_{st1}=50\mathrm{~Hz}$，通带最大衰减为 $R_p=1\mathrm{~dB}$，阻带最小衰减为 $A_s=30\mathrm{~dB}$.
+
+1. 确定 $\Omega_{p1},\Omega_{p2},\Omega_{st1},\Omega_{st2}$.
+
+2. 确定归一化低通模拟滤波器指标，$\overline{\Omega_p}$ 一定为 1，主要确定 $\overline{\Omega}_{st}$.
+   $$
+   \displaystyle\overline{\Omega}=\frac{\Omega^2-\Omega_{p0}^2}{B_{p}\Omega}
+   $$
+   取 $\overline{\Omega}_{st}=\min\{\overline{\Omega}_{st1},\overline{\Omega}_{st2}\}$.
+
+3. 确定 $N,\Omega_c$，得到去归一化的 $H_a(s)$.
+
+4. 通过变换函数进行频带变换。
+
+### 数字
+
+某个数字低通滤波器的各种指标和参量要求如下：
+
+1. 巴特沃斯频率响应，采用双线性变换法设计；
+2. 当 $0\le f\le 25\mathrm{~Hz}$ 时，衰减小于 $3\mathrm{~dB}$;
+3. 当 $f\ge 50\mathrm{~Hz}$ 时，衰减大于或等于 $40\mathrm{~dB}$.
+4. 抽样频率 $f_s=200\mathrm{~Hz}$.
+
+1. 计算出数字指标，并且进行频率预畸得到低通滤波器模拟指标。
+2. 确定 $N,\Omega_c$，得到去归一化的 $H_a(s)$.
+3. 使用双线性变换法得到目标数字滤波器。
+
+--------
+
+设计一个数字巴特沃斯型高通滤波器，给定的指标为：
+
+1. 衰减 $A_s\ge 30\mathrm{~dB}$，当 $f\le 3\mathrm{~kHz}$;
+2. 衰减 $R_p\le 3\mathrm{~dB}$，当 $f\ge 5\mathrm{~kHz}$;
+3. 抽样频率 $f_s=20\mathrm{~kHz}$.
+
+**使用双线性变换+频带变换的方法**
+
+1. 计算出数字指标，进行频率预畸，得到高通模拟滤波器指标；
+2. 使用频带变换，得到低通模拟滤波器指标；
+3. 确定 $N,\Omega_c$，得到去归一化的 $H_a(s)$.
+4. 频带变换，变换为高通模拟滤波器；
+5. 双线性变换，变换为高通数字滤波器。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_ece3e77dc8b2e2dbd2de7820c481fa61.png" style="zoom:50%;" />
+
+**使用数模直接变换的方法**
+
+1. 计算出数字指标，进行频率预畸，得到低通模拟滤波器指标；
+2. 确定 $N,\Omega_c$，得到去归一化的 $H_a(s)$.
+3. 数模直接变换，变换为高通数字滤波器。
+
+两者得到的高通数字滤波器是等价的。
+
+## FIR
+
+记忆低通公式：
+$$
+\begin{aligned}
+h_d^{lp}(n)
+&=\begin{cases}
+\frac{\sin(\omega_c(n-\tau))}{\pi(n-\tau)},&n\not=\tau\\
+\omega_c/\pi,&n=\tau
+\end{cases}\\
+\end{aligned}
+$$
+即可，其它滤波器都是可以从低通推导而来。
