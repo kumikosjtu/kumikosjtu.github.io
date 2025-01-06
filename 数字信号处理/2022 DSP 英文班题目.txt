@@ -51,7 +51,7 @@ $$
 Which of the following statements are correct?
 
 - [x] The convolution of two minimum-phase sequence is always a minimum-phase sequence.（时域卷积对应频域点乘，零点和极点都位于单位圆内，正确）
-- [ ] For a non-causal and stable system, when all zeros are outside the unit circle, the system is a minimum-phase system.（错误）
+- [x] For a non-causal and stable system, when all zeros are outside the unit circle, the system is a minimum-phase system.（正确，注意是 non-causal）
 - [x] If the impulse response function of a lowpass filter is $h(n)$, $(-1)^n h(n)$ is the impulse response function of a high-pass filter.（正确，相当于 $z\to -z$）
 - [ ] Using a window to truncate a sequence induces frequency leakage.（错误，也有可能没有频谱泄露）
 - [ ] It is easy for window method to determine the cutoff frequency exactly in design of an FIR filter.（错误）
@@ -92,9 +92,9 @@ $$
 such that
 
 1. It rejects completely a frequency component at $\omega_0=2\pi/3$;
-2. Its frequency response is normalized so that $H(0)=1$;
+2. Its frequency response is normalized so that $H(0)=1$;（$H(0)$ 是幅度函数）
 
-Also, compute and sketch the magnitude and phase response of the filter.
+Also, compute and sketch the magnitude and phase response（幅频响应和相频响应） of the filter.
 $$
 Y(z)=b_0 X(z)+b_1 z^{-1} X(z)+b_2 z^{-2} X(z)
 $$
@@ -112,12 +112,11 @@ $$
 
 满足条件 2. 也就是
 $$
-H(0)=b_0=1
+H(0)=H(e^{j0})=b_0+b_2+b_3=1
 $$
-因此 $b_0=b_1=b_2=1$，$H(z)=1+z^{-1}+z^{-2}$. 特点：线性相位，零点为 $e^{\pm j\omega_0}$，并且线性相位，群延时为 $\tau=\frac{N-1}{2}=1$.
+因此 $b_0=b_1=b_2=1/3$，$H(z)=1/3(1+z^{-1}+z^{-2})$.
 
-![](https://notes.sjtu.edu.cn/uploads/upload_9fcd8b648ed6045a9eb71f43c56d10c3.png)
-
+画出幅频响应和相频响应，注意相频响应在零点处需要 $\pm \pi$.
 ### 12
 
 Given the following signal graph for an FFT algorithm
@@ -184,7 +183,7 @@ The sampling interval is $T=1\mathrm{~s}$.
 
 2. Using the results in (1), plot the signal flow graph for the IFFT with $N=4$.
 
-   直接调换 $X,x$ 顺序，并且把 $W_{N}^{k}$ 改成 $W_{N}^{-k}$.
+   直接调换 $X,x$ 顺序，并且把 $W_{N}^{k}$ 改成 $W_{N}^{-k}$. 并且乘以 $1/N=1/4$.
 
 3. Given the DFT for a 8-point sequence $x(n)$ is $X(k)=\{11,3,-5,3,3,3,-5,3\}$, use the result in (2) to calculate the sequence $x(2n)$.
 

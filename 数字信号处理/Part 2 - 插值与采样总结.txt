@@ -168,3 +168,30 @@ $$
 
 ![](https://notes.sjtu.edu.cn/uploads/upload_6acaaa466be9a3aebc62c18be8ea8355.png)
 
+-----
+
+序列 $x[n]=\cos \left(\frac{\pi}{5}n \right),-\infin<n<+\infin$ 是对模拟信号 $x_c(t)=\cos (\Omega_0 t)$ 采样得到的，采样率为 $1000\mathrm{~Hz}$，那么 $\Omega_0$ 的取值不可能是（）
+
+- [ ] $200\pi$
+- [ ] $2200\pi$
+- [ ] $1800\pi$
+- [x] $3200\pi$
+
+代入
+$$
+x[n]=x_c(nT)=\cos \left(\frac{\Omega_0}{1000} n\right)=\cos \left(\frac{-\Omega_0}{1000} n\right)
+$$
+
+$$
+\frac{\Omega_0}{1000}=2k\pi +\frac{\pi}{5}\Rightarrow \Omega_0=2000k\pi+200\pi\\
+\frac{\Omega_0}{1000}=-2k\pi -\frac{\pi}{5}\Rightarrow \Omega_0=-2000k\pi-200\pi
+$$
+
+判断有无混叠，看 $\cos[\omega t]$ 中 $\omega$ 是否处于 $[-\pi,\pi]$ 的区间。 
+
+-----
+
+假设 $x(t)$ 是带限信号，采样的周期是 $T_1$，得到序列 $x[n]$，然后插值周期 $T_2$，得到序列 $x'(t)$，关于 $x(t)$ 和 $x'(t)$ 的关系：
+$$
+\underline{x'(T_1t/T_2)=x(t)}
+$$
