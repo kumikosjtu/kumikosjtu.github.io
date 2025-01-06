@@ -188,6 +188,8 @@ The sampling interval is $T=1\mathrm{~s}$.
 
 3. Given the DFT for a 8-point sequence $x(n)$ is $X(k)=\{11,3,-5,3,3,3,-5,3\}$, use the result in (2) to calculate the sequence $x(2n)$.
 
+   假设 $X_1[k]$ 是 $x(2n)$ 的 DFT，$X_2[k]$ 是 $x(2n+1)$ 的 DFT.
+
    - 前一半有：
      $$
      X[k]=X_1[k]+W_N^k X_2[k]
