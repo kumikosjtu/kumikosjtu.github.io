@@ -190,10 +190,6 @@ $$
 
 ### 13
 
-![image-20240618111439227](C:\Users\steve\AppData\Roaming\Typora\typora-user-images\image-20240618111439227.png)
-
-注：这个是 $\displaystyle -2 \frac{\mathrm d }{\mathrm d t}$.
-
 ### 14
 
 一个称为低通微分器的连续时间滤波器的频率响应如图所示，试对以下每个输入信号 $x(t)$，求输出信号 $y(t)$.
