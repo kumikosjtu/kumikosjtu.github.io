@@ -1,0 +1,12 @@
+s = tf('s');
+% G = 20 / (s * (s / 2 + 1));
+% a = 10;
+% T = 0.02834;
+% Gc = (a * T * s + 1) / (T * s + 1);
+% Gp = G * Gc;
+% bode(G, Gc, Gp);
+% legend('G', 'Gc', 'Gp');
+% grid on;
+G = 16 / (s*(s+2));
+bode(G);
+grid on;
