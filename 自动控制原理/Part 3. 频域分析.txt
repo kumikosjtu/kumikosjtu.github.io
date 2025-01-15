@@ -116,6 +116,11 @@ $$
 
 正穿越和负穿越次数之差，就为 $N$. 可以表达为 $N=N_{+}-N_{-}$.
 
+> 或者我们只绘制 $(0^+,+\infin)$ 部分，也绘制从正实轴出发到 $\omega=0^+$ 点（对应 $v\pi/2$ 弧度）的无穷大圆弧，只看这一半的正穿越和负穿越次数之差，满足：
+> $$
+> N=2(N_{+}-N_{-})
+> $$
+
 ### Bode 稳定性判据
 
 Nyquist 图和 Bode 图的对应关系
@@ -289,9 +294,53 @@ $$
 
 使用超前-滞后校正装置，可以全面地提升系统的性能。
 
+### 校正 Matlab 代码
+
+```matlab
+s = tf('s');
+G0 = ;
+a = 10;
+T = ;
+Gc = (a * T * s + 1) / (T * s + 1);
+G = G0 * Gc;
+bode(G0, Gc, G);
+legend('G0', 'Gc', 'G');
+grid on;
+```
+
+```matlab
+s = tf('s');
+G0 = ;
+b = 1/10;
+T = ;
+Gc = (b * T * s + 1) / (T * s + 1);
+G = G0 * Gc;
+bode(G0, Gc, G);
+legend('G0', 'Gc', 'G');
+grid on;
+```
+
+```matlab
+s = tf('s');
+G0 = ;
+a = 10;
+T1 = ;
+b = 1/a;
+T2 = ;
+Gc1 = (a * T1 * s + 1) / (T1 * s + 1);
+Gc2 = (b * T2 * s + 1) / (T2 * s + 1);
+Gc = Gc1 * Gc2;
+G = G0 * Gc;
+bode(G0, Gc, G);
+legend('G0', 'Gc', 'G');
+grid on;
+```
+
 ## 习题
 
-### 1 Bode 图
+### Bode 图
+
+#### 1
 
 已知某负反馈系统的开环传递函数是最小相位的，其开环对数幅频曲线如图所示。
 
@@ -322,37 +371,9 @@ $$
 
    <img src="https://notes.sjtu.edu.cn/uploads/upload_8ed1f8e902e167e3f678312eeeba1568.png" style="zoom: 50%;" />
 
-### 2 超前校正
+-----
 
-设单位负反馈系统的闭环传递函数为
-$$
-\Phi(s)=\frac{2K}{s^2+2s+2K}
-$$
-若要求系统稳态误差系数为 $20s^{-1}$，相位裕度 $\gamma \ge 30^\circ$，试为其设计串联相位超前校正装置（补偿角度 $\varepsilon=8^\circ$），并用折线法画出校正前后开环对数幅频特性图。
-
-**<u>解：</u>**开环传递函数为：
-$$
-G(s)=\frac{2K}{s(s+2)}=\frac{K}{s(s/2+1)}
-$$
-可得 $K=20$.
-
-**Step 1. 计算 $\boldsymbol a$** 选取 $a=10$，提供最大 $55^\circ$ 的超前相角，满足题目条件。
-
-**Step 2. 计算 $\boldsymbol T$** 新的剪切频率 $\omega_c'$ 满足：
-$$
-20\lg |G(j\omega_c')|+20\lg \sqrt{a}=0\Rightarrow \omega_c'=11.158\mathrm{~rad/s}
-$$
-需要让最大超前相角位于新的剪切频率，也就是：
-$$
-\omega_m=\omega_c'=\frac{1}{T\sqrt{a}}\Rightarrow T=0.02834\mathrm{~s}
-$$
-**Step 3. 构造校正后的开环传递函数**：
-$$
-G'(s)=G(s)G_c(s)=\frac{20}{s(s/2+1)}\cdot \frac{1+aTs}{1+Ts}
-$$
-<img src="https://notes.sjtu.edu.cn/uploads/upload_7dc462f931729c524153ebab135c8e05.png" style="zoom: 33%;" />
-
-### 3 Bode 图
+#### 2
 
 已知某单位负反馈系统的开环传递函数 $G(s)$ 是最小相位的，其开环对数幅频特性曲线如图所示：
 
@@ -382,85 +403,9 @@ $$
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_da7f5f11be2578449468a609e9159db1.png" style="zoom:50%;" />
 
-### 4 超前校正
+### Nyquist 图
 
-设单位负反馈系统的前向传递函数 $\displaystyle G_0(s)=\frac{K}{(s+2)(s+15)}$，
-
-1. 若要求系统稳态位置误差系数 $K_p=10$，相位裕量 $\gamma\ge 50^\circ$，试用相位超前校正方法进行设计（补偿角度 $\varepsilon=5^\circ$）
-   $$
-   G_0(s)=\frac{10}{(s+2)(s+15)}=\frac{1/3}{(s/2+1)(s/15+1)}
-   $$
-   选取 $a=10$，新的增益剪切频率
-   $$
-   20\lg|G_0(j\omega_c)|=-20\lg \sqrt{a}
-   $$
-   得到 $\omega_c=0.66$.
-
-   由于
-   $$
-   \omega_c=\frac{1}{T\sqrt{a}}
-   $$
-   解得 $T=0.479$.
-
-   <img src="https://notes.sjtu.edu.cn/uploads/upload_36ef255a3c539dd7571502be8cd1cbd7.png" style="zoom:50%;" />
-
-   事实上，原系统没有剪切频率，但也是稳定的，校正后系统引入了两个剪切频率 $\omega_c=0.66$ 和 $\omega_c=5.5$.
-
-2. 若要求系统稳态位置误差系数 $K_p=10$，校正后系统的增益剪切频率 $\omega_c=15$，问是否能用相位超前校正方法实现？请说明理由。
-
-   原系统：
-   $$
-   20\lg |G(j15)|=-20\lg \sqrt{a}\\
-   |G(j15)|=\frac{1}{\sqrt{a}}=0.0312
-   $$
-   对应 $a=1027.28$，且得到 $T=2.08\times 10^{-3}$.
-
-   <img src="https://notes.sjtu.edu.cn/uploads/upload_6b4693f19cc15e1967440dc4cbc64afd.png" style="zoom:50%;" />
-
-   也可以实现。
-
-### 5 超前-滞后校正
-
-已知单位反馈控制系统的开环传递函数为：
-$$
-G(s)=\frac{K}{s(s+1)(s+2)}
-$$
-试设计串联超前-滞后校正环节使得闭环系统满足下列品质指标：
-
-- 静态误差系数 $K_v\ge 10s^{-1}$;
-- 相位裕量 $\gamma \ge 45^\circ$;
-- 增益裕量 $GM>8\mathrm{~dB}$.
-
-$$
-G(s)=\frac{K_v}{s(s+1)(s/2+1)}
-$$
-
-其中 $K_v=K/2$，选取 $K_v=10s^{-1},K=20s^{-1}$.
-$$
-|G(j\omega)|=\frac{K_v}{\omega\sqrt{\omega^2+1}\sqrt{\omega^2/4+1}}
-$$
-
-$$
-\ang G(j\omega)=-90^\circ-\tan^{-1}(\omega)-\tan^{-1}(\omega/2)
-$$
-
-**Step 1.** 确定 $a$，选取 $\varphi_m=55^\circ$，此时 $a=10$. 对应 $b=1/10$.
-
-**Step 2.** 确定剪切频率 $\omega_c$. 寻找 $\ang G(j\omega)=-180^\circ$ 的点使其成为新的剪切频率点。此时得到 $\omega_c=\sqrt{2}$，$|G(j\omega_c)|=10/3$.
-
-**Step 3.** 确定 $T_2$，利用 $1/bT_2=\omega_c/10$，得到 $T_2=70$.
-
-**Step 4.** 确定 $T_1$. 过 $(\sqrt{2},-20\lg(10/3))$ 点做斜率为 $20\mathrm{~dB/dec}$ 的直线，与 $\omega$ 轴交于 $(4.714,0)$ 点。
-
-因此，$1/T_1=4.714$，取 $T_1=0.212$.
-
-总体的系统为：
-$$
-G(s)=\frac{1+aT_1 s}{1+T_1s}\frac{1+bT_2s}{1+T_2s} \frac{5}{s(s+1)(s/2+1)}
-$$
-![](https://notes.sjtu.edu.cn/uplosads/upload_fc30bf424ff6e4ccb642b513e65baa1f.png)
-
-### 6 Nyquist 图
+#### 1
 
 设单位反馈系统的开环传递函数
 $$
@@ -480,7 +425,7 @@ $$
 
 推出 $\omega=2^{1/4},a=2^{-1/4}$.
 
-### 7 Nyquist 图
+#### 2
 
 已知单位负反馈系统的开环传递函数为：
 $$
@@ -532,7 +477,155 @@ $$
    $$
    通过第二个方程解得 $\omega_c=1.5677\mathrm{~rad/s}$，代入第一个方程可得 $K=27.808$.
 
-### 8 超前校正
+#### 3
+
+已知单位负反馈系统的开环传递函数为
+$$
+G(s)=\frac{K}{(s+1)(0.5s+1)(2s+1)}
+$$
+
+1. 绘制系统 Nyquist 图。
+
+   - $\omega \to 0$ 时，系统型号为零，沿着 $0^\circ$ 方向从 $(K,0)$ 点出发
+   - $\omega \to \infin$ 时，$90^\circ(n-m)=270^\circ$，沿着 $270^\circ$ 方向趋近于原点。
+
+   按计算器取点计算出大概的趋势，发现和实轴、虚轴各有一个交点。
+
+   代入 $G(j\omega)$，得到：
+   $$
+   G(j\omega)=\frac{K}{1-3.5\omega^2+j\omega(3.5-\omega^2)}
+   $$
+   得到与虚轴的交点：$\omega=1/\sqrt{3.5}=0.5345$，与实轴的交点：$\omega=\sqrt{3.5}$，交于 $-8K/90$ 点；
+
+2. 利用 Nyquist 点判断当 $K$ 取何值时，闭环系统稳定。
+
+   首先，系统没有在右半平面的极点，也就是 $P=0$，因此稳定等价于 $N=0$.
+
+   - 当 $-8K/90<-1$，$N_+=2,N_{-}=0$，此时 $N=N_{+}-N_{-}=2$，系统不稳定；
+   - 当 $-1<-8K/90<0$，系统稳定。
+
+   综上，$K>45/4$ 时系统不稳定，$K=45/4$ 时系统临界稳定，$0<K<45/4$ 时系统稳定。
+
+#### 4
+
+已知系统结构图如图所示，试用奈奎斯特判据判断闭环系统稳定时，$a(a>0)$ 的取值范围。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7343b4832a3f8db9bcc8f3df796aabd0.png" style="zoom: 33%;" />
+
+画出奈奎斯特图：
+
+- $\omega \to 0$ 时，从无穷远处，沿着 $+90^\circ$ 的方向趋近（因为 $-a$ 额外带来一个负号）；
+- $\omega \to \infin$ 时，沿着 $-180^\circ$ 的方向趋近原点。
+
+计算与实轴的交点：
+$$
+\frac{1}{\omega}=\frac{2\omega^2}{\omega^3+a\omega}\Rightarrow \omega=\pm \sqrt{a}
+$$
+此时与实轴交于：
+$$
+\frac{5(j\sqrt{a}+1)}{j\sqrt{a}(2j\sqrt{a}-2a)}=-\frac{5}{2a}
+$$
+因为系统有两个开环极点，$P=2$，当 $-5/2a<-1$ 时，$N_-=2$，满足 $N_{+}-N_{-}=0-P$ 的条件，因此 $0<a<2.5$ 时系统稳定。
+
+#### 5
+
+设单位反馈系统开环传递函数如下，试用奈奎斯特判据判断系统稳定性。
+
+1. $\displaystyle G(s)=\frac{250(s+1)}{s^2(s+5)(s+15)}$.
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_8a215fb36e7433656e0fd090af4342ac.png" style="zoom:25%;" />
+
+   闭环稳定；
+
+2. $\displaystyle G(s)=\frac{(s+1)^2}{s^2(3s+1)(0.1s+1)^2}$.
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_cc5dc8f96f931a51fcce7eb713063b47.png" style="zoom: 50%;" />
+
+   闭环稳定；
+
+3. $\displaystyle G(s)=\frac{K(s-2)}{s(s-1)}$.
+
+   开环不稳定极点数 $P=1$.
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_d2fb5281d4d456b75fab88041747c2f3.png" style="zoom:50%;" />
+
+   闭环不稳定。
+
+### 超前校正
+
+#### 1
+
+设单位负反馈系统的闭环传递函数为
+$$
+\Phi(s)=\frac{2K}{s^2+2s+2K}
+$$
+若要求系统稳态误差系数为 $20s^{-1}$，相位裕度 $\gamma \ge 30^\circ$，试为其设计串联相位超前校正装置（补偿角度 $\varepsilon=8^\circ$），并用折线法画出校正前后开环对数幅频特性图。
+
+**<u>解：</u>**开环传递函数为：
+$$
+G(s)=\frac{2K}{s(s+2)}=\frac{K}{s(s/2+1)}
+$$
+可得 $K=20$.
+
+**Step 1. 计算 $\boldsymbol a$** 选取 $a=10$，提供最大 $55^\circ$ 的超前相角，满足题目条件。
+
+**Step 2. 计算 $\boldsymbol T$** 新的剪切频率 $\omega_c'$ 满足：
+$$
+20\lg |G(j\omega_c')|+20\lg \sqrt{a}=0\Rightarrow \omega_c'=11.158\mathrm{~rad/s}
+$$
+需要让最大超前相角位于新的剪切频率，也就是：
+$$
+\omega_m=\omega_c'=\frac{1}{T\sqrt{a}}\Rightarrow T=0.02834\mathrm{~s}
+$$
+**Step 3. 构造校正后的开环传递函数**：
+$$
+G'(s)=G(s)G_c(s)=\frac{20}{s(s/2+1)}\cdot \frac{1+aTs}{1+Ts}
+$$
+<img src="https://notes.sjtu.edu.cn/uploads/upload_7dc462f931729c524153ebab135c8e05.png" style="zoom: 33%;" />
+
+#### 2
+
+设单位负反馈系统的前向传递函数 $\displaystyle G_0(s)=\frac{K}{(s+2)(s+15)}$，
+
+1. 若要求系统稳态位置误差系数 $K_p=10$，相位裕量 $\gamma\ge 50^\circ$，试用相位超前校正方法进行设计（补偿角度 $\varepsilon=5^\circ$）
+   $$
+   G_0(s)=\frac{10}{(s/2+1)(s/15+1)}
+   $$
+   **Step 1**：选取 $\varphi_m=\gamma+\varepsilon=55^\circ$，此时对应 $a=10$.
+   
+   **Step 2**: 确定新的剪切频率 $\omega_c'$.
+   $$
+   20\lg |G_0(\omega_c')|+20\lg \sqrt{a}=0\Rightarrow \omega_c'=28.99\mathrm{~rad/s}
+   $$
+   此时对应最大相角：
+   $$
+   \omega_c'=\omega_n=\frac{1}{\sqrt{a}T}\Rightarrow T=0.0109\mathrm{~s}
+   $$
+   **Step 3**: 设计校正网络并且进行检验：
+   $$
+   G(s)=\frac{1+aTs}{1+Ts}\frac{10}{(s/2+1)(s/15+1)}
+   $$
+   
+   $$
+   G(j\omega_c')=1\ang -93.79^\circ
+   $$
+   
+   此时相位裕量 $\gamma\ge 50^\circ$，满足题意。
+   
+2. 若要求系统稳态位置误差系数 $K_p=10$，校正后系统的增益剪切频率 $\omega_c=15$，问是否能用相位超前校正方法实现？请说明理由。
+
+   $$
+   G_0(s)=\frac{10}{(s/2+1)(s/15+1)}
+   $$
+   其增益剪切频率为 $\omega_c^0=14.325\mathrm{~rad/s}$，我们利用相位超前校正幅值增加 $20\lg a$ 的特点，
+   $$
+   20\lg |G_0(j\omega_c)|+20\lg a=0
+   $$
+   设计 $a=1.0700$，$T$ 很大（这里取 1000）的系统。验证确实满足 $\omega_c=15$ 的条件。
+
+   <img src="https://notes.sjtu.edu.cn/uploads/upload_95e3094307e10bf086b4f6da1d13e15e.png" style="zoom: 25%;" />
+
+#### 3
 
 设单位反馈系统开环传递函数为：
 $$
@@ -567,3 +660,77 @@ $$
 计算得到相位裕度为 $65.065^\circ$，满足要求。
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_84501e3e260a71eacd0321459dda07cd.png" style="zoom:50%;" />
+
+### 滞后校正
+
+#### 1
+
+开环单位负反馈 $\displaystyle G(s)=\frac{1}{s(s+1)(0.5s+1)}$，要求 $K_v\ge 5\mathrm{~s^{-1}},\gamma\ge40^\circ$，GM 不小于 10dB，用 Bode 图设计相位滞后校正。
+
+待校正系统：
+$$
+G_0(s)=\frac{5}{s(s+1)(0.5s+1)}
+$$
+寻找 $\omega_c'$ 满足
+$$
+\gamma+10^\circ=\varphi(\omega_c')+180^\circ\Rightarrow \varphi(\omega_c')=-130^\circ
+$$
+解得 $\omega_c'=0.4917\mathrm{~rad/s}$. 使得 $\omega_c'$ 成为新的剪切频率：
+$$
+20\lg |G_0(j\omega_c')|+20\lg b=0\Rightarrow b=0.1129
+$$
+选择 $T$ 满足：
+$$
+\frac{1}{bT}=\frac{1}{10}\omega_c'\Rightarrow T=180
+$$
+设计校正后的系统：
+$$
+G(s)=\frac{1+bTs}{1+Ts}\cdot G_0(s)\\
+=\frac{1+20.3s}{1+180s}\cdot \frac{5}{s(s+1)(0.5s+1)}
+$$
+代入 $G(j\omega_c')=1\ang-135^\circ$，满足相位裕度的条件。
+
+代入 $G(j\omega_g')=-13.6\mathrm{~dB}\ang -180^\circ$，满足增益裕度的条件。
+
+### 超前-滞后校正
+
+#### 1
+
+已知单位反馈控制系统的开环传递函数为：
+$$
+G(s)=\frac{K}{s(s+1)(s+2)}
+$$
+试设计串联超前-滞后校正环节使得闭环系统满足下列品质指标：
+
+- 静态误差系数 $K_v\ge 10s^{-1}$;
+- 相位裕量 $\gamma \ge 45^\circ$;
+- 增益裕量 $GM>8\mathrm{~dB}$.
+
+$$
+G(s)=\frac{K_v}{s(s+1)(s/2+1)}
+$$
+
+其中 $K_v=K/2$，选取 $K_v=10s^{-1},K=20s^{-1}$.
+$$
+|G(j\omega)|=\frac{K_v}{\omega\sqrt{\omega^2+1}\sqrt{\omega^2/4+1}}
+$$
+
+$$
+\ang G(j\omega)=-90^\circ-\tan^{-1}(\omega)-\tan^{-1}(\omega/2)
+$$
+
+**Step 1.** 确定 $a$，选取 $\varphi_m=55^\circ$，此时 $a=10$. 对应 $b=1/10$.
+
+**Step 2.** 确定剪切频率 $\omega_c$. 寻找 $\ang G(j\omega)=-180^\circ$ 的点使其成为新的剪切频率点。此时得到 $\omega_c=\sqrt{2}$，$|G(j\omega_c)|=10/3$.
+
+**Step 3.** 确定 $T_2$，利用 $1/bT_2=\omega_c/10$，得到 $T_2=70$.
+
+**Step 4.** 确定 $T_1$. 过 $(\sqrt{2},-20\lg(10/3))$ 点做斜率为 $20\mathrm{~dB/dec}$ 的直线，与 $\omega$ 轴交于 $(4.714,0)$ 点。
+
+因此，$1/T_1=4.714$，取 $T_1=0.212$.
+
+总体的系统为：
+$$
+G(s)=\frac{1+aT_1 s}{1+T_1s}\frac{1+bT_2s}{1+T_2s} \frac{5}{s(s+1)(s/2+1)}
+$$
+![](https://notes.sjtu.edu.cn/uploads/upload_fc30bf424ff6e4ccb642b513e65baa1f.png)
