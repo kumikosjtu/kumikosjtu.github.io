@@ -1,0 +1,182 @@
+## 一、二重积分（性质、计算、变量替换）
+
+### 1. 性质
+1.  **线性性**
+2.  **有限区域可加性**
+3.  若 $f \equiv 1$ 则 $\iint_\Omega d\sigma=S$ ,其中 $S$ 为区域面积
+4.  **保序性、估值不等式**
+5.  **绝对可积性、绝对值不等式**
+6.  **乘积可积性**（注意乘积的积分不一定是积分的乘积）
+7.  **积分中值定理**
+
+### 2. 计算步骤
+1.  **画图**
+2.  **确定D的类型**
+3.  **穿针法定限**
+4.  **计算**
+
+### 3. 计算技巧
+1.  **积分换序**
+    > **注**：适用于首次积分不好积或者积不出来的情形。
+
+2.  **对称性（包括轮换对称）**
+    > **例1**：计算积分 $\iint_{D}\left(y \sin ^{5} x-1\right) \mathrm{d} x \mathrm{~d} y$ ，其中
+    >
+    > (1) 区域 $D$ 由曲线 $y=2 x, x= \pm 1, y=2$ 围成。
+    > (2) 区域 $D$ 由曲线 $y=\sin x, x= \pm \frac{\pi}{2}, y=1$ 围成。
+    >
+    > **分析**：(2) 借助 $y=-\sin x$ 和 y 轴可将 $D$ 分为 4 个区域。
+    > 利用对称性，可知 $y \sin ^{5} x$ 在 $D$ 上的积分为 0。
+    > $$
+    > \iint_{D}\left(y \sin ^{5} x-1\right) \mathrm{d} x \mathrm{~d} y=-\iint_{D} \mathrm{~d} x \mathrm{~d} y=-\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \mathrm{~d} x \int_{\sin x}^{1} \mathrm{~d} y=-\pi
+    > $$
+    > **注**：当积分域有一定对称性，同时被积函数也有相应奇偶性时积分可以简化，而轮换对称性只需要积分域具有轮换对称性即可。
+
+3.  **变量替换**
+    > **注意**：
+    > 1.  雅各比行列式别漏了
+    > 2.  雅各比行列式有可能需要倒数处理
+    > 3.  雅各比行列式需要加绝对值
+    > 4.  新的积分区域由原来的边界曲线方程决定
+
+4.  **补缺求全**
+
+5.  **积分区域划分**
+    > **例1**：假设 $D$ 是由 $x=2, y=0, x=y$ 围成的有界闭域。证明定义在 $D$ 上的函数 $f(x, y)=[x+y]$ 可积，并计算 $\iint_{D}[x+y] \mathrm{d} x \mathrm{~d} y$．
+    >
+    > **分析**：将 $D$ 分为四个区域：$D_{k}, k=1,2,3,4$：
+    >
+    > $$
+    > D_{k}: f(x, y)=\begin{cases} k-1, & k-1 \leqslant x+y<k \\k, & x+y=k\end{cases}
+    > $$
+    >
+    > $f(x, y)$ 在 $D$ 上有界，不连续点仅在有限条直线上，故 $f(x, y)$ 在 $D$ 上可积，且
+    >
+    > $$
+    > \iint_{D}[x+y] \mathrm{d} x \mathrm{~d} y=0+1 \cdot \iint_{D_{2}} \mathrm{~d} x \mathrm{~d} y+2 \cdot \iint_{D_{3}} \mathrm{~d} x \mathrm{~d} y+3 \cdot \iint_{D_{4}} \mathrm{~d} x \mathrm{~d} y=\cdots=3
+    > $$
+    >
+    > **注**：被积函数不连续与积分区域不规整是积分区域划分的重要标志。
+
+6.  **线性性**
+
+## 二、二重积分（极坐标替换）
+
+### 1. 定限原则
+*   **先 $r$ 后 $\theta$**：同心圆弧
+*   **先 $\theta$ 后 $r$**：射线、三种积分区域
+
+**关键在于**：化积分区域边界为极坐标方程。
+> **注意**：遇到画不出来的图的一定要分析 $r$ 与 $\theta$ 的范围，这在三重积分中同样重要。
+
+### 2. 应用场景
+1.  被积函数含广义的 $x^2+y^2$ 项
+2.  积分域与圆有关
+3.  广义极坐标替换（注意此时极角与标准极坐标替换中的极角的区别）
+
+### 3. 重要例题
+> **例**：
+> (1) 计算 $I_{1} = \iint_{D} e^{-\left(x^{2}+y^{2}\right)} \mathrm{d} x \mathrm{~d} y$，其中 $D: x^{2}+y^{2} \leqslant R^{2}, x \geqslant 0, y \geqslant 0$
+> (2) 试导出无穷积分 $I_{2}=\int_{0}^{+\infty} e^{-x^{2}} \mathrm{~d} x$ 的值。
+>
+> **解**：
+> (1)
+> $$
+> I_{1}=\int_{0}^{\frac{\pi}{2}} \mathrm{~d} \theta \int_{0}^{R} e^{-r^{2}} r \mathrm{~d} r=\frac{\pi}{4}\left(1-e^{-R^{2}}\right)
+> $$
+>
+> (2)
+> $$
+> I_{2}^{2}=\lim _{R \rightarrow+\infty}\left[\left(\int_{0}^{R} e^{-x^{2}} \mathrm{~d} x\right) \cdot\left(\int_{0}^{R} e^{-y^{2}} \mathrm{~d} y\right)\right]=\lim _{R \rightarrow+\infty} \iint_{[0, R] \times[0, R]} e^{-\left(x^{2}+y^{2}\right)} \mathrm{d} x \mathrm{~d} y
+> $$
+> 而 $I_{2}>0$，利用夹逼准则及(1)的结论 $\Longrightarrow I_{2}^{2}=\frac{\pi}{4} \Longrightarrow I_{2}=\frac{\sqrt{\pi}}{2}$．
+>
+> 本题（1）比较常规，但给（2）带来了启发。
+> 而（2）利用 $e^{-x^{2}}$ 对 $e^{-y^{2}}$ 为常数的特点，凑出 $x^2+y^2$。
+> 更精彩的是，夹逼准则采用的是两个扇形夹一个正方形。
+
+## 三、三重积分（对称性、变量替换）
+
+### 1. 奇偶性
+
+### 2. 轮换对称性
+若积分域 $V$ 具有轮换对称性，则有：
+$$
+\iiint_{V} f(x, y, z) \mathrm{d} V=\iiint_{V} f(y, z, x) \mathrm{d} V=\iiint_{V} f(z, x, y) \mathrm{d} V
+$$
+$$
+\iiint_{V}[f(x, y, z)+f(y, z, x)+f(z, x, y)] \mathrm{d} V=3 \iiint_{V} f(x, y, z) \mathrm{d} V
+$$
+这种技巧可用于凑出 $x^2+y^2+z^2$，从而大大简化极坐标替换的运算量。
+
+### 3. 变量替换
+$$
+\iiint_{V} f(x, y, z) \mathrm{d} x \mathrm{~d} y \mathrm{~d} z = \iiint_{V^{\prime}} f(x(u, v, w), y(u, v, w), z(u, v, w)) \cdot\left|\frac{\partial(x, y, z)}{\partial(u, v, w)}\right| \mathrm{d} u \mathrm{~d} v \mathrm{~d} w
+$$
+
+*   **柱坐标变换**
+    *   更好的方法是**截面/投影法 + 极坐标变换**
+    *   **什么时候用**：被积函数 $f$ 含 $x^2+y^2$ 项；积分域 $V$ 与柱面或旋转抛物面有关。
+*   **球坐标变换**
+    *   **什么时候用**：被积函数含 $x^2+y^2+z^2$ 项；积分域与球面或锥面有关。
+    *   **注**：与二重积分类似，广义球坐标中的 $\varphi$ 与 $\theta$ 均不是标准球坐标替换下的与对应坐标轴正向的夹角。为此，当使用广义球坐标替换时，需要从边界曲面方程中定限。
+    > **例**：求 $I=\iiint_{V}(x+2 y+3 z)^{2} \mathrm{~d} V$，其中 $V: x^{2}+y^{2}+z^{2} \leqslant 1$.
+    > **分析**：线性性，轮换对称性，奇偶性。
+    >
+    > **法一**：$I=\frac{14}{3} \iiint_{V}\left(x^{2}+y^{2}+z^{2}\right) \mathrm{d} V$。球坐标变换后计算。
+    >
+    > **法二**：$I=14 \iiint_{V} x^{2} \mathrm{~d} V$。截面法计算。
+    >
+    > **变式**：$V$ 是由 $x^{2}+y^{2}+z^{2}=2 R z(R>0), y=\sqrt{x^{2}+z^{2}}$围成，求 $I=\iiint_{V}(x+2 y+3 z)^{2} \mathrm{~d} V$。
+    >
+    > 令 $x=r\sin\varphi \cos\theta, y=r\cos\varphi, z=r\sin\varphi \sin\theta$
+    > 此时 $0\leq\theta\leq\pi, 0\leq\varphi\leq\pi, 0\leq r\leq2R\sin\varphi \sin \theta$
+
+## 四、三重积分（截面法、投影法）
+
+### 1. 一般的思路
+*   能画图则画图，优先画平直面，曲面可意会。
+*   首次积分上下限：边界曲面方程。
+*   积分域：交线投影（肉眼看得出来当然最好，看不出来就消参，原则是向谁投影就消谁）、交点坐标。
+
+### 2. 技巧
+二重积分的技巧都能用：积分换序、对称性（包括轮换对称）、变量替换、补缺求全，积分区域划分，线性性。
+> **注意**：
+> *   极坐标变换适用于圆域的重要原因在于极坐标变换不只有一种形式。
+> *   轮换对称性具有一定灵活性。
+>   如 $\iiint _\Omega (\frac{x}{a}+\frac{y}{b}+\frac{z}{c})dxdydz$，其中 $\Omega$ 为 $\frac{x}{a}+\frac{y}{b}+\frac{z}{c}\le 1$ 的第一卦限内的部分。
+
+### 3. 投影法——先1后2
+投影区域易确定，穿入曲面和穿出曲面方程易知。
+
+### 4. 截面法——先2后1
+适用于截面域好确定，先2后1好计算。如被积函数只与一个变量有关，截面面积好求。
+> **注**：使用截面法之前需要证明曲面的交线是在同一个与z轴垂直的平面上。
+
+## 五、 曲面面积
+
+### 1. 公式
+*   设曲面方程为 $z=f(x, y), (x, y) \in D_{x y}$，且 $f(x, y)$ 在有界闭域 $D_{x y}$ 上有连续的偏导数，则曲面的面积为：
+    $$
+    S=\iint_{D_{x y}} \sqrt{1+f_{x}^{2}+f_{y}^{2}} \mathrm{~d} x \mathrm{~d} y
+    $$
+*   同样地，我们也有参数形式：
+    曲面 $x=x(u, v), y=y(u, v), z=z(u, v), (u, v) \in D$，面积为：
+    $$
+    S=\iint_{D}\left|\vec{r}_{u} \times \vec{r}_{v}\right| \mathrm{d} u \mathrm{~d} v=\iint_{D} \sqrt{E G-F^{2}} \mathrm{~d} u \mathrm{~d} v
+    $$
+    其中 $E=\vec{r}_{u} \cdot \vec{r}_{u}, F=\vec{r}_{u} \cdot \vec{r}_{v}, G=\vec{r}_{v} \cdot \vec{r}_{v}$，且 $\vec{r}_{u}=(x_{u},y_{u},z_{u}), \vec{r}_{v}=(x_{v},y_{v},z_{v})$。
+*   **注（拉格朗日恒等式）**：
+    $$
+    (\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})=\begin{vmatrix} \vec{a}\cdot \vec{c} & \vec{a}\cdot \vec{d} \\ \vec{b}\cdot \vec{c} & \vec{b}\cdot \vec{d} \end{vmatrix}
+    $$
+
+### 2. 注意点
+*   **阅读理解**（要算的面积是谁的面积）
+*   **投影要有一一性**（开根号要千万小心）
+*   与重积分一样，**不要光注意z=0平面上方**
+
+### 3. 计算质量，体积，面积
+*   **体积**：二重积分算曲顶柱体；三重积分算空间体。
+*   **面积**：二重积分算曲面面积；定积分算旋转体侧面积。
+*   **质量**：三重积分算空间体质量；二重积分算平面薄片质量。

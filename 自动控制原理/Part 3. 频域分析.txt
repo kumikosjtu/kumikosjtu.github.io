@@ -7,7 +7,8 @@
 - **频率响应法**
   - 当高阶系统的分析难以进行，某些传递函数难以列写时，整个系统的分析工作无法进行。
   - 频率响应法是研究自动控制系统的一种工程方法，利用频率特性进行控制系统分析的图解方法。
-
+  - 利用开环频率特性研究闭环系统。
+  
 - **频率响应** 是系统对正弦输入信号的稳态响应；
 
 - **频率特性** 是描述系统频率响应与正弦输入信号之间幅值和相位关系的一种数学模型。
@@ -17,6 +18,7 @@
   例如输入 $A\sin (\omega t)$，稳态响应为 $A|G(j\omega)|\sin(\omega t+\varphi(j\omega))$.
 
 - **频率特性的表示方法**：
+  
   - 解析形式：幅频/相频形式，指数形式，实频/虚频形式，三角函数形式；
   - 图解形式：Bode 图（对数频率特性图），Nyquist 图（幅相频率特性曲线）
 
@@ -37,9 +39,19 @@ $$
 \varphi(j\omega)=\tan^{-1}(\omega T_1)-90^\circ-\tan^{-1}(\omega T_2)
 $$
 
+二阶环节：
+$$
+G(j\omega)=\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}
+$$
+
+$$
+|G(j\omega)|=\frac{\omega_n^2}{\sqrt{(\omega_n^2-\omega^2)^2+4\zeta^2\omega_n^2\omega^2}}\\
+\varphi(\omega)=-\arctan \frac{2\zeta\omega_n \omega}{\omega_n^2-\omega^2}
+$$
+
 当开环系统由若干典型环节串联组成时，其对数幅频特性和相频特性 <u>分别为各典型环节的对数幅频特性和相频特性之和</u>。
 
-**Bode 图的绘制**：
+**Bode 图（对数幅频特性+相频特性）的绘制**：
 
 - 把系统的频率特性改写成各典型环节的乘积形式
 - 求出典型环节的转折频率，并在图上标注出来
@@ -191,6 +203,8 @@ $$
 > 注意，Nyquist 稳定判据中 $\omega:-\infin\to +\infin$，因此是 $-P$，而 Bode 稳定性判据中 $\omega:0\to +\infin$，因此穿越次数为 $-P/2$.
 
 ### 系统的相对稳定性和稳定裕度
+
+以下分析都是在开环稳定的前提下的。
 
 - 相位剪切频率 $\varphi(\omega_g)=-180^\circ$；
 - 增益裕度 $K_g=1/A(\omega_g)$，表示系统增益还能增大的值；
@@ -673,6 +687,30 @@ $$
 $$
 系统稳定。
 
+#### 8
+
+已知单位反馈系统的开环传递函数 $\displaystyle G(s)=\frac{1}{s(T_1s+1)(T_2s+1)}$，其中 $T_1,T_2>0$。试确定使系统闭环稳定的参数 $T_1,T_2$ 的范围。
+
+先画出草图，计算与实轴的交点：
+$$
+G(j\omega)=\frac{1}{j\omega(-T_1T_2\omega^2+1+(T_1+T_2)j\omega)}
+$$
+令 $-T_1T_2\omega^2+1=0$，可得 $\omega=\pm\frac{1}{\sqrt{T_1T_2}}j$. 此时交点为：
+$$
+\left(-\frac{T_1T_2}{T_1+T_2},j0\right)
+$$
+稳定条件：$-1<-\frac{T_1T_2}{T_1+T_2}$，即 $\frac{1}{T_1}+\frac{1}{T_2}>1$.
+
+#### 9
+
+已知单位反馈系统的开环传递函数 $\displaystyle G(s)=\frac{K(1-s)}{s(s+1)},K>0$，试用奈奎斯特判据判别 $K=1,K>1,K<1$ 三种情况下系统的闭环稳定性。
+
+<img src="https://notes.sjtu.edu.cn/uploads/upload_0949d3ed1083de3d15f774392c83701c.png" style="zoom:50%;" />
+
+- $K=1$ 临界稳定；
+- $K>1$ 不稳定；
+- $0<K<1$ 稳定。
+
 ### 超前校正
 
 #### 1
@@ -853,7 +891,7 @@ $$
 
 总体的系统为：
 $$
-G(s)=\frac{1+aT_1 s}{1+T_1s}\frac{1+bT_2s}{1+T_2s} \frac{5}{s(s+1)(s/2+1)}
+G(s)=\frac{1+aT_1 s}{1+T_1s}\frac{1+bT_2s}{1+T_2s} \frac{10}{s(s+1)(s/2+1)}
 $$
 ![](https://notes.sjtu.edu.cn/uploads/upload_fc30bf424ff6e4ccb642b513e65baa1f.png)
 
@@ -876,3 +914,4 @@ $$
 G(s)=\frac{1+1/10s}{1+1/100s}\frac{1+1/3s}{1+10/3s}\frac{100}{s\left(\frac{s}{10}+1\right)\left(\frac{s}{100}+1\right)}
 $$
 幅值剪切频率为 $\omega_c=9.95\mathrm{~rad/s}$，相位裕度为 $73.5^\circ$.
+
